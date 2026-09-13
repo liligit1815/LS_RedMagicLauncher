@@ -92,7 +92,7 @@ python tools/build-launcher.py --sdk "<Android SDK目录>"
 
 恢复工具读取私有仓库的 `redmagic-launcher/`，核对文件哈希和公开证书身份，再恢复到本工程被忽略的 `.signing/`。已有文件内容相同时成功，不同则拒绝覆盖；它不会生成新密钥。恢复后构建只读取本工程 `.signing/`，不依赖签名仓库的存放路径。
 
-自动新建 `.signing/` 的恢复流程目前仅支持 Windows。其他系统需手动创建该目录，将私有仓库中的 `debug.keystore`、`signing.local.json`、`signing-certificate.pem` 三个文件放入，再运行恢复命令核验一致性；其他系统的完整构建尚未实测。
+自动新建 `.signing/` 的恢复流程目前仅支持 Windows。其他系统需先确认没有不同的本地签名，再手动创建该目录，将私有仓库中的 `debug.keystore`、`signing.local.json`、`signing-certificate.pem` 三个文件放入，运行恢复命令核验一致性；不要覆盖已有的不同签名。其他系统的完整构建尚未实测。
 
 私有仓库之外仍应保留一份自己掌控、确认可读取的签名备份。手机桌面布局、账号数据和安装前恢复备份需要另外保管；克隆源码和签名仓库不会恢复手机数据，也不证明任意设备可以安装。
 
@@ -123,6 +123,8 @@ python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 首次在新电脑克隆后，先运行 `--unsigned` 验证完整构建；需要同签名产物时按上一节恢复签名。GitHub 中的 APK 和公开证书无法还原签名私钥。`.gitattributes` 固定源码换行并保留打包二进制原样，避免 Windows 克隆时改变辅助 Smali 的同步结果。
 
 已完成真实 Windows 干净 Git 克隆验证：没有旧 `out/`、模块工程和签名文件，不传 `--previous`，未签名构建通过；生成包的 **9,022 个非签名成员解压内容均与验收版一致**，构建前后业务源码未变。默认基线误依赖本地输出、辅助 Smali 的 CRLF/LF 差异导致克隆误报这两项换机构建问题已修复。
+
+2026-09-13 已进一步从 GitHub 全新克隆公开源码和私有签名仓库，按上面的相邻目录命令恢复原密钥，完成默认签名构建。结果为 `signed_verified`，恢复文件与原签名逐字节一致，生成 APK 的 9,022 个非签名成员与验收版全部一致，两个克隆工作区均无源码改动。具体输入、结果和验证范围见 [GitHub 恢复构建验收](docs/REMOTE_RECOVERY_VERIFICATION.md)。
 
 成功的签名构建目录包含规范命名 APK、`.sha256`、`build-report.json`、`source-inputs.json`、`oem-resources.json`、`unsigned-boundary.json`、`unsigned-baseline.json`、`release-verification.json` 和各步骤日志。`build-report.json` 只有在最终验证通过后才记录 `signed_verified`；仅看到 APK 文件存在不代表通过。
 
