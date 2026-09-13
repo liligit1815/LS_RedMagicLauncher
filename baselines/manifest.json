@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "file": "launcher-260005.apk",
+  "purpose": "Fixed, user-accepted regression input; not a rolling build output",
+  "package_name": "com.zte.mifavor.launcher",
+  "version_code": 260005,
+  "version_name": "26.9.260.908.2609081608",
+  "size_bytes": 31330609,
+  "sha256": "2b5ccc21b361b910214df27930370b246b0495d8997e79e457241584dfe365df",
+  "certificate_sha256": "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb",
+  "acceptance": "User reported testing passed; individual test cases were not specified",
+  "private_signing_material_included": false
+}

@@ -1,0 +1,21 @@
+version: 3.0.3
+apkFileName: launcher.apk
+usesFramework:
+  ids:
+  - 1
+sdkInfo:
+  minSdkVersion: 31
+  targetSdkVersion: 36
+versionInfo:
+  versionCode: 260005
+  versionName: 26.9.260.908.2609081608
+resourcesInfo:
+  packageId: 127
+doNotCompress:
+- arsc
+- jpg
+- png
+- so
+- webp
+- assets/dexopt/baseline.prof
+- assets/dexopt/baseline.profm

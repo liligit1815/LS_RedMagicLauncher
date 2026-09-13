@@ -1,0 +1,32 @@
+# Reproducible source checkout on Windows, Linux, and macOS. Java source line
+# endings must remain LF so helper compilation matches the checked-in Smali.
+* text=auto eol=lf
+
+# Exact build inputs and media must retain their original bytes.
+*.apk binary
+*.jar binary
+*.zip binary
+*.dex binary
+*.so binary
+*.arsc binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.mp4 binary
+*.pdf binary
+
+# These APK members are preserved as payload bytes even when text-readable.
+src/assets/** -text
+src/unknown/** -text
+src/original/** -text
+src/res/raw*/** -text

@@ -1,0 +1,40 @@
+# Rebuildable files and local evidence
+/out/
+/build/
+/src/build/
+/src/dist/
+/helper-src/build*/
+/audit/
+/archive/
+/migration/
+/MIGRATION.md
+/docs/repository-size-inventory.json
+/docs/references/
+__pycache__/
+*.py[cod]
+*.class
+*.log
+
+# Local configuration and signing material
+/.signing/
+local.properties
+.idea/
+*.iml
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+*-private.pem
+
+# Keep the exact OEM/framework inputs required for independent builds
+*.apk
+*.apk.idsig
+*.apk.sha256
+!/original.apk
+!/tooling/framework-res-NX809J.apk
+!/framework/cache/1.apk
+!/baselines/launcher-260005.apk
+*-source.zip
+*-source.zip.sha256
+.DS_Store
