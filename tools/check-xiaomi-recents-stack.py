@@ -374,13 +374,13 @@ def main() -> int:
     )
     require(
         simulator,
-        "LsNativeStack;->normalizeLiveEntryMatrix(Landroid/content/Context;Landroid/graphics/Matrix;Landroid/graphics/Rect;)V",
+        "LsNativeStack;->normalizeLiveEntryMatrix(Landroid/content/Context;Landroid/graphics/Matrix;Landroid/graphics/Rect;Landroid/graphics/Matrix;)V",
         "TaskViewSimulator can still apply RedMagic's late vertical entry offset",
     )
     require(
         helper_java,
-        "targetCenterY - TEMP_LIVE_SURFACE_BOUNDS.centerY()",
-        "live-entry matrix is not centered from its actual mapped crop",
+        "homeToWindow.mapPoints(TEMP_LIVE_CENTER)",
+        "live-entry target is not mapped into the actual surface coordinate space",
     )
     require(
         helper_java,

@@ -35,20 +35,20 @@
 .method constructor <init>(Lcom/android/quickstep/views/TaskView;I)V
     .locals 1
 
-    .line 492
+    .line 509
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 493
+    .line 510
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$GestureLayerReset;->taskRef:Ljava/lang/ref/WeakReference;
 
-    .line 494
+    .line 511
     iput p2, p0, Lcom/android/quickstep/views/LsNativeStack$GestureLayerReset;->generation:I
 
-    .line 495
+    .line 512
     return-void
 .end method
 
@@ -57,7 +57,7 @@
 .method public run()V
     .locals 3
 
-    .line 499
+    .line 516
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$GestureLayerReset;->taskRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -66,7 +66,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/TaskView;
 
-    .line 500
+    .line 517
     if-eqz v0, :cond_0
 
     iget v1, p0, Lcom/android/quickstep/views/LsNativeStack$GestureLayerReset;->generation:I
@@ -77,7 +77,7 @@
 
     if-ne v1, v2, :cond_0
 
-    .line 501
+    .line 518
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1600()Ljava/lang/ref/WeakReference;
 
     move-result-object v1
@@ -88,21 +88,21 @@
 
     if-ne v1, v0, :cond_0
 
-    .line 502
+    .line 519
     const/4 v1, 0x0
 
     const/4 v2, 0x0
 
     invoke-virtual {v0, v1, v2}, Lcom/android/quickstep/views/TaskView;->setLayerType(ILandroid/graphics/Paint;)V
 
-    .line 503
+    .line 520
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1600()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->clear()V
 
-    .line 505
+    .line 522
     :cond_0
     return-void
 .end method

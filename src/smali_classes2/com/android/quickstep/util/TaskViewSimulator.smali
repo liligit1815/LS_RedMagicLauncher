@@ -59,6 +59,8 @@
 
 .field private final mMatrix:Landroid/graphics/Matrix;
 
+.field private final mNativeStackHomeToWindowMatrix:Landroid/graphics/Matrix;
+
 .field private final mMatrixTmp:Landroid/graphics/Matrix;
 
 .field private mNewWidth:F
@@ -259,6 +261,10 @@
     .line 61
     .line 62
     iput-object v1, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mMatrix:Landroid/graphics/Matrix;
+
+    new-instance v1, Landroid/graphics/Matrix;
+    invoke-direct {v1}, Landroid/graphics/Matrix;-><init>()V
+    iput-object v1, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mNativeStackHomeToWindowMatrix:Landroid/graphics/Matrix;
 
     .line 63
     .line 64
@@ -3372,7 +3378,14 @@
 
     invoke-interface {v1, v3, v7, v4}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->setPrimary(Ljava/lang/Object;Lcom/android/launcher3/touch/G$b;F)V
 
+    # Capture the exact home-to-window transform for the entry surface helper.
+    # Reset every frame: apply(..., false) must not inherit a previous rotation.
+    iget-object v1, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mNativeStackHomeToWindowMatrix:Landroid/graphics/Matrix;
+    invoke-virtual {v1}, Landroid/graphics/Matrix;->reset()V
+
     if-eqz p3, :cond_8
+
+    invoke-virtual {p0, v1}, Lcom/android/quickstep/util/TaskViewSimulator;->applyWindowToHomeRotation(Landroid/graphics/Matrix;)V
 
     .line 40
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mMatrix:Landroid/graphics/Matrix;
@@ -4923,7 +4936,7 @@
 .end method
 
 .method public onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;Landroid/view/RemoteAnimationTarget;Lcom/android/quickstep/util/TransformParams;)V
-    .locals 2
+    .locals 3
 
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mContext:Landroid/content/Context;
 
@@ -4931,7 +4944,9 @@
 
     iget-object v1, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mTmpCropRect:Landroid/graphics/Rect;
 
-    invoke-static {p3, v0, v1}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryMatrix(Landroid/content/Context;Landroid/graphics/Matrix;Landroid/graphics/Rect;)V
+    iget-object v2, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mNativeStackHomeToWindowMatrix:Landroid/graphics/Matrix;
+
+    invoke-static {p3, v0, v1, v2}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryMatrix(Landroid/content/Context;Landroid/graphics/Matrix;Landroid/graphics/Rect;Landroid/graphics/Matrix;)V
 
     .line 1
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mMatrix:Landroid/graphics/Matrix;

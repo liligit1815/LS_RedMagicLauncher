@@ -2,7 +2,7 @@
 
 基于红魔原厂桌面 `com.zte.mifavor.launcher` 的独立修改工程，当前提供最近任务堆叠样式，以及入口、动画、卡片遮挡、点击和删除补位适配。仓库包含 Apktool 工程、辅助 Java 源码、原厂底包、固定回归基线和构建检查工具，可以在新电脑克隆后继续开发，不依赖 LS_Augment 模块工程。
 
-**当前版本 `260005` 已在既有修改版环境完成安装，用户反馈“测试通过没有问题”。** 实测环境是 NX809J、Android 16 / API 36、RedMagicOS 11.5.7MR1，升级路径为同签名 `260004` → `260005`。这是单台设备的整体验收反馈，不能扩大为全部机型、固件和场景均兼容。
+**当前源码版本为 `260006`，修复横屏应用上滑进入最近任务时实时画面短暂偏离卡堆的问题。** 修复及验证范围见 [横屏入场修复](docs/LANDSCAPE_RECENTS_FIX.md)。用户此前已验收 `260005`（反馈“测试通过没有问题”），该版本继续作为固定回归基线。实测环境是 NX809J、Android 16 / API 36、RedMagicOS 11.5.7MR1；不能扩大为全部机型、固件和场景均兼容。
 
 源码仓库：[liligit1815/LS_RedMagicLauncher](https://github.com/liligit1815/LS_RedMagicLauncher)，默认分支 `main`。开始开发前阅读 [当前开发状态](docs/DEVELOPMENT_STATUS.md)，安装前阅读 [安装兼容性说明](docs/INSTALL_COMPATIBILITY.md)。
 
@@ -57,9 +57,9 @@
 | 项目 | 原厂底包 | 当前修改版 |
 |---|---|---|
 | 显示版本 versionName | `16.0.010.000.2604151532` | `26.9.260.908.2609081608` |
-| 内部版本 versionCode | `160000` | `260005` |
+| 内部版本 versionCode | `160000` | `260006` |
 
-- 同一轮修改、检查和重复构建使用同一个编号。当前保留用户已验收的 `260005`；下一轮实际桌面功能或修复修改使用 `260006`。只改说明、迁移目录或整理发布流程不另起功能版本。
+- 同一轮修改、检查和重复构建使用同一个编号。本轮横屏入场修复为 `260006`，下一轮独立功能修改使用 `260007`；用户已验收基线仍为 `260005`。只改说明、迁移目录或整理发布流程不另起功能版本。
 - 显示版本由用户决定，不擅自加 `LS`、`test` 后缀或按日期生成名称。
 - 签名包文件名为 `LS_红魔桌面修改版-<versionName>-<versionCode>.apk`，文件名和 APK 内实际版本都必须检查。
 - 模块和桌面版本独立。以后更换显示版本或原厂底包，需要在模块项目另行检查 `LauncherCompatibility` 的兼容性规则；这不是桌面构建依赖。
@@ -108,7 +108,7 @@ python tools/build-launcher.py --sdk "<Android SDK目录>"
 python tools/build-launcher.py --sdk "<Android SDK目录>"
 ```
 
-构建入口按顺序执行当前源码测试、在独立副本中重新编译辅助 Java 并核对 Smali 同步、强制回编译、原厂资源保真、16 KB ZIP 对齐、签前版本和代码边界检查、签名、签后完整核验。每次产生新的 `out/build-260005-时间戳/`，不会覆盖 `out/` 中已验收的 APK，不改项目业务源码，也不操作手机。任何步骤失败均以非零退出码停止。
+构建入口按顺序执行当前源码测试、在独立副本中重新编译辅助 Java 并核对 Smali 同步、强制回编译、原厂资源保真、16 KB ZIP 对齐、签前版本和代码边界检查、签名、签后完整核验。每次产生新的 `out/build-<versionCode>-时间戳/`，不会覆盖 `out/` 中已验收的 APK，不改项目业务源码，也不操作手机。任何步骤失败均以非零退出码停止。
 
 默认对照随 Git 保存的 `baselines/launcher-260005.apk`，并先校验固定 SHA-256。它与已验收的 260005 安装包完全一致。克隆不需要旧 `out/`，也不需要历史审查材料。核验其他受审查基线时可显式指定 `--previous <APK路径>`，仍须通过签名和载荷门禁，不能用待发布 APK 本身充当基线。
 
@@ -176,6 +176,7 @@ python tools/export-source.py
 python tools/test-launcher-entry-selection.py
 python tools/test-launcher-entry-freshness.py
 python tools/test-launcher-entry-interaction-cancel.py
+python tools/test-launcher-entry-rotation.py
 python tools/test-launcher-dismiss-geometry.py
 python tools/test-launcher-dismiss-integration.py
 python tools/test-launcher-style-isolation.py

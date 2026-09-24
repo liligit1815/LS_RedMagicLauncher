@@ -27,7 +27,8 @@ SOURCE_TESTS = (
     "test-launcher-entry-selection.py", "test-launcher-entry-freshness.py",
     "test-launcher-entry-interaction-cancel.py", "test-launcher-dismiss-geometry.py",
     "test-launcher-dismiss-integration.py", "test-launcher-style-isolation.py",
-    "test-launcher-focus-draw.py", "check-xiaomi-recents-stack.py",
+    "test-launcher-focus-draw.py", "test-launcher-entry-rotation.py",
+    "check-xiaomi-recents-stack.py",
 )
 
 

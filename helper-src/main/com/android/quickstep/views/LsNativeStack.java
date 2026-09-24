@@ -147,6 +147,8 @@ public final class LsNativeStack {
     private static final Rect TEMP_DESCENDANT_BOUNDS = new Rect();
     private static final Rect TEMP_HIT_BOUNDS = new Rect();
     private static final RectF TEMP_LIVE_SURFACE_BOUNDS = new RectF();
+    private static final Matrix TEMP_LIVE_WINDOW_TO_HOME = new Matrix();
+    private static final float[] TEMP_LIVE_CENTER = new float[2];
 
     private LsNativeStack() {
     }
@@ -310,8 +312,9 @@ public final class LsNativeStack {
      * quick switch and the other recent-task styles retain native matrices.
      */
     public static void normalizeLiveEntryMatrix(Context context, Matrix matrix,
-            Rect crop) {
-        if (context == null || matrix == null || crop == null || crop.isEmpty()) {
+            Rect crop, Matrix homeToWindow) {
+        if (context == null || matrix == null || crop == null || crop.isEmpty()
+                || homeToWindow == null) {
             return;
         }
         RecentsView recents = activeOverviewRecents.get();
@@ -319,7 +322,16 @@ public final class LsNativeStack {
                 || (overviewEntryPending && overviewPendingRecents.get() == recents
                 && recents != null && recents.isNativeStackStyle()
                 && recents.isRecentsAnimationRunning());
-        if (!pending) {
+        if (!pending || recents == null || !recents.isNativeStackStyle()
+                || recents.getWidth() <= 0 || recents.getHeight() <= 0) {
+            return;
+        }
+        // The surface matrix already contains TaskViewSimulator's window
+        // rotation. Resources can still describe the portrait Launcher here.
+        // Work in the same home axes as update(), then map the target through
+        // the exact transform used by this simulator frame (identity when the
+        // caller disables window rotation). This also preserves window offsets.
+        if (!homeToWindow.invert(TEMP_LIVE_WINDOW_TO_HOME)) {
             return;
         }
         TEMP_LIVE_SURFACE_BOUNDS.set(crop);
@@ -327,22 +339,27 @@ public final class LsNativeStack {
                 || TEMP_LIVE_SURFACE_BOUNDS.isEmpty()) {
             return;
         }
-        float targetCenterY = context.getResources().getDisplayMetrics().heightPixels * 0.5f;
-        float correctionY = targetCenterY - TEMP_LIVE_SURFACE_BOUNDS.centerY();
-        if (recents != null && getInitialTaskOrdinal(recents, recents.getTaskViewCount()) == 1) {
+        float centerX = TEMP_LIVE_SURFACE_BOUNDS.centerX();
+        float centerY = TEMP_LIVE_SURFACE_BOUNDS.centerY();
+        TEMP_LIVE_CENTER[0] = centerX;
+        TEMP_LIVE_CENTER[1] = centerY;
+        TEMP_LIVE_WINDOW_TO_HOME.mapPoints(TEMP_LIVE_CENTER);
+        RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+        boolean horizontalPrimary = Math.abs(handler.getPrimaryValue(1.0f, 0.0f)) > 0.5f;
+        float targetPrimary = handler.getPrimaryValue(TEMP_LIVE_CENTER[0], TEMP_LIVE_CENTER[1]);
+        float targetSecondary = (horizontalPrimary ? recents.getHeight() : recents.getWidth()) * 0.5f;
+        float scale = 1.0f;
+        if (getInitialTaskOrdinal(recents, recents.getTaskViewCount()) == 1) {
             float page = getEntryPagePosition(recents, recents.getTaskViewCount());
             float depth = getMiuiDepth(0.0f, page, recents.getTaskViewCount());
-            float scale = getMiuiScaleRatio(depth);
-            float centerX = TEMP_LIVE_SURFACE_BOUNDS.centerX();
-            float centerY = TEMP_LIVE_SURFACE_BOUNDS.centerY();
-            matrix.postScale(scale, scale, centerX, centerY);
-            float width = context.getResources().getDisplayMetrics().widthPixels;
-            matrix.postTranslate(getMiuiCenter(width, depth) - centerX, correctionY);
-            return;
+            scale = getMiuiScaleRatio(depth);
+            targetPrimary = getMiuiCenter(handler.getPrimarySize(recents), depth);
         }
-        if (Math.abs(correctionY) > 0.01f) {
-            matrix.postTranslate(0.0f, correctionY);
-        }
+        TEMP_LIVE_CENTER[0] = handler.getPrimaryValue(targetPrimary, targetSecondary);
+        TEMP_LIVE_CENTER[1] = handler.getSecondaryValue(targetPrimary, targetSecondary);
+        homeToWindow.mapPoints(TEMP_LIVE_CENTER);
+        matrix.postScale(scale, scale, centerX, centerY);
+        matrix.postTranslate(TEMP_LIVE_CENTER[0] - centerX, TEMP_LIVE_CENTER[1] - centerY);
     }
 
     /**
