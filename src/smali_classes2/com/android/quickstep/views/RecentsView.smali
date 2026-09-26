@@ -13064,6 +13064,11 @@
 
     .line 65
     :goto_0
+    # Ordinary page bounds omit visible rear slices of the stack. Preserve
+    # those thumbnails before the OEM branch can cancel/clear their requests.
+    invoke-static {p0, p8, p1}, Lcom/android/quickstep/views/LsNativeStack;->shouldKeepTaskData(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z)Z
+    move-result p1
+
     if-eqz p1, :cond_9
 
     .line 66
@@ -39286,6 +39291,9 @@
 .method public onGestureAnimationStart(Lcom/android/wm/shell/shared/i;)V
     .locals 2
 
+    # Release cached stack clips/transforms before OEM gesture setup and load.
+    invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->onAppGestureStart(Lcom/android/quickstep/views/RecentsView;)V
+
     .line 1
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -49469,4 +49477,16 @@
 
     .line 19
     return p0
+.end method
+
+.method public dispatchTouchEvent(Landroid/view/MotionEvent;)Z
+    .locals 1
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->dispatchInlineActionTouch(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-eqz v0, :native_stack_normal_dispatch
+    return v0
+    :native_stack_normal_dispatch
+    invoke-super {p0, p1}, Lcom/android/launcher3/V4;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
+    move-result v0
+    return v0
 .end method

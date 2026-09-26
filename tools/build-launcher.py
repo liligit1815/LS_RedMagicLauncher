@@ -28,6 +28,13 @@ SOURCE_TESTS = (
     "test-launcher-entry-interaction-cancel.py", "test-launcher-dismiss-geometry.py",
     "test-launcher-dismiss-integration.py", "test-launcher-style-isolation.py",
     "test-launcher-focus-draw.py", "test-launcher-entry-rotation.py",
+    "test-launcher-touch-target.py",
+    "test-launcher-native-gesture.py",
+    "test-launcher-home-stack-entry.py",
+    "test-launcher-action-visibility.py",
+    "test-launcher-thumbnail-continuity.py",
+    "test-launcher-stack-controls.py",
+    "test-launcher-stack-visual-continuity.py",
     "check-xiaomi-recents-stack.py",
 )
 

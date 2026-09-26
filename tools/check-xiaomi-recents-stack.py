@@ -225,10 +225,12 @@ def main() -> int:
     if initial_java_start < 0 or initial_java_end < 0:
         raise AssertionError("strict Xiaomi initial ordinal method missing")
     initial_java = helper_java[initial_java_start:initial_java_end]
-    require(initial_java, "return 0;", "Home/single-task entry does not preserve first task")
+    require(initial_java, "return 0;", "single-task or unrelated-view entry does not preserve first task")
     require(initial_java, "entryFromApp && activeOverviewRecents.get() == recents && taskCount > 1",
             "second-task focus is not restricted to this live app entry with multiple tasks")
     require(initial_java, "return 1;", "live app entry does not center the second task")
+    require(helper_java, "* getHomeEntrySpread(revealProgress, taskOrdinal);",
+            "Home back cards do not unfold using the reveal progress")
     require(helper_java, "pagePosition = stableEntryOrder ? getEntryPagePosition(recents, entryTaskOrderSize)",
             "visual entry does not share the live animator progress")
     require(swipe_handler, "LsNativeStack;->onLiveOverviewFrame(Landroid/animation/ValueAnimator;)V",
@@ -313,12 +315,12 @@ def main() -> int:
         )
     require(
         helper_java,
-        "waitingForLiveEntryAnchor",
-        "old cached cards can render before the live running task is bound",
+        "waitingForEntryAnchor = entryLoading && !stableEntryOrder",
+        "old cached cards can render before the Home/live entry identity is bound",
     )
     require(
         helper_java,
-        "waitingForLiveEntryAnchor\n                        || (entryLoading && !entryDeckReady && taskOrdinal > 0)",
+        "waitingForEntryAnchor\n                        || (entryLoading && !entryDeckReady && taskOrdinal > 0)",
         "live-entry staging does not release the back deck after coherent geometry",
     )
     require(
@@ -363,10 +365,12 @@ def main() -> int:
         "LsNativeStack;->normalizeLiveEntryScroll(F)F",
         "live app surface can still inherit the cached pager's right offset",
     )
-    if simulator.count("LsNativeStack;->normalizeLiveEntryScroll(F)F") != 2:
+    if simulator.count("LsNativeStack;->normalizeLiveEntryScroll(F)F") != 1:
         raise AssertionError(
-            "live scroll must be normalized both when written and when applied"
+            "live scroll must be normalized once per draw, without changing its stored native input"
         )
+    if "normalizeLiveEntryScroll" in method(simulator, ".method public setScroll(F)V"):
+        raise AssertionError("stored native scroll was attenuated before drawing")
     require(
         helper_java,
         "public static void normalizeLiveEntryMatrix(Context context, Matrix matrix,",
@@ -553,7 +557,9 @@ def main() -> int:
     if "isEntryTransitionActive" in before_draw or "sget-boolean" in before_draw:
         raise AssertionError("OEM lock/rebind frames are still excluded from deck reconciliation")
     chrome = method(task, ".method public setNativeStackChromeAlpha(FF)V")
-    require(chrome, "List;->isEmpty()Z", "unbound title can abort the whole deck")
+    require(chrome, "Iterator;->hasNext()Z", "unbound title can abort the whole deck")
+    if "->setTitleAlpha(" in chrome or "->setContentAlpha(" in chrome:
+        raise AssertionError("chrome updates still toggle independently composed icons")
     if "native_stack_chrome_cached" in chrome:
         raise AssertionError("independently reset task icons can bypass chrome reconciliation")
     dispatch_draw = method(recents, ".method protected dispatchDraw(Landroid/graphics/Canvas;)V")
@@ -593,8 +599,17 @@ def main() -> int:
         helper,
         ".method public static onOverviewStateChanged(Lcom/android/quickstep/views/RecentsView;Z)V",
     )
-    if "armEntryReveal" in helper_overview:
-        raise AssertionError("Overview starts a second reveal animation over the OEM transition")
+    require(helper_overview, "armEntryReveal", "Home entry has no reveal animation")
+    require(
+        helper_java,
+        "if (entryFromApp) finishEntryReveal(recents);\n            else armEntryReveal(recents);",
+        "Home reveal must not run over the live app transition",
+    )
+    require(
+        helper_java,
+        "|| entryFromApp || liveSimulatorOverviewTarget || isNativeGestureOwned(recents)",
+        "queued Home reveal can steal a live/native gesture",
+    )
     require(
         recents,
         "LsNativeStack;->prepareDismissedTask",
@@ -624,11 +639,19 @@ def main() -> int:
         "setNativeStackClipRight(I)V",
         "dismissed focus card keeps a stale half-card clip",
     )
-    require(
-        helper_java,
-        "dismiss hit mapped to visual focus",
-        "overlapping dismiss hit-test does not prefer the visual focus card",
+    hit_test = method(
+        helper,
+        ".method public static findTouchedTask(Lcom/android/quickstep/views/RecentsView;Lcom/android/launcher3/views/BaseDragLayer;Landroid/view/MotionEvent;)Lcom/android/quickstep/views/TaskView;",
     )
+    require(hit_test, "->getTranslationZ()F", "dismiss hit-test ignores visible layer order")
+    require(hit_test, "->isTouchableTask(", "dismiss hit-test bypasses visible bounds")
+    if "->getVisualFocusPage(" in hit_test:
+        raise AssertionError("dismiss hit-test still gives logical focus priority over the touched card")
+    touch_bounds = method(
+        helper,
+        ".method private static isTouchableTask(Lcom/android/quickstep/views/RecentsView;Lcom/android/launcher3/views/BaseDragLayer;Lcom/android/quickstep/views/TaskView;Landroid/view/MotionEvent;)Z",
+    )
+    require(touch_bounds, "->getNativeStackClipBounds()", "dismiss hit-test ignores screenshot clipping")
     require(
         helper_java,
         "if (!horizontalPrimary || dismissLayer || dismissReflowLayer)",

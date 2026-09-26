@@ -101,6 +101,8 @@
 
 .method private q0(I)V
     .locals 4
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->configureScaleControl(Landroid/app/Activity;I)V
+
     const/4 v0, 0x0
     const/4 v1, 0x1
 
@@ -151,6 +153,9 @@
     move-result v0
     xor-int/lit8 v0, v0, 0x1
     iget-object p0, p0, Lcom/android/launcher3/settings/RecentAppStyleActivity;->N:Landroid/widget/LinearLayout;
+    # Keep the embedded slider enabled even while its style is selected.
+    invoke-virtual {p0, v0}, Landroid/widget/LinearLayout;->setClickable(Z)V
+    const/4 v0, 0x1
     invoke-virtual {p0, v0}, Landroid/widget/LinearLayout;->setEnabled(Z)V
     return-void
 .end method

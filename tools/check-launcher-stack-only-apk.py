@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STACK_CLASS = "Lcom/android/quickstep/views/LsNativeStack"
 EXPECTED_CLASSES = {STACK_CLASS + suffix + ";" for suffix in (
     "", "$EntryRevealEnd", "$EntryRevealStart", "$EntryRevealUpdate",
-    "$FrameUpdate", "$GestureLayerReset", "$InitialFrameCommit",
+    "$FrameUpdate", "$GestureLayerReset", "$InitialFrameCommit", "$ScaleControl", "$CardLongPress", "$ActionReveal",
 )}
 VIEW_CLASSES = {
     "Lcom/android/quickstep/views/TaskView;",
@@ -316,6 +316,15 @@ def expected_versions(path: Path) -> dict:
 
 
 def compare(original: dict, modified: dict, expected: dict) -> dict:
+    # Keep explicit historical-version audits usable. The settings control was
+    # introduced in 260011; derive the boundary from the requested/source version.
+    expected_classes = set(EXPECTED_CLASSES)
+    if expected["versionCode"] < 260015:
+        expected_classes.discard(STACK_CLASS + "$ActionReveal;")
+    if expected["versionCode"] < 260014:
+        expected_classes.discard(STACK_CLASS + "$CardLongPress;")
+    if expected["versionCode"] < 260011:
+        expected_classes.discard(STACK_CLASS + "$ScaleControl;")
     missing = sorted(original["classes"] - modified["classes"])
     added = modified["classes"] - original["classes"]
     target_refs = {key for key in modified["references"]
@@ -336,10 +345,10 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
 
     checks = {
         "originalClassesPreserved": {"pass": not missing, "missing": missing},
-        "onlySevenStackClassesAdded": {
-            "pass": added == EXPECTED_CLASSES, "expected": sorted(EXPECTED_CLASSES),
-            "added": sorted(added), "unexpected": sorted(added - EXPECTED_CLASSES),
-            "missingExpected": sorted(EXPECTED_CLASSES - added)},
+        "onlyDeclaredStackClassesAdded": {
+            "pass": added == expected_classes, "expected": sorted(expected_classes),
+            "added": sorted(added), "unexpected": sorted(added - expected_classes),
+            "missingExpected": sorted(expected_classes - added)},
         "noRemovedFeatureDexStrings": {"pass": not modified["forbidden"],
                                       "matches": modified["forbidden"]},
         "stackMethodReferencesDeclared": {

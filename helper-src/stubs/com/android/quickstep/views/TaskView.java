@@ -17,10 +17,15 @@ public abstract class TaskView extends FrameLayout {
     public abstract float getNativeDismissTranslationX();
     public abstract float getNativeDismissTranslationY();
     public abstract int[] getTaskIds();
+    public abstract RecentsView getRecentsView();
+    public abstract void cancelNativeStackTouch(android.view.MotionEvent event);
+    public abstract void setNativeStackHeaderHidden(boolean hidden);
     public abstract boolean containsTaskId(int taskId);
+    public abstract java.util.List<TaskContainer> getTaskContainers();
     public abstract void setNativeStackTransform(float x, float y, float scale, float alpha, float z);
     public abstract void reconcileNativeStackPresentation();
     public abstract void setNativeStackClipRight(int right);
+    public abstract android.graphics.Rect getNativeStackClipBounds();
     public abstract void setTitleAlpha(float alpha);
     public abstract TextView getNativeStackTitleView();
     public abstract void setNativeStackChromeAlpha(float titleAlpha, float actionAlpha);

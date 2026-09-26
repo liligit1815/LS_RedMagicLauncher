@@ -2723,6 +2723,10 @@
     .line 23
     invoke-virtual {p1, p0}, Landroid/widget/FrameLayout;->removeView(Landroid/view/View;)V
 
+    iget-object p1, p0, Lcom/android/quickstep/views/TaskMenuView;->taskView:Lcom/android/quickstep/views/TaskView;
+
+    invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->onTaskMenuDetached(Lcom/android/quickstep/views/TaskView;)V
+
     .line 24
     .line 25
     .line 26
@@ -2753,6 +2757,10 @@
 
     .line 7
     invoke-virtual {v0, p0}, Landroid/widget/FrameLayout;->removeView(Landroid/view/View;)V
+
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskMenuView;->taskView:Lcom/android/quickstep/views/TaskView;
+
+    invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskMenuDetached(Lcom/android/quickstep/views/TaskView;)V
 
     .line 8
     .line 9

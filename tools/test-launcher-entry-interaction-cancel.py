@@ -79,6 +79,7 @@ public class EntryInteractionCancelTest {
     static int entryTaskOrderSize, entryAnchorPage = -1, entryAnchorTaskId = -1;
     static int entryStabilizerGeneration;
     static boolean liveSimulatorOverviewTarget, overviewEntryPending;
+    static boolean isNativeGestureOwned(RecentsView view) { return false; }
 
     // The queue, page and these boundary collaborators are host substitutes.
     // Callback gating, retries, generation and entry-release logic come from
@@ -114,10 +115,13 @@ public class EntryInteractionCancelTest {
         overviewPendingRecents = new WeakReference<>(view);
         activeOverviewRecents = new WeakReference<>(view);
         captureEntryTaskOrder(view, view.tasks[0]);
+        // onOverviewStateChanged aligns the pager before queuing its frame commit.
+        setEntryPageAligned(view, entryAnchorPage);
     }
     static void releaseAndCheck(RecentsView view, boolean composeImmediately) {
         finishEntryForInteraction(view, composeImmediately);
         check(!view.pending && !isEntryTaskOrderActive(view), "release did not relinquish entry");
+        check(view.page == 0, "entry handoff moved the centered Home top card");
         // Model native pager accepting the user's chosen page after release.
         view.page = 2;
         int writes = view.pageWrites, captures = view.captures;

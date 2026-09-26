@@ -8,11 +8,14 @@ import android.widget.OverScroller;
 import com.android.quickstep.orientation.RecentsPagedOrientationHandler;
 
 public abstract class RecentsView extends ViewGroup {
+    public static boolean sGestureActive;
     protected RecentsView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public abstract int getScrollForPage(int page);
+    public abstract boolean canLaunchFullscreenTask();
+    public abstract float getContentAlpha();
     public abstract int getCurrentPage();
     public abstract int getNextPage();
     public abstract boolean isHandlingTouch();

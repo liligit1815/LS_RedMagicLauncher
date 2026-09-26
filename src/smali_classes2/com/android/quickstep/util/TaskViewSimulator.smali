@@ -5513,10 +5513,8 @@
     .line 13
     :cond_1
     :goto_0
-    invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryScroll(F)F
-
-    move-result p1
-
+    # Keep the OEM input intact. apply() samples the current entry fraction;
+    # normalizing here as well would attenuate twice and retain an old fraction.
     iget-object p0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->recentsViewScroll:Lcom/android/launcher3/anim/d;
 
     .line 14

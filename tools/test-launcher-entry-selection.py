@@ -12,6 +12,8 @@ progress = re.search(r"    private static float getEntryPagePosition\(.*?\n    }
 assert progress, "entry animator sample missing"
 scale = re.search(r"    public static float normalizeLiveAppliedScale\(.*?\n    }", source, re.S)
 assert scale, "live scale normalization missing"
+clamp = re.search(r"    private static float clamp\(.*?\n    }", source, re.S)
+assert clamp, "scale progress clamp missing"
 draw = re.search(r"    public static void beforeDispatchDraw\(.*?\n    }", source, re.S)
 assert draw, "draw reconciliation missing"
 harness = """
@@ -21,15 +23,18 @@ public class EntrySelectionTest {
     static boolean drawUpdatePending;
     static int compositions;
     static void update(RecentsView view){compositions++;}
+    static void startEntryRevealIfArmed(RecentsView view){}
     static boolean entryFromApp;
     static boolean liveSimulatorOverviewTarget;
-    static float liveEntryPageProgress;
+    static float liveEntryPageProgress,entryRevealProgress;
+    static WeakReference<RecentsView> entryRevealRecents=new WeakReference<>(null);
     static float lastLiveAppliedScale,liveEntryStartScale,focusScale=1.1f;
     static boolean overviewEntryPending;
     static WeakReference<RecentsView> overviewPendingRecents = new WeakReference<>(null);
     static final class Context { Object getResources(){ return null; } }
     static boolean usesNativeStackStyle(Context context){ return true; }
     static void loadConfig(Object resources){}
+    static void loadUserScale(Context context){}
     static WeakReference<RecentsView> activeOverviewRecents = new WeakReference<>(null);
     SELECTOR
     static void expect(RecentsView view, int count, int expected) {
@@ -50,14 +55,13 @@ public class EntrySelectionTest {
         expect(current,0,0); expect(current,1,0);
         expect(current,2,1); expect(current,20,1);
         expect(other,20,0);
-        // A new Home entry must not inherit the prior app entry's focus.
-        entryFromApp=false; expect(current,20,0);
-        liveSimulatorOverviewTarget=true;
+        // Home retains the top card at center for every reveal progress.
+        entryFromApp=false;expect(current,20,0);
         for(float frame:new float[]{0,.1f,.3f,.7f,1}){
-            liveEntryPageProgress=frame;
-            if(getEntryPagePosition(current,20)!=0)throw new AssertionError("Home must remain first");
+            entryRevealProgress=frame;liveEntryPageProgress=1-frame;
+            if(getEntryPagePosition(current,20)!=0)throw new AssertionError("Home top card lost center");
         }
-        entryFromApp=true;
+        entryFromApp=true;liveSimulatorOverviewTarget=true;
         for(float frame:new float[]{0,.1f,.3f,.7f,1}){
             liveEntryPageProgress=frame;
             if(getEntryPagePosition(current,20)!=frame)throw new AssertionError("App animator continuity");
@@ -73,12 +77,12 @@ public class EntrySelectionTest {
             liveEntryPageProgress=frame;
             float expected=.8f+.3f*frame;
             if(Math.abs(normalizeLiveAppliedScale(context,.8f)-expected)>.00001f)throw new AssertionError("Scale jump");
-            if(normalizeLiveAppliedScale(context,1.8f)!=1.8f)throw new AssertionError("Fullscreen scale clipped");
+            if(Math.abs(normalizeLiveAppliedScale(context,1.8f)-expected)>.00001f)throw new AssertionError("Late native scale changed committed entry");
         }
         System.out.println("PASS Home/app, empty/single/multiple tasks and cross-view entry isolation");
     }
 }
-""".replace("SELECTOR", method.group()+"\n"+progress.group()+"\n"+scale.group()+"\n"+draw.group())
+""".replace("SELECTOR", method.group()+"\n"+progress.group()+"\n"+scale.group()+"\n"+draw.group()+"\n"+clamp.group())
 with tempfile.TemporaryDirectory(prefix="ls-entry-test-") as folder:
     path=Path(folder)/"EntrySelectionTest.java"
     path.write_text(harness,encoding="utf-8")

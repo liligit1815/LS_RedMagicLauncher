@@ -62,7 +62,7 @@ STUBS = r'''
         void setCurrentPage(int i){currentPage=i;scroll=pageScrolls.get(i);setCalls++;}
     }
     static final String TAG="test";
-    static float focusScale=0.83f;
+    static float focusScale=0.83f,stackSpacingScale=1;
     static int maxDepth=5;
     static WeakReference<RecentsView> pendingDismissRecents=new WeakReference<>(null);
     static WeakReference<TaskView> pendingDismissTask=new WeakReference<>(null);
@@ -72,6 +72,7 @@ STUBS = r'''
     static WeakReference<RecentsView> entryAnchorRecents=new WeakReference<>(null);
     static int entryAnchorPage=-1;
     static void loadConfig(Resources r){}
+    static boolean isNativeGestureOwned(RecentsView r){return false;}
     static void finishEntryReveal(RecentsView r){r.stateWrites++;}
     static void finishEntryForInteraction(RecentsView r){r.stateWrites++;}
     static void finishEntryForInteraction(RecentsView r,boolean update){r.stateWrites++;}
@@ -196,7 +197,9 @@ CASES = r'''
         }
     }
     public static void main(String[] args){
-        if(!args[0].equals("style"))geometry();
+        if(!args[0].equals("style"))for(float ratio:new float[]{.7f,.84f,1,1.2f}){
+            stackSpacingScale=ratio;focusScale=.83f*ratio;geometry();
+        }
         if(!args[0].equals("geometry"))style();
         System.out.println("RESULT checks="+checks+" failures="+failures);
         if(failures>0)System.exit(1);

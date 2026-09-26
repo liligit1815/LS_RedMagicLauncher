@@ -25,13 +25,13 @@
 .method constructor <init>(Lcom/android/quickstep/views/RecentsView;)V
     .locals 0
 
-    .line 374
+    .line 776
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 375
+    .line 777
     iput-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$FrameUpdate;->recents:Lcom/android/quickstep/views/RecentsView;
 
-    .line 376
+    .line 778
     return-void
 .end method
 
@@ -40,8 +40,8 @@
 .method public run()V
     .locals 2
 
-    .line 380
-    invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$000()Ljava/lang/ref/WeakReference;
+    .line 782
+    invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$700()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
 
@@ -53,24 +53,24 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 381
+    .line 783
     const/4 v0, 0x0
 
-    invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$102(Z)Z
+    invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$802(Z)Z
 
-    .line 382
-    invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$000()Ljava/lang/ref/WeakReference;
+    .line 784
+    invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$700()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->clear()V
 
-    .line 384
+    .line 786
     :cond_0
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$FrameUpdate;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->update(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 385
+    .line 787
     return-void
 .end method

@@ -2,7 +2,7 @@
 
 基于红魔原厂桌面 `com.zte.mifavor.launcher` 的独立修改工程，当前提供最近任务堆叠样式，以及入口、动画、卡片遮挡、点击和删除补位适配。仓库包含 Apktool 工程、辅助 Java 源码、原厂底包、固定回归基线和构建检查工具，可以在新电脑克隆后继续开发，不依赖 LS_Augment 模块工程。
 
-**当前源码版本为 `260006`，修复横屏应用上滑进入最近任务时实时画面短暂偏离卡堆的问题。** 修复及验证范围见 [横屏入场修复](docs/LANDSCAPE_RECENTS_FIX.md)。用户此前已验收 `260005`（反馈“测试通过没有问题”），该版本继续作为固定回归基线。实测环境是 NX809J、Android 16 / API 36、RedMagicOS 11.5.7MR1；不能扩大为全部机型、固件和场景均兼容。
+**当前源码版本为 `260015`：桌面进入时顶层卡居中、后卡从其下方向左展开；App 进入时前卡在右、第二卡居中、后卡向左展开。所有卡片默认隐藏操作按钮，长按仅显示被按卡片的原厂右上角按钮，操作完成/取消后全部隐藏；打开更多时保持状态，菜单实际移除后再恢复图标和名称规则。70%–120% 自定义缩放继续保留，实机效果待验收。** 逐帧观察与改动见 [入场与长按过渡](docs/RECENTS_ENTRY_AND_ACTION_TRANSITIONS.md)。 详见 [堆叠缩放与图标](docs/STACK_SCALE_AND_ICONS.md)。保留 `260010` 的 [最近任务动画连续性修复](docs/RECENTS_ANIMATION_CONTINUITY_FIX.md)。保留 `260009` 的 [原厂手势与堆叠接管边界](docs/NATIVE_GESTURE_OWNERSHIP_FIX.md)、`260008` 的 [小窗拖动动画修复](docs/MINI_WINDOW_GESTURE_FIX.md)、`260007` 的 [卡片上滑命中修复](docs/RECENTS_TOUCH_TARGET_FIX.md) 和 `260006` 的 [横屏入场修复](docs/LANDSCAPE_RECENTS_FIX.md)。用户此前已验收 `260005`（反馈“测试通过没有问题”），该版本继续作为固定回归基线。此前实测环境是 NX809J、Android 16 / API 36、RedMagicOS 11.5.7MR1；不能扩大为全部机型、固件和场景均兼容。
 
 源码仓库：[liligit1815/LS_RedMagicLauncher](https://github.com/liligit1815/LS_RedMagicLauncher)，默认分支 `main`。开始开发前阅读 [当前开发状态](docs/DEVELOPMENT_STATUS.md)，安装前阅读 [安装兼容性说明](docs/INSTALL_COMPATIBILITY.md)。
 
@@ -12,7 +12,8 @@
 
 - 最近任务堆叠样式入口、卡片排列、进入和退出动画，以及可见卡片点击。
 - 上滑删除与连续补位；取消、下拉锁定和重复回调均清理临时状态。
-- 应用内进入最近任务时聚焦第二张卡；从桌面进入或只有一个任务时聚焦第一张卡。
+- 桌面入口顶层卡居中、后卡向左展开；App 入口前卡在右、第二卡居中、后卡向左展开；只有一个任务时单卡居中。
+- 所有卡片默认隐藏操作按钮，长按只显示所选卡片按钮，操作结束或取消后全部隐藏。
 - 堆叠专用交互只在堆叠样式生效，保留原厂其他样式的处理。
 
 `260005` 已修复以下由修改版引入的问题，辅助 Java 与打包用 Smali 已同步：
@@ -57,9 +58,9 @@
 | 项目 | 原厂底包 | 当前修改版 |
 |---|---|---|
 | 显示版本 versionName | `16.0.010.000.2604151532` | `26.9.260.908.2609081608` |
-| 内部版本 versionCode | `160000` | `260006` |
+| 内部版本 versionCode | `160000` | `260015` |
 
-- 同一轮修改、检查和重复构建使用同一个编号。本轮横屏入场修复为 `260006`，下一轮独立功能修改使用 `260007`；用户已验收基线仍为 `260005`。只改说明、迁移目录或整理发布流程不另起功能版本。
+- 同一轮修改、检查和重复构建使用同一个编号。图标空间显示与堆叠卡片缩放为 `260011`；第一张卡片默认按钮与长按临时显示为 `260012`；桌面入场动画修复为 `260013`；名称遮挡与快捷长按操作修复为 `260014`；本轮桌面入场及长按操作过渡修复为 `260015`，下一轮独立功能修改使用 `260016`；用户已验收基线仍为 `260005`。只改说明、迁移目录或整理发布流程不另起功能版本。
 - 显示版本由用户决定，不擅自加 `LS`、`test` 后缀或按日期生成名称。
 - 签名包文件名为 `LS_红魔桌面修改版-<versionName>-<versionCode>.apk`，文件名和 APK 内实际版本都必须检查。
 - 模块和桌面版本独立。以后更换显示版本或原厂底包，需要在模块项目另行检查 `LauncherCompatibility` 的兼容性规则；这不是桌面构建依赖。
@@ -168,7 +169,7 @@ python tools/export-source.py
 - 资源保真不可省略：既有资源 ID 和配置必须保留，只有既定最近任务样式布局允许增加堆叠入口；未知差异导致失败。
 - 使用 `zipalign -P 16` 对齐，并在签名前后分别检查。通过 ZIP 16 KB 对齐不等于完成 16 KB 设备运行或 JNI 内存安全验证。
 - 最终验证要求签名前后全部非签名 ZIP 成员解压内容一致，相对已验收基线的全部资源、原生库和 assets 一致；这不等于整个 APK 文件逐字节或哈希相同。
-- 代码边界要求原厂类保留、只新增既定七个辅助类、无已移除功能标记、相关方法声明可解析、Manifest 除版本外不变。版本期望从源码取得，不从待测 APK 反推。
+- 代码边界要求原厂类保留、只新增既定八个辅助类（260010 及以前为七个）、无已移除功能标记、相关方法声明可解析、Manifest 除版本外不变。版本期望从源码取得，不从待测 APK 反推。
 
 以下命令可单独诊断，统一构建也会执行当前门禁：
 
@@ -179,6 +180,10 @@ python tools/test-launcher-entry-interaction-cancel.py
 python tools/test-launcher-entry-rotation.py
 python tools/test-launcher-dismiss-geometry.py
 python tools/test-launcher-dismiss-integration.py
+python tools/test-launcher-touch-target.py
+python tools/test-launcher-native-gesture.py
+python tools/test-launcher-thumbnail-continuity.py
+python tools/test-launcher-stack-controls.py
 python tools/test-launcher-style-isolation.py
 python tools/test-launcher-focus-draw.py
 python tools/check-launcher-recents-smali.py src/smali_classes2/com/android/quickstep/views/RecentsView.smali

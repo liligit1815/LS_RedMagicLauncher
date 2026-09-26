@@ -376,6 +376,8 @@
 
 .field private nativeStackActionAlpha:F
 
+.field private nativeStackHeaderHidden:Z
+
 .field private nativeStackChromeInitialized:Z
 
 .field private nativeStackEntryTargetTranslationX:F
@@ -7359,7 +7361,12 @@
 .end method
 
 .method private static final setIcon$lambda$64$lambda$63(Lcom/android/quickstep/views/TaskView;Lcom/android/quickstep/views/TaskViewIcon;Landroid/view/View;)Z
-    .locals 0
+    .locals 1
+    invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskActionsLongPress(Lcom/android/quickstep/views/TaskView;)Z
+    move-result v0
+    if-eqz v0, :native_stack_original_long_press
+    return v0
+    :native_stack_original_long_press
 
     .line 1
     const/4 p2, 0x1
@@ -8305,6 +8312,11 @@
 
 .method private static final setTaskMenuClickListener$lambda$104(Lcom/android/quickstep/views/TaskView;Landroid/view/View;)Z
     .locals 1
+    invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskActionsLongPress(Lcom/android/quickstep/views/TaskView;)Z
+    move-result v0
+    if-eqz v0, :native_stack_original_long_press
+    return v0
+    :native_stack_original_long_press
 
     .line 1
     const/4 p1, 0x1
@@ -8870,6 +8882,8 @@
     .line 73
     move-result p0
 
+    invoke-static {v0, p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskMenuOpenResult(Lcom/android/quickstep/views/RecentsView;Z)V
+
     .line 74
     return p0
 
@@ -8894,6 +8908,8 @@
     .line 84
     .line 85
     move-result p0
+
+    invoke-static {v0, p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskMenuOpenResult(Lcom/android/quickstep/views/RecentsView;Z)V
 
     .line 86
     return p0
@@ -11551,6 +11567,11 @@
 
 .method public dispatchTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 5
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->onCardTouch(Lcom/android/quickstep/views/TaskView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-eqz v0, :native_stack_continue_touch
+    return v0
+    :native_stack_continue_touch
 
     .line 1
     const-string v0, "ev"
@@ -11581,6 +11602,10 @@
 
     .line 14
     :cond_0
+    invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
+    move-result v2
+    invoke-virtual {p0, v2}, Landroid/view/View;->setLongClickable(Z)V
+
     invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->getSplitSelectController()Lcom/android/quickstep/util/SplitSelectStateController;
 
     .line 15
@@ -11741,6 +11766,18 @@
     .line 88
     .line 89
     :cond_5
+    iget-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackChromeInitialized:Z
+    if-eqz v0, :native_stack_dispatch_children
+    iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackActionAlpha:F
+    const/4 v1, 0x0
+    cmpl-float v0, v0, v1
+    if-gtz v0, :native_stack_dispatch_children
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->hitsHiddenTaskAction(Lcom/android/quickstep/views/TaskView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-eqz v0, :native_stack_dispatch_children
+    const/4 v0, 0x1
+    return v0
+    :native_stack_dispatch_children
     invoke-super {p0, p1}, Landroid/widget/FrameLayout;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
 
     .line 90
@@ -19765,6 +19802,7 @@
     if-nez v1, :native_stack_preserve_entry_anchor
 
     iput-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackChromeInitialized:Z
+    iput-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackHeaderHidden:Z
 
     # A pooled TaskView must never carry a deck transform into a later bind.
     iput v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackTranslationX:F
@@ -23293,16 +23331,25 @@
 
     iput p2, p0, Lcom/android/quickstep/views/TaskView;->nativeStackActionAlpha:F
 
-    # Preserve GroupedTaskView's title handling, then independently gate the
-    # controls that occupy the card's trailing edge.
-    # During a rebind the task containers may temporarily be empty. Native
-    # setTitleAlpha assumes get(0); do not abort the entire deck in this gap.
+    # Update titles without OEM setTitleAlpha's icon visibility side effects.
+    # The icon compositor owns content alpha once per frame. Iteration handles
+    # grouped tasks and the empty-container rebind interval.
     invoke-virtual {p0}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
     move-result-object v0
-    invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
-    move-result v0
-    if-nez v0, :native_stack_chrome_buttons
-    invoke-virtual {p0, p1}, Lcom/android/quickstep/views/TaskView;->setTitleAlpha(F)V
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    move-result-object v0
+    :native_stack_title_loop
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+    move-result v1
+    if-eqz v1, :native_stack_chrome_buttons
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    move-result-object v1
+    check-cast v1, Lcom/android/quickstep/views/TaskContainer;
+    invoke-virtual {v1}, Lcom/android/quickstep/views/TaskContainer;->getTitleView()Landroid/widget/TextView;
+    move-result-object v1
+    if-eqz v1, :native_stack_title_loop
+    invoke-virtual {v1, p1}, Landroid/widget/TextView;->setAlpha(F)V
+    goto :native_stack_title_loop
 
     :native_stack_chrome_buttons
 
@@ -23357,20 +23404,11 @@
 
     if-ne v2, v1, :native_stack_clip_apply
 
-    # Native rebind/lock paths may clear View.clipBounds without changing our
-    # cached dimensions. Inspect the actual clip before accepting the cache.
-    iget-object v2, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRect:Landroid/graphics/Rect;
-    invoke-virtual {p0, v2}, Landroid/view/View;->getClipBounds(Landroid/graphics/Rect;)Z
-    move-result v3
-    if-eqz v3, :native_stack_clip_apply
-    iget v3, v2, Landroid/graphics/Rect;->left:I
-    if-nez v3, :native_stack_clip_apply
-    iget v3, v2, Landroid/graphics/Rect;->top:I
-    if-nez v3, :native_stack_clip_apply
-    iget v3, v2, Landroid/graphics/Rect;->right:I
-    if-ne v3, p1, :native_stack_clip_apply
-    iget v3, v2, Landroid/graphics/Rect;->bottom:I
-    if-ne v3, v1, :native_stack_clip_apply
+    # The root stays unclipped so header icons can retain their full silhouette.
+    # Clear any late native root clip; drawChild owns the screenshot slice.
+    invoke-virtual {p0}, Landroid/view/View;->getClipBounds()Landroid/graphics/Rect;
+    move-result-object v2
+    if-nez v2, :native_stack_clip_apply
     return-void
 
     :native_stack_clip_apply
@@ -23384,7 +23422,9 @@
 
     invoke-virtual {v2, v3, v3, p1, v1}, Landroid/graphics/Rect;->set(IIII)V
 
-    invoke-virtual {p0, v2}, Landroid/view/View;->setClipBounds(Landroid/graphics/Rect;)V
+    const/4 v3, 0x0
+    invoke-virtual {p0, v3}, Landroid/view/View;->setClipBounds(Landroid/graphics/Rect;)V
+    invoke-virtual {p0}, Landroid/view/View;->invalidate()V
 
     return-void
 
@@ -23411,8 +23451,73 @@
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/view/View;->setClipBounds(Landroid/graphics/Rect;)V
+    invoke-virtual {p0}, Landroid/view/View;->invalidate()V
 
     return-void
+.end method
+
+.method public final getNativeStackClipBounds()Landroid/graphics/Rect;
+    .locals 1
+    iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
+    if-ltz v0, :native_stack_no_hit_clip
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRect:Landroid/graphics/Rect;
+    return-object v0
+    :native_stack_no_hit_clip
+    invoke-virtual {p0}, Landroid/view/View;->getClipBounds()Landroid/graphics/Rect;
+    move-result-object v0
+    return-object v0
+.end method
+
+.method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+    .locals 3
+    iget-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackHeaderHidden:Z
+    if-eqz v0, :native_stack_header_allowed
+    invoke-static {p0, p2}, Lcom/android/quickstep/views/LsNativeStack;->isStackHeaderView(Lcom/android/quickstep/views/TaskView;Landroid/view/View;)Z
+    move-result v0
+    if-nez v0, :native_stack_action_hidden
+    :native_stack_header_allowed
+    # Native lock/drag animators also write button alpha. A hidden operation
+    # group stays undrawn even if such a writer restores a child's alpha.
+    iget-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackChromeInitialized:Z
+    if-eqz v0, :native_stack_child_clip
+    iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackActionAlpha:F
+    const/4 v1, 0x0
+    cmpl-float v0, v0, v1
+    if-gtz v0, :native_stack_action_visible
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mMiniWindowButton:Landroid/widget/ImageView;
+    if-eq p2, v0, :native_stack_action_hidden
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mSplitScreenButton:Landroid/widget/ImageView;
+    if-eq p2, v0, :native_stack_action_hidden
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mMenuButton:Landroid/widget/ImageView;
+    if-eq p2, v0, :native_stack_action_hidden
+    goto :native_stack_child_clip
+    :native_stack_action_visible
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mMiniWindowButton:Landroid/widget/ImageView;
+    if-eq p2, v0, :native_stack_draw_unclipped
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mSplitScreenButton:Landroid/widget/ImageView;
+    if-eq p2, v0, :native_stack_draw_unclipped
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mMenuButton:Landroid/widget/ImageView;
+    if-eq p2, v0, :native_stack_draw_unclipped
+    :native_stack_child_clip
+    iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
+    if-ltz v0, :native_stack_draw_unclipped
+    instance-of v0, p2, Lcom/android/quickstep/views/TaskViewIcon;
+    if-nez v0, :native_stack_draw_unclipped
+    invoke-virtual {p1}, Landroid/graphics/Canvas;->save()I
+    move-result v1
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRect:Landroid/graphics/Rect;
+    invoke-virtual {p1, v0}, Landroid/graphics/Canvas;->clipRect(Landroid/graphics/Rect;)Z
+    invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/FrameLayout;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+    move-result v2
+    invoke-virtual {p1, v1}, Landroid/graphics/Canvas;->restoreToCount(I)V
+    return v2
+    :native_stack_draw_unclipped
+    invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/FrameLayout;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+    move-result v0
+    return v0
+    :native_stack_action_hidden
+    const/4 v0, 0x0
+    return v0
 .end method
 
 .method public final reconcileNativeStackPresentation()V
@@ -27719,5 +27824,33 @@
 
     .line 73
     :cond_3
+    return-void
+.end method
+
+.method public performLongClick()Z
+    .locals 1
+    invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskActionsLongPress(Lcom/android/quickstep/views/TaskView;)Z
+    move-result v0
+    if-eqz v0, :native_stack_long_press_fallback
+    return v0
+    :native_stack_long_press_fallback
+    invoke-super {p0}, Landroid/widget/FrameLayout;->performLongClick()Z
+    move-result v0
+    return v0
+.end method
+
+.method public final setNativeStackHeaderHidden(Z)V
+    .locals 1
+    iget-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackHeaderHidden:Z
+    if-eq v0, p1, :native_stack_header_done
+    iput-boolean p1, p0, Lcom/android/quickstep/views/TaskView;->nativeStackHeaderHidden:Z
+    invoke-virtual {p0}, Landroid/view/View;->invalidate()V
+    :native_stack_header_done
+    return-void
+.end method
+
+.method public final cancelNativeStackTouch(Landroid/view/MotionEvent;)V
+    .locals 0
+    invoke-super {p0, p1}, Landroid/widget/FrameLayout;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
     return-void
 .end method

@@ -1199,6 +1199,9 @@
 
     .line 52
     :goto_0
+    iget-object v0, p0, Lcom/android/launcher3/uioverrides/touchcontrollers/p;->i:Lcom/android/quickstep/views/RecentsView;
+    invoke-static {v0, v2}, Lcom/android/quickstep/views/LsNativeStack;->normalizeHomeEntryTranslation(Lcom/android/quickstep/views/RecentsView;F)F
+    move-result v2
     iput v2, p0, Lcom/android/launcher3/uioverrides/touchcontrollers/p;->u:F
 
     .line 53
@@ -1221,6 +1224,9 @@
     .line 62
     .line 63
     const/high16 v3, 0x3fc00000    # 1.5f
+
+    invoke-static {v2, v3}, Lcom/android/quickstep/views/LsNativeStack;->normalizeHomeEntryScale(Lcom/android/quickstep/views/RecentsView;F)F
+    move-result v3
 
     .line 64
     .line 65

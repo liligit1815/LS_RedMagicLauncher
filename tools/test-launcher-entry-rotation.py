@@ -1,7 +1,8 @@
 """Run the production entry projection against independent JVM affine transforms.
 
 Checks rotation covariance, actual card coordinates, single-task continuity and
-style/lifecycle isolation. Android rendering and timing still require a device.
+gesture target isolation (including native mini-window drag transforms).
+Android rendering and timing still require a device.
 """
 from pathlib import Path
 import re
@@ -26,14 +27,19 @@ def extract(name):
 methods = '\n'.join(extract(name) for name in (
     'normalizeLiveEntryMatrix', 'getEntryPagePosition', 'getInitialTaskOrdinal',
     'getMiuiDepth', 'getMiuiInteriorCorrection', 'getMiuiScaleTerm',
-    'getMiuiScaleRatio', 'getMiuiCenter', 'clamp'))
+    'getMiuiScaleRatio', 'getMiuiCenter', 'clamp', 'setLiveOverviewTarget',
+    'normalizeLiveAppliedScale', 'normalizeLiveEntryScroll'))
 constants = '\n'.join(re.findall(r'    private static final float MIUI_\w+ = [^;]+;', source))
 harness = r'''
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.lang.ref.WeakReference;
 public class EntryRotationTest {
-    static class Context {}
+    static class Context { boolean stack=true; Object getResources(){return this;} }
+    static boolean usesNativeStackStyle(Context c){return c!=null && c.stack;}
+    static void resumeStackForOverviewTarget(){} // Lifecycle is tested by native-gesture harness.
+    static void loadConfig(Object resources){}
+    static void loadUserScale(Context context){}
     static class Rect { int w=800,h=1600; boolean isEmpty(){return w<=0 || h<=0;} }
     static class RectF {
         float l,t,r,b;
@@ -77,7 +83,10 @@ public class EntryRotationTest {
     static WeakReference<RecentsView> activeOverviewRecents=new WeakReference<>(null);
     static WeakReference<RecentsView> overviewPendingRecents=new WeakReference<>(null);
     static boolean liveSimulatorOverviewTarget,overviewEntryPending,entryFromApp;
+    static float entryRevealProgress;
+    static WeakReference<RecentsView> entryRevealRecents=new WeakReference<>(null);
     static float liveEntryPageProgress;
+    static float focusScale=1.1f,stackSpacingScale=1,liveEntryStartScale=Float.NaN,lastLiveAppliedScale=Float.NaN;
     CONSTANTS
     METHODS
     static int cases;
@@ -111,26 +120,66 @@ public class EntryRotationTest {
             float expectedPrimary=r.handler.getPrimaryValue(original[0],original[1]);
             float scale=1;
             if(count>1){float depth=getMiuiDepth(0,progress,count);expectedPrimary=getMiuiCenter(r.handler.getPrimarySize(r),depth);scale=getMiuiScaleRatio(depth);}
+            expectedPrimary=r.handler.getPrimaryValue(original[0],original[1])*(1-progress)+expectedPrimary*progress;
+            float expectedSecondary=r.handler.getSecondaryValue(original[0],original[1])*(1-progress)
+                +(r.handler.vertical?608:1344)*progress;
+            scale=1+(scale-1)*progress;
             normalizeLiveEntryMatrix(context,m,crop,window);
             float[] actual=center(m,crop);inverse.mapPoints(actual);
             near(r.handler.getPrimaryValue(actual[0],actual[1]),expectedPrimary);
-            near(r.handler.getSecondaryValue(actual[0],actual[1]),r.handler.vertical?608:1344);
+            near(r.handler.getSecondaryValue(actual[0],actual[1]),expectedSecondary);
             near((float)Math.abs(m.a.getDeterminant()),.49f*scale*scale);
             // Explicit reproduction: the landscape surface must be at Y=608,
             // not portrait Resources.height/2=1344, with either landscape turn.
-            if(rotation%2==1)near(center(m,crop)[1],608+(offset?83:0));
+            if(rotation%2==1&&progress==1)near(center(m,crop)[1],608+(offset?83:0));
         }
         // apply(..., false): a vertical deck in unrotated home coordinates.
         r.handler.vertical=true;r.count=1;Matrix identity=new Matrix(),m=surface(identity);
         normalizeLiveEntryMatrix(context,m,crop,identity);near(center(m,crop)[0],608);near(center(m,crop)[1],1016);
-        // Preserve native primary movement when no second card is selected.
-        entryFromApp=false;r.count=8;m=surface(identity);
-        normalizeLiveEntryMatrix(context,m,crop,identity);near(center(m,crop)[1],1016);
-        liveSimulatorOverviewTarget=false;unchanged(context,surface(identity),crop,identity);
+        // Home has no live surface: its card reveal cannot take over the matrix.
+        entryFromApp=false;r.count=8;liveSimulatorOverviewTarget=false;
+        entryRevealRecents=new WeakReference<>(r);entryRevealProgress=.5f;
+        unchanged(context,surface(identity),crop,identity);entryRevealRecents.clear();
         overviewEntryPending=true;overviewPendingRecents=new WeakReference<>(r);r.running=false;
         unchanged(context,surface(identity),crop,identity);
-        // Pending cached/live path shares the same geometry guard.
-        r.running=true;m=surface(identity);normalizeLiveEntryMatrix(context,m,crop,identity);near(center(m,crop)[0],608);
+        // A pending Recents view is also present while dragging toward a mini
+        // window. It must not claim the surface before an actual RECENTS target.
+        r.running=true;unchanged(context,surface(identity),crop,identity);
+        for(int rotation=0;rotation<4;rotation++)for(boolean offset:new boolean[]{false,true}){
+            r.handler.vertical=(rotation%2==1);
+            Matrix window=mapping(rotation,offset);
+            for(float drag:new float[]{0,.25f,.5f,.75f,1,.5f,0}){
+                // Native drag moves/shrinks toward a corner, then returns.
+                Matrix nativeDrag=new Matrix();nativeDrag.postScale(1-drag*.6f,1-drag*.6f,0,0);
+                nativeDrag.postTranslate(123+drag*700,456-drag*300);
+                nativeDrag.a.preConcatenate(window.a);
+                unchanged(context,nativeDrag,crop,window);
+                near(normalizeLiveAppliedScale(context,1-drag*.6f),1-drag*.6f);
+                near(lastLiveAppliedScale,1-drag*.6f);
+                near(normalizeLiveEntryScroll(drag*800-400),drag*800-400);
+            }
+        }
+        // Only the explicit end target enables the entry scale/scroll repair.
+        // On redirect to HOME/mini-window/app the pending token can remain set.
+        r.handler.vertical=true;entryFromApp=true;
+        near(normalizeLiveAppliedScale(context,.8f),.8f);
+        setLiveOverviewTarget(context,true);
+        near(normalizeLiveEntryScroll(370),370);
+        near(normalizeLiveAppliedScale(context,.4f),.8f);
+        liveEntryPageProgress=.5f;near(normalizeLiveAppliedScale(context,.4f),.95f);
+        near(normalizeLiveEntryScroll(370),185);
+        liveEntryPageProgress=1;near(normalizeLiveAppliedScale(context,.4f),1.1f);
+        near(normalizeLiveEntryScroll(370),0);
+        near(normalizeLiveAppliedScale(context,2.0f),1.1f);
+        setLiveOverviewTarget(context,false);
+        unchanged(context,surface(identity),crop,identity);
+        near(normalizeLiveEntryScroll(-370),-370);
+        near(normalizeLiveAppliedScale(context,.4f),.4f);
+        context.stack=false;setLiveOverviewTarget(context,true);
+        unchanged(context,surface(identity),crop,identity);
+        near(normalizeLiveEntryScroll(370),370);
+        near(normalizeLiveAppliedScale(context,.4f),.4f);
+        context.stack=true;
         overviewPendingRecents=new WeakReference<>(new RecentsView());unchanged(context,surface(identity),crop,identity);
         liveSimulatorOverviewTarget=true;r.stack=false;unchanged(context,surface(identity),crop,identity);r.stack=true;
         r.w=0;unchanged(context,surface(identity),crop,identity);r.w=1216;
@@ -139,7 +188,7 @@ public class EntryRotationTest {
         Matrix singular=new Matrix();singular.postScale(0,0,0,0);unchanged(context,surface(identity),crop,singular);
         crop.w=0;unchanged(context,surface(identity),crop,identity);crop.w=800;
         activeOverviewRecents=new WeakReference<>(null);unchanged(context,surface(identity),crop,identity);
-        System.out.println("PASS "+cases+" entry projection assertions: 0/90/180/270 degrees, offsets, rotation disabled, one/multiple tasks and lifecycle/style isolation");
+        System.out.println("PASS "+cases+" live-surface assertions: 0/90/180/270 degrees, native mini-window drag/return, explicit RECENTS commit, redirected target and style isolation");
     }
 }
 '''.replace('CONSTANTS', constants).replace('METHODS', methods)
@@ -154,6 +203,9 @@ mapping_call = apply_body.index('invoke-virtual {p0, v1}', guard)
 native_call = apply_body.index('invoke-virtual {p0, p3}', mapping_call)
 assert reset < guard < mapping_call < native_call
 assert 'invoke-static {p3, v0, v1, v2}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryMatrix' in simulator
+scroll_setter = simulator.split('.method public setScroll(F)V', 1)[1].split('.end method', 1)[0]
+assert 'normalizeLiveEntryScroll' not in scroll_setter, 'preserve raw native scroll; fade only at draw time'
+assert apply_body.count('->normalizeLiveEntryScroll(F)F') == 1, 'entry scroll must be sampled once per frame'
 with tempfile.TemporaryDirectory(prefix='ls-entry-rotation-') as folder:
     path = Path(folder) / 'EntryRotationTest.java'
     path.write_text(harness, encoding='utf-8')
