@@ -2,7 +2,9 @@
 
 基于红魔原厂桌面 `com.zte.mifavor.launcher` 的独立修改工程，当前提供最近任务堆叠样式，以及入口、动画、卡片遮挡、点击和删除补位适配。仓库包含 Apktool 工程、辅助 Java 源码、原厂底包、固定回归基线和构建检查工具，可以在新电脑克隆后继续开发，不依赖 LS_Augment 模块工程。
 
-**当前源码版本为 `260015`：桌面进入时顶层卡居中、后卡从其下方向左展开；App 进入时前卡在右、第二卡居中、后卡向左展开。所有卡片默认隐藏操作按钮，长按仅显示被按卡片的原厂右上角按钮，操作完成/取消后全部隐藏；打开更多时保持状态，菜单实际移除后再恢复图标和名称规则。70%–120% 自定义缩放继续保留，实机效果待验收。** 逐帧观察与改动见 [入场与长按过渡](docs/RECENTS_ENTRY_AND_ACTION_TRANSITIONS.md)。 详见 [堆叠缩放与图标](docs/STACK_SCALE_AND_ICONS.md)。保留 `260010` 的 [最近任务动画连续性修复](docs/RECENTS_ANIMATION_CONTINUITY_FIX.md)。保留 `260009` 的 [原厂手势与堆叠接管边界](docs/NATIVE_GESTURE_OWNERSHIP_FIX.md)、`260008` 的 [小窗拖动动画修复](docs/MINI_WINDOW_GESTURE_FIX.md)、`260007` 的 [卡片上滑命中修复](docs/RECENTS_TOUCH_TARGET_FIX.md) 和 `260006` 的 [横屏入场修复](docs/LANDSCAPE_RECENTS_FIX.md)。用户此前已验收 `260005`（反馈“测试通过没有问题”），该版本继续作为固定回归基线。此前实测环境是 NX809J、Android 16 / API 36、RedMagicOS 11.5.7MR1；不能扩大为全部机型、固件和场景均兼容。
+**当前源码版本为 `260017`：修正横屏进入最近任务时前卡先偏上、截图接管后再回位；横屏卡片宽、高调为上次交付尺寸的 105%（原始基准的 80.85%），堆叠中心间距收紧 10%，竖屏不变。保留删除前卡后的后卡位置与间距修正。修正版已完成 33 步构建与签名核验，尚未安装到手机验收。当前状态见 [开发状态](docs/DEVELOPMENT_STATUS.md)，本次修正见 [横屏入场交接](docs/RECENTS_LANDSCAPE_HANDOFF_20260927.md)，上一轮见 [删除前卡后的历史布局](docs/RECENTS_DISMISS_HISTORY_LAYOUT.md)。**
+
+当前保留桌面顶层卡居中、App 第二卡居中的入口规则，以及 70%–120% 自定义缩放。实时画面到截图卡片、退出和打开应用均接续当前几何。长按显示完整侧边操作，按完整截图在当前最近任务视觉方向的屏幕中线两侧的位置决定左右，同次展开、收回和重开锁定侧别，并复用原厂可用操作；父视图观察原始触摸流以覆盖惯性滑动拦截。本轮实现与验收边界见 [连续性与侧边操作](docs/RECENTS_CONTINUITY_AND_SIDE_ACTIONS.md)；历史 `260015` 规则见 [入场与长按过渡](docs/RECENTS_ENTRY_AND_ACTION_TRANSITIONS.md)。缩放设置见 [堆叠缩放与图标](docs/STACK_SCALE_AND_ICONS.md)。保留 `260010` 的 [最近任务动画连续性修复](docs/RECENTS_ANIMATION_CONTINUITY_FIX.md)，以及 `260009` 的 [原厂手势与堆叠接管边界](docs/NATIVE_GESTURE_OWNERSHIP_FIX.md)、`260008` 的 [小窗拖动动画修复](docs/MINI_WINDOW_GESTURE_FIX.md)、`260007` 的 [卡片上滑命中修复](docs/RECENTS_TOUCH_TARGET_FIX.md) 和 `260006` 的 [横屏入场修复](docs/LANDSCAPE_RECENTS_FIX.md)。用户此前已验收 `260005`（反馈“测试通过没有问题”），该版本继续作为固定回归基线。此前实测环境是 NX809J、Android 16 / API 36、RedMagicOS 11.5.7MR1；不能扩大为全部机型、固件和场景均兼容。
 
 源码仓库：[liligit1815/LS_RedMagicLauncher](https://github.com/liligit1815/LS_RedMagicLauncher)，默认分支 `main`。开始开发前阅读 [当前开发状态](docs/DEVELOPMENT_STATUS.md)，安装前阅读 [安装兼容性说明](docs/INSTALL_COMPATIBILITY.md)。
 
@@ -13,8 +15,15 @@
 - 最近任务堆叠样式入口、卡片排列、进入和退出动画，以及可见卡片点击。
 - 上滑删除与连续补位；取消、下拉锁定和重复回调均清理临时状态。
 - 桌面入口顶层卡居中、后卡向左展开；App 入口前卡在右、第二卡居中、后卡向左展开；只有一个任务时单卡居中。
-- 所有卡片默认隐藏操作按钮，长按只显示所选卡片按钮，操作结束或取消后全部隐藏。
+- 首屏将前卡左边距到 2.5% 安全边之间的空间分给前两张后卡，固定两个位置，任务从三张减到两张时不重新分配；翻向下一页时平滑回到原有排列。
+- 所有卡片默认隐藏操作按钮；长按成立时，完整截图中心在当前最近任务视觉方向的屏幕中线左侧或线上则显示右侧按钮，在右侧则显示左侧按钮。多容器按完整截图框并集判断，采样发生在清理旧菜单和结束入场之前，同次展开、收回与重开保持侧别。原右上角小窗和更多按钮由侧栏替代。
+- 1216 px 宽屏的白圆与点击区域保持约 175 px，图标 padding 为圆径的 23%；已知操作统一为深灰圆角细线图标。弧线最大横偏为 0.60 倍圆径，相邻中心间距收紧为 1.16 倍圆径，端部贴近卡片侧边、中间向外鼓；横屏空间不足时按整列缩小。
+- 仅从侧栏移除关闭叉号，底部清理按钮和原厂菜单保持；原厂可用性、锁定/解锁状态、禁用状态、名称和执行器保留，未知动作继续用原图标。
+- 侧栏补齐原独立入口可用、但原厂菜单未列出的小窗按钮；非选中卡片在仍可见时连续恢复完整截图后继续淡出，收回时恢复原堆叠片段。
+- 长按覆盖惯性滚动被按住的场景；普通短点击松手只取消自定义计时器，保留原厂点击状态；横滑、上滑、多指与取消保持明确的触摸边界。
 - 堆叠专用交互只在堆叠样式生效，保留原厂其他样式的处理。
+
+新参考录屏确认同一任务会随展开前的位置改变按钮侧别。本工程明确采用上述屏幕中线规则；录屏不足以证明原厂使用的精确阈值。几何判断使用完整截图框，不以被其他卡片遮挡后露出的片段作为中心；详细坐标和锁定边界见 [连续性与侧边操作](docs/RECENTS_CONTINUITY_AND_SIDE_ACTIONS.md)。
 
 `260005` 已修复以下由修改版引入的问题，辅助 Java 与打包用 Smali 已同步：
 
@@ -58,9 +67,9 @@
 | 项目 | 原厂底包 | 当前修改版 |
 |---|---|---|
 | 显示版本 versionName | `16.0.010.000.2604151532` | `26.9.260.908.2609081608` |
-| 内部版本 versionCode | `160000` | `260015` |
+| 内部版本 versionCode | `160000` | `260017` |
 
-- 同一轮修改、检查和重复构建使用同一个编号。图标空间显示与堆叠卡片缩放为 `260011`；第一张卡片默认按钮与长按临时显示为 `260012`；桌面入场动画修复为 `260013`；名称遮挡与快捷长按操作修复为 `260014`；本轮桌面入场及长按操作过渡修复为 `260015`，下一轮独立功能修改使用 `260016`；用户已验收基线仍为 `260005`。只改说明、迁移目录或整理发布流程不另起功能版本。
+- 同一轮修改、检查和重复构建使用同一个编号。图标空间显示与堆叠卡片缩放为 `260011`；第一张卡片默认按钮与长按临时显示为 `260012`；桌面入场动画修复为 `260013`；名称遮挡与快捷长按操作修复为 `260014`；桌面入场及长按操作过渡修复为 `260015`；本轮入场交接、完整侧边操作、退出与应用打开连续性及长按稳定性修复为 `260016`。侧别、短点击、按钮尺寸与弧形、线形图标及移除侧栏关闭入口、小窗入口、首屏后卡间距、非选中卡片裁剪及横屏坐标与导航方向修正均沿用 `260016`；横屏卡片尺寸与删除前卡后保留历史布局的实测修正使用 `260017`，下一轮独立功能修改使用 `260018`，用户已验收基线仍为 `260005`。只改说明、迁移目录或整理发布流程不另起功能版本。
 - 显示版本由用户决定，不擅自加 `LS`、`test` 后缀或按日期生成名称。
 - 签名包文件名为 `LS_红魔桌面修改版-<versionName>-<versionCode>.apk`，文件名和 APK 内实际版本都必须检查。
 - 模块和桌面版本独立。以后更换显示版本或原厂底包，需要在模块项目另行检查 `LauncherCompatibility` 的兼容性规则；这不是桌面构建依赖。
@@ -99,7 +108,7 @@ python tools/build-launcher.py --sdk "<Android SDK目录>"
 
 ## 一次完成构建、签名和验证
 
-需要 Git、Python 3.10 或更高版本、完整 JDK，以及 Android SDK Platform 36 和 Build Tools 36.0.0。当前验证环境为 Windows、Python 3.12、JDK 21.0.10、SDK 36、Build Tools 36.0.0；Apktool 3.0.3 随项目保留。源码测试和构建脚本只用 Python 标准库，不需要模块的 Python 第三方依赖，也不需要 Gradle 或 NDK 来编译原生库。其他操作系统的完整构建尚未实测。
+需要 Git、Python 3.10 或更高版本、完整 JDK，以及 Android SDK Platform 36 和 Build Tools 36.0.0。本次验证环境为 Windows、Python 3.12.14、JDK 21.0.8、SDK 36、Build Tools 36.0.0；Apktool 3.0.3 随项目保留。源码测试和构建脚本只用 Python 标准库，不需要模块的 Python 第三方依赖，也不需要 Gradle 或 NDK 来编译原生库。其他操作系统的完整构建尚未实测。
 
 将 JDK 的 `bin` 加入 PATH，并设置 `JAVA_HOME`，保证 `java`、`javac` 可用。Android SDK 可通过 Android Studio 的 SDK 管理器准备；需要 `platforms;android-36` 和 `build-tools;36.0.0` 两项，后者提供 D8、zipalign、apksigner 等构建工具。
 
@@ -169,7 +178,7 @@ python tools/export-source.py
 - 资源保真不可省略：既有资源 ID 和配置必须保留，只有既定最近任务样式布局允许增加堆叠入口；未知差异导致失败。
 - 使用 `zipalign -P 16` 对齐，并在签名前后分别检查。通过 ZIP 16 KB 对齐不等于完成 16 KB 设备运行或 JNI 内存安全验证。
 - 最终验证要求签名前后全部非签名 ZIP 成员解压内容一致，相对已验收基线的全部资源、原生库和 assets 一致；这不等于整个 APK 文件逐字节或哈希相同。
-- 代码边界要求原厂类保留、只新增既定八个辅助类（260010 及以前为七个）、无已移除功能标记、相关方法声明可解析、Manifest 除版本外不变。版本期望从源码取得，不从待测 APK 反推。
+- 代码边界要求原厂类保留，新增辅助主类和内部类严格符合各版本的明确清单，无已移除功能标记，相关方法声明可解析，Manifest 除版本外不变。当前清单由 `check-launcher-stack-only-apk.py` 维护；版本期望从源码取得，不从待测 APK 反推。
 
 以下命令可单独诊断，统一构建也会执行当前门禁：
 
@@ -182,8 +191,15 @@ python tools/test-launcher-dismiss-geometry.py
 python tools/test-launcher-dismiss-integration.py
 python tools/test-launcher-touch-target.py
 python tools/test-launcher-native-gesture.py
+python tools/test-launcher-home-stack-entry.py
+python tools/test-launcher-action-visibility.py
+python tools/test-launcher-side-actions.py
+python tools/test-launcher-card-long-press.py
+python tools/test-launcher-stack-transition.py
+python tools/test-launcher-release-boundary.py
 python tools/test-launcher-thumbnail-continuity.py
 python tools/test-launcher-stack-controls.py
+python tools/test-launcher-stack-visual-continuity.py
 python tools/test-launcher-style-isolation.py
 python tools/test-launcher-focus-draw.py
 python tools/check-launcher-recents-smali.py src/smali_classes2/com/android/quickstep/views/RecentsView.smali

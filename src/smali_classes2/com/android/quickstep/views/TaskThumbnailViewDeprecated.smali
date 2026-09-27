@@ -2066,7 +2066,13 @@
 
     .line 80
     .line 81
+    # Opaque snapshots supply their own rounded edge. A second light fill
+    # underneath it leaves a bright antialias seam during fractional movement.
+    invoke-direct {p0}, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->shouldDrawThumbnailBackground()Z
+    move-result v0
+    if-eqz v0, :ls_thumbnail_background_done
     invoke-virtual/range {v1 .. v8}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
+    :ls_thumbnail_background_done
 
     .line 82
     .line 83
@@ -3289,4 +3295,35 @@
 
     .line 21
     return p0
+.end method
+
+.method private shouldDrawThumbnailBackground()Z
+    .locals 1
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mTaskView:Lcom/android/quickstep/views/TaskView;
+    if-eqz v0, :draw_background
+    invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
+    move-result-object v0
+    if-eqz v0, :draw_background
+    invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
+    move-result v0
+    if-eqz v0, :draw_background
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mTask:Lcom/android/systemui/shared/recents/model/Task;
+    if-eqz v0, :draw_background
+    iget-boolean v0, v0, Lcom/android/systemui/shared/recents/model/Task;->isLocked:Z
+    if-nez v0, :draw_background
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBitmapShader:Landroid/graphics/BitmapShader;
+    if-eqz v0, :draw_background
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mThumbnailData:Lcom/android/systemui/shared/recents/model/ThumbnailData;
+    if-eqz v0, :draw_background
+    invoke-virtual {v0}, Lcom/android/systemui/shared/recents/model/ThumbnailData;->getThumbnail()Landroid/graphics/Bitmap;
+    move-result-object v0
+    if-eqz v0, :draw_background
+    invoke-virtual {v0}, Landroid/graphics/Bitmap;->hasAlpha()Z
+    move-result v0
+    if-nez v0, :draw_background
+    const/4 v0, 0x0
+    return v0
+    :draw_background
+    const/4 v0, 0x1
+    return v0
 .end method

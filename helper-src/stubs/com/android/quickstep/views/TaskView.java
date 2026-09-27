@@ -30,6 +30,8 @@ public abstract class TaskView extends FrameLayout {
     public abstract TextView getNativeStackTitleView();
     public abstract void setNativeStackChromeAlpha(float titleAlpha, float actionAlpha);
     protected abstract ImageView getMMiniWindowButton();
+    protected abstract RecentsViewContainer getContainer();
+    public abstract boolean isNativeStackMiniWindowAvailable();
     protected abstract ImageView getMSplitScreenButton();
     protected abstract ImageView getMMenuButton();
 }

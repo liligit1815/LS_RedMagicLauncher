@@ -658,6 +658,10 @@
     .locals 0
 
     .line 1
+    # Resolve at dispatch time so a queued gesture reset cannot undo Overview.
+    invoke-static {p1}, Lcom/android/quickstep/views/RecentsView;->resolveNativeStackRotationPriority(I)I
+    move-result p1
+
     iget-object p0, p0, Lcom/android/quickstep/RotationTouchHelper;->mSystemUiProxy:Lcom/android/quickstep/SystemUiProxy;
 
     .line 2

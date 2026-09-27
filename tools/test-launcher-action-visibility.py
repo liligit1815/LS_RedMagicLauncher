@@ -14,7 +14,7 @@ task = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').
 dispatch = task.split('.method public dispatchTouchEvent(', 1)[1].split('.end method', 1)[0]
 assert '->hitsHiddenTaskAction(' in dispatch
 assert dispatch.index('->nativeStackActionAlpha:F') < dispatch.index('->hitsHiddenTaskAction(')
-assert 'float actionAlpha = taskOrdinal == actionOrdinal ? actionProgress : 0.0f;' in source
+assert 'float actionAlpha = 0.0f;' in source
 
 harness = r'''
 import java.lang.ref.WeakReference;
@@ -52,7 +52,7 @@ public class ActionVisibilityTest {
                 check(hitsHiddenTaskAction(t,e),"alpha-zero child can receive hidden button click");
                 actionMenuRecents=new WeakReference<>(r);actionMenuTask=new WeakReference<>(t);
                 actionMenuTaskId=t.id;actionRevealProgress=1;
-                check(hitsTaskAction(t,e)==(alpha>.1f),"long-pressed button lost visible hit behavior");
+                check(!hitsTaskAction(t,e),"side-action presentation re-enabled obsolete header buttons");
                 check(!hitsTaskAction(other,e),"unselected card exposes button");
                 actionMenuClosing=true;check(!hitsTaskAction(t,e),"closing operation accepted new action");
                 actionMenuClosing=false;actionMenuTaskId=99;

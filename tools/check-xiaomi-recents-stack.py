@@ -309,10 +309,32 @@ def main() -> int:
         "recents.getRunningTaskIndex()",
         "live app entry does not use the running TaskView page",
     )
-    if helper_java.count("getRunningTaskIndex()") != 1:
+    live_bounds = re.search(r"private static boolean applyLiveGestureBounds\(.*?^    }",
+                            helper_java, re.M | re.S)
+    live_offset = re.search(r"private static void offsetLiveSnapshotCenter\(.*?^    }",
+                           helper_java, re.M | re.S)
+    if (live_bounds is None or live_bounds.group().count("getRunningTaskIndex()") != 1
+            or live_offset is None or live_offset.group().count("getRunningTaskIndex()") != 1
+            or helper_java.count("getRunningTaskIndex()") != 3):
         raise AssertionError(
-            "running-task identity escaped the isolated live-entry resolver"
+            "running-task identity escaped the live-entry resolver/surface geometry helpers"
         )
+    require(live_offset.group(), "if (!landscape) return;",
+            "snapshot pivot offset leaked into portrait projection")
+    for expression in ("snapshot.getX()", "snapshot.getY()", "task.getPivotX()", "task.getPivotY()"):
+        require(live_offset.group(), expression, "landscape target ignores measured snapshot center")
+    require(live_bounds.group(), "offsetLiveSnapshotCenter(recents, scale);",
+            "sampled live path does not align to screenshot content center")
+    live_fallback = re.search(r"public static void normalizeLiveEntryMatrix\(.*?^    }",
+                             helper_java, re.M | re.S)
+    if live_fallback is None:
+        raise AssertionError("live surface fallback missing")
+    require(live_fallback.group(), "offsetLiveSnapshotCenter(recents, focusScale * scale);",
+            "fallback path does not share the screenshot center correction")
+    require(live_bounds.group(), "if (!liveSimulatorOverviewTarget)",
+            "running surface bounds lost the committed RECENTS guard")
+    require(live_bounds.group(), "snapshot.getWidth() * scale",
+            "live handoff does not target actual snapshot dimensions")
     require(
         helper_java,
         "waitingForEntryAnchor = entryLoading && !stableEntryOrder",

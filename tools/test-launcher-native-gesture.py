@@ -24,13 +24,18 @@ def extract(name):
     return source[match.start():match.start() + end.end()]
 
 
-names = ('getHomeEntrySpread', 'getInitialTaskOrdinal', 'getEntryPagePosition', 'setLiveOverviewTarget', 'onOverviewStateChanged', 'commitInitialPage',
+names = ('getMiuiStackCenter', 'getHomeEntrySpread', 'getInitialTaskOrdinal', 'getEntryPagePosition', 'setLiveOverviewTarget', 'onOverviewStateChanged', 'commitInitialPage',
          'onRecentsAnimationComplete', 'update', 'resetIfNeeded',
          'scheduleInitialFrameCommit', 'beforeDispatchDraw', 'obtainPagerEvent',
          'getLiveRecentsScale', 'onLiveOverviewFrame', 'setEntryPageAligned',
+         'captureLiveEntryCards', 'blendLiveEntryCard',
          'onTaskActionsLongPress', 'onTaskMenuClosed', 'clearActionMenu', 'isActionMenuTask',
          'dispatchInlineActionTouch', 'armEntryReveal', 'startEntryRevealIfArmed', 'finishEntryReveal', 'getActionMenuOrdinal', 'onCardTouch', 'cancelCardLongPress', 'animateTaskActions', 'onTaskMenuOpenResult', 'onTaskMenuDetached')
 members = '\n'.join(extract(name) for name in names)
+for name in ('getActionNeighborAlpha', 'getActionNeighborClipRight'):
+    # Older implementations must reach the behavioral red replay, not fail to compile.
+    if re.search(r'private static [^\n]+ ' + name + r'\(', source):
+        members += '\n' + extract(name)
 for name, fallback in (
         ('isNativeGestureOwned', 'static boolean isNativeGestureOwned(RecentsView r){return false;}'),
         ('onAppGestureStart', 'static void onAppGestureStart(RecentsView r){}'),
@@ -42,19 +47,84 @@ for name in ('InitialFrameCommit','EntryRevealStart','EntryRevealUpdate','EntryR
 harness = r'''
 import java.lang.ref.WeakReference;
 import java.util.ArrayDeque;
+import java.util.WeakHashMap;
 public class NativeGestureTest {
+    static boolean retainDismissHistoryLayout;
+    static float overviewSpacingScale=1;
     static class android { static class os { static class SystemClock {
         static long uptimeMillis(){return 10000;}
     } } }
     static class Matrix {boolean invert(Matrix other){return true;}}
+    static class RectF {}
+    static class Rect {
+        final int left,top,right,bottom;
+        Rect(int l,int t,int r,int b){left=l;top=t;right=r;bottom=b;}
+        boolean contains(int x,int y){return x>=left&&x<right&&y>=top&&y<bottom;}
+    }
+    static final WeakHashMap<Matrix, RectF> liveGestureBounds=new WeakHashMap<>();
+    static final WeakHashMap<TaskView,float[]> liveGestureCards=new WeakHashMap<>();
+    static final float[] TEMP_LIVE_CARD=new float[4];
     static boolean openMenuOnUp;
-    static class View {int taps; int getLeft(){return 0;} int getTop(){return 0;}
+    static TaskView sideProbeTask;
+    static String sideMutation;
+    static float sideRearrangedCenter;
+    static final java.util.ArrayList<String> sideEvents=new java.util.ArrayList<>();
+    static float actionCenterX(RecentsView r,TaskView t){
+        return t.getLeft()+t.getPivotX()+t.getTranslationX()-r.getScrollX();
+    }
+    static void setActionCenter(TaskView t,float center){
+        t.directWrite=false;t.x=center-t.getLeft()-t.getPivotX()+t.parent.getScrollX()-t.nativeX;
+    }
+    static void sideBoundary(String boundary){
+        if(sideProbeTask==null)return;
+        sideEvents.add(boundary);
+        if(boundary.equals(sideMutation))setActionCenter(sideProbeTask,sideRearrangedCenter);
+    }
+    // The side panel and remote-surface transaction have separate production
+    // method harnesses. Here they are ports for testing the deck composition.
+    static class LsStackTransition {
+        static void clear(RecentsView r){}
+        static void onOverviewStateChanged(RecentsView r,boolean enabled){}
+        static boolean beforeUpdate(RecentsView r){return false;}
+    }
+    static class LsStackActions {
+        static RecentsView owner;static TaskView task;static boolean right,pressed;
+        static float progress,lastSampleCenter;static int samples;
+        // Full snapshot matrices and split-container union are exercised by
+        // test-launcher-side-actions.py. This port observes the live position
+        // and preserves the panel's chosen side while the same task reopens.
+        static boolean shouldShowActionsOnRight(RecentsView r,TaskView t){
+            samples++;lastSampleCenter=actionCenterX(r,t);sideBoundary("sample");
+            return owner==r&&task==t?right:lastSampleCenter<=r.getWidth()*.5f;
+        }
+        // Keep old-source red runs behavioral rather than compilation failures.
+        static boolean isFrontVisibleCard(RecentsView r,TaskView t){return shouldShowActionsOnRight(r,t);}
+        static boolean show(RecentsView r,TaskView t,boolean side){sideBoundary("show");owner=r;task=t;right=side;pressed=false;return true;}
+        static void abort(RecentsView r){sideBoundary("clear");if(owner==r){owner=null;task=null;pressed=false;}}
+        static Runnable finish(RecentsView r){abort(r);return null;}
+        static void update(RecentsView r,float p){if(owner==r)progress=p;}
+        static float cardOffset(RecentsView r){return right?-52:52;}
+        static float cardScale(RecentsView r,TaskView t,float scale){return Math.min(scale,(1000-104-24)/700f);}
+        static boolean dispatch(RecentsView r,MotionEvent e){
+            if(owner!=r)return false;
+            if(e.action==MotionEvent.ACTION_DOWN){
+                pressed=e.hit;
+                if(e.hit)inlineButton.taps++;else onTaskMenuClosed(r);
+            }else if(e.action==MotionEvent.ACTION_UP&&pressed){inlineButton.taps++;onTaskMenuClosed(r);}
+            return true;
+        }
+    }
+    static class View {static final int VISIBLE=0;int getVisibility(){return VISIBLE;}int taps; int getLeft(){return 0;} int getTop(){return 0;}
         Matrix getMatrix(){return new Matrix();} boolean dispatchTouchEvent(MotionEvent e){taps++;
             if(openMenuOnUp&&e.action==MotionEvent.ACTION_UP)onTaskMenuOpenResult(actionMenuRecents.get(),true);
             return true;}}
     static class TextView extends View {}
     static class TaskViewIcon {void setContentAlpha(float alpha){} View asView(){return null;}}
-    static class TaskContainer {TaskViewIcon getIconView(){return null;}}
+    static class TaskContainer {
+        final View snapshot=new View();
+        TaskViewIcon getIconView(){return null;}
+        View getSnapshotView(){return snapshot;}View getTitleView(){return null;}
+    }
     static class Metrics {float density=1;}
     static class Resources {Metrics getDisplayMetrics(){return new Metrics();}}
     static class ViewConfiguration {static ViewConfiguration get(Context c){return new ViewConfiguration();}int getScaledTouchSlop(){return 8;}static int getLongPressTimeout(){return 500;}}
@@ -80,7 +150,7 @@ public class NativeGestureTest {
     static class ValueAnimator extends Animator {
         interface AnimatorUpdateListener {void onAnimationUpdate(ValueAnimator animator);}
         float fraction;long duration;boolean cancelled;
-        AnimatorUpdateListener updater;AnimatorListenerAdapter listener;PathInterpolator interpolator;
+        AnimatorUpdateListener updater;AnimatorListenerAdapter listener;PathInterpolator interpolator;Runnable cancelEffect;
         float getAnimatedFraction(){return fraction;}Object getAnimatedValue(){return Float.valueOf(fraction);}
         static ValueAnimator ofFloat(float a,float b){return new ValueAnimator();}
         void setDuration(long n){duration=n;}void setInterpolator(PathInterpolator p){interpolator=p;}
@@ -90,7 +160,7 @@ public class NativeGestureTest {
         void step(float f){fraction=f;updater.onAnimationUpdate(this);}
         void tick(float time){step(interpolator.sample(time));}
         void end(){step(1);listener.onAnimationEnd(this);}
-        void cancel(){cancelled=true;listener.onAnimationEnd(this);}
+        void cancel(){cancelled=true;if(cancelEffect!=null)cancelEffect.run();listener.onAnimationEnd(this);}
     }
     static class Log {
         static void i(String t,String s){}
@@ -98,8 +168,10 @@ public class NativeGestureTest {
     }
     static class OverScroller {boolean isFinished(){return false;}}
     static class MotionEvent {
-        static final int ACTION_DOWN=0,ACTION_UP=1,ACTION_MOVE=2,ACTION_CANCEL=3,ACTION_POINTER_DOWN=5; int action; boolean hit=true; float rawX,rawY;
+        static final int ACTION_DOWN=0,ACTION_UP=1,ACTION_MOVE=2,ACTION_CANCEL=3,ACTION_POINTER_DOWN=5,ACTION_POINTER_UP=6; int action; boolean hit=true; float rawX,rawY;
+        int getPointerCount(){return 1;} int getPointerId(int i){return 0;}
         long getDownTime(){return 100;}float getRawX(){return rawX;}float getRawY(){return rawY;}
+        float getX(){return rawX+100;}float getY(){return rawY+200;}
         static MotionEvent obtain(long down,long now,int a,float x,float y,int meta){return new MotionEvent(a,false);}
         MotionEvent(){} MotionEvent(int a,boolean h){action=a;hit=h;}
         int getActionMasked(){return action;}
@@ -118,6 +190,7 @@ public class NativeGestureTest {
         RecentsView parent;
         RecentsView getRecentsView(){return parent;}
         TaskView(int i){index=i;}
+        float getAlpha(){return alpha;}
         void setNativeStackTransform(float a,float b,float c,float d,float e){x=a;y=b;scale=c;alpha=d;z=e;writes++;}
         void setNativeStackClipRight(int v){clip=v;writes++;}
         void setNativeStackChromeAlpha(float a,float b){title=a;actions=b;writes++;}
@@ -126,17 +199,20 @@ public class NativeGestureTest {
         float getNativeStackTranslationX(){return x;} float getNativeStackTranslationY(){return y;}
         float getNativeDismissTranslationX(){return 0;} float getNativeDismissTranslationY(){return dismissY;}
         int getLeft(){return index*700;} int getTop(){return 100;}
-        float getPivotX(){return 350;} float getPivotY(){return 600;}
+        float pivotY=600; float getPivotX(){return 350;} float getPivotY(){return pivotY;}
         int getWidth(){return 700;}
+        int getHeight(){return 1200;}
+        Rect getNativeStackClipBounds(){return clip<0?null:new Rect(0,0,clip,1200);}
         TextView getNativeStackTitleView(){return null;}
-        java.util.List<TaskContainer> getTaskContainers(){return java.util.Collections.emptyList();}
+        java.util.List<TaskContainer> getTaskContainers(){return java.util.Collections.singletonList(new TaskContainer());}
     }
     static class RecentsPagedOrientationHandler {
-        int getPrimarySize(RecentsView r){return 1000;} int getPrimarySize(TaskView t){return 700;}
+        boolean vertical;
+        int getPrimarySize(RecentsView r){return vertical?2000:1000;} int getPrimarySize(TaskView t){return vertical?1200:700;}
         int getPrimaryScroll(RecentsView r){return r.scroll;}
-        float getPrimaryValue(float x,float y){return x;}
-        float getSecondaryValue(float x,float y){return y;}
-        int getChildStart(TaskView t){return t.getLeft();}
+        float getPrimaryValue(float x,float y){return vertical?y:x;}
+        float getSecondaryValue(float x,float y){return vertical?x:y;}
+        int getChildStart(TaskView t){return vertical?t.getTop():t.getLeft();}
     }
     static class RecentsView {
         static boolean sGestureActive;
@@ -149,6 +225,8 @@ public class NativeGestureTest {
         RecentsView(){for(TaskView t:tasks)t.parent=this;}
         boolean isShown(){return true;}
         boolean canLaunchFullscreenTask(){return true;}
+        boolean isTaskViewVisible(TaskView t){return true;}
+        void cancelNativeStackTouch(MotionEvent event){touching=false;}
         int getScrollX(){return scroll;} int getScrollY(){return 0;}
         void invalidate(){invalidations++;}
         boolean isNativeStackStyle(){return stack;} boolean isNativeStackEntryPending(){return pending;}
@@ -164,7 +242,8 @@ public class NativeGestureTest {
         Resources getResources(){return new Resources();}
         Context getContext(){return new Context();}
         OverScroller getScroller(){return new OverScroller();}
-        RecentsPagedOrientationHandler getPagedOrientationHandler(){return new RecentsPagedOrientationHandler();}
+        final RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
+        RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
         void postOnAnimation(Runnable r){queue.add(r);}
         void postInvalidateOnAnimation(){invalidations++;}
         void drain(){int limit=50;while(!queue.isEmpty()&&limit-->0)queue.remove().run();check(queue.isEmpty(),"unbounded callback");}
@@ -198,6 +277,7 @@ public class NativeGestureTest {
 
     static void loadConfig(Resources r){}
     static void loadUserScale(Context c){}
+    static void loadOverviewScale(Context context, Object recents){loadUserScale(context);}
     static void applyStackIconBlur(View v,int level){}
     static float getStackChromeAlpha(RecentsView r,TaskView t,float a,float b,float c,float d,int size){return 1;}
     static void updateStackIcons(RecentsView r,TaskView t,float a,float b,float c,int size,boolean hidden){t.iconHidden=hidden;}
@@ -207,7 +287,7 @@ public class NativeGestureTest {
     static float getTaskPagePositionForScroll(RecentsView r,float s,int p){return s/700;}
     // Geometry is covered separately; stateful rendering writes stay production.
     static float getMiuiDepth(float t,float p,int n){return t-p;}
-    static float getMiuiCenter(int size,float d){return 500-100*d;}
+    static float getMiuiCenter(float size,float d){return 500-100*d;}
     static float getMiuiScaleRatio(float d){return .9f;}
     static float getMiuiAlpha(float d){return 1;}
     static float getMiuiTitleAlpha(float d){return 1;}
@@ -217,6 +297,10 @@ public class NativeGestureTest {
     static CardLongPress pendingCardLongPress;
     static final long CARD_LONG_PRESS_MS=250;
     static boolean hitsTaskAction(TaskView t,MotionEvent e){return e.hit;}
+    // Full transformed content-hit geometry is exercised by the dedicated
+    // long-press harness; these ports give lifecycle gestures a real content box.
+    static boolean hitsActionBounds(View v,float[] p){return v!=null&&p[0]>=0&&p[1]>=0&&p[0]<700&&p[1]<1200;}
+    static boolean hitsActionView(View v,float[] p){return hitsActionBounds(v,p);}
     static WeakReference<RecentsView> actionMenuRecents=new WeakReference<>(null);
     static WeakReference<TaskView> actionMenuTask=new WeakReference<>(null);
     static int actionMenuTaskId=-1;
@@ -238,8 +322,8 @@ public class NativeGestureTest {
     static float getFullyVisibleFactor(RecentsView r,TaskView t,View v,float a,float b,float c,float d,int e){return !spaceSensitiveTitles||Float.isInfinite(d)?1:0;}
     static float getActionsVisibleFactor(RecentsView r,TaskView t,float a,float b,float c,float d,int e){t.actionOccluder=d;return Float.isInfinite(d)?1:0;}
     static void finishCachedEntryStagingIfReady(RecentsView r,int size){}
-    static void finishEntryForInteraction(RecentsView r,boolean compose){r.pageWrites++;}
-    static void finishEntryForInteraction(RecentsView r){r.pageWrites++;}
+    static void finishEntryForInteraction(RecentsView r,boolean compose){r.pageWrites++;sideBoundary("settle");}
+    static void finishEntryForInteraction(RecentsView r){finishEntryForInteraction(r,true);}
     static int findNearestTaskPage(RecentsView r,int scroll){return 1;}
     MEMBERS
     static int checks;
@@ -291,6 +375,22 @@ public class NativeGestureTest {
             check(!isNativeGestureOwned(r)&&r.applied&&!entryFromApp&&r.page==0,"Home re-entry stayed suspended");
         }
         RecentsView.sGestureActive=false;onOverviewStateChanged(r,false);
+    }
+    static void landscapeSnapshotHandoff(){
+        for(float pivot:new float[]{600,624,680})for(float scale:new float[]{.7f,1f,1.2f}){
+            RecentsView r=new RecentsView();r.handler.vertical=true;
+            for(TaskView t:r.tasks)t.pivotY=pivot;
+            onOverviewStateChanged(r,true);r.drain();focusScale=scale;
+            liveSimulatorOverviewTarget=false;update(r);
+            for(int i=0;i<r.tasks.length;i++){
+                TaskView t=r.tasks[i];float expected=getMiuiStackCenter(2000,1200,i,0,r.tasks.length);
+                float snapshotCenter=t.getTop()+t.getPivotY()+t.getTranslationY()-r.scroll;
+                check(Math.abs(snapshotCenter-expected)<.01f,"landscape snapshot does not meet surface endpoint; title margin moved the center");
+            }
+            captureLiveEntryCards(r);
+            for(TaskView t:r.tasks)check(Math.abs(liveGestureCards.get(t)[0]-(t.getTop()+t.getPivotY()+t.getTranslationY()-r.scroll))<.01f,"capture uses outer card center instead of snapshot pivot");
+            onOverviewStateChanged(r,false);
+        }
     }
     static void continuity(){
         RecentsView r=new RecentsView();Context c=new Context();
@@ -425,32 +525,31 @@ public class NativeGestureTest {
             float[] x=new float[3],y=new float[3],scale=new float[3],alpha=new float[3];
             for(int i=0;i<3;i++){TaskView t=r.tasks[i];x[i]=t.x;y[i]=t.y;scale[i]=t.scale;alpha[i]=t.alpha;}
             int page=r.page,scroll=r.scroll;
+            boolean expectedRight=actionCenterX(r,r.tasks[selected])<=r.getWidth()*.5f;
             onTaskActionsLongPress(r.tasks[selected]);ValueAnimator opening=actionRevealAnimator;
             check(opening!=null&&opening.duration==300,"long press did not start bounded transition");
             for(int i=0;i<3;i++)check(r.tasks[i].x==x[i]&&r.tasks[i].scale==scale[i],"long press snapped before first animation frame");
             for(int frame=1;frame<=100;frame++){
                 opening.step(frame/100f);beforeDispatchDraw(r);
                 TaskView focus=r.tasks[selected];
-                check(focus.scale>=scale[selected]&&focus.scale<=focusScale,"long-pressed card scale reversed/overshot");
-                check(focus.actions>0&&focus.actions<=1,"OEM header did not fade into view");
+                float target=LsStackActions.cardScale(r,focus,focusScale);
+                check(focus.scale>=Math.min(scale[selected],target)-.00001f&&focus.scale<=Math.max(scale[selected],target)+.00001f,"long-pressed card scale reversed/overshot");
+                check(focus.actions==0&&LsStackActions.progress>0,"side actions failed to replace OEM header buttons");
                 for(int i=0;i<3;i++)if(i!=selected){
                     check(r.tasks[i].alpha<=alpha[i]&&r.tasks[i].alpha>=0,"neighbor did not retreat continuously");
                     alpha[i]=r.tasks[i].alpha;
                 }
             }
             opening.end();
-            check(Math.abs(r.tasks[selected].scale-focusScale)<.00001f&&r.tasks[selected].clip==-1,"selected card not fully exposed at configured size");
+            check(Math.abs(r.tasks[selected].scale-LsStackActions.cardScale(r,r.tasks[selected],focusScale))<.00001f&&r.tasks[selected].clip==-1,"selected card not fully exposed beside actions");
+            check(LsStackActions.right==expectedRight,"action side changed from sampled physical position");
             check(r.page==page&&r.scroll==scroll,"long press changed actual pager position");
-            openMenuOnUp=true;
-            dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_DOWN,true));
-            dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_UP,true));
-            check(actionMenuNativeOpen&&!actionMenuClosing&&actionMenuTask.get()==r.tasks[selected],"opening More restored default header too early");
             for(int frame=0;frame<120;frame++)beforeDispatchDraw(r);
-            check(actionRevealProgress==1&&r.tasks[selected].actions==1,"open menu lost long-press presentation");
-            check(!dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_DOWN,false))&&actionMenuNativeOpen,"outside click bypassed OEM menu close callback");
+            check(actionRevealProgress==1&&LsStackActions.task==r.tasks[selected],"side panel lost long-press presentation");
             onTaskMenuDetached(r.tasks[(selected+1)%3]);
-            check(actionMenuNativeOpen&&!actionMenuClosing,"another task's stale menu closed current selection");
-            onTaskMenuDetached(r.tasks[selected]);ValueAnimator closing=actionRevealAnimator;
+            check(!actionMenuClosing,"another task's stale menu closed current selection");
+            dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_DOWN,false));
+            ValueAnimator closing=actionRevealAnimator;
             check(closing!=null&&closing.duration==220,"menu close lacks return animation");
             onTaskMenuClosed(r);check(actionRevealAnimator==closing,"repeated close restarted return");
             closing.step(.4f);float midway=actionRevealProgress;
@@ -473,6 +572,95 @@ public class NativeGestureTest {
         RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();onTaskActionsLongPress(r.tasks[1]);
         onTaskMenuOpenResult(r,false);check(actionMenuTask.get()==null,"failed OEM menu left focused card stuck");
         onOverviewStateChanged(r,false);
+    }
+    static void actionSideSamplingOrder(){
+        // Replay each layout-changing boundary independently. The same task
+        // begins on both sides (and exactly centered), with unchanged ordinal.
+        for(int selected=0;selected<3;selected++)for(float start:new float[]{250,500,750})
+        for(String mutation:new String[]{"clear","reveal","settle"}){
+            autoFinishReveal=true;
+            RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+            autoFinishReveal=false;
+            TaskView target=r.tasks[selected];
+            check(onTaskActionsLongPress(r.tasks[(selected+1)%3]),"old panel fixture failed");
+            // A real finishEntryReveal cancels this animator. Its cancellation
+            // side effect represents native layout settling during that call.
+            ValueAnimator entry=new ValueAnimator();entry.updater=a->{};
+            entry.listener=new AnimatorListenerAdapter();entry.cancelEffect=()->sideBoundary("reveal");
+            entryRevealRecents=new WeakReference<>(r);entryRevealAnimator=entry;entryRevealProgress=.3f;
+            setActionCenter(target,start);
+            boolean expectedRight=start<=500;
+            sideProbeTask=target;sideMutation=mutation;sideRearrangedCenter=expectedRight?750:250;
+            sideEvents.clear();LsStackActions.samples=0;
+            check(onTaskActionsLongPress(target),"positioned target did not open");
+            check(sideEvents.equals(java.util.Arrays.asList("sample","clear","reveal","settle","show")),
+                    "side sampled after layout-changing boundary "+mutation+": "+sideEvents);
+            check(LsStackActions.samples==1&&Math.abs(LsStackActions.lastSampleCenter-start)<.01f,
+                    "long press did not capture its original physical position exactly once");
+            check(Math.abs(actionCenterX(r,target)-sideRearrangedCenter)<.01f,
+                    "fixture failed to cross screen middle at "+mutation);
+            check(LsStackActions.right==expectedRight,"post-sample rearrangement replaced chosen side");
+            sideProbeTask=null;sideMutation=null;
+            ValueAnimator opening=actionRevealAnimator;
+            for(float progress:new float[]{.2f,.6f,1}){
+                opening.step(progress);beforeDispatchDraw(r);
+                check(LsStackActions.right==expectedRight,"opening frame recomputed side from docked card");
+            }
+            opening.end();
+            setActionCenter(target,sideRearrangedCenter);
+            LsStackActions.samples=0;
+            check(onTaskActionsLongPress(target)&&LsStackActions.samples==0&&LsStackActions.right==expectedRight,
+                    "already-open same task resampled or flipped side");
+            onTaskMenuClosed(r);ValueAnimator closing=actionRevealAnimator;
+            closing.step(.4f);float closingProgress=actionRevealProgress;
+            setActionCenter(target,sideRearrangedCenter);
+            sideProbeTask=target;sideEvents.clear();LsStackActions.samples=0;
+            check(onTaskActionsLongPress(target),"closing task could not reopen");
+            check(sideEvents.equals(java.util.Arrays.asList("sample","settle","show")),
+                    "same-task reverse unexpectedly cleared its panel: "+sideEvents);
+            check(LsStackActions.samples==1&&Math.abs(LsStackActions.lastSampleCenter-sideRearrangedCenter)<.01f,
+                    "reverse fixture did not expose opposite-side current geometry");
+            check(closing.cancelled&&actionRevealProgress==closingProgress&&LsStackActions.right==expectedRight,
+                    "same-task reverse lost progress or the original side lock");
+            sideProbeTask=null;
+            actionRevealAnimator.end();onTaskMenuClosed(r);actionRevealAnimator.end();
+            check(LsStackActions.owner==null&&actionMenuTask.get()==null,"completed close retained side lock");
+            // Fully closing ends the lock. Reusing this exact TaskView at the
+            // other position must now select the other side, not its ordinal.
+            setActionCenter(target,sideRearrangedCenter);LsStackActions.samples=0;
+            check(onTaskActionsLongPress(target)&&LsStackActions.samples==1&&LsStackActions.right!=expectedRight,
+                    "same task at new position retained a previous presentation's side");
+            onOverviewStateChanged(r,false);
+        }
+        sideProbeTask=null;sideMutation=null;autoFinishReveal=true;
+    }
+    static void homeSpacingHandoff(){
+        autoFinishReveal=true;
+        for(int percent:new int[]{70,100,120}){
+            focusScale=percent/100f;RecentsView r=new RecentsView();
+            onOverviewStateChanged(r,true);r.drain();beforeDispatchDraw(r);
+            float[] start=new float[r.tasks.length];
+            for(int i=0;i<start.length;i++)start[i]=r.tasks[i].x;
+            // First touch releases the logical entry order. No Home-only flag
+            // may make the first page snap back to its former crowded curve.
+            r.pending=false;overviewEntryPending=false;overviewPendingRecents.clear();
+            clearEntryTaskOrder(r);entryFromApp=false;
+            beforeDispatchDraw(r);
+            for(int i=0;i<start.length;i++)check(Math.abs(start[i]-r.tasks[i].x)<.01f,
+                "first interaction discarded expanded first-page spacing");
+            for(int frame=0;frame<=100;frame++){
+                float p=frame/100f;r.scroll=Math.round(p*700);r.page=Math.round(p);
+                beforeDispatchDraw(r);
+                for(int i=0;i<r.tasks.length;i++){
+                    TaskView task=r.tasks[i];float center=task.getLeft()+350-r.scroll+task.getTranslationX();
+                    float sampledPage=r.scroll/700f;
+                    check(Math.abs(center-getMiuiStackCenter(1000,700,i,sampledPage,r.tasks.length))<.01f,
+                        "native pager does not share first-page target geometry");
+                }
+            }
+            onOverviewStateChanged(r,false);
+        }
+        focusScale=.9f;
     }
     static void visibleMotionTiming(){
         autoFinishReveal=false;
@@ -505,8 +693,11 @@ public class NativeGestureTest {
                     check(writes(r)==n,"long press animator duplicated draw-time composition");
                     beforeDispatchDraw(r);
                     check(actionRevealProgress>=previous,"timed motion reversed");previous=actionRevealProgress;
-                    for(int i=0;i<3;i++)if(i!=selected&&clip[i]>=0&&r.tasks[i].alpha>.01f){
-                        check(r.tasks[i].clip>=0&&r.tasks[i].clip<=clip[i]+1,"retreat exposed hidden screenshot content");
+                    for(int i=0;i<3;i++)if(i!=selected&&clip[i]>=0){
+                        int width=r.tasks[i].clip<0?r.tasks[i].getWidth():r.tasks[i].clip;
+                        check(width>=clip[i],"retreat shrank the original screenshot slice");
+                        if(actionRevealProgress>=.55f)
+                            check(width==r.tasks[i].getWidth(),"neighbor faded before its full card was restored");
                     }
                     if(selected>0&&frame==1)check(!r.tasks[0].headerHidden,"neighbor header popped off at long press start");
                 }
@@ -514,15 +705,127 @@ public class NativeGestureTest {
                 int closingFrames=Math.round(fps*close.duration/1000f);
                 for(int frame=1;frame<=closingFrames;frame++){
                     close.tick(frame/(float)closingFrames);beforeDispatchDraw(r);
-                    for(int i=0;i<3;i++)if(i!=selected&&clip[i]>=0&&r.tasks[i].alpha>.01f)
-                        check(r.tasks[i].clip>=0&&r.tasks[i].clip<=clip[i]+1,"return exposed hidden screenshot content");
+                    for(int i=0;i<3;i++)if(i!=selected&&clip[i]>=0){
+                        int width=r.tasks[i].clip<0?r.tasks[i].getWidth():r.tasks[i].clip;
+                        check(width>=clip[i],"return collapsed below the original screenshot slice");
+                        if(actionRevealProgress>=.55f)
+                            check(width==r.tasks[i].getWidth(),"return reintroduced a half-card while still fading in");
+                    }
                 }
                 close.end();onOverviewStateChanged(r,false);
             }
         }
         autoFinishReveal=true;focusScale=.9f;
     }
+    static void actionNeighborCompleteness(){
+        // Exercise the real composition at the same presentation clock in both
+        // directions. The visible clip is deliberately narrower than the card.
+        for(int percent:new int[]{70,100,120})for(int selected=0;selected<3;selected++)
+            for(float page:new float[]{0,.35f,1,1.65f,2}){
+                focusScale=percent/100f;autoFinishReveal=true;
+                RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+                r.pending=false;overviewEntryPending=false;clearEntryTaskOrder(r);
+                r.scroll=Math.round(page*700);r.page=Math.round(page);beforeDispatchDraw(r);
+                int[] initial=new int[3];float[] initialAlpha=new float[3],initialTitle=new float[3];
+                for(int i=0;i<3;i++){
+                    initial[i]=r.tasks[i].clip;initialAlpha[i]=r.tasks[i].alpha;initialTitle[i]=r.tasks[i].title;
+                }
+                autoFinishReveal=false;onTaskActionsLongPress(r.tasks[selected]);
+                ValueAnimator open=actionRevealAnimator;open.step(.55f);beforeDispatchDraw(r);
+                for(int i=0;i<3;i++)if(i!=selected&&initialAlpha[i]>.01f){
+                    check(r.tasks[i].clip==-1,"half-card persists when neighbor should be complete");
+                    check(r.tasks[i].alpha>=initialAlpha[i]*.5f,"complete card became invisible before dissolve");
+                }
+                float[][] x=new float[101][3],alpha=new float[101][3],title=new float[101][3];
+                int[][] widths=new int[101][3];
+                for(int frame=0;frame<=100;frame++){
+                    open.step(frame/100f);beforeDispatchDraw(r);
+                    for(int i=0;i<3;i++){
+                        TaskView t=r.tasks[i];x[frame][i]=t.x;alpha[frame][i]=t.alpha;title[frame][i]=t.title;
+                        widths[frame][i]=t.clip<0?t.getWidth():t.clip;
+                        if(i==selected)continue;
+                        int initialWidth=initial[i]<0?t.getWidth():initial[i];
+                        if(frame==0)check(t.clip==initial[i],"long press changed the initial logical clip");
+                        if(frame==1&&initialWidth<t.getWidth()-2)
+                            check(t.clip>=0&&t.clip<t.getWidth(),"first progress frame instantly exposed full card");
+                        if(frame>0){
+                            check(widths[frame][i]>=widths[frame-1][i],"neighbor restoration reversed");
+                            check(widths[frame][i]-widths[frame-1][i]<=22,"neighbor restoration jumped a hard edge");
+                            check(alpha[frame][i]<=alpha[frame-1][i]+.0001f,"neighbor opacity flashed upward");
+                            check(Math.abs(alpha[frame][i]-alpha[frame-1][i])<.035f,"neighbor opacity jumped");
+                        }
+                        if(frame>=55)check(t.clip==-1,"full-width clip was capped by moving higher layer");
+                        if(frame<=15)check(Math.abs(t.alpha-initialAlpha[i])<.0001f,"neighbor dissolved before shape restoration began");
+                        // Parent alpha already fades the complete card chrome.
+                        check(t.title==initialTitle[i]||t.headerHidden,"neighbor title double-faded ahead of its card");
+                    }
+                }
+                open.end();onTaskMenuClosed(r);ValueAnimator close=actionRevealAnimator;
+                for(int frame=100;frame>=0;frame--){
+                    close.step(1-frame/100f);beforeDispatchDraw(r);
+                    for(int i=0;i<3;i++)if(i!=selected){
+                        TaskView t=r.tasks[i];int width=t.clip<0?t.getWidth():t.clip;
+                        check(width==widths[frame][i],"reverse clip differs from the same opening progress");
+                        check(Math.abs(t.alpha-alpha[frame][i])<.0001f,"reverse opacity differs from opening");
+                        check(Math.abs(t.x-x[frame][i])<.001f,"reverse retreat differs from opening");
+                    }
+                }
+                close.step(.63f);beforeDispatchDraw(r);
+                int[] reversedClip=new int[3];float[] reversedAlpha=new float[3],reversedX=new float[3];
+                for(int i=0;i<3;i++){
+                    reversedClip[i]=r.tasks[i].clip;reversedAlpha[i]=r.tasks[i].alpha;reversedX[i]=r.tasks[i].x;
+                }
+                onTaskActionsLongPress(r.tasks[selected]);beforeDispatchDraw(r);
+                for(int i=0;i<3;i++){
+                    check(r.tasks[i].clip==reversedClip[i],"reopen reset the partially restored clip");
+                    check(Math.abs(r.tasks[i].alpha-reversedAlpha[i])<.0001f,"reopen jumped opacity");
+                    check(Math.abs(r.tasks[i].x-reversedX[i])<.001f,"reopen jumped card position");
+                }
+                actionRevealAnimator.end();onTaskMenuClosed(r);actionRevealAnimator.end();
+                for(int i=0;i<3;i++)check(r.tasks[i].clip==initial[i],"menu completion did not restore static clipping");
+                onTaskActionsLongPress(r.tasks[selected]);actionRevealAnimator.step(.37f);beforeDispatchDraw(r);
+                for(int i=0;i<3;i++){
+                    reversedClip[i]=r.tasks[i].clip;reversedAlpha[i]=r.tasks[i].alpha;reversedX[i]=r.tasks[i].x;
+                }
+                dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_CANCEL,false));beforeDispatchDraw(r);
+                for(int i=0;i<3;i++){
+                    check(r.tasks[i].clip==reversedClip[i],"cancel jumped the partially expanded logical clip");
+                    check(Math.abs(r.tasks[i].alpha-reversedAlpha[i])<.0001f,"cancel jumped neighbor opacity");
+                    check(Math.abs(r.tasks[i].x-reversedX[i])<.001f,"cancel jumped neighbor position");
+                }
+                actionRevealAnimator.end();
+                for(int i=0;i<3;i++)check(r.tasks[i].clip==initial[i],"cancel completion lost resting clip");
+                onOverviewStateChanged(r,false);
+            }
+        autoFinishReveal=true;focusScale=.9f;
+    }
+    static void liveCardContinuity(){
+        RecentsView r=new RecentsView();Context c=new Context();
+        onAppGestureStart(r);r.running=true;RecentsView.sGestureActive=true;
+        r.scroll=270;
+        float[] release=new float[r.tasks.length];
+        for(int i=0;i<r.tasks.length;i++)release[i]=r.tasks[i].getLeft()+350-r.scroll+r.tasks[i].getTranslationX();
+        setLiveOverviewTarget(c,true);
+        for(int frame=0;frame<=100;frame++){
+            liveEntryPageProgress=frame/100f;beforeDispatchDraw(r);
+            for(int i=0;i<r.tasks.length;i++){
+                TaskView task=r.tasks[i];float p=liveEntryPageProgress;
+                float target=getMiuiStackCenter(1000,700,i,p,r.tasks.length);
+                float actual=task.getLeft()+350-r.scroll+task.getTranslationX();
+                check(Math.abs(actual-(release[i]+(target-release[i])*p))<.01f,
+                        "native neighbor jumped to canonical geometry at commit");
+                check(task.alpha==1,"visible native neighbor disappeared and re-faded");
+                check(Math.abs(task.scale-(1+(focusScale*.9f-1)*p))<.001f,
+                        "native neighbor did not start at identity stack multiplier");
+            }
+        }
+        RecentsView.sGestureActive=false;onOverviewStateChanged(r,false);
+    }
     public static void main(String[] args){
+        actionNeighborCompleteness();
+        homeSpacingHandoff();
+        actionSideSamplingOrder();
+        liveCardContinuity();
         visibleMotionTiming();
         actionAnimationAndMenu();
         fastLongPress();
@@ -557,12 +860,14 @@ public class NativeGestureTest {
             deck.page=page;deck.scroll=page*700;beforeDispatchDraw(deck);
             for(int i=0;i<3;i++)check(deck.tasks[i].actions==0,"default buttons became visible while paging");
             for(int selected=1;selected<3;selected++){
+                boolean expectedRight=actionCenterX(deck,deck.tasks[selected])<=deck.getWidth()*.5f;
                 check(onTaskActionsLongPress(deck.tasks[selected]),"long press failed to reveal inline buttons");
-                for(int i=0;i<3;i++)check(deck.tasks[i].actions==(i==selected?1:0),"wrong temporary action owner");
+                check(LsStackActions.task==deck.tasks[selected]&&LsStackActions.right==expectedRight,"wrong position-based side action owner");
+                for(int i=0;i<3;i++)check(deck.tasks[i].actions==0,"obsolete header button revealed");
                 for(int frame=0;frame<12;frame++){
                     for(TaskView task:deck.tasks)task.actions=1;
                     beforeDispatchDraw(deck);
-                    for(int i=0;i<3;i++)check(deck.tasks[i].actions==(i==selected?1:0),"OEM alpha write escaped owner policy");
+                    for(int i=0;i<3;i++)check(deck.tasks[i].actions==0,"OEM alpha write escaped side-action policy");
                 }
                 for(int i=0;i<3;i++){
                     check(deck.tasks[i].headerHidden==(i<selected)&&deck.tasks[i].iconHidden==(i<selected),"upper headers did not follow long-pressed task");
@@ -574,21 +879,21 @@ public class NativeGestureTest {
             }
         }
         onTaskActionsLongPress(deck.tasks[1]);
-        check(!dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_UP,false)),"long-press release consumed native gesture");
-        check(deck.tasks[1].actions==1,"long-press release hid revealed actions");
+        check(dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_UP,false)),"long-press release can launch app");
+        check(LsStackActions.task==deck.tasks[1],"long-press release hid side actions");
         for(int ending:new int[]{MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL}){
             onTaskActionsLongPress(deck.tasks[1]);int taps=inlineButton.taps;
             check(dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_DOWN,true)),"overlapping inline button missed touch");
-            check(deck.tasks[1].actions==1,"button hidden before click");
+            check(LsStackActions.task==deck.tasks[1],"button hidden before click");
             check(dispatchInlineActionTouch(deck,new MotionEvent(ending,true)),"button completion not dispatched");
-            check(inlineButton.taps==taps+2&&deck.tasks[1].actions==0,"operation/cancel failed to reset after dispatch");
+            check(inlineButton.taps==taps+(ending==MotionEvent.ACTION_UP?2:1)&&LsStackActions.owner==null,"operation/cancel failed to reset after dispatch");
         }
         onTaskActionsLongPress(deck.tasks[1]);
         check(dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_DOWN,false)),"outside touch can accidentally launch the focused card");
         check(deck.tasks[1].actions==0,"outside touch did not cancel reveal");
         check(dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_UP,false)),"outside release escaped cancellation stream");
         onTaskActionsLongPress(deck.tasks[1]);
-        check(!dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_CANCEL,false)),"native cancellation consumed");
+        check(dispatchInlineActionTouch(deck,new MotionEvent(MotionEvent.ACTION_CANCEL,false)),"native cancellation escaped side panel");
         check(deck.tasks[1].actions==0,"native cancellation retained reveal");
         onTaskActionsLongPress(deck.tasks[1]);
         TaskView old=deck.tasks[1];deck.tasks[1]=new TaskView(9);beforeDispatchDraw(deck);
@@ -606,6 +911,17 @@ public class NativeGestureTest {
         RecentsView normal=new RecentsView();normal.stack=false;normal.page=2;
         onAppGestureStart(normal);check(!isNativeGestureOwned(normal)&&normal.page==2&&writes(normal)==0,"other style changed");
         onTaskActionsLongPress(normal.tasks[1]);check(actionMenuTask.get()==null,"menu override leaked to other style");
+        RecentsView history=new RecentsView();
+        retainDismissHistoryLayout=true;onOverviewStateChanged(history,true);history.drain();
+        check(!retainDismissHistoryLayout,"fresh overview inherited deleted history origin");
+        retainDismissHistoryLayout=true;onOverviewStateChanged(history,true);
+        check(retainDismissHistoryLayout,"duplicate overview notification reset history origin");
+        onOverviewStateChanged(history,false);
+        check(!retainDismissHistoryLayout,"overview exit kept history origin");
+        retainDismissHistoryLayout=true;onAppGestureStart(history);
+        check(!retainDismissHistoryLayout,"fresh app gesture kept history origin");
+        onOverviewStateChanged(history,false);
+        landscapeSnapshotHandoff();
         System.out.println("PASS "+checks+" native gesture ownership, cancel, switch, late-frame and re-entry checks");
     }
 }

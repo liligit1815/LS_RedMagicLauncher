@@ -98,6 +98,10 @@ public final class LsNativeStack {
     private static float tailDecay;
     private static float focusScale;
     private static float stackSpacingScale = 1.0f;
+    private static float overviewSpacingScale = 1.0f;
+    // Deleting the newer card must not turn the surviving history deck into
+    // Home's differently spaced first page. Keep this origin until next entry.
+    private static boolean retainDismissHistoryLayout;
     private static float scaleStep;
     private static int maxDepth;
     private static float incomingDistanceFraction;
@@ -129,6 +133,10 @@ public final class LsNativeStack {
     private static float liveEntryPageProgress;
     private static float lastLiveAppliedScale = Float.NaN;
     private static float liveEntryStartScale = Float.NaN;
+    private static final WeakHashMap<Matrix, RectF> liveGestureBounds = new WeakHashMap<>();
+    private static final WeakHashMap<TaskView, float[]> liveGestureCards = new WeakHashMap<>();
+    private static final float[] TEMP_LIVE_CARD = new float[4];
+    private static final RectF TEMP_LIVE_TARGET = new RectF();
     private static WeakReference<RecentsView> activeOverviewRecents =
             new WeakReference<>(null);
     private static boolean overviewActive;
@@ -178,9 +186,11 @@ public final class LsNativeStack {
                     || actionMenuRecents.get() != recents) return;
             actionRevealAnimator = null;
             actionRevealProgress = end;
+            Runnable completion = end == 0.0f ? LsStackActions.finish(recents) : null;
             if (end == 0.0f) clearActionMenu(recents);
             update(recents);
             recents.invalidate();
+            if (completion != null) completion.run();
         }
     }
 
@@ -211,38 +221,85 @@ public final class LsNativeStack {
         final WeakReference<RecentsView> recentsRef;
         final int taskId;
         final long downTime;
+        final int pointerId;
         final float x, y, slop;
-        boolean triggered;
+        boolean triggered, observedByRecents, cancellingNative;
 
         CardLongPress(TaskView task, RecentsView recents, MotionEvent event) {
             taskRef = new WeakReference<>(task);
             recentsRef = new WeakReference<>(recents);
             taskId = getPrimaryTaskId(task);
             downTime = event.getDownTime();
+            pointerId = event.getPointerId(0);
             x = event.getRawX(); y = event.getRawY();
             slop = ViewConfiguration.get(task.getContext()).getScaledTouchSlop();
         }
 
         boolean moved(MotionEvent event) {
             float dx = event.getRawX() - x, dy = event.getRawY() - y;
-            return dx * dx + dy * dy > slop * slop;
+            // Match Android's per-axis touch tolerance. A small diagonal
+            // tremor must not fail sooner than the pager's drag threshold.
+            return Math.abs(dx) > slop || Math.abs(dy) > slop;
+        }
+
+        boolean sameStream(MotionEvent event) {
+            return event.getDownTime() == downTime && event.getPointerCount() == 1
+                    && event.getPointerId(0) == pointerId;
+        }
+
+        boolean update(MotionEvent event) {
+            if (cancellingNative) return false;
+            boolean consumed = triggered;
+            int action = event.getActionMasked();
+            if (!consumed && action == MotionEvent.ACTION_UP && sameStream(event)) {
+                // Let the native UP resolve an ordinary tap. View.cancelLongPress
+                // also clears PREPRESSED, so calling it before child dispatch
+                // would discard fast clicks inside this scrolling container.
+                TaskView task = taskRef.get();
+                if (task != null) task.removeCallbacks(this);
+                pendingCardLongPress = null;
+                return false;
+            }
+            if (!sameStream(event) || action == MotionEvent.ACTION_UP
+                    || action == MotionEvent.ACTION_CANCEL
+                    || action == MotionEvent.ACTION_POINTER_DOWN
+                    || action == MotionEvent.ACTION_POINTER_UP
+                    || (action == MotionEvent.ACTION_MOVE && moved(event))) {
+                RecentsView recents = recentsRef.get();
+                cancelCardLongPress(recents);
+                if (action != MotionEvent.ACTION_UP && consumed) onTaskMenuClosed(recents);
+            }
+            return consumed;
         }
 
         @Override public void run() {
             TaskView task = taskRef.get();
             RecentsView recents = recentsRef.get();
-            if (pendingCardLongPress != this || task == null || recents == null
+            if (pendingCardLongPress != this || triggered) return;
+            if (task == null || recents == null || !recents.isShown()
                     || !task.isAttachedToWindow() || task.getRecentsView() != recents
-                    || taskId != getPrimaryTaskId(task) || triggered) return;
-            if (!onTaskActionsLongPress(task)) return;
+                    || taskId != getPrimaryTaskId(task) || recents.indexOfChild(task) < 0
+                    || !onTaskActionsLongPress(task)) {
+                // A changed task/state invalidates this gesture. In particular,
+                // canLaunchFullscreenTask=false means split selection, not an
+                // inertia delay; never retry an old press into a later state.
+                cancelCardLongPress(recents);
+                return;
+            }
             triggered = true;
             // A direct performLongClick does not set View's internal long-click
             // flag. Cancel the native stream so release cannot launch the app.
             task.cancelLongPress();
             MotionEvent cancel = MotionEvent.obtain(downTime, android.os.SystemClock.uptimeMillis(),
                     MotionEvent.ACTION_CANCEL, 0.0f, 0.0f, 0);
-            task.cancelNativeStackTouch(cancel);
-            cancel.recycle();
+            cancellingNative = true;
+            try {
+                task.cancelNativeStackTouch(cancel);
+                if (observedByRecents) recents.cancelNativeStackTouch(cancel);
+            } finally {
+                cancellingNative = false;
+                cancel.recycle();
+            }
         }
     }
 
@@ -250,27 +307,119 @@ public final class LsNativeStack {
         CardLongPress pending = pendingCardLongPress;
         if (pending == null || pending.recentsRef.get() != recents) return;
         TaskView task = pending.taskRef.get();
-        if (task != null) task.removeCallbacks(pending);
+        if (task != null) {
+            task.removeCallbacks(pending);
+            task.cancelLongPress();
+        }
         pendingCardLongPress = null;
+    }
+
+    /** Observe before the pager can intercept DOWN while stopping a fling. */
+    public static boolean dispatchCardLongPressTouch(RecentsView recents, MotionEvent event) {
+        CardLongPress pending = pendingCardLongPress;
+        int action = event.getActionMasked();
+        if (action != MotionEvent.ACTION_DOWN) {
+            return pending != null && pending.recentsRef.get() == recents
+                    && pending.update(event);
+        }
+        if (pending != null && pending.recentsRef.get() == recents
+                && pending.sameStream(event)) return pending.triggered;
+        if (pending != null) cancelCardLongPress(pending.recentsRef.get());
+        if (event.getPointerCount() != 1 || !recents.isShown()
+                || !recents.isNativeStackStyle() || isNativeGestureOwned(recents)
+                || !recents.canLaunchFullscreenTask()) return false;
+        TaskView task = findLongPressTask(recents, event);
+        if (task == null) return false;
+        pending = new CardLongPress(task, recents, event);
+        pending.observedByRecents = true;
+        pendingCardLongPress = pending;
+        task.postDelayed(pending, Math.min(CARD_LONG_PRESS_MS, ViewConfiguration.getLongPressTimeout()));
+        return false;
+    }
+
+    /** Screen-space hit selection must match the visible clipped deck layer. */
+    private static TaskView findLongPressTask(RecentsView recents, MotionEvent event) {
+        TaskView best = null;
+        float bestZ = -Float.MAX_VALUE;
+        for (int i = 0; i < recents.getChildCount(); i++) {
+            View child = recents.getChildAt(i);
+            if (!(child instanceof TaskView)) continue;
+            TaskView task = (TaskView) child;
+            if (task.getVisibility() != View.VISIBLE || task.getAlpha() <= 0.01f
+                    || !recents.isTaskViewVisible(task) || getPrimaryTaskId(task) < 0) continue;
+            float[] point = getActionPoint(recents, task, event);
+            if (point == null || point[0] < 0 || point[1] < 0
+                    || point[0] >= task.getWidth() || point[1] >= task.getHeight()) continue;
+            Rect clip = task.getNativeStackClipBounds();
+            if (clip != null && !clip.contains((int) point[0], (int) point[1])) continue;
+            // TaskView can include empty layout space around its screenshot.
+            // Only actual visible content is eligible, never clear-all/blank.
+            boolean hit = false;
+            for (TaskContainer container : task.getTaskContainers()) {
+                if (hitsActionBounds(container.getSnapshotView(), point)
+                        || hitsActionView(container.getTitleView(), point)
+                        || (container.getIconView() != null
+                        && hitsActionView(container.getIconView().asView(), point))) {
+                    hit = true;
+                    break;
+                }
+            }
+            if (!hit) continue;
+            float z = task.getTranslationZ();
+            if (best == null || z > bestZ) {
+                // An operation on the top card must not fall through to a
+                // covered card merely because the operation itself was hit.
+                best = task;
+                bestZ = z;
+            }
+        }
+        if (best == null) return null;
+        return findInlineAction(best, getActionPoint(recents, best, event)) == null ? best : null;
     }
 
     public static boolean onCardTouch(TaskView task, MotionEvent event) {
         RecentsView recents = task.getRecentsView();
         CardLongPress pending = pendingCardLongPress;
         int action = event.getActionMasked();
-        if (pending != null && pending.taskRef.get() == task) {
-            boolean consumed = pending.triggered;
-            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL
-                    || action == MotionEvent.ACTION_POINTER_DOWN
-                    || (action == MotionEvent.ACTION_MOVE && pending.moved(event))) {
-                cancelCardLongPress(pending.recentsRef.get());
-                if (action != MotionEvent.ACTION_UP && consumed) onTaskMenuClosed(recents);
-            }
-            if (consumed) return true;
+        if (pending != null && pending.observedByRecents
+                && pending.recentsRef.get() == recents) {
+            // Native hit dispatch can visit a different overlapping child.
+            // It must not replace the visible target chosen before interception.
+            return !pending.cancellingNative && pending.triggered;
         }
-        if (action != MotionEvent.ACTION_DOWN || recents == null
+        if (pending != null && pending.taskRef.get() == task) {
+            if (pending.cancellingNative) return false;
+            // Parent interception synthesizes child CANCEL even when the real
+            // finger is still down. Only the ancestor's original stream can
+            // cancel an ancestor-observed press.
+            if (action == MotionEvent.ACTION_DOWN && pending.sameStream(event))
+                return pending.triggered;
+            if (pending.update(event)) return true;
+        }
+        if (action != MotionEvent.ACTION_DOWN || event.getPointerCount() != 1 || recents == null
                 || !recents.isNativeStackStyle() || isNativeGestureOwned(recents)
                 || !recents.canLaunchFullscreenTask() || hitsTaskAction(task, event)) return false;
+        // A parent can reject an empty part of a TaskView while Android still
+        // dispatches that DOWN to the child. The fallback must keep the same
+        // visible-content boundary as the ancestor observer.
+        float[] point = {event.getX(), event.getY()};
+        Rect clip = task.getNativeStackClipBounds();
+        if (task.getVisibility() != View.VISIBLE || task.getAlpha() <= 0.01f
+                || !recents.isTaskViewVisible(task) || getPrimaryTaskId(task) < 0
+                || point[0] < 0 || point[1] < 0 || point[0] >= task.getWidth()
+                || point[1] >= task.getHeight()
+                || (clip != null && !clip.contains((int) point[0], (int) point[1]))) return false;
+        boolean hit = false;
+        for (TaskContainer container : task.getTaskContainers()) {
+            if (hitsActionBounds(container.getSnapshotView(), point)
+                    || hitsActionView(container.getTitleView(), point)
+                    || (container.getIconView() != null
+                    && hitsActionView(container.getIconView().asView(), point))) {
+                hit = true;
+                break;
+            }
+        }
+        if (!hit) return false;
         if (pendingCardLongPress != null) cancelCardLongPress(pendingCardLongPress.recentsRef.get());
         pending = new CardLongPress(task, recents, event);
         pendingCardLongPress = pending;
@@ -300,13 +449,32 @@ public final class LsNativeStack {
         return -1;
     }
 
-    /** Long press reveals inline buttons; it must never open the OEM menu. */
+    private static float getActionNeighborAlpha(float progress) {
+        // Let the original slice begin recovering its shape before dissolving.
+        // At full width (55% progress), over half the card is still visible.
+        return 1.0f - smoothVisibility(clamp((progress - 0.15f) / 0.85f));
+    }
+
+    private static int getActionNeighborClipRight(int width, float restingClipRight,
+            float progress) {
+        float start = Math.max(0.0f, Math.min(width, restingClipRight));
+        float expansion = smoothVisibility(clamp(progress / 0.55f));
+        int right = Math.round(start + (width - start) * expansion);
+        // Only remove the logical clip once it already covers the full card.
+        // The snapshot then supplies its own original rounded outline.
+        return right >= width ? -1 : right;
+    }
+
+    /** Long press reveals the full native action list beside the selected card. */
     public static boolean onTaskActionsLongPress(TaskView task) {
         RecentsView recents = task.getRecentsView();
         if (recents == null || !recents.isNativeStackStyle()
                 || isNativeGestureOwned(recents) || !recents.canLaunchFullscreenTask()
                 || recents.indexOfChild(task) < 0) return false;
         if (isActionMenuTask(recents, task) && !actionMenuClosing) return true;
+        // Capture the position at long-press recognition, before closing an old
+        // panel or completing entry can rearrange the card. The panel locks it.
+        boolean actionsOnRight = LsStackActions.shouldShowActionsOnRight(recents, task);
         if (!isActionMenuTask(recents, task)) {
             RecentsView previous = actionMenuRecents.get();
             if (previous != null) clearActionMenu(previous);
@@ -320,11 +488,16 @@ public final class LsNativeStack {
         actionMenuNativeOpen = false;
         actionMenuClosing = false;
         actionTouchButton.clear();
+        actionOutsideTouch.clear();
+        if (!LsStackActions.show(recents, task, actionsOnRight)) {
+            clearActionMenu(recents);
+            return false;
+        }
         animateTaskActions(recents, 1.0f);
         return true;
     }
 
-    /** Route the revealed header even when another transparent TaskView overlaps it. */
+    /** Consume the original long-press stream and route later taps to side actions. */
     public static boolean dispatchInlineActionTouch(RecentsView recents, MotionEvent event) {
         if (actionOutsideTouch.get() == recents) {
             int action = event.getActionMasked();
@@ -343,38 +516,14 @@ public final class LsNativeStack {
             return false;
         }
         int action = event.getActionMasked();
-        // The OEM floating menu owns its outside click and close callback.
-        // Opening it is not completion of the selected-card operation.
-        if (actionMenuNativeOpen) return false;
-        if (actionMenuClosing) return true;
-        View button = actionTouchButton.get();
-        if (action == MotionEvent.ACTION_DOWN) {
-            float[] point = getActionPoint(recents, task, event);
-            button = point == null ? null : findInlineAction(task, point);
-            if (button == null) {
-                onTaskMenuClosed(recents);
-                actionOutsideTouch = new WeakReference<>(recents);
-                return true;
-            }
-            actionTouchButton = new WeakReference<>(button);
-        }
-        if (button == null) {
-            // Lifting the finger which performed the long press is not cancel.
-            if (action == MotionEvent.ACTION_CANCEL) onTaskMenuClosed(recents);
-            return false;
-        }
-        MotionEvent local = MotionEvent.obtain(event);
-        Matrix inverse = new Matrix();
-        local.offsetLocation(recents.getScrollX() - task.getLeft(), recents.getScrollY() - task.getTop());
-        if (task.getMatrix().invert(inverse)) local.transform(inverse);
-        local.offsetLocation(-button.getLeft(), -button.getTop());
-        if (button.getMatrix().invert(inverse)) local.transform(inverse);
-        button.dispatchTouchEvent(local);
-        local.recycle();
         if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
-            actionTouchButton.clear();
-            if (!actionMenuNativeOpen) onTaskMenuClosed(recents);
+            cancelCardLongPress(recents);
+            if (action == MotionEvent.ACTION_CANCEL) onTaskMenuClosed(recents);
         }
+        if (actionMenuClosing) return true;
+        // Even the UP that originally triggered long press must be consumed;
+        // it must not fall through to the native task click handler.
+        LsStackActions.dispatch(recents, event);
         return true;
     }
 
@@ -389,9 +538,7 @@ public final class LsNativeStack {
 
     private static View findInlineAction(TaskView task, float[] point) {
         RecentsView recents = task.getRecentsView();
-        if (recents != null && recents.isNativeStackStyle()
-                && (!isActionMenuTask(recents, task) || actionMenuClosing
-                || actionRevealProgress <= 0.1f)) return null;
+        if (recents != null && recents.isNativeStackStyle()) return null;
         View button = task.getMMiniWindowButton();
         if (hitsActionView(button, point)) return button;
         button = task.getMSplitScreenButton();
@@ -432,6 +579,7 @@ public final class LsNativeStack {
         actionMenuNativeOpen = false;
         actionMenuClosing = true;
         actionTouchButton.clear();
+        actionOutsideTouch = new WeakReference<>(recents);
         animateTaskActions(recents, 0.0f);
     }
 
@@ -453,6 +601,7 @@ public final class LsNativeStack {
 
     private static void clearActionMenu(RecentsView recents) {
         if (actionMenuRecents.get() == recents) {
+            LsStackActions.abort(recents);
             ++actionRevealGeneration;
             ValueAnimator animator = actionRevealAnimator;
             actionRevealAnimator = null;
@@ -555,8 +704,7 @@ public final class LsNativeStack {
                 || (nativeGestureRecents.get() != null && !liveSimulatorOverviewTarget)) {
             return nativeScale;
         }
-        loadConfig(context.getResources());
-        loadUserScale(context);
+        loadOverviewScale(context, null);
         return nativeScale * focusScale;
     }
 
@@ -605,11 +753,17 @@ public final class LsNativeStack {
 
     /** Called before OEM gesture setup samples/rebinds any cached TaskViews. */
     public static void onAppGestureStart(RecentsView recents) {
+        LsStackTransition.clear(recents);
+        retainDismissHistoryLayout = false;
         if (!recents.isNativeStackStyle()) {
             return;
         }
         nativeGestureRecents = new WeakReference<>(recents);
         liveSimulatorOverviewTarget = false;
+        liveGestureBounds.clear();
+        liveGestureCards.clear();
+        lastLiveAppliedScale = Float.NaN;
+        liveEntryStartScale = Float.NaN;
         if (activeOverviewRecents.get() == recents) {
             overviewActive = false;
             activeOverviewRecents.clear();
@@ -632,9 +786,142 @@ public final class LsNativeStack {
         if (!liveSimulatorOverviewTarget || recents == null) {
             return;
         }
+        captureLiveEntryCards(recents);
         nativeGestureRecents.clear();
         recents.setNativeStackEntryPending(true);
         onOverviewStateChanged(recents, true);
+    }
+
+    /** Preserve the native carousel that was already visible under the finger. */
+    private static void captureLiveEntryCards(RecentsView recents) {
+        liveGestureCards.clear();
+        RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+        for (int i = 0; i < recents.getChildCount(); i++) {
+            View child = recents.getChildAt(i);
+            if (!(child instanceof TaskView)) continue;
+            TaskView task = (TaskView) child;
+            float primary = handler.getChildStart(task)
+                    + handler.getPrimaryValue(task.getPivotX(), task.getPivotY())
+                    - handler.getPrimaryScroll(recents)
+                    + handler.getPrimaryValue(task.getTranslationX(), task.getTranslationY());
+            float secondary = handler.getSecondaryValue(
+                    task.getLeft() + task.getPivotX() + task.getTranslationX(),
+                    task.getTop() + task.getPivotY() + task.getTranslationY());
+            liveGestureCards.put(task, new float[] {primary, secondary,
+                    task.getVisibility() == View.VISIBLE ? task.getAlpha() : 0.0f});
+        }
+    }
+
+    /** Geometry and alpha share the surface animator; visible neighbors never restart at zero. */
+    private static void blendLiveEntryCard(RecentsView recents, TaskView task,
+            float center, float secondary, float scale, float alpha) {
+        float progress = clamp(liveEntryPageProgress);
+        float[] start = liveGestureCards.get(task);
+        TEMP_LIVE_CARD[0] = center;
+        TEMP_LIVE_CARD[1] = secondary;
+        TEMP_LIVE_CARD[2] = scale;
+        TEMP_LIVE_CARD[3] = alpha * smoothVisibility(progress);
+        if (start == null) return;
+        RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+        float nativeSecondary = handler.getSecondaryValue(
+                task.getLeft() + task.getPivotX() + task.getTranslationX()
+                        - task.getNativeStackTranslationX(),
+                task.getTop() + task.getPivotY() + task.getTranslationY()
+                        - task.getNativeStackTranslationY());
+        TEMP_LIVE_CARD[0] = start[0] + (center - start[0]) * progress;
+        TEMP_LIVE_CARD[1] = (start[1] - nativeSecondary) * (1.0f - progress)
+                + secondary * progress;
+        TEMP_LIVE_CARD[2] = 1.0f + (scale - 1.0f) * progress;
+        // Native stable alpha still multiplies this component in TaskView.
+        // Its release value is already present; a second fade would erase it.
+        TEMP_LIVE_CARD[3] = start[2] > 0.0f
+                ? 1.0f + (alpha - 1.0f) * progress : alpha * smoothVisibility(progress);
+    }
+
+    /**
+     * recentsViewScale is only one factor of the leash. Crop/fullscreen/taskRect
+     * writes can change the final bounds even when that scalar is continuous.
+     * Capture the complete native bounds in home coordinates, then hand that
+     * rectangle to the real screenshot rectangle on the existing settle clock.
+     */
+    private static boolean applyLiveGestureBounds(Context context, Matrix matrix,
+            Rect crop, Matrix homeToWindow) {
+        RecentsView recents = liveSimulatorOverviewTarget
+                ? activeOverviewRecents.get() : nativeGestureRecents.get();
+        if (recents == null || !recents.isNativeStackStyle()
+                || recents.getWidth() <= 0 || recents.getHeight() <= 0
+                || !homeToWindow.invert(TEMP_LIVE_WINDOW_TO_HOME)) return false;
+        TEMP_LIVE_SURFACE_BOUNDS.set(crop);
+        if (!matrix.mapRect(TEMP_LIVE_SURFACE_BOUNDS)
+                || TEMP_LIVE_SURFACE_BOUNDS.isEmpty()) return false;
+        if (!liveSimulatorOverviewTarget) {
+            RectF bounds = liveGestureBounds.get(matrix);
+            if (bounds == null) {
+                bounds = new RectF();
+                liveGestureBounds.put(matrix, bounds);
+            }
+            bounds.set(TEMP_LIVE_SURFACE_BOUNDS);
+            TEMP_LIVE_WINDOW_TO_HOME.mapRect(bounds);
+            return false; // Sampling never changes mini-window/quick-switch motion.
+        }
+        RectF start = liveGestureBounds.get(matrix);
+        int runningIndex = recents.getRunningTaskIndex();
+        TaskView running = runningIndex >= 0 ? recents.getTaskViewAt(runningIndex) : null;
+        if (start == null || running == null || running.getTaskContainers().size() != 1) return false;
+        View snapshot = running.getTaskContainers().get(0).getSnapshotView();
+        if (snapshot == null || snapshot.getWidth() <= 0 || snapshot.getHeight() <= 0) return false;
+        loadOverviewScale(context, recents);
+        RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+        float page = getEntryPagePosition(recents, recents.getTaskViewCount());
+        float depth = getMiuiDepth(0.0f, page, recents.getTaskViewCount());
+        float scale = focusScale * getMiuiScaleRatio(depth);
+        float primary = getMiuiStackCenter(handler.getPrimarySize(recents),
+                handler.getPrimarySize(running), 0, page, recents.getTaskViewCount());
+        boolean horizontal = Math.abs(handler.getPrimaryValue(1.0f, 0.0f)) > 0.5f;
+        float secondary = (horizontal ? recents.getHeight() : recents.getWidth()) * 0.5f;
+        TEMP_LIVE_CENTER[0] = handler.getPrimaryValue(primary, secondary);
+        TEMP_LIVE_CENTER[1] = handler.getSecondaryValue(primary, secondary);
+        offsetLiveSnapshotCenter(recents, scale);
+        float centerX = TEMP_LIVE_CENTER[0];
+        float centerY = TEMP_LIVE_CENTER[1];
+        float progress = clamp(liveEntryPageProgress);
+        float width = start.width() + (snapshot.getWidth() * scale - start.width()) * progress;
+        float height = start.height() + (snapshot.getHeight() * scale - start.height()) * progress;
+        centerX = start.centerX() + (centerX - start.centerX()) * progress;
+        centerY = start.centerY() + (centerY - start.centerY()) * progress;
+        TEMP_LIVE_TARGET.set(centerX - width * 0.5f, centerY - height * 0.5f,
+                centerX + width * 0.5f, centerY + height * 0.5f);
+        homeToWindow.mapRect(TEMP_LIVE_TARGET);
+        float originalX = TEMP_LIVE_SURFACE_BOUNDS.centerX();
+        float originalY = TEMP_LIVE_SURFACE_BOUNDS.centerY();
+        matrix.postScale(TEMP_LIVE_TARGET.width() / TEMP_LIVE_SURFACE_BOUNDS.width(),
+                TEMP_LIVE_TARGET.height() / TEMP_LIVE_SURFACE_BOUNDS.height(), originalX, originalY);
+        matrix.postTranslate(TEMP_LIVE_TARGET.centerX() - originalX,
+                TEMP_LIVE_TARGET.centerY() - originalY);
+        return true;
+    }
+
+    /** Match the screenshot's drawn center, not just TaskView's scale pivot.
+     * In landscape OEM puts the title margin beside the snapshot, while its
+     * pivot X remains half of the OUTER view. The two centers differ by half
+     * that margin. Ignoring it makes the leash settle high then drop at handoff.
+     * Keep the portrait projection unchanged; read measured child geometry so
+     * both landscape turns, user scale and density use the real offset. */
+    private static void offsetLiveSnapshotCenter(RecentsView recents, float scale) {
+        RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+        boolean horizontal = Math.abs(handler.getPrimaryValue(1.0f, 0.0f)) > 0.5f;
+        boolean landscape = horizontal ? recents.getWidth() > recents.getHeight()
+                : recents.getHeight() > recents.getWidth();
+        if (!landscape) return;
+        int index = recents.getRunningTaskIndex();
+        TaskView task = index >= 0 ? recents.getTaskViewAt(index) : null;
+        if (task == null || task.getTaskContainers().size() != 1) return;
+        View snapshot = task.getTaskContainers().get(0).getSnapshotView();
+        if (snapshot == null || snapshot.getWidth() <= 0 || snapshot.getHeight() <= 0) return;
+        TEMP_LIVE_CENTER[0] += (snapshot.getX() + snapshot.getWidth() * 0.5f
+                - task.getPivotX()) * scale;
+        TEMP_LIVE_CENTER[1] += (snapshot.getY() + snapshot.getHeight() * 0.5f
+                - task.getPivotY()) * scale;
     }
 
     /** Sample the existing gesture animator: no second animator or delayed snap. */
@@ -665,8 +952,7 @@ public final class LsNativeStack {
             lastLiveAppliedScale = nativeScale;
             return nativeScale;
         }
-        loadConfig(context.getResources());
-        loadUserScale(context);
+        loadOverviewScale(context, null);
         // The native simulator animator may have been constructed before the
         // user released the gesture, with an identity endpoint. A max/floor
         // cannot correct a downward scale and creates a shrink/grow reversal.
@@ -718,11 +1004,13 @@ public final class LsNativeStack {
                 || homeToWindow == null) {
             return;
         }
+        if (applyLiveGestureBounds(context, matrix, crop, homeToWindow)) return;
         RecentsView recents = activeOverviewRecents.get();
         if (!liveSimulatorOverviewTarget || recents == null || !recents.isNativeStackStyle()
                 || recents.getWidth() <= 0 || recents.getHeight() <= 0) {
             return;
         }
+        loadOverviewScale(context, recents);
         // The surface matrix already contains TaskViewSimulator's window
         // rotation. Resources can still describe the portrait Launcher here.
         // Work in the same home axes as update(), then map the target through
@@ -750,10 +1038,13 @@ public final class LsNativeStack {
             float page = getEntryPagePosition(recents, recents.getTaskViewCount());
             float depth = getMiuiDepth(0.0f, page, recents.getTaskViewCount());
             scale = getMiuiScaleRatio(depth);
-            targetPrimary = getMiuiCenter(handler.getPrimarySize(recents), depth);
+            // Ordinal zero keeps the native center curve and needs no rear-card width.
+            targetPrimary = getMiuiStackCenter(handler.getPrimarySize(recents),
+                    0.0f, 0, page, recents.getTaskViewCount());
         }
         TEMP_LIVE_CENTER[0] = handler.getPrimaryValue(targetPrimary, targetSecondary);
         TEMP_LIVE_CENTER[1] = handler.getSecondaryValue(targetPrimary, targetSecondary);
+        offsetLiveSnapshotCenter(recents, focusScale * scale);
         homeToWindow.mapPoints(TEMP_LIVE_CENTER);
         // Start at the exact last native gesture frame. Applying the entire
         // deck correction at release makes both axes jump before settling.
@@ -1275,7 +1566,7 @@ public final class LsNativeStack {
         }
         RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
         float actualCenter = handler.getChildStart(focus)
-                + (handler.getPrimarySize(focus) * 0.5f)
+                + handler.getPrimaryValue(focus.getPivotX(), focus.getPivotY())
                 - handler.getPrimaryScroll(recents)
                 + handler.getPrimaryValue(
                         focus.getTranslationX(), focus.getTranslationY());
@@ -1357,7 +1648,8 @@ public final class LsNativeStack {
             return false;
         }
         return getDismissDepthAtOrdinal(ordinal, taskCount, false)
-                != getDismissDepthAtOrdinal(ordinal, taskCount, true);
+                != getDismissDepthAtOrdinal(ordinal, taskCount, true)
+                || adjustDismissOffset(recents, task, pendingDismissTask.get(), 0) != 0;
     }
 
     /**
@@ -1425,6 +1717,7 @@ public final class LsNativeStack {
     /** Arms exactly one latest-running-task commit for each real Overview entry. */
     public static void onOverviewStateChanged(RecentsView recents, boolean enabled) {
         if (!enabled) {
+            LsStackTransition.onOverviewStateChanged(recents, false);
             clearActionMenu(recents);
             cancelCardLongPress(recents);
             if (actionOutsideTouch.get() == recents) actionOutsideTouch.clear();
@@ -1435,6 +1728,8 @@ public final class LsNativeStack {
                 && overviewActive && activeOverviewRecents.get() == recents) {
             return;
         }
+        if (enabled) LsStackTransition.onOverviewStateChanged(recents, true);
+        retainDismissHistoryLayout = false;
         /* State entry/exit is a hard transaction boundary.  This also repairs
          * a vertical swipe intercepted by the system gesture layer before the
          * OEM dismissal listener can report cancellation. */
@@ -1816,11 +2111,13 @@ public final class LsNativeStack {
         boolean childRemoved = success && dismissedTask != null
                 && recents.indexOfChild(dismissedTask) < 0
                 && recents.getTaskViewCount() == pendingDismissTaskCount - 1;
+        boolean retainHistory = getDismissLayoutShift() != 0;
         clearPendingDismissState(recents);
         if (!recents.isNativeStackStyle()) {
             return;
         }
         try {
+            if (childRemoved && retainHistory) retainDismissHistoryLayout = true;
             finishEntryForInteraction(recents);
             /*
              * RecentsView$23 has already removed the child, rebuilt page
@@ -1844,7 +2141,8 @@ public final class LsNativeStack {
                 if (targetPage >= 0) {
                     /* Call even when the numeric page did not change: child
                      * removal changed getScrollForPage(page). */
-                    recents.setCurrentPage(targetPage);
+                    // Drop the old page's residual scroll along with the child.
+                    recents.setNativeStackOverviewPage(targetPage);
                 }
             }
             /* The callback is injected after OEM pending-animation cleanup;
@@ -1898,12 +2196,21 @@ public final class LsNativeStack {
             if (Float.isNaN(oldDepth) || Float.isNaN(newDepth)) {
                 return 0;
             }
-            float primarySize = recents.getPagedOrientationHandler().getPrimarySize(recents);
+            RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+            float primarySize = handler.getPrimarySize(recents);
+            float taskSize = handler.getPrimarySize((TaskView) child);
+            int ordinal = getTaskOrdinalForChildIndex(recents, recents.indexOfChild(child));
+            int nextOrdinal = ordinal > pendingDismissOrdinal ? ordinal - 1 : ordinal;
+            int nextPage = getDismissTargetOrdinal(pendingDismissPagePosition,
+                    pendingDismissOrdinal, pendingDismissTaskCount - 1);
             /* TaskView's primary dismiss property selects X or Y, without a
              * sign conversion.  Use physical center delta, including when the
              * OEM pager offset is zero or has the opposite sign. */
-            return Math.round(getMiuiCenter(primarySize, newDepth)
-                    - getMiuiCenter(primarySize, oldDepth));
+            int layoutShift = getDismissLayoutShift();
+            return Math.round(getMiuiStackCenter(primarySize, taskSize, nextOrdinal + layoutShift,
+                    nextPage + layoutShift, pendingDismissTaskCount - 1 + layoutShift)
+                    - getMiuiStackCenter(primarySize, taskSize, ordinal,
+                    pendingDismissPagePosition, pendingDismissTaskCount));
         } catch (Throwable error) {
             return nativeOffset;
         }
@@ -1987,7 +2294,20 @@ public final class LsNativeStack {
         int nextOrdinal = ordinal > pendingDismissOrdinal ? ordinal - 1 : ordinal;
         int nextPage = getDismissTargetOrdinal(
                 pendingDismissPagePosition, pendingDismissOrdinal, taskCount - 1);
-        return getMiuiDepth(nextOrdinal, nextPage, taskCount - 1);
+        int layoutShift = getDismissLayoutShift();
+        return getMiuiDepth(nextOrdinal + layoutShift, nextPage + layoutShift,
+                taskCount - 1 + layoutShift);
+    }
+
+    /** Virtual first slot preserves history geometry while native ordinals shrink. */
+    private static int getDismissLayoutShift() {
+        if (retainDismissHistoryLayout || pendingDismissOrdinal < 0
+                || Float.isNaN(pendingDismissPagePosition)
+                || pendingDismissTaskCount <= 1) return 0;
+        int selected = Math.round(pendingDismissPagePosition);
+        return pendingDismissOrdinal < selected
+                && getDismissTargetOrdinal(pendingDismissPagePosition,
+                        pendingDismissOrdinal, pendingDismissTaskCount - 1) == 0 ? 1 : 0;
     }
 
     private static int getTaskOrdinalForChildIndex(
@@ -2112,6 +2432,11 @@ public final class LsNativeStack {
 
     private static float getMiuiDepth(float taskPosition,
             float pagePosition, int taskCount) {
+        if (retainDismissHistoryLayout) {
+            taskPosition += 1.0f;
+            pagePosition += 1.0f;
+            taskCount += 1;
+        }
         float correctedPagePosition = pagePosition
                 + getMiuiInteriorCorrection(pagePosition, taskCount);
         return MIUI_FOCUS_DEPTH
@@ -2132,7 +2457,37 @@ public final class LsNativeStack {
                 MIUI_BASE_OFFSET_FRACTION
                         + (float) Math.exp(MIUI_EXP_RATE * depth)
                         - (0.5f * (1.0f - MIUI_BASE_TASK_SCALE)));
-        return (primarySize * 0.5f) + offset * stackSpacingScale;
+        return (primarySize * 0.5f) + offset * stackSpacingScale * overviewSpacingScale;
+    }
+
+    /**
+     * Share the first page's usable left margin between its first two rear cards.
+     * OEM snapshots fill TaskView on the primary axis: portrait adds its title
+     * margin only to height, landscape only to width (the secondary axis).
+     */
+    private static float getMiuiStackCenter(float primarySize, float taskSize,
+            int ordinal, float pagePosition, int taskCount) {
+        float depth = getMiuiDepth(ordinal, pagePosition, taskCount);
+        float center = getMiuiCenter(primarySize, depth);
+        if (retainDismissHistoryLayout || ordinal <= 0 || taskCount <= 1
+                || pagePosition >= 1.0f || taskSize <= 0.0f) {
+            return center;
+        }
+        float frontLeft = (primarySize - taskSize * focusScale) * 0.5f;
+        float safeLeft = Math.min(primarySize * 0.025f, Math.max(0.0f, frontLeft * 0.5f));
+        if (frontLeft <= safeLeft) return center;
+        // Keep two slots even with only one rear card. Removing a lower task
+        // must not move an unchanged survivor above it to a different slot.
+        float homeLeft = ordinal <= 2 ? frontLeft - (frontLeft - safeLeft) * ordinal * 0.5f
+                : safeLeft * (float) Math.pow(0.45f, ordinal - 2);
+        float homeDepth = getMiuiDepth(ordinal, 0.0f, taskCount);
+        float homeCenter = homeLeft + taskSize * focusScale * getMiuiScaleRatio(homeDepth) * 0.5f;
+        homeCenter = primarySize * 0.5f + (homeCenter - primarySize * 0.5f) * overviewSpacingScale;
+        float progress = clamp(pagePosition);
+        float weight = 1.0f - progress * progress * (3.0f - 2.0f * progress);
+        // Continuous pager position, never an entry flag or touch-up, owns
+        // this correction. Surface, dismissal and screenshot targets share it.
+        return center + (homeCenter - getMiuiCenter(primarySize, homeDepth)) * weight;
     }
 
     private static float valueAlongDepth(float depth, float start, float rate) {
@@ -2185,15 +2540,29 @@ public final class LsNativeStack {
                 MIUI_TITLE_START, MIUI_TITLE_RATE);
     }
 
+    /** The real app launch now owns the surface; entry must not normalize it again. */
+    public static void onTaskLaunchStarted(RecentsView recents) {
+        liveSimulatorOverviewTarget = false;
+        ++entryStabilizerGeneration;
+        recents.setNativeStackEntryPending(false);
+        if (overviewPendingRecents.get() == recents) {
+            overviewEntryPending = false;
+            overviewPendingRecents.clear();
+        }
+        clearEntryTaskOrder(recents);
+    }
+
     public static void update(RecentsView recents) {
         try {
             if (drawUpdateRecents.get() == recents) {
                 drawUpdatePending = false;
             }
             if (!recents.isNativeStackStyle()) {
+                LsStackTransition.clear(recents);
                 resetIfNeeded(recents);
                 return;
             }
+            if (LsStackTransition.beforeUpdate(recents)) return;
             if (isNativeGestureOwned(recents)) {
                 resetIfNeeded(recents);
                 return;
@@ -2205,8 +2574,7 @@ public final class LsNativeStack {
                 return;
             }
 
-            loadConfig(recents.getResources());
-            loadUserScale(recents.getContext());
+            loadOverviewScale(recents.getContext(), recents);
 
             int firstTaskIndex = -1;
             int firstTaskScroll = 0;
@@ -2386,7 +2754,8 @@ public final class LsNativeStack {
                  * continuous depth while the native RedMagic pager supplies
                  * drag, fling and snap timing.
                 */
-                float finalCenter = getMiuiCenter(primarySize, depth);
+                float finalCenter = getMiuiStackCenter(primarySize, handler.getPrimarySize(task),
+                        taskOrdinal, pagePosition, visualTaskCount);
                 float desiredCenter = primarySize * 0.5f
                         + (finalCenter - primarySize * 0.5f) * revealScale
                         * getHomeEntrySpread(revealProgress, taskOrdinal);
@@ -2396,14 +2765,15 @@ public final class LsNativeStack {
                 float stackZ = 100.0f - taskPosition;
                 if (actionOrdinal >= 0) {
                     if (taskOrdinal == actionOrdinal) {
-                        desiredCenter += (primarySize * 0.5f - desiredCenter) * actionProgress;
-                        stackScale += (focusScale - stackScale) * actionProgress;
+                        float actionCenter = primarySize * 0.5f + LsStackActions.cardOffset(recents);
+                        desiredCenter += (actionCenter - desiredCenter) * actionProgress;
+                        float actionScale = LsStackActions.cardScale(recents, task, focusScale);
+                        stackScale += (actionScale - stackScale) * actionProgress;
                         stackAlpha += (1.0f - stackAlpha) * actionProgress;
                     } else {
                         desiredCenter += (taskOrdinal < actionOrdinal ? 1.0f : -1.0f)
                                 * primarySize * 0.48f * actionProgress;
-                        float remaining = 1.0f - actionProgress;
-                        stackAlpha *= remaining * remaining;
+                        stackAlpha *= getActionNeighborAlpha(actionProgress);
                     }
                 }
 
@@ -2422,7 +2792,7 @@ public final class LsNativeStack {
                         task.getNativeDismissTranslationX(),
                         task.getNativeDismissTranslationY());
                 float nativeCenter = handler.getChildStart(task)
-                        + (handler.getPrimarySize(task) * 0.5f)
+                        + handler.getPrimaryValue(task.getPivotX(), task.getPivotY())
                         - nativeScroll
                         + currentPrimaryTranslation
                         - oldStackPrimary
@@ -2455,9 +2825,13 @@ public final class LsNativeStack {
                 // early so most of the travel remains visible instead of double-fading.
                 stackAlpha *= clamp(revealProgress / 0.18f);
                 if (liveSimulatorOverviewTarget) {
-                    // Back screenshots join the same native settle instead
-                    // of appearing at full opacity beside the moving app.
-                    stackAlpha *= smoothVisibility(liveEntryPageProgress);
+                    blendLiveEntryCard(recents, task, desiredCenter,
+                            stackSecondary, stackScale, stackAlpha);
+                    desiredCenter = TEMP_LIVE_CARD[0];
+                    stackPrimary = desiredCenter - nativeCenter;
+                    stackSecondary = TEMP_LIVE_CARD[1];
+                    stackScale = TEMP_LIVE_CARD[2];
+                    stackAlpha = TEMP_LIVE_CARD[3];
                 }
                 if (waitingForEntryAnchor
                         || (entryLoading && !entryDeckReady && taskOrdinal > 0)) {
@@ -2495,14 +2869,11 @@ public final class LsNativeStack {
                 float clipBoundary = higherLayerStart;
                 float restingStart = finalCenter
                         - handler.getPrimarySize(task) * finalStackScale * 0.5f;
-                if (actionOrdinal >= 0 && taskOrdinal != actionOrdinal
-                        && restingHigherLayerStart != Float.POSITIVE_INFINITY) {
-                    // Retreat the slice that was already visible. Exposing a full
-                    // back screenshot while it fades causes a bright flash.
-                    float restingSlice = Math.max(0.0f, restingHigherLayerStart - restingStart);
-                    clipBoundary = Math.min(clipBoundary, displayedStart
-                            + restingSlice * stackScale / Math.max(0.01f, finalStackScale));
-                }
+                float shadowAllowance = 3.0f
+                        * recents.getResources().getDisplayMetrics().density;
+                float restingClipRight = restingHigherLayerStart == Float.POSITIVE_INFINITY
+                        ? task.getWidth() : (restingHigherLayerStart - restingStart
+                                + shadowAllowance) / Math.max(0.01f, finalStackScale);
                 if (getMiuiAlpha(depth) > 0.01f) {
                     restingHigherLayerStart = Math.min(restingHigherLayerStart, restingStart);
                 }
@@ -2510,11 +2881,15 @@ public final class LsNativeStack {
                     task.setNativeStackClipRight(taskOrdinal == 0 ? -1 : 0);
                 } else if (!horizontalPrimary || dismissLayer || dismissReflowLayer) {
                     task.setNativeStackClipRight(-1);
+                } else if (actionOrdinal >= 0 && taskOrdinal != actionOrdinal) {
+                    // Recover from the resting slice, not a moving higher card.
+                    // Z compositing supplies natural occlusion as the complete
+                    // snapshots retreat. The same progress reverses this path.
+                    task.setNativeStackClipRight(getActionNeighborClipRight(
+                            task.getWidth(), restingClipRight, actionProgress));
                 } else if (stackAlpha <= 0.01f) {
                     task.setNativeStackClipRight(0);
                 } else if (clipBoundary != Float.POSITIVE_INFINITY) {
-                    float shadowAllowance = 3.0f
-                            * recents.getResources().getDisplayMetrics().density;
                     int clipRight = Math.round((clipBoundary - displayedStart
                             + shadowAllowance) / Math.max(0.01f, stackScale));
                     clipRight = Math.max(0, Math.min(task.getWidth(), clipRight));
@@ -2535,8 +2910,12 @@ public final class LsNativeStack {
                             task.getNativeStackTitleView(),
                             displayedStart, displayedEnd, stackScale,
                             higherHeaderStart, primarySize);
-                    float actionAlpha = taskOrdinal == actionOrdinal ? actionProgress : 0.0f;
-                    task.setNativeStackChromeAlpha(hideHeader ? 0.0f : titleAlpha, actionAlpha);
+                    float actionAlpha = 0.0f;
+                    // Neighbors already fade as a complete TaskView, including
+                    // their chrome. Only the selected card needs a separate fade.
+                    task.setNativeStackChromeAlpha(hideHeader ? 0.0f
+                            : titleAlpha * (taskOrdinal == actionOrdinal
+                                    ? 1.0f - actionProgress : 1.0f), actionAlpha);
                 }
                 // Chrome no longer calls OEM setTitleAlpha: that toggles icons
                 // INVISIBLE/VISIBLE twice per draw and invalidates their layout.
@@ -2553,6 +2932,7 @@ public final class LsNativeStack {
                     }
                 }
             }
+            LsStackActions.update(recents, actionProgress);
             if (entryLoading) {
                 finishCachedEntryStagingIfReady(recents, primarySize);
             }
@@ -2633,6 +3013,26 @@ public final class LsNativeStack {
                     SCALE_KEY, DEFAULT_SCALE_PERCENT));
         } catch (ClassCastException invalidStoredType) {
             return DEFAULT_SCALE_PERCENT;
+        }
+    }
+
+    /** Read the unmodified user setting afresh; orientation never compounds it. */
+    private static void loadOverviewScale(Context context, RecentsView recents) {
+        loadConfig(context.getResources());
+        loadUserScale(context);
+        overviewSpacingScale = 1.0f;
+        if (recents == null) recents = activeOverviewRecents.get();
+        if (recents == null) recents = nativeGestureRecents.get();
+        if (recents == null || recents.getWidth() <= 0 || recents.getHeight() <= 0) return;
+        // Launcher may keep a portrait window while Overview uses rotated axes.
+        // Only the visual orientation decides the extra card-size multiplier.
+        int rotation = recents.getPagedOrientationHandler().getRotation();
+        boolean landscape = (rotation & 1) == 0
+                ? recents.getWidth() > recents.getHeight()
+                : recents.getHeight() > recents.getWidth();
+        if (landscape) {
+            focusScale *= 0.8085f; // Previous 0.77 size, enlarged to 105%.
+            overviewSpacingScale = 0.90f;
         }
     }
 
@@ -2770,6 +3170,9 @@ public final class LsNativeStack {
                 float visible = hidden ? 0.0f : getStackIconAlpha(recents,
                         task, icon, displayedStart, scale, higherLayerStart, primarySize);
                 float opacity = smoothVisibility(visible);
+                if (actionMenuRecents.get() == recents && actionMenuTask.get() == task) {
+                    opacity *= 1.0f - clamp(actionRevealProgress);
+                }
                 icon.setContentAlpha(opacity);
                 int blur = visible > 0.0f && visible < 1.0f
                         ? Math.round(32 * (1.0f - opacity)) : 0;

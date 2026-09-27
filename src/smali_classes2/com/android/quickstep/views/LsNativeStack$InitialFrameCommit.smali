@@ -29,21 +29,21 @@
 .method constructor <init>(Lcom/android/quickstep/views/RecentsView;I)V
     .locals 1
 
-    .line 800
+    .line 1091
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 798
+    .line 1089
     const/16 v0, 0xc
 
     iput v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->remainingGeometryFrames:I
 
-    .line 801
+    .line 1092
     iput-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
-    .line 802
+    .line 1093
     iput p2, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->generation:I
 
-    .line 803
+    .line 1094
     return-void
 .end method
 
@@ -52,7 +52,7 @@
 .method public run()V
     .locals 3
 
-    .line 807
+    .line 1098
     iget v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->generation:I
 
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$900()I
@@ -63,7 +63,7 @@
 
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
-    .line 808
+    .line 1099
     invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
 
     move-result v0
@@ -80,7 +80,7 @@
 
     goto :goto_1
 
-    .line 811
+    .line 1102
     :cond_0
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
@@ -98,14 +98,14 @@
 
     if-lez v0, :cond_1
 
-    .line 812
+    .line 1103
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$1200(Lcom/android/quickstep/views/RecentsView;)Lcom/android/quickstep/views/TaskView;
 
     move-result-object v0
 
-    .line 813
+    .line 1104
     if-eqz v0, :cond_1
 
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
@@ -116,22 +116,22 @@
 
     if-eqz v0, :cond_1
 
-    .line 814
+    .line 1105
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$1400(Lcom/android/quickstep/views/RecentsView;)I
 
     move-result v0
 
-    .line 815
+    .line 1106
     if-ltz v0, :cond_1
 
-    .line 816
+    .line 1107
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-static {v1, v0}, Lcom/android/quickstep/views/LsNativeStack;->access$1500(Lcom/android/quickstep/views/RecentsView;I)V
 
-    .line 820
+    .line 1111
     :cond_1
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
@@ -139,7 +139,7 @@
 
     move-result v0
 
-    .line 821
+    .line 1112
     if-ltz v0, :cond_4
 
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
@@ -152,7 +152,7 @@
 
     goto :goto_0
 
-    .line 827
+    .line 1118
     :cond_2
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
@@ -170,27 +170,27 @@
 
     if-lez v1, :cond_3
 
-    .line 829
+    .line 1120
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-virtual {v0, p0}, Lcom/android/quickstep/views/RecentsView;->postOnAnimation(Ljava/lang/Runnable;)V
 
-    .line 830
+    .line 1121
     return-void
 
-    .line 832
+    .line 1123
     :cond_3
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$1702(I)I
 
-    .line 833
+    .line 1124
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->update(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 834
+    .line 1125
     return-void
 
-    .line 822
+    .line 1113
     :cond_4
     :goto_0
     iget v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->remainingGeometryFrames:I
@@ -201,16 +201,16 @@
 
     if-lez v0, :cond_5
 
-    .line 823
+    .line 1114
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$InitialFrameCommit;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-virtual {v0, p0}, Lcom/android/quickstep/views/RecentsView;->postOnAnimation(Ljava/lang/Runnable;)V
 
-    .line 825
+    .line 1116
     :cond_5
     return-void
 
-    .line 809
+    .line 1100
     :cond_6
     :goto_1
     return-void

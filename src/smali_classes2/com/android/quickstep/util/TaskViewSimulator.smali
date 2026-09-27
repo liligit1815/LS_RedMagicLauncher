@@ -4936,7 +4936,7 @@
 .end method
 
 .method public onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;Landroid/view/RemoteAnimationTarget;Lcom/android/quickstep/util/TransformParams;)V
-    .locals 3
+    .locals 4
 
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mContext:Landroid/content/Context;
 
@@ -4947,6 +4947,12 @@
     iget-object v2, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mNativeStackHomeToWindowMatrix:Landroid/graphics/Matrix;
 
     invoke-static {p3, v0, v1, v2}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryMatrix(Landroid/content/Context;Landroid/graphics/Matrix;Landroid/graphics/Rect;Landroid/graphics/Matrix;)V
+
+    iget-object v3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->fullScreenProgress:Lcom/android/launcher3/anim/d;
+
+    iget v3, v3, Lcom/android/launcher3/anim/d;->d:F
+
+    invoke-static {p0, v0, v1, v2, v3}, Lcom/android/quickstep/views/LsStackTransition;->normalizeLaunchMatrix(Ljava/lang/Object;Landroid/graphics/Matrix;Landroid/graphics/Rect;Landroid/graphics/Matrix;F)V
 
     .line 1
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mMatrix:Landroid/graphics/Matrix;
@@ -4971,6 +4977,24 @@
 
     .line 4
     invoke-virtual {p0, p1}, Lcom/android/quickstep/util/TaskViewSimulator;->onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;)V
+
+    # A reused live-tile simulator may retain an old gesture-end adjustment.
+    # Keep its alpha/layer policy, but the clicked card owns launch geometry.
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->isLaunchSimulator(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :ls_launch_matrix_done
+
+    iget-object v0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mMatrix:Landroid/graphics/Matrix;
+
+    invoke-virtual {p1, v0}, Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;->setMatrix(Landroid/graphics/Matrix;)Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;
+
+    iget-object v0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mTmpCropRect:Landroid/graphics/Rect;
+
+    invoke-virtual {p1, v0}, Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;->setWindowCrop(Landroid/graphics/Rect;)Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;
+
+    :ls_launch_matrix_done
 
     .line 5
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mDrawsBelowRecents:Ljava/lang/Boolean;

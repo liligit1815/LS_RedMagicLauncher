@@ -35,6 +35,7 @@ public class EntrySelectionTest {
     static boolean usesNativeStackStyle(Context context){ return true; }
     static void loadConfig(Object resources){}
     static void loadUserScale(Context context){}
+    static void loadOverviewScale(Context context, Object recents){loadUserScale(context);}
     static WeakReference<RecentsView> activeOverviewRecents = new WeakReference<>(null);
     SELECTOR
     static void expect(RecentsView view, int count, int expected) {

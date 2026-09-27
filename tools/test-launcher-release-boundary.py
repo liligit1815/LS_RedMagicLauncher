@@ -1,0 +1,155 @@
+"""Exercise the release gate with parsed DEX/Manifest fixtures.
+
+Actual APK parsing and verification still run before and after signing. These
+negative tests guard the exact added-class list and declaration lookup rules.
+"""
+from copy import deepcopy
+import importlib.util
+from pathlib import Path
+import unittest
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location(
+    "stack_release_boundary", ROOT / "tools/check-launcher-stack-only-apk.py")
+gate = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(gate)
+
+TASK = "Lcom/android/quickstep/views/TaskView;"
+TASK_UTILS = "Lcom/android/quickstep/TaskViewUtils;"
+PARENT = "Lcom/android/launcher3/AbstractFloatingView;"
+VIEW_METHOD = (TASK, "setNativeStackTransform", "(FFFFF)V")
+DECLARATION = {"dex": "classes2.dex", "accessFlags": 1, "codeOffset": 112}
+
+
+def fixtures(code=260016):
+    expected = {"versionCode": code, "versionName": "preserved-display-version"}
+    original = {"classes": {TASK, TASK_UTILS, PARENT}, "references": set(),
+                "declared": {}, "superclasses": {}, "manifest": b"original", "forbidden": []}
+    modified = deepcopy(original)
+    modified["manifest"] = b"modified"
+    helpers = set(gate.EXPECTED_CLASSES)
+    if code >= 260016:
+        helpers.update(gate.RELEASE_260016_CLASSES)
+    modified["classes"].update(helpers)
+    for owner in helpers:
+        key = (owner, "<init>", "()V")
+        modified["declared"][key] = dict(DECLARATION)
+        modified["references"].add(key)
+    modified["declared"][VIEW_METHOD] = dict(DECLARATION)
+    modified["references"].add(VIEW_METHOD)
+    return original, modified, expected
+
+
+def compare(original, modified, expected):
+    def manifest(raw):
+        versions = expected if raw == b"modified" else {
+            "versionCode": 260000, "versionName": expected["versionName"]}
+        return [{"event": "start", "name": "manifest"}], versions
+    with patch.object(gate, "manifest_semantics", side_effect=manifest):
+        return gate.compare(original, modified, expected)
+
+
+class ReleaseBoundaryTest(unittest.TestCase):
+    def test_fixed_new_class_set(self):
+        self.assertEqual(gate.RELEASE_260016_CLASSES, {
+            "Lcom/android/quickstep/views/LsStackActions;",
+            "Lcom/android/quickstep/views/LsStackActions$ActionIcon;",
+            *{"Lcom/android/quickstep/views/LsStackTransition" + suffix + ";"
+              for suffix in ("", "$CardFrame", "$Transition", "$LaunchSurface", "$LaunchEnd")},
+        })
+        self.assertTrue(compare(*fixtures())["pass"])
+
+    def test_historical_release_does_not_gain_permission(self):
+        original, modified, expected = fixtures(260015)
+        self.assertTrue(compare(original, modified, expected)["pass"])
+        modified["classes"].update(gate.RELEASE_260016_CLASSES)
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_each_expected_class_is_required(self):
+        for missing in gate.RELEASE_260016_CLASSES:
+            with self.subTest(missing=missing):
+                original, modified, expected = fixtures()
+                modified["classes"].remove(missing)
+                result = compare(original, modified, expected)
+                self.assertFalse(result["pass"])
+                self.assertIn(missing, result["checks"]["onlyDeclaredStackClassesAdded"]["missingExpected"])
+
+    def test_prefixes_do_not_allow_extra_classes(self):
+        for extra in (gate.ACTION_CLASS + "$Debug;", gate.ACTION_CLASS + "Extra;",
+                      gate.TRANSITION_CLASS + "$Unexpected;", "Lcom/example/OtherFeature;"):
+            with self.subTest(extra=extra):
+                original, modified, expected = fixtures()
+                modified["classes"].add(extra)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_native_task_utils_hook_references_are_checked(self):
+        original, modified, expected = fixtures()
+        # TaskViewUtils already exists in the original DEX; its new call target
+        # must be declared exactly by the transition helper in the built DEX.
+        hook = (gate.TRANSITION_CLASS + ";", "bindLaunchSimulator",
+                "(Lcom/android/quickstep/views/TaskView;Ljava/lang/Object;)V")
+        modified["references"].add(hook)
+        self.assertFalse(compare(original, modified, expected)["pass"])
+        modified["declared"][hook] = dict(DECLARATION)
+        self.assertTrue(compare(original, modified, expected)["pass"])
+        wrong = (hook[0], hook[1], "(Ljava/lang/Object;)V")
+        modified["declared"][wrong] = modified["declared"].pop(hook)
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_actions_and_nested_transition_missing_declarations_fail(self):
+        for owner in gate.RELEASE_260016_CLASSES:
+            original, modified, expected = fixtures()
+            modified["references"].add((owner, "missingMethod", "()V"))
+            self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_accessible_in_apk_inherited_method(self):
+        original, modified, expected = fixtures()
+        owner = gate.ACTION_CLASS + ";"
+        inherited = (PARENT, "isOpen", "()Z")
+        modified["superclasses"][owner] = PARENT
+        modified["declared"][inherited] = dict(DECLARATION, accessFlags=4)
+        reference = (owner, "isOpen", "()Z")
+        modified["references"].add(reference)
+        result = compare(original, modified, expected)
+        self.assertTrue(result["pass"])
+        checked = result["checks"]["stackMethodReferencesDeclared"]["verifiedDeclarations"]
+        self.assertIn(gate.method_label(inherited), [row["declaredAs"] for row in checked])
+
+    def test_unrelated_or_private_method_cannot_resolve(self):
+        original, modified, expected = fixtures()
+        owner = gate.ACTION_CLASS + ";"
+        modified["references"].add((owner, "isOpen", "()Z"))
+        modified["declared"][(PARENT, "isOpen", "()Z")] = dict(DECLARATION)
+        self.assertFalse(compare(original, modified, expected)["pass"])
+        modified["superclasses"][owner] = PARENT
+        modified["declared"][(PARENT, "isOpen", "()Z")]["accessFlags"] = 2
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_constructor_cannot_be_inherited(self):
+        original, modified, expected = fixtures()
+        owner = gate.ACTION_CLASS + ";"
+        modified["superclasses"][owner] = PARENT
+        modified["declared"][(PARENT, "<init>", "()V")] = dict(DECLARATION)
+        del modified["declared"][(owner, "<init>", "()V")]
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_external_platform_methods_are_not_assumed(self):
+        original, modified, expected = fixtures()
+        owner = gate.ACTION_CLASS + ";"
+        modified["superclasses"][owner] = PARENT
+        modified["superclasses"][PARENT] = "Landroid/view/View;"
+        modified["references"].add((owner, "getContext", "()Landroid/content/Context;"))
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_existing_class_and_feature_marker_guards_remain(self):
+        original, modified, expected = fixtures()
+        modified["classes"].remove(TASK_UTILS)
+        self.assertFalse(compare(original, modified, expected)["pass"])
+        modified["classes"].add(TASK_UTILS)
+        modified["forbidden"].append({"marker": "LsPageManager"})
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
+
+if __name__ == "__main__":
+    unittest.main()

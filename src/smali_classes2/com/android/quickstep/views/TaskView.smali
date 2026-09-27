@@ -15550,6 +15550,8 @@
 .method public final launchWithAnimation()Lcom/android/launcher3/util/Y1;
     .locals 2
 
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->beginLaunch(Lcom/android/quickstep/views/TaskView;)V
+
     .line 1
     invoke-virtual {p0}, Lcom/android/quickstep/views/TaskView;->isRunningTask()Z
 
@@ -15645,10 +15647,12 @@
     .line 44
     .line 45
     .line 46
-    move-result-object p0
+    move-result-object v0
+
+    invoke-static {p0, v0}, Lcom/android/quickstep/views/LsStackTransition;->onLaunchResult(Lcom/android/quickstep/views/TaskView;Ljava/lang/Object;)V
 
     .line 47
-    return-object p0
+    return-object v0
 
     .line 48
     :cond_2
@@ -15657,10 +15661,12 @@
     .line 49
     .line 50
     .line 51
-    move-result-object p0
+    move-result-object v0
+
+    invoke-static {p0, v0}, Lcom/android/quickstep/views/LsStackTransition;->onLaunchResult(Lcom/android/quickstep/views/TaskView;Ljava/lang/Object;)V
 
     .line 52
-    return-object p0
+    return-object v0
 .end method
 
 .method public final launchWithoutAnimation(Lu4/l;)V
@@ -23192,6 +23198,27 @@
     aget-object v2, v2, v3
     invoke-virtual {v1, p0, v2, v0}, Lcom/android/launcher3/util/u1;->b(Ljava/lang/Object;LB4/i;F)V
     return-void
+.end method
+
+.method public final isNativeStackMiniWindowAvailable()Z
+    .locals 3
+
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->mMiniWindowButton:Landroid/widget/ImageView;
+    if-eqz v0, :native_stack_mini_unavailable
+    invoke-virtual {v0}, Landroid/widget/ImageView;->getVisibility()I
+    move-result v1
+    invoke-virtual {p0}, Lcom/android/quickstep/views/TaskView;->updateMiniWindowButtonState()V
+    # Preserve the header presentation while reading the original capability.
+    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setVisibility(I)V
+    iget-boolean v2, p0, Lcom/android/quickstep/views/TaskView;->mIsSupportWindowResize:Z
+    if-eqz v2, :native_stack_mini_unavailable
+    invoke-virtual {v0}, Landroid/widget/ImageView;->isEnabled()Z
+    move-result v0
+    return v0
+
+    :native_stack_mini_unavailable
+    const/4 v0, 0x0
+    return v0
 .end method
 
 .method public final getNativeStackTranslationX()F

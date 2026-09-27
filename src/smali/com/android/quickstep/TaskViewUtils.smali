@@ -1219,7 +1219,7 @@
 .end method
 
 .method public static createRecentsWindowAnimator(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z[Landroid/view/RemoteAnimationTarget;[Landroid/view/RemoteAnimationTarget;[Landroid/view/RemoteAnimationTarget;LP1/h;Landroid/window/TransitionInfo;Lcom/android/launcher3/anim/V;)V
-    .locals 31
+    .locals 32
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -1247,6 +1247,9 @@
 
     .line 1
     move-object/from16 v0, p0
+
+    # p1 is reused for a snapshot View later in the OEM matrix setup.
+    move-object/from16 v31, p1
 
     .line 2
     .line 3
@@ -1286,6 +1289,8 @@
 
     .line 20
     :cond_0
+    invoke-static {v2}, Lcom/android/quickstep/views/LsStackTransition;->beginLaunch(Lcom/android/quickstep/views/TaskView;)V
+
     invoke-virtual {v2}, Lcom/android/quickstep/views/TaskView;->isEndQuickSwitchCuj()Z
 
     .line 21
@@ -2130,6 +2135,10 @@
     move-result-object v1
 
     .line 420
+    move-object/from16 v2, p1
+
+    invoke-static {v2, v1}, Lcom/android/quickstep/views/LsStackTransition;->bindLaunchSimulator(Lcom/android/quickstep/views/TaskView;Ljava/lang/Object;)V
+
     iget-object v2, v1, Lcom/android/quickstep/util/TaskViewSimulator;->fullScreenProgress:Lcom/android/launcher3/anim/d;
 
     .line 421
@@ -2920,6 +2929,14 @@
 
     .line 807
     :goto_d
+    move-object/from16 v2, v31
+
+    invoke-static {v2}, Lcom/android/quickstep/views/LsStackTransition;->launchListener(Lcom/android/quickstep/views/TaskView;)Landroid/animation/Animator$AnimatorListener;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+
     new-instance v2, Lcom/android/quickstep/TaskViewUtils$4;
 
     .line 808

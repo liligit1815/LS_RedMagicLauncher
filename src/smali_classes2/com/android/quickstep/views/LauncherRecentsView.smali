@@ -1468,6 +1468,8 @@
     .line 7
     invoke-virtual {p0}, Lcom/android/quickstep/views/LauncherRecentsView;->reset()V
 
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->onExitComplete(Lcom/android/quickstep/views/RecentsView;)V
+
     goto :goto_0
 
     .line 8

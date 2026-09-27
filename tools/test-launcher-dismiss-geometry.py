@@ -43,12 +43,13 @@ STUBS = r'''
     static class RecentsPagedOrientationHandler {
         int getPrimaryScroll(RecentsView r) {return r.scroll;}
         int getPrimarySize(RecentsView r) {return r.size;}
+        int getPrimarySize(TaskView t) {return 700;}
     }
     static class RecentsView {
         final java.util.ArrayList<View> children=new java.util.ArrayList<>();
         final java.util.ArrayList<Integer> pageScrolls=new java.util.ArrayList<>();
         final RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
-        int style=3, currentPage, scroll, size=1000, setCalls, stateWrites, updates;
+        int style=3, currentPage, scroll, scrollDiff, size=1000, setCalls, stateWrites, updates;
         boolean isNativeStackStyle(){return style==3;}
         int getChildCount(){return children.size();}
         View getChildAt(int i){return children.get(i);}
@@ -59,7 +60,8 @@ STUBS = r'''
         int getNextPage(){return currentPage;}
         Resources getResources(){return new Resources();}
         RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
-        void setCurrentPage(int i){currentPage=i;scroll=pageScrolls.get(i);setCalls++;}
+        void setNativeStackOverviewPage(int i){scrollDiff=0;setCurrentPage(i);}
+        void setCurrentPage(int i){currentPage=i;scroll=pageScrolls.get(i)+scrollDiff;setCalls++;}
     }
     static final String TAG="test";
     static float focusScale=0.83f,stackSpacingScale=1;
@@ -85,6 +87,7 @@ CASES = r'''
     static void check(boolean ok,String message){checks++;if(!ok){failures++;if(failures<=30)System.out.println("FAIL "+message);}}
     static void near(float actual,float expected,float tolerance,String message){check(Float.isFinite(actual)&&Math.abs(actual-expected)<=tolerance,message+" actual="+actual+" expected="+expected);}
     static RecentsView create(int count,float page,int size,int direction,boolean decorations){
+        retainDismissHistoryLayout=false;
         RecentsView r=new RecentsView();r.size=size;
         if(decorations){r.children.add(new View());r.pageScrolls.add(-250*direction);}
         for(int i=0;i<count;i++){
@@ -108,13 +111,51 @@ CASES = r'''
         RecentsView r=create(count,page,1000,1,false);TaskView d=getTaskForOrdinal(r,removed),t=getTaskForOrdinal(r,observed);
         recordDismissedTask(r,d);
         float[] old=project(observed,page,count,1000);
-        float[] end=project(observed>removed?observed-1:observed,expectedTarget(page,removed,count-1),count-1,1000);
+        int shift=removed<Math.round(page)&&expectedTarget(page,removed,count-1)==0?1:0;
+        float[] end=project((observed>removed?observed-1:observed)+shift,expectedTarget(page,removed,count-1)+shift,count-1+shift,1000);
         int offset=adjustDismissOffset(r,t,d,nativeOffset);float scale=getDismissReflowScale(r,t);
         System.out.printf(java.util.Locale.ROOT,"SAMPLE %s offset=%d expectedOffset=%.3f endpointError=%.3f scaleRatio=%.6f expectedScaleRatio=%.6f capturedPage=%.3f%n",
                 name,offset,end[0]-old[0],old[0]+offset-end[0],scale,end[1]/old[1],pendingDismissPagePosition);
         clearPendingDismissState(r);
     }
+    static void stableHistoryRemoval(){
+        for(int count:new int[]{2,3,5,8})for(int size:new int[]{720,1216,2688})
+        for(int direction:new int[]{-1,1}){
+            RecentsView r=create(count,1,size,direction,true);
+            TaskView front=getTaskForOrdinal(r,0);
+            float[][] original=new float[count][];
+            for(int i=1;i<count;i++)original[i]=project(i,1,count,size);
+            recordDismissedTask(r,front);
+            for(int i=1;i<count;i++){
+                TaskView survivor=getTaskForOrdinal(r,i);
+                check(adjustDismissOffset(r,survivor,front,700)==0,"newer removal must not translate survivor");
+                near(getDismissReflowScale(r,survivor),1,0.000001f,"newer removal must not resize survivor");
+            }
+            int at=r.indexOfChild(front);r.children.remove(at);r.pageScrolls.remove(at);
+            onDismissAnimationEnd(r,true);
+            check(retainDismissHistoryLayout,"history origin not retained on commit");
+            for(int i=1;i<count;i++){
+                float[] end=project(i-1,0,count-1,size);
+                near(end[0],original[i][0],0.001f,"commit changed survivor center");
+                near(end[1],original[i][1],0.000001f,"commit changed survivor size");
+            }
+            onDismissAnimationEnd(r,true);
+            check(retainDismissHistoryLayout,"duplicate callback cleared origin");
+            if(count>2){
+                TaskView d=getTaskForOrdinal(r,count-2),t=getTaskForOrdinal(r,0);
+                recordDismissedTask(r,d);
+                check(adjustDismissOffset(r,t,d,700)==0,"second deletion moved unchanged focus");
+                onDismissAnimationEnd(r,false);
+                check(retainDismissHistoryLayout,"cancel cleared retained origin");
+            }
+        }
+        RecentsView cancelled=create(3,1,1216,1,false);
+        recordDismissedTask(cancelled,getTaskForOrdinal(cancelled,0));
+        onDismissAnimationEnd(cancelled,false);
+        check(!retainDismissHistoryLayout,"cancel activated history origin");
+    }
     static void geometry(){
+        stableHistoryRemoval();
         sample("exposed_back_card",5,0,1,2,700);
         sample("middle_focus",5,1,1,2,700);
         sample("oldest_focus",5,4,4,3,-700);
@@ -133,7 +174,8 @@ CASES = r'''
                 TaskView task=getTaskForOrdinal(r,i);
                 if(i==removed)continue;
                 float[] old=project(i,page,count,size);
-                float[] end=project(i>removed?i-1:i,target,count-1,size);
+                int shift=removed<Math.round(page)&&target==0?1:0;
+                float[] end=project((i>removed?i-1:i)+shift,target+shift,count-1+shift,size);
                 for(int nativeOffset:new int[]{-700,0,700}){
                     int offset=adjustDismissOffset(r,task,dismissed,nativeOffset);
                     float scale=getDismissReflowScale(r,task);
@@ -146,7 +188,7 @@ CASES = r'''
             // The OEM callback has removed the child and rebuilt scrolls by now.
             int index=r.indexOfChild(dismissed);r.children.remove(index);r.pageScrolls.remove(index);
             for(int i=0;i<r.pageScrolls.size();i++)r.pageScrolls.set(i,direction*(i*600+i*i*40));
-            r.setCalls=0;onDismissAnimationEnd(r,true);
+            r.scrollDiff=direction*57;r.setCalls=0;onDismissAnimationEnd(r,true);
             check(r.getTaskViewCount()==count-1,"commit cannot remove another task");
             check(pendingDismissRecents.get()==null&&Float.isNaN(pendingDismissPagePosition),"commit clears transaction");
             if(target>=0){
@@ -198,7 +240,8 @@ CASES = r'''
     }
     public static void main(String[] args){
         if(!args[0].equals("style"))for(float ratio:new float[]{.7f,.84f,1,1.2f}){
-            stackSpacingScale=ratio;focusScale=.83f*ratio;geometry();
+            stackSpacingScale=ratio;focusScale=.83f*ratio;
+            for(float spacing:new float[]{1,.9f}){overviewSpacingScale=spacing;geometry();}
         }
         if(!args[0].equals("geometry"))style();
         System.out.println("RESULT checks="+checks+" failures="+failures);
@@ -222,12 +265,16 @@ def run(source_path, suite, output):
     # Extract update()'s production projection, rather than copying its formula.
     update = methods['update']
     depth = re.search(r'float depth = getMiuiDepth\(\s*taskPosition, pagePosition, visualTaskCount\);', update).group()
-    center = re.search(r'float finalCenter = getMiuiCenter\(primarySize, depth\);', update).group()
+    center = re.search(r'float finalCenter = getMiuiStackCenter\(primarySize, handler.getPrimarySize\(task\),\s*taskOrdinal, pagePosition, visualTaskCount\);', update)
+    if center:
+        center = center.group().replace('handler.getPrimarySize(task)', '700').replace('taskOrdinal', '(int) taskPosition')
+    else:
+        center = re.search(r'float finalCenter = getMiuiCenter\(primarySize, depth\);', update).group()
     scale = re.search(r'float finalStackScale = focusScale \* getMiuiScaleRatio\(depth\);', update).group()
     projection = 'static float[] project(float taskPosition,float pagePosition,int visualTaskCount,float primarySize){' + depth + center + scale + 'return new float[]{finalCenter,finalStackScale};}'
     needs = 'needsDismissReflow(r,t)' if 'needsDismissReflow' in methods else 'false'
     constants = '\n'.join(re.findall(r'^    private static final float MIUI_[^;]+;', source, re.M))
-    java = ('import java.lang.ref.WeakReference;\npublic class DismissHarness {\n' + constants + STUBS
+    java = ('import java.lang.ref.WeakReference;\npublic class DismissHarness {\n    static boolean retainDismissHistoryLayout;\n    static float overviewSpacingScale=1;\n' + constants + STUBS
             + '\n'.join(methods[name] for name in sorted(selected) if name in methods)
             + projection + 'static boolean needsForTest(RecentsView r,TaskView t){return ' + needs + ';}' + CASES + '\n}')
     with tempfile.TemporaryDirectory(prefix='launcher-dismiss-jvm-') as temporary:

@@ -20,8 +20,11 @@ members = '\n'.join(method(n) for n in ('normalizeLiveAppliedScale', 'getMiuiCen
 constants = '\n'.join(re.findall(r'^    private static final float MIUI_\w+ = [^;]+;', source, re.M))
 harness = r'''
 public class StackVisualContinuity {
+    static boolean retainDismissHistoryLayout;
+    static float overviewSpacingScale=1;
     static class Context {Object getResources(){return this;}}
     static void loadConfig(Object r){} static void loadUserScale(Context c){}
+    static void loadOverviewScale(Context c,Object r){loadUserScale(c);}
     static float focusScale,stackSpacingScale=1,liveEntryStartScale,lastLiveAppliedScale,liveEntryPageProgress;
     static boolean liveSimulatorOverviewTarget;
     CONSTANTS

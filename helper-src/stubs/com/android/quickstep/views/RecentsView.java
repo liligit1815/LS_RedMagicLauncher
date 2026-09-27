@@ -15,6 +15,10 @@ public abstract class RecentsView extends ViewGroup {
 
     public abstract int getScrollForPage(int page);
     public abstract boolean canLaunchFullscreenTask();
+    public abstract android.view.View getNativeStackClearButton();
+    public abstract int getNativeStackRotationPriority();
+    public abstract void syncNativeStackRotation();
+    public abstract void cancelNativeStackTouch(android.view.MotionEvent event);
     public abstract float getContentAlpha();
     public abstract int getCurrentPage();
     public abstract int getNextPage();

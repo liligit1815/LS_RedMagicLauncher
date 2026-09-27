@@ -16,7 +16,7 @@ def member(pattern):
     return match.group()
 
 members = '\n'.join(member(r'(?:public|private) static [^\n]+ ' + name + r'\(') for name in (
-    'clampScalePercent', 'getScalePreferences', 'readScalePercent', 'loadUserScale',
+    'clampScalePercent', 'getScalePreferences', 'readScalePercent', 'loadUserScale', 'loadOverviewScale',
     'configureScaleControl', 'getStackIconAlpha', 'updateStackIcons', 'getLiveRecentsScale',
     'normalizeLiveAppliedScale', 'styleScaleSlider', 'applyStackIconBlur', 'clamp',
     'smoothVisibility', 'getFullyVisibleFactor', 'getActionsVisibleFactor',
@@ -29,6 +29,10 @@ harness = r'''
 import java.util.*;
 import java.lang.ref.WeakReference;
 public class StackControlsTest {
+    static float overviewSpacingScale=1;
+    static WeakReference<RecentsView> actionMenuRecents = new WeakReference<>(null);
+    static WeakReference<TaskView> actionMenuTask = new WeakReference<>(null);
+    static float actionRevealProgress;
     static class android {static class R {static class id {static final int background=1,progress=2;}}}
     static class Gravity {static final int START=1,END=2,CENTER_VERTICAL=4,FILL_HORIZONTAL=8;}
     static class Shader {enum TileMode {DECAL}}
@@ -116,8 +120,9 @@ public class StackControlsTest {
         List<TaskContainer> containers=new ArrayList<>();List<TaskContainer> getTaskContainers(){return containers;}
         void offsetDescendantRectToMyCoords(View v,Rect b){b.left+=v.x;b.right+=v.x;b.top+=v.y;b.bottom+=v.y;}
     }
-    static class RecentsPagedOrientationHandler {boolean vertical;float getPrimaryValue(float x,float y){return vertical?y:x;}}
+    static class RecentsPagedOrientationHandler {int rotation;int getRotation(){return rotation;}boolean vertical;float getPrimaryValue(float x,float y){return vertical?y:x;}}
     static class RecentsView {
+        int width=1216,height=2688;int getWidth(){return width;}int getHeight(){return height;}
         Context context;RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
         RecentsView(Context c){context=c;}Resources getResources(){return context.getResources();}
         boolean isNativeStackStyle(){return stack;}
@@ -126,6 +131,7 @@ public class StackControlsTest {
     static float baseFocusScale=1.1f,focusScale,stackSpacingScale=1,liveEntryStartScale=Float.NaN,lastLiveAppliedScale,liveEntryPageProgress;
     static boolean liveSimulatorOverviewTarget,stack=true;
     static WeakReference<RecentsView> nativeGestureRecents=new WeakReference<>(null);
+    static WeakReference<RecentsView> activeOverviewRecents=new WeakReference<>(null);
     static SharedPreferences scalePreferences;
     static final Rect TEMP_DESCENDANT_BOUNDS=new Rect();
     static boolean usesNativeStackStyle(Context c){return stack;}
@@ -178,6 +184,41 @@ public class StackControlsTest {
         stack=false;near(normalizeHomeEntryScale(recents,1.5f),1.5f,"native home scale altered");
         near(normalizeHomeEntryTranslation(recents,-600),-600,"native home translation altered");stack=true;
         near(getLiveRecentsScale(context,2),2,"native quick switch scale changed");nativeGestureRecents.clear();
+        // Real production loader, preferences and live scale endpoints. Rotation
+        // includes virtual landscape (portrait Activity) and physical landscape.
+        int savedWrites=prefs.writes;
+        for(int percent:new int[]{70,100,120})for(int rotation=0;rotation<4;rotation++)
+        for(boolean wide:new boolean[]{false,true}){
+            prefs.stored=percent;recents.width=wide?2688:1216;recents.height=wide?1216:2688;
+            recents.handler.rotation=rotation;
+            float expected=1.1f*percent/100f*((wide^((rotation&1)!=0))?.8085f:1f);
+            for(int frame=0;frame<100;frame++){
+                loadOverviewScale(context,recents);
+                near(focusScale,expected,"orientation multiplier compounds or portrait changes");
+                near(stackSpacingScale,percent/100f,"card size altered user spacing preference");
+                near(overviewSpacingScale,(wide^((rotation&1)!=0))?.90f:1f,"orientation spacing multiplier compounds or leaks to portrait");
+            }
+            activeOverviewRecents=new WeakReference<>(recents);
+            liveSimulatorOverviewTarget=true;liveEntryStartScale=1.7f;
+            near(getLiveRecentsScale(context,2),2*expected,"live target misses landscape size");
+            for(int frame=0;frame<=20;frame++){
+                liveEntryPageProgress=frame/20f;
+                near(normalizeLiveAppliedScale(context,frame%2==0?.2f:2f),
+                    1.7f+(expected-1.7f)*liveEntryPageProgress,"landscape settle does not meet screenshot scale");
+            }
+            activeOverviewRecents.clear();nativeGestureRecents=new WeakReference<>(recents);
+            near(getLiveRecentsScale(context,2),2*expected,"gesture-only target lost its orientation");
+            liveSimulatorOverviewTarget=false;
+            near(getLiveRecentsScale(context,2),2,"uncommitted quick switch scaled");
+            nativeGestureRecents.clear();
+            recents.handler.rotation=0;recents.width=1216;recents.height=2688;
+            loadOverviewScale(context,recents);
+            near(focusScale,1.1f*percent/100f,"return to portrait retained landscape multiplier");
+        }
+        check(prefs.writes==savedWrites,"rotation overwrote persisted user scale");
+        prefs.stored=100;loadOverviewScale(context,null);
+        near(focusScale,1.1f,"missing view guessed a landscape orientation");
+        near(overviewSpacingScale,1,"missing view retained landscape spacing");
         TaskView task=new TaskView();TaskViewIcon icon=new TaskViewIcon(context);task.containers.add(new TaskContainer(icon));
         // A long title can be hidden without suppressing its much narrower icon.
         icon.setContentAlpha(0);updateStackIcons(recents,task,100,1,180,1000,false);
@@ -209,6 +250,23 @@ public class StackControlsTest {
             previousAlpha=icon.alpha;previousLevel=i==0?32:level;
         }
         near(icon.alpha,1,"smooth icon endpoint");
+        TaskView selected=new TaskView();
+        actionMenuRecents=new WeakReference<>(recents);
+        for(int frame=0;frame<=100;frame++){
+            actionRevealProgress=frame/100f;
+            actionMenuTask=new WeakReference<>(selected);
+            updateStackIcons(recents,task,100,1,1000,1000,false);
+            near(icon.alpha,1,"neighbor icon double-fades before complete card dissolves");
+            near(second.alpha,1,"split neighbor icon uses a different dissolve clock");
+            updateStackIcons(recents,task,100,1,150,1000,false);
+            check(icon.alpha>0&&icon.alpha<1,"neighbor icon lost natural header occlusion");
+            near(second.alpha,0,"covered neighbor icon was revived by full snapshot clip");
+            actionMenuTask=new WeakReference<>(task);
+            updateStackIcons(recents,task,100,1,1000,1000,false);
+            near(icon.alpha,1-actionRevealProgress,"selected icon no longer hides beside actions");
+            near(second.alpha,1-actionRevealProgress,"selected split icon no longer hides");
+        }
+        actionMenuRecents.clear();actionMenuTask.clear();actionRevealProgress=0;
         applyStackIconBlur(icon.view,32);context.resources.metrics.density=2;context.resources.metrics.densityDpi=320;
         applyStackIconBlur(icon.view,32);near(icon.view.effect.radius,6,"density change retained stale blur radius");
         applyStackIconBlur(icon.view,0);check(icon.view.effect==null,"gesture/style reset failed to clear blur");
@@ -258,9 +316,9 @@ selection = activity.split('.method private q0(I)V', 1)[1].split('.end method', 
 assert 'invoke-static {p0, p1}' in selection and '->configureScaleControl(Landroid/app/Activity;I)V' in selection
 update = member(r'public static void update\(')
 assert update.index('updateStackIcons(') > update.rindex('setNativeStackChromeAlpha(')
-assert 'loadUserScale(recents.getContext())' in update
+assert 'loadOverviewScale(recents.getContext(), recents)' in update
 assert 'baseChromeAlpha' not in member(r'private static float getStackIconAlpha\(')
-assert 'task.setNativeStackChromeAlpha(hideHeader ? 0.0f : titleAlpha, actionAlpha)' in update
+assert 'titleAlpha * (taskOrdinal == actionOrdinal' in update
 assert 'applyStackIconBlur(icon.asView(), 0)' in member(r'private static void resetIfNeeded\(')
 task_smali = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
 chrome = task_smali.split('.method public setNativeStackChromeAlpha(FF)V',1)[1].split('.end method',1)[0]

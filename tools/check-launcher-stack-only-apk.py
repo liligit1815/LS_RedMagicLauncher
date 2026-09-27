@@ -22,6 +22,13 @@ import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 STACK_CLASS = "Lcom/android/quickstep/views/LsNativeStack"
+ACTION_CLASS = "Lcom/android/quickstep/views/LsStackActions"
+TRANSITION_CLASS = "Lcom/android/quickstep/views/LsStackTransition"
+HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS)
+RELEASE_260016_CLASSES = {ACTION_CLASS + ";", ACTION_CLASS + "$ActionIcon;"} | {
+    TRANSITION_CLASS + suffix + ";"
+    for suffix in ("", "$CardFrame", "$Transition", "$LaunchSurface", "$LaunchEnd")
+}
 EXPECTED_CLASSES = {STACK_CLASS + suffix + ";" for suffix in (
     "", "$EntryRevealEnd", "$EntryRevealStart", "$EntryRevealUpdate",
     "$FrameUpdate", "$GestureLayerReset", "$InitialFrameCommit", "$ScaleControl", "$CardLongPress", "$ActionReveal",
@@ -121,12 +128,16 @@ def parse_dex(raw: bytes, name: str) -> dict:
 
     class_count, class_offset = table(96, 32)
     classes: set[str] = set()
+    superclasses: dict[str, str] = {}
     declared: dict[Method, dict] = {}
     for index in range(class_count):
         definition = struct.unpack_from("<8I", raw, class_offset + index * 32)
         owner = types[definition[0]]
         ensure(owner not in classes, f"{name}: duplicate class {owner}")
         classes.add(owner)
+        if definition[2] != 0xffffffff:
+            ensure(definition[2] < len(types), f"{name}: superclass type index out of bounds")
+            superclasses[owner] = types[definition[2]]
         offset = definition[6]
         if not offset:
             continue
@@ -158,7 +169,8 @@ def parse_dex(raw: bytes, name: str) -> dict:
                        f"{name}: native/abstract/code declaration mismatch for {key}")
                 declared[key] = {"dex": name, "accessFlags": access, "codeOffset": code_offset}
 
-    return {"name": name, "classes": classes, "methods": set(methods), "declared": declared,
+    return {"name": name, "classes": classes, "superclasses": superclasses,
+            "methods": set(methods), "declared": declared,
             "forbidden": [{"dex": name, "marker": match.group(), "string": value}
                           for value in strings if (match := FORBIDDEN_PATTERN.search(value))],
             "counts": {"strings": string_count, "types": type_count,
@@ -185,15 +197,18 @@ def load_apk(path: Path) -> dict:
     classes: set[str] = set()
     declared: dict[Method, dict] = {}
     references: set[Method] = set()
+    superclasses: dict[str, str] = {}
     forbidden = []
     for index in indexes:
         ensure(not classes.intersection(index["classes"]), f"{path}: class duplicated across DEX files")
         classes.update(index["classes"])
         declared.update(index["declared"])
         references.update(index["methods"])
+        superclasses.update(index["superclasses"])
         forbidden.extend(index["forbidden"])
     return {"path": str(path), "sha256": file_sha256(path), "classes": classes,
-            "declared": declared, "references": references, "forbidden": forbidden,
+            "declared": declared, "references": references, "superclasses": superclasses,
+            "forbidden": forbidden,
             "dex": [{"name": item["name"], **item["counts"]} for item in indexes],
             "manifest": manifest}
 
@@ -277,6 +292,34 @@ def method_label(key: Method) -> str:
     return key[0] + "->" + key[1] + key[2]
 
 
+def resolve_helper_declaration(key: Method, apk: dict) -> Method | None:
+    """Follow only actual in-APK ancestry, never infer a platform declaration.
+
+    View helpers can refer to inherited OEM methods using the helper as their
+    symbolic owner. Constructors/private methods are not inherited. The fixed
+    added-class boundary remains separate from this method-linkage check.
+    """
+    if key in apk["declared"]:
+        return key
+    if not key[0].startswith(HELPER_ROOTS) or key[1] in ("<init>", "<clinit>"):
+        return None
+    owner = key[0]
+    seen = {owner}
+    while owner in apk.get("superclasses", {}):
+        owner = apk["superclasses"][owner]
+        if owner in seen:
+            return None
+        seen.add(owner)
+        candidate = (owner, key[1], key[2])
+        declaration = apk["declared"].get(candidate)
+        if declaration is None:
+            continue
+        flags = declaration["accessFlags"]
+        same_package = owner.rsplit("/", 1)[0] == key[0].rsplit("/", 1)[0]
+        return candidate if not flags & 0x2 and (flags & 0x5 or same_package) else None
+    return None
+
+
 def expected_versions(path: Path) -> dict:
     """Read only Apktool's authoritative versionInfo mapping; never trust APK values.
 
@@ -319,6 +362,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
     # Keep explicit historical-version audits usable. The settings control was
     # introduced in 260011; derive the boundary from the requested/source version.
     expected_classes = set(EXPECTED_CLASSES)
+    if expected["versionCode"] >= 260016:
+        expected_classes.update(RELEASE_260016_CLASSES)
     if expected["versionCode"] < 260015:
         expected_classes.discard(STACK_CLASS + "$ActionReveal;")
     if expected["versionCode"] < 260014:
@@ -328,9 +373,10 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
     missing = sorted(original["classes"] - modified["classes"])
     added = modified["classes"] - original["classes"]
     target_refs = {key for key in modified["references"]
-                   if key[0].startswith(STACK_CLASS) or
+                   if key[0].startswith(HELPER_ROOTS) or
                    (key[0] in VIEW_CLASSES and "NativeStack" in key[1])}
-    unresolved = sorted(target_refs - modified["declared"].keys())
+    resolved = {key: resolve_helper_declaration(key, modified) for key in target_refs}
+    unresolved = sorted(key for key, declaration in resolved.items() if declaration is None)
     added_view_methods = {key for key in modified["declared"]
                           if key[0] in VIEW_CLASSES and "NativeStack" in key[1]
                           and key not in original["declared"]}
@@ -353,12 +399,14 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
                                       "matches": modified["forbidden"]},
         "stackMethodReferencesDeclared": {
             "pass": bool(target_refs) and not unresolved and bool(added_view_methods),
-            "scope": "Every matching method_id entry across all DEX files; declarations from class_data",
+            "scope": "Every matching method_id entry across all DEX files; exact class_data declarations or accessible in-APK superclass declarations",
             "referencedMethodCount": len(target_refs),
             "unresolved": [method_label(key) for key in unresolved],
             "addedViewMethods": [method_label(key) for key in sorted(added_view_methods)],
-            "verifiedDeclarations": [{"method": method_label(key), **modified["declared"][key]}
-                                     for key in sorted(target_refs) if key in modified["declared"]]},
+            "verifiedDeclarations": [{"method": method_label(key),
+                                      "declaredAs": method_label(resolved[key]),
+                                      **modified["declared"][resolved[key]]}
+                                     for key in sorted(target_refs) if resolved[key] is not None]},
         "manifestSemanticsUnchangedExceptVersions": {
             "pass": not differences, "originalEventCount": len(original_events),
             "modifiedEventCount": len(modified_events), "differenceCount": len(differences),

@@ -30,6 +30,8 @@ members += '\n' + '\n'.join(re.findall(r'    private static final float MIUI_\w+
 harness = r'''
 import java.lang.ref.WeakReference;
 public class ThumbnailContinuityTest {
+    static boolean retainDismissHistoryLayout;
+    static float overviewSpacingScale=1;
     static class View {}
     static class TaskView extends View {}
     static class RecentsPagedOrientationHandler {

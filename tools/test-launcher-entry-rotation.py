@@ -5,12 +5,15 @@ gesture target isolation (including native mini-window drag transforms).
 Android rendering and timing still require a device.
 """
 from pathlib import Path
+import argparse
 import re
 import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-source = (ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').read_text(encoding='utf-8')
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source',type=Path,default=ROOT/'helper-src/main/com/android/quickstep/views/LsNativeStack.java')
+source=parser.parse_args().source.read_text(encoding='utf-8')
 
 
 def extract(name):
@@ -25,25 +28,34 @@ def extract(name):
 
 
 methods = '\n'.join(extract(name) for name in (
-    'normalizeLiveEntryMatrix', 'getEntryPagePosition', 'getInitialTaskOrdinal',
+    'normalizeLiveEntryMatrix', 'applyLiveGestureBounds', 'getEntryPagePosition', 'getInitialTaskOrdinal',
     'getMiuiDepth', 'getMiuiInteriorCorrection', 'getMiuiScaleTerm',
-    'getMiuiScaleRatio', 'getMiuiCenter', 'clamp', 'setLiveOverviewTarget',
+    'getMiuiScaleRatio', 'getMiuiCenter', 'getMiuiStackCenter', 'clamp', 'setLiveOverviewTarget',
     'normalizeLiveAppliedScale', 'normalizeLiveEntryScroll'))
+if 'void offsetLiveSnapshotCenter(' in source:
+    methods += '\n' + extract('offsetLiveSnapshotCenter')
 constants = '\n'.join(re.findall(r'    private static final float MIUI_\w+ = [^;]+;', source))
 harness = r'''
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 public class EntryRotationTest {
+    static boolean retainDismissHistoryLayout;
+    static float overviewSpacingScale=1;
     static class Context { boolean stack=true; Object getResources(){return this;} }
     static boolean usesNativeStackStyle(Context c){return c!=null && c.stack;}
     static void resumeStackForOverviewTarget(){} // Lifecycle is tested by native-gesture harness.
     static void loadConfig(Object resources){}
     static void loadUserScale(Context context){}
+    static void loadOverviewScale(Context context, Object recents){loadUserScale(context);}
     static class Rect { int w=800,h=1600; boolean isEmpty(){return w<=0 || h<=0;} }
     static class RectF {
         float l,t,r,b;
         void set(Rect c){l=t=0;r=c.w;b=c.h;}
+        void set(RectF c){l=c.l;t=c.t;r=c.r;b=c.b;}
+        void set(float a,float c,float d,float e){l=a;t=c;r=d;b=e;}
+        float width(){return r-l;} float height(){return b-t;}
         boolean isEmpty(){return r<=l || b<=t;}
         float centerX(){return (l+r)/2;} float centerY(){return (t+b)/2;}
     }
@@ -69,6 +81,7 @@ public class EntryRotationTest {
         float getPrimaryValue(float x,float y){return vertical?y:x;}
         float getSecondaryValue(float x,float y){return vertical?x:y;}
         int getPrimarySize(RecentsView r){return vertical?r.h:r.w;}
+        int getPrimarySize(TaskView t){return vertical?1708:774;}
     }
     static class RecentsView {
         int w=1216,h=2688,count=4; boolean stack=true,running=true;
@@ -76,11 +89,23 @@ public class EntryRotationTest {
         int getWidth(){return w;} int getHeight(){return h;} int getTaskViewCount(){return count;}
         boolean isNativeStackStyle(){return stack;} boolean isRecentsAnimationRunning(){return running;}
         RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
+        final TaskView task=new TaskView();
+        int getRunningTaskIndex(){return 0;} TaskView getTaskViewAt(int index){return task;}
+    }
+    static class View {float x,y;int w=774,h=1708;int getWidth(){return w;}int getHeight(){return h;}float getX(){return x;}float getY(){return y;}}
+    static class TaskContainer {final View snapshot=new View();View getSnapshotView(){return snapshot;}}
+    static class TaskView {
+        final TaskContainer container=new TaskContainer();float px=387,py=854;
+        float getPivotX(){return px;}float getPivotY(){return py;}
+        java.util.List<TaskContainer> getTaskContainers(){return java.util.Collections.singletonList(container);}
     }
     static final RectF TEMP_LIVE_SURFACE_BOUNDS=new RectF();
     static final Matrix TEMP_LIVE_WINDOW_TO_HOME=new Matrix();
     static final float[] TEMP_LIVE_CENTER=new float[2];
     static WeakReference<RecentsView> activeOverviewRecents=new WeakReference<>(null);
+    static WeakReference<RecentsView> nativeGestureRecents=new WeakReference<>(null);
+    static final WeakHashMap<Matrix,RectF> liveGestureBounds=new WeakHashMap<>();
+    static final RectF TEMP_LIVE_TARGET=new RectF();
     static WeakReference<RecentsView> overviewPendingRecents=new WeakReference<>(null);
     static boolean liveSimulatorOverviewTarget,overviewEntryPending,entryFromApp;
     static float entryRevealProgress;
@@ -188,6 +213,82 @@ public class EntryRotationTest {
         Matrix singular=new Matrix();singular.postScale(0,0,0,0);unchanged(context,surface(identity),crop,singular);
         crop.w=0;unchanged(context,surface(identity),crop,identity);crop.w=800;
         activeOverviewRecents=new WeakReference<>(null);unchanged(context,surface(identity),crop,identity);
+        // Reproduce the recording: an OEM crop/translation/scale reset at the
+        // commit must preserve all four release edges, not merely a scalar.
+        // Reuse the real simulator Matrix identity while replacing its values.
+        for(int rotation=0;rotation<4;rotation++)for(float userScale:new float[]{.77f,1.1f,1.32f}){
+            r.handler.vertical=rotation%2==1;r.count=4;focusScale=userScale;
+            activeOverviewRecents=new WeakReference<>(r);nativeGestureRecents=new WeakReference<>(r);
+            liveSimulatorOverviewTarget=false;liveGestureBounds.clear();
+            Matrix window=mapping(rotation,true),leash=surface(window);
+            RectF release=new RectF();release.set(crop);leash.mapRect(release);
+            Matrix inverse=new Matrix();window.invert(inverse);inverse.mapRect(release);
+            AffineTransform nativeBefore=new AffineTransform(leash.a);
+            normalizeLiveEntryMatrix(context,leash,crop,window);
+            if(!nativeBefore.equals(leash.a))throw new AssertionError("sampling changed native drag");
+            liveSimulatorOverviewTarget=true;entryFromApp=true;
+            nativeGestureRecents.clear();
+            for(int frame=0;frame<=100;frame++){
+                liveEntryPageProgress=frame/100f;
+                // Abrupt native resets are deliberately unrelated to progress.
+                leash.a=new AffineTransform();leash.postScale(frame%2==0?.43f:1.3f,.6f,0,0);
+                leash.postTranslate(frame%3==0?900:-200,100);leash.a.preConcatenate(window.a);
+                normalizeLiveEntryMatrix(context,leash,crop,window);
+                RectF actual=new RectF();actual.set(crop);leash.mapRect(actual);inverse.mapRect(actual);
+                float p=liveEntryPageProgress,depth=getMiuiDepth(0,p,r.count);
+                float scale=focusScale*getMiuiScaleRatio(depth);
+                float primary=getMiuiCenter(r.handler.getPrimarySize(r),depth);
+                float secondary=r.handler.vertical?608:1344;
+                float x=r.handler.getPrimaryValue(primary,secondary),y=r.handler.getSecondaryValue(primary,secondary);
+                near(actual.centerX(),release.centerX()+(x-release.centerX())*p);
+                near(actual.centerY(),release.centerY()+(y-release.centerY())*p);
+                near(actual.width(),release.width()+(774*scale-release.width())*p);
+                near(actual.height(),release.height()+(1708*scale-release.height())*p);
+            }
+            liveSimulatorOverviewTarget=false;
+            leash.a=new AffineTransform(nativeBefore);
+            unchanged(context,leash,crop,window); // redirected mini-window/app
+        }
+        // The OEM landscape title rail is on opposite sides for 90/270.
+        // Compare the real screenshot center with the leash center at every
+        // settle sample; pivot-only tests cannot reveal this handoff defect.
+        for(int rotation:new int[]{0,1,3})for(int margin:new int[]{0,80,144,220})
+        for(float userScale:new float[]{.566f,.8085f,.88935f,1.06722f}){
+            r.w=1216;r.h=2688;r.handler.vertical=rotation!=0;r.count=4;
+            View snapshot=r.task.container.snapshot;
+            snapshot.x=rotation==3?margin:0;snapshot.y=rotation==0?margin:0;
+            r.task.px=(774+(rotation==0?0:margin))*.5f;
+            r.task.py=854+snapshot.y;focusScale=userScale;overviewSpacingScale=.9f;
+            activeOverviewRecents=new WeakReference<>(r);nativeGestureRecents=new WeakReference<>(r);
+            liveSimulatorOverviewTarget=false;liveGestureBounds.clear();
+            Matrix window=mapping(rotation,true),leash=surface(window),inverse=new Matrix();window.invert(inverse);
+            RectF release=new RectF();release.set(crop);leash.mapRect(release);inverse.mapRect(release);
+            normalizeLiveEntryMatrix(context,leash,crop,window);
+            liveSimulatorOverviewTarget=true;nativeGestureRecents.clear();entryFromApp=true;
+            for(int frame=0;frame<=100;frame++){
+                liveEntryPageProgress=frame/100f;float p=liveEntryPageProgress;
+                leash=surface(window);
+                // Preserve the sampled simulator's matrix identity.
+                liveGestureBounds.put(leash,release);
+                normalizeLiveEntryMatrix(context,leash,crop,window);
+                RectF actual=new RectF();actual.set(crop);leash.mapRect(actual);inverse.mapRect(actual);
+                float depth=getMiuiDepth(0,p,4),scale=focusScale*getMiuiScaleRatio(depth);
+                float primary=getMiuiCenter(r.handler.getPrimarySize(r),depth);
+                float x=r.handler.getPrimaryValue(primary,rotation==0?1344:608);
+                float y=r.handler.getSecondaryValue(primary,rotation==0?1344:608);
+                if(rotation!=0){x+=(snapshot.x+387-r.task.px)*scale;y+=(snapshot.y+854-r.task.py)*scale;}
+                near(actual.centerX(),release.centerX()+(x-release.centerX())*p);
+                near(actual.centerY(),release.centerY()+(y-release.centerY())*p);
+                if(frame==100){
+                    // The first simulator frame can miss sampling; its fallback
+                    // must reach the same snapshot center as the sampled path.
+                    liveGestureBounds.clear();Matrix fallback=surface(window);
+                    normalizeLiveEntryMatrix(context,fallback,crop,window);
+                    float[] center=center(fallback,crop);inverse.mapPoints(center);
+                    near(center[0],x);near(center[1],y);
+                }
+            }
+        }
         System.out.println("PASS "+cases+" live-surface assertions: 0/90/180/270 degrees, native mini-window drag/return, explicit RECENTS commit, redirected target and style isolation");
     }
 }

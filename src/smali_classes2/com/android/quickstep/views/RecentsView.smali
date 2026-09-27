@@ -41,6 +41,8 @@
 
 
 # static fields
+.field private static volatile sNativeStackRotationPriority:I = -0x1
+
 .field private static final ACTIONS_VIEW_HEIGHT_LANDSCAPE:F = 0.139f
 
 .field private static final ACTIONS_VIEW_HRIGHT:F = 0.167f
@@ -307,6 +309,8 @@
 
 
 # instance fields
+.field private mNativeStackRotationOwned:Z
+
 .field protected enableSplitScreen:Z
 
 .field private hasSetSwipeShiftVal:Z
@@ -38430,6 +38434,8 @@
 .method protected onDetachedFromWindow()V
     .locals 3
 
+    invoke-direct {p0}, Lcom/android/quickstep/views/RecentsView;->releaseNativeStackRotation()V
+
     .line 1
     invoke-super {p0}, Landroid/view/ViewGroup;->onDetachedFromWindow()V
 
@@ -39285,6 +39291,8 @@
 
     .line 173
     .line 174
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->syncNativeStackRotation()V
+
     return-void
 .end method
 
@@ -45706,6 +45714,8 @@
     .line 33
     .line 34
     :cond_0
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->syncNativeStackRotation()V
+
     return-void
 .end method
 
@@ -46054,6 +46064,8 @@
     .line 22
     .line 23
     .line 24
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->syncNativeStackRotation()V
+
     return-void
 .end method
 
@@ -49486,7 +49498,101 @@
     if-eqz v0, :native_stack_normal_dispatch
     return v0
     :native_stack_normal_dispatch
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->dispatchCardLongPressTouch(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-eqz v0, :native_stack_pager_dispatch
+    return v0
+    :native_stack_pager_dispatch
     invoke-super {p0, p1}, Lcom/android/launcher3/V4;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
     move-result v0
     return v0
+.end method
+
+.method public final cancelNativeStackTouch(Landroid/view/MotionEvent;)V
+    .locals 0
+    # A stationary long press can inherit mIsBeingDragged from the preceding
+    # fling. Clear it before CANCEL so OEM cancellation does not start a snap.
+    invoke-virtual {p0}, Lcom/android/launcher3/V4;->resetTouchState()V
+    invoke-super {p0, p1}, Lcom/android/launcher3/V4;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
+    return-void
+.end method
+
+
+# Virtual landscape keeps the Activity portrait; prioritize the same direction
+# for system navigation until Overview exits. Never request Activity rotation.
+.method public getNativeStackRotationPriority()I
+    .locals 2
+    iget-boolean v0, p0, Lcom/android/quickstep/views/RecentsView;->mOverviewStateEnabled:Z
+    if-eqz v0, :none
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
+    move-result v0
+    if-eqz v0, :none
+    iget-object v0, p0, Lcom/android/quickstep/views/RecentsView;->mOrientationState:Lcom/android/quickstep/util/RecentsOrientedState;
+    invoke-virtual {v0}, Lcom/android/quickstep/util/RecentsOrientedState;->isRecentsActivityRotationAllowed()Z
+    move-result v1
+    if-nez v1, :none
+    invoke-virtual {v0}, Lcom/android/quickstep/util/RecentsOrientedState;->getTouchRotation()I
+    move-result v0
+    const/4 v1, 0x1
+    if-eq v0, v1, :landscape
+    const/4 v1, 0x3
+    if-ne v0, v1, :none
+    :landscape
+    return v0
+    :none
+    const/4 v0, -0x1
+    return v0
+.end method
+
+.method public static resolveNativeStackRotationPriority(I)I
+    .locals 1
+    sget v0, Lcom/android/quickstep/views/RecentsView;->sNativeStackRotationPriority:I
+    if-ltz v0, :native
+    return v0
+    :native
+    return p0
+.end method
+
+.method public syncNativeStackRotation()V
+    .locals 1
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getNativeStackRotationPriority()I
+    move-result v0
+    invoke-direct {p0, v0}, Lcom/android/quickstep/views/RecentsView;->applyNativeStackRotationPriority(I)V
+    return-void
+.end method
+
+.method private releaseNativeStackRotation()V
+    .locals 1
+    const/4 v0, -0x1
+    invoke-direct {p0, v0}, Lcom/android/quickstep/views/RecentsView;->applyNativeStackRotationPriority(I)V
+    return-void
+.end method
+
+.method private applyNativeStackRotationPriority(I)V
+    .locals 3
+    if-gez p1, :apply
+    iget-boolean v0, p0, Lcom/android/quickstep/views/RecentsView;->mNativeStackRotationOwned:Z
+    if-eqz v0, :done
+    :apply
+    const/4 v0, 0x0
+    if-ltz p1, :owned
+    const/4 v0, 0x1
+    :owned
+    iput-boolean v0, p0, Lcom/android/quickstep/views/RecentsView;->mNativeStackRotationOwned:Z
+    sput p1, Lcom/android/quickstep/views/RecentsView;->sNativeStackRotationPriority:I
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    invoke-virtual {p0}, Landroid/view/View;->getContext()Landroid/content/Context;
+    move-result-object v1
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    move-result-object v0
+    check-cast v0, Lcom/android/quickstep/SystemUiProxy;
+    invoke-virtual {v0, p1}, Lcom/android/quickstep/SystemUiProxy;->notifyPrioritizedRotation(I)V
+    :done
+    return-void
+.end method
+
+.method public getNativeStackClearButton()Landroid/view/View;
+    .locals 1
+    iget-object v0, p0, Lcom/android/quickstep/views/RecentsView;->mClearAllButton:Lcom/android/quickstep/views/ClearAllButton;
+    return-object v0
 .end method
