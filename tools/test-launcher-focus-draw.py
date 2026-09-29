@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT = ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali"
 
 
-def draw_trace(path, style, has_focus, initial_shift):
+def draw_trace(path, style, has_focus, initial_shift, home_exit=False):
     source = path.read_text(encoding="utf-8")
     body = source.split(".method protected dispatchDraw(Landroid/graphics/Canvas;)V", 1)[1].split(".end method", 1)[0]
     code = [line.split("#", 1)[0].strip() for line in body.splitlines()]
@@ -25,12 +25,18 @@ def draw_trace(path, style, has_focus, initial_shift):
         line = code[pc]
         pc += 1
         if line.startswith(":"):
+            if line == ':goto_0':
+                return trace, shift
             continue
         if line.startswith("invoke-"):
             if "->beforeDispatchDraw(" in line:
                 trace.append("compose_stack")
             elif "->isNativeStackStyle()Z" in line:
                 result = style == 3
+            elif "->drawHomeExit(" in line:
+                result = style == 3 and home_exit
+                if result:
+                    trace.append('grouped_children')
             elif "keyboard/a;->e(" in line:
                 if not registers[re.search(r"\{(\w+),", line)[1]]:
                     raise AssertionError("focus draw dereferences a null helper")
@@ -76,17 +82,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--recents", type=Path, default=DEFAULT)
     args = parser.parse_args()
-    for style, has_focus, shift in product((0, 1, 2, 3), (False, True), (0, 23)):
-        trace, final_shift = draw_trace(args.recents, style, has_focus, shift)
+    for style, has_focus, shift, home_exit in product((0, 1, 2, 3), (False, True), (0, 23), (False, True)):
+        trace, final_shift = draw_trace(args.recents, style, has_focus, shift, home_exit)
         expected = ["compose_stack"] + (["focus"] if has_focus else [])
         if style == 3:
-            expected += (["scroll_changed"] if shift else []) + ["children"]
+            expected += (["scroll_changed"] if shift else []) + ['grouped_children' if home_exit else 'children']
             assert final_shift == 0, (style, has_focus, shift, final_shift)
         else:
             expected += ["oem_overscroll"]
             assert final_shift == shift, (style, has_focus, shift, final_shift)
         assert trace == expected, f"style={style}, helper={has_focus}, shift={shift}: {trace} != {expected}"
-    print("PASS 16 Smali draw paths: focus retained; stack rebound bypassed; OEM styles unchanged")
+    print("PASS 32 Smali draw paths: focus retained; grouped fade drawn once; stack rebound bypassed; OEM styles unchanged")
     return 0
 
 

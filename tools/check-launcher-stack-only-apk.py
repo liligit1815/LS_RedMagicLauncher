@@ -24,7 +24,8 @@ ROOT = Path(__file__).resolve().parents[1]
 STACK_CLASS = "Lcom/android/quickstep/views/LsNativeStack"
 ACTION_CLASS = "Lcom/android/quickstep/views/LsStackActions"
 TRANSITION_CLASS = "Lcom/android/quickstep/views/LsStackTransition"
-HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS)
+OCCLUSION_CLASS = "Lcom/android/quickstep/views/LsStackOcclusion"
+HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS, OCCLUSION_CLASS)
 RELEASE_260016_CLASSES = {ACTION_CLASS + ";", ACTION_CLASS + "$ActionIcon;"} | {
     TRANSITION_CLASS + suffix + ";"
     for suffix in ("", "$CardFrame", "$Transition", "$LaunchSurface", "$LaunchEnd")
@@ -364,6 +365,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
     expected_classes = set(EXPECTED_CLASSES)
     if expected["versionCode"] >= 260016:
         expected_classes.update(RELEASE_260016_CLASSES)
+    if expected["versionCode"] >= 260020:
+        expected_classes.add(OCCLUSION_CLASS + ";")
     if expected["versionCode"] < 260015:
         expected_classes.discard(STACK_CLASS + "$ActionReveal;")
     if expected["versionCode"] < 260014:

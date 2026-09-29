@@ -43,6 +43,7 @@ import java.util.WeakHashMap;
 public class EntryRotationTest {
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
+    static float overviewSecondaryCenterFraction=.5f;
     static class Context { boolean stack=true; Object getResources(){return this;} }
     static boolean usesNativeStackStyle(Context c){return c!=null && c.stack;}
     static void resumeStackForOverviewTarget(){} // Lifecycle is tested by native-gesture harness.
@@ -258,7 +259,7 @@ public class EntryRotationTest {
             View snapshot=r.task.container.snapshot;
             snapshot.x=rotation==3?margin:0;snapshot.y=rotation==0?margin:0;
             r.task.px=(774+(rotation==0?0:margin))*.5f;
-            r.task.py=854+snapshot.y;focusScale=userScale;overviewSpacingScale=.9f;
+            r.task.py=854+snapshot.y;overviewSecondaryCenterFraction=rotation==0?.5f:rotation==1?.545f:.455f;focusScale=userScale;overviewSpacingScale=.9f;
             activeOverviewRecents=new WeakReference<>(r);nativeGestureRecents=new WeakReference<>(r);
             liveSimulatorOverviewTarget=false;liveGestureBounds.clear();
             Matrix window=mapping(rotation,true),leash=surface(window),inverse=new Matrix();window.invert(inverse);
@@ -274,8 +275,9 @@ public class EntryRotationTest {
                 RectF actual=new RectF();actual.set(crop);leash.mapRect(actual);inverse.mapRect(actual);
                 float depth=getMiuiDepth(0,p,4),scale=focusScale*getMiuiScaleRatio(depth);
                 float primary=getMiuiCenter(r.handler.getPrimarySize(r),depth);
-                float x=r.handler.getPrimaryValue(primary,rotation==0?1344:608);
-                float y=r.handler.getSecondaryValue(primary,rotation==0?1344:608);
+                float secondary=rotation==0?1344:1216*(rotation==1?.545f:.455f);
+                float x=r.handler.getPrimaryValue(primary,secondary);
+                float y=r.handler.getSecondaryValue(primary,secondary);
                 if(rotation!=0){x+=(snapshot.x+387-r.task.px)*scale;y+=(snapshot.y+854-r.task.py)*scale;}
                 near(actual.centerX(),release.centerX()+(x-release.centerX())*p);
                 near(actual.centerY(),release.centerY()+(y-release.centerY())*p);

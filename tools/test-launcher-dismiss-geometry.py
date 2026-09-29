@@ -189,6 +189,9 @@ CASES = r'''
             int index=r.indexOfChild(dismissed);r.children.remove(index);r.pageScrolls.remove(index);
             for(int i=0;i<r.pageScrolls.size();i++)r.pageScrolls.set(i,direction*(i*600+i*i*40));
             r.scrollDiff=direction*57;r.setCalls=0;onDismissAnimationEnd(r,true);
+            // The real animation retains its removed TaskView until the end
+            // callback returns. Keep that owner alive in this GC-sensitive fake.
+            java.lang.ref.Reference.reachabilityFence(dismissed);
             check(r.getTaskViewCount()==count-1,"commit cannot remove another task");
             check(pendingDismissRecents.get()==null&&Float.isNaN(pendingDismissPagePosition),"commit clears transaction");
             if(target>=0){

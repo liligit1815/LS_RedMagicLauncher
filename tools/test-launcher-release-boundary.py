@@ -31,6 +31,8 @@ def fixtures(code=260016):
     helpers = set(gate.EXPECTED_CLASSES)
     if code >= 260016:
         helpers.update(gate.RELEASE_260016_CLASSES)
+    if code >= 260020:
+        helpers.add(gate.OCCLUSION_CLASS + ";")
     modified["classes"].update(helpers)
     for owner in helpers:
         key = (owner, "<init>", "()V")
@@ -51,6 +53,12 @@ def compare(original, modified, expected):
 
 
 class ReleaseBoundaryTest(unittest.TestCase):
+    def test_occlusion_class_version_boundary(self):
+        self.assertTrue(compare(*fixtures(260020))["pass"])
+        original, modified, expected = fixtures(260019)
+        modified["classes"].add(gate.OCCLUSION_CLASS + ";")
+        self.assertFalse(compare(original, modified, expected)["pass"])
+
     def test_fixed_new_class_set(self):
         self.assertEqual(gate.RELEASE_260016_CLASSES, {
             "Lcom/android/quickstep/views/LsStackActions;",

@@ -392,6 +392,8 @@
 
 .field private nativeStackClipRight:I
 
+.field private nativeStackClipRightF:F
+
 .field private nativeStackScale:F
 
 .field private nativeStackTranslationX:F
@@ -1621,6 +1623,10 @@
     const/4 v1, -0x1
 
     iput v1, v4, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
+
+    const/high16 v1, -0x40800000    # -1.0f
+
+    iput v1, v4, Lcom/android/quickstep/views/TaskView;->nativeStackClipRightF:F
 
     new-instance v1, Landroid/graphics/Rect;
 
@@ -23189,6 +23195,8 @@
     .locals 4
 
     iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStableAlpha:F
+    invoke-static {p0, v0}, Lcom/android/quickstep/views/LsStackTransition;->drawStableAlpha(Lcom/android/quickstep/views/TaskView;F)F
+    move-result v0
     iget v1, p0, Lcom/android/quickstep/views/TaskView;->nativeStackAlpha:F
     mul-float/2addr v0, v1
 
@@ -23405,9 +23413,23 @@
 .end method
 
 .method public final setNativeStackClipRight(I)V
-    .locals 4
+    .locals 0
 
-    if-ltz p1, :native_stack_clip_clear
+    int-to-float p1, p1
+
+    invoke-virtual {p0, p1}, Lcom/android/quickstep/views/TaskView;->setNativeStackClipRight(F)V
+
+    return-void
+.end method
+
+.method public final setNativeStackClipRight(F)V
+    .locals 6
+
+    const/4 v2, 0x0
+
+    cmpl-float v2, p1, v2
+
+    if-ltz v2, :native_stack_clip_clear
 
     invoke-virtual {p0}, Landroid/view/View;->getWidth()I
 
@@ -23421,11 +23443,17 @@
 
     if-lez v1, :native_stack_clip_clear
 
-    if-ge p1, v0, :native_stack_clip_clear
+    int-to-float v0, v0
 
-    iget v2, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
+    cmpg-float v2, p1, v0
 
-    if-ne v2, p1, :native_stack_clip_apply
+    if-gez v2, :native_stack_clip_clear
+
+    iget v2, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRightF:F
+
+    cmpl-float v2, v2, p1
+
+    if-nez v2, :native_stack_clip_apply
 
     iget v2, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipHeight:I
 
@@ -23439,7 +23467,18 @@
     return-void
 
     :native_stack_clip_apply
-    iput p1, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
+    iput p1, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRightF:F
+
+    # Only the touch envelope is rounded. Drawing retains the exact moving edge.
+    float-to-double v4, p1
+
+    invoke-static {v4, v5}, Ljava/lang/Math;->ceil(D)D
+
+    move-result-wide v4
+
+    double-to-int v0, v4
+
+    iput v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
 
     iput v1, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipHeight:I
 
@@ -23447,7 +23486,7 @@
 
     const/4 v3, 0x0
 
-    invoke-virtual {v2, v3, v3, p1, v1}, Landroid/graphics/Rect;->set(IIII)V
+    invoke-virtual {v2, v3, v3, v0, v1}, Landroid/graphics/Rect;->set(IIII)V
 
     const/4 v3, 0x0
     invoke-virtual {p0, v3}, Landroid/view/View;->setClipBounds(Landroid/graphics/Rect;)V
@@ -23456,6 +23495,8 @@
     return-void
 
     :native_stack_clip_clear
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackOcclusion;->clear(Lcom/android/quickstep/views/TaskView;)V
+
     iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
 
     const/4 v1, -0x1
@@ -23471,6 +23512,10 @@
     :native_stack_clip_do_clear
     iput v1, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
 
+    const/high16 v0, -0x40800000    # -1.0f
+
+    iput v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRightF:F
+
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipHeight:I
@@ -23481,6 +23526,24 @@
     invoke-virtual {p0}, Landroid/view/View;->invalidate()V
 
     return-void
+.end method
+
+.method public final getNativeStackClipRightF()F
+    .locals 1
+    iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRight:I
+    if-ltz v0, :native_stack_legacy_float_clip
+    iget v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRightF:F
+    return v0
+    :native_stack_legacy_float_clip
+    invoke-virtual {p0}, Landroid/view/View;->getClipBounds()Landroid/graphics/Rect;
+    move-result-object v0
+    if-eqz v0, :native_stack_no_float_clip
+    iget v0, v0, Landroid/graphics/Rect;->right:I
+    int-to-float v0, v0
+    return v0
+    :native_stack_no_float_clip
+    const/high16 v0, -0x40800000    # -1.0f
+    return v0
 .end method
 
 .method public final getNativeStackClipBounds()Landroid/graphics/Rect;
@@ -23496,7 +23559,7 @@
 .end method
 
 .method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
-    .locals 3
+    .locals 5
     iget-boolean v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackHeaderHidden:Z
     if-eqz v0, :native_stack_header_allowed
     invoke-static {p0, p2}, Lcom/android/quickstep/views/LsNativeStack;->isStackHeaderView(Lcom/android/quickstep/views/TaskView;Landroid/view/View;)Z
@@ -23532,8 +23595,15 @@
     if-nez v0, :native_stack_draw_unclipped
     invoke-virtual {p1}, Landroid/graphics/Canvas;->save()I
     move-result v1
-    iget-object v0, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRect:Landroid/graphics/Rect;
-    invoke-virtual {p1, v0}, Landroid/graphics/Canvas;->clipRect(Landroid/graphics/Rect;)Z
+    invoke-static {p0, p1, p2}, Lcom/android/quickstep/views/LsStackOcclusion;->clip(Lcom/android/quickstep/views/TaskView;Landroid/graphics/Canvas;Landroid/view/View;)Z
+    move-result v0
+    if-nez v0, :native_stack_draw_shaped
+    const/4 v0, 0x0
+    iget v3, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipRightF:F
+    iget v4, p0, Lcom/android/quickstep/views/TaskView;->nativeStackClipHeight:I
+    int-to-float v4, v4
+    invoke-virtual {p1, v0, v0, v3, v4}, Landroid/graphics/Canvas;->clipRect(FFFF)Z
+    :native_stack_draw_shaped
     invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/FrameLayout;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
     move-result v2
     invoke-virtual {p1, v1}, Landroid/graphics/Canvas;->restoreToCount(I)V

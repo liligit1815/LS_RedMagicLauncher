@@ -27,20 +27,20 @@
 .method constructor <init>(Lcom/android/quickstep/views/RecentsView;)V
     .locals 1
 
-    .line 1133
+    .line 1170
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 1131
+    .line 1168
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1800()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealUpdate;->generation:I
 
-    .line 1134
+    .line 1171
     iput-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealUpdate;->recents:Lcom/android/quickstep/views/RecentsView;
 
-    .line 1135
+    .line 1172
     return-void
 .end method
 
@@ -49,7 +49,7 @@
 .method public onAnimationUpdate(Landroid/animation/ValueAnimator;)V
     .locals 2
 
-    .line 1139
+    .line 1176
     iget v0, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealUpdate;->generation:I
 
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1800()I
@@ -72,7 +72,7 @@
 
     goto :goto_0
 
-    .line 1142
+    .line 1179
     :cond_0
     invoke-virtual {p1}, Landroid/animation/ValueAnimator;->getAnimatedValue()Ljava/lang/Object;
 
@@ -86,15 +86,15 @@
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->access$2002(F)F
 
-    .line 1144
+    .line 1181
     iget-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealUpdate;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->invalidate()V
 
-    .line 1145
+    .line 1182
     return-void
 
-    .line 1140
+    .line 1177
     :cond_1
     :goto_0
     return-void

@@ -26,7 +26,7 @@
 .method constructor <init>(Lcom/android/quickstep/views/LsStackTransition$Transition;)V
     .locals 0
 
-    .line 86
+    .line 145
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchSurface;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;

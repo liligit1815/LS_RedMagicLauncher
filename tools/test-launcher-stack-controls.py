@@ -30,6 +30,7 @@ import java.util.*;
 import java.lang.ref.WeakReference;
 public class StackControlsTest {
     static float overviewSpacingScale=1;
+    static float overviewSecondaryCenterFraction=.5f;
     static WeakReference<RecentsView> actionMenuRecents = new WeakReference<>(null);
     static WeakReference<TaskView> actionMenuTask = new WeakReference<>(null);
     static float actionRevealProgress;
@@ -120,7 +121,7 @@ public class StackControlsTest {
         List<TaskContainer> containers=new ArrayList<>();List<TaskContainer> getTaskContainers(){return containers;}
         void offsetDescendantRectToMyCoords(View v,Rect b){b.left+=v.x;b.right+=v.x;b.top+=v.y;b.bottom+=v.y;}
     }
-    static class RecentsPagedOrientationHandler {int rotation;int getRotation(){return rotation;}boolean vertical;float getPrimaryValue(float x,float y){return vertical?y:x;}}
+    static class RecentsPagedOrientationHandler {int rotation;int getRotation(){return rotation;}int getSecondaryTranslationDirectionFactor(){return rotation==1?1:-1;}boolean vertical;float getPrimaryValue(float x,float y){return vertical?y:x;}}
     static class RecentsView {
         int width=1216,height=2688;int getWidth(){return width;}int getHeight(){return height;}
         Context context;RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
@@ -191,10 +192,15 @@ public class StackControlsTest {
         for(boolean wide:new boolean[]{false,true}){
             prefs.stored=percent;recents.width=wide?2688:1216;recents.height=wide?1216:2688;
             recents.handler.rotation=rotation;
-            float expected=1.1f*percent/100f*((wide^((rotation&1)!=0))?.8085f:1f);
+            float expected=1.1f*percent/100f*((wide^((rotation&1)!=0))?.77f:1f);
             for(int frame=0;frame<100;frame++){
                 loadOverviewScale(context,recents);
                 near(focusScale,expected,"orientation multiplier compounds or portrait changes");
+                near(overviewSecondaryCenterFraction,(wide^((rotation&1)!=0))?(rotation==1?.545f:.455f):.5f,"orientation center leaked or compounded");
+                if(wide^((rotation&1)!=0)){
+                    float screenShift=(overviewSecondaryCenterFraction-.5f)*(rotation==1?-1:1);
+                    near(screenShift,-.045f,"landscape moved toward clear-all instead of visual top");
+                }
                 near(stackSpacingScale,percent/100f,"card size altered user spacing preference");
                 near(overviewSpacingScale,(wide^((rotation&1)!=0))?.90f:1f,"orientation spacing multiplier compounds or leaks to portrait");
             }
@@ -218,6 +224,7 @@ public class StackControlsTest {
         check(prefs.writes==savedWrites,"rotation overwrote persisted user scale");
         prefs.stored=100;loadOverviewScale(context,null);
         near(focusScale,1.1f,"missing view guessed a landscape orientation");
+        near(overviewSecondaryCenterFraction,.5f,"missing view retained raised center");
         near(overviewSpacingScale,1,"missing view retained landscape spacing");
         TaskView task=new TaskView();TaskViewIcon icon=new TaskViewIcon(context);task.containers.add(new TaskContainer(icon));
         // A long title can be hidden without suppressing its much narrower icon.

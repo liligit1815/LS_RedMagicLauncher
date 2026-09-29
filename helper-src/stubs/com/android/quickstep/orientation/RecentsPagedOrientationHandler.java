@@ -4,6 +4,7 @@ import android.view.View;
 
 public interface RecentsPagedOrientationHandler {
     int getRotation();
+    int getSecondaryTranslationDirectionFactor();
     int getPrimaryScroll(View view);
     int getPrimarySize(View view);
     int getChildStart(View view);

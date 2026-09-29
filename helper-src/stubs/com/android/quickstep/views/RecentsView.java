@@ -20,6 +20,7 @@ public abstract class RecentsView extends ViewGroup {
     public abstract void syncNativeStackRotation();
     public abstract void cancelNativeStackTouch(android.view.MotionEvent event);
     public abstract float getContentAlpha();
+    public abstract void drawNativeStackChildren(android.graphics.Canvas canvas, int pass);
     public abstract int getCurrentPage();
     public abstract int getNextPage();
     public abstract boolean isHandlingTouch();

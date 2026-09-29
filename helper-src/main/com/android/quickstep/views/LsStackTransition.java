@@ -3,9 +3,13 @@ package com.android.quickstep.views;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Matrix;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+import com.android.quickstep.orientation.RecentsPagedOrientationHandler;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import java.util.WeakHashMap;
 public final class LsStackTransition {
     private static final WeakHashMap<RecentsView, Transition> transitions = new WeakHashMap<>();
     private static final WeakHashMap<Object, LaunchSurface> surfaces = new WeakHashMap<>();
+    private static final Interpolator HOME_SLIDE = new PathInterpolator(0.3f, 0f, 0.5f, 1f);
 
     private LsStackTransition() {}
 
@@ -25,7 +30,11 @@ public final class LsStackTransition {
         final WeakReference<TaskView> task;
         final int[] taskIds;
         final float x, y, scaleX, scaleY, z;
-        final int left, top, scrollX, scrollY, clip;
+        final float stableAlpha;
+        final float primaryCenter;
+        final int left, top, scrollX, scrollY;
+        final float clip;
+        final float[] occlusion;
 
         CardFrame(TaskView view, RecentsView recents) {
             task = new WeakReference<>(view);
@@ -35,12 +44,16 @@ public final class LsStackTransition {
             scaleX = view.getScaleX();
             scaleY = view.getScaleY();
             z = view.getTranslationZ();
+            stableAlpha = view.getStableAlpha();
+            primaryCenter = recents.getPagedOrientationHandler().getPrimaryValue(
+                    view.getLeft() + view.getPivotX() + x - recents.getScrollX(),
+                    view.getTop() + view.getPivotY() + y - recents.getScrollY());
             left = view.getLeft();
             top = view.getTop();
             scrollX = recents.getScrollX();
             scrollY = recents.getScrollY();
-            Rect bounds = view.getNativeStackClipBounds();
-            clip = bounds == null ? -1 : bounds.right;
+            clip = view.getNativeStackClipRightF();
+            occlusion = LsStackOcclusion.capture(view);
         }
 
         void restore(RecentsView recents) {
@@ -53,28 +66,74 @@ public final class LsStackTransition {
             view.setScaleY(scaleY);
             view.setTranslationZ(z);
             view.setNativeStackClipRight(clip);
+            LsStackOcclusion.restore(view, occlusion);
             // Stable/content alpha belongs to the OEM Home fade-out.
+        }
+
+        void restoreLaunch(RecentsView recents) {
+            restore(recents);
+            TaskView view = task.get();
+            if (view != null && view.getRecentsView() == recents
+                    && Arrays.equals(taskIds, view.getTaskIds())) view.setStableAlpha(stableAlpha);
         }
     }
 
-    private static final class Transition {
+    private static final class Transition extends AnimatorListenerAdapter {
         final WeakReference<RecentsView> recents;
         final ArrayList<CardFrame> frames = new ArrayList<>();
         WeakReference<TaskView> launchedTask = new WeakReference<>(null);
         int[] launchedTaskIds;
         RectF launchBounds;
         float visibleFraction = 1f;
-        int launchClip = -1;
+        float launchClip = -1f;
+        float launchProgress;
+        final float startContentAlpha;
+        final float travel;
+        final float exitTravel;
+        final boolean horizontal;
+        final float direction;
         boolean launch, completed, overview;
 
         Transition(RecentsView view, boolean launching) {
             recents = new WeakReference<>(view);
             launch = launching;
             overview = launching;
+            startContentAlpha = Math.max(0.001f, view.getContentAlpha());
+            RecentsPagedOrientationHandler handler = view.getPagedOrientationHandler();
+            horizontal = Math.abs(handler.getPrimaryValue(1f, 0f)) > 0.5f;
+            direction = handler.getRotation() >= 2 ? -1f : 1f;
+            // Enough travel for a full card beyond either viewport boundary,
+            // including a partially visible front card and custom card scales.
+            float extent = handler.getPrimarySize(view);
+            float exitExtent = 0f;
             for (int i = 0; i < view.getTaskViewCount(); i++) {
                 TaskView task = view.getTaskViewAt(i);
-                if (task != null) frames.add(new CardFrame(task, view));
+                if (task != null) {
+                    frames.add(new CardFrame(task, view));
+                    extent = Math.max(extent, handler.getPrimarySize(task)
+                            * Math.max(task.getScaleX(), task.getScaleY()));
+                    float pivot = handler.getPrimaryValue(task.getPivotX(), task.getPivotY());
+                    float scale = horizontal ? task.getScaleX() : task.getScaleY();
+                    float start = handler.getChildStart(task)
+                            + handler.getPrimaryValue(task.getTranslationX(), task.getTranslationY())
+                            + pivot * (1f - scale) - handler.getPrimaryScroll(view);
+                    float end = start + handler.getPrimarySize(task) * scale;
+                    if (task.getAlpha() > 0f && start < handler.getPrimarySize(view) && end > 0f) {
+                        exitExtent = Math.max(exitExtent, direction > 0f
+                                ? end : handler.getPrimarySize(view) - start);
+                    }
+                }
             }
+            travel = handler.getPrimarySize(view) + extent;
+            exitTravel = Math.max(1f, exitExtent + 2f);
+        }
+
+        @Override public void onAnimationCancel(Animator animator) {
+            RecentsView view = recents.get();
+            if (view == null || launch || transitions.get(view) != this) return;
+            for (CardFrame frame : frames) frame.restore(view);
+            clear(view);
+            view.invalidate();
         }
     }
 
@@ -96,7 +155,11 @@ public final class LsStackTransition {
     /** A new entry or gesture cancels ownership of the previous transaction. */
     public static void clear(RecentsView recents) {
         Transition old = transitions.remove(recents);
-        if (old != null) removeSurfaces(old);
+        if (old != null) {
+            removeSurfaces(old);
+            if (old.launch) for (CardFrame frame : old.frames) frame.restoreLaunch(recents);
+            refreshDrawAlpha(recents);
+        }
     }
 
     public static void onOverviewStateChanged(RecentsView recents, boolean enabled) {
@@ -109,9 +172,91 @@ public final class LsStackTransition {
             current.overview = false;
             return;
         }
-        if (recents.isNativeStackApplied() && recents.getContentAlpha() > 0f) {
-            transitions.put(recents, new Transition(recents, false));
+        beginHomeExit(recents);
+    }
+
+    /** Capture before the OEM prepares page offsets, alpha masks or screenshots. */
+    public static boolean beginHomeExit(RecentsView recents) {
+        if (!recents.isNativeStackStyle()) return false;
+        Transition current = transitions.get(recents);
+        if (current != null) return !current.launch && !current.completed;
+        if (!recents.isNativeStackApplied() || recents.getContentAlpha() <= 0f) return false;
+        transitions.put(recents, new Transition(recents, false));
+        refreshDrawAlpha(recents);
+        return true;
+    }
+
+    /** Keep the OEM stored alpha, but apply its common fade once to the deck. */
+    public static float drawStableAlpha(TaskView task, float stable) {
+        RecentsView recents = task.getRecentsView();
+        if (recents == null) return stable;
+        Transition current = transitions.get(recents);
+        if (recents.isNativeStackStyle() && current != null && current.launch
+                && task != current.launchedTask.get()) {
+            for (CardFrame frame : current.frames) {
+                if (frame.task.get() == task && Arrays.equals(frame.taskIds, task.getTaskIds())) {
+                    float motion = current.launchProgress * current.launchProgress;
+                    return frame.stableAlpha * Math.min(1f, (1f - motion) / 0.5f);
+                }
+            }
         }
+        if (!isHomeExit(recents)) return stable;
+        float content = recents.getContentAlpha();
+        return content > 0f ? Math.max(0f, Math.min(1f, stable / content)) : 1f;
+    }
+
+    private static void refreshDrawAlpha(RecentsView recents) {
+        for (int i = 0; i < recents.getTaskViewCount(); i++) {
+            TaskView task = recents.getTaskViewAt(i);
+            if (task != null) task.setStableAlpha(task.getStableAlpha());
+        }
+        recents.invalidate();
+    }
+
+    public static void onContentAlphaChanged(RecentsView recents) {
+        // Child RenderNode alpha stays constant during this fade, so the parent
+        // display list (which contains saveLayerAlpha) must be recorded again.
+        if (isHomeExit(recents)) recents.invalidate();
+    }
+
+    /** Compose touching silhouettes before fading; chrome keeps its OEM alpha. */
+    public static boolean drawHomeExit(RecentsView recents, Canvas canvas) {
+        if (!isHomeExit(recents)) return false;
+        Transition current = transitions.get(recents);
+        float remaining = Math.max(0f, Math.min(1f,
+                recents.getContentAlpha() / current.startContentAlpha));
+        // Keep the deck opaque while it crosses the screen. Fade only after
+        // the complete deck has travelled beyond the left edge.
+        int alpha = Math.round(Math.min(1f, remaining / 0.12f) * 255f);
+        int save = canvas.saveLayerAlpha(null, alpha);
+        try {
+            float offset = -current.direction * current.exitTravel
+                    * Math.min(1f, (1f - remaining) / 0.85f);
+            canvas.translate(current.horizontal ? offset : 0f,
+                    current.horizontal ? 0f : offset);
+            recents.drawNativeStackChildren(canvas, 1);
+        } finally {
+            canvas.restoreToCount(save);
+        }
+        recents.drawNativeStackChildren(canvas, 2);
+        return true;
+    }
+
+    /** Only a visible Home exit owns the deck; app launches keep their native path. */
+    public static boolean isHomeExit(RecentsView recents) {
+        Transition current = transitions.get(recents);
+        return recents.isNativeStackStyle() && current != null
+                && !current.launch && !current.completed;
+    }
+
+    /** The state animator can be cancelled even before its start callback. */
+    public static Animator.AnimatorListener homeExitListener(RecentsView recents) {
+        return isHomeExit(recents) ? transitions.get(recents) : null;
+    }
+
+    /** Use the full OEM state clock instead of its short early content fade. */
+    public static Interpolator homeExitInterpolator(RecentsView recents, Interpolator original) {
+        return isHomeExit(recents) ? HOME_SLIDE : original;
     }
 
     /** Called before any steady-state re-layout, including resetTaskVisuals. */
@@ -124,6 +269,8 @@ public final class LsStackTransition {
         }
         if (!current.launch && !current.completed) {
             for (CardFrame frame : current.frames) frame.restore(recents);
+        } else if (current.launch) {
+            applyLaunchCards(recents, current);
         }
         return true;
     }
@@ -131,7 +278,10 @@ public final class LsStackTransition {
     /** OEM state completion, not a timer, ends the visible Home exit. */
     public static void onExitComplete(RecentsView recents) {
         Transition current = transitions.get(recents);
-        if (current != null && !current.launch) current.completed = true;
+        if (current != null && !current.launch) {
+            current.completed = true;
+            refreshDrawAlpha(recents);
+        }
     }
 
     private static RectF rootBounds(View view) {
@@ -141,6 +291,34 @@ public final class LsStackTransition {
         RectF bounds = new RectF(0f, 0f, view.getWidth(), view.getHeight());
         matrix.mapRect(bounds);
         return bounds;
+    }
+
+    /** Neighbours use the same clock as the expanding remote app surface. */
+    private static void applyLaunchCards(RecentsView recents, Transition transition) {
+        TaskView selected = transition.launchedTask.get();
+        int selectedIndex = -1;
+        for (int i = 0; i < transition.frames.size(); i++) {
+            if (transition.frames.get(i).task.get() == selected) selectedIndex = i;
+        }
+        if (selectedIndex < 0) return;
+        for (int i = 0; i < transition.frames.size(); i++) {
+            CardFrame frame = transition.frames.get(i);
+            TaskView view = frame.task.get();
+            if (view == null || view == selected || view.getRecentsView() != recents
+                    || !Arrays.equals(frame.taskIds, view.getTaskIds())) continue;
+            frame.restore(recents);
+            float side = frame.primaryCenter < transition.frames.get(selectedIndex).primaryCenter
+                    ? -1f : 1f;
+            float motion = transition.launchProgress * transition.launchProgress;
+            float offset = side * transition.travel * motion;
+            if (transition.horizontal) view.setTranslationX(view.getTranslationX() + offset);
+            else view.setTranslationY(view.getTranslationY() + offset);
+            if (transition.launchProgress > 0f) {
+                view.setNativeStackClipRight(-1f);
+                LsStackOcclusion.restore(view, null);
+            }
+            view.setStableAlpha(view.getStableAlpha());
+        }
     }
 
     /** Capture before ActivityOptions/OEM simulator initialization can re-layout the card. */
@@ -160,13 +338,13 @@ public final class LsStackTransition {
         transition.launchedTask = new WeakReference<>(task);
         transition.launchedTaskIds = task.getTaskIds().clone();
         transition.launchBounds = bounds;
-        Rect clip = task.getNativeStackClipBounds();
-        if (clip != null) {
-            transition.launchClip = clip.right;
+        float clip = task.getNativeStackClipRightF();
+        if (clip >= 0f) {
+            transition.launchClip = clip;
             // The deck clips the snapshot in TaskView coordinates, not in the
             // remote buffer's possibly rotated coordinates.
             RectF visible = rootBounds(task);
-            visible.right = visible.left + visible.width() * clip.right / task.getWidth();
+            visible.right = visible.left + visible.width() * clip / task.getWidth();
             transition.visibleFraction = Math.max(0f, Math.min(1f,
                     (visible.right - bounds.left) / bounds.width()));
         }
@@ -222,8 +400,8 @@ public final class LsStackTransition {
         }
         removeSurfaces(transition);
         if (cancelled || transition.overview) {
-            for (CardFrame frame : transition.frames) frame.restore(recents);
             transitions.remove(recents);
+            for (CardFrame frame : transition.frames) frame.restoreLaunch(recents);
             LsNativeStack.update(recents);
             recents.invalidate();
         } else {
@@ -260,6 +438,9 @@ public final class LsStackTransition {
         }
         float remaining = surface.startProgress >= 1f ? 0f
                 : Math.max(0f, Math.min(1f, (1f - progress) / (1f - surface.startProgress)));
+        transition.launchProgress = 1f - remaining;
+        applyLaunchCards(recents, transition);
+        recents.invalidate();
         RectF start = surface.nativeStart;
         RectF clicked = transition.launchBounds;
         RectF desired = new RectF(
@@ -285,8 +466,8 @@ public final class LsStackTransition {
                 crop.intersect(visibleCrop);
             }
             TaskView task = transition.launchedTask.get();
-            if (task != null) task.setNativeStackClipRight(remaining <= 0f ? -1
-                    : Math.round(task.getWidth() - (task.getWidth() - transition.launchClip) * remaining));
+            if (task != null) task.setNativeStackClipRight(remaining <= 0f ? -1f
+                    : task.getWidth() - (task.getWidth() - transition.launchClip) * remaining);
         }
     }
 }

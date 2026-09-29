@@ -11,9 +11,17 @@
 /docs/repository-size-inventory.json
 /docs/references/
 __pycache__/
+.cache/
+.pytest_cache/
 *.py[cod]
 *.class
 *.log
+*.tmp
+*.bak
+*.orig
+*.rej
+/framework/cache/*
+!/framework/cache/1.apk
 
 # Local configuration and signing material
 /.signing/

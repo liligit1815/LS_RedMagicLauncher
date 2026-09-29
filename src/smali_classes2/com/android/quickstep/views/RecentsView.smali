@@ -366,6 +366,8 @@
 .end field
 
 .field protected mContentAlpha:F
+
+.field private nativeStackDrawPass:I
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
@@ -22119,6 +22121,10 @@
     :cond_20
     invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->updateCurveProperties()V
 
+    # Property animation can update child RenderNodes without dispatchDraw.
+    # Restore the exit snapshot in this same write, for every entry page.
+    invoke-static {v0}, Lcom/android/quickstep/views/LsStackTransition;->beforeUpdate(Lcom/android/quickstep/views/RecentsView;)Z
+
     .line 497
     .line 498
     .line 499
@@ -30877,6 +30883,9 @@
     .line 111
     .line 112
     :cond_4
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsStackTransition;->drawHomeExit(Lcom/android/quickstep/views/RecentsView;Landroid/graphics/Canvas;)Z
+    move-result v0
+    if-nez v0, :goto_0
     invoke-super {p0, p1}, Lcom/android/launcher3/V4;->dispatchDraw(Landroid/graphics/Canvas;)V
 
     .line 113
@@ -44542,6 +44551,45 @@
     return-void
 .end method
 
+.method public drawNativeStackChildren(Landroid/graphics/Canvas;I)V
+    .locals 1
+    iput p2, p0, Lcom/android/quickstep/views/RecentsView;->nativeStackDrawPass:I
+    :stack_draw_start
+    invoke-super {p0, p1}, Lcom/android/launcher3/V4;->dispatchDraw(Landroid/graphics/Canvas;)V
+    :stack_draw_end
+    const/4 v0, 0x0
+    iput v0, p0, Lcom/android/quickstep/views/RecentsView;->nativeStackDrawPass:I
+    return-void
+    :stack_draw_failed
+    move-exception p1
+    const/4 v0, 0x0
+    iput v0, p0, Lcom/android/quickstep/views/RecentsView;->nativeStackDrawPass:I
+    throw p1
+    .catchall {:stack_draw_start .. :stack_draw_end} :stack_draw_failed
+.end method
+
+.method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+    .locals 2
+    iget v0, p0, Lcom/android/quickstep/views/RecentsView;->nativeStackDrawPass:I
+    if-eqz v0, :stack_draw_child
+    instance-of v1, p2, Lcom/android/quickstep/views/TaskView;
+    # Pass 1 draws TaskViews; pass 2 draws all remaining OEM children.
+    if-eqz v1, :stack_draw_other
+    const/4 v1, 0x1
+    if-eq v0, v1, :stack_draw_child
+    goto :stack_skip_child
+    :stack_draw_other
+    const/4 v1, 0x2
+    if-eq v0, v1, :stack_draw_child
+    :stack_skip_child
+    const/4 v0, 0x0
+    return v0
+    :stack_draw_child
+    invoke-super {p0, p1, p2, p3, p4}, Lcom/android/launcher3/V4;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+    move-result v0
+    return v0
+.end method
+
 .method public setContentAlpha(F)V
     .locals 6
 
@@ -44579,6 +44627,7 @@
 
     .line 16
     iput p1, p0, Lcom/android/quickstep/views/RecentsView;->mContentAlpha:F
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->onContentAlphaChanged(Lcom/android/quickstep/views/RecentsView;)V
 
     .line 17
     .line 18
@@ -47162,6 +47211,9 @@
     .line 45
     .line 46
     invoke-virtual {p0, v0}, Lcom/android/quickstep/views/RecentsView;->runActionOnRemoteHandles(Ljava/util/function/Consumer;)V
+
+    # Keep the secondary-axis exit geometry stable even without a parent draw.
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->beforeUpdate(Lcom/android/quickstep/views/RecentsView;)Z
 
     .line 47
     .line 48

@@ -18,10 +18,11 @@ def method(name):
                      source, re.M | re.S).group()
 
 
-assert '* getHomeEntrySpread(revealProgress, taskOrdinal);' in source, 'Home spread not wired into actual card centers'
+assert 'float desiredCenter = finalCenter + revealPrimary;' in source, 'slide not wired into real card centers'
+assert 'float stackScale = finalStackScale;' in source, 'entry must preserve final card size'
 
 members = '\n'.join(method(n) for n in (
-    'getHomeEntrySpread', 'getInitialTaskOrdinal', 'getEntryPagePosition', 'getMiuiInteriorCorrection',
+    'getEntrySlideOffset', 'getInitialTaskOrdinal', 'getEntryPagePosition', 'getMiuiInteriorCorrection',
     'getMiuiDepth', 'getMiuiScaleTerm', 'getMiuiScaleRatio', 'getMiuiCenter', 'clamp'))
 if 'private static float getMiuiStackCenter(' in source:
     members += '\n' + method('getMiuiStackCenter')
@@ -105,47 +106,31 @@ public class HomeStackEntryTest {
         for(int size:new int[]{608,1000,1216,2688})for(int percent=70;percent<=120;percent++)
         for(int count:new int[]{1,2,3,10}){
             stackSpacingScale=percent/100f;focusScale=1.1f*stackSpacingScale;entryRevealRecents=new WeakReference<>(r);
-            float[] previous=new float[count];java.util.Arrays.fill(previous,size*.5f);
-            float previousSlice=0;
-            for(int frame=0;frame<=100;frame++){
-                entryRevealProgress=frame/100f;
-                float page=getEntryPagePosition(r,count),scale=.78f+.22f*entryRevealProgress;
-                near(page,0,"Home top card no longer centered on page zero");
-                float higherStart=Float.POSITIVE_INFINITY;
-                for(int ordinal=0;ordinal<count;ordinal++){
-                    float depth=getMiuiDepth(ordinal,page,count);
-                    float end=getMiuiStackCenter(size,size*.7f,ordinal,page,count);
-                    float center=size*.5f+(end-size*.5f)*scale*getHomeEntrySpread(entryRevealProgress,ordinal);
-                    float width=size*.7f*1.1f*stackSpacingScale*getMiuiScaleRatio(depth)*scale;
-                    float left=center-width/2;
-                    if(ordinal==0)near(center,size*.5f,"top card shifted sideways");
-                    else{
-                        check(center<=size*.5f+.02f,"back card unfolded to the right");
-                        check(center<=previous[ordinal]+.02f,"back card reversed its leftward trajectory");
+            for(int rotation=0;rotation<4;rotation++){
+                float direction=rotation>=2?-1:1;
+                float[] previous=new float[count];
+                for(int frame=0;frame<=100;frame++){
+                    entryRevealProgress=frame/100f;
+                    float page=getEntryPagePosition(r,count);
+                    near(page,0,"Home changed focused ordinal");
+                    for(int ordinal=0;ordinal<count;ordinal++){
+                        float end=getMiuiStackCenter(size,size*.7f,ordinal,page,count);
+                        float center=end+getEntrySlideOffset(entryRevealProgress,size,rotation);
+                        float width=size*.7f*focusScale*getMiuiScaleRatio(getMiuiDepth(ordinal,page,count));
                         if(frame==0){
-                            near(center,size*.5f,"back card started already compressed at its final offset");
-                            check(left>=higherStart-.02f,"back screenshot exposed before unfolding");
+                            check(direction>0?center+width/2<0:center-width/2>size,"card visible before left-side entry");
+                        }else{
+                            check(direction*(center-previous[ordinal])>0,"entry reversed visual direction");
+                            check(Math.abs(center-previous[ordinal])<=size*.013f,"entry jumped");
                         }
-                        if(ordinal==1){
-                            // Measure layer separation before viewport clipping: zooming
-                            // can reduce screen-edge space at large user scales.
-                            float slice=Math.max(0,higherStart-left);
-                            check(slice>=previousSlice-.02f,"first back-card slice collapsed during unfolding");
-                            previousSlice=slice;
-                        }
+                        if(frame==100)near(center,end,"entry changed final stack geometry");
+                        previous[ordinal]=center;
                     }
-                    if(frame==100)near(center,end,"settled card no longer matches canonical stack geometry");
-                    previous[ordinal]=center;higherStart=Math.min(higherStart,left);
-                }
-                if(frame>0&&frame<100&&count>1){
-                    float end=getMiuiStackCenter(size,size*.7f,1,0,count);
-                    check(previous[1]>size*.5f+(end-size*.5f)*scale+.001f,
-                          "back card snaps to final spacing instead of unfolding");
                 }
             }
             entryRevealRecents.clear();
             near(getEntryPagePosition(r,count),0,"clearing reveal shifts centered top card");
-            near(getHomeEntrySpread(1,1),1,"completed reveal changed settled spacing");
+            near(getEntrySlideOffset(1,size,0),0,"completed reveal retained slide offset");
             near(getEntryPagePosition(other,count),0,"Home affected another Recents view");
             // The app's independent surface animator still owns app entry.
             liveSimulatorOverviewTarget=true;entryFromApp=true;
@@ -155,7 +140,7 @@ public class HomeStackEntryTest {
             }
             liveSimulatorOverviewTarget=false;entryFromApp=false;
         }
-        System.out.println("PASS "+checks+" centered Home top, leftward back-card unfolding, endpoints and app isolation checks");
+        System.out.println("PASS "+checks+" left-side Home slide, four rotations, endpoints and app isolation checks");
     }
 }
 '''.replace('CONSTANTS', constants).replace('MEMBERS', members)

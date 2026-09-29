@@ -1332,6 +1332,23 @@
     .line 13
     invoke-static {p3, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
 
+    # Pair an early stack exit snapshot with the real state animator, including
+    # cancellation before onStateTransitionStart and disabled view animations.
+    sget-object v0, Lcom/android/launcher3/V3;->p:Lcom/android/launcher3/V3;
+
+    if-ne p1, v0, :native_stack_exit_listener_done
+
+    iget-object v0, p0, Lcom/android/launcher3/uioverrides/U;->h:Lcom/android/quickstep/views/RecentsView;
+
+    invoke-static {v0}, Lcom/android/quickstep/views/LsStackTransition;->homeExitListener(Lcom/android/quickstep/views/RecentsView;)Landroid/animation/Animator$AnimatorListener;
+
+    move-result-object v0
+
+    if-eqz v0, :native_stack_exit_listener_done
+
+    invoke-virtual {p3, v0}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+
+    :native_stack_exit_listener_done
     .line 14
     .line 15
     .line 16
@@ -1733,6 +1750,9 @@
     move-result-object v6
 
     .line 199
+    invoke-static {v0, v6}, Lcom/android/quickstep/views/LsStackTransition;->homeExitInterpolator(Lcom/android/quickstep/views/RecentsView;Landroid/view/animation/Interpolator;)Landroid/view/animation/Interpolator;
+    move-result-object v6
+
     invoke-virtual {p3, v0, v2, v3, v6}, Lcom/android/launcher3/anim/f;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     .line 200

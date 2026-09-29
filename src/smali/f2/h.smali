@@ -189,6 +189,10 @@
     .line 46
     if-ne v2, v10, :cond_15
 
+    # Snapshot the visible deck before native exit preparation can change it.
+    # onStateTransitionStart runs only after these animators have been built.
+    invoke-static {v4}, Lcom/android/quickstep/views/LsStackTransition;->beginHomeExit(Lcom/android/quickstep/views/RecentsView;)Z
+
     .line 47
     .line 48
     new-instance v2, Lf2/f;
@@ -599,6 +603,14 @@
     .line 247
     .line 248
     :cond_6
+    # Stack exits share the content fade. Page-dependent alpha masks and a
+    # snap to an earlier page belong to the OEM carousel, not the visible deck.
+    invoke-static {v4}, Lcom/android/quickstep/views/LsStackTransition;->isHomeExit(Lcom/android/quickstep/views/RecentsView;)Z
+
+    move-result v1
+
+    if-nez v1, :goto_8
+
     invoke-virtual {v4}, Lcom/android/quickstep/views/RecentsView;->showAsGrid()Z
 
     .line 249

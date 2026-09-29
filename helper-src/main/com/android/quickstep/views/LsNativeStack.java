@@ -42,6 +42,25 @@ import com.android.quickstep.orientation.RecentsPagedOrientationHandler;
 public final class LsNativeStack {
     private static final String TAG = "LsNativeStack";
 
+    /** One opaque shader, one rounded draw: metadata does not guarantee every
+     * boundary texel in a hardware snapshot has alpha=255. Keep the task's
+     * original background behind those texels without drawing the AA edge twice.
+     * The existing snapshot paint applies the OEM dim filter to both together. */
+    public static android.graphics.Shader createOpaqueSnapshotShader(
+            android.graphics.BitmapShader edge, int backgroundColor) {
+        // Nested shaders must not fall back to nearest sampling when the
+        // composition requests a child native handle without the Paint flag.
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            edge.setFilterMode(android.graphics.BitmapShader.FILTER_MODE_LINEAR);
+        }
+        int opaqueColor = backgroundColor | 0xff000000;
+        android.graphics.Shader base = new android.graphics.LinearGradient(
+                0f, 0f, 1f, 0f, opaqueColor, opaqueColor,
+                android.graphics.Shader.TileMode.CLAMP);
+        return new android.graphics.ComposeShader(base, edge,
+                android.graphics.PorterDuff.Mode.SRC_OVER);
+    }
+
     /*
      * HyperOS 3 / MiuiHome 6.01 TaskStackViewsAlgorithmStack constants.
      * Keep these together: the exponential offset, scale curve and clipping
@@ -99,6 +118,7 @@ public final class LsNativeStack {
     private static float focusScale;
     private static float stackSpacingScale = 1.0f;
     private static float overviewSpacingScale = 1.0f;
+    private static float overviewSecondaryCenterFraction = 0.5f;
     // Deleting the newer card must not turn the surviving history deck into
     // Home's differently spaced first page. Keep this origin until next entry.
     private static boolean retainDismissHistoryLayout;
@@ -455,11 +475,11 @@ public final class LsNativeStack {
         return 1.0f - smoothVisibility(clamp((progress - 0.15f) / 0.85f));
     }
 
-    private static int getActionNeighborClipRight(int width, float restingClipRight,
+    private static float getActionNeighborClipRight(int width, float restingClipRight,
             float progress) {
         float start = Math.max(0.0f, Math.min(width, restingClipRight));
         float expansion = smoothVisibility(clamp(progress / 0.55f));
-        int right = Math.round(start + (width - start) * expansion);
+        float right = start + (width - start) * expansion;
         // Only remove the logical clip once it already covers the full card.
         // The snapshot then supplies its own original rounded outline.
         return right >= width ? -1 : right;
@@ -820,7 +840,24 @@ public final class LsNativeStack {
         TEMP_LIVE_CARD[0] = center;
         TEMP_LIVE_CARD[1] = secondary;
         TEMP_LIVE_CARD[2] = scale;
-        TEMP_LIVE_CARD[3] = alpha * smoothVisibility(progress);
+        TEMP_LIVE_CARD[3] = alpha;
+        int runningIndex = recents.getRunningTaskIndex();
+        TaskView running = runningIndex >= 0 ? recents.getTaskViewAt(runningIndex) : null;
+        RecentsPagedOrientationHandler orientation = recents.getPagedOrientationHandler();
+        float viewport = orientation.getPrimarySize(recents);
+        float halfWidth = orientation.getPrimarySize(task) * 0.5f;
+        // A held landscape gesture can already expose the native left card.
+        // It has entered from the requested side; continue that visible frame
+        // instead of sending it back offscreen at the commit boundary.
+        boolean visibleOnLeft = start != null && start[2] > 0.01f
+                && start[0] + halfWidth > 0f && start[0] - halfWidth < viewport
+                && (orientation.getRotation() >= 2 ? start[0] > viewport * 0.5f
+                        : start[0] < viewport * 0.5f);
+        if (task != running && !visibleOnLeft) {
+            TEMP_LIVE_CARD[0] += getEntrySlideOffset(progress,
+                    viewport, orientation.getRotation());
+            return;
+        }
         if (start == null) return;
         RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
         float nativeSecondary = handler.getSecondaryValue(
@@ -878,7 +915,7 @@ public final class LsNativeStack {
         float primary = getMiuiStackCenter(handler.getPrimarySize(recents),
                 handler.getPrimarySize(running), 0, page, recents.getTaskViewCount());
         boolean horizontal = Math.abs(handler.getPrimaryValue(1.0f, 0.0f)) > 0.5f;
-        float secondary = (horizontal ? recents.getHeight() : recents.getWidth()) * 0.5f;
+        float secondary = (horizontal ? recents.getHeight() : recents.getWidth()) * overviewSecondaryCenterFraction;
         TEMP_LIVE_CENTER[0] = handler.getPrimaryValue(primary, secondary);
         TEMP_LIVE_CENTER[1] = handler.getSecondaryValue(primary, secondary);
         offsetLiveSnapshotCenter(recents, scale);
@@ -938,7 +975,7 @@ public final class LsNativeStack {
         if (!liveSimulatorOverviewTarget || recents == null) return duration;
         entryFromApp = true;
         activeOverviewRecents = new WeakReference<>(recents);
-        return recents.getTaskViewCount() > 1 ? Math.max(220L, duration) : duration;
+        return recents.getTaskViewCount() > 1 ? Math.max(420L, duration) : duration;
     }
 
     private static float getEntryPagePosition(RecentsView recents, int taskCount) {
@@ -1032,7 +1069,7 @@ public final class LsNativeStack {
         RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
         boolean horizontalPrimary = Math.abs(handler.getPrimaryValue(1.0f, 0.0f)) > 0.5f;
         float targetPrimary = handler.getPrimaryValue(TEMP_LIVE_CENTER[0], TEMP_LIVE_CENTER[1]);
-        float targetSecondary = (horizontalPrimary ? recents.getHeight() : recents.getWidth()) * 0.5f;
+        float targetSecondary = (horizontalPrimary ? recents.getHeight() : recents.getWidth()) * overviewSecondaryCenterFraction;
         float scale = 1.0f;
         if (getInitialTaskOrdinal(recents, recents.getTaskViewCount()) == 1) {
             float page = getEntryPagePosition(recents, recents.getTaskViewCount());
@@ -1726,6 +1763,10 @@ public final class LsNativeStack {
         // while dismissing a card. Preserve both the viewport and its reflow.
         if (enabled && recents.isNativeStackStyle() && !isNativeGestureOwned(recents)
                 && overviewActive && activeOverviewRecents.get() == recents) {
+            // A Home exit may have been prepared then cancelled before the
+            // animator started. Returning to the same Overview releases it
+            // without rearming entry or disturbing an app-launch transaction.
+            if (LsStackTransition.isHomeExit(recents)) LsStackTransition.clear(recents);
             return;
         }
         if (enabled) LsStackTransition.onOverviewStateChanged(recents, true);
@@ -1916,10 +1957,10 @@ public final class LsNativeStack {
         return 0;
     }
 
-    /** Back cards unfold from under the centered top card, in layer order. */
-    private static float getHomeEntrySpread(float progress, int ordinal) {
-        if (ordinal <= 0) return 1.0f;
-        return clamp(progress);
+    /** Translate in visual left/right coordinates without growing or lifting the deck. */
+    private static float getEntrySlideOffset(float progress, float size, int rotation) {
+        float direction = rotation >= 2 ? -1.0f : 1.0f;
+        return -direction * size * 1.2f * (1.0f - clamp(progress));
     }
 
     private static void armEntryReveal(RecentsView recents) {
@@ -1943,8 +1984,8 @@ public final class LsNativeStack {
             return;
         }
         ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        animator.setDuration(360L);
-        animator.setInterpolator(new PathInterpolator(0.4f, 0.0f, 0.4f, 1.0f));
+        animator.setDuration(420L);
+        animator.setInterpolator(new PathInterpolator(0.2f, 0.0f, 0.2f, 1.0f));
         animator.addUpdateListener(new EntryRevealUpdate(recents));
         animator.addListener(new EntryRevealEnd(recents));
         entryRevealAnimator = animator;
@@ -2703,11 +2744,8 @@ public final class LsNativeStack {
                     ? recents.getHeight() : recents.getWidth();
             final float revealProgress = entryRevealRecents.get() == recents
                     ? clamp(entryRevealProgress) : 1.0f;
-            // Grow the whole deck about the viewport center; card dimensions
-            // and spacing share one factor and reach the exact user setting.
-            final float revealScale = 0.78f + 0.22f * revealProgress;
-            final float revealSecondary = 0.24f * secondarySize
-                    * (1.0f - revealProgress);
+            final float revealPrimary = getEntrySlideOffset(revealProgress,
+                    primarySize, handler.getRotation());
             /* Recompute occlusion from this same frame's centers while paging.
              * Clearing every clip during motion exposes complete overlapping
              * surfaces for one frame whenever Z/order changes, which is the
@@ -2756,11 +2794,9 @@ public final class LsNativeStack {
                 */
                 float finalCenter = getMiuiStackCenter(primarySize, handler.getPrimarySize(task),
                         taskOrdinal, pagePosition, visualTaskCount);
-                float desiredCenter = primarySize * 0.5f
-                        + (finalCenter - primarySize * 0.5f) * revealScale
-                        * getHomeEntrySpread(revealProgress, taskOrdinal);
+                float desiredCenter = finalCenter + revealPrimary;
                 float finalStackScale = focusScale * getMiuiScaleRatio(depth);
-                float stackScale = finalStackScale * revealScale;
+                float stackScale = finalStackScale;
                 float stackAlpha = getMiuiAlpha(depth);
                 float stackZ = 100.0f - taskPosition;
                 if (actionOrdinal >= 0) {
@@ -2818,12 +2854,10 @@ public final class LsNativeStack {
                         + currentSecondaryTranslation
                         - oldStackSecondary
                         - dismissSecondary;
-                float stackSecondary = (secondarySize * 0.5f)
-                        - nativeSecondaryPivot + revealSecondary;
+                float stackSecondary = (secondarySize * overviewSecondaryCenterFraction)
+                        - nativeSecondaryPivot;
 
-                // OEM content alpha already fades the deck. Finish our short reveal
-                // early so most of the travel remains visible instead of double-fading.
-                stackAlpha *= clamp(revealProgress / 0.18f);
+                // The slide itself reveals the cards at the viewport boundary.
                 if (liveSimulatorOverviewTarget) {
                     blendLiveEntryCard(recents, task, desiredCenter,
                             stackSecondary, stackScale, stackAlpha);
@@ -2869,11 +2903,9 @@ public final class LsNativeStack {
                 float clipBoundary = higherLayerStart;
                 float restingStart = finalCenter
                         - handler.getPrimarySize(task) * finalStackScale * 0.5f;
-                float shadowAllowance = 3.0f
-                        * recents.getResources().getDisplayMetrics().density;
                 float restingClipRight = restingHigherLayerStart == Float.POSITIVE_INFINITY
-                        ? task.getWidth() : (restingHigherLayerStart - restingStart
-                                + shadowAllowance) / Math.max(0.01f, finalStackScale);
+                        ? task.getWidth() : (restingHigherLayerStart - restingStart)
+                                / Math.max(0.01f, finalStackScale);
                 if (getMiuiAlpha(depth) > 0.01f) {
                     restingHigherLayerStart = Math.min(restingHigherLayerStart, restingStart);
                 }
@@ -2890,9 +2922,14 @@ public final class LsNativeStack {
                 } else if (stackAlpha <= 0.01f) {
                     task.setNativeStackClipRight(0);
                 } else if (clipBoundary != Float.POSITIVE_INFINITY) {
-                    int clipRight = Math.round((clipBoundary - displayedStart
-                            + shadowAllowance) / Math.max(0.01f, stackScale));
-                    clipRight = Math.max(0, Math.min(task.getWidth(), clipRight));
+                    // The rear snapshot must stop at the front card's edge.
+                    // Extending it underneath by 3dp creates a bright stripe
+                    // when either card is translucent during paging or exit.
+                    // Keep subpixel precision to avoid a gap or overlap from
+                    // independently rounded card boundaries.
+                    float clipRight = (clipBoundary - displayedStart)
+                            / Math.max(0.01f, stackScale);
+                    clipRight = Math.max(0f, Math.min(task.getWidth(), clipRight));
                     task.setNativeStackClipRight(
                             clipRight >= task.getWidth() ? -1 : clipRight);
                 } else {
@@ -2932,6 +2969,7 @@ public final class LsNativeStack {
                     }
                 }
             }
+            LsStackOcclusion.update(recents);
             LsStackActions.update(recents, actionProgress);
             if (entryLoading) {
                 finishCachedEntryStagingIfReady(recents, primarySize);
@@ -3021,6 +3059,7 @@ public final class LsNativeStack {
         loadConfig(context.getResources());
         loadUserScale(context);
         overviewSpacingScale = 1.0f;
+        overviewSecondaryCenterFraction = 0.5f;
         if (recents == null) recents = activeOverviewRecents.get();
         if (recents == null) recents = nativeGestureRecents.get();
         if (recents == null || recents.getWidth() <= 0 || recents.getHeight() <= 0) return;
@@ -3031,8 +3070,12 @@ public final class LsNativeStack {
                 ? recents.getWidth() > recents.getHeight()
                 : recents.getHeight() > recents.getWidth();
         if (landscape) {
-            focusScale *= 0.8085f; // Previous 0.77 size, enlarged to 105%.
+            focusScale *= 0.77f;
             overviewSpacingScale = 0.90f;
+            // Share the raised center with live surfaces and their fallback,
+            // leaving more space above the OEM clear-all button.
+            overviewSecondaryCenterFraction = 0.5f + 0.045f
+                    * recents.getPagedOrientationHandler().getSecondaryTranslationDirectionFactor();
         }
     }
 

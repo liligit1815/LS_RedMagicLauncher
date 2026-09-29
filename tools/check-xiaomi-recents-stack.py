@@ -229,8 +229,8 @@ def main() -> int:
     require(initial_java, "entryFromApp && activeOverviewRecents.get() == recents && taskCount > 1",
             "second-task focus is not restricted to this live app entry with multiple tasks")
     require(initial_java, "return 1;", "live app entry does not center the second task")
-    require(helper_java, "* getHomeEntrySpread(revealProgress, taskOrdinal);",
-            "Home back cards do not unfold using the reveal progress")
+    require(helper_java, "float desiredCenter = finalCenter + revealPrimary;",
+            "Home cards do not slide from the left using reveal progress")
     require(helper_java, "pagePosition = stableEntryOrder ? getEntryPagePosition(recents, entryTaskOrderSize)",
             "visual entry does not share the live animator progress")
     require(swipe_handler, "LsNativeStack;->onLiveOverviewFrame(Landroid/animation/ValueAnimator;)V",
@@ -313,9 +313,12 @@ def main() -> int:
                             helper_java, re.M | re.S)
     live_offset = re.search(r"private static void offsetLiveSnapshotCenter\(.*?^    }",
                            helper_java, re.M | re.S)
+    live_cards = re.search(r"private static void blendLiveEntryCard\(.*?^    }",
+                          helper_java, re.M | re.S)
     if (live_bounds is None or live_bounds.group().count("getRunningTaskIndex()") != 1
             or live_offset is None or live_offset.group().count("getRunningTaskIndex()") != 1
-            or helper_java.count("getRunningTaskIndex()") != 3):
+            or live_cards is None or live_cards.group().count("getRunningTaskIndex()") != 1
+            or helper_java.count("getRunningTaskIndex()") != 4):
         raise AssertionError(
             "running-task identity escaped the live-entry resolver/surface geometry helpers"
         )
@@ -768,7 +771,9 @@ def main() -> int:
     ):
         require(native_transform, call, f"native composition missing {call}")
 
-    clip = method(task, ".method public final setNativeStackClipRight(I)V")
+    legacy_clip = method(task, ".method public final setNativeStackClipRight(I)V")
+    require(legacy_clip, "setNativeStackClipRight(F)V", "integer clip callers bypass precise drawing")
+    clip = method(task, ".method public final setNativeStackClipRight(F)V")
     require(clip, "setClipBounds", "visible deck slices are not clipped in TaskView")
     require(clip, "getClipBounds", "OEM clip resets bypass the cached stack clip")
     if "TaskView;->lockNativeStackEntryTranslation()V" in helper:

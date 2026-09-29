@@ -11,6 +11,8 @@ public abstract class TaskView extends FrameLayout {
     }
 
     public abstract float getNativeStackTranslationX();
+    protected abstract float getStableAlpha();
+    protected abstract void setStableAlpha(float alpha);
     public abstract float getNativeStackTranslationY();
     public abstract void lockNativeStackEntryTranslation();
     public abstract void unlockNativeStackEntryTranslation();
@@ -25,6 +27,9 @@ public abstract class TaskView extends FrameLayout {
     public abstract void setNativeStackTransform(float x, float y, float scale, float alpha, float z);
     public abstract void reconcileNativeStackPresentation();
     public abstract void setNativeStackClipRight(int right);
+    public abstract void setNativeStackClipRight(float right);
+    public abstract float getNativeStackClipRightF();
+    protected abstract com.android.quickstep.FullscreenDrawParams getThumbnailFullscreenParams();
     public abstract android.graphics.Rect getNativeStackClipBounds();
     public abstract void setTitleAlpha(float alpha);
     public abstract TextView getNativeStackTitleView();

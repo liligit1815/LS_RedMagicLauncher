@@ -60,6 +60,18 @@
 
 .field protected mBitmapShader:Landroid/graphics/BitmapShader;
 
+.field private nativeStackClampSource:Landroid/graphics/BitmapShader;
+
+.field private nativeStackClampShader:Landroid/graphics/BitmapShader;
+
+.field private nativeStackOpaqueShader:Landroid/graphics/Shader;
+
+.field private nativeStackOpaqueColor:I
+
+.field private mLsThumbnailCoverageBounds:Landroid/graphics/RectF;
+
+.field private mLsThumbnailCoverageMatrix:Landroid/graphics/Matrix;
+
 .field private final mClearPaint:Landroid/graphics/Paint;
 
 .field private final mContainer:Lcom/android/quickstep/views/RecentsViewContainer;
@@ -845,6 +857,11 @@
 
 .method private refresh(Z)V
     .locals 3
+
+    const/4 v0, 0x0
+    iput-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackClampSource:Landroid/graphics/BitmapShader;
+    iput-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackClampShader:Landroid/graphics/BitmapShader;
+    iput-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueShader:Landroid/graphics/Shader;
 
     .line 2
     iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mThumbnailData:Lcom/android/systemui/shared/recents/model/ThumbnailData;
@@ -2031,6 +2048,18 @@
 
     .line 64
     :cond_0
+    # Use the actual screenshot bounds, before the background's vertical inset.
+    # p2..p5 are high registers in this method, so pass a low-register copy.
+    move-object v0, p0
+    move/from16 v1, p2
+    move/from16 v2, p3
+    move/from16 v3, p4
+    move/from16 v4, p5
+    invoke-direct {v0, v1, v2, v3, v4}, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->shouldDrawThumbnailBackground(FFFF)Z
+    move-result v0
+
+    invoke-direct {p0, v0}, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->prepareNativeStackOpaqueShader(Z)V
+
     const/high16 v9, 0x3f800000    # 1.0f
 
     .line 65
@@ -2068,8 +2097,6 @@
     .line 81
     # Opaque snapshots supply their own rounded edge. A second light fill
     # underneath it leaves a bright antialias seam during fractional movement.
-    invoke-direct {p0}, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->shouldDrawThumbnailBackground()Z
-    move-result v0
     if-eqz v0, :ls_thumbnail_background_done
     invoke-virtual/range {v1 .. v8}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
     :ls_thumbnail_background_done
@@ -2151,6 +2178,9 @@
     invoke-virtual/range {v1 .. v8}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
     .line 119
+    # The temporary opaque composition is only for the fully covered snapshot.
+    # Restore OEM paint identity before overlays, later draws and style changes.
+    invoke-direct {p0}, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->finishNativeStackOpaqueShader()V
     .line 120
     .line 121
     move v11, v4
@@ -3297,8 +3327,62 @@
     return p0
 .end method
 
-.method private shouldDrawThumbnailBackground()Z
-    .locals 1
+.method private finishNativeStackOpaqueShader()V
+    .locals 3
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueShader:Landroid/graphics/Shader;
+    if-eqz v0, :opaque_shader_restored
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mPaint:Landroid/graphics/Paint;
+    invoke-virtual {v1}, Landroid/graphics/Paint;->getShader()Landroid/graphics/Shader;
+    move-result-object v2
+    if-ne v0, v2, :opaque_shader_restored
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBitmapShader:Landroid/graphics/BitmapShader;
+    invoke-virtual {v1, v0}, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
+    :opaque_shader_restored
+    return-void
+.end method
+
+.method private prepareNativeStackOpaqueShader(Z)V
+    .locals 5
+    # Reuse the full opacity/coverage decision, including style and placeholders.
+    if-nez p1, :opaque_shader_done
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBitmapShader:Landroid/graphics/BitmapShader;
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackClampSource:Landroid/graphics/BitmapShader;
+    if-eq v0, v1, :opaque_shader_matrix
+    iput-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackClampSource:Landroid/graphics/BitmapShader;
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mThumbnailData:Lcom/android/systemui/shared/recents/model/ThumbnailData;
+    invoke-virtual {v1}, Lcom/android/systemui/shared/recents/model/ThumbnailData;->getThumbnail()Landroid/graphics/Bitmap;
+    move-result-object v1
+    new-instance v2, Landroid/graphics/BitmapShader;
+    sget-object v3, Landroid/graphics/Shader$TileMode;->CLAMP:Landroid/graphics/Shader$TileMode;
+    invoke-direct {v2, v1, v3, v3}, Landroid/graphics/BitmapShader;-><init>(Landroid/graphics/Bitmap;Landroid/graphics/Shader$TileMode;Landroid/graphics/Shader$TileMode;)V
+    iput-object v2, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackClampShader:Landroid/graphics/BitmapShader;
+    const/4 v1, 0x0
+    iput-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueShader:Landroid/graphics/Shader;
+    :opaque_shader_matrix
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mLsThumbnailCoverageMatrix:Landroid/graphics/Matrix;
+    iget-object v2, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackClampShader:Landroid/graphics/BitmapShader;
+    invoke-virtual {v2, v1}, Landroid/graphics/BitmapShader;->setLocalMatrix(Landroid/graphics/Matrix;)V
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBackgroundPaint:Landroid/graphics/Paint;
+    invoke-virtual {v1}, Landroid/graphics/Paint;->getColor()I
+    move-result v3
+    iget v4, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueColor:I
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueShader:Landroid/graphics/Shader;
+    if-eqz v0, :opaque_shader_compose
+    if-eq v3, v4, :opaque_shader_apply
+    :opaque_shader_compose
+    invoke-static {v2, v3}, Lcom/android/quickstep/views/LsNativeStack;->createOpaqueSnapshotShader(Landroid/graphics/BitmapShader;I)Landroid/graphics/Shader;
+    move-result-object v0
+    iput-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueShader:Landroid/graphics/Shader;
+    iput v3, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->nativeStackOpaqueColor:I
+    :opaque_shader_apply
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mPaint:Landroid/graphics/Paint;
+    invoke-virtual {v1, v0}, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
+    :opaque_shader_done
+    return-void
+.end method
+
+.method private shouldDrawThumbnailBackground(FFFF)Z
+    .locals 7
     iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mTaskView:Lcom/android/quickstep/views/TaskView;
     if-eqz v0, :draw_background
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
@@ -3311,16 +3395,108 @@
     if-eqz v0, :draw_background
     iget-boolean v0, v0, Lcom/android/systemui/shared/recents/model/Task;->isLocked:Z
     if-nez v0, :draw_background
-    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBitmapShader:Landroid/graphics/BitmapShader;
-    if-eqz v0, :draw_background
-    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mThumbnailData:Lcom/android/systemui/shared/recents/model/ThumbnailData;
-    if-eqz v0, :draw_background
-    invoke-virtual {v0}, Lcom/android/systemui/shared/recents/model/ThumbnailData;->getThumbnail()Landroid/graphics/Bitmap;
-    move-result-object v0
-    if-eqz v0, :draw_background
-    invoke-virtual {v0}, Landroid/graphics/Bitmap;->hasAlpha()Z
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mPrivateLockedBitmap:Landroid/graphics/Bitmap;
+    if-nez v0, :draw_background
+    invoke-virtual {p0}, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->shouldShowSplashView()Z
     move-result v0
     if-nez v0, :draw_background
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBitmapShader:Landroid/graphics/BitmapShader;
+    if-eqz v0, :draw_background
+    iget-object v3, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mPaint:Landroid/graphics/Paint;
+    invoke-virtual {v3}, Landroid/graphics/Paint;->getShader()Landroid/graphics/Shader;
+    move-result-object v3
+    if-ne v0, v3, :draw_background
+    iget-object v3, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mPaint:Landroid/graphics/Paint;
+    invoke-virtual {v3}, Landroid/graphics/Paint;->getAlpha()I
+    move-result v3
+    const/16 v4, 0xff
+    if-ne v3, v4, :draw_background
+    iget-object v1, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mThumbnailData:Lcom/android/systemui/shared/recents/model/ThumbnailData;
+    if-eqz v1, :draw_background
+    invoke-virtual {v1}, Lcom/android/systemui/shared/recents/model/ThumbnailData;->getThumbnail()Landroid/graphics/Bitmap;
+    move-result-object v2
+    if-eqz v2, :draw_background
+    invoke-virtual {v2}, Landroid/graphics/Bitmap;->hasAlpha()Z
+    move-result v0
+    if-eqz v0, :check_thumbnail_coverage
+    # Hardware RGBA describes a pixel format, not the actual task opacity.
+    # Nonempty production data is created from TaskSnapshot metadata; keep
+    # app-theme/generated and genuinely translucent snapshots on the fallback.
+    iget-boolean v0, v1, Lcom/android/systemui/shared/recents/model/ThumbnailData;->isRealSnapshot:Z
+    if-eqz v0, :draw_background
+    invoke-virtual {v1}, Lcom/android/systemui/shared/recents/model/ThumbnailData;->isTranslucent()Z
+    move-result v0
+    if-nez v0, :draw_background
+
+    :check_thumbnail_coverage
+    cmpg-float v0, p1, p3
+    if-gez v0, :draw_background
+    cmpg-float v0, p2, p4
+    if-gez v0, :draw_background
+    invoke-virtual {v2}, Landroid/graphics/Bitmap;->getWidth()I
+    move-result v5
+    if-lez v5, :draw_background
+    invoke-virtual {v2}, Landroid/graphics/Bitmap;->getHeight()I
+    move-result v6
+    if-lez v6, :draw_background
+
+    iget-object v3, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mLsThumbnailCoverageMatrix:Landroid/graphics/Matrix;
+    if-nez v3, :thumbnail_coverage_matrix_ready
+    new-instance v3, Landroid/graphics/Matrix;
+    invoke-direct {v3}, Landroid/graphics/Matrix;-><init>()V
+    iput-object v3, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mLsThumbnailCoverageMatrix:Landroid/graphics/Matrix;
+    :thumbnail_coverage_matrix_ready
+    # Shader.getLocalMatrix may return false without writing its identity.
+    # Reset our reusable destination so a previous rotation cannot survive.
+    invoke-virtual {v3}, Landroid/graphics/Matrix;->reset()V
+    iget-object v0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mBitmapShader:Landroid/graphics/BitmapShader;
+    invoke-virtual {v0, v3}, Landroid/graphics/BitmapShader;->getLocalMatrix(Landroid/graphics/Matrix;)Z
+    invoke-virtual {v3}, Landroid/graphics/Matrix;->rectStaysRect()Z
+    move-result v0
+    if-eqz v0, :draw_background
+
+    iget-object v4, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mLsThumbnailCoverageBounds:Landroid/graphics/RectF;
+    if-nez v4, :thumbnail_coverage_bounds_ready
+    new-instance v4, Landroid/graphics/RectF;
+    invoke-direct {v4}, Landroid/graphics/RectF;-><init>()V
+    iput-object v4, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mLsThumbnailCoverageBounds:Landroid/graphics/RectF;
+    :thumbnail_coverage_bounds_ready
+    const/4 v0, 0x0
+    int-to-float v5, v5
+    int-to-float v6, v6
+    invoke-virtual {v4, v0, v0, v5, v6}, Landroid/graphics/RectF;->set(FFFF)V
+    invoke-virtual {v3, v4}, Landroid/graphics/Matrix;->mapRect(Landroid/graphics/RectF;)Z
+    move-result v0
+    if-eqz v0, :draw_background
+    invoke-virtual {v4}, Landroid/graphics/RectF;->isEmpty()Z
+    move-result v0
+    if-nez v0, :draw_background
+    # DECAL can expose real letterbox gaps. Only a finite, full covering
+    # rectangle can replace the background; do not trust an AABB of a skew.
+    iget v0, v4, Landroid/graphics/RectF;->left:F
+    invoke-static {v0}, Ljava/lang/Float;->isFinite(F)Z
+    move-result v0
+    if-eqz v0, :draw_background
+    iget v0, v4, Landroid/graphics/RectF;->top:F
+    invoke-static {v0}, Ljava/lang/Float;->isFinite(F)Z
+    move-result v0
+    if-eqz v0, :draw_background
+    iget v0, v4, Landroid/graphics/RectF;->right:F
+    invoke-static {v0}, Ljava/lang/Float;->isFinite(F)Z
+    move-result v0
+    if-eqz v0, :draw_background
+    iget v0, v4, Landroid/graphics/RectF;->bottom:F
+    invoke-static {v0}, Ljava/lang/Float;->isFinite(F)Z
+    move-result v0
+    if-eqz v0, :draw_background
+    # Float scale division/multiplication can undershoot by a fraction of an
+    # ulp (e.g. 205 / 720 * 720). This comparison-only tolerance is 1/1024px;
+    # it never changes the shader, screenshot geometry or inter-card clipping.
+    const/high16 v0, -0x45800000    # -0.0009765625f
+    invoke-virtual {v4, v0, v0}, Landroid/graphics/RectF;->inset(FF)V
+    invoke-virtual {v4, p1, p2, p3, p4}, Landroid/graphics/RectF;->contains(FFFF)Z
+    move-result v0
+    if-eqz v0, :draw_background
     const/4 v0, 0x0
     return v0
     :draw_background

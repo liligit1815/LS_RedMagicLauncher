@@ -39,6 +39,7 @@ SOURCE_TESTS = (
     "test-launcher-release-boundary.py",
     "test-launcher-thumbnail-continuity.py",
     "test-launcher-thumbnail-edge.py",
+    "test-launcher-rounded-occlusion.py",
     "test-launcher-stack-controls.py",
     "test-launcher-stack-visual-continuity.py",
     "check-xiaomi-recents-stack.py",
