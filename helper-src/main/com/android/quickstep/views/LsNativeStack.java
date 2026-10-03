@@ -95,6 +95,8 @@ public final class LsNativeStack {
 
     private static final int RES_RECENT_STYLE_KEY = 0x7f1403b7;
     private static final int NATIVE_STACK_STYLE = 3;
+    private static final int ORBIT_STYLE = 4;
+    private static final float[] ORBIT_POSE = new float[5];
     private static final String SCALE_PREFERENCES = "ls_native_stack";
     private static final String SCALE_KEY = "card_scale_percent";
     private static final String SCALE_CONTROL_TAG = "ls_stack_scale_control";
@@ -705,20 +707,44 @@ public final class LsNativeStack {
                 return false;
             }
             String key = context.getString(RES_RECENT_STYLE_KEY);
-            return ((SharedPreferences) value).getInt(key, 0) == NATIVE_STACK_STYLE;
+            int style = ((SharedPreferences) value).getInt(key, 0);
+            return style == NATIVE_STACK_STYLE || style == ORBIT_STYLE;
         } catch (Throwable ignored) {
             return false;
         }
     }
 
-    /**
-     * The live app leash and the final TaskView must converge on the same
-     * scale.  RedMagic's simulator normally ends at 1.0 while the Xiaomi front
-     * card is 1.10, producing the exact 742 -> 824 px shrink/grow jump seen in
-     * test7.mp4.  Supplying the deck scale as the animator endpoint makes the
-     * whole fullscreen-to-card motion monotonic.  The same endpoint is also
-     * used as the start of a card-to-app launch.
-     */
+    /** Resolve the fourth style before the Overview view is available. */
+    private static boolean usesOrbitStyle(Context context) {
+        RecentsView active = activeOverviewRecents.get();
+        if (active == null) active = nativeGestureRecents.get();
+        if (active != null) return active.isOrbitStyle();
+        if (context == null) return false;
+        try {
+            Class<?> prefs = Class.forName("com.android.launcher3.J3");
+            Object value = prefs.getDeclaredMethod("m", Context.class).invoke(null, context);
+            return value instanceof SharedPreferences && ((SharedPreferences) value).getInt(
+                    context.getString(RES_RECENT_STYLE_KEY), 0) == ORBIT_STYLE;
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    /** Reflect visual coordinates into the current OEM orientation axes. */
+    private static float orbitPrimary(RecentsView recents, float size,
+            float ordinal, float page, int count) {
+        float center = LsOrbitGeometry.primary(size, ordinal, page, count);
+        return recents.getPagedOrientationHandler().getRotation() >= 2 ? size - center : center;
+    }
+
+    private static float orbitSecondary(RecentsView recents, float size,
+            float ordinal, float page, int count) {
+        float center = LsOrbitGeometry.secondary(size, ordinal, page, count);
+        return recents.getPagedOrientationHandler().getSecondaryTranslationDirectionFactor() < 0
+                ? center : size - center;
+    }
+
+    /** Share the screenshot scale with the live app animation's endpoint. */
     public static float getLiveRecentsScale(Context context, float nativeScale) {
         if (!usesNativeStackStyle(context)
                 || (nativeGestureRecents.get() != null && !liveSimulatorOverviewTarget)) {
@@ -916,6 +942,13 @@ public final class LsNativeStack {
                 handler.getPrimarySize(running), 0, page, recents.getTaskViewCount());
         boolean horizontal = Math.abs(handler.getPrimaryValue(1.0f, 0.0f)) > 0.5f;
         float secondary = (horizontal ? recents.getHeight() : recents.getWidth()) * overviewSecondaryCenterFraction;
+        if (recents.isOrbitStyle()) {
+            int count = recents.getTaskViewCount();
+            scale = focusScale * LsOrbitGeometry.scale(0f, page, count);
+            primary = orbitPrimary(recents, handler.getPrimarySize(recents), 0f, page, count);
+            secondary = orbitSecondary(recents,
+                    horizontal ? recents.getHeight() : recents.getWidth(), 0f, page, count);
+        }
         TEMP_LIVE_CENTER[0] = handler.getPrimaryValue(primary, secondary);
         TEMP_LIVE_CENTER[1] = handler.getSecondaryValue(primary, secondary);
         offsetLiveSnapshotCenter(recents, scale);
@@ -1078,6 +1111,14 @@ public final class LsNativeStack {
             // Ordinal zero keeps the native center curve and needs no rear-card width.
             targetPrimary = getMiuiStackCenter(handler.getPrimarySize(recents),
                     0.0f, 0, page, recents.getTaskViewCount());
+        }
+        if (recents.isOrbitStyle()) {
+            float page = getEntryPagePosition(recents, recents.getTaskViewCount());
+            int count = recents.getTaskViewCount();
+            scale = LsOrbitGeometry.scale(0f, page, count);
+            targetPrimary = orbitPrimary(recents, handler.getPrimarySize(recents), 0f, page, count);
+            targetSecondary = orbitSecondary(recents,
+                    horizontalPrimary ? recents.getHeight() : recents.getWidth(), 0f, page, count);
         }
         TEMP_LIVE_CENTER[0] = handler.getPrimaryValue(targetPrimary, targetSecondary);
         TEMP_LIVE_CENTER[1] = handler.getSecondaryValue(targetPrimary, targetSecondary);
@@ -1607,7 +1648,8 @@ public final class LsNativeStack {
                 - handler.getPrimaryScroll(recents)
                 + handler.getPrimaryValue(
                         focus.getTranslationX(), focus.getTranslationY());
-        float expectedCenter = getMiuiCenter(primarySize, MIUI_FOCUS_DEPTH);
+        float expectedCenter = recents.isOrbitStyle() ? primarySize * .5f
+                : getMiuiCenter(primarySize, MIUI_FOCUS_DEPTH);
         float tolerance = Math.max(2.0f,
                 1.5f * recents.getResources().getDisplayMetrics().density);
         if (Math.abs(actualCenter - expectedCenter) > tolerance) {
@@ -1658,6 +1700,7 @@ public final class LsNativeStack {
 
     /** Drops a dismiss transaction that ended without the OEM end callback. */
     private static void clearPendingDismissState(RecentsView recents) {
+        LsOrbitReflow.clear(recents);
         if (recents != null && pendingDismissRecents.get() != recents) {
             return;
         }
@@ -1677,6 +1720,9 @@ public final class LsNativeStack {
     /** Unclip every survivor whose final geometry changes during dismissal. */
     private static boolean isPendingDismissReflowTask(
             RecentsView recents, TaskView task, int ordinal, int taskCount) {
+        // Orbit owns both axes and scale through LsOrbitReflow. Do not also
+        // schedule the OEM one-axis survivor properties for the same cards.
+        if (recents.isOrbitStyle()) return false;
         if (pendingDismissRecents.get() != recents || pendingDismissOrdinal < 0
                 || Float.isNaN(pendingDismissPagePosition)
                 || task == null || task == pendingDismissTask.get()
@@ -1729,6 +1775,27 @@ public final class LsNativeStack {
         return source;
     }
 
+    /** Orbit owns only a confirmed horizontal drag; taps and dismiss stay native. */
+    public static boolean dispatchOrbitTouch(RecentsView recents, MotionEvent event) {
+        if (!recents.isOrbitStyle() || isNativeGestureOwned(recents)
+                || !overviewActive || activeOverviewRecents.get() != recents
+                || !recents.isNativeStackApplied()) {
+            LsOrbitPager.clear(recents);
+            return false;
+        }
+        if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            obtainPagerEvent(recents, event);
+        }
+        if (actionMenuTask.get() != null || isDismissTransitionActive(recents)) {
+            LsOrbitPager.stop(recents);
+            return false;
+        }
+        float fallback = getTaskPagePositionForScroll(recents,
+                recents.getPagedOrientationHandler().getPrimaryScroll(recents),
+                recents.getCurrentPage());
+        return LsOrbitPager.touch(recents, event, fallback);
+    }
+
     public static void recyclePagerEvent(MotionEvent source, MotionEvent pagerEvent) {
         if (pagerEvent != source) {
             pagerEvent.recycle();
@@ -1770,6 +1837,7 @@ public final class LsNativeStack {
             return;
         }
         if (enabled) LsStackTransition.onOverviewStateChanged(recents, true);
+        LsOrbitPager.clear(recents);
         retainDismissHistoryLayout = false;
         /* State entry/exit is a hard transaction boundary.  This also repairs
          * a vertical swipe intercepted by the system gesture layer before the
@@ -2012,6 +2080,15 @@ public final class LsNativeStack {
      * win the hit test.  Choose the highest visible layer at the touch point,
      * including where a newer card covers the logical focus card.
      */
+    /** The OEM pager only considers adjacent pages; every visible orbit card can be touched. */
+    public static boolean isOrbitTaskVisible(RecentsView recents, TaskView task) {
+        if (task == null || task.getVisibility() != View.VISIBLE || task.getAlpha() <= .01f) return false;
+        Rect card = new Rect();
+        Rect viewport = new Rect();
+        return task.getGlobalVisibleRect(card) && recents.getGlobalVisibleRect(viewport)
+                && Rect.intersects(card, viewport);
+    }
+
     public static TaskView findTouchedTask(RecentsView recents,
             BaseDragLayer dragLayer, MotionEvent event) {
         if (!recents.isNativeStackStyle() || dragLayer == null) {
@@ -2129,6 +2206,13 @@ public final class LsNativeStack {
          * horizontal snap.  The integer destination is chosen separately. */
         pendingDismissPagePosition = getTaskPagePositionForScroll(
                 recents, handler.getPrimaryScroll(recents), focusPage);
+        if (recents.isOrbitStyle()) {
+            LsOrbitPager.stop(recents);
+            pendingDismissPagePosition = LsOrbitPager.position(recents,
+                    pendingDismissPagePosition, pendingDismissTaskCount);
+            LsOrbitReflow.begin(recents, task, dismissedOrdinal,
+                    pendingDismissPagePosition, pendingDismissTaskCount);
+        }
         Log.i(TAG, "dismiss capture cardOrdinal=" + dismissedOrdinal
                 + " viewportPosition=" + pendingDismissPagePosition
                 + " currentPage=" + recents.getCurrentPage());
@@ -2152,7 +2236,7 @@ public final class LsNativeStack {
         boolean childRemoved = success && dismissedTask != null
                 && recents.indexOfChild(dismissedTask) < 0
                 && recents.getTaskViewCount() == pendingDismissTaskCount - 1;
-        boolean retainHistory = getDismissLayoutShift() != 0;
+        boolean retainHistory = !recents.isOrbitStyle() && getDismissLayoutShift() != 0;
         clearPendingDismissState(recents);
         if (!recents.isNativeStackStyle()) {
             return;
@@ -2175,8 +2259,10 @@ public final class LsNativeStack {
                  * property.  Removing a newer task preserves the selected
                  * task's identity; removing the selected task promotes its
                  * successor, or its predecessor at the oldest endpoint. */
-                int targetOrdinal = getDismissTargetOrdinal(
-                        viewportPosition, dismissedOrdinal, taskCount);
+                int targetOrdinal = recents.isOrbitStyle()
+                        ? LsOrbitReflow.targetPage(viewportPosition, dismissedOrdinal, taskCount + 1)
+                        : getDismissTargetOrdinal(viewportPosition, dismissedOrdinal, taskCount);
+                if (recents.isOrbitStyle()) LsOrbitPager.commit(recents, targetOrdinal);
                 TaskView target = getTaskForOrdinal(recents, targetOrdinal);
                 targetPage = target == null ? -1 : recents.indexOfChild(target);
                 if (targetPage >= 0) {
@@ -2226,6 +2312,7 @@ public final class LsNativeStack {
      */
     public static int adjustDismissOffset(RecentsView recents, View child,
             TaskView dismissedTask, int nativeOffset) {
+        if (recents.isOrbitStyle() && child instanceof TaskView) return 0;
         if (!recents.isNativeStackStyle() || !(child instanceof TaskView)
                 || dismissedTask == null || pendingDismissRecents.get() != recents
                 || pendingDismissTask.get() != dismissedTask) {
@@ -2259,6 +2346,7 @@ public final class LsNativeStack {
 
     /** Target multiplier for TaskView.DISMISS_SCALE during deck reflow. */
     public static float getDismissReflowScale(RecentsView recents, TaskView task) {
+        if (recents.isOrbitStyle()) return 1.0f;
         if (!recents.isNativeStackStyle() || task == null) {
             return 1.0f;
         }
@@ -2279,6 +2367,7 @@ public final class LsNativeStack {
     /** Target title/action alpha uses the same destination as final layout. */
     public static float getDismissReflowTitleAlpha(RecentsView recents,
             TaskView task) {
+        if (recents.isOrbitStyle()) return 1.0f;
         if (!recents.isNativeStackStyle() || task == null) {
             return 1.0f;
         }
@@ -2568,6 +2657,13 @@ public final class LsNativeStack {
         if (pendingDismissRecents.get() == recents && !Float.isNaN(pendingDismissPagePosition)) {
             position = pendingDismissPagePosition;
         }
+        if (recents.isOrbitStyle()) {
+            if (!ordered && pendingDismissRecents.get() != recents) {
+                position = LsOrbitPager.position(recents, position, count);
+            }
+            return count <= 6 || Math.abs(LsOrbitGeometry.distance(ordinal, position, count)) <= 4f
+                    || LsOrbitReflow.keepsTaskData(recents, task);
+        }
         // All older visible slices have depth above the alpha cutoff. Include
         // the next page in both directions before asynchronous bitmap loading,
         // without keeping an unbounded task history resident.
@@ -2583,6 +2679,7 @@ public final class LsNativeStack {
 
     /** The real app launch now owns the surface; entry must not normalize it again. */
     public static void onTaskLaunchStarted(RecentsView recents) {
+        LsOrbitPager.stop(recents);
         liveSimulatorOverviewTarget = false;
         ++entryStabilizerGeneration;
         recents.setNativeStackEntryPending(false);
@@ -2616,6 +2713,7 @@ public final class LsNativeStack {
             }
 
             loadOverviewScale(recents.getContext(), recents);
+            final boolean orbit = recents.isOrbitStyle();
 
             int firstTaskIndex = -1;
             int firstTaskScroll = 0;
@@ -2705,14 +2803,17 @@ public final class LsNativeStack {
             float pagePosition;
             if (pendingDismissRecents.get() == recents
                     && !Float.isNaN(pendingDismissPagePosition)) {
-                pagePosition = Math.max(0.0f, Math.min(taskCount - 1.0f,
-                        pendingDismissPagePosition));
+                pagePosition = orbit ? pendingDismissPagePosition
+                        : Math.max(0.0f, Math.min(taskCount - 1.0f, pendingDismissPagePosition));
             } else {
                 pagePosition = stableEntryOrder ? getEntryPagePosition(recents, entryTaskOrderSize)
                         : getTaskPagePositionForScroll(
                                 recents, scroll, recents.getCurrentPage());
             }
             int visualTaskCount = stableEntryOrder ? entryTaskOrderSize : taskCount;
+            if (orbit && !stableEntryOrder && pendingDismissRecents.get() != recents) {
+                pagePosition = LsOrbitPager.position(recents, pagePosition, visualTaskCount);
+            }
 
             if (firstApply) {
                 Log.i(TAG, "geometry nativeScroll=" + nativeScroll
@@ -2799,6 +2900,28 @@ public final class LsNativeStack {
                 float stackScale = finalStackScale;
                 float stackAlpha = getMiuiAlpha(depth);
                 float stackZ = 100.0f - taskPosition;
+                float orbitSecondaryCenter = 0f;
+                if (orbit) {
+                    finalCenter = orbitPrimary(recents, primarySize, taskPosition,
+                            pagePosition, visualTaskCount);
+                    finalStackScale = focusScale * LsOrbitGeometry.scale(taskPosition,
+                            pagePosition, visualTaskCount);
+                    stackAlpha = LsOrbitGeometry.alpha(taskPosition, pagePosition, visualTaskCount);
+                    stackZ = LsOrbitGeometry.z(taskPosition, pagePosition, visualTaskCount);
+                    orbitSecondaryCenter = orbitSecondary(recents, secondarySize,
+                            taskPosition, pagePosition, visualTaskCount);
+                    if (LsOrbitReflow.sample(recents, task, primarySize, secondarySize, ORBIT_POSE)) {
+                        finalCenter = handler.getRotation() >= 2
+                                ? primarySize - ORBIT_POSE[0] : ORBIT_POSE[0];
+                        orbitSecondaryCenter = handler.getSecondaryTranslationDirectionFactor() < 0
+                                ? ORBIT_POSE[1] : secondarySize - ORBIT_POSE[1];
+                        finalStackScale = focusScale * ORBIT_POSE[2];
+                        stackAlpha = ORBIT_POSE[3];
+                        stackZ = ORBIT_POSE[4];
+                    }
+                    desiredCenter = finalCenter + revealPrimary;
+                    stackScale = finalStackScale;
+                }
                 if (actionOrdinal >= 0) {
                     if (taskOrdinal == actionOrdinal) {
                         float actionCenter = primarySize * 0.5f + LsStackActions.cardOffset(recents);
@@ -2806,6 +2929,11 @@ public final class LsNativeStack {
                         float actionScale = LsStackActions.cardScale(recents, task, focusScale);
                         stackScale += (actionScale - stackScale) * actionProgress;
                         stackAlpha += (1.0f - stackAlpha) * actionProgress;
+                        if (orbit) {
+                            orbitSecondaryCenter += (secondarySize * .5f - orbitSecondaryCenter)
+                                    * actionProgress;
+                            stackZ += 100f * actionProgress;
+                        }
                     } else {
                         desiredCenter += (taskOrdinal < actionOrdinal ? 1.0f : -1.0f)
                                 * primarySize * 0.48f * actionProgress;
@@ -2854,7 +2982,8 @@ public final class LsNativeStack {
                         + currentSecondaryTranslation
                         - oldStackSecondary
                         - dismissSecondary;
-                float stackSecondary = (secondarySize * overviewSecondaryCenterFraction)
+                float stackSecondary = (orbit ? orbitSecondaryCenter
+                        : secondarySize * overviewSecondaryCenterFraction)
                         - nativeSecondaryPivot;
 
                 // The slide itself reveals the cards at the viewport boundary.
@@ -2911,7 +3040,7 @@ public final class LsNativeStack {
                 }
                 if (entryLoading && !entryDeckReady) {
                     task.setNativeStackClipRight(taskOrdinal == 0 ? -1 : 0);
-                } else if (!horizontalPrimary || dismissLayer || dismissReflowLayer) {
+                } else if (orbit || !horizontalPrimary || dismissLayer || dismissReflowLayer) {
                     task.setNativeStackClipRight(-1);
                 } else if (actionOrdinal >= 0 && taskOrdinal != actionOrdinal) {
                     // Recover from the resting slice, not a moving higher card.
@@ -2943,7 +3072,7 @@ public final class LsNativeStack {
                 if (entryLoading && !entryDeckReady) {
                     task.setNativeStackChromeAlpha(0.0f, 0.0f);
                 } else {
-                    float titleAlpha = getFullyVisibleFactor(recents, task,
+                    float titleAlpha = orbit ? 1f : getFullyVisibleFactor(recents, task,
                             task.getNativeStackTitleView(),
                             displayedStart, displayedEnd, stackScale,
                             higherHeaderStart, primarySize);
@@ -2956,9 +3085,20 @@ public final class LsNativeStack {
                 }
                 // Chrome no longer calls OEM setTitleAlpha: that toggles icons
                 // INVISIBLE/VISIBLE twice per draw and invalidates their layout.
-                updateStackIcons(recents, task, displayedStart, stackScale,
-                        higherHeaderStart, primarySize,
-                        hideHeader || (entryLoading && !entryDeckReady));
+                if (orbit) {
+                    for (TaskContainer container : task.getTaskContainers()) {
+                        TaskViewIcon icon = container.getIconView();
+                        if (icon != null) {
+                            icon.setContentAlpha(hideHeader || (entryLoading && !entryDeckReady)
+                                    ? 0f : taskOrdinal == actionOrdinal ? 1f - actionProgress : 1f);
+                            applyStackIconBlur(icon.asView(), 0);
+                        }
+                    }
+                } else {
+                    updateStackIcons(recents, task, displayedStart, stackScale,
+                            higherHeaderStart, primarySize,
+                            hideHeader || (entryLoading && !entryDeckReady));
+                }
 
                 if (stackAlpha > 0.01f) {
                     // Lifting a screenshot never grants room to an app name.
@@ -2984,6 +3124,7 @@ public final class LsNativeStack {
     }
 
     private static void resetIfNeeded(RecentsView recents) {
+        LsOrbitPager.clear(recents);
         clearActionMenu(recents);
         cancelCardLongPress(recents);
         if (!recents.isNativeStackApplied()) {
@@ -3062,6 +3203,25 @@ public final class LsNativeStack {
         overviewSecondaryCenterFraction = 0.5f;
         if (recents == null) recents = activeOverviewRecents.get();
         if (recents == null) recents = nativeGestureRecents.get();
+        if ((recents != null && recents.isOrbitStyle())
+                || (recents == null && usesOrbitStyle(context))) {
+            // Orbit has its own size; the existing stack slider remains stack-only.
+            focusScale = .78f;
+            stackSpacingScale = 1f;
+            if (recents != null && recents.getWidth() > 0 && recents.getHeight() > 0) {
+                RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+                boolean horizontal = Math.abs(handler.getPrimaryValue(1f, 0f)) > .5f;
+                TaskView task = recents.getTaskViewAt(0);
+                if (task != null && task.getWidth() > 0 && task.getHeight() > 0) {
+                    float secondary = horizontal ? recents.getHeight() : recents.getWidth();
+                    float taskSecondary = horizontal ? task.getHeight() : task.getWidth();
+                    focusScale = Math.min(handler.getPrimarySize(recents) * .48f
+                            / Math.max(1f, handler.getPrimarySize(task)), secondary * .42f
+                            / Math.max(1f, taskSecondary));
+                }
+            }
+            return;
+        }
         if (recents == null || recents.getWidth() <= 0 || recents.getHeight() <= 0) return;
         // Launcher may keep a portrait window while Overview uses rotated axes.
         // Only the visual orientation decides the extra card-size multiplier.

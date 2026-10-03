@@ -28,6 +28,7 @@ members += '\n' + '\n'.join(re.findall(
 harness = r'''
 import java.util.*;
 import java.lang.ref.WeakReference;
+import com.android.quickstep.views.LsOrbitGeometry;
 public class StackControlsTest {
     static float overviewSpacingScale=1;
     static float overviewSecondaryCenterFraction=.5f;
@@ -116,26 +117,33 @@ public class StackControlsTest {
     }
     static class TaskContainer {TaskViewIcon icon;TaskContainer(TaskViewIcon i){icon=i;}TaskViewIcon getIconView(){return icon;}}
     static class TaskView {
+        int width=774,height=1708;int getWidth(){return width;}int getHeight(){return height;}
         TextView title;View mini,split,menu;
         TextView getNativeStackTitleView(){return title;}View getMMiniWindowButton(){return mini;}View getMSplitScreenButton(){return split;}View getMMenuButton(){return menu;}
         List<TaskContainer> containers=new ArrayList<>();List<TaskContainer> getTaskContainers(){return containers;}
         void offsetDescendantRectToMyCoords(View v,Rect b){b.left+=v.x;b.right+=v.x;b.top+=v.y;b.bottom+=v.y;}
     }
-    static class RecentsPagedOrientationHandler {int rotation;int getRotation(){return rotation;}int getSecondaryTranslationDirectionFactor(){return rotation==1?1:-1;}boolean vertical;float getPrimaryValue(float x,float y){return vertical?y:x;}}
+    static class RecentsPagedOrientationHandler {int rotation;int getRotation(){return rotation;}int getSecondaryTranslationDirectionFactor(){return rotation==1?1:-1;}boolean vertical;float getPrimaryValue(float x,float y){return vertical?y:x;}
+        int getPrimarySize(RecentsView r){return vertical?r.height:r.width;}
+        int getPrimarySize(TaskView t){return vertical?t.getHeight():t.getWidth();}}
     static class RecentsView {
         int width=1216,height=2688;int getWidth(){return width;}int getHeight(){return height;}
         Context context;RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
         RecentsView(Context c){context=c;}Resources getResources(){return context.getResources();}
         boolean isNativeStackStyle(){return stack;}
+        boolean orbit;TaskView task;
+        boolean isOrbitStyle(){return orbit;}
+        TaskView getTaskViewAt(int index){return task;}
         RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
     }
     static float baseFocusScale=1.1f,focusScale,stackSpacingScale=1,liveEntryStartScale=Float.NaN,lastLiveAppliedScale,liveEntryPageProgress;
-    static boolean liveSimulatorOverviewTarget,stack=true;
+    static boolean liveSimulatorOverviewTarget,stack=true,orbitPreference;
     static WeakReference<RecentsView> nativeGestureRecents=new WeakReference<>(null);
     static WeakReference<RecentsView> activeOverviewRecents=new WeakReference<>(null);
     static SharedPreferences scalePreferences;
     static final Rect TEMP_DESCENDANT_BOUNDS=new Rect();
     static boolean usesNativeStackStyle(Context c){return stack;}
+    static boolean usesOrbitStyle(Context c){return orbitPreference;}
     static void loadConfig(Resources r){} // Fixed resource baseline; preference math stays production.
     MEMBERS
     static int checks;
@@ -143,6 +151,63 @@ public class StackControlsTest {
     static void near(float a,float b,String m){check(Math.abs(a-b)<.0001f,m+": "+a+" != "+b);}
     static ScaleControl control(Activity a){return (ScaleControl)((LinearLayout)a.card).children.get(0);}
     static SeekBar slider(ScaleControl c){return (SeekBar)c.children.get(1);}
+    static void orbitScaleAndClearance(Context context,SharedPreferences prefs){
+        int savedWrites=prefs.writes;
+        RecentsView recents=new RecentsView(context);recents.task=new TaskView();
+        // Exercise the production loader in physical and virtual orientations,
+        // with both task aspect ratios, rather than replacing it with a stub.
+        for(int rotation=0;rotation<4;rotation++)for(boolean wide:new boolean[]{false,true})
+        for(boolean taskWide:new boolean[]{false,true}){
+            recents.width=wide?2688:1216;recents.height=wide?1216:2688;
+            recents.handler.rotation=rotation;recents.handler.vertical=(rotation&1)!=0;
+            recents.task.width=taskWide?1708:774;recents.task.height=taskWide?774:1708;
+            float primary=recents.handler.getPrimarySize(recents);
+            float secondary=recents.handler.vertical?recents.width:recents.height;
+            float taskPrimary=recents.handler.getPrimarySize(recents.task);
+            float taskSecondary=recents.handler.vertical?recents.task.width:recents.task.height;
+            float stableOrbitScale=Float.NaN;
+            for(int percent:new int[]{70,88,100,120}){
+                prefs.stored=percent;recents.orbit=true;
+                for(int frame=0;frame<20;frame++){
+                    loadOverviewScale(context,recents);
+                    float primaryFraction=taskPrimary*focusScale/primary;
+                    float secondaryFraction=taskSecondary*focusScale/secondary;
+                    check(primaryFraction>0&&primaryFraction<=.48001f,"orbit exceeded visual width cap");
+                    check(secondaryFraction>0&&secondaryFraction<=.42001f,"orbit exceeded visual height cap");
+                    check(Math.abs(primaryFraction-.48f)<.00001f||Math.abs(secondaryFraction-.42f)<.00001f,
+                            "orbit shrank below both viewport limits");
+                    // This combines the actual loader size with production
+                    // geometry, so either a lower center or taller card regresses it.
+                    float front=LsOrbitGeometry.secondary(1f,0f,0f,6);
+                    near(front,.607f,"contracted orbit changed foreground center");
+                    check(front+secondaryFraction*.5f<=.81701f,"contracted orbit lost bottom control clearance");
+                    if(Float.isNaN(stableOrbitScale))stableOrbitScale=focusScale;
+                    near(focusScale,stableOrbitScale,"stack preference or prior frame changed orbit scale");
+                    near(stackSpacingScale,1f,"stack spacing leaked into orbit");
+                    near(overviewSpacingScale,1f,"landscape stack spacing leaked into orbit");
+                    near(overviewSecondaryCenterFraction,.5f,"stack raised center leaked into orbit");
+                }
+                activeOverviewRecents=new WeakReference<>(recents);liveSimulatorOverviewTarget=true;
+                near(getLiveRecentsScale(context,2f),2f*stableOrbitScale,"live orbit target differs from screenshot");
+                activeOverviewRecents.clear();nativeGestureRecents=new WeakReference<>(recents);
+                near(getLiveRecentsScale(context,2f),2f*stableOrbitScale,"gesture-only orbit target lost size");
+                nativeGestureRecents.clear();liveSimulatorOverviewTarget=false;
+                recents.orbit=false;loadOverviewScale(context,recents);
+                float stackExpected=1.1f*percent/100f*((wide^((rotation&1)!=0))?.77f:1f);
+                near(focusScale,stackExpected,"leaving orbit lost saved stack size");
+                near(stackSpacingScale,percent/100f,"leaving orbit lost saved stack spacing");
+                check(readScalePercent(context)==percent,"orbit overwrote saved stack preference");
+            }
+        }
+        recents.orbit=true;recents.task=null;prefs.stored=88;
+        loadOverviewScale(context,recents);near(focusScale,.78f,"orbit missing-task fallback changed");
+        orbitPreference=true;loadOverviewScale(context,null);
+        near(focusScale,.78f,"orbit preference-only fallback used stack 88 percent");
+        orbitPreference=false;loadOverviewScale(context,null);
+        near(focusScale,1.1f*.88f,"orbit fallback lost stored stack 88 percent");
+        check(prefs.writes==savedWrites,"orbit testing wrote scale preferences");
+        prefs.stored=100;loadOverviewScale(context,null);
+    }
     public static void main(String[] args){
         SharedPreferences prefs=new SharedPreferences();Context context=new Context(prefs);
         Activity a=new Activity(context);configureScaleControl(a,1);
@@ -226,6 +291,7 @@ public class StackControlsTest {
         near(focusScale,1.1f,"missing view guessed a landscape orientation");
         near(overviewSecondaryCenterFraction,.5f,"missing view retained raised center");
         near(overviewSpacingScale,1,"missing view retained landscape spacing");
+        orbitScaleAndClearance(context,prefs);
         TaskView task=new TaskView();TaskViewIcon icon=new TaskViewIcon(context);task.containers.add(new TaskContainer(icon));
         // A long title can be hidden without suppressing its much narrower icon.
         icon.setContentAlpha(0);updateStackIcons(recents,task,100,1,180,1000,false);
@@ -315,7 +381,8 @@ public class StackControlsTest {
 with tempfile.TemporaryDirectory(prefix='ls-stack-controls-') as folder:
     path = Path(folder) / 'StackControlsTest.java'
     path.write_text(harness, encoding='utf-8')
-    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path)], check=True)
+    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'StackControlsTest'], check=True)
 
 activity = (ROOT / 'src/smali/com/android/launcher3/settings/RecentAppStyleActivity.smali').read_text(encoding='utf-8')

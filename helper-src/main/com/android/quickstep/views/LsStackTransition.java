@@ -84,6 +84,11 @@ public final class LsStackTransition {
         WeakReference<TaskView> launchedTask = new WeakReference<>(null);
         int[] launchedTaskIds;
         RectF launchBounds;
+        WeakReference<View> launchSnapshot = new WeakReference<>(null);
+        Matrix snapshotStartMatrix;
+        Matrix snapshotOriginalAnimation;
+        Matrix snapshotToBuffer;
+        Matrix launchSurfaceMatrix;
         float visibleFraction = 1f;
         float launchClip = -1f;
         float launchProgress;
@@ -152,11 +157,26 @@ public final class LsStackTransition {
         }
     }
 
+    private static void restoreLaunchSnapshot(Transition transition) {
+        TaskView task = transition.launchedTask.get();
+        View snapshot = transition.launchSnapshot.get();
+        if (task != null && snapshot != null
+                && Arrays.equals(transition.launchedTaskIds, task.getTaskIds())
+                && task.getTaskContainers().size() == 1
+                && task.getTaskContainers().get(0).getSnapshotView() == snapshot) {
+            snapshot.setAnimationMatrix(transition.snapshotOriginalAnimation);
+        }
+        transition.snapshotToBuffer = null;
+        transition.launchSurfaceMatrix = null;
+        transition.launchSnapshot.clear();
+    }
+
     /** A new entry or gesture cancels ownership of the previous transaction. */
     public static void clear(RecentsView recents) {
         Transition old = transitions.remove(recents);
         if (old != null) {
             removeSurfaces(old);
+            restoreLaunchSnapshot(old);
             if (old.launch) for (CardFrame frame : old.frames) frame.restoreLaunch(recents);
             refreshDrawAlpha(recents);
         }
@@ -293,6 +313,28 @@ public final class LsStackTransition {
         return bounds;
     }
 
+    /** RenderNode draws layout * animationMatrix * propertyMatrix. View's
+     * transformMatrixToGlobal omits animationMatrix, so include every ancestor
+     * explicitly and optionally omit only the snapshot's animation correction. */
+    private static Matrix snapshotRootMatrix(View snapshot, boolean includeAnimation) {
+        Matrix result = new Matrix();
+        View view = snapshot;
+        View root = snapshot.getRootView();
+        while (view != root) {
+            if (!(view.getParent() instanceof View)) return null;
+            View parent = (View) view.getParent();
+            result.postConcat(view.getMatrix());
+            Matrix animation = view.getAnimationMatrix();
+            if (animation != null && (view != snapshot || includeAnimation)) {
+                result.postConcat(animation);
+            }
+            result.postTranslate(view.getLeft() - parent.getScrollX(),
+                    view.getTop() - parent.getScrollY());
+            view = parent;
+        }
+        return result;
+    }
+
     /** Neighbours use the same clock as the expanding remote app surface. */
     private static void applyLaunchCards(RecentsView recents, Transition transition) {
         TaskView selected = transition.launchedTask.get();
@@ -331,13 +373,26 @@ public final class LsStackTransition {
                 && Arrays.equals(existing.launchedTaskIds, task.getTaskIds())) return;
         View snapshot = task.getTaskContainers().get(0).getSnapshotView();
         if (snapshot == null || snapshot.getWidth() <= 0 || snapshot.getHeight() <= 0) return;
-        RectF bounds = rootBounds(snapshot);
+        Matrix snapshotStart = recents.isOrbitStyle() ? snapshotRootMatrix(snapshot, true) : null;
+        RectF bounds;
+        if (snapshotStart == null) {
+            bounds = rootBounds(snapshot);
+        } else {
+            bounds = new RectF(0f, 0f, snapshot.getWidth(), snapshot.getHeight());
+            snapshotStart.mapRect(bounds);
+        }
         if (bounds.width() <= 0f || bounds.height() <= 0f) return;
         clear(recents);
         Transition transition = new Transition(recents, true);
         transition.launchedTask = new WeakReference<>(task);
         transition.launchedTaskIds = task.getTaskIds().clone();
         transition.launchBounds = bounds;
+        if (recents.isOrbitStyle()) {
+            transition.launchSnapshot = new WeakReference<>(snapshot);
+            transition.snapshotStartMatrix = snapshotStart;
+            Matrix original = snapshot.getAnimationMatrix();
+            transition.snapshotOriginalAnimation = original == null ? null : new Matrix(original);
+        }
         float clip = task.getNativeStackClipRightF();
         if (clip >= 0f) {
             transition.launchClip = clip;
@@ -373,6 +428,48 @@ public final class LsStackTransition {
         return new LaunchEnd(task);
     }
 
+    /** Runs after the OEM surface and noncurrent-page thumbnail frame writers.
+     * Current-page launches need this too: their screenshot otherwise follows
+     * RecentsView's independent fullscreen scale while the leash follows the
+     * clicked orbit card. Keep OEM alpha and the same remote animation clock. */
+    public static Runnable launchSnapshotFrame(TaskView task) {
+        return new SnapshotFrame(task);
+    }
+
+    private static final class SnapshotFrame implements Runnable {
+        final Transition transition;
+        SnapshotFrame(TaskView task) {
+            transition = transitions.get(task.getRecentsView());
+        }
+        @Override public void run() {
+            if (transition == null || transition.snapshotToBuffer == null
+                    || transition.launchSurfaceMatrix == null) return;
+            RecentsView recents = transition.recents.get();
+            TaskView task = transition.launchedTask.get();
+            View snapshot = transition.launchSnapshot.get();
+            if (recents == null || transitions.get(recents) != transition || !transition.launch
+                    || task == null || snapshot == null
+                    || !Arrays.equals(transition.launchedTaskIds, task.getTaskIds())
+                    || task.getTaskContainers().size() != 1
+                    || task.getTaskContainers().get(0).getSnapshotView() != snapshot) return;
+            Matrix base = snapshotRootMatrix(snapshot, false);
+            Matrix inverseBase = new Matrix();
+            Matrix property = new Matrix(snapshot.getMatrix());
+            Matrix inverseProperty = new Matrix();
+            if (base == null || !base.invert(inverseBase) || !property.invert(inverseProperty)) return;
+            // Desired = currentSurface * inverse(firstSurface) * clickedSnapshot.
+            // Base = parent/layout * property. Solve for animationMatrix in
+            // parent/layout * animationMatrix * property = Desired.
+            Matrix desired = new Matrix(transition.snapshotToBuffer);
+            desired.postConcat(transition.launchSurfaceMatrix);
+            Matrix animation = new Matrix(inverseProperty);
+            animation.postConcat(desired);
+            animation.postConcat(inverseBase);
+            animation.postConcat(property);
+            snapshot.setAnimationMatrix(animation);
+        }
+    }
+
     private static final class LaunchEnd extends AnimatorListenerAdapter {
         final WeakReference<TaskView> task;
         final Transition transition;
@@ -399,6 +496,7 @@ public final class LsStackTransition {
             return;
         }
         removeSurfaces(transition);
+        restoreLaunchSnapshot(transition);
         if (cancelled || transition.overview) {
             transitions.remove(recents);
             for (CardFrame frame : transition.frames) frame.restoreLaunch(recents);
@@ -454,6 +552,16 @@ public final class LsStackTransition {
         homeMatrix.postTranslate(desired.left - nativeBounds.left, desired.top - nativeBounds.top);
         matrix.set(homeMatrix);
         matrix.postConcat(homeToWindow);
+        if (transition.snapshotStartMatrix != null) {
+            if (transition.snapshotToBuffer == null) {
+                Matrix inverseSurface = new Matrix();
+                if (homeMatrix.invert(inverseSurface)) {
+                    transition.snapshotToBuffer = new Matrix(transition.snapshotStartMatrix);
+                    transition.snapshotToBuffer.postConcat(inverseSurface);
+                }
+            }
+            transition.launchSurfaceMatrix = new Matrix(homeMatrix);
+        }
         if (transition.visibleFraction < 1f) {
             float visibleFraction = 1f - (1f - transition.visibleFraction) * remaining;
             RectF visible = new RectF(desired);

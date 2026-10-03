@@ -32,6 +32,9 @@ names = ('getMiuiStackCenter', 'getEntrySlideOffset', 'getInitialTaskOrdinal', '
          'onTaskActionsLongPress', 'onTaskMenuClosed', 'clearActionMenu', 'isActionMenuTask',
          'dispatchInlineActionTouch', 'armEntryReveal', 'startEntryRevealIfArmed', 'finishEntryReveal', 'getActionMenuOrdinal', 'onCardTouch', 'cancelCardLongPress', 'animateTaskActions', 'onTaskMenuOpenResult', 'onTaskMenuDetached')
 members = '\n'.join(extract(name) for name in names)
+for name in ('orbitPrimary', 'orbitSecondary'):
+    if re.search(r'private static [^\n]+ ' + name + r'\(', source):
+        members += '\n' + extract(name)
 geometry_names = ('getMiuiInteriorCorrection', 'getMiuiDepth', 'getMiuiScaleTerm',
                   'getMiuiScaleRatio', 'getMiuiCenter', 'valueAlongDepth',
                   'getMiuiAlpha', 'getMiuiTitleAlpha')
@@ -53,7 +56,21 @@ harness = r'''
 import java.lang.ref.WeakReference;
 import java.util.ArrayDeque;
 import java.util.WeakHashMap;
+import com.android.quickstep.views.LsOrbitGeometry;
 public class NativeGestureTest {
+    static final float[] ORBIT_POSE=new float[5];
+    // The gesture controller has its own production test. This configurable
+    // port proves that production composition consumes its independent phase.
+    static class LsOrbitPager {
+        static float position(RecentsView r,float fallback,int count){
+            r.pagerSamples++;return Float.isNaN(r.orbitPhase)?fallback:r.orbitPhase;
+        }
+        static void clear(RecentsView r){if(r!=null)r.orbitPhase=Float.NaN;}
+    }
+    // The dedicated orbit-reflow harness exercises this separate transaction.
+    static class LsOrbitReflow {
+        static boolean sample(RecentsView r,TaskView t,float w,float h,float[] out){return false;}
+    }
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
     static float overviewSecondaryCenterFraction=.5f;
@@ -222,7 +239,9 @@ public class NativeGestureTest {
     }
     static class RecentsPagedOrientationHandler {
         boolean vertical;
-        int getRotation(){return vertical?1:0;}
+        int rotation=-1,secondaryFactor;
+        int getRotation(){return rotation>=0?rotation:vertical?1:0;}
+        int getSecondaryTranslationDirectionFactor(){return secondaryFactor!=0?secondaryFactor:vertical?1:-1;}
         int getPrimarySize(RecentsView r){return vertical?2000:1000;} int getPrimarySize(TaskView t){return vertical?1200:700;}
         int getPrimaryScroll(RecentsView r){return r.scroll;}
         float getPrimaryValue(float x,float y){return vertical?y:x;}
@@ -234,8 +253,9 @@ public class NativeGestureTest {
         int getRunningTaskIndex(){return 0;}
         TaskView getTaskViewAt(int index){return tasks[index];}
         TaskView[] tasks={new TaskView(0),new TaskView(1),new TaskView(2)};
-        boolean stack=true,pending,applied,running,touching,ready=true;
+        boolean stack=true,orbit,pending,applied,running,touching,ready=true;
         float contentAlpha=1;
+        float orbitPhase=Float.NaN;int pagerSamples;
         float getContentAlpha(){return contentAlpha;}
         int page,scroll,pageWrites,captures,invalidations;
         ArrayDeque<Runnable> queue=new ArrayDeque<>();
@@ -247,6 +267,7 @@ public class NativeGestureTest {
         int getScrollX(){return scroll;} int getScrollY(){return 0;}
         void invalidate(){invalidations++;}
         boolean isNativeStackStyle(){return stack;} boolean isNativeStackEntryPending(){return pending;}
+        boolean isOrbitStyle(){return orbit;}
         void setNativeStackEntryPending(boolean v){pending=v;}
         boolean isNativeStackApplied(){return applied;} void setNativeStackApplied(boolean v){applied=v;}
         boolean isRecentsAnimationRunning(){return running;} boolean isHandlingTouch(){return touching;}
@@ -906,7 +927,75 @@ public class NativeGestureTest {
             RecentsView.sGestureActive=false;onOverviewStateChanged(r,false);
         }
     }
+    static void orbitComposition(){
+        float savedScale=focusScale;
+        for(int count:new int[]{1,3,6,8})for(int rotation=0;rotation<4;rotation++)
+        for(int secondaryFactor:new int[]{-1,1}){
+            boolean vertical=(rotation&1)!=0;
+            RecentsView r=new RecentsView();r.orbit=true;r.handler.vertical=vertical;
+            r.handler.rotation=rotation;r.handler.secondaryFactor=secondaryFactor;
+            r.tasks=new TaskView[count];
+            for(int i=0;i<count;i++){r.tasks[i]=new TaskView(i);r.tasks[i].parent=r;}
+            onOverviewStateChanged(r,true);r.drain();clearEntryTaskOrder(r);
+            r.pending=false;overviewEntryPending=false;overviewPendingRecents.clear();
+            focusScale=.8f;r.touching=true;
+            float primary=vertical?2000:1000,secondary=vertical?1000:2000;
+            for(float page:new float[]{0,.375f,count-1f,count-.25f,count+.375f,-.375f,
+                    -3*count+.25f,5*count-.375f}){
+                // Hold OEM scroll on a valid, unrelated page while the orbit
+                // controller continues through its first/last-page boundary.
+                r.scroll=Math.min(count-1,1)*700;r.page=Math.min(count-1,1);
+                r.orbitPhase=page;r.pagerSamples=0;
+                update(r);
+                float actualPage=page;
+                check(r.pagerSamples==1,"orbit layout did not sample controller phase once");
+                for(int i=0;i<count;i++){
+                    TaskView t=r.tasks[i];
+                    float x=t.getLeft()+t.getPivotX()+t.getTranslationX();
+                    float y=t.getTop()+t.getPivotY()+t.getTranslationY();
+                    float actualPrimary=(vertical?y:x)-r.scroll;
+                    float actualSecondary=vertical?x:y;
+                    float expectedPrimary=LsOrbitGeometry.primary(primary,i,actualPage,count);
+                    if(rotation>=2)expectedPrimary=primary-expectedPrimary;
+                    float expectedSecondary=LsOrbitGeometry.secondary(secondary,i,actualPage,count);
+                    if(secondaryFactor>0)expectedSecondary=secondary-expectedSecondary;
+                    check(Math.abs(actualPrimary-expectedPrimary)<.01f,
+                            "orbit composition failed primary position");
+                    check(Math.abs(actualSecondary-expectedSecondary)<.01f,
+                            "orbit composition failed secondary position");
+                    check(Math.abs(t.scale-.8f*LsOrbitGeometry.scale(i,actualPage,count))<.00001f,
+                            "orbit composition used stack scale");
+                    check(Math.abs(t.z-LsOrbitGeometry.z(i,actualPage,count))<.00001f,
+                            "orbit composition used task index draw order");
+                    check(t.clip==-1,"orbit inherited stack screenshot slicing");
+                }
+            }
+            // A pending delete owns its captured phase even if the controller
+            // has since received a different phase or has been stopped.
+            pendingDismissRecents=new WeakReference<>(r);pendingDismissPagePosition=count-.25f;
+            r.orbitPhase=count*.5f;r.pagerSamples=0;update(r);
+            check(r.pagerSamples==0,"pending dismiss was overwritten by live orbit phase");
+            TaskView first=r.tasks[0];
+            float actualPrimary=r.handler.getPrimaryValue(first.getLeft()+first.getPivotX()+first.getTranslationX(),
+                    first.getTop()+first.getPivotY()+first.getTranslationY())-r.scroll;
+            float expectedPrimary=LsOrbitGeometry.primary(primary,0,count-.25f,count);
+            if(rotation>=2)expectedPrimary=primary-expectedPrimary;
+            check(Math.abs(actualPrimary-expectedPrimary)<.01f,"dismiss layout clamped the captured circular phase");
+            pendingDismissRecents.clear();pendingDismissPagePosition=Float.NaN;
+            onOverviewStateChanged(r,false);
+        }
+        RecentsView stack=new RecentsView();onOverviewStateChanged(stack,true);stack.drain();
+        clearEntryTaskOrder(stack);stack.pending=false;overviewEntryPending=false;
+        overviewPendingRecents.clear();stack.touching=true;stack.scroll=700;
+        update(stack);float x=stack.tasks[0].x,y=stack.tasks[0].y,scale=stack.tasks[0].scale;
+        stack.orbitPhase=-20.375f;stack.pagerSamples=0;update(stack);
+        check(stack.pagerSamples==0&&stack.tasks[0].x==x&&stack.tasks[0].y==y&&stack.tasks[0].scale==scale,
+                "orbit phase override leaked into existing stack composition");
+        onOverviewStateChanged(stack,false);
+        focusScale=savedScale;
+    }
     public static void main(String[] args){
+        ORBIT_COMPOSITION
         preciseClipBoundaries();
         actionNeighborCompleteness();
         homeSpacingHandoff();
@@ -1019,7 +1108,8 @@ public class NativeGestureTest {
         System.out.println("PASS "+checks+" native gesture ownership, cancel, switch, late-frame and re-entry checks");
     }
 }
-'''.replace('MEMBERS', members).replace('GEOMETRY', geometry)
+'''.replace('MEMBERS', members).replace('GEOMETRY', geometry).replace(
+    'ORBIT_COMPOSITION', 'orbitComposition();' if 'float orbitPrimary(' in source else '')
 
 # Verify the production binding runs before OEM setup can sample cached cards.
 recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
@@ -1042,8 +1132,15 @@ body=task_source.split('.method private final showTaskMenuWithContainer(',1)[1].
 assert body.count('->onTaskMenuOpenResult(')==2, 'both OEM menu variants must report success or failure'
 body=recents.split('.method public dispatchTouchEvent(',1)[1].split('.end method',1)[0]
 assert body.index('->dispatchInlineActionTouch(')<body.index('invoke-super')
+if 'boolean dispatchOrbitTouch(' in source:
+    assert body.index('->dispatchCardLongPressTouch(') < body.index('->dispatchOrbitTouch(') < body.index('invoke-super'), \
+        'orbit routing must preserve long-press observation and precede OEM edge clamping'
+    orbit_dispatch=body.split('->dispatchOrbitTouch(',1)[1].split('invoke-super',1)[0]
+    assert re.search(r'move-result v0\s+if-eqz v0, :\w+\s+return v0',orbit_dispatch), \
+        'consumed orbit gestures must not also reach the finite OEM pager'
 with tempfile.TemporaryDirectory(prefix='ls-native-gesture-') as folder:
     path = Path(folder) / 'NativeGestureTest.java'
     path.write_text(harness, encoding='utf-8')
-    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path)], check=True)
+    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'NativeGestureTest'], check=True)

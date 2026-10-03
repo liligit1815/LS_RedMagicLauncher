@@ -32,6 +32,9 @@ methods = '\n'.join(extract(name) for name in (
     'getMiuiDepth', 'getMiuiInteriorCorrection', 'getMiuiScaleTerm',
     'getMiuiScaleRatio', 'getMiuiCenter', 'getMiuiStackCenter', 'clamp', 'setLiveOverviewTarget',
     'normalizeLiveAppliedScale', 'normalizeLiveEntryScroll'))
+for name in ('orbitPrimary', 'orbitSecondary'):
+    if re.search(r'private static [^\n]+ ' + name + r'\(', source):
+        methods += '\n' + extract(name)
 if 'void offsetLiveSnapshotCenter(' in source:
     methods += '\n' + extract('offsetLiveSnapshotCenter')
 constants = '\n'.join(re.findall(r'    private static final float MIUI_\w+ = [^;]+;', source))
@@ -40,6 +43,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
+import com.android.quickstep.views.LsOrbitGeometry;
 public class EntryRotationTest {
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
@@ -79,6 +83,8 @@ public class EntryRotationTest {
     }
     static class RecentsPagedOrientationHandler {
         boolean vertical;
+        int getRotation(){return vertical?1:0;}
+        int getSecondaryTranslationDirectionFactor(){return vertical?1:-1;}
         float getPrimaryValue(float x,float y){return vertical?y:x;}
         float getSecondaryValue(float x,float y){return vertical?x:y;}
         int getPrimarySize(RecentsView r){return vertical?r.h:r.w;}
@@ -89,6 +95,7 @@ public class EntryRotationTest {
         final RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
         int getWidth(){return w;} int getHeight(){return h;} int getTaskViewCount(){return count;}
         boolean isNativeStackStyle(){return stack;} boolean isRecentsAnimationRunning(){return running;}
+        boolean isOrbitStyle(){return false;}
         RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
         final TaskView task=new TaskView();
         int getRunningTaskIndex(){return 0;} TaskView getTaskViewAt(int index){return task;}
@@ -312,5 +319,6 @@ assert apply_body.count('->normalizeLiveEntryScroll(F)F') == 1, 'entry scroll mu
 with tempfile.TemporaryDirectory(prefix='ls-entry-rotation-') as folder:
     path = Path(folder) / 'EntryRotationTest.java'
     path.write_text(harness, encoding='utf-8')
-    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path)], check=True)
+    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'EntryRotationTest'], check=True)

@@ -29,23 +29,35 @@ members += '\n' + (extract('shouldKeepTaskData') if 'boolean shouldKeepTaskData(
 members += '\n' + '\n'.join(re.findall(r'    private static final float MIUI_\w+ = [^;]+;', source))
 harness = r'''
 import java.lang.ref.WeakReference;
+import com.android.quickstep.views.LsOrbitGeometry;
 public class ThumbnailContinuityTest {
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
     static class View {}
     static class TaskView extends View {}
+    // The orbit transaction's residency union has its own production harness.
+    static class LsOrbitReflow {
+        static boolean keepsTaskData(RecentsView r,TaskView t){return false;}
+    }
+    static class LsOrbitPager {
+        static float position(RecentsView r,float fallback,int count){
+            r.pagerSamples++;return Float.isNaN(r.orbitPhase)?fallback:r.orbitPhase;
+        }
+    }
     static class RecentsPagedOrientationHandler {
         int getPrimaryScroll(RecentsView r){return r.scroll;}
     }
     static class RecentsView {
         View[] children; TaskView[] tasks;
-        boolean stack=true,nativeOwned;int scroll,page,writes;float stride=700;
+        boolean stack=true,nativeOwned,orbit;int scroll,page,writes,pagerSamples;
+        float stride=700,orbitPhase=Float.NaN;
         RecentsView(int count){
             tasks=new TaskView[count];children=new View[count+1];children[0]=new View();
             for(int i=0;i<count;i++)children[i+1]=tasks[i]=new TaskView();
         }
         int getChildCount(){return children.length;}View getChildAt(int i){return children[i];}
         int getTaskViewCount(){return tasks.length;} boolean isNativeStackStyle(){return stack;}
+        boolean isOrbitStyle(){return orbit;}
         int getCurrentPage(){return page;} int getScrollForPage(int i){return Math.round((i-1)*stride);}
         int indexOfChild(View t){for(int i=0;i<children.length;i++)if(children[i]==t)return i;return -1;}
         void setNativeStackOverviewPage(int p){page=p;scroll=getScrollForPage(p);writes++;}
@@ -87,6 +99,43 @@ public class ThumbnailContinuityTest {
         }
         check(retained<=8,"unbounded thumbnail retention: "+retained);
     }
+    static void orbitResidency(){
+        for(int count:new int[]{1,3,6,7,20,40})
+        for(float phase:new float[]{-.375f,count-.25f,count+.375f,-3*count+.5f,4*count-.5f}){
+            RecentsView r=new RecentsView(count);r.orbit=true;
+            r.setNativeStackOverviewPage(1+count/2);r.orbitPhase=phase;
+            int retained=0;
+            for(int i=0;i<count;i++){
+                boolean keep=shouldKeepTaskData(r,r.tasks[i],false);
+                if(keep)retained++;
+                for(float step:new float[]{-1f,-.5f,0f,.5f,1f})
+                    if(LsOrbitGeometry.alpha(i,phase+step,count)>.01f)
+                        check(keep,"wrapped visible/lookahead snapshot was unloaded phase="+phase+" task="+i);
+            }
+            check(r.pagerSamples==count,"orbit residency did not consult controller phase");
+            check(retained>0&&retained<=9,"circular residency became empty or unbounded");
+        }
+        RecentsView r=new RecentsView(20);r.orbit=true;r.orbitPhase=10.25f;
+        ordered=r;order=r.tasks.clone();entryTaskOrderSize=20;entryPosition=.25f;
+        check(shouldKeepTaskData(r,r.tasks[0],false)&&!shouldKeepTaskData(r,r.tasks[10],false),
+                "controller phase overrode the immutable entry order");
+        check(r.pagerSamples==0,"entry residency queried idle controller phase");
+        ordered=null;pendingDismissRecents=new WeakReference<>(r);pendingDismissPagePosition=19.75f;
+        check(shouldKeepTaskData(r,r.tasks[19],false)&&!shouldKeepTaskData(r,r.tasks[10],false),
+                "controller phase overrode captured dismiss residency");
+        check(r.pagerSamples==0,"dismiss residency queried live controller phase");
+        pendingDismissRecents.clear();pendingDismissPagePosition=Float.NaN;r.orbit=false;
+        boolean[] baseline=new boolean[20];
+        for(int i=0;i<20;i++)baseline[i]=shouldKeepTaskData(r,r.tasks[i],false);
+        r.orbitPhase=-57.75f;r.pagerSamples=0;
+        for(int i=0;i<20;i++)check(shouldKeepTaskData(r,r.tasks[i],false)==baseline[i],
+                "controller phase changed existing stack residency");
+        check(r.pagerSamples==0,"existing stack consulted orbit controller");
+        r.stack=false;
+        for(boolean nativeVisible:new boolean[]{false,true})
+            check(shouldKeepTaskData(r,r.tasks[19],nativeVisible)==nativeVisible,
+                    "orbit override changed native style residency");
+    }
     public static void main(String[] args){
         // A logical second-card entry must leave the physical running page
         // unchanged until handoff, including repeat alignment requests.
@@ -118,6 +167,7 @@ public class ThumbnailContinuityTest {
             r.nativeOwned=false;
         }
         check(shouldKeepTaskData(r,r.tasks[19],true),"native prefetch narrowed");
+        orbitResidency();
         System.out.println("PASS "+checks+" thumbnail residency and physical entry continuity checks");
     }
 }
@@ -126,7 +176,8 @@ public class ThumbnailContinuityTest {
 with tempfile.TemporaryDirectory(prefix='ls-thumbnail-continuity-') as folder:
     path = Path(folder) / 'ThumbnailContinuityTest.java'
     path.write_text(harness, encoding='utf-8')
-    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path)], check=True)
+    subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'ThumbnailContinuityTest'], check=True)
 
 # The extension must precede the existing unload decision, with the original

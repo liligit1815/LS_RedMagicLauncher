@@ -29852,6 +29852,16 @@
     invoke-static {v0, v10}, Lcom/android/quickstep/views/LsNativeStack;->prepareDismissedTask(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;)V
 
     :cond_49
+    # Orbit survivor poses need both axes. Sample the same native dismissal
+    # animator, including gesture-controlled reversal and cancellation.
+    move/from16 v2, p9
+    move/from16 v3, p4
+    and-int/2addr v2, v3
+    invoke-static {v0, v10, v2}, Lcom/android/quickstep/views/LsOrbitReflow;->listener(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z)Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+    move-result-object v2
+    if-eqz v2, :ls_orbit_dismiss_listener_done
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/anim/f;->i(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+    :ls_orbit_dismiss_listener_done
     const/4 v9, 0x7
 
     .line 135
@@ -36412,6 +36422,18 @@
 .method public isTaskViewVisible(Lcom/android/quickstep/views/TaskView;)Z
     .locals 3
 
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->isOrbitStyle()Z
+    move-result v0
+    if-eqz v0, :ls_orbit_visibility_native
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackApplied()Z
+    move-result v0
+    if-eqz v0, :ls_orbit_visibility_native
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->isOrbitTaskVisible(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;)Z
+    move-result v0
+    return v0
+
+    :ls_orbit_visibility_native
+
     .line 1
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->showAsGrid()Z
 
@@ -41442,10 +41464,30 @@
     iget-object v0, v0, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
     iget v0, v0, Lcom/android/launcher3/r4;->p0:I
     const/4 v1, 0x3
+    if-eq v0, v1, :ls_native_stack_true
+    const/4 v1, 0x4
     if-ne v0, v1, :ls_native_stack_false
+    :ls_native_stack_true
     const/4 v0, 0x1
     return v0
     :ls_native_stack_false
+    const/4 v0, 0x0
+    return v0
+.end method
+
+.method public final isOrbitStyle()Z
+    .locals 2
+    iget-object v0, p0, Lcom/android/quickstep/views/RecentsView;->mContainer:Landroid/content/Context;
+    check-cast v0, Lcom/android/launcher3/views/k;
+    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    move-result-object v0
+    iget-object v0, v0, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget v0, v0, Lcom/android/launcher3/r4;->p0:I
+    const/4 v1, 0x4
+    if-ne v0, v1, :ls_orbit_false
+    const/4 v0, 0x1
+    return v0
+    :ls_orbit_false
     const/4 v0, 0x0
     return v0
 .end method
@@ -49555,6 +49597,11 @@
     if-eqz v0, :native_stack_pager_dispatch
     return v0
     :native_stack_pager_dispatch
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->dispatchOrbitTouch(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-eqz v0, :native_stack_oem_dispatch
+    return v0
+    :native_stack_oem_dispatch
     invoke-super {p0, p1}, Lcom/android/launcher3/V4;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
     move-result v0
     return v0

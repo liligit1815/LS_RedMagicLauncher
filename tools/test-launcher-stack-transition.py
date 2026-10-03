@@ -100,14 +100,19 @@ public class StackTransitionTest {
     }
     static class View {
         int width=700,height=1200,left,top;float x,y,sx=1,sy=1,z,alpha=1;RectF global;
+        View parent;Matrix animation,propertyOverride;
         int getWidth(){return width;}int getHeight(){return height;}int getLeft(){return left;}int getTop(){return top;}
         float getPivotX(){return width/2f;}float getPivotY(){return height/2f;}
         float getAlpha(){return alpha;}
         float getTranslationX(){return x;}float getTranslationY(){return y;}float getScaleX(){return sx;}float getScaleY(){return sy;}float getTranslationZ(){return z;}
         void setTranslationX(float v){x=v;}void setTranslationY(float v){y=v;}void setScaleX(float v){sx=v;}void setScaleY(float v){sy=v;}void setTranslationZ(float v){z=v;}
-        View getRootView(){return new View();}void transformMatrixToLocal(Matrix m){}
+        View getParent(){return parent;}int getScrollX(){return 0;}int getScrollY(){return 0;}
+        Matrix getMatrix(){if(propertyOverride!=null)return new Matrix(propertyOverride);Matrix m=new Matrix();m.postScale(sx,sy,getPivotX(),getPivotY());m.postTranslate(x,y);return m;}
+        Matrix getAnimationMatrix(){return animation;}void setAnimationMatrix(Matrix m){animation=m==null?null:new Matrix(m);}
+        View getRootView(){View v=this;while(v.parent!=null)v=v.parent;return v;}void transformMatrixToLocal(Matrix m){}
         void transformMatrixToGlobal(Matrix m){
             if(global!=null){m.postScale(global.width()/width,global.height()/height,0,0);m.postTranslate(global.left,global.top);}
+            else {View v=this;while(v.parent!=null){m.postConcat(v.getMatrix());m.postTranslate(v.left-v.parent.getScrollX(),v.top-v.parent.getScrollY());v=v.parent;}}
         }
     }
     static class LsStackOcclusion {
@@ -121,7 +126,7 @@ public class StackTransitionTest {
         float getStableAlpha(){return alpha;}
         void setStableAlpha(float v){alpha=v;drawAlpha=LsStackTransition.drawStableAlpha(this,v)*stackAlpha;}
         RecentsView recents;float clip=-1;boolean skipAlpha;int[] ids={23};List<TaskContainer> containers=new ArrayList<>();
-        TaskView(RecentsView r){recents=r;containers.add(new TaskContainer(new View()));}
+        TaskView(RecentsView r){recents=r;parent=r;View snapshot=new View();snapshot.parent=this;containers.add(new TaskContainer(snapshot));}
         RecentsView getRecentsView(){return recents;}List<TaskContainer> getTaskContainers(){return containers;}
         int[] getTaskIds(){return ids;}
         Rect getNativeStackClipBounds(){return clip<0?null:new Rect(0,0,(int)Math.ceil(clip),height);}
@@ -150,9 +155,10 @@ public class StackTransitionTest {
                 s.run("drawChild",this,c,new View(),0,0);
             } finally {drawPass=0;}
         }
-        boolean stack=true,applied=true,grid,landscape,fromApp;float contentAlpha=1,adjacent;int scrollX,scrollY,invalidates,page,alphaCalls,snaps,screenshots;TaskView[] tasks;
+        boolean stack=true,applied=true,grid,landscape,fromApp,orbit;float contentAlpha=1,adjacent;int scrollX,scrollY,invalidates,page,alphaCalls,snaps,screenshots;TaskView[] tasks;
         RecentsView(){width=1216;height=2688;tasks=new TaskView[]{new TaskView(this),new TaskView(this)};}
         boolean isNativeStackStyle(){return stack;}boolean isNativeStackApplied(){return applied;}float getContentAlpha(){return contentAlpha;}
+        boolean isOrbitStyle(){return orbit;}
         int getTaskViewCount(){return tasks.length;}TaskView getTaskViewAt(int i){return tasks[i];}
         int getScrollX(){return scrollX;}int getScrollY(){return scrollY;}void invalidate(){invalidates++;}
     }
@@ -626,7 +632,78 @@ public class StackTransitionTest {
             check(left.clip==111&&right.clip==222,"launch cancel lost neighbour clips");
         }
     }
-    public static void main(String[] args){preparedHomeExits();homeExitCancellation();exits();launches();cancellationAndClips();fractionalLaunchClips();fadingEdges();lateralMotion();System.out.println("PASS "+checks+" production Smali/property-writer, lateral motion and exit/launch geometry/lifecycle checks");}
+    static AffineTransform rendered(View view,boolean selfAnimation){
+        if(view.parent==null)return new AffineTransform();
+        AffineTransform result=rendered(view.parent,true);
+        result.translate(view.left-view.parent.getScrollX(),view.top-view.parent.getScrollY());
+        if(selfAnimation&&view.animation!=null)result.concatenate(view.animation.a);
+        result.concatenate(view.getMatrix().a);return result;
+    }
+    static void pointMatch(AffineTransform actual,AffineTransform expected,View snapshot,String label){
+        double[] a={0,0,snapshot.width*.31,snapshot.height*.42,snapshot.width,snapshot.height};double[] b=a.clone();
+        actual.transform(a,0,a,0,3);expected.transform(b,0,b,0,3);
+        for(int i=0;i<a.length;i++)near((float)a[i],(float)b[i],label+" point "+i);
+    }
+    static void orbitSnapshotLaunches(){
+        for(int turn=0;turn<4;turn++)for(int selectedIndex=0;selectedIndex<2;selectedIndex++)for(int outcome=0;outcome<4;outcome++){
+            RecentsView r=deck(3,(turn&1)!=0);r.orbit=true;
+            View root=new View();r.parent=root;r.left=27;r.top=43;r.scrollX=73;r.scrollY=31;
+            TaskView selected=r.tasks[selectedIndex];selected.clip=-1;selected.left=91;selected.top=147;selected.x=31;selected.y=206;selected.sx=selected.sy=.58f;
+            View snapshot=selected.containers.get(0).snapshot;snapshot.left=9;snapshot.top=61;snapshot.x=4;snapshot.y=11;
+            Matrix original=outcome==0?null:new Matrix();if(original!=null)original.postTranslate(2,3);snapshot.setAnimationMatrix(original);
+            r.propertyOverride=new Matrix();r.propertyOverride.a.rotate(turn*Math.PI/2);
+            Matrix parentAnimation=new Matrix();parentAnimation.postTranslate(13,-7);r.setAnimationMatrix(parentAnimation);
+            AffineTransform clicked=rendered(snapshot,true);
+            LsStackTransition.beginLaunch(selected);Object simulator=new Object();LsStackTransition.bindLaunchSimulator(selected,simulator);
+            Runnable callback=LsStackTransition.launchSnapshotFrame(selected);Animator.AnimatorListener listener=LsStackTransition.launchListener(selected);
+            Matrix rotation=new Matrix();rotation.a.rotate(turn*Math.PI/2);rotation.postTranslate(33,47);
+            AffineTransform snapshotBuffer=null;
+            for(int frame=0;frame<=60;frame++){
+                float p=frame/60f;
+                // Current-page OEM animates the parent scale/pivot; off-page OEM
+                // additionally changes thumbnail properties and its own matrix.
+                r.propertyOverride=new Matrix();r.propertyOverride.a.rotate(turn*Math.PI/2);
+                r.propertyOverride.postScale(1+p*.7f,1+p*.7f,400,800);r.propertyOverride.postTranslate(-p*90,p*57);
+                selected.x=31+p*33;selected.y=206-p*47;selected.sx=.58f+p*.17f;selected.sy=.58f+p*.17f;
+                snapshot.x=4-p*2;snapshot.y=11-p*6;
+                if(selectedIndex!=0){Matrix oem=new Matrix();oem.postScale(1+p,1+p,0,0);oem.postTranslate(p*80,-p*37);snapshot.setAnimationMatrix(oem);}
+                Matrix remote=matrixFor(new RectF(150*(1-p),240*(1-p),850+366*p,1900+788*p),rotation);
+                Rect crop=new Rect(0,(int)(12*p),1000,2000);
+                LsStackTransition.normalizeLaunchMatrix(simulator,remote,crop,rotation,p);
+                Matrix inverseRotation=new Matrix();check(rotation.invert(inverseRotation),"window transform invert");
+                Matrix home=new Matrix(remote);home.postConcat(inverseRotation);
+                if(frame==0){Matrix clickedMatrix=new Matrix();clickedMatrix.a=new AffineTransform(clicked);RectF clickedBounds=new RectF(0,0,snapshot.width,snapshot.height);clickedMatrix.mapRect(clickedBounds);same(homeBounds(remote,crop,rotation),clickedBounds,"remote initial bounds ignored ancestor animation");}
+                if(snapshotBuffer==null){try{snapshotBuffer=home.a.createInverse();snapshotBuffer.concatenate(clicked);}catch(Exception e){throw new AssertionError(e);}}
+                AffineTransform expected=new AffineTransform(home.a);expected.concatenate(snapshotBuffer);
+                callback.run();pointMatch(rendered(snapshot,true),expected,snapshot,"orbit snapshot/surface rotation "+turn+" selected "+selectedIndex);
+                float alpha=snapshot.getAlpha();callback.run();near(snapshot.getAlpha(),alpha,"snapshot correction changed alpha");
+                pointMatch(rendered(snapshot,true),expected,snapshot,"repeated frame accumulated correction");
+            }
+            if(outcome==0){listener.onAnimationCancel(new Animator());listener.onAnimationEnd(new Animator());}
+            if(outcome==1){LsStackTransition.onOverviewStateChanged(r,false);listener.onAnimationEnd(new Animator());}
+            if(outcome==2)LsStackTransition.onLaunchResult(selected,null);
+            if(outcome==3)LsStackTransition.clear(r);
+            if(original==null)check(snapshot.animation==null,"completion failed to clear snapshot matrix");
+            else pointMatch(snapshot.animation.a,original.a,snapshot,"completion failed to restore snapshot matrix");
+            Matrix next=new Matrix();next.postTranslate(432,765);snapshot.setAnimationMatrix(next);callback.run();
+            pointMatch(snapshot.animation.a,next.a,snapshot,"stale frame changed completed snapshot");
+            LsStackTransition.onOverviewStateChanged(r,true);LsStackTransition.beginLaunch(selected);Object nextSimulator=new Object();LsStackTransition.bindLaunchSimulator(selected,nextSimulator);
+            callback.run();listener.onAnimationCancel(new Animator());listener.onAnimationEnd(new Animator());
+            check(LsStackTransition.isLaunchSimulator(nextSimulator),"stale launch cancelled replacement");LsStackTransition.clear(r);
+        }
+        RecentsView r=deck(2,false);TaskView task=r.tasks[0];View snapshot=task.containers.get(0).snapshot;
+        capture(task,new RectF(90,340,650,1300));LsStackTransition.beginLaunch(task);Object sim=new Object();LsStackTransition.bindLaunchSimulator(task,sim);
+        LsStackTransition.normalizeLaunchMatrix(sim,matrixFor(new RectF(100,200,600,1400),new Matrix()),new Rect(0,0,1000,2000),new Matrix(),.3f);
+        LsStackTransition.launchSnapshotFrame(task).run();check(snapshot.animation==null,"stack received orbit screenshot correction");LsStackTransition.clear(r);
+        r.orbit=true;LsStackTransition.beginLaunch(task);sim=new Object();LsStackTransition.bindLaunchSimulator(task,sim);
+        Runnable callback=LsStackTransition.launchSnapshotFrame(task);
+        LsStackTransition.normalizeLaunchMatrix(sim,matrixFor(new RectF(100,200,600,1400),new Matrix()),new Rect(0,0,1000,2000),new Matrix(),.3f);callback.run();
+        task.ids[0]++;Matrix rebound=new Matrix();rebound.postTranslate(11,19);snapshot.setAnimationMatrix(rebound);
+        callback.run();LsStackTransition.clear(r);pointMatch(snapshot.animation.a,rebound.a,snapshot,"rebound task was changed by previous launch");
+        r.stack=false;r.orbit=false;LsStackTransition.beginLaunch(task);LsStackTransition.launchSnapshotFrame(task).run();
+        pointMatch(snapshot.animation.a,rebound.a,snapshot,"ordinary/grid snapshot changed");
+    }
+    public static void main(String[] args){preparedHomeExits();homeExitCancellation();exits();launches();cancellationAndClips();fractionalLaunchClips();fadingEdges();lateralMotion();orbitSnapshotLaunches();System.out.println("PASS "+checks+" production Smali/property-writer, lateral motion and exit/launch geometry/lifecycle checks");}
 }
 '''.replace('PRODUCTION', source).replace('SMALI_PROGRAMS', smali_java())
 
@@ -663,6 +740,8 @@ assert window.index('->bindLaunchSimulator(') < window.index('->launchListener('
 assert '->fullScreenProgress:' in window and '->getFullScreenScale()' in window
 assert '->apply(Lcom/android/quickstep/util/TransformParams;Z)V' in window
 assert 'move-object/from16 v31, p1' in window and 'move-object/from16 v2, v31' in window, 'listener must retain TaskView before OEM reuses p1 for its snapshot View'
+assert window.index(':cond_13') < window.rindex('->launchSnapshotFrame('), 'current-page launches must register screenshot alignment too'
+assert window.index('Lcom/android/quickstep/A5;-><init>') < window.index('->launchSnapshotFrame('), 'shared snapshot geometry must run after the OEM thumbnail frame writer'
 simulator = body('src/smali_classes2/com/android/quickstep/util/TaskViewSimulator.smali',
                  '.method public onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;Landroid/view/RemoteAnimationTarget;')
 assert simulator.index('->normalizeLiveEntryMatrix(') < simulator.index('->normalizeLaunchMatrix(') < simulator.index('->setMatrix(')

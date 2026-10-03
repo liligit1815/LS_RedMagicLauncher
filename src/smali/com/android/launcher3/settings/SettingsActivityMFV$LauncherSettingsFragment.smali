@@ -2457,6 +2457,19 @@
     goto :goto_7
 
     :ls_stack_summary_non_normal_1
+    const/4 v4, 0x4
+
+    if-ne v2, v4, :ls_orbit_summary_non_orbit_1
+
+    invoke-static {v3}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->getLabel(Landroid/content/res/Resources;)Ljava/lang/String;
+
+    move-result-object v2
+
+    const/4 v4, 0x1
+
+    goto :ls_style_summary_ready_1
+
+    :ls_orbit_summary_non_orbit_1
     const/4 v4, 0x3
 
     if-ne v2, v4, :cond_d
@@ -2485,6 +2498,7 @@
     move-result-object v2
 
     .line 534
+    :ls_style_summary_ready_1
     invoke-virtual {v5, v2}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->a1(Ljava/lang/CharSequence;)V
 
     .line 535
@@ -9941,6 +9955,19 @@
     goto :goto_19
 
     :ls_stack_summary_non_normal_2
+    const/4 v6, 0x4
+
+    if-ne v7, v6, :ls_orbit_summary_non_orbit_2
+
+    invoke-static {v8}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->getLabel(Landroid/content/res/Resources;)Ljava/lang/String;
+
+    move-result-object v7
+
+    const/4 v6, 0x1
+
+    goto :ls_style_summary_ready_2
+
+    :ls_orbit_summary_non_orbit_2
     const/4 v6, 0x3
 
     if-ne v7, v6, :cond_30
@@ -9969,6 +9996,7 @@
     move-result-object v7
 
     .line 1623
+    :ls_style_summary_ready_2
     invoke-virtual {v5, v7}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->a1(Ljava/lang/CharSequence;)V
 
     .line 1624

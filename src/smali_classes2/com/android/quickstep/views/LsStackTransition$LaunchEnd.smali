@@ -34,17 +34,17 @@
 .method constructor <init>(Lcom/android/quickstep/views/TaskView;)V
     .locals 1
 
-    .line 380
+    .line 477
     invoke-direct {p0}, Landroid/animation/AnimatorListenerAdapter;-><init>()V
 
-    .line 381
+    .line 478
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchEnd;->task:Ljava/lang/ref/WeakReference;
 
-    .line 382
+    .line 479
     invoke-static {}, Lcom/android/quickstep/views/LsStackTransition;->access$000()Ljava/util/WeakHashMap;
 
     move-result-object v0
@@ -61,7 +61,7 @@
 
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchEnd;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
-    .line 383
+    .line 480
     return-void
 .end method
 
@@ -70,7 +70,7 @@
 .method public onAnimationCancel(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 384
+    .line 481
     const/4 p1, 0x1
 
     iput-boolean p1, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchEnd;->cancelled:Z
@@ -81,7 +81,7 @@
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 2
 
-    .line 386
+    .line 483
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchEnd;->task:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {p1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -90,7 +90,7 @@
 
     check-cast p1, Lcom/android/quickstep/views/TaskView;
 
-    .line 387
+    .line 484
     if-eqz p1, :cond_0
 
     invoke-static {}, Lcom/android/quickstep/views/LsStackTransition;->access$000()Ljava/util/WeakHashMap;
@@ -109,12 +109,12 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 388
+    .line 485
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchEnd;->cancelled:Z
 
-    invoke-static {p1, v0}, Lcom/android/quickstep/views/LsStackTransition;->access$100(Lcom/android/quickstep/views/TaskView;Z)V
+    invoke-static {p1, v0}, Lcom/android/quickstep/views/LsStackTransition;->access$200(Lcom/android/quickstep/views/TaskView;Z)V
 
-    .line 390
+    .line 487
     :cond_0
     return-void
 .end method

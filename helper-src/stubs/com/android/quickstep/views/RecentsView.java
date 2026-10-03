@@ -28,6 +28,7 @@ public abstract class RecentsView extends ViewGroup {
     public abstract OverScroller getScroller();
     public abstract void setCurrentPage(int page);
     public abstract void updateScrollSynchronously();
+    public abstract void loadVisibleTaskData(int flags);
     public abstract int getRunningTaskIndex();
     public abstract boolean isRecentsAnimationRunning();
     public abstract RecentsPagedOrientationHandler getPagedOrientationHandler();
@@ -37,6 +38,7 @@ public abstract class RecentsView extends ViewGroup {
     public abstract TaskView getTaskViewByTaskId(int taskId);
     public abstract boolean isTaskViewVisible(TaskView taskView);
     public abstract boolean isNativeStackStyle();
+    public abstract boolean isOrbitStyle();
     public abstract boolean isNativeStackApplied();
     public abstract void setNativeStackApplied(boolean applied);
     public abstract boolean isNativeStackEntryPending();

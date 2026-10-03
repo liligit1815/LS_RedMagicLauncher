@@ -33,6 +33,8 @@ def fixtures(code=260016):
         helpers.update(gate.RELEASE_260016_CLASSES)
     if code >= 260020:
         helpers.add(gate.OCCLUSION_CLASS + ";")
+    if code >= 260023:
+        helpers.update(gate.RELEASE_260023_CLASSES)
     modified["classes"].update(helpers)
     for owner in helpers:
         key = (owner, "<init>", "()V")
@@ -53,6 +55,50 @@ def compare(original, modified, expected):
 
 
 class ReleaseBoundaryTest(unittest.TestCase):
+    def test_orbit_class_version_boundary(self):
+        self.assertEqual(gate.RELEASE_260023_CLASSES, {
+            "Lcom/android/quickstep/views/LsOrbitGeometry;",
+            "Lcom/android/quickstep/views/LsOrbitReflow;",
+            "Lcom/android/quickstep/views/LsOrbitReflow$Card;",
+            "Lcom/android/quickstep/views/LsOrbitReflow$Transaction;",
+            "Lcom/android/quickstep/views/LsOrbitStyleSettings;",
+            "Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;",
+            "Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;",
+            "Lcom/android/quickstep/views/LsOrbitPager;",
+            "Lcom/android/quickstep/views/LsOrbitPager$Identity;",
+            "Lcom/android/quickstep/views/LsOrbitPager$State;",
+            "Lcom/android/quickstep/views/LsOrbitPager$1;",
+            "Lcom/android/quickstep/views/LsOrbitPager$2;",
+        })
+        self.assertTrue(compare(*fixtures(260023))["pass"])
+        for owner in gate.RELEASE_260023_CLASSES:
+            with self.subTest(owner=owner):
+                original, modified, expected = fixtures(260022)
+                modified["classes"].add(owner)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+                original, modified, expected = fixtures(260023)
+                modified["classes"].remove(owner)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_orbit_methods_require_matching_declarations(self):
+        for owner, name, signature in (
+                (gate.ORBIT_GEOMETRY_CLASS + ";", "primary", "(FFFI)F"),
+                (gate.ORBIT_REFLOW_CLASS + ";", "clear",
+                 "(Lcom/android/quickstep/views/RecentsView;)V"),
+                (gate.ORBIT_SETTINGS_CLASS + ";", "missingMethod", "()V"),
+                ("Lcom/android/quickstep/views/RecentsView;", "isOrbitStyle", "()Z")):
+            with self.subTest(owner=owner, name=name):
+                original, modified, expected = fixtures(260023)
+                key = (owner, name, signature)
+                modified["references"].add(key)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+                modified["declared"][key] = dict(DECLARATION)
+                self.assertTrue(compare(original, modified, expected)["pass"])
+        for owner in gate.RELEASE_260023_CLASSES:
+            original, modified, expected = fixtures(260023)
+            modified["classes"].add(owner[:-1] + "$Unexpected;")
+            self.assertFalse(compare(original, modified, expected)["pass"])
+
     def test_occlusion_class_version_boundary(self):
         self.assertTrue(compare(*fixtures(260020))["pass"])
         original, modified, expected = fixtures(260019)

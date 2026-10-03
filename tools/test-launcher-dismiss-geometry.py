@@ -40,6 +40,24 @@ STUBS = r'''
         int getActionMasked() {return action;}
     }
     static class Log { static void i(String t,String s){} static void e(String t,String s,Throwable e){} }
+    // Reflow animation/controller internals have separate production tests.
+    // These ports observe the phase captured by actual dismiss orchestration.
+    static class LsOrbitReflow {
+        static RecentsView owner;static int capturedOrdinal,capturedCount;
+        static float capturedPage;
+        static void clear(RecentsView r){}
+        static void begin(RecentsView r,TaskView t,int ordinal,float page,int count){
+            owner=r;capturedOrdinal=ordinal;capturedPage=page;capturedCount=count;
+        }
+        ORBIT_TARGET
+    }
+    static class LsOrbitPager {
+        static float position(RecentsView r,float fallback,int count){
+            r.pagerSamples++;return Float.isNaN(r.orbitPhase)?fallback:r.orbitPhase;
+        }
+        static void stop(RecentsView r){r.pagerStops++;}
+        static void commit(RecentsView r,int target){r.pagerCommits++;r.orbitPhase=target;}
+    }
     static class RecentsPagedOrientationHandler {
         int getPrimaryScroll(RecentsView r) {return r.scroll;}
         int getPrimarySize(RecentsView r) {return r.size;}
@@ -50,7 +68,9 @@ STUBS = r'''
         final java.util.ArrayList<Integer> pageScrolls=new java.util.ArrayList<>();
         final RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
         int style=3, currentPage, scroll, scrollDiff, size=1000, setCalls, stateWrites, updates;
-        boolean isNativeStackStyle(){return style==3;}
+        float orbitPhase=Float.NaN;int pagerSamples,pagerStops,pagerCommits;
+        boolean isNativeStackStyle(){return style==3||style==4;}
+        boolean isOrbitStyle(){return style==4;}
         int getChildCount(){return children.size();}
         View getChildAt(int i){return children.get(i);}
         int indexOfChild(View v){return children.indexOf(v);}
@@ -241,12 +261,55 @@ CASES = r'''
             }
         }
     }
+    static void orbitDismissCapture(){
+        for(int count:new int[]{2,3,7,20})
+        for(float phase:new float[]{-.375f,count-.25f,count+.375f,-2*count+.75f,3*count-1.25f})
+        for(int removed=0;removed<count;removed++){
+            RecentsView r=create(count,0,1000,1,true);r.style=4;r.orbitPhase=phase;
+            TaskView dismissed=getTaskForOrdinal(r,removed);
+            recordDismissedTask(r,dismissed);
+            near(pendingDismissPagePosition,phase,0,"dismiss captured OEM endpoint instead of circular phase");
+            near(LsOrbitReflow.capturedPage,phase,0,"reflow received a clamped circular phase");
+            check(LsOrbitReflow.owner==r&&LsOrbitReflow.capturedOrdinal==removed
+                    &&LsOrbitReflow.capturedCount==count,"reflow received stale task identity/count");
+            check(r.pagerStops==1&&r.pagerSamples==1,"dismiss must freeze and sample controller once");
+            r.orbitPhase=0;recordDismissedTask(r,dismissed);
+            near(pendingDismissPagePosition,phase,0,"repeated prepare replaced circular capture");
+            check(r.pagerStops==1&&r.pagerSamples==1,"repeated prepare sampled another phase");
+            // Resolve the selected identity independently: circularly rounded
+            // focus survives, or deletion advances to its next circular task.
+            int focused=Math.floorMod(Math.round(phase),count);
+            int selectedId=focused==removed?(focused+1)%count:focused;
+            int index=r.indexOfChild(dismissed);r.children.remove(index);r.pageScrolls.remove(index);
+            onDismissAnimationEnd(r,true);
+            java.lang.ref.Reference.reachabilityFence(dismissed);
+            TaskView selected=(TaskView)r.getChildAt(r.currentPage);
+            check(selected.id==selectedId,"circular dismissal selected wrong surviving identity");
+            int ordinal=getTaskOrdinalForChildIndex(r,r.currentPage);
+            near(r.orbitPhase,ordinal,0,"controller did not commit the same ordinal as OEM pager");
+            check(r.pagerCommits==1&&!retainDismissHistoryLayout,"orbit commit retained stack history policy");
+            onDismissAnimationEnd(r,true);
+            check(r.pagerCommits==1,"duplicate completion recommitted circular controller");
+        }
+        RecentsView cancelled=create(7,0,1000,1,false);cancelled.style=4;cancelled.orbitPhase=6.75f;
+        recordDismissedTask(cancelled,getTaskForOrdinal(cancelled,6));onDismissAnimationEnd(cancelled,false);
+        check(cancelled.pagerCommits==0&&cancelled.orbitPhase==6.75f,
+                "cancelled removal snapped the circular controller");
+        for(int style:new int[]{1,2,3}){
+            RecentsView r=create(5,1.25f,1000,1,true);r.style=style;r.orbitPhase=21.75f;
+            recordDismissedTask(r,getTaskForOrdinal(r,3));
+            check(r.pagerStops==0&&r.pagerSamples==0,"orbit capture leaked to another style");
+            if(style==3)near(pendingDismissPagePosition,1.25f,.001f,"stack capture stopped using physical viewport");
+            clearPendingDismissState(r);
+        }
+    }
     public static void main(String[] args){
         if(!args[0].equals("style"))for(float ratio:new float[]{.7f,.84f,1,1.2f}){
             stackSpacingScale=ratio;focusScale=.83f*ratio;
             for(float spacing:new float[]{1,.9f}){overviewSpacingScale=spacing;geometry();}
         }
         if(!args[0].equals("geometry"))style();
+        if(!args[0].equals("style"))orbitDismissCapture();
         System.out.println("RESULT checks="+checks+" failures="+failures);
         if(failures>0)System.exit(1);
     }
@@ -277,7 +340,9 @@ def run(source_path, suite, output):
     projection = 'static float[] project(float taskPosition,float pagePosition,int visualTaskCount,float primarySize){' + depth + center + scale + 'return new float[]{finalCenter,finalStackScale};}'
     needs = 'needsDismissReflow(r,t)' if 'needsDismissReflow' in methods else 'false'
     constants = '\n'.join(re.findall(r'^    private static final float MIUI_[^;]+;', source, re.M))
-    java = ('import java.lang.ref.WeakReference;\npublic class DismissHarness {\n    static boolean retainDismissHistoryLayout;\n    static float overviewSpacingScale=1;\n' + constants + STUBS
+    reflow_source = (ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitReflow.java').read_text(encoding='utf-8')
+    stubs = STUBS.replace('ORBIT_TARGET', extract_methods(reflow_source)['targetPage'])
+    java = ('import java.lang.ref.WeakReference;\nimport com.android.quickstep.views.LsOrbitGeometry;\npublic class DismissHarness {\n    static boolean retainDismissHistoryLayout;\n    static float overviewSpacingScale=1;\n' + constants + stubs
             + '\n'.join(methods[name] for name in sorted(selected) if name in methods)
             + projection + 'static boolean needsForTest(RecentsView r,TaskView t){return ' + needs + ';}' + CASES + '\n}')
     with tempfile.TemporaryDirectory(prefix='launcher-dismiss-jvm-') as temporary:
@@ -286,7 +351,8 @@ def run(source_path, suite, output):
         clock = work / 'android/os/SystemClock.java'
         clock.parent.mkdir(parents=True)
         clock.write_text('package android.os; public class SystemClock {public static long uptimeMillis(){return 0;}}', encoding='utf-8')
-        build = subprocess.run(['javac', '-encoding', 'UTF-8', '-d', str(work), str(work / 'DismissHarness.java'), str(clock)], text=True, capture_output=True)
+        build = subprocess.run(['javac', '-encoding', 'UTF-8', '-d', str(work), str(work / 'DismissHarness.java'), str(clock),
+                                str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], text=True, capture_output=True)
         if build.returncode:
             raise RuntimeError(build.stderr)
         result = subprocess.run(['java', '-cp', str(work), 'DismissHarness', suite], text=True, capture_output=True)

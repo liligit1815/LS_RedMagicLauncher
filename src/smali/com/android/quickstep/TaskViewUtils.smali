@@ -2937,6 +2937,15 @@
 
     invoke-virtual {v1, v2}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
 
+    # Register after OEM surface and thumbnail frame writers, including current-page launches.
+    move-object/from16 v2, v31
+
+    invoke-static {v2}, Lcom/android/quickstep/views/LsStackTransition;->launchSnapshotFrame(Lcom/android/quickstep/views/TaskView;)Ljava/lang/Runnable;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/anim/f;->h(Ljava/lang/Runnable;)V
+
     new-instance v2, Lcom/android/quickstep/TaskViewUtils$4;
 
     .line 808

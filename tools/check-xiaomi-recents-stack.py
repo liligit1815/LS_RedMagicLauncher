@@ -679,7 +679,7 @@ def main() -> int:
     require(touch_bounds, "->getNativeStackClipBounds()", "dismiss hit-test ignores screenshot clipping")
     require(
         helper_java,
-        "if (!horizontalPrimary || dismissLayer || dismissReflowLayer)",
+        "if (orbit || !horizontalPrimary || dismissLayer || dismissReflowLayer)",
         "dismiss does not preserve fixed upper-card clipping while lower cards reflow",
     )
     require(
@@ -699,8 +699,18 @@ def main() -> int:
     )
     require(
         helper_java,
-        "int targetOrdinal = getDismissTargetOrdinal(",
+        ": getDismissTargetOrdinal(viewportPosition, dismissedOrdinal, taskCount)",
         "post-dismiss commit does not share the reflow destination",
+    )
+    require(
+        helper_java,
+        "LsOrbitReflow.targetPage(viewportPosition, dismissedOrdinal, taskCount + 1)",
+        "orbit dismiss commit does not share its circular reflow destination",
+    )
+    require(
+        helper_java,
+        "if (recents.isOrbitStyle()) LsOrbitPager.commit(recents, targetOrdinal);",
+        "orbit removal does not commit its circular phase",
     )
     require(
         helper_java,
