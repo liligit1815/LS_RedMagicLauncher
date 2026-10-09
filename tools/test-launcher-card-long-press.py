@@ -75,7 +75,7 @@ public class LongPressTest {
         int getLeft(){return left;}int getTop(){return top;}
         int getWidth(){return width;}int getHeight(){return height;}
         int getVisibility(){return visibility;}float getAlpha(){return alpha;}
-        float getTranslationZ(){return z;}boolean isEnabled(){return enabled;}
+        float getTranslationZ(){return z;}float getZ(){return z;}boolean isEnabled(){return enabled;}
         Matrix getMatrix(){return matrix;}
     }
     static class TaskViewIcon {View view;View asView(){return view;}}
@@ -121,6 +121,7 @@ public class LongPressTest {
         RecentsView(){rear.parent=this;front.parent=this;rear.z=1;front.z=2;
             children.add(rear);children.add(front);children.add(new View(450,1450,100,100));}
         boolean isNativeStackStyle(){return stack;}boolean isShown(){return shown;}
+        boolean isOrbitStyle(){return false;}
         boolean canLaunchFullscreenTask(){return canLaunch;}
         int indexOfChild(TaskView t){return children.indexOf(t);}
         int getChildCount(){return children.size();}View getChildAt(int i){return children.get(i);}

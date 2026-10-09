@@ -11574,6 +11574,11 @@
 
 .method public dispatchTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 5
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->shouldDispatchOrbitCardTouch(Lcom/android/quickstep/views/TaskView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-nez v0, :native_stack_accepted_touch
+    return v0
+    :native_stack_accepted_touch
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->onCardTouch(Lcom/android/quickstep/views/TaskView;Landroid/view/MotionEvent;)Z
     move-result v0
     if-eqz v0, :native_stack_continue_touch

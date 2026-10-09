@@ -33,6 +33,7 @@ SOURCE_TESTS = (
     "test-launcher-fan-entry.py",
     "test-launcher-orbit.py",
     "test-launcher-orbit-pager.py",
+    "test-launcher-orbit-click.py",
     "test-launcher-orbit-reflow.py",
     "test-launcher-entry-selection.py", "test-launcher-entry-freshness.py",
     "test-launcher-entry-interaction-cancel.py", "test-launcher-dismiss-geometry.py",

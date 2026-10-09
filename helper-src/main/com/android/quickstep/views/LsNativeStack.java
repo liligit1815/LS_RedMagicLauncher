@@ -423,8 +423,10 @@ public final class LsNativeStack {
                 }
             }
             if (!hit) continue;
-            float z = task.getTranslationZ();
-            if (best == null || z > bestZ) {
+            float z = recents.isOrbitStyle() ? task.getZ() : task.getTranslationZ();
+            if (best == null || z > bestZ || (recents.isOrbitStyle() && z == bestZ)) {
+                // Android draws equal-Z children in child order: the later
+                // child is on top. Symmetric orbit cards often have equal Z.
                 // An operation on the top card must not fall through to a
                 // covered card merely because the operation itself was hit.
                 best = task;
@@ -433,6 +435,28 @@ public final class LsNativeStack {
         }
         if (best == null) return null;
         return findInlineAction(best, getActionPoint(recents, best, event)) == null ? best : null;
+    }
+
+    /** Reject empty/covered orbit containers before Android assigns a tap target. */
+    public static boolean shouldDispatchOrbitCardTouch(TaskView task, MotionEvent event) {
+        // Only DOWN is filtered; the accepted child keeps its native click,
+        // long-press and cancellation stream even if the layout later moves.
+        RecentsView recents = task.getRecentsView();
+        if (event.getActionMasked() != MotionEvent.ACTION_DOWN || recents == null
+                || !recents.isOrbitStyle() || !recents.isNativeStackApplied()
+                || isNativeGestureOwned(recents) || !recents.canLaunchFullscreenTask()
+                || actionMenuTask.get() != null) return true;
+        // ViewGroup has already transformed this event into child coordinates.
+        // Reconstruct its parent point without changing the original event.
+        MotionEvent parent = MotionEvent.obtain(event);
+        try {
+            parent.transform(task.getMatrix());
+            parent.offsetLocation(task.getLeft() - recents.getScrollX(),
+                    task.getTop() - recents.getScrollY());
+            return findLongPressTask(recents, parent) == task;
+        } finally {
+            parent.recycle();
+        }
     }
 
     public static boolean onCardTouch(TaskView task, MotionEvent event) {
