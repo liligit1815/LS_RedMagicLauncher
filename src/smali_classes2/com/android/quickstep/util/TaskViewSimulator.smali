@@ -4936,7 +4936,12 @@
 .end method
 
 .method public onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;Landroid/view/RemoteAnimationTarget;Lcom/android/quickstep/util/TransformParams;)V
-    .locals 4
+    .locals 5
+
+    # Preserve the OEM target-fade phase before p3 is reused for geometry.
+    invoke-virtual {p3}, Lcom/android/quickstep/util/TransformParams;->getTargetAlpha()F
+
+    move-result v4
 
     iget-object p3, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mContext:Landroid/content/Context;
 
@@ -4979,7 +4984,8 @@
     invoke-virtual {p0, p1}, Lcom/android/quickstep/util/TaskViewSimulator;->onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;)V
 
     # A reused live-tile simulator may retain an old gesture-end adjustment.
-    # Keep its alpha/layer policy, but the clicked card owns launch geometry.
+    # The clicked card owns launch geometry; incompatible bitmap content uses
+    # one opaque live surface only after native visibility has been resolved.
     invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->isLaunchSimulator(Ljava/lang/Object;)Z
 
     move-result v0
@@ -4993,6 +4999,10 @@
     iget-object v0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mTmpCropRect:Landroid/graphics/Rect;
 
     invoke-virtual {p1, v0}, Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;->setWindowCrop(Landroid/graphics/Rect;)Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;
+
+    iget-boolean v0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->needHideSurface:Z
+
+    invoke-static {p0, p1, v0, v4}, Lcom/android/quickstep/views/LsStackTransition;->onLaunchSurface(Ljava/lang/Object;Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;ZF)V
 
     :ls_launch_matrix_done
 

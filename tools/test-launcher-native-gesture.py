@@ -32,7 +32,7 @@ names = ('getMiuiStackCenter', 'getEntrySlideOffset', 'getInitialTaskOrdinal', '
          'onTaskActionsLongPress', 'onTaskMenuClosed', 'clearActionMenu', 'isActionMenuTask',
          'dispatchInlineActionTouch', 'armEntryReveal', 'startEntryRevealIfArmed', 'finishEntryReveal', 'getActionMenuOrdinal', 'onCardTouch', 'cancelCardLongPress', 'animateTaskActions', 'onTaskMenuOpenResult', 'onTaskMenuDetached')
 members = '\n'.join(extract(name) for name in names)
-for name in ('orbitPrimary', 'orbitSecondary'):
+for name in ('orbitPrimary', 'orbitSecondary', 'fanPrimary', 'fanSecondary'):
     if re.search(r'private static [^\n]+ ' + name + r'\(', source):
         members += '\n' + extract(name)
 geometry_names = ('getMiuiInteriorCorrection', 'getMiuiDepth', 'getMiuiScaleTerm',
@@ -57,8 +57,18 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayDeque;
 import java.util.WeakHashMap;
 import com.android.quickstep.views.LsOrbitGeometry;
+import com.android.quickstep.views.LsFanGeometry;
 public class NativeGestureTest {
     static final float[] ORBIT_POSE=new float[5];
+    static final float[] FAN_POSE=new float[6];
+    static class LsFanPager {
+        static void clear(RecentsView r){}
+        static float position(RecentsView r,float fallback,int count){throw new AssertionError("fan pager reached old style");}
+        static float dragOffset(RecentsView r,TaskView t){throw new AssertionError("fan drag reached old style");}
+    }
+    static class LsFanReflow {
+        static boolean sample(RecentsView r,TaskView t,float w,float h,float[] out){throw new AssertionError("fan reflow reached old style");}
+    }
     // The gesture controller has its own production test. This configurable
     // port proves that production composition consumes its independent phase.
     static class LsOrbitPager {
@@ -69,11 +79,16 @@ public class NativeGestureTest {
     }
     // The dedicated orbit-reflow harness exercises this separate transaction.
     static class LsOrbitReflow {
-        static boolean sample(RecentsView r,TaskView t,float w,float h,float[] out){return false;}
+        static TaskView sampleTask;static float[] samplePose;
+        static boolean sample(RecentsView r,TaskView t,float w,float h,float[] out){
+            if(t!=sampleTask||samplePose==null)return false;
+            System.arraycopy(samplePose,0,out,0,5);return true;
+        }
     }
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
     static float overviewSecondaryCenterFraction=.5f;
+    static float orbitSecondaryOffset;
     static float resourceDensity=1,stackSpacingScale=1;
     static boolean productionGeometry;
     static class Geometry { GEOMETRY }
@@ -208,6 +223,7 @@ public class NativeGestureTest {
         void offsetLocation(float x,float y){} void transform(Matrix m){} void recycle(){}
     }
     static class TaskView extends View {
+        float rotation;float getRotation(){return rotation;}void setRotation(float v){rotation=v;}
         float x,y,scale=1,alpha=1,z,title=1,actions=1,nativeX=37,actionOccluder,dismissY;
         float clip=-1;int writes; final int index; boolean directWrite;
         boolean headerHidden,iconHidden,attached=true; int nativeCancels; long postedDelay; Runnable timer;
@@ -268,6 +284,7 @@ public class NativeGestureTest {
         void invalidate(){invalidations++;}
         boolean isNativeStackStyle(){return stack;} boolean isNativeStackEntryPending(){return pending;}
         boolean isOrbitStyle(){return orbit;}
+        boolean isFanStyle(){return false;}
         void setNativeStackEntryPending(boolean v){pending=v;}
         boolean isNativeStackApplied(){return applied;} void setNativeStackApplied(boolean v){applied=v;}
         boolean isRecentsAnimationRunning(){return running;} boolean isHandlingTouch(){return touching;}
@@ -293,7 +310,7 @@ public class NativeGestureTest {
     static WeakReference<TaskView> gestureLayerTask=new WeakReference<>(null);
     static boolean liveSimulatorOverviewTarget,overviewEntryPending,overviewActive,entryFromApp,drawUpdatePending;
     static int entryStabilizerGeneration,overviewEntryGeneration,entryAnchorPage=-1,entryTaskOrderSize,lastAuditedPage;
-    static float liveEntryPageProgress,liveEntryStartScale,lastLiveAppliedScale,focusScale=.9f,
+    static float liveEntryPageProgress,liveEntryStartScale,lastLiveAppliedScale,baseFocusScale=.9f,focusScale=.9f,
         pendingDismissPagePosition=Float.NaN,entryRevealProgress=1;
     static long lastErrorLogMs; static final String TAG="test";
     static RecentsView ordered;
@@ -930,7 +947,7 @@ public class NativeGestureTest {
     static void orbitComposition(){
         float savedScale=focusScale;
         for(int count:new int[]{1,3,6,8})for(int rotation=0;rotation<4;rotation++)
-        for(int secondaryFactor:new int[]{-1,1}){
+        for(int secondaryFactor:new int[]{-1,1})for(float ringShift:new float[]{0,42}){
             boolean vertical=(rotation&1)!=0;
             RecentsView r=new RecentsView();r.orbit=true;r.handler.vertical=vertical;
             r.handler.rotation=rotation;r.handler.secondaryFactor=secondaryFactor;
@@ -938,7 +955,7 @@ public class NativeGestureTest {
             for(int i=0;i<count;i++){r.tasks[i]=new TaskView(i);r.tasks[i].parent=r;}
             onOverviewStateChanged(r,true);r.drain();clearEntryTaskOrder(r);
             r.pending=false;overviewEntryPending=false;overviewPendingRecents.clear();
-            focusScale=.8f;r.touching=true;
+            focusScale=.8f;orbitSecondaryOffset=ringShift;r.touching=true;
             float primary=vertical?2000:1000,secondary=vertical?1000:2000;
             for(float page:new float[]{0,.375f,count-1f,count-.25f,count+.375f,-.375f,
                     -3*count+.25f,5*count-.375f}){
@@ -957,7 +974,7 @@ public class NativeGestureTest {
                     float actualSecondary=vertical?x:y;
                     float expectedPrimary=LsOrbitGeometry.primary(primary,i,actualPage,count);
                     if(rotation>=2)expectedPrimary=primary-expectedPrimary;
-                    float expectedSecondary=LsOrbitGeometry.secondary(secondary,i,actualPage,count);
+                    float expectedSecondary=LsOrbitGeometry.secondary(secondary,i,actualPage,count)-ringShift;
                     if(secondaryFactor>0)expectedSecondary=secondary-expectedSecondary;
                     check(Math.abs(actualPrimary-expectedPrimary)<.01f,
                             "orbit composition failed primary position");
@@ -982,8 +999,25 @@ public class NativeGestureTest {
             if(rotation>=2)expectedPrimary=primary-expectedPrimary;
             check(Math.abs(actualPrimary-expectedPrimary)<.01f,"dismiss layout clamped the captured circular phase");
             pendingDismissRecents.clear();pendingDismissPagePosition=Float.NaN;
+            // Reflow returns canonical coordinates. The real update consumer
+            // must apply exactly the same whole-ring shift as normal layout.
+            LsOrbitReflow.sampleTask=r.tasks[count-1];
+            for(float p:new float[]{0,.2f,.5f,.8f,1}){
+                float start=LsOrbitGeometry.secondary(secondary,count-1,0,count);
+                float end=LsOrbitGeometry.secondary(secondary,0,0,Math.max(1,count-1));
+                float canonical=start+(end-start)*p;
+                LsOrbitReflow.samplePose=new float[]{primary*.5f,canonical,.8f,1f,50f};update(r);
+                TaskView survivor=LsOrbitReflow.sampleTask;
+                float actual=vertical?survivor.getLeft()+survivor.getPivotX()+survivor.getTranslationX()
+                    :survivor.getTop()+survivor.getPivotY()+survivor.getTranslationY();
+                float expected=canonical-ringShift;if(secondaryFactor>0)expected=secondary-expected;
+                check(Math.abs(actual-expected)<.01f,"orbit reflow lost or doubled landscape clearance");
+                check(Math.abs(survivor.scale-.8f*.8f)<.00001f,"orbit clearance changed reflow size");
+            }
+            LsOrbitReflow.sampleTask=null;LsOrbitReflow.samplePose=null;
             onOverviewStateChanged(r,false);
         }
+        orbitSecondaryOffset=0;
         RecentsView stack=new RecentsView();onOverviewStateChanged(stack,true);stack.drain();
         clearEntryTaskOrder(stack);stack.pending=false;overviewEntryPending=false;
         overviewPendingRecents.clear();stack.touching=true;stack.scroll=700;
@@ -1142,5 +1176,6 @@ with tempfile.TemporaryDirectory(prefix='ls-native-gesture-') as folder:
     path = Path(folder) / 'NativeGestureTest.java'
     path.write_text(harness, encoding='utf-8')
     subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
-                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java'),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsFanGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'NativeGestureTest'], check=True)

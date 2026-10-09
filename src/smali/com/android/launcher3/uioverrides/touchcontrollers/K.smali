@@ -1998,6 +1998,17 @@
 .method public onControllerInterceptTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 10
 
+    # Fan browsing owns the vertical axis and its pager requests native dismissals.
+    # Do not let the parent task-drag controller steal the same pointer sequence.
+    iget-object v0, p0, Lcom/android/launcher3/uioverrides/touchcontrollers/K;->j:Lcom/android/quickstep/views/RecentsView;
+    if-eqz v0, :ls_fan_native_intercept
+    invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->isFanStyle()Z
+    move-result v0
+    if-eqz v0, :ls_fan_native_intercept
+    const/4 v0, 0x0
+    return v0
+    :ls_fan_native_intercept
+
     .line 1
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 

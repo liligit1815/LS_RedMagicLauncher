@@ -322,8 +322,8 @@ def main() -> int:
         raise AssertionError(
             "running-task identity escaped the live-entry resolver/surface geometry helpers"
         )
-    require(live_offset.group(), "if (!landscape) return;",
-            "snapshot pivot offset leaked into portrait projection")
+    require(live_offset.group(), "if (!landscape && !recents.isFanStyle()) return;",
+            "snapshot pivot offset leaked into non-fan portrait projection")
     for expression in ("snapshot.getX()", "snapshot.getY()", "task.getPivotX()", "task.getPivotY()"):
         require(live_offset.group(), expression, "landscape target ignores measured snapshot center")
     require(live_bounds.group(), "offsetLiveSnapshotCenter(recents, scale);",
@@ -679,7 +679,12 @@ def main() -> int:
     require(touch_bounds, "->getNativeStackClipBounds()", "dismiss hit-test ignores screenshot clipping")
     require(
         helper_java,
-        "if (orbit || !horizontalPrimary || dismissLayer || dismissReflowLayer)",
+        "final boolean freeLayout = orbit || fan;",
+        "free-layout clipping must remain limited to orbit and fan",
+    )
+    require(
+        helper_java,
+        "if (freeLayout || !horizontalPrimary || dismissLayer || dismissReflowLayer)",
         "dismiss does not preserve fixed upper-card clipping while lower cards reflow",
     )
     require(

@@ -7872,6 +7872,7 @@
     .line 238
     .line 239
     .line 240
+    invoke-static {p0}, Lcom/android/quickstep/views/LsFanChrome;->titleChanged(Lcom/android/quickstep/views/TaskView;)V
     return-void
 .end method
 
@@ -15557,6 +15558,7 @@
     .locals 2
 
     invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->beginLaunch(Lcom/android/quickstep/views/TaskView;)V
+    invoke-static {p0}, Lcom/android/quickstep/views/LsFanChrome;->refresh(Lcom/android/quickstep/views/TaskView;)V
 
     .line 1
     invoke-virtual {p0}, Lcom/android/quickstep/views/TaskView;->isRunningTask()Z
@@ -21883,6 +21885,8 @@
     .line 51
     invoke-interface {p0, p2}, Lcom/android/quickstep/views/TaskViewIcon;->setText(Ljava/lang/CharSequence;)V
 
+    invoke-static {p1, p2}, Lcom/android/quickstep/views/LsFanChrome;->updateTitle(Lcom/android/quickstep/views/TaskContainer;Ljava/lang/CharSequence;)V
+
     .line 52
     .line 53
     .line 54
@@ -21939,6 +21943,8 @@
 
     .line 78
     invoke-interface {p0, v1}, Lcom/android/quickstep/views/TaskViewIcon;->setText(Ljava/lang/CharSequence;)V
+
+    invoke-static {p1, v1}, Lcom/android/quickstep/views/LsFanChrome;->updateTitle(Lcom/android/quickstep/views/TaskContainer;Ljava/lang/CharSequence;)V
 
     .line 79
     .line 80
@@ -23607,10 +23613,12 @@
     invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/FrameLayout;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
     move-result v2
     invoke-virtual {p1, v1}, Landroid/graphics/Canvas;->restoreToCount(I)V
+    invoke-static {p0, p1, p2}, Lcom/android/quickstep/views/LsFanChrome;->draw(Lcom/android/quickstep/views/TaskView;Landroid/graphics/Canvas;Landroid/view/View;)V
     return v2
     :native_stack_draw_unclipped
     invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/FrameLayout;->drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
     move-result v0
+    invoke-static {p0, p1, p2}, Lcom/android/quickstep/views/LsFanChrome;->draw(Lcom/android/quickstep/views/TaskView;Landroid/graphics/Canvas;Landroid/view/View;)V
     return v0
     :native_stack_action_hidden
     const/4 v0, 0x0
@@ -23712,6 +23720,7 @@
     invoke-virtual {p0, p5}, Landroid/view/View;->setTranslationZ(F)V
 
     :native_stack_transform_done
+    invoke-static {p0}, Lcom/android/quickstep/views/LsFanChrome;->refresh(Lcom/android/quickstep/views/TaskView;)V
     return-void
 .end method
 
@@ -26726,7 +26735,7 @@
 .end method
 
 .method protected final updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V
-    .locals 2
+    .locals 3
 
     const-string v0, "fullscreenParams"
 
@@ -26747,9 +26756,11 @@
 
     invoke-virtual {p0}, Landroid/widget/FrameLayout;->getScaleX()F
 
-    move-result p0
+    move-result v2
 
-    invoke-virtual {p1, v1, v0, p0}, Lcom/android/quickstep/FullscreenDrawParams;->setProgress(FFF)V
+    invoke-virtual {p1, v1, v0, v2}, Lcom/android/quickstep/FullscreenDrawParams;->setProgress(FFF)V
+
+    invoke-static {p0, p1, v1}, Lcom/android/quickstep/views/LsNativeStack;->adjustFanCornerRadius(Lcom/android/quickstep/views/TaskView;Lcom/android/quickstep/FullscreenDrawParams;F)V
 
     :cond_0
     return-void

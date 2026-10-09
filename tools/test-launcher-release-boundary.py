@@ -35,6 +35,8 @@ def fixtures(code=260016):
         helpers.add(gate.OCCLUSION_CLASS + ";")
     if code >= 260023:
         helpers.update(gate.RELEASE_260023_CLASSES)
+    if code >= 260024:
+        helpers.update(gate.RELEASE_260024_CLASSES)
     modified["classes"].update(helpers)
     for owner in helpers:
         key = (owner, "<init>", "()V")
@@ -55,6 +57,51 @@ def compare(original, modified, expected):
 
 
 class ReleaseBoundaryTest(unittest.TestCase):
+    def test_fan_class_version_boundary(self):
+        self.assertEqual(gate.RELEASE_260024_CLASSES, {
+            "Lcom/android/quickstep/views/LsFanStyleSettings;",
+            "Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;",
+            "Lcom/android/quickstep/views/LsFanGeometry;",
+            "Lcom/android/quickstep/views/LsFanChrome;",
+            "Lcom/android/quickstep/views/LsFanPager;",
+            "Lcom/android/quickstep/views/LsFanPager$Identity;",
+            "Lcom/android/quickstep/views/LsFanPager$State;",
+            "Lcom/android/quickstep/views/LsFanPager$1;",
+            "Lcom/android/quickstep/views/LsFanPager$2;",
+            "Lcom/android/quickstep/views/LsFanReflow;",
+            "Lcom/android/quickstep/views/LsFanReflow$Card;",
+            "Lcom/android/quickstep/views/LsFanReflow$Transaction;",
+        })
+        self.assertTrue(compare(*fixtures(260024))["pass"])
+        for owner in gate.RELEASE_260024_CLASSES:
+            with self.subTest(owner=owner):
+                original, modified, expected = fixtures(260023)
+                modified["classes"].add(owner)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+                original, modified, expected = fixtures(260024)
+                modified["classes"].remove(owner)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+                original, modified, expected = fixtures(260024)
+                modified["classes"].add(owner[:-1] + "$Unexpected;")
+                self.assertFalse(compare(original, modified, expected)["pass"])
+
+    def test_fan_methods_require_matching_declarations(self):
+        for owner, name, signature in (
+                (gate.FAN_GEOMETRY_CLASS + ";", "primary", "(FFFI)F"),
+                (gate.FAN_REFLOW_CLASS + ";", "clear",
+                 "(Lcom/android/quickstep/views/RecentsView;)V"),
+                (gate.FAN_PAGER_CLASS + ";", "missingMethod", "()V"),
+                (gate.FAN_SETTINGS_CLASS + ";", "missingMethod", "()V"),
+                (gate.FAN_CHROME_CLASS + ";", "missingMethod", "()V"),
+                ("Lcom/android/quickstep/views/RecentsView;", "isFanStyle", "()Z")):
+            with self.subTest(owner=owner, name=name):
+                original, modified, expected = fixtures(260024)
+                key = (owner, name, signature)
+                modified["references"].add(key)
+                self.assertFalse(compare(original, modified, expected)["pass"])
+                modified["declared"][key] = dict(DECLARATION)
+                self.assertTrue(compare(original, modified, expected)["pass"])
+
     def test_orbit_class_version_boundary(self):
         self.assertEqual(gate.RELEASE_260023_CLASSES, {
             "Lcom/android/quickstep/views/LsOrbitGeometry;",

@@ -39,7 +39,7 @@
 
 实际干净克隆还发现 Windows 的 Apktool 输出 CRLF 与 Git 的 LF 不同：7 个辅助 Smali 仅因换行不同被旧工具拒绝。现将精确的 CRLF/LF 等价仅用于本工程 Java 生成的主类和内部类，其余代码字节、文件集合、资源与最终 APK 内容仍严格核验。
 
-已完成真实 Windows 干净 Git 克隆验证：不恢复签名、不复制旧输出、不传 `--previous`，未签名构建通过；生成包的全部 9,022 个非签名成员与验收版一致。当前版本仍为 `260005`。当前完成项及后续任务见 [开发状态](DEVELOPMENT_STATUS.md)，不依赖本地历史证据才能理解进度。
+已完成真实 Windows 干净 Git 克隆验证：不恢复签名、不复制旧输出、不传 `--previous`，未签名构建通过；生成包的全部 9,022 个非签名成员与验收版一致。该轮恢复构建验证使用历史版本 `260005`。当前完成项及后续任务见 [开发状态](DEVELOPMENT_STATUS.md)，不依赖本地历史证据才能理解进度。
 
 两个仓库发布后，也已从 GitHub 全新克隆、恢复私有仓库中的原签名并完成签名构建；文件和证书恢复一致，APK 全部 9,022 个非签名成员仍与验收版一致。验收输入和适用范围保存在 [GitHub 恢复构建验收](REMOTE_RECOVERY_VERIFICATION.md)。
 
@@ -49,7 +49,7 @@
 2. 安装 Python 3.10+、完整 JDK（本轮验证 JDK 21）、Android SDK Platform 36 和 Build Tools 36.0.0，将 Java 与 Javac 加入 PATH。
 3. 在项目根目录运行 `python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned`。无需旧电脑的 `out/`、审查资料、模块工程或签名文件。
 4. 项目维护者需要延续同签名升级身份时，克隆有权限访问的私有签名仓库，运行 `python tools/restore-signing.py --from-repo "<LS_SSHKey克隆目录>"`，核验并恢复到本工程 `.signing/` 后，去掉 `--unsigned` 构建。确认最终报告为 `signed_verified`。新生成的另一把密钥不会获得已有安装的升级身份。[Android 应用签名说明](https://developer.android.com/studio/publish/app-signing)
-5. 继续开发时保存业务源码、对应 Smali、必要工具和说明；下一轮实际功能或修复修改使用 `260006`。
+5. 继续开发时保存业务源码、对应 Smali、必要工具和说明；后续版本编号遵循 [AGENTS.md](../AGENTS.md) 中的当前约定。
 
 恢复工具自动新建 `.signing/` 的流程目前仅支持 Windows。其他系统需手动放入原密钥、配置和公开证书三个文件，再执行恢复命令核验已有内容；完整构建仍只在 Windows 上经过验证。
 

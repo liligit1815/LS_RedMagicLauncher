@@ -49,6 +49,7 @@ import java.lang.ref.WeakReference;
 import java.util.*;
 import java.awt.geom.AffineTransform;
 public class StackTransitionTest {
+    static class Log {static final int DEBUG=3;static boolean isLoggable(String tag,int priority){return false;}static int d(String tag,String text){return 0;}}
     interface Interpolator {float getInterpolation(float t);}
     static class PathInterpolator implements Interpolator {
         final float x1,y1,x2,y2;
@@ -63,6 +64,7 @@ public class StackTransitionTest {
     static class Rect {
         int left,top,right,bottom;
         Rect(){} Rect(int l,int t,int r,int b){left=l;top=t;right=r;bottom=b;}
+        int width(){return right-left;}int height(){return bottom-top;}
         boolean isEmpty(){return left>=right||top>=bottom;}
         boolean intersect(Rect r){
             if(left<r.right&&r.left<right&&top<r.bottom&&r.top<bottom){
@@ -85,6 +87,7 @@ public class StackTransitionTest {
         boolean invert(Matrix m){try{m.a=a.createInverse();return true;}catch(Exception e){return false;}}
         void postConcat(Matrix m){a.preConcatenate(m.a);}
         void postTranslate(float x,float y){a.preConcatenate(AffineTransform.getTranslateInstance(x,y));}
+        void postRotate(float degrees,float px,float py){a.preConcatenate(AffineTransform.getRotateInstance(Math.toRadians(degrees),px,py));}
         void postScale(float x,float y,float px,float py){
             AffineTransform b=AffineTransform.getTranslateInstance(px,py);b.scale(x,y);b.translate(-px,-py);a.preConcatenate(b);
         }
@@ -93,21 +96,31 @@ public class StackTransitionTest {
             r.left=r.top=Float.POSITIVE_INFINITY;r.right=r.bottom=Float.NEGATIVE_INFINITY;
             for(int i=0;i<8;i+=2){r.left=Math.min(r.left,(float)p[i]);r.top=Math.min(r.top,(float)p[i+1]);r.right=Math.max(r.right,(float)p[i]);r.bottom=Math.max(r.bottom,(float)p[i+1]);}
         }
+        void mapPoints(float[] points){a.transform(points,0,points,0,points.length/2);}
+        void getValues(float[] values){double[] v=new double[6];a.getMatrix(v);values[0]=(float)v[0];values[1]=(float)v[2];values[2]=(float)v[4];values[3]=(float)v[1];values[4]=(float)v[3];values[5]=(float)v[5];values[6]=values[7]=0;values[8]=1;}
+        void setValues(float[] v){a=new AffineTransform(v[0],v[3],v[1],v[4],v[2],v[5]);}
+        boolean setPolyToPoly(float[] src,int si,float[] dst,int di,int count){
+            check(count==3,"unexpected projective fit");
+            AffineTransform from=new AffineTransform(src[si+2]-src[si],src[si+3]-src[si+1],src[si+4]-src[si],src[si+5]-src[si+1],src[si],src[si+1]);
+            AffineTransform to=new AffineTransform(dst[di+2]-dst[di],dst[di+3]-dst[di+1],dst[di+4]-dst[di],dst[di+5]-dst[di+1],dst[di],dst[di+1]);
+            try{to.concatenate(from.createInverse());a=to;return true;}catch(Exception e){return false;}
+        }
     }
     static class Animator {interface AnimatorListener {void onAnimationCancel(Animator a);void onAnimationEnd(Animator a);}}
     static class AnimatorListenerAdapter implements Animator.AnimatorListener {
         public void onAnimationCancel(Animator a){}public void onAnimationEnd(Animator a){}
     }
     static class View {
-        int width=700,height=1200,left,top;float x,y,sx=1,sy=1,z,alpha=1;RectF global;
+        int width=700,height=1200,left,top;float x,y,sx=1,sy=1,z,alpha=1,rotationDegrees;RectF global;
         View parent;Matrix animation,propertyOverride;
         int getWidth(){return width;}int getHeight(){return height;}int getLeft(){return left;}int getTop(){return top;}
         float getPivotX(){return width/2f;}float getPivotY(){return height/2f;}
-        float getAlpha(){return alpha;}
+        float getAlpha(){return alpha;}void setAlpha(float value){alpha=value;}
+        float getRotation(){return rotationDegrees;}void setRotation(float value){rotationDegrees=value;}
         float getTranslationX(){return x;}float getTranslationY(){return y;}float getScaleX(){return sx;}float getScaleY(){return sy;}float getTranslationZ(){return z;}
         void setTranslationX(float v){x=v;}void setTranslationY(float v){y=v;}void setScaleX(float v){sx=v;}void setScaleY(float v){sy=v;}void setTranslationZ(float v){z=v;}
         View getParent(){return parent;}int getScrollX(){return 0;}int getScrollY(){return 0;}
-        Matrix getMatrix(){if(propertyOverride!=null)return new Matrix(propertyOverride);Matrix m=new Matrix();m.postScale(sx,sy,getPivotX(),getPivotY());m.postTranslate(x,y);return m;}
+        Matrix getMatrix(){if(propertyOverride!=null)return new Matrix(propertyOverride);Matrix m=new Matrix();m.postScale(sx,sy,getPivotX(),getPivotY());m.postRotate(rotationDegrees,getPivotX(),getPivotY());m.postTranslate(x,y);return m;}
         Matrix getAnimationMatrix(){return animation;}void setAnimationMatrix(Matrix m){animation=m==null?null:new Matrix(m);}
         View getRootView(){View v=this;while(v.parent!=null)v=v.parent;return v;}void transformMatrixToLocal(Matrix m){}
         void transformMatrixToGlobal(Matrix m){
@@ -120,7 +133,27 @@ public class StackTransitionTest {
         static float[] capture(TaskView t){float[] v=shapes.get(t);return v==null?null:v.clone();}
         static void restore(TaskView t,float[] v){if(v==null)shapes.remove(t);else shapes.put(t,v.clone());}
     }
-    static class TaskContainer {View snapshot;TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}}
+    static class Bitmap {final int width,height;Bitmap(int w,int h){width=w;height=h;}int getWidth(){return width;}int getHeight(){return height;}}
+    static class ThumbnailData {Bitmap bitmap;int rotation;Bitmap getThumbnail(){return bitmap;}}
+    static class Task {ThumbnailData thumbnail;}
+    static class TaskThumbnailViewDeprecated extends View {
+        Bitmap bitmap;Matrix image=new Matrix();Bitmap getThumbnail(){return bitmap;}Matrix getThumbnailMatrix(){return image;}
+        ThumbnailData data;ThumbnailData getNativeStackThumbnailData(){return data;}
+    }
+    static class RecentsOrientedState {int touch,display;int getTouchRotation(){return touch;}int getDisplayRotation(){return display;}}
+    static class TaskViewSimulator {
+        Rect mThumbnailPosition=new Rect();RecentsOrientedState orientation=new RecentsOrientedState();
+        RecentsOrientedState getOrientationState(){return orientation;}
+    }
+    static class TaskAnimationManager {static boolean SHELL_TRANSITIONS_ROTATION;}
+    static class SurfaceTransaction {
+        static class SurfaceProperties {
+            float alpha;int writes;
+            SurfaceProperties setAlpha(float value){alpha=value;writes++;return this;}
+        }
+        static class MockProperties extends SurfaceProperties {}
+    }
+    static class TaskContainer {View snapshot;Task task=new Task();TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}Task getTask(){return task;}}
     static class TaskView extends View {
         float drawAlpha=1,stackAlpha=1;
         float getStableAlpha(){return alpha;}
@@ -155,10 +188,11 @@ public class StackTransitionTest {
                 s.run("drawChild",this,c,new View(),0,0);
             } finally {drawPass=0;}
         }
-        boolean stack=true,applied=true,grid,landscape,fromApp,orbit;float contentAlpha=1,adjacent;int scrollX,scrollY,invalidates,page,alphaCalls,snaps,screenshots;TaskView[] tasks;
+        boolean stack=true,applied=true,grid,landscape,fromApp,orbit,fan;float contentAlpha=1,adjacent;int scrollX,scrollY,invalidates,page,alphaCalls,snaps,screenshots;TaskView[] tasks;
         RecentsView(){width=1216;height=2688;tasks=new TaskView[]{new TaskView(this),new TaskView(this)};}
         boolean isNativeStackStyle(){return stack;}boolean isNativeStackApplied(){return applied;}float getContentAlpha(){return contentAlpha;}
         boolean isOrbitStyle(){return orbit;}
+        boolean isFanStyle(){return fan;}
         int getTaskViewCount(){return tasks.length;}TaskView getTaskViewAt(int i){return tasks[i];}
         int getScrollX(){return scrollX;}int getScrollY(){return scrollY;}void invalidate(){invalidates++;}
     }
@@ -703,7 +737,346 @@ public class StackTransitionTest {
         r.stack=false;r.orbit=false;LsStackTransition.beginLaunch(task);LsStackTransition.launchSnapshotFrame(task).run();
         pointMatch(snapshot.animation.a,rebound.a,snapshot,"ordinary/grid snapshot changed");
     }
-    public static void main(String[] args){preparedHomeExits();homeExitCancellation();exits();launches();cancellationAndClips();fractionalLaunchClips();fadingEdges();lateralMotion();orbitSnapshotLaunches();System.out.println("PASS "+checks+" production Smali/property-writer, lateral motion and exit/launch geometry/lifecycle checks");}
+    static AffineTransform bufferToSnapshot(Rect crop,View snapshot,int turn){
+        // Independent corner correspondence for an OEM buffer rotated by a
+        // quarter turn relative to the un-tilted snapshot's axes.
+        double w=snapshot.width,h=snapshot.height,cw=crop.right-crop.left,ch=crop.bottom-crop.top;
+        AffineTransform map;
+        if(turn==0)map=new AffineTransform(w,0,0,h,0,0);
+        else if(turn==1)map=new AffineTransform(0,h,-w,0,w,0);
+        else if(turn==2)map=new AffineTransform(-w,0,0,-h,w,h);
+        else map=new AffineTransform(0,-h,w,0,0,h);
+        map.scale(1/cw,1/ch);map.translate(-crop.left,-crop.top);return map;
+    }
+    static void fanSnapshotLaunches(){
+        for(int turn=0;turn<4;turn++)for(int bufferTurn=0;bufferTurn<4;bufferTurn++)
+        for(float tilt:new float[]{-12f,0f,12f})for(int outcome=0;outcome<4;outcome++){
+            RecentsView r=deck(3,(turn&1)!=0);r.fan=true;r.rotation=turn;
+            View root=new View();r.parent=root;r.left=27;r.top=43;r.scrollX=73;r.scrollY=31;
+            r.propertyOverride=new Matrix();r.propertyOverride.a.rotate(turn*Math.PI/2);
+            r.propertyOverride.postScale(1.07f,.93f,0,0);
+            Matrix parentAnimation=new Matrix();parentAnimation.postTranslate(13,-7);r.setAnimationMatrix(parentAnimation);
+            TaskView selected=r.tasks[1];selected.clip=-1;selected.left=91;selected.top=147;
+            selected.x=31;selected.y=206;selected.sx=.39f;selected.sy=.42f;selected.setRotation(tilt);
+            r.tasks[0].setRotation(tilt+3f);r.tasks[2].setRotation(tilt-2f);
+            View snapshot=selected.containers.get(0).snapshot;snapshot.left=9;snapshot.top=61;snapshot.x=4;snapshot.y=11;
+            Matrix original=outcome==0?null:new Matrix();if(original!=null)original.postTranslate(2,3);snapshot.setAnimationMatrix(original);
+            AffineTransform clicked=rendered(snapshot,true);
+            Rect initialCrop=new Rect(37,61,1037,2061);
+            AffineTransform mapping=bufferToSnapshot(initialCrop,snapshot,(bufferTurn-turn+4)%4);
+            AffineTransform expectedStart=new AffineTransform(clicked);expectedStart.concatenate(mapping);
+            AffineTransform snapshotBuffer;try{snapshotBuffer=mapping.createInverse();}catch(Exception e){throw new AssertionError(e);}
+            LsStackTransition.beginLaunch(selected);Object simulator=new Object();LsStackTransition.bindLaunchSimulator(selected,simulator);
+            Runnable callback=LsStackTransition.launchSnapshotFrame(selected);Animator.AnimatorListener listener=LsStackTransition.launchListener(selected);
+            Matrix window=new Matrix();window.a.rotate((3-turn)*Math.PI/2);window.postTranslate(33,47);
+            check(LsStackTransition.isLaunchingTask(selected),"fan launch label guard missed selected task");
+            check(!LsStackTransition.isLaunchingTask(r.tasks[0])&&!LsStackTransition.isLaunchingTask(null),"fan label guard hid an unselected task");
+            Matrix inverseWindow=new Matrix();check(window.invert(inverseWindow),"fan window singular");
+            View buffer=new View();buffer.width=1037;buffer.height=2061;
+            double[] previous=null;
+            int frames=outcome==1?60:23;
+            for(int frame=0;frame<=frames;frame++){
+                float p=frame/60f;
+                // Mutations model OEM parent, selected-card and thumbnail
+                // writers executing before our final snapshot correction.
+                r.propertyOverride=new Matrix();r.propertyOverride.a.rotate(turn*Math.PI/2);
+                r.propertyOverride.postScale(1.07f+p*.7f,.93f+p*.7f,400,800);
+                r.propertyOverride.postTranslate(-p*90,p*57);
+                selected.x=31+p*33;selected.y=206-p*47;selected.sx=.39f+p*.17f;selected.sy=.42f+p*.17f;
+                selected.setRotation(tilt*(1-p));r.tasks[0].setRotation(0);r.tasks[2].setRotation(0);
+                snapshot.x=4-p*2;snapshot.y=11-p*6;
+                Matrix oemSnapshot=new Matrix();oemSnapshot.postScale(1+p,1+p,0,0);snapshot.setAnimationMatrix(oemSnapshot);
+                Matrix nativeHome=new Matrix();nativeHome.postTranslate(-37,-61);
+                nativeHome.postScale(.70f+p*.516f,.83f+p*.514f,0,0);
+                nativeHome.postRotate(bufferTurn*90,0,0);nativeHome.postTranslate(150*(1-p),240*(1-p));
+                Matrix remote=new Matrix(nativeHome);remote.postConcat(window);Matrix raw=new Matrix(remote);
+                Rect crop=new Rect(37,61+(int)(12*p),1037,2061);
+                LsStackTransition.normalizeLaunchMatrix(simulator,remote,crop,window,p);
+                Matrix home=new Matrix(remote);home.postConcat(inverseWindow);
+                if(frame==0){
+                    pointMatch(home.a,expectedStart,buffer,"fan exact tilted start turn "+turn+" buffer "+bufferTurn+" tilt "+tilt);
+                    callback.run();pointMatch(rendered(snapshot,true),clicked,snapshot,"fan screenshot moved on first frame");
+                }
+                if(frame==60)pointMatch(remote.a,raw.a,buffer,"fan endpoint did not restore OEM matrix");
+                AffineTransform expectedSnapshot=new AffineTransform(home.a);expectedSnapshot.concatenate(snapshotBuffer);
+                callback.run();pointMatch(rendered(snapshot,true),expectedSnapshot,snapshot,"fan screenshot and surface differ");
+                callback.run();pointMatch(rendered(snapshot,true),expectedSnapshot,snapshot,"fan correction accumulated");
+                near(r.tasks[0].getRotation(),tilt+3f,"fan neighbour lost angle during launch");
+                near(r.tasks[2].getRotation(),tilt-2f,"fan second neighbour lost angle during launch");
+                double[] points={37,61,1037,61,1037,2061,37,2061};home.a.transform(points,0,points,0,4);
+                if(previous!=null)for(int i=0;i<8;i++)check(Math.abs(points[i]-previous[i])<65,"fan corner moved discontinuously");
+                previous=points;
+                check(Math.abs(home.a.getDeterminant())>.02,"fan matrix collapsed during opening");
+            }
+            if(outcome==0){listener.onAnimationCancel(new Animator());listener.onAnimationEnd(new Animator());}
+            if(outcome==1){LsStackTransition.onOverviewStateChanged(r,false);listener.onAnimationEnd(new Animator());}
+            if(outcome==2)LsStackTransition.onLaunchResult(selected,null);
+            if(outcome==3)LsStackTransition.clear(r);
+            check(!LsStackTransition.isLaunchSimulator(simulator),"fan completion retained surface binding");
+            check(!LsStackTransition.isLaunchingTask(selected),"fan completion retained label guard");
+            if(outcome!=1)near(selected.getRotation(),tilt,"fan cancellation lost selected rotation");
+            if(original==null)check(snapshot.animation==null,"fan cancellation retained snapshot correction");
+            else pointMatch(snapshot.animation.a,original.a,snapshot,"fan completion lost original snapshot matrix");
+            Matrix replacement=new Matrix();replacement.postTranslate(432,765);snapshot.setAnimationMatrix(replacement);callback.run();
+            pointMatch(snapshot.animation.a,replacement.a,snapshot,"stale fan callback changed snapshot");
+            LsStackTransition.clear(r);
+        }
+        for(int turn=0;turn<4;turn++){
+            RecentsView r=deck(3,(turn&1)!=0);r.fan=true;r.rotation=turn;
+            r.tasks=Arrays.copyOf(r.tasks,3);r.scrollX=r.scrollY=0;
+            for(int i=0;i<r.tasks.length;i++){TaskView task=r.tasks[i];task.left=task.top=0;task.x=200+i*90;task.y=300+i*170;task.clip=-1;}
+            r.tasks[0].setRotation(12);r.tasks[1].setRotation(6);r.tasks[2].setRotation(-2);
+            LsStackTransition.beginHomeExit(r);Animator.AnimatorListener listener=LsStackTransition.homeExitListener(r);
+            for(TaskView task:r.tasks)task.setRotation(0);
+            LsStackTransition.beforeUpdate(r);
+            near(r.tasks[0].getRotation(),12,"fan exit lost angle");near(r.tasks[2].getRotation(),-2,"fan exit lost lower angle");
+            r.contentAlpha=.15f;Canvas canvas=new Canvas();LsStackTransition.drawHomeExit(r,canvas);
+            for(TaskView task:r.tasks){
+                RectF bounds=new RectF(0,0,task.width,task.height);task.getMatrix().mapRect(bounds);
+                float offset=r.landscape?canvas.drawTy:canvas.drawTx;
+                float layout=(r.landscape?task.top-r.scrollY:task.left-r.scrollX);
+                float edge=layout+(r.landscape?(turn>=2?bounds.top:bounds.bottom):(turn>=2?bounds.left:bounds.right))+offset;
+                check(turn>=2?edge>=(r.landscape?r.height:r.width):edge<=0,"tilted card remained at exit boundary");
+            }
+            listener.onAnimationCancel(new Animator());near(r.tasks[1].getRotation(),6,"fan exit cancel lost angle");
+            check(!LsStackTransition.isHomeExit(r),"fan exit cancel retained transaction");
+        }
+    }
+    static void fanBitmapLaunches(){
+        for(int shaderTurn=0;shaderTurn<4;shaderTurn++)for(int sourceRotation=0;sourceRotation<4;sourceRotation++)
+        for(boolean shell:new boolean[]{false,true})for(int outcome=0;outcome<4;outcome++){
+            TaskAnimationManager.SHELL_TRANSITIONS_ROTATION=shell;
+            RecentsView r=deck(3,(shaderTurn&1)!=0);r.fan=true;r.rotation=shaderTurn;
+            View root=new View();r.parent=root;r.scrollX=67;r.scrollY=31;r.left=29;r.top=43;
+            r.propertyOverride=new Matrix();r.propertyOverride.postRotate(shaderTurn*90,0,0);
+            TaskView selected=r.tasks[1];selected.sx=selected.sy=.19f;selected.setRotation(7.5f);selected.clip=-1;
+            TaskThumbnailViewDeprecated snapshot=new TaskThumbnailViewDeprecated();snapshot.parent=selected;snapshot.left=13;snapshot.top=61;
+            snapshot.bitmap=new Bitmap(600,1000);snapshot.image.postScale(1.2f,1.2f,0,0);
+            snapshot.image.postRotate(shaderTurn*90,0,0);snapshot.image.postTranslate(127,-43);
+            selected.containers.get(0).snapshot=snapshot;
+            ThumbnailData data=new ThumbnailData();data.bitmap=snapshot.bitmap;data.rotation=sourceRotation;
+            snapshot.data=data;
+            selected.containers.get(0).task.thumbnail=data;
+            Matrix original=new Matrix();original.postTranslate(3,-7);snapshot.setAnimationMatrix(original);
+            AffineTransform clicked=rendered(snapshot,true),pixelStart=new AffineTransform(clicked);
+            pixelStart.concatenate(snapshot.image.a);
+            // Independent correspondence: same source rotation, with a
+            // half-resolution screenshot and a full 1200 x 2000 app buffer.
+            AffineTransform bufferToBitmap=AffineTransform.getScaleInstance(.5,.5);
+            AffineTransform expectedStart=new AffineTransform(pixelStart);expectedStart.concatenate(bufferToBitmap);
+            TaskViewSimulator simulator=new TaskViewSimulator();simulator.mThumbnailPosition=new Rect(37,81,1237,2081);
+            simulator.orientation.touch=shell?sourceRotation:(sourceRotation+1)%4;
+            simulator.orientation.display=shell?(sourceRotation+1)%4:sourceRotation;
+            LsStackTransition.beginLaunch(selected);LsStackTransition.bindLaunchSimulator(selected,simulator);
+            Runnable callback=LsStackTransition.launchSnapshotFrame(selected);
+            Animator.AnimatorListener listener=LsStackTransition.launchListener(selected);
+            Matrix window=new Matrix();window.postRotate((3-shaderTurn)*90,0,0);window.postTranslate(19,53);
+            Matrix inverseWindow=new Matrix();check(window.invert(inverseWindow),"bitmap window matrix singular");
+            for(int frame=0;frame<=30;frame++){
+                float p=frame/30f;
+                r.sx=r.sy=1+.6f*p;selected.sx=selected.sy=.19f+.4f*p;selected.x=37*p;selected.y=-23*p;
+                // Size/thumbnail refresh may also replace the internal shader.
+                snapshot.image=new Matrix();snapshot.image.postScale(1.2f+.1f*p,1.2f+.1f*p,0,0);
+                snapshot.image.postRotate(shaderTurn*90,0,0);snapshot.image.postTranslate(127-17*p,-43+29*p);
+                Matrix nativeHome=new Matrix();nativeHome.postScale(.7f+.3f*p,.7f+.3f*p,0,0);nativeHome.postTranslate(31*(1-p),57*(1-p));
+                Matrix remote=new Matrix(nativeHome);remote.postConcat(window);Matrix unmodified=new Matrix(remote);
+                // Nonzero content insets deliberately do not define the full
+                // source dimensions or its origin in snapshot pixel space.
+                Rect crop=new Rect(17,31,1163,1967);
+                LsStackTransition.normalizeLaunchMatrix(simulator,remote,crop,window,p);
+                Matrix home=new Matrix(remote);home.postConcat(inverseWindow);
+                if(frame==0)pointMatch(home.a,expectedStart,snapshot,"pixel launch ignored shader rotation or used crop as full buffer");
+                if(frame==30)pointMatch(remote.a,unmodified.a,snapshot,"pixel launch endpoint differs from OEM");
+                check(Math.abs(home.a.getDeterminant())>.001,"internal quarter/half-turn collapsed during launch");
+                callback.run();AffineTransform actual=rendered(snapshot,true);actual.concatenate(snapshot.image.a);
+                AffineTransform expected=new AffineTransform(home.a);expected.scale(2,2);
+                pointMatch(actual,expected,snapshot,"bitmap landmarks differ from live surface");
+                callback.run();AffineTransform repeated=rendered(snapshot,true);repeated.concatenate(snapshot.image.a);
+                pointMatch(repeated,expected,snapshot,"bitmap correction accumulated");
+            }
+            if(outcome==0){listener.onAnimationCancel(new Animator());listener.onAnimationEnd(new Animator());}
+            if(outcome==1){LsStackTransition.onOverviewStateChanged(r,false);listener.onAnimationEnd(new Animator());}
+            if(outcome==2)LsStackTransition.onLaunchResult(selected,null);
+            if(outcome==3)LsStackTransition.clear(r);
+            pointMatch(snapshot.animation.a,original.a,snapshot,"pixel launch did not restore original animation");
+            check(!LsStackTransition.isLaunchSimulator(simulator),"pixel launch retained simulator");
+            Matrix later=new Matrix();later.postTranslate(911,433);snapshot.setAnimationMatrix(later);callback.run();
+            pointMatch(snapshot.animation.a,later.a,snapshot,"stale pixel callback modified restored screenshot");
+            LsStackTransition.clear(r);
+            // Unknown, stale or differently rotated bitmap metadata must use
+            // the existing quadrilateral path rather than guessing its axes.
+            for(int invalid=0;invalid<3;invalid++){
+                snapshot.data=data;
+                data.bitmap=invalid==0?new Bitmap(600,1000):snapshot.bitmap;
+                data.rotation=invalid==1?(sourceRotation+2)%4:sourceRotation;
+                if(invalid==2)snapshot.data=null;
+                LsStackTransition.beginLaunch(selected);LsStackTransition.bindLaunchSimulator(selected,simulator);
+                LsStackTransition.normalizeLaunchMatrix(simulator,new Matrix(),new Rect(17,31,1163,1967),new Matrix(),0);
+                check(LsStackTransition.transitions.get(r).snapshotBitmapToBuffer==null,"unverified bitmap metadata used pixel mapping");
+                LsStackTransition.clear(r);
+            }
+        }
+        TaskAnimationManager.SHELL_TRANSITIONS_ROTATION=false;
+    }
+    static class HandoffFixture {
+        RecentsView r=new RecentsView();TaskView task=r.tasks[0];
+        TaskThumbnailViewDeprecated snapshot=new TaskThumbnailViewDeprecated();
+        TaskViewSimulator simulator=new TaskViewSimulator();
+        Matrix nativeMatrix=new Matrix(),start=new Matrix();
+        HandoffFixture(int bitmapRotation,int sourceRotation){
+            r.fan=true;task.width=snapshot.width=748;task.height=snapshot.height=1653;
+            // The measured failing device launch: landscape bitmap/shader,
+            // portrait live buffer, and a 10-degree fan card in root pixels.
+            start.setValues(new float[]{.17221062f,-.030365378f,920.0578f,.030365378f,.17221062f,2179.042f,0,0,1});
+            task.propertyOverride=start;task.rotationDegrees=10;snapshot.parent=task;snapshot.alpha=.83f;
+            snapshot.bitmap=new Bitmap(2688,1216);
+            snapshot.image.setValues(new float[]{0,-.61513156f,748,.61513156f,0,0,0,0,1});
+            task.containers.get(0).snapshot=snapshot;
+            ThumbnailData data=new ThumbnailData();data.bitmap=snapshot.bitmap;data.rotation=bitmapRotation;
+            snapshot.data=data;
+            task.containers.get(0).task.thumbnail=data;
+            simulator.orientation.touch=simulator.orientation.display=sourceRotation;
+            simulator.mThumbnailPosition=new Rect(0,0,1216,2688);
+            nativeMatrix.setValues(new float[]{.61513156f,0,234,0,.61513156f,532,0,0,1});
+        }
+        void begin(){LsStackTransition.beginLaunch(task);LsStackTransition.bindLaunchSimulator(task,simulator);}
+        Matrix frame(float progress){Matrix result=new Matrix(nativeMatrix);LsStackTransition.normalizeLaunchMatrix(simulator,result,new Rect(0,0,1216,2688),new Matrix(),progress);return result;}
+        SurfaceTransaction.SurfaceProperties present(boolean hidden){return present(hidden,1f);}
+        SurfaceTransaction.SurfaceProperties present(boolean hidden,float nativeAlpha){SurfaceTransaction.SurfaceProperties p=new SurfaceTransaction.SurfaceProperties();p.alpha=nativeAlpha;LsStackTransition.onLaunchSurface(simulator,p,hidden,nativeAlpha);return p;}
+    }
+    static void fanSingleLiveHandoff(){
+        TaskAnimationManager.SHELL_TRANSITIONS_ROTATION=false;
+        for(int bitmap=0;bitmap<4;bitmap++)for(int source=0;source<4;source++)for(int outcome=0;outcome<4;outcome++){
+            HandoffFixture f=new HandoffFixture(bitmap,source);f.begin();
+            Runnable callback=LsStackTransition.launchSnapshotFrame(f.task);
+            Animator.AnimatorListener listener=LsStackTransition.launchListener(f.task);
+            check(f.present(false).writes==0,"handoff happened before a valid normalized frame");
+            near(f.snapshot.alpha,.83f,"launch begin hid screenshot");
+            Matrix first=f.frame(0);
+            LsStackTransition.Transition transaction=LsStackTransition.transitions.get(f.r);
+            boolean mismatch=bitmap!=source;
+            check(transaction.singleLiveHandoff==mismatch,"rotation mismatch gate failed");
+            if(mismatch){
+                check(transaction.snapshotBitmapToBuffer==null,"reflowed UI received guessed bitmap axes");
+                check(LsStackTransition.surfaces.get(f.simulator).bitmapCorrection==null,"reflowed UI received a false pixel correction");
+                AffineTransform expected=new AffineTransform(f.start.a);expected.scale(748.0/1216,1653.0/2688);
+                pointMatch(first.a,expected,f.snapshot,"single live changed the measured clicked outline");
+            }
+            f.task.setStableAlpha(.12f);
+            if(mismatch)near(f.task.drawAlpha,1,"pending surface allowed OEM to fade away the screenshot");
+            SurfaceTransaction.SurfaceProperties initial=f.present(false);
+            near(initial.alpha,mismatch?0:1,"initial TransformParams alpha 1 bypassed fade phase");
+            near(f.snapshot.alpha,.83f,"initial default alpha hid screenshot");
+            f.present(false,0f);
+            SurfaceTransaction.SurfaceProperties visible=f.present(false);
+            near(visible.alpha,1,"live target opacity handoff");
+            near(f.snapshot.alpha,mismatch?0:.83f,"screenshot handoff");
+            near(f.task.drawAlpha,mismatch?0:.12f,"selected card draw handoff");
+            check(visible.writes==(mismatch?1:0),"equal rotation changed OEM surface alpha");
+            if(mismatch){
+                // A compositor transaction must never contain both reflowed
+                // images or hide the screenshot behind a native-hidden target.
+                check(visible.alpha==1&&f.snapshot.alpha==0&&f.task.drawAlpha==0,"two layouts remained visible");
+                SurfaceTransaction.SurfaceProperties hidden=f.present(true);
+                check(hidden.writes==0,"overrode native needHideSurface");
+                near(f.snapshot.alpha,.83f,"native-hidden target lost screenshot fallback");
+                near(f.task.drawAlpha,1,"native-hidden target retained selected-card suppression");
+                f.present(false);
+                SurfaceTransaction.MockProperties invalid=new SurfaceTransaction.MockProperties();
+                LsStackTransition.onLaunchSurface(f.simulator,invalid,false,1f);
+                check(invalid.writes==0,"invalid target received opaque alpha");
+                near(f.snapshot.alpha,.83f,"invalid target did not restore screenshot");
+                f.present(false);LsStackTransition.onLaunchSurface(f.simulator,null,false,1f);
+                near(f.snapshot.alpha,.83f,"null target did not restore screenshot");
+                for(int reason=0;reason<2;reason++){
+                    f.frame(.15f);f.present(false);
+                    Matrix window=new Matrix();if(reason==1)window.postScale(0,0,0,0);
+                    LsStackTransition.normalizeLaunchMatrix(f.simulator,new Matrix(),reason==0?new Rect():new Rect(0,0,1216,2688),window,.2f);
+                    near(f.present(false).alpha,0,"invalid normalized frame left live target visible");
+                    near(f.snapshot.alpha,.83f,"invalid normalized frame lost screenshot");
+                }
+            }
+            for(int i=1;i<=20;i++){
+                Matrix frame=f.frame(i/20f);SurfaceTransaction.SurfaceProperties p=f.present(false);callback.run();
+                check(frame.a.getDeterminant()>0,"handoff launch collapsed or reflected");
+                if(mismatch){near(p.alpha,1,"live alpha ceased being opaque");near(f.snapshot.alpha,0,"snapshot returned during handoff");}
+                if(i==20)pointMatch(frame.a,f.nativeMatrix.a,f.snapshot,"handoff changed OEM endpoint");
+            }
+            if(outcome==0){listener.onAnimationCancel(new Animator());listener.onAnimationEnd(new Animator());}
+            if(outcome==1){LsStackTransition.onOverviewStateChanged(f.r,false);listener.onAnimationEnd(new Animator());}
+            if(outcome==2)LsStackTransition.onLaunchResult(f.task,null);
+            if(outcome==3)LsStackTransition.clear(f.r);
+            near(f.snapshot.alpha,.83f,"handoff lifecycle failed to restore original snapshot alpha");
+            check(f.snapshot.animation==null,"handoff lifecycle retained screenshot animation");
+            check(!LsStackTransition.isLaunchSimulator(f.simulator),"handoff lifecycle retained surface binding");
+            f.snapshot.alpha=.57f;callback.run();check(f.present(false).writes==0,"stale handoff touched target");
+            near(f.snapshot.alpha,.57f,"stale handoff changed restored screenshot");LsStackTransition.clear(f.r);
+        }
+        for(int excluded=0;excluded<5;excluded++){
+            HandoffFixture f=new HandoffFixture(1,0);
+            if(excluded==0){f.r.fan=false;f.r.orbit=true;}
+            if(excluded==1){f.r.fan=false;}
+            if(excluded==2)f.snapshot.data.bitmap=new Bitmap(2688,1216);
+            if(excluded==3)f.snapshot.data=null;
+            if(excluded==4)f.task.containers.add(new TaskContainer(new View()));
+            f.begin();f.frame(0);check(f.present(false).writes==0,"single-live handoff escaped fan/metadata/single-container guard");
+            near(f.snapshot.alpha,.83f,"excluded style/metadata hid screenshot");LsStackTransition.clear(f.r);
+        }
+        HandoffFixture rebound=new HandoffFixture(1,0);rebound.begin();rebound.frame(0);rebound.present(false,0f);rebound.present(false);
+        rebound.task.ids=new int[]{991};rebound.snapshot.alpha=.42f;
+        check(rebound.present(false).writes==0,"rebound task touched target");
+        LsStackTransition.clear(rebound.r);near(rebound.snapshot.alpha,.42f,"rebound task inherited old snapshot restoration");
+        for(int cache=0;cache<3;cache++){
+            HandoffFixture f=new HandoffFixture(1,0);
+            // The task cache may be ahead of the bitmap still drawn by the
+            // thumbnail, as in the measured PID 28582 capture identity=false.
+            ThumbnailData latest=new ThumbnailData();latest.bitmap=cache==0?new Bitmap(1216,2688):f.snapshot.bitmap;latest.rotation=0;
+            f.task.containers.get(0).task.thumbnail=cache==2?null:latest;
+            f.begin();f.frame(0);
+            LsStackTransition.Transition t=LsStackTransition.transitions.get(f.r);
+            check(t.snapshotBitmap.get()==f.snapshot.bitmap,"capture followed Task cache instead of displayed bitmap");
+            check(t.snapshotBitmapRotation==1&&t.singleLiveHandoff,"Task cache rotation overrode displayed bitmap metadata");
+            f.present(false,0f);
+            near(f.present(false).alpha,1,"new Task cache bypassed single-live handoff");
+            near(f.snapshot.alpha,0,"new Task cache retained duplicate screenshot");
+            LsStackTransition.clear(f.r);near(f.snapshot.alpha,.83f,"own-data capture did not restore screenshot");
+        }
+    }
+    static void fanNativeFadeHandoff(){
+        HandoffFixture f=new HandoffFixture(1,0);f.begin();
+        Runnable callback=LsStackTransition.launchSnapshotFrame(f.task);
+        for(float alpha:new float[]{1,0,.15f,.4f,.7f,.999f,1}){
+            boolean initial=!LsStackTransition.transitions.get(f.r).singleLiveHandoff;
+            Matrix remote=f.frame(initial?0:alpha*.2f);
+            // OEM selected-card alpha writers must not fade the waiting image.
+            f.task.setStableAlpha(.1f);
+            SurfaceTransaction.SurfaceProperties p=f.present(false,alpha);callback.run();
+            boolean complete=!initial&&alpha==1;
+            near(p.alpha,complete?1:0,"OEM fade phase did not exclusively choose one image");
+            near(f.task.drawAlpha,complete?0:1,"waiting screenshot inherited OEM fade");
+            near(f.snapshot.alpha,complete?0:.83f,"snapshot ownership changed before native fade ended");
+            AffineTransform expected=new AffineTransform(remote.a);expected.scale(1216.0/748,2688.0/1653);
+            pointMatch(rendered(f.snapshot,true),expected,f.snapshot,"waiting snapshot stopped following live geometry");
+        }
+        LsStackTransition.clear(f.r);
+        // Running live-tile and Desktop launches can legally retain alpha 1
+        // throughout. The final OEM geometry releases this no-fade path.
+        HandoffFixture noFade=new HandoffFixture(1,0);noFade.begin();
+        for(float progress:new float[]{0,.01f,.5f,.999f,1}){
+            noFade.frame(progress);SurfaceTransaction.SurfaceProperties p=noFade.present(false);
+            near(p.alpha,progress==1?1:0,"constant-alpha path bypassed phase guard or never released");
+            near(noFade.snapshot.alpha,progress==1?0:.83f,"constant-alpha screenshot ownership");
+        }
+        LsStackTransition.clear(noFade.r);near(noFade.snapshot.alpha,.83f,"no-fade cleanup lost screenshot");
+        for(float alpha:new float[]{0,.5f}){
+            HandoffFixture cancelled=new HandoffFixture(1,0);cancelled.begin();cancelled.frame(.1f);cancelled.present(false,alpha);
+            LsStackTransition.onLaunchResult(cancelled.task,null);
+            near(cancelled.snapshot.alpha,.83f,"cancel while waiting lost screenshot");
+            near(cancelled.task.drawAlpha,1,"cancel while waiting lost captured task alpha");
+            check(!LsStackTransition.isLaunchSimulator(cancelled.simulator),"cancel while waiting retained handoff");
+        }
+    }
+    public static void main(String[] args){preparedHomeExits();homeExitCancellation();exits();launches();cancellationAndClips();fractionalLaunchClips();fadingEdges();lateralMotion();orbitSnapshotLaunches();fanSnapshotLaunches();fanBitmapLaunches();fanSingleLiveHandoff();fanNativeFadeHandoff();System.out.println("PASS "+checks+" production Smali/property-writer, lateral motion and exit/launch geometry/lifecycle checks");}
 }
 '''.replace('PRODUCTION', source).replace('SMALI_PROGRAMS', smali_java())
 
@@ -746,6 +1119,20 @@ simulator = body('src/smali_classes2/com/android/quickstep/util/TaskViewSimulato
                  '.method public onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;Landroid/view/RemoteAnimationTarget;')
 assert simulator.index('->normalizeLiveEntryMatrix(') < simulator.index('->normalizeLaunchMatrix(') < simulator.index('->setMatrix(')
 assert '->isLaunchSimulator(' in simulator, 'reused live simulators can overwrite launch geometry'
+native_visibility = simulator.index('->onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;)V')
+handoff = simulator.index('->onLaunchSurface(')
+assert native_visibility < simulator.rindex('->setWindowCrop(') < handoff < simulator.index('\n    :ls_launch_matrix_done\n'), 'handoff must share the final native surface transaction'
+assert 'iget-boolean v0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->needHideSurface:Z' in simulator[native_visibility:handoff], 'handoff must honor the native visibility veto'
+assert simulator.index('->getTargetAlpha()F') < simulator.index('iget-object p3,'), 'capture native alpha before p3 is reused'
+assert 'invoke-static {p0, p1, v0, v4}' in simulator and 'SurfaceProperties;ZF)V' in simulator, 'pass original native target alpha to handoff'
+native_fade = window[window.index('\n    :cond_c\n'):window.index('\n    :goto_7\n')]
+assert '->TARGET_ALPHA:' in native_fade and '0x3e4ccccd' in native_fade, 'regular task target fade must use native first-20-percent phase'
+assert 'const/4 v12, 0x0' in native_fade and 'const/high16 v13, 0x3f800000' in native_fade, 'regular target fade must retain explicit zero/one endpoints'
+thumbnail_path = 'src/smali_classes2/com/android/quickstep/views/TaskThumbnailViewDeprecated.smali'
+own_data = body(thumbnail_path, '.method public getNativeStackThumbnailData()')
+bitmap_getter = body(thumbnail_path, '.method public getThumbnail()')
+assert '->mThumbnailData:' in own_data and '->mThumbnailData:' in bitmap_getter, 'bitmap and rotation metadata must share the displayed View data'
+assert 'return-object p0' in own_data and 'invoke-' not in own_data and 'iput-' not in own_data, 'metadata getter must remain a read-only field access'
 exit_body = body('src/smali_classes2/com/android/quickstep/views/LauncherRecentsView.smali',
                  '.method public onStateTransitionComplete(Lcom/android/launcher3/V3;)V')
 assert exit_body.index('->reset()') < exit_body.index('->onExitComplete(')

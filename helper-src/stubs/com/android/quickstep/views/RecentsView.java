@@ -36,9 +36,11 @@ public abstract class RecentsView extends ViewGroup {
     public abstract int getTaskViewCount();
     public abstract TaskView getTaskViewAt(int index);
     public abstract TaskView getTaskViewByTaskId(int taskId);
+    public abstract void dismissTaskView(TaskView taskView, boolean animateTaskView, boolean removeTask);
     public abstract boolean isTaskViewVisible(TaskView taskView);
     public abstract boolean isNativeStackStyle();
     public abstract boolean isOrbitStyle();
+    public abstract boolean isFanStyle();
     public abstract boolean isNativeStackApplied();
     public abstract void setNativeStackApplied(boolean applied);
     public abstract boolean isNativeStackEntryPending();

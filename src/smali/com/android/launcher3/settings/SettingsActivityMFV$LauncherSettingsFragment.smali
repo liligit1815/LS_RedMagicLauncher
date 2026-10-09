@@ -2470,6 +2470,19 @@
     goto :ls_style_summary_ready_1
 
     :ls_orbit_summary_non_orbit_1
+    const/4 v4, 0x5
+
+    if-ne v2, v4, :ls_fan_summary_non_fan_1
+
+    invoke-static {v3}, Lcom/android/quickstep/views/LsFanStyleSettings;->getLabel(Landroid/content/res/Resources;)Ljava/lang/String;
+
+    move-result-object v2
+
+    const/4 v4, 0x1
+
+    goto :ls_style_summary_ready_1
+
+    :ls_fan_summary_non_fan_1
     const/4 v4, 0x3
 
     if-ne v2, v4, :cond_d
@@ -9968,6 +9981,19 @@
     goto :ls_style_summary_ready_2
 
     :ls_orbit_summary_non_orbit_2
+    const/4 v6, 0x5
+
+    if-ne v7, v6, :ls_fan_summary_non_fan_2
+
+    invoke-static {v8}, Lcom/android/quickstep/views/LsFanStyleSettings;->getLabel(Landroid/content/res/Resources;)Ljava/lang/String;
+
+    move-result-object v7
+
+    const/4 v6, 0x1
+
+    goto :ls_style_summary_ready_2
+
+    :ls_fan_summary_non_fan_2
     const/4 v6, 0x3
 
     if-ne v7, v6, :cond_30

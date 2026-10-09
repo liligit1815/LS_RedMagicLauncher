@@ -32,20 +32,27 @@ public class TouchTargetTest {
         float getX(){return x;} float getY(){return y;}
     }
     static class View {}
+    static class Matrix {void mapPoints(float[] p){throw new AssertionError("fan matrix reached stack hit test");}}
+    static class TaskContainer {View getSnapshotView(){throw new AssertionError("fan snapshot reached stack hit test");}}
+    static boolean hitsActionBounds(View v,float[] point){throw new AssertionError("fan bounds reached stack hit test");}
     static class TaskView extends View {
         String name; Rect bounds,clip; float alpha=1,z,scale=1; boolean visible=true;
         TaskView(String n,int l,int t,int r,int b,float layer){name=n;bounds=new Rect(l,t,r,b);z=layer;}
         float getAlpha(){return alpha;} float getTranslationZ(){return z;}
         Rect getNativeStackClipBounds(){return clip;}
+        void transformMatrixToLocal(Matrix m){throw new AssertionError("fan transform reached stack hit test");}
+        java.util.List<TaskContainer> getTaskContainers(){throw new AssertionError("fan containers reached stack hit test");}
         public String toString(){return name;}
     }
     static class RecentsView {
         View[] children; int focus; boolean stack=true;
         RecentsView(View... c){children=c;}
         boolean isNativeStackStyle(){return stack;} int getChildCount(){return children.length;}
+        boolean isFanStyle(){return false;}
         View getChildAt(int i){return children[i];} boolean isTaskViewVisible(TaskView t){return t.visible;}
     }
     static class BaseDragLayer {
+        void transformMatrixToGlobal(Matrix m){throw new AssertionError("fan global transform reached stack hit test");}
         float getDescendantRectRelativeToSelf(TaskView t,Rect r){
             r.set(t.bounds.left,t.bounds.top,t.bounds.right,t.bounds.bottom);return t.scale;
         }

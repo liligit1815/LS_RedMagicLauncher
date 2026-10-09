@@ -69,6 +69,7 @@
     invoke-virtual {v0, p0}, Landroid/widget/LinearLayout;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     invoke-static {p0, p0}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->attach(Landroid/app/Activity;Landroid/view/View$OnClickListener;)V
+    invoke-static {p0, p0}, Lcom/android/quickstep/views/LsFanStyleSettings;->attach(Landroid/app/Activity;Landroid/view/View$OnClickListener;)V
 
     invoke-static {p0}, Lcom/android/launcher3/J3;->m(Landroid/content/Context;)Landroid/content/SharedPreferences;
     move-result-object v0
@@ -105,6 +106,7 @@
     .locals 4
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->configureScaleControl(Landroid/app/Activity;I)V
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->update(Landroid/app/Activity;I)V
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsFanStyleSettings;->update(Landroid/app/Activity;I)V
 
     const/4 v0, 0x0
     const/4 v1, 0x1
@@ -176,6 +178,13 @@
 
 .method public onClick(Landroid/view/View;)V
     .locals 2
+    invoke-static {p1}, Lcom/android/quickstep/views/LsFanStyleSettings;->isFanCard(Landroid/view/View;)Z
+    move-result v0
+    if-eqz v0, :ls_click_orbit_style
+    const/4 v1, 0x5
+    invoke-direct {p0, v1}, Lcom/android/launcher3/settings/RecentAppStyleActivity;->s0(I)V
+    return-void
+    :ls_click_orbit_style
     invoke-static {p1}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->isOrbitCard(Landroid/view/View;)Z
     move-result v0
     if-eqz v0, :ls_click_existing_styles

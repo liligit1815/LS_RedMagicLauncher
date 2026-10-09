@@ -10,7 +10,7 @@
 
 - `f2/h.d` 的 Overview → Normal 准备阶段先切截图，再调用 `setExitAnimTaskAlpha` 设置按页码的透明度例外，并 `snapToPage` 回到更早页。
 - 状态管理器先完成动画准备，后启动动画并通知 `onStateTransitionStart`。旧实现此时才保存卡片，已晚于准备阶段。
-- `ADJACENT_PAGE_HORIZONTAL_OFFSET` 经 `RecentsView$4`、`updatePageOffsets` 直接改写卡片位移，次轴也有独立属性写入。旧实现仅靠 `beforeDispatchDraw` 恢复；属性更新不保证父层重新绘制。桌面第 0 页与 App 第 1 页的回页行为不同，是与录屏差异一致的代码路径解释，尚未用实机调用轨迹验证。
+- `ADJACENT_PAGE_HORIZONTAL_OFFSET` 经 `RecentsView$4`、`updatePageOffsets` 直接改写卡片位移，次轴也有独立属性写入。旧实现仅靠 `beforeDispatchDraw` 恢复；属性更新不保证父层重新绘制。桌面第 0 页与 App 第 1 页的回页行为不同，该原因判断来自代码路径与录屏差异的对照。
 
 ## 修正范围
 
@@ -34,4 +34,4 @@
 
 产物：`out/build-260018-20260927-095937-676047/LS_红魔桌面修改版-26.9.260.908.2609081608-260018.apk`，31,363,377 字节，SHA-256 为 `1ef7b7b1b0657c884174d8adcd23e7f74d186541730ff1bdcfa69713c9876e9c`。最终版本字段为 `260018` / `26.9.260.908.2609081608`。
 
-当前无 ADB 连接设备，未安装、未回读手机版本。主机检查不能替代 Android RenderNode、GPU 合成与实际手势验收。设备回归场景清单（不代表逐项实机覆盖）：从 App/桌面进入后点击空白退出、翻页后退出、返回键及上滑返回、退出中重进、横屏与 70%/100%/120% 缩放、点击卡片打开应用。
+该历史版本的记录限于主机回归与包内核验，不包含 Android RenderNode、GPU 合成与设备手势采样。后续版本的设备记录见 [当前开发状态](DEVELOPMENT_STATUS.md)。

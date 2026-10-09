@@ -16,26 +16,28 @@ def member(pattern):
     return match.group()
 
 members = '\n'.join(member(r'(?:public|private) static [^\n]+ ' + name + r'\(') for name in (
-    'clampScalePercent', 'getScalePreferences', 'readScalePercent', 'loadUserScale', 'loadOverviewScale',
-    'configureScaleControl', 'getStackIconAlpha', 'updateStackIcons', 'getLiveRecentsScale',
+    'clampScalePercent', 'getScalePreferences', 'readScalePercent', 'scaleKey', 'readStyleScalePercent', 'loadUserScale', 'loadOverviewScale', 'orbitSecondary',
+    'configureScaleControl', 'configureStyleScaleControl', 'getStackIconAlpha', 'updateStackIcons', 'getLiveRecentsScale',
     'normalizeLiveAppliedScale', 'styleScaleSlider', 'applyStackIconBlur', 'clamp',
     'smoothVisibility', 'getFullyVisibleFactor', 'getActionsVisibleFactor',
     'normalizeHomeEntryScale', 'normalizeHomeEntryTranslation'))
 members += '\n' + member(r'private static final class ScaleControl ')
 members += '\n' + '\n'.join(re.findall(
-    r'^    private static final (?:String|int) (?:SCALE_\w+|\w+_SCALE_PERCENT|NATIVE_STACK_STYLE) = [^;]+;', source, re.M))
+    r'^    private static final (?:String|int) (?:SCALE_\w+|\w+_SCALE_PERCENT|(?:NATIVE_STACK|ORBIT|FAN)_STYLE) = [^;]+;', source, re.M))
 
 harness = r'''
 import java.util.*;
 import java.lang.ref.WeakReference;
 import com.android.quickstep.views.LsOrbitGeometry;
+import com.android.quickstep.views.LsFanGeometry;
 public class StackControlsTest {
     static float overviewSpacingScale=1;
     static float overviewSecondaryCenterFraction=.5f;
+    static float orbitSecondaryOffset;
     static WeakReference<RecentsView> actionMenuRecents = new WeakReference<>(null);
     static WeakReference<TaskView> actionMenuTask = new WeakReference<>(null);
     static float actionRevealProgress;
-    static class android {static class R {static class id {static final int background=1,progress=2;}}}
+    static class android {static class R {static class id {static final int background=1,progress=2,content=3;}}}
     static class Gravity {static final int START=1,END=2,CENTER_VERTICAL=4,FILL_HORIZONTAL=8;}
     static class Shader {enum TileMode {DECAL}}
     static class RenderEffect {float radius;static RenderEffect createBlurEffect(float x,float y,Shader.TileMode mode){RenderEffect e=new RenderEffect();e.radius=x;return e;}}
@@ -43,9 +45,9 @@ public class StackControlsTest {
     static final RenderEffect[] iconBlurEffects=new RenderEffect[33];
     static int iconBlurDensityDpi=-1;
     static class SharedPreferences {
-        Object stored;int writes;
-        int getInt(String key,int fallback){if(stored==null)return fallback;if(!(stored instanceof Integer))throw new ClassCastException();return (Integer)stored;}
-        SharedPreferences edit(){return this;}SharedPreferences putInt(String key,int n){stored=n;return this;}void apply(){writes++;}
+        Object stored;int writes;String lastKey;final Map<String,Object> values=new HashMap<>();
+        int getInt(String key,int fallback){Object value=SCALE_KEY.equals(key)?stored:values.get(key);if(value==null)return fallback;if(!(value instanceof Integer))throw new ClassCastException();return (Integer)value;}
+        SharedPreferences edit(){return this;}SharedPreferences putInt(String key,int n){lastKey=key;if(SCALE_KEY.equals(key))stored=n;else values.put(key,n);return this;}void apply(){writes++;}
     }
     static class Metrics {float density=1;int densityDpi=160;}
     static class Locales {Locale get(int i){return Locale.SIMPLIFIED_CHINESE;}}
@@ -62,6 +64,7 @@ public class StackControlsTest {
         Context context;Object tag;LinearLayout parent;int visibility,w=60,h=60,x,y;
         View(Context c){context=c;}Context getContext(){return context;}Resources getResources(){return context.getResources();}
         Object getParent(){return parent;}void setTag(Object t){tag=t;}void setVisibility(int n){visibility=n;}int getVisibility(){return visibility;}
+        View findViewWithTag(Object wanted){return wanted.equals(tag)?this:null;}
         int getWidth(){return w;}int getHeight(){return h;}void setContentDescription(String s){}
         RenderEffect effect;int effectWrites;
         void setRenderEffect(RenderEffect e){effect=e;effectWrites++;}
@@ -75,7 +78,7 @@ public class StackControlsTest {
         void addView(View v,LayoutParams p){addView(v,children.size(),p);}
         void addView(View v,int i,LayoutParams p){children.add(i,v);v.parent=this;}
         int indexOfChild(View v){return children.indexOf(v);}
-        View findViewWithTag(Object tag){for(View v:children)if(tag.equals(v.tag))return v;return null;}
+        View findViewWithTag(Object tag){if(tag.equals(this.tag))return this;for(View v:children){View found=v.findViewWithTag(tag);if(found!=null)return found;}return null;}
     }
     static class TextView extends View {
         String text;TextView(Context c){super(c);}void setTextSize(int n){}void setTextColor(int n){}void setText(String s){text=s;}
@@ -87,7 +90,7 @@ public class StackControlsTest {
     static class SeekBar extends View {
         interface OnSeekBarChangeListener {void onProgressChanged(SeekBar s,int n,boolean fromUser);void onStartTrackingTouch(SeekBar s);void onStopTrackingTouch(SeekBar s);}
         int progress,max;OnSeekBarChangeListener listener;
-        SeekBar(Context c){super(c);}void setMax(int n){max=n;}void setProgress(int n){progress=n;}
+        SeekBar(Context c){super(c);}void setMax(int n){max=n;}void setProgress(int n){progress=n;if(listener!=null)listener.onProgressChanged(this,n,false);}
         void setOnSeekBarChangeListener(OnSeekBarChangeListener l){listener=l;}
         void userChange(int n){progress=n;listener.onProgressChanged(this,n,true);}
         LayerDrawable track;GradientDrawable thumb;int minHeight;boolean splitTrack=true;
@@ -98,8 +101,11 @@ public class StackControlsTest {
         void setPadding(int a,int b,int c,int d){}void setMinimumHeight(int n){minHeight=n;}
     }
     static class Activity {
-        View card;Activity(Context c){LinearLayout p=new LinearLayout(c);card=new LinearLayout(c);p.addView(card,new LinearLayout.LayoutParams(-1,-2));}
-        View findViewById(int id){return card;}
+        LinearLayout content,card,orbitCard,fanCard;
+        Activity(Context c){content=new LinearLayout(c);card=new LinearLayout(c);orbitCard=new LinearLayout(c);fanCard=new LinearLayout(c);
+            orbitCard.setTag("ls_orbit_style_card");fanCard.setTag("ls_fan_style_card");
+            for(View v:new View[]{card,orbitCard,fanCard})content.addView(v,new LinearLayout.LayoutParams(-1,-2));}
+        View findViewById(int id){return id==android.R.id.content?content:card;}
     }
     static class Rect {
         int left,top,right,bottom;
@@ -131,26 +137,148 @@ public class StackControlsTest {
         Context context;RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
         RecentsView(Context c){context=c;}Resources getResources(){return context.getResources();}
         boolean isNativeStackStyle(){return stack;}
-        boolean orbit;TaskView task;
+        boolean orbit,fan;TaskView task;
         boolean isOrbitStyle(){return orbit;}
+        boolean isFanStyle(){return fan;}
         TaskView getTaskViewAt(int index){return task;}
         RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
     }
     static float baseFocusScale=1.1f,focusScale,stackSpacingScale=1,liveEntryStartScale=Float.NaN,lastLiveAppliedScale,liveEntryPageProgress;
-    static boolean liveSimulatorOverviewTarget,stack=true,orbitPreference;
+    static boolean liveSimulatorOverviewTarget,stack=true,orbitPreference,fanPreference;
     static WeakReference<RecentsView> nativeGestureRecents=new WeakReference<>(null);
     static WeakReference<RecentsView> activeOverviewRecents=new WeakReference<>(null);
     static SharedPreferences scalePreferences;
     static final Rect TEMP_DESCENDANT_BOUNDS=new Rect();
     static boolean usesNativeStackStyle(Context c){return stack;}
     static boolean usesOrbitStyle(Context c){return orbitPreference;}
+    static boolean usesFanStyle(Context c){return fanPreference;}
     static void loadConfig(Resources r){} // Fixed resource baseline; preference math stays production.
     MEMBERS
     static int checks;
     static void check(boolean ok,String m){checks++;if(!ok)throw new AssertionError(m);}
     static void near(float a,float b,String m){check(Math.abs(a-b)<.0001f,m+": "+a+" != "+b);}
     static ScaleControl control(Activity a){return (ScaleControl)((LinearLayout)a.card).children.get(0);}
+    static ScaleControl control(Activity a,int style){return (ScaleControl)(style==3?a.card:style==4?a.orbitCard:a.fanCard).children.get(0);}
     static SeekBar slider(ScaleControl c){return (SeekBar)c.children.get(1);}
+    static void independentControls(){
+        SharedPreferences prefs=new SharedPreferences();prefs.stored=88;
+        Context context=new Context(prefs);scalePreferences=null;Activity a=new Activity(context);
+        configureScaleControl(a,5);
+        check(readScalePercent(context)==88,"existing stack 88 percent was migrated or overwritten");
+        check(readStyleScalePercent(context,4)==100&&readStyleScalePercent(context,5)==100,"new styles inherited the stack preference");
+        check(prefs.writes==0&&prefs.values.isEmpty(),"initializing new sliders wrote defaults");
+        for(int selected:new int[]{1,2,3,4,5,3,5,4}){
+            int before=prefs.writes;configureScaleControl(a,selected);configureScaleControl(a,selected);
+            for(int style=3;style<=5;style++){
+                ScaleControl c=control(a,style);
+                check(c.visibility==(style==selected?View.VISIBLE:View.GONE),"another style exposes its slider");
+                check(c.parent==(style==3?a.card:style==4?a.orbitCard:a.fanCard),"slider attached outside its own card");
+                check(c.parent.children.size()==1,"style reselect duplicated a slider");
+                check(slider(c).max==50&&slider(c).thumb.color==0xff8ddbf6&&slider(c).minHeight==48,"new slider differs from stack styling/range");
+            }
+            check(prefs.writes==before,"programmatic refresh persisted a value");
+        }
+        for(int style=3;style<=5;style++)for(int percent=70;percent<=120;percent++){
+            configureScaleControl(a,style);
+            int[] saved={readStyleScalePercent(context,3),readStyleScalePercent(context,4),readStyleScalePercent(context,5)};
+            int writes=prefs.writes;ScaleControl c=control(a,style);slider(c).userChange(percent-70);
+            check(prefs.writes==writes+1&&prefs.lastKey.equals(scaleKey(style)),"slider did not write exactly its own preference");
+            check(c.valueLabel.text.equals(percent+"%"),"independent slider label lost percent");
+            for(int other=3;other<=5;other++)check(readStyleScalePercent(context,other)==(other==style?percent:saved[other-3]),"slider changed another style's saved scale");
+        }
+        slider(control(a,3)).userChange(18);slider(control(a,4)).userChange(27);slider(control(a,5)).userChange(44);
+        scalePreferences=null;Activity reopened=new Activity(new Context(prefs));configureScaleControl(reopened,4);
+        check(slider(control(reopened,3)).progress==18&&slider(control(reopened,4)).progress==27&&slider(control(reopened,5)).progress==44,"three persisted values did not survive Activity recreation");
+        prefs.values.put(SCALE_ORBIT_KEY,106);int writes=prefs.writes;configureScaleControl(reopened,4);
+        check(slider(control(reopened,4)).progress==36&&control(reopened,4).valueLabel.text.equals("106%"),"reselection failed to refresh external preference change");
+        check(prefs.writes==writes&&readScalePercent(context)==88&&readStyleScalePercent(context,5)==114,"refresh overwrote independent saved settings");
+        // Late injected cards must gain their own control on the next configure.
+        Activity late=new Activity(context);late.content.children.remove(late.fanCard);configureScaleControl(late,5);
+        check(late.fanCard.children.isEmpty(),"missing card received detached slider");
+        late.content.addView(late.fanCard,new LinearLayout.LayoutParams(-1,-2));configureScaleControl(late,5);
+        check(control(late,5).visibility==View.VISIBLE&&slider(control(late,5)).progress==44,"late fan injection lost preference/visibility");
+        for(int style:new int[]{4,5}){
+            String key=scaleKey(style);int other=style==4?5:4;int otherSaved=readStyleScalePercent(context,other);
+            for(Object bad:new Object[]{-100,1000,"bad"}){
+                prefs.values.put(key,bad);configureScaleControl(a,style);
+                int expected=bad instanceof String?100:(Integer)bad<70?70:120;
+                check(readStyleScalePercent(context,style)==expected&&slider(control(a,style)).progress==expected-70,"independent invalid preference was not safely bounded");
+                check(readScalePercent(context)==88&&readStyleScalePercent(context,other)==otherSaved,"invalid preference fallback leaked to another style");
+            }
+        }
+        check(prefs.writes==writes,"bounds/fallback reads rewrote persisted values");scalePreferences=null;
+    }
+    static void independentGeometry(){
+        SharedPreferences prefs=new SharedPreferences();prefs.stored=88;Context context=new Context(prefs);scalePreferences=null;
+        RecentsView r=new RecentsView(context);r.task=new TaskView();
+        for(int rotation=0;rotation<4;rotation++)for(boolean wide:new boolean[]{false,true})for(boolean taskWide:new boolean[]{false,true})
+        for(int orbitPercent:new int[]{70,88,100,120})for(int fanPercent:new int[]{70,88,100,120}){
+            prefs.values.put(SCALE_ORBIT_KEY,orbitPercent);prefs.values.put(SCALE_FAN_KEY,fanPercent);
+            r.width=wide?2688:1216;r.height=wide?1216:2688;r.handler.rotation=rotation;r.handler.vertical=(rotation&1)!=0;
+            r.task.width=taskWide?1708:774;r.task.height=taskWide?774:1708;
+            float primary=r.handler.getPrimarySize(r),secondary=r.handler.vertical?r.width:r.height;
+            float taskPrimary=r.handler.getPrimarySize(r.task),taskSecondary=r.handler.vertical?r.task.width:r.task.height;
+            for(int style:new int[]{3,4,5,3,5,4}){
+                r.orbit=style==4;r.fan=style==5;
+                // Independent expected dimensions: 100% is the unchanged
+                // viewport-fit card; each setting scales those pixels once.
+                float expected=style==3?1.1f*.88f*((wide^((rotation&1)!=0))?.77f:1f)
+                    :Math.min(primary*(style==4?.48f:.15f)/taskPrimary,secondary*(style==4?.42f:.13f)/taskSecondary)*(style==4?orbitPercent:fanPercent)/100f;
+                for(int repeat=0;repeat<20;repeat++){
+                    loadOverviewScale(context,r);near(focusScale,expected,"style/rotation change leaked or compounded scale");
+                    near(stackSpacingScale,style==3?.88f:1f,"independent size altered another style's spacing");
+                    if(style!=3){near(overviewSpacingScale,1,"stack landscape spacing leaked");near(overviewSecondaryCenterFraction,.5f,"stack landscape center leaked");}
+                }
+                activeOverviewRecents=new WeakReference<>(r);liveSimulatorOverviewTarget=true;liveEntryStartScale=1.7f;
+                near(getLiveRecentsScale(context,2),2*expected,"live target differs from independent screenshot size");
+                for(float progress:new float[]{0,.25f,.75f,1}){
+                    liveEntryPageProgress=progress;near(normalizeLiveAppliedScale(context,2f),1.7f+(expected-1.7f)*progress,"live entry does not reach selected style ratio");
+                }
+                activeOverviewRecents.clear();nativeGestureRecents=new WeakReference<>(r);
+                near(getLiveRecentsScale(context,2),2*expected,"gesture-only entry uses another style scale");
+                liveSimulatorOverviewTarget=false;near(getLiveRecentsScale(context,2),2,"uncommitted quick switch changed size");nativeGestureRecents.clear();
+                if(style==4){
+                    boolean landscape=primary>secondary;
+                    float bottom=LsOrbitGeometry.secondary(secondary,0,0,6)+taskSecondary*expected*.5f;
+                    float expectedOffset=landscape&&orbitPercent>100?Math.max(0,bottom-secondary*.817f):0;
+                    near(orbitSecondaryOffset,expectedOffset,"orbit landscape clearance leaked or shifted too far");
+                    float center=orbitSecondary(r,secondary,0,0,6);
+                    float visualCenter=r.handler.getSecondaryTranslationDirectionFactor()<0?center:secondary-center;
+                    near(visualCenter,LsOrbitGeometry.secondary(secondary,0,0,6)-expectedOffset,"clearance reflected toward the button");
+                    check(visualCenter+taskSecondary*expected*.5f<=secondary*(landscape?.81701f:.85901f),"orbit front overlaps its original landscape safety boundary");
+                    float backCenter=orbitSecondary(r,secondary,3,0,6);
+                    float visualBack=r.handler.getSecondaryTranslationDirectionFactor()<0?backCenter:secondary-backCenter;
+                    near(visualCenter-visualBack,secondary*.374f,"clearance changed the orbit radius");
+                }else if(style==5){
+                    near(orbitSecondaryOffset,0,"orbit clearance leaked into fan");
+                    for(int slot=0;slot<5;slot++){
+                        double angle=Math.toRadians(LsFanGeometry.rotation(slot,0,5));
+                        float halfWidth=(float)(Math.abs(Math.cos(angle))*taskPrimary+Math.abs(Math.sin(angle))*taskSecondary)*expected*.5f;
+                        float halfHeight=(float)(Math.abs(Math.sin(angle))*taskPrimary+Math.abs(Math.cos(angle))*taskSecondary)*expected*.5f;
+                        float x=LsFanGeometry.primary(primary,slot,0,5),y=LsFanGeometry.secondary(secondary,slot,0,5);
+                        check(x-halfWidth>=0&&x+halfWidth<=primary+.01f,"scaled rotated fan card leaves side of viewport");
+                        check(y-halfHeight>=0&&y+halfHeight<=secondary*.86f,"scaled fan card loses vertical clearance");
+                    }
+                }else near(orbitSecondaryOffset,0,"orbit clearance leaked into stack");
+                check(readScalePercent(context)==88&&readStyleScalePercent(context,4)==orbitPercent&&readStyleScalePercent(context,5)==fanPercent,"geometry loading wrote or swapped preferences");
+            }
+        }
+        for(int style:new int[]{4,5})for(int percent:new int[]{70,100,120}){
+            prefs.values.put(scaleKey(style),percent);r.orbit=style==4;r.fan=style==5;
+            float fallback=(style==4?.78f:.19f)*percent/100f;
+            for(int missing=0;missing<5;missing++){
+                r.width=1216;r.height=2688;r.task=missing==0?null:new TaskView();
+                if(missing==1)r.width=0;if(missing==2)r.height=0;
+                if(missing==3)r.task.width=0;if(missing==4)r.task.height=0;
+                loadOverviewScale(context,r);near(focusScale,fallback,"missing/zero-size fallback lost independent ratio");
+                near(orbitSecondaryOffset,0,"missing geometry retained previous orbit shift");
+            }
+            orbitPreference=style==4;fanPreference=style==5;
+            for(int repeat=0;repeat<20;repeat++){loadOverviewScale(context,null);near(focusScale,fallback,"preference-only entry compounds or borrows another ratio");near(orbitSecondaryOffset,0,"preference-only entry retained old geometry shift");}
+        }
+        check(prefs.writes==0,"geometry loading changed stored preferences");
+        orbitPreference=fanPreference=false;liveSimulatorOverviewTarget=false;liveEntryStartScale=Float.NaN;liveEntryPageProgress=0;scalePreferences=null;
+    }
     static void orbitScaleAndClearance(Context context,SharedPreferences prefs){
         int savedWrites=prefs.writes;
         RecentsView recents=new RecentsView(context);recents.task=new TaskView();
@@ -209,13 +337,14 @@ public class StackControlsTest {
         prefs.stored=100;loadOverviewScale(context,null);
     }
     public static void main(String[] args){
+        independentControls();independentGeometry();
         SharedPreferences prefs=new SharedPreferences();Context context=new Context(prefs);
         Activity a=new Activity(context);configureScaleControl(a,1);
         ScaleControl c=control(a);check(c.visibility==View.GONE,"normal exposes scale control");
         check(slider(c).max==50&&slider(c).progress==30&&c.valueLabel.text.contains("100%"),"default scale UI");
         check(prefs.writes==0,"initialization overwrote saved value");
         SeekBar styled=slider(c);
-        check(c.parent==a.card&&((LinearLayout)a.card.parent).children.size()==1,"slider is outside the style card");
+        check(c.parent==a.card&&((LinearLayout)a.card.parent).children.size()==3,"slider is outside the style card");
         check(c.background==null&&c.padLeft==16&&c.padRight==16&&c.padBottom==16,"embedded UI loses surface/insets");
         check(((LinearLayout)c.children.get(0)).children.size()==2&&c.valueLabel.text.equals("100%"),"compact caption/value row missing");
         check(styled.minHeight==48&&styled.track.heights[0]==4&&styled.track.heights[1]==4,"slider track/touch geometry depends on theme");
@@ -382,7 +511,8 @@ with tempfile.TemporaryDirectory(prefix='ls-stack-controls-') as folder:
     path = Path(folder) / 'StackControlsTest.java'
     path.write_text(harness, encoding='utf-8')
     subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
-                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java'),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsFanGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'StackControlsTest'], check=True)
 
 activity = (ROOT / 'src/smali/com/android/launcher3/settings/RecentAppStyleActivity.smali').read_text(encoding='utf-8')
@@ -392,7 +522,7 @@ update = member(r'public static void update\(')
 assert update.index('updateStackIcons(') > update.rindex('setNativeStackChromeAlpha(')
 assert 'loadOverviewScale(recents.getContext(), recents)' in update
 assert 'baseChromeAlpha' not in member(r'private static float getStackIconAlpha\(')
-assert 'titleAlpha * (taskOrdinal == actionOrdinal' in update
+assert '(fan ? 0f : titleAlpha) * (taskOrdinal == actionOrdinal' in update
 assert 'applyStackIconBlur(icon.asView(), 0)' in member(r'private static void resetIfNeeded\(')
 task_smali = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
 chrome = task_smali.split('.method public setNativeStackChromeAlpha(FF)V',1)[1].split('.end method',1)[0]

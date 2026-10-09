@@ -24,6 +24,13 @@ CERTIFICATE = "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb"
 DEFAULT_BASELINE = ROOT / "baselines/launcher-260005.apk"
 DEFAULT_BASELINE_SHA256 = "2b5ccc21b361b910214df27930370b246b0495d8997e79e457241584dfe365df"
 SOURCE_TESTS = (
+    "test-launcher-fan-settings.py",
+    "test-launcher-fan-chrome.py",
+    "test-launcher-fan-corners.py",
+    "test-launcher-fan-geometry.py",
+    "test-launcher-fan-pager.py",
+    "test-launcher-fan-reflow.py",
+    "test-launcher-fan-entry.py",
     "test-launcher-orbit.py",
     "test-launcher-orbit-pager.py",
     "test-launcher-orbit-reflow.py",

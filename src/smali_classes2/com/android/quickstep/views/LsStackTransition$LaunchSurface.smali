@@ -15,9 +15,21 @@
 
 
 # instance fields
+.field bitmapCorrection:[F
+
+.field fanStartValues:[F
+
+.field frameReady:Z
+
+.field frameValues:[F
+
 .field nativeStart:Landroid/graphics/RectF;
 
+.field nativeStartValues:[F
+
 .field startProgress:F
+
+.field targetFadeStarted:Z
 
 .field final transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
@@ -26,7 +38,7 @@
 .method constructor <init>(Lcom/android/quickstep/views/LsStackTransition$Transition;)V
     .locals 0
 
-    .line 150
+    .line 181
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$LaunchSurface;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;

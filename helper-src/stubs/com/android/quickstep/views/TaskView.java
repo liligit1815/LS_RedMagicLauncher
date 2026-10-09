@@ -18,6 +18,7 @@ public abstract class TaskView extends FrameLayout {
     public abstract void unlockNativeStackEntryTranslation();
     public abstract float getNativeDismissTranslationX();
     public abstract float getNativeDismissTranslationY();
+    public abstract android.util.FloatProperty<TaskView> getPrimaryDismissTranslationProperty();
     public abstract int[] getTaskIds();
     public abstract RecentsView getRecentsView();
     public abstract void cancelNativeStackTouch(android.view.MotionEvent event);

@@ -29,8 +29,22 @@ ORBIT_GEOMETRY_CLASS = "Lcom/android/quickstep/views/LsOrbitGeometry"
 ORBIT_REFLOW_CLASS = "Lcom/android/quickstep/views/LsOrbitReflow"
 ORBIT_SETTINGS_CLASS = "Lcom/android/quickstep/views/LsOrbitStyleSettings"
 ORBIT_PAGER_CLASS = "Lcom/android/quickstep/views/LsOrbitPager"
+FAN_GEOMETRY_CLASS = "Lcom/android/quickstep/views/LsFanGeometry"
+FAN_REFLOW_CLASS = "Lcom/android/quickstep/views/LsFanReflow"
+FAN_SETTINGS_CLASS = "Lcom/android/quickstep/views/LsFanStyleSettings"
+FAN_PAGER_CLASS = "Lcom/android/quickstep/views/LsFanPager"
+FAN_CHROME_CLASS = "Lcom/android/quickstep/views/LsFanChrome"
 HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS, OCCLUSION_CLASS,
-                ORBIT_GEOMETRY_CLASS, ORBIT_REFLOW_CLASS, ORBIT_SETTINGS_CLASS, ORBIT_PAGER_CLASS)
+                ORBIT_GEOMETRY_CLASS, ORBIT_REFLOW_CLASS, ORBIT_SETTINGS_CLASS, ORBIT_PAGER_CLASS,
+                FAN_GEOMETRY_CLASS, FAN_REFLOW_CLASS, FAN_SETTINGS_CLASS, FAN_PAGER_CLASS,
+                FAN_CHROME_CLASS)
+RELEASE_260024_CLASSES = {
+    FAN_SETTINGS_CLASS + suffix + ";" for suffix in ("", "$FanPreview")
+} | {FAN_GEOMETRY_CLASS + ";", FAN_CHROME_CLASS + ";"} | {
+    FAN_PAGER_CLASS + suffix + ";" for suffix in ("", "$Identity", "$State", "$1", "$2")
+} | {
+    FAN_REFLOW_CLASS + suffix + ";" for suffix in ("", "$Card", "$Transaction")
+}
 RELEASE_260023_CLASSES = {ORBIT_GEOMETRY_CLASS + ";"} | {
     ORBIT_REFLOW_CLASS + suffix + ";" for suffix in ("", "$Card", "$Transaction")
 } | {ORBIT_SETTINGS_CLASS + suffix + ";" for suffix in ("", "$OrbitPreview")} | {
@@ -381,6 +395,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
         expected_classes.add(OCCLUSION_CLASS + ";")
     if expected["versionCode"] >= 260023:
         expected_classes.update(RELEASE_260023_CLASSES)
+    if expected["versionCode"] >= 260024:
+        expected_classes.update(RELEASE_260024_CLASSES)
     if expected["versionCode"] < 260015:
         expected_classes.discard(STACK_CLASS + "$ActionReveal;")
     if expected["versionCode"] < 260014:
@@ -392,12 +408,12 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
     target_refs = {key for key in modified["references"]
                    if key[0].startswith(HELPER_ROOTS) or
                    (key[0] in VIEW_CLASSES and
-                    ("NativeStack" in key[1] or key[1] == "isOrbitStyle"))}
+                    ("NativeStack" in key[1] or key[1] in ("isOrbitStyle", "isFanStyle")))}
     resolved = {key: resolve_helper_declaration(key, modified) for key in target_refs}
     unresolved = sorted(key for key, declaration in resolved.items() if declaration is None)
     added_view_methods = {key for key in modified["declared"]
                           if key[0] in VIEW_CLASSES and
-                          ("NativeStack" in key[1] or key[1] == "isOrbitStyle")
+                          ("NativeStack" in key[1] or key[1] in ("isOrbitStyle", "isFanStyle"))
                           and key not in original["declared"]}
     original_events, original_versions = manifest_semantics(original["manifest"])
     modified_events, modified_versions = manifest_semantics(modified["manifest"])

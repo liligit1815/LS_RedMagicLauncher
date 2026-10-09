@@ -58,6 +58,17 @@ STUBS = r'''
         static void stop(RecentsView r){r.pagerStops++;}
         static void commit(RecentsView r,int target){r.pagerCommits++;r.orbitPhase=target;}
     }
+    // Fan behavior is covered separately; these fail if it leaks into old styles.
+    static class LsFanReflow {
+        static void clear(RecentsView r){}
+        static void begin(RecentsView r,TaskView t,int ordinal,float page,int count){throw new AssertionError("fan reflow reached old style");}
+        static int targetPage(float page,int removed,int count){throw new AssertionError("fan target reached old style");}
+    }
+    static class LsFanPager {
+        static float position(RecentsView r,float fallback,int count){throw new AssertionError("fan pager reached old style");}
+        static void stop(RecentsView r){throw new AssertionError("fan stop reached old style");}
+        static void commit(RecentsView r,int target){throw new AssertionError("fan commit reached old style");}
+    }
     static class RecentsPagedOrientationHandler {
         int getPrimaryScroll(RecentsView r) {return r.scroll;}
         int getPrimarySize(RecentsView r) {return r.size;}
@@ -71,6 +82,7 @@ STUBS = r'''
         float orbitPhase=Float.NaN;int pagerSamples,pagerStops,pagerCommits;
         boolean isNativeStackStyle(){return style==3||style==4;}
         boolean isOrbitStyle(){return style==4;}
+        boolean isFanStyle(){return false;}
         int getChildCount(){return children.size();}
         View getChildAt(int i){return children.get(i);}
         int indexOfChild(View v){return children.indexOf(v);}

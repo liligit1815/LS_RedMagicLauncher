@@ -17,6 +17,10 @@
 # instance fields
 .field completed:Z
 
+.field diagnosticId:I
+
+.field diagnosticProgress:F
+
 .field final direction:F
 
 .field final exitTravel:F
@@ -30,6 +34,8 @@
         }
     .end annotation
 .end field
+
+.field handoffDiagnosticFrames:I
 
 .field final horizontal:Z
 
@@ -77,13 +83,45 @@
     .end annotation
 .end field
 
+.field singleLiveHandoff:Z
+
+.field snapshotAlphaOverridden:Z
+
+.field snapshotBaseMatrix:Landroid/graphics/Matrix;
+
+.field snapshotBitmap:Ljava/lang/ref/WeakReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/lang/ref/WeakReference<",
+            "Landroid/graphics/Bitmap;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field snapshotBitmapRotation:I
+
+.field snapshotBitmapToBuffer:Landroid/graphics/Matrix;
+
+.field snapshotDiagnosticFrames:I
+
+.field snapshotHeight:I
+
+.field snapshotImageMatrix:Landroid/graphics/Matrix;
+
+.field snapshotOriginalAlpha:F
+
 .field snapshotOriginalAnimation:Landroid/graphics/Matrix;
 
 .field snapshotStartMatrix:Landroid/graphics/Matrix;
 
 .field snapshotToBuffer:Landroid/graphics/Matrix;
 
+.field snapshotWidth:I
+
 .field final startContentAlpha:F
+
+.field surfaceDiagnosticFrames:I
 
 .field final travel:F
 
@@ -94,17 +132,17 @@
 .method constructor <init>(Lcom/android/quickstep/views/RecentsView;Z)V
     .locals 11
 
-    .line 102
+    .line 123
     invoke-direct {p0}, Landroid/animation/AnimatorListenerAdapter;-><init>()V
 
-    .line 83
+    .line 94
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->frames:Ljava/util/ArrayList;
 
-    .line 84
+    .line 95
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     const/4 v1, 0x0
@@ -113,37 +151,47 @@
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchedTask:Ljava/lang/ref/WeakReference;
 
-    .line 87
+    .line 98
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, v1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchSnapshot:Ljava/lang/ref/WeakReference;
 
-    .line 92
+    .line 102
+    new-instance v0, Ljava/lang/ref/WeakReference;
+
+    invoke-direct {v0, v1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->snapshotBitmap:Ljava/lang/ref/WeakReference;
+
+    .line 109
     const/high16 v0, 0x3f800000    # 1.0f
 
+    iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->snapshotOriginalAlpha:F
+
+    .line 113
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->visibleFraction:F
 
-    .line 93
+    .line 114
     const/high16 v1, -0x40800000    # -1.0f
 
     iput v1, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchClip:F
 
-    .line 103
+    .line 124
     new-instance v2, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v2, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v2, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->recents:Ljava/lang/ref/WeakReference;
 
-    .line 104
+    .line 125
     iput-boolean p2, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->launch:Z
 
-    .line 105
+    .line 126
     iput-boolean p2, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->overview:Z
 
-    .line 106
+    .line 127
     const p2, 0x3a83126f    # 0.001f
 
     invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->getContentAlpha()F
@@ -156,12 +204,12 @@
 
     iput p2, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->startContentAlpha:F
 
-    .line 107
+    .line 128
     invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
     move-result-object p2
 
-    .line 108
+    .line 129
     const/4 v2, 0x0
 
     invoke-interface {p2, v0, v2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimaryValue(FF)F
@@ -190,7 +238,7 @@
     :goto_0
     iput-boolean v3, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->horizontal:Z
 
-    .line 109
+    .line 130
     invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getRotation()I
 
     move-result v3
@@ -207,17 +255,17 @@
     :goto_1
     iput v1, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->direction:F
 
-    .line 112
+    .line 133
     invoke-interface {p2, p1}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
     move-result v1
 
     int-to-float v1, v1
 
-    .line 113
+    .line 134
     nop
 
-    .line 114
+    .line 135
     move v3, v2
 
     :goto_2
@@ -225,17 +273,17 @@
 
     move-result v5
 
-    if-ge v4, v5, :cond_5
+    if-ge v4, v5, :cond_8
 
-    .line 115
+    .line 136
     invoke-virtual {p1, v4}, Lcom/android/quickstep/views/RecentsView;->getTaskViewAt(I)Lcom/android/quickstep/views/TaskView;
 
     move-result-object v5
 
-    .line 116
-    if-eqz v5, :cond_4
+    .line 137
+    if-eqz v5, :cond_7
 
-    .line 117
+    .line 138
     iget-object v6, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->frames:Ljava/util/ArrayList;
 
     new-instance v7, Lcom/android/quickstep/views/LsStackTransition$CardFrame;
@@ -244,14 +292,14 @@
 
     invoke-virtual {v6, v7}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 118
+    .line 139
     invoke-interface {p2, v5}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
     move-result v6
 
     int-to-float v6, v6
 
-    .line 119
+    .line 140
     invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getScaleX()F
 
     move-result v7
@@ -266,12 +314,12 @@
 
     mul-float/2addr v6, v7
 
-    .line 118
+    .line 139
     invoke-static {v1, v6}, Ljava/lang/Math;->max(FF)F
 
     move-result v1
 
-    .line 120
+    .line 141
     invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getPivotX()F
 
     move-result v6
@@ -284,7 +332,7 @@
 
     move-result v6
 
-    .line 121
+    .line 142
     iget-boolean v7, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->horizontal:Z
 
     if-eqz v7, :cond_2
@@ -300,7 +348,7 @@
 
     move-result v7
 
-    .line 122
+    .line 143
     :goto_3
     invoke-interface {p2, v5}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getChildStart(Landroid/view/View;)I
 
@@ -308,7 +356,7 @@
 
     int-to-float v8, v8
 
-    .line 123
+    .line 144
     invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getTranslationX()F
 
     move-result v9
@@ -329,7 +377,7 @@
 
     add-float/2addr v8, v6
 
-    .line 124
+    .line 145
     invoke-interface {p2, p1}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimaryScroll(Landroid/view/View;)I
 
     move-result v6
@@ -338,7 +386,7 @@
 
     sub-float/2addr v8, v6
 
-    .line 125
+    .line 146
     invoke-interface {p2, v5}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
     move-result v6
@@ -349,14 +397,89 @@
 
     add-float/2addr v6, v8
 
-    .line 126
+    .line 147
+    invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->isFanStyle()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_5
+
+    .line 148
+    new-instance v6, Landroid/graphics/RectF;
+
+    invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getWidth()I
+
+    move-result v7
+
+    int-to-float v7, v7
+
+    invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getHeight()I
+
+    move-result v8
+
+    int-to-float v8, v8
+
+    invoke-direct {v6, v2, v2, v7, v8}, Landroid/graphics/RectF;-><init>(FFFF)V
+
+    .line 149
+    invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getMatrix()Landroid/graphics/Matrix;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v6}, Landroid/graphics/Matrix;->mapRect(Landroid/graphics/RectF;)Z
+
+    .line 150
+    invoke-interface {p2, v5}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getChildStart(Landroid/view/View;)I
+
+    move-result v7
+
+    invoke-interface {p2, p1}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimaryScroll(Landroid/view/View;)I
+
+    move-result v8
+
+    sub-int/2addr v7, v8
+
+    int-to-float v7, v7
+
+    .line 151
+    iget-boolean v8, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->horizontal:Z
+
+    if-eqz v8, :cond_3
+
+    iget v8, v6, Landroid/graphics/RectF;->left:F
+
+    goto :goto_4
+
+    :cond_3
+    iget v8, v6, Landroid/graphics/RectF;->top:F
+
+    :goto_4
+    add-float/2addr v8, v7
+
+    .line 152
+    iget-boolean v9, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->horizontal:Z
+
+    if-eqz v9, :cond_4
+
+    iget v6, v6, Landroid/graphics/RectF;->right:F
+
+    goto :goto_5
+
+    :cond_4
+    iget v6, v6, Landroid/graphics/RectF;->bottom:F
+
+    :goto_5
+    add-float/2addr v6, v7
+
+    .line 154
+    :cond_5
     invoke-virtual {v5}, Lcom/android/quickstep/views/TaskView;->getAlpha()F
 
     move-result v5
 
     cmpl-float v5, v5, v2
 
-    if-lez v5, :cond_4
+    if-lez v5, :cond_7
 
     invoke-interface {p2, p1}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
@@ -366,23 +489,23 @@
 
     cmpg-float v5, v8, v5
 
-    if-gez v5, :cond_4
+    if-gez v5, :cond_7
 
     cmpl-float v5, v6, v2
 
-    if-lez v5, :cond_4
+    if-lez v5, :cond_7
 
-    .line 127
+    .line 155
     iget v5, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->direction:F
 
     cmpl-float v5, v5, v2
 
-    if-lez v5, :cond_3
+    if-lez v5, :cond_6
 
-    .line 128
-    goto :goto_4
+    .line 156
+    goto :goto_6
 
-    :cond_3
+    :cond_6
     invoke-interface {p2, p1}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
     move-result v5
@@ -391,20 +514,20 @@
 
     sub-float v6, v5, v8
 
-    .line 127
-    :goto_4
+    .line 155
+    :goto_6
     invoke-static {v3, v6}, Ljava/lang/Math;->max(FF)F
 
     move-result v3
 
-    .line 114
-    :cond_4
+    .line 135
+    :cond_7
     add-int/lit8 v4, v4, 0x1
 
     goto/16 :goto_2
 
-    .line 132
-    :cond_5
+    .line 160
+    :cond_8
     invoke-interface {p2, p1}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
     move-result p1
@@ -415,7 +538,7 @@
 
     iput p1, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->travel:F
 
-    .line 133
+    .line 161
     const/high16 p1, 0x40000000    # 2.0f
 
     add-float/2addr v3, p1
@@ -426,7 +549,7 @@
 
     iput p1, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->exitTravel:F
 
-    .line 134
+    .line 162
     return-void
 .end method
 
@@ -435,7 +558,7 @@
 .method public onAnimationCancel(Landroid/animation/Animator;)V
     .locals 2
 
-    .line 137
+    .line 165
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->recents:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {p1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -444,7 +567,7 @@
 
     check-cast p1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 138
+    .line 166
     if-eqz p1, :cond_2
 
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->launch:Z
@@ -463,7 +586,7 @@
 
     goto :goto_1
 
-    .line 139
+    .line 167
     :cond_0
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$Transition;->frames:Ljava/util/ArrayList;
 
@@ -488,17 +611,17 @@
 
     goto :goto_0
 
-    .line 140
+    .line 168
     :cond_1
     invoke-static {p1}, Lcom/android/quickstep/views/LsStackTransition;->clear(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 141
+    .line 169
     invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->invalidate()V
 
-    .line 142
+    .line 170
     return-void
 
-    .line 138
+    .line 166
     :cond_2
     :goto_1
     return-void

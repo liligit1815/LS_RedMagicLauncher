@@ -29862,6 +29862,14 @@
     if-eqz v2, :ls_orbit_dismiss_listener_done
     invoke-virtual {v1, v2}, Lcom/android/launcher3/anim/f;->i(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
     :ls_orbit_dismiss_listener_done
+    move/from16 v2, p9
+    move/from16 v3, p4
+    and-int/2addr v2, v3
+    invoke-static {v0, v10, v2}, Lcom/android/quickstep/views/LsFanReflow;->listener(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z)Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+    move-result-object v2
+    if-eqz v2, :ls_fan_dismiss_listener_done
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/anim/f;->i(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+    :ls_fan_dismiss_listener_done
     const/4 v9, 0x7
 
     .line 135
@@ -36424,7 +36432,11 @@
 
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->isOrbitStyle()Z
     move-result v0
+    if-nez v0, :ls_arc_visibility_applied
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->isFanStyle()Z
+    move-result v0
     if-eqz v0, :ls_orbit_visibility_native
+    :ls_arc_visibility_applied
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackApplied()Z
     move-result v0
     if-eqz v0, :ls_orbit_visibility_native
@@ -41466,6 +41478,8 @@
     const/4 v1, 0x3
     if-eq v0, v1, :ls_native_stack_true
     const/4 v1, 0x4
+    if-eq v0, v1, :ls_native_stack_true
+    const/4 v1, 0x5
     if-ne v0, v1, :ls_native_stack_false
     :ls_native_stack_true
     const/4 v0, 0x1
@@ -41488,6 +41502,23 @@
     const/4 v0, 0x1
     return v0
     :ls_orbit_false
+    const/4 v0, 0x0
+    return v0
+.end method
+
+.method public final isFanStyle()Z
+    .locals 2
+    iget-object v0, p0, Lcom/android/quickstep/views/RecentsView;->mContainer:Landroid/content/Context;
+    check-cast v0, Lcom/android/launcher3/views/k;
+    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    move-result-object v0
+    iget-object v0, v0, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget v0, v0, Lcom/android/launcher3/r4;->p0:I
+    const/4 v1, 0x5
+    if-ne v0, v1, :ls_fan_false
+    const/4 v0, 0x1
+    return v0
+    :ls_fan_false
     const/4 v0, 0x0
     return v0
 .end method
@@ -49597,6 +49628,11 @@
     if-eqz v0, :native_stack_pager_dispatch
     return v0
     :native_stack_pager_dispatch
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->dispatchFanTouch(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Z
+    move-result v0
+    if-eqz v0, :native_stack_orbit_dispatch
+    return v0
+    :native_stack_orbit_dispatch
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->dispatchOrbitTouch(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Z
     move-result v0
     if-eqz v0, :native_stack_oem_dispatch

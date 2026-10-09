@@ -2670,6 +2670,15 @@
     return-object p0
 .end method
 
+.method public getNativeStackThumbnailData()Lcom/android/systemui/shared/recents/model/ThumbnailData;
+    .locals 0
+
+    # Return the metadata for the bitmap actually displayed by this View.
+    iget-object p0, p0, Lcom/android/quickstep/views/TaskThumbnailViewDeprecated;->mThumbnailData:Lcom/android/systemui/shared/recents/model/ThumbnailData;
+
+    return-object p0
+.end method
+
 .method public getThumbnailMatrix()Landroid/graphics/Matrix;
     .locals 0
 

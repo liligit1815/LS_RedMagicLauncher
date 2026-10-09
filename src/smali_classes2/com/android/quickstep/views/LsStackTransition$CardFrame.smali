@@ -23,6 +23,8 @@
 
 .field final primaryCenter:F
 
+.field final rotation:F
+
 .field final scaleX:F
 
 .field final scaleY:F
@@ -58,17 +60,17 @@
 .method constructor <init>(Lcom/android/quickstep/views/TaskView;Lcom/android/quickstep/views/RecentsView;)V
     .locals 4
 
-    .line 39
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 40
+    .line 49
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->task:Ljava/lang/ref/WeakReference;
 
-    .line 41
+    .line 50
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
     move-result-object v0
@@ -81,54 +83,61 @@
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->taskIds:[I
 
-    .line 42
+    .line 51
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTranslationX()F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->x:F
 
-    .line 43
+    .line 52
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTranslationY()F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->y:F
 
-    .line 44
+    .line 53
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getScaleX()F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->scaleX:F
 
-    .line 45
+    .line 54
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getScaleY()F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->scaleY:F
 
-    .line 46
+    .line 55
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTranslationZ()F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->z:F
 
-    .line 47
+    .line 56
+    invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getRotation()F
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->rotation:F
+
+    .line 57
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getStableAlpha()F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->stableAlpha:F
 
-    .line 48
+    .line 58
     invoke-virtual {p2}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
     move-result-object v0
 
-    .line 49
+    .line 59
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getLeft()I
 
     move-result v1
@@ -153,7 +162,7 @@
 
     sub-float/2addr v1, v2
 
-    .line 50
+    .line 60
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTop()I
 
     move-result v2
@@ -178,56 +187,56 @@
 
     sub-float/2addr v2, v3
 
-    .line 48
+    .line 58
     invoke-interface {v0, v1, v2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimaryValue(FF)F
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->primaryCenter:F
 
-    .line 51
+    .line 61
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getLeft()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->left:I
 
-    .line 52
+    .line 62
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTop()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->top:I
 
-    .line 53
+    .line 63
     invoke-virtual {p2}, Lcom/android/quickstep/views/RecentsView;->getScrollX()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->scrollX:I
 
-    .line 54
+    .line 64
     invoke-virtual {p2}, Lcom/android/quickstep/views/RecentsView;->getScrollY()I
 
     move-result p2
 
     iput p2, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->scrollY:I
 
-    .line 55
+    .line 65
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getNativeStackClipRightF()F
 
     move-result p2
 
     iput p2, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->clip:F
 
-    .line 56
+    .line 66
     invoke-static {p1}, Lcom/android/quickstep/views/LsStackOcclusion;->capture(Lcom/android/quickstep/views/TaskView;)[F
 
     move-result-object p1
 
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->occlusion:[F
 
-    .line 57
+    .line 67
     return-void
 .end method
 
@@ -236,7 +245,7 @@
 .method restore(Lcom/android/quickstep/views/RecentsView;)V
     .locals 3
 
-    .line 60
+    .line 70
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->task:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -245,7 +254,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/TaskView;
 
-    .line 61
+    .line 71
     if-eqz v0, :cond_1
 
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
@@ -256,7 +265,7 @@
 
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->taskIds:[I
 
-    .line 62
+    .line 72
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
     move-result-object v2
@@ -269,7 +278,7 @@
 
     goto :goto_0
 
-    .line 63
+    .line 73
     :cond_0
     iget v1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->x:F
 
@@ -303,7 +312,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/quickstep/views/TaskView;->setTranslationX(F)V
 
-    .line 64
+    .line 74
     iget v1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->y:F
 
     iget v2, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->top:I
@@ -336,35 +345,40 @@
 
     invoke-virtual {v0, v1}, Lcom/android/quickstep/views/TaskView;->setTranslationY(F)V
 
-    .line 65
+    .line 75
     iget p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->scaleX:F
 
     invoke-virtual {v0, p1}, Lcom/android/quickstep/views/TaskView;->setScaleX(F)V
 
-    .line 66
+    .line 76
     iget p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->scaleY:F
 
     invoke-virtual {v0, p1}, Lcom/android/quickstep/views/TaskView;->setScaleY(F)V
 
-    .line 67
+    .line 77
     iget p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->z:F
 
     invoke-virtual {v0, p1}, Lcom/android/quickstep/views/TaskView;->setTranslationZ(F)V
 
-    .line 68
+    .line 78
+    iget p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->rotation:F
+
+    invoke-virtual {v0, p1}, Lcom/android/quickstep/views/TaskView;->setRotation(F)V
+
+    .line 79
     iget p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->clip:F
 
     invoke-virtual {v0, p1}, Lcom/android/quickstep/views/TaskView;->setNativeStackClipRight(F)V
 
-    .line 69
+    .line 80
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->occlusion:[F
 
     invoke-static {v0, p1}, Lcom/android/quickstep/views/LsStackOcclusion;->restore(Lcom/android/quickstep/views/TaskView;[F)V
 
-    .line 71
+    .line 82
     return-void
 
-    .line 62
+    .line 72
     :cond_1
     :goto_0
     return-void
@@ -373,10 +387,10 @@
 .method restoreLaunch(Lcom/android/quickstep/views/RecentsView;)V
     .locals 2
 
-    .line 74
+    .line 85
     invoke-virtual {p0, p1}, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->restore(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 75
+    .line 86
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->task:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -385,7 +399,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/TaskView;
 
-    .line 76
+    .line 87
     if-eqz v0, :cond_0
 
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
@@ -396,7 +410,7 @@
 
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$CardFrame;->taskIds:[I
 
-    .line 77
+    .line 88
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
     move-result-object v1
@@ -411,7 +425,7 @@
 
     invoke-virtual {v0, p1}, Lcom/android/quickstep/views/TaskView;->setStableAlpha(F)V
 
-    .line 78
+    .line 89
     :cond_0
     return-void
 .end method

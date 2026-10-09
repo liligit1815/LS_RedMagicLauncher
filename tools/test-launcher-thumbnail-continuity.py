@@ -30,7 +30,14 @@ members += '\n' + '\n'.join(re.findall(r'    private static final float MIUI_\w+
 harness = r'''
 import java.lang.ref.WeakReference;
 import com.android.quickstep.views.LsOrbitGeometry;
+import com.android.quickstep.views.LsFanGeometry;
 public class ThumbnailContinuityTest {
+    static class LsFanReflow {
+        static boolean keepsTaskData(RecentsView r,TaskView t){throw new AssertionError("fan residency reached old style");}
+    }
+    static class LsFanPager {
+        static float position(RecentsView r,float fallback,int count){throw new AssertionError("fan pager reached old style");}
+    }
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
     static class View {}
@@ -58,6 +65,7 @@ public class ThumbnailContinuityTest {
         int getChildCount(){return children.length;}View getChildAt(int i){return children[i];}
         int getTaskViewCount(){return tasks.length;} boolean isNativeStackStyle(){return stack;}
         boolean isOrbitStyle(){return orbit;}
+        boolean isFanStyle(){return false;}
         int getCurrentPage(){return page;} int getScrollForPage(int i){return Math.round((i-1)*stride);}
         int indexOfChild(View t){for(int i=0;i<children.length;i++)if(children[i]==t)return i;return -1;}
         void setNativeStackOverviewPage(int p){page=p;scroll=getScrollForPage(p);writes++;}
@@ -177,7 +185,8 @@ with tempfile.TemporaryDirectory(prefix='ls-thumbnail-continuity-') as folder:
     path = Path(folder) / 'ThumbnailContinuityTest.java'
     path.write_text(harness, encoding='utf-8')
     subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
-                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java'),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsFanGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'ThumbnailContinuityTest'], check=True)
 
 # The extension must precede the existing unload decision, with the original

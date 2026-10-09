@@ -32,7 +32,7 @@ methods = '\n'.join(extract(name) for name in (
     'getMiuiDepth', 'getMiuiInteriorCorrection', 'getMiuiScaleTerm',
     'getMiuiScaleRatio', 'getMiuiCenter', 'getMiuiStackCenter', 'clamp', 'setLiveOverviewTarget',
     'normalizeLiveAppliedScale', 'normalizeLiveEntryScroll'))
-for name in ('orbitPrimary', 'orbitSecondary'):
+for name in ('orbitPrimary', 'orbitSecondary', 'fanPrimary', 'fanSecondary'):
     if re.search(r'private static [^\n]+ ' + name + r'\(', source):
         methods += '\n' + extract(name)
 if 'void offsetLiveSnapshotCenter(' in source:
@@ -44,10 +44,12 @@ import java.awt.geom.NoninvertibleTransformException;
 import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 import com.android.quickstep.views.LsOrbitGeometry;
+import com.android.quickstep.views.LsFanGeometry;
 public class EntryRotationTest {
     static boolean retainDismissHistoryLayout;
     static float overviewSpacingScale=1;
     static float overviewSecondaryCenterFraction=.5f;
+    static float orbitSecondaryOffset;
     static class Context { boolean stack=true; Object getResources(){return this;} }
     static boolean usesNativeStackStyle(Context c){return c!=null && c.stack;}
     static void resumeStackForOverviewTarget(){} // Lifecycle is tested by native-gesture harness.
@@ -77,6 +79,7 @@ public class EntryRotationTest {
             return true;
         }
         void postTranslate(float x,float y){a.preConcatenate(AffineTransform.getTranslateInstance(x,y));}
+        void postRotate(float degrees,float x,float y){a.preConcatenate(AffineTransform.getRotateInstance(Math.toRadians(degrees),x,y));}
         void postScale(float s,float t,float x,float y){
             AffineTransform n=AffineTransform.getTranslateInstance(x,y);n.scale(s,t);n.translate(-x,-y);a.preConcatenate(n);
         }
@@ -95,7 +98,8 @@ public class EntryRotationTest {
         final RecentsPagedOrientationHandler handler=new RecentsPagedOrientationHandler();
         int getWidth(){return w;} int getHeight(){return h;} int getTaskViewCount(){return count;}
         boolean isNativeStackStyle(){return stack;} boolean isRecentsAnimationRunning(){return running;}
-        boolean isOrbitStyle(){return false;}
+        boolean orbit;boolean isOrbitStyle(){return orbit;}
+        boolean isFanStyle(){return false;}
         RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
         final TaskView task=new TaskView();
         int getRunningTaskIndex(){return 0;} TaskView getTaskViewAt(int index){return task;}
@@ -298,6 +302,27 @@ public class EntryRotationTest {
                 }
             }
         }
+        // The landscape-clearance translation must be identical in both live
+        // entry paths, with unchanged size and zero correction before commit.
+        for(int rotation=0;rotation<4;rotation++)for(boolean sampled:new boolean[]{false,true})
+        for(float p:new float[]{0,.25f,.5f,.75f,1}){
+            r.orbit=true;r.handler.vertical=(rotation&1)!=0;r.w=r.handler.vertical?1216:2688;r.h=r.handler.vertical?2688:1216;
+            r.count=6;r.task.container.snapshot.x=r.task.container.snapshot.y=0;r.task.px=387;r.task.py=854;
+            focusScale=.936f;liveEntryPageProgress=p;liveSimulatorOverviewTarget=true;entryFromApp=true;
+            activeOverviewRecents=new WeakReference<>(r);nativeGestureRecents.clear();liveGestureBounds.clear();
+            Matrix window=mapping(rotation,true),baseline=surface(window),shifted=surface(window),inverse=new Matrix();window.invert(inverse);
+            if(sampled){RectF release=new RectF();release.set(crop);baseline.mapRect(release);inverse.mapRect(release);
+                liveGestureBounds.put(baseline,release);liveGestureBounds.put(shifted,release);}
+            orbitSecondaryOffset=0;normalizeLiveEntryMatrix(context,baseline,crop,window);
+            orbitSecondaryOffset=51.072f;normalizeLiveEntryMatrix(context,shifted,crop,window);
+            float[] before=center(baseline,crop),after=center(shifted,crop);inverse.mapPoints(before);inverse.mapPoints(after);
+            near(r.handler.getPrimaryValue(after[0],after[1]),r.handler.getPrimaryValue(before[0],before[1]));
+            float sign=r.handler.getSecondaryTranslationDirectionFactor()<0?-1:1;
+            near(r.handler.getSecondaryValue(after[0],after[1])-r.handler.getSecondaryValue(before[0],before[1]),sign*51.072f*p);
+            near((float)baseline.a.getDeterminant(),(float)shifted.a.getDeterminant());
+            liveSimulatorOverviewTarget=false;unchanged(context,surface(window),crop,window);
+        }
+        orbitSecondaryOffset=0;r.orbit=false;
         System.out.println("PASS "+cases+" live-surface assertions: 0/90/180/270 degrees, native mini-window drag/return, explicit RECENTS commit, redirected target and style isolation");
     }
 }
@@ -320,5 +345,6 @@ with tempfile.TemporaryDirectory(prefix='ls-entry-rotation-') as folder:
     path = Path(folder) / 'EntryRotationTest.java'
     path.write_text(harness, encoding='utf-8')
     subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(path),
-                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java')], check=True)
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsOrbitGeometry.java'),
+                    str(ROOT / 'helper-src/main/com/android/quickstep/views/LsFanGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'EntryRotationTest'], check=True)

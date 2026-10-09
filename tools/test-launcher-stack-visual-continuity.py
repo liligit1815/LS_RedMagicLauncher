@@ -193,6 +193,9 @@ class TaskClipMachine:
                 elif target == 'setNativeStackClipRight(F)V': result = self.run(target, params[1])
                 elif target.startswith('isStackHeaderView('): result = params[1] in ('icon', 'title')
                 elif target.startswith('clear(Lcom/android/quickstep/views/TaskView;'): pass
+                elif target == 'draw(Lcom/android/quickstep/views/TaskView;Landroid/graphics/Canvas;Landroid/view/View;)V':
+                    assert matched[2].startswith('Lcom/android/quickstep/views/LsFanChrome;->')
+                    # This VM covers stack mode, where fan chrome is inactive.
                 elif target.startswith('clip(Lcom/android/quickstep/views/TaskView;'):
                     result = getattr(self, 'shaped', False) and params[2] == 'snapshot'
                     if result: self.canvas_clip = 'rounded'

@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +71,77 @@ public final class LsOrbitStyleSettings {
         if (card == null) return;
         RadioButton radio = (RadioButton) card.findViewWithTag(RADIO_TAG);
         radio.setChecked(style == ORBIT_STYLE);
-        card.setEnabled(style != ORBIT_STYLE);
+        // The selected card owns an independently adjustable scale control.
+        card.setEnabled(true);
+        card.setClickable(style != ORBIT_STYLE);
+    }
+
+    // Match pic_recentapp_stack_lispace_iceblue, which uses a fixed white
+    // illustration on the shared, day/night-aware recent_style_stack_card.
+    static final int PREVIEW_WIDTH = 320;
+    static final int PREVIEW_HEIGHT = 210;
+    static final int PREVIEW_BACKGROUND = 0xfffdfdfd;
+    static final int ICE_BLUE = 0xff008dff;
+    static final int LIGHT_BLUE = 0xff75ccff;
+
+    static void previewColor(Paint paint, int color, int alpha, float opacity) {
+        paint.setShader(null);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(color);
+        paint.setAlpha(Math.round(alpha * opacity));
+    }
+
+    static void drawPreviewBackground(Canvas canvas, Paint paint, int alpha) {
+        previewColor(paint, PREVIEW_BACKGROUND, alpha, 1f);
+        canvas.drawRect(0, 0, PREVIEW_WIDTH, PREVIEW_HEIGHT, paint);
+    }
+
+    /** Shared ice-blue artwork; layout is the only difference between styles. */
+    static void drawPreviewCard(Canvas canvas, Paint paint, int alpha, float x, float y,
+            float width, float height, float opacity) {
+        float radius = Math.min(width, height) * .14f;
+        // Layered translucent edges reproduce the stack illustration's soft
+        // blue shadow without requiring a software layer on the settings UI.
+        for (int spread = 3; spread >= 1; spread--) {
+            previewColor(paint, LIGHT_BLUE, alpha, opacity * .055f);
+            canvas.drawRoundRect(x - spread, y + 2 - spread,
+                    x + width + spread, y + height + 2 + spread,
+                    radius + spread, radius + spread, paint);
+        }
+        previewColor(paint, 0xffffffff, alpha, opacity);
+        paint.setShader(new LinearGradient(x, y, x + width, y + height,
+                0xffffffff, 0xffe5f7ff, Shader.TileMode.CLAMP));
+        canvas.drawRoundRect(x, y, x + width, y + height, radius, radius, paint);
+        previewColor(paint, ICE_BLUE, alpha, opacity);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.1f);
+        paint.setShader(new LinearGradient(x, y, x + width, y,
+                LIGHT_BLUE, ICE_BLUE, Shader.TileMode.CLAMP));
+        canvas.drawRoundRect(x, y, x + width, y + height, radius, radius, paint);
+        previewColor(paint, LIGHT_BLUE, alpha, opacity);
+        float left = x + width * .16f;
+        float right = x + width * .84f;
+        float unit = width * .055f;
+        canvas.drawCircle(x + width * .29f, y + height * .17f, width * .105f, paint);
+        canvas.drawRoundRect(left, y + height * .32f, right, y + height * .36f,
+                unit, unit, paint);
+        canvas.drawRoundRect(left, y + height * .40f, x + width * .70f,
+                y + height * .43f, unit, unit, paint);
+        previewColor(paint, 0xffc4eaff, alpha, opacity);
+        canvas.drawRoundRect(left, y + height * .51f, right, y + height * .73f,
+                width * .075f, width * .075f, paint);
+        previewColor(paint, LIGHT_BLUE, alpha, opacity);
+        canvas.drawRoundRect(left, y + height * .81f, right, y + height * .85f,
+                unit, unit, paint);
+        canvas.drawRoundRect(left, y + height * .89f, x + width * .65f,
+                y + height * .92f, unit, unit, paint);
+    }
+
+    static void drawPreviewLabel(Canvas canvas, Paint paint, int alpha,
+            float x, float y, float width) {
+        previewColor(paint, LIGHT_BLUE, alpha, 1f);
+        canvas.drawCircle(x + 4, y + 4, 4, paint);
+        canvas.drawRoundRect(x + 12, y + 1.5f, x + width, y + 6.5f, 2.5f, 2.5f, paint);
     }
 
     /** A front card and smaller cards following the elevated rear arc. */
@@ -79,49 +151,23 @@ public final class LsOrbitStyleSettings {
 
         OrbitPreview() { }
 
-        @Override public int getIntrinsicWidth() { return 320; }
-        @Override public int getIntrinsicHeight() { return 210; }
+        @Override public int getIntrinsicWidth() { return PREVIEW_WIDTH; }
+        @Override public int getIntrinsicHeight() { return PREVIEW_HEIGHT; }
 
         @Override public void draw(Canvas canvas) {
             Rect bounds = super.getBounds();
             int save = canvas.save();
             canvas.translate(bounds.left, bounds.top);
-            canvas.scale(bounds.width() / 320.0f, bounds.height() / 210.0f);
-            paint.setColor(0xffdbeef5);
-            paint.setAlpha(alpha);
-            canvas.drawRoundRect(2, 2, 318, 208, 14, 14, paint);
+            canvas.scale(bounds.width() / (float) PREVIEW_WIDTH,
+                    bounds.height() / (float) PREVIEW_HEIGHT);
+            drawPreviewBackground(canvas, paint, alpha);
             // Rear cards sit above and either side of the larger foreground
             // card. Their contents use the same simple icon-space palette.
-            card(canvas, 26, 37, 59, 103, 0.55f, 0xff86bdcf);
-            card(canvas, 236, 22, 58, 102, 0.65f, 0xff7999c6);
-            card(canvas, 184, 59, 80, 126, 0.82f, 0xff80abbf);
-            card(canvas, 95, 49, 111, 150, 1.0f, 0xff51a5c8);
+            drawPreviewCard(canvas, paint, alpha, 26, 37, 59, 103, .70f);
+            drawPreviewCard(canvas, paint, alpha, 236, 22, 58, 102, .76f);
+            drawPreviewCard(canvas, paint, alpha, 184, 59, 80, 126, .90f);
+            drawPreviewCard(canvas, paint, alpha, 95, 49, 111, 150, 1f);
             canvas.restoreToCount(save);
-        }
-
-        private void card(Canvas canvas, float x, float y, float width, float height,
-                float opacity, int accent) {
-            int a = Math.round(alpha * opacity);
-            paint.setColor(0xff95bdcc);
-            paint.setAlpha(Math.round(a * 0.35f));
-            canvas.drawRoundRect(x + 2, y + 4, x + width + 2, y + height + 4, 7, 7, paint);
-            paint.setColor(0xfff7fcfe);
-            paint.setAlpha(a);
-            canvas.drawRoundRect(x, y, x + width, y + height, 7, 7, paint);
-            paint.setColor(accent);
-            paint.setAlpha(a);
-            canvas.drawCircle(x + 11, y - 8, 4, paint);
-            canvas.drawRoundRect(x + 19, y - 10, x + width * 0.65f, y - 6, 2, 2, paint);
-            canvas.drawRoundRect(x + 10, y + 13, x + width - 10, y + 27, 4, 4, paint);
-            for (int row = 0; row < 4; row++) {
-                float top = y + 39 + row * (height - 49) / 4;
-                paint.setColor(0xffc7dee8);
-                paint.setAlpha(a);
-                canvas.drawRoundRect(x + 10, top, x + width - 10, top + 5, 2, 2, paint);
-                paint.setColor(0xffe2eff5);
-                paint.setAlpha(a);
-                canvas.drawRoundRect(x + 10, top + 9, x + width * 0.64f, top + 12, 1.5f, 1.5f, paint);
-            }
         }
 
         @Override public void setAlpha(int value) { alpha = value; super.invalidateSelf(); }
