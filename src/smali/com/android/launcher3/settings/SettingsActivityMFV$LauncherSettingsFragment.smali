@@ -10741,7 +10741,7 @@
 .end method
 
 .method public v(Landroid/os/Bundle;Ljava/lang/String;)V
-    .locals 0
+    .locals 2
 
     .line 1
     const p1, 0x7f17000f
@@ -10750,6 +10750,14 @@
     .line 3
     .line 4
     invoke-virtual {p0, p1}, Landroidx/preference/PreferenceFragmentCompat;->l(I)V
+
+    invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
+    move-result-object v0
+
+    invoke-virtual {p0}, Landroidx/preference/PreferenceFragmentCompat;->r()Landroidx/preference/PreferenceScreen;
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->attachSettings(Landroid/content/Context;Landroidx/preference/PreferenceGroup;)V
 
     .line 5
     .line 6

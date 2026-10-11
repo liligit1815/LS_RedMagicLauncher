@@ -7366,6 +7366,8 @@
     .line 1
     invoke-super {p0}, Lcom/android/launcher3/C2;->onResume()V
 
+    invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->onHomeResume(Landroid/app/Activity;)V
+
     .line 2
     .line 3
     .line 4

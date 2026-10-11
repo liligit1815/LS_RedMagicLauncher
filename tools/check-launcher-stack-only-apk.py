@@ -34,10 +34,17 @@ FAN_REFLOW_CLASS = "Lcom/android/quickstep/views/LsFanReflow"
 FAN_SETTINGS_CLASS = "Lcom/android/quickstep/views/LsFanStyleSettings"
 FAN_PAGER_CLASS = "Lcom/android/quickstep/views/LsFanPager"
 FAN_CHROME_CLASS = "Lcom/android/quickstep/views/LsFanChrome"
+UPDATE_CLASS = "Lcom/android/quickstep/views/LsOnlineUpdates"
+UPDATE_PROTOCOL_CLASS = "Lcom/android/quickstep/views/LsUpdateProtocol"
+UPDATE_PROVIDER_CLASS = "Lcom/android/quickstep/views/LsUpdateFileProvider"
 HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS, OCCLUSION_CLASS,
                 ORBIT_GEOMETRY_CLASS, ORBIT_REFLOW_CLASS, ORBIT_SETTINGS_CLASS, ORBIT_PAGER_CLASS,
                 FAN_GEOMETRY_CLASS, FAN_REFLOW_CLASS, FAN_SETTINGS_CLASS, FAN_PAGER_CLASS,
-                FAN_CHROME_CLASS)
+                FAN_CHROME_CLASS, UPDATE_CLASS, UPDATE_PROTOCOL_CLASS, UPDATE_PROVIDER_CLASS)
+RELEASE_260027_CLASSES = {UPDATE_PROTOCOL_CLASS + ";", UPDATE_PROVIDER_CLASS + ";"} | {
+    UPDATE_CLASS + suffix + ";" for suffix in (
+        "", "$1", "$Release", "$SettingClick", "$Dismiss", "$Choice", "$Worker", "$Ui", "$Lifecycle")
+}
 RELEASE_260024_CLASSES = {
     FAN_SETTINGS_CLASS + suffix + ";" for suffix in ("", "$FanPreview")
 } | {FAN_GEOMETRY_CLASS + ";", FAN_CHROME_CLASS + ";"} | {
@@ -319,6 +326,50 @@ def method_label(key: Method) -> str:
     return key[0] + "->" + key[1] + key[2]
 
 
+def strip_exact_update_nodes(events: list) -> list:
+    """Permit only the reviewed INTERNET permission and one private APK provider.
+
+    Every pre-existing Manifest event still has to compare exactly. No wildcard
+    attributes, children, authorities, permissions or added components qualify.
+    """
+    android = "http://schemas.android.com/apk/res/android"
+    def attributes(values):
+        return sorted([{"namespace": android, "name": name, "resourceId": rid,
+                        "type": dtype, "value": value}
+                       for name, rid, dtype, value in values], key=lambda item: item["name"])
+    definitions = {
+        "uses-permission": (("manifest",), attributes([
+            ("name", 0x01010003, 3, "android.permission.INTERNET")])),
+        "provider": (("manifest", "application"), attributes([
+            ("authorities", 0x01010018, 3, "com.zte.mifavor.launcher.online-updates"),
+            ("exported", 0x01010010, 0x12, False),
+            ("grantUriPermissions", 0x0101001b, 0x12, True),
+            ("name", 0x01010003, 3, "com.android.quickstep.views.LsUpdateFileProvider")]))}
+    result, stack, found = [], [], {name: 0 for name in definitions}
+    index = 0
+    while index < len(events):
+        event = events[index]
+        if event["event"] == "start":
+            name = event["name"]
+            definition = definitions.get(name)
+            if definition and event.get("namespace") is None and tuple(stack) == definition[0] \
+                    and event.get("attributes") == definition[1]:
+                ending = {"event": "end", "namespace": None, "name": name}
+                ensure(index + 1 < len(events) and events[index + 1] == ending,
+                       "Update Manifest additions must not contain any children")
+                found[name] += 1
+                index += 2
+                continue
+            stack.append(name)
+        elif event["event"] == "end":
+            ensure(stack and stack.pop() == event["name"], "Unbalanced update Manifest")
+        result.append(event)
+        index += 1
+    ensure(found == {"uses-permission": 1, "provider": 1},
+           "Expected exactly one reviewed INTERNET permission and one private update provider")
+    return result
+
+
 def resolve_helper_declaration(key: Method, apk: dict) -> Method | None:
     """Follow only actual in-APK ancestry, never infer a platform declaration.
 
@@ -397,6 +448,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
         expected_classes.update(RELEASE_260023_CLASSES)
     if expected["versionCode"] >= 260024:
         expected_classes.update(RELEASE_260024_CLASSES)
+    if expected["versionCode"] >= 260027:
+        expected_classes.update(RELEASE_260027_CLASSES)
     if expected["versionCode"] < 260015:
         expected_classes.discard(STACK_CLASS + "$ActionReveal;")
     if expected["versionCode"] < 260014:
@@ -417,6 +470,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
                           and key not in original["declared"]}
     original_events, original_versions = manifest_semantics(original["manifest"])
     modified_events, modified_versions = manifest_semantics(modified["manifest"])
+    if expected["versionCode"] >= 260027:
+        modified_events = strip_exact_update_nodes(modified_events)
     differences = []
     for index in range(max(len(original_events), len(modified_events))):
         before = original_events[index] if index < len(original_events) else None
@@ -446,7 +501,9 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
             "pass": not differences, "originalEventCount": len(original_events),
             "modifiedEventCount": len(modified_events), "differenceCount": len(differences),
             "differences": differences[:20],
-            "ignoredAttributes": ["manifest/android:versionCode", "manifest/android:versionName"]},
+            "ignoredAttributes": ["manifest/android:versionCode", "manifest/android:versionName"],
+            "exactAdditionalNodes": ["uses-permission:android.permission.INTERNET",
+                "provider:com.zte.mifavor.launcher.online-updates"] if expected["versionCode"] >= 260027 else []},
         "expectedVersion": {
             "pass": modified_versions == expected,
             "original": original_versions, "modified": modified_versions,

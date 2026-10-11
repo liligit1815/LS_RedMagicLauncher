@@ -19,6 +19,6 @@
 | APK 大小 | 31,379,761 字节 |
 | APK SHA-256 | `6b3f3e2b4f72aa4a684c1a5220f9dbec760db0928d02d65ca501a477b5472599` |
 
-安装包与 SHA-256 校验文件见 [Release 260025](https://github.com/liligit1815/LS_RedMagicLauncher/releases/tag/260025)。安装环境说明见 [安装兼容性](INSTALL_COMPATIBILITY.md)。
+源码仓库中此历史版本的 Release 及发行附件已移除；上表保留当时交付包的身份与校验值，以上测试结论仍限于该包。当前安装包见 [README 下载入口](../README.md)，安装环境说明见 [安装兼容性](INSTALL_COMPATIBILITY.md)。
 
 源码仓库保存业务代码、必要构建工具和固定输入；签名材料、构建产物、设备资料与过程记录保留在本地忽略目录。

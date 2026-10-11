@@ -1,10 +1,11 @@
 # GitHub 上传、磁盘整理与换电脑构建
 
-源码仓库保存继续开发所需的代码、工具和固定输入；私有签名仓库保存延续当前 APK 身份的材料。历史安装记录、手机数据和可重建缓存不属于这两个用途。
+源码仓库只保存继续开发所需的代码、说明、工具和固定构建输入；私有签名仓库保存延续当前 APK 身份的材料。当前发行安装包及在线更新清单统一放在 `lispacerelease`；源码仓库中的历史 Release 与发行附件已移除，版本身份、功能和验证结论继续保留在开发说明中。编译过程、中间包、日志、设备资料及可重建缓存留在本地忽略目录。
 
 | 仓库 | 地址 | 保存内容 |
 |---|---|---|
 | 桌面源码 | [liligit1815/LS_RedMagicLauncher](https://github.com/liligit1815/LS_RedMagicLauncher) | Apktool 工程、辅助 Java、固定 APK/JAR 输入、检查工具和开发说明 |
+| 统一发行与更新 | [liligit1815/lispacerelease](https://github.com/liligit1815/lispacerelease) | 各软件的 Release APK、独立在线更新清单与发布工具 |
 | 私有签名备份 | [liligit1815/LS_SSHKey](https://github.com/liligit1815/LS_SSHKey) | `redmagic-launcher/` 下的原签名密钥、配置、公开证书和校验清单，访问需要仓库权限 |
 
 克隆命令和完整工具链见 [项目 README](../README.md)。GitHub SSH 登录凭据与 APK 签名密钥用途不同，恢复 APK 密钥不会配置 GitHub 登录。
@@ -57,11 +58,11 @@
 
 ## 上传方式与大小限制
 
-建议通过 Git 或 GitHub Desktop 推送独立工程根目录，Git 忽略规则会排除本地材料。浏览器拖放不会替你应用 `.gitignore`。本次生成的源码 ZIP 已排除这些材料，可解压后用于建立仓库；直接把 ZIP 当作仓库唯一文件上传不等于可正常克隆的源码仓库。
+通过 Git 或 GitHub Desktop 推送独立工程根目录，提交前检查实际待提交文件，只收录必要源码、当前说明、工具及固定输入。`.signing/`、`out/`、`audit/`、`archive/`、`migration/`、辅助编译输出、Apktool 缓存输出及临时目录须保持忽略；已被 Git 跟踪的文件不会因新增忽略规则自动排除，应一并核对。浏览器拖放不会应用 `.gitignore`。可携带的源码 ZIP 与其盘点报告留在本地 `out/`，无需提交到源码仓库。
 
 GitHub 普通 Git 单文件超过 50 MiB 会提示，超过 100 MiB 被阻止；浏览器上传的单文件上限是 25 MiB。当前固定验收 APK 约 29.9 MiB，因此适合通过 Git 推送。当前必需文件都低于普通 Git 的硬性单文件上限，无需因为本地目录有几 GB 就引入 Git LFS。[GitHub 大文件规则](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)、[GitHub 文件上传方式](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)
 
-后续对外分发的安装包放 GitHub Releases；源码仓库中的固定基线只在确有必要并完成回归审查时更新，避免每次构建都提交二进制历史。
+后续对外分发的安装包统一放在 [lispacerelease Releases](https://github.com/liligit1815/lispacerelease/releases)，并按 [README 发布流程](../README.md#后续版本如何发布并提供在线更新) 更新桌面的独立清单。源码仓库不再创建 Release，不提交每轮发行 APK、源码 ZIP、构建报告或设备证据。`original.apk`、固定框架 APK、`baselines/launcher-260005.apk` 和 Apktool JAR 属于必要构建或回归输入，继续随源码保存；固定基线只在确有必要并完成回归审查时更新。
 
 ## 安装安全是另一道检查
 
