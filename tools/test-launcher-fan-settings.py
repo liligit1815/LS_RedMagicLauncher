@@ -60,7 +60,7 @@ public class LayoutInflater {
 }""",
     "android/widget/TextView.java": "package android.widget; public class TextView extends android.view.View {public CharSequence text;public void setText(CharSequence v){text=v;}}",
     "android/widget/RadioButton.java": "package android.widget; public class RadioButton extends TextView {public boolean checked;public void setChecked(boolean v){checked=v;}}",
-    "android/widget/ImageView.java": "package android.widget; public class ImageView extends android.view.View {public android.graphics.drawable.Drawable drawable;public void setImageDrawable(android.graphics.drawable.Drawable v){drawable=v;}}",
+    "android/widget/ImageView.java": "package android.widget; public class ImageView extends android.view.View {public android.graphics.drawable.Drawable drawable;public void setImageDrawable(android.graphics.drawable.Drawable v){drawable=v;}public android.graphics.drawable.Drawable getDrawable(){return drawable;}}",
     "android/app/Activity.java": """package android.app;
 public class Activity {
     public final android.view.ViewGroup root=new android.view.ViewGroup();
@@ -132,7 +132,9 @@ public final class FanSettingsTest {
     static int checks,clicks;
     static void check(boolean b,String message){checks++;if(!b)throw new AssertionError(message);}
     static void theme(Canvas c,int count){
-        check(c.background==0xfffdfdfd,"preview no longer matches white stack artwork");
+        check(c.background==0,"custom preview painted an opaque rectangular canvas");
+        for(int[] corner:new int[][]{{0,0},{1279,0},{0,839},{1279,839}})
+            check((c.image.getRGB(corner[0],corner[1])>>>24)==0,"preview covers day/night OEM card surface");
         check(c.borders.size()==count,"preview card count changed");
         for(float[] b:c.borders){
             check(Math.abs(b[4]-.14f*Math.min(b[2]-b[0],b[3]-b[1]))<.0001f,"stack-style corner proportion changed");
@@ -143,7 +145,8 @@ public final class FanSettingsTest {
     }
     public static void main(String[] args)throws Exception{
         Activity a=new Activity();ViewGroup parent=new ViewGroup();a.root.addView(parent);
-        View original=new View();original.id=0x7f0b06c2;parent.addView(original);
+        ViewGroup original=new ViewGroup();original.id=0x7f0b06c2;parent.addView(original);
+        ImageView stackImage=new ImageView();stackImage.id=0x7f0b06c5;original.addView(stackImage);
         View.OnClickListener listener=v->{check(LsFanStyleSettings.isFanCard(v),"click lost fan identity");clicks++;};
         LsFanStyleSettings.attach(a,listener);LsFanStyleSettings.attach(a,listener);
         check(parent.getChildCount()==2,"duplicate selector");
@@ -177,6 +180,12 @@ public final class FanSettingsTest {
         theme(canvas,5);
         check(preview.getIntrinsicWidth()==320&&preview.getIntrinsicHeight()==210,"fan preview changed template aspect ratio");
         LsOrbitStyleSettings.attach(a,listener);LsOrbitStyleSettings.attach(a,listener);
+        android.graphics.drawable.Drawable stackPreview=stackImage.getDrawable();
+        check(stackPreview!=null,"opaque stack bitmap was not replaced");
+        LsOrbitStyleSettings.attach(a,listener);
+        check(stackImage.getDrawable()==stackPreview,"refresh duplicated the stack preview");
+        Canvas stackCanvas=new Canvas();stackPreview.setAlpha(128);stackPreview.draw(stackCanvas);theme(stackCanvas,4);
+        check(stackCanvas.depth==0&&stackCanvas.maxAlpha==128,"stack preview leaked canvas/opacity state");
         check(parent.getChildCount()==3,"orbit duplicated existing controls");
         ViewGroup orbit=(ViewGroup)parent.getChildAt(2);
         check(LsOrbitStyleSettings.isOrbitCard(orbit)&&!LsFanStyleSettings.isFanCard(orbit),"style identities collide");
@@ -193,13 +202,21 @@ public final class FanSettingsTest {
         Canvas orbitCanvas=new Canvas();orbitPreview.setAlpha(128);orbitPreview.draw(orbitCanvas);theme(orbitCanvas,4);
         check(orbitCanvas.depth==0&&orbitCanvas.maxAlpha==128,"orbit preview leaked canvas/opacity state");
         check(orbitPreview.getIntrinsicWidth()==preview.getIntrinsicWidth()&&orbitPreview.getIntrinsicHeight()==preview.getIntrinsicHeight(),"style preview sizes differ");
-        for(android.graphics.drawable.Drawable d:new android.graphics.drawable.Drawable[]{preview,orbitPreview}){
+        for(android.graphics.drawable.Drawable d:new android.graphics.drawable.Drawable[]{preview,orbitPreview,stackPreview}){
             d.setAlpha(0);Canvas transparent=new Canvas();d.draw(transparent);check(transparent.maxAlpha==0,"transparent preview left theme elements visible");
         }
         if(args.length>0){
             java.io.File output=new java.io.File(args[0]);output.mkdirs();
             preview.setAlpha(255);Canvas fanImage=new Canvas();preview.draw(fanImage);javax.imageio.ImageIO.write(fanImage.image,"png",new java.io.File(output,"fan-preview.png"));
             orbitPreview.setAlpha(255);Canvas orbitImage=new Canvas();orbitPreview.draw(orbitImage);javax.imageio.ImageIO.write(orbitImage.image,"png",new java.io.File(output,"orbit-preview.png"));
+            stackPreview.setAlpha(255);Canvas stackRendered=new Canvas();stackPreview.draw(stackRendered);javax.imageio.ImageIO.write(stackRendered.image,"png",new java.io.File(output,"stack-preview.png"));
+            for(String style:new String[]{"fan","orbit","stack"})for(int surface:new int[]{0xffffffff,0xff1b1b1b}){
+                java.awt.image.BufferedImage art=javax.imageio.ImageIO.read(new java.io.File(output,style+"-preview.png"));
+                java.awt.image.BufferedImage rendered=new java.awt.image.BufferedImage(1280,840,2);
+                java.awt.Graphics2D g=rendered.createGraphics();g.setColor(new java.awt.Color(surface));g.fillRect(0,0,1280,840);g.drawImage(art,0,0,null);g.dispose();
+                check(rendered.getRGB(0,0)==surface,"themed surface hidden behind fixed white canvas");
+                javax.imageio.ImageIO.write(rendered,"png",new java.io.File(output,style+(surface==-1?"-light":"-dark")+".png"));
+            }
         }
         Activity missing=new Activity();LsFanStyleSettings.attach(missing,listener);LsFanStyleSettings.update(missing,5);
         check(missing.root.getChildCount()==0,"missing template produced a broken selector");

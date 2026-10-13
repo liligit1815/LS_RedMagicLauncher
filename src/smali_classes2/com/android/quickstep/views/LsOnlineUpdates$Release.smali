@@ -38,10 +38,10 @@
 .method constructor <init>(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 0
 
-    .line 369
+    .line 393
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 370
+    .line 394
     iput p1, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->code:I
 
     iput-object p2, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->name:Ljava/lang/String;
@@ -50,7 +50,7 @@
 
     iput-object p4, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->notes:Ljava/lang/String;
 
-    .line 371
+    .line 395
     iput-object p5, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->url:Ljava/lang/String;
 
     iput-wide p6, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->size:J
@@ -61,6 +61,6 @@
 
     iput-object p10, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->document:Ljava/lang/String;
 
-    .line 372
+    .line 396
     return-void
 .end method

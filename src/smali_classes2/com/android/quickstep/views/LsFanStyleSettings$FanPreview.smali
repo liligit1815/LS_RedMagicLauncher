@@ -48,7 +48,7 @@
 .method private card(Landroid/graphics/Canvas;FFF)V
     .locals 9
 
-    .line 102
+    .line 101
     iget-object v2, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->paint:Landroid/graphics/Paint;
 
     iget v3, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->alpha:I
@@ -67,12 +67,12 @@
 
     invoke-static/range {v1 .. v6}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewLabel(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFF)V
 
-    .line 103
+    .line 102
     invoke-virtual {p1}, Landroid/graphics/Canvas;->save()I
 
     move-result v8
 
-    .line 104
+    .line 103
     const/high16 v2, 0x41600000    # 14.0f
 
     add-float/2addr v2, p2
@@ -83,7 +83,7 @@
 
     invoke-virtual {p1, p4, v2, v3}, Landroid/graphics/Canvas;->rotate(FFF)V
 
-    .line 105
+    .line 104
     iget-object v1, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->paint:Landroid/graphics/Paint;
 
     iget v2, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->alpha:I
@@ -102,10 +102,10 @@
 
     invoke-static/range {v0 .. v7}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewCard(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFFFF)V
 
-    .line 106
+    .line 105
     invoke-virtual {p1, v8}, Landroid/graphics/Canvas;->restoreToCount(I)V
 
-    .line 107
+    .line 106
     return-void
 .end method
 
@@ -160,14 +160,7 @@
     .line 89
     invoke-virtual {p1, v2, v0}, Landroid/graphics/Canvas;->scale(FF)V
 
-    .line 91
-    iget-object v0, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->paint:Landroid/graphics/Paint;
-
-    iget v2, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->alpha:I
-
-    invoke-static {p1, v0, v2}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewBackground(Landroid/graphics/Canvas;Landroid/graphics/Paint;I)V
-
-    .line 93
+    .line 92
     const/high16 v0, 0x41800000    # 16.0f
 
     const/high16 v2, 0x41200000    # 10.0f
@@ -176,7 +169,7 @@
 
     invoke-direct {p0, p1, v3, v0, v2}, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->card(Landroid/graphics/Canvas;FFF)V
 
-    .line 94
+    .line 93
     const/high16 v0, 0x42500000    # 52.0f
 
     const/high16 v2, 0x40f00000    # 7.5f
@@ -185,7 +178,7 @@
 
     invoke-direct {p0, p1, v3, v0, v2}, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->card(Landroid/graphics/Canvas;FFF)V
 
-    .line 95
+    .line 94
     const/high16 v0, 0x42b00000    # 88.0f
 
     const/high16 v2, 0x40a00000    # 5.0f
@@ -194,7 +187,7 @@
 
     invoke-direct {p0, p1, v3, v0, v2}, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->card(Landroid/graphics/Canvas;FFF)V
 
-    .line 96
+    .line 95
     const/high16 v0, 0x42f80000    # 124.0f
 
     const/high16 v2, 0x40200000    # 2.5f
@@ -203,7 +196,7 @@
 
     invoke-direct {p0, p1, v3, v0, v2}, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->card(Landroid/graphics/Canvas;FFF)V
 
-    .line 97
+    .line 96
     const/high16 v0, 0x43200000    # 160.0f
 
     const/4 v2, 0x0
@@ -212,10 +205,10 @@
 
     invoke-direct {p0, p1, v3, v0, v2}, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->card(Landroid/graphics/Canvas;FFF)V
 
-    .line 98
+    .line 97
     invoke-virtual {p1, v1}, Landroid/graphics/Canvas;->restoreToCount(I)V
 
-    .line 99
+    .line 98
     return-void
 .end method
 
@@ -240,7 +233,7 @@
 .method public getOpacity()I
     .locals 1
 
-    .line 111
+    .line 110
     const/4 v0, -0x3
 
     return v0
@@ -249,7 +242,7 @@
 .method public setAlpha(I)V
     .locals 0
 
-    .line 109
+    .line 108
     iput p1, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->alpha:I
 
     invoke-super {p0}, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
@@ -260,7 +253,7 @@
 .method public setColorFilter(Landroid/graphics/ColorFilter;)V
     .locals 1
 
-    .line 110
+    .line 109
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanStyleSettings$FanPreview;->paint:Landroid/graphics/Paint;
 
     invoke-virtual {v0, p1}, Landroid/graphics/Paint;->setColorFilter(Landroid/graphics/ColorFilter;)Landroid/graphics/ColorFilter;

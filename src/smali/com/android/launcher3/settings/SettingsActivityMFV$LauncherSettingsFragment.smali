@@ -10751,14 +10751,6 @@
     .line 4
     invoke-virtual {p0, p1}, Landroidx/preference/PreferenceFragmentCompat;->l(I)V
 
-    invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
-    move-result-object v0
-
-    invoke-virtual {p0}, Landroidx/preference/PreferenceFragmentCompat;->r()Landroidx/preference/PreferenceScreen;
-    move-result-object v1
-
-    invoke-static {v0, v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->attachSettings(Landroid/content/Context;Landroidx/preference/PreferenceGroup;)V
-
     .line 5
     .line 6
     .line 7

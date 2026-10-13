@@ -24,10 +24,10 @@
 .method constructor <init>()V
     .locals 2
 
-    .line 152
+    .line 156
     invoke-direct {p0}, Landroid/graphics/drawable/Drawable;-><init>()V
 
-    .line 149
+    .line 153
     new-instance v0, Landroid/graphics/Paint;
 
     const/4 v1, 0x1
@@ -36,12 +36,12 @@
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
 
-    .line 150
+    .line 154
     const/16 v0, 0xff
 
     iput v0, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
 
-    .line 152
+    .line 156
     return-void
 .end method
 
@@ -50,17 +50,17 @@
 .method public draw(Landroid/graphics/Canvas;)V
     .locals 10
 
-    .line 158
+    .line 162
     invoke-super {p0}, Landroid/graphics/drawable/Drawable;->getBounds()Landroid/graphics/Rect;
 
     move-result-object v2
 
-    .line 159
+    .line 163
     invoke-virtual {p1}, Landroid/graphics/Canvas;->save()I
 
     move-result v9
 
-    .line 160
+    .line 164
     iget v3, v2, Landroid/graphics/Rect;->left:I
 
     int-to-float v3, v3
@@ -71,7 +71,7 @@
 
     invoke-virtual {p1, v3, v4}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 161
+    .line 165
     invoke-virtual {v2}, Landroid/graphics/Rect;->width()I
 
     move-result v3
@@ -82,7 +82,7 @@
 
     div-float/2addr v3, v4
 
-    .line 162
+    .line 166
     invoke-virtual {v2}, Landroid/graphics/Rect;->height()I
 
     move-result v2
@@ -93,17 +93,10 @@
 
     div-float/2addr v2, v4
 
-    .line 161
+    .line 165
     invoke-virtual {p1, v3, v2}, Landroid/graphics/Canvas;->scale(FF)V
 
-    .line 163
-    iget-object v2, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
-
-    iget v3, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
-
-    invoke-static {p1, v2, v3}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewBackground(Landroid/graphics/Canvas;Landroid/graphics/Paint;I)V
-
-    .line 166
+    .line 169
     iget-object v2, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
 
     iget v3, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
@@ -122,7 +115,7 @@
 
     invoke-static/range {v1 .. v8}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewCard(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFFFF)V
 
-    .line 167
+    .line 170
     iget-object v2, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
 
     iget v3, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
@@ -139,7 +132,7 @@
 
     invoke-static/range {v1 .. v8}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewCard(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFFFF)V
 
-    .line 168
+    .line 171
     iget-object v2, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
 
     iget v3, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
@@ -156,7 +149,7 @@
 
     invoke-static/range {v1 .. v8}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewCard(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFFFF)V
 
-    .line 169
+    .line 172
     iget-object v1, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
 
     iget v2, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
@@ -175,17 +168,17 @@
 
     invoke-static/range {v0 .. v7}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->drawPreviewCard(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFFFF)V
 
-    .line 170
+    .line 173
     invoke-virtual {p1, v9}, Landroid/graphics/Canvas;->restoreToCount(I)V
 
-    .line 171
+    .line 174
     return-void
 .end method
 
 .method public getIntrinsicHeight()I
     .locals 1
 
-    .line 155
+    .line 159
     const/16 v0, 0xd2
 
     return v0
@@ -194,7 +187,7 @@
 .method public getIntrinsicWidth()I
     .locals 1
 
-    .line 154
+    .line 158
     const/16 v0, 0x140
 
     return v0
@@ -203,7 +196,7 @@
 .method public getOpacity()I
     .locals 1
 
-    .line 175
+    .line 178
     const/4 v0, -0x3
 
     return v0
@@ -212,7 +205,7 @@
 .method public setAlpha(I)V
     .locals 0
 
-    .line 173
+    .line 176
     iput p1, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->alpha:I
 
     invoke-super {p0}, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
@@ -223,7 +216,7 @@
 .method public setColorFilter(Landroid/graphics/ColorFilter;)V
     .locals 1
 
-    .line 174
+    .line 177
     iget-object v0, p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;->paint:Landroid/graphics/Paint;
 
     invoke-virtual {v0, p1}, Landroid/graphics/Paint;->setColorFilter(Landroid/graphics/ColorFilter;)Landroid/graphics/ColorFilter;

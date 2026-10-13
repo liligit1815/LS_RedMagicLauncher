@@ -9,6 +9,7 @@ import subprocess
 import tempfile
 import unittest
 import re
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("online_update_boundary", ROOT / "tools/check-launcher-stack-only-apk.py")
@@ -39,6 +40,126 @@ def fixture():
 
 
 class UpdateBoundaryTest(unittest.TestCase):
+    def test_actual_recent_styles_entry_attachment(self):
+        source = (ROOT / "helper-src/main/com/android/quickstep/views/LsOnlineUpdates.java").read_text(encoding="utf-8")
+        attach = re.search(r"^    public static void attachRecentStyles\(.*?^    }", source, re.M | re.S)
+        click = re.search(r"^    private static final class SettingClick .*?^    }", source, re.M | re.S)
+        self.assertIsNotNone(attach)
+        self.assertIsNotNone(click)
+        harness = r'''
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+public class UpdateEntryTest {
+  static final String KEY="ls_check_online_updates";
+  static WeakReference<Activity> foreground=new WeakReference<>(null);
+  static int checks,initializations,manualChecks;
+  static class Context {boolean night;Context(boolean night){this.night=night;}}
+  static class Resources {
+    static class Metrics {float density=2f;}
+    Metrics getDisplayMetrics(){return new Metrics();}
+    int getDimensionPixelSize(int id){if(id!=0x7f0709ab)throw new AssertionError("wrong bottom inset");return 24;}
+  }
+  static class Activity extends Context {
+    View stack;boolean finishing,destroyed;
+    Activity(boolean night){super(night);}
+    View findViewById(int id){return id==0x7f0b06c2?stack:null;}
+    Resources getResources(){return new Resources();}
+    boolean isFinishing(){return finishing;}boolean isDestroyed(){return destroyed;}
+  }
+  static class Gravity {static final int CENTER=17;}
+  static class View {
+    static final int NO_ID=-1; int id=NO_ID,minHeight;Object tag;Context context;ViewGroup parent;
+    boolean focusable;ViewGroup.LayoutParams params;OnClickListener listener;
+    interface OnClickListener {void onClick(View view);}
+    View(Context context){this.context=context;}
+    Object getParent(){return parent;}Context getContext(){return context;}
+    void setId(int value){id=value;}void setTag(Object value){tag=value;}
+    void setFocusable(boolean value){focusable=value;}void setMinimumHeight(int value){minHeight=value;}
+    void setOnClickListener(OnClickListener value){listener=value;}
+    ViewGroup.LayoutParams getLayoutParams(){return params;}void setLayoutParams(ViewGroup.LayoutParams value){params=value;}
+    View findViewById(int value){return id==value?this:null;}
+    View findViewWithTag(Object value){return value.equals(tag)?this:null;}
+  }
+  static class ViewGroup extends View {
+    static class LayoutParams {static final int MATCH_PARENT=-1,WRAP_CONTENT=-2;int width,height;
+      LayoutParams(int width,int height){this.width=width;this.height=height;}}
+    ArrayList<View> children=new ArrayList<>();ViewGroup(Context context){super(context);}
+    void addView(View view){if(view.parent!=null)throw new AssertionError("duplicate parent");children.add(view);view.parent=this;}
+    void addView(View view,LayoutParams params){view.setLayoutParams(params);addView(view);}
+    void removeAllViews(){for(View view:children)view.parent=null;children.clear();}
+    @Override View findViewById(int value){View result=super.findViewById(value);if(result!=null)return result;
+      for(View view:children){result=view.findViewById(value);if(result!=null)return result;}return null;}
+    @Override View findViewWithTag(Object value){View result=super.findViewWithTag(value);if(result!=null)return result;
+      for(View view:children){result=view.findViewWithTag(value);if(result!=null)return result;}return null;}
+  }
+  static class LinearLayout extends ViewGroup {
+    String background="card_bg";
+    static class LayoutParams extends ViewGroup.LayoutParams {int topMargin,bottomMargin;
+      LayoutParams(int width,int height){super(width,height);}}
+    LinearLayout(Context context){super(context);}
+  }
+  static class TextView extends View {
+    String text,font="system_medium";int color,gravity;
+    TextView(Context context){super(context);color=context.night?0xffeeeeee:0xff111111;}
+    void setText(String value){text=value;}void setGravity(int value){gravity=value;}
+  }
+  static class LayoutInflater {
+    Context context;LayoutInflater(Context context){this.context=context;}
+    static LayoutInflater from(Context context){return new LayoutInflater(context);}
+    View inflate(int id,ViewGroup parent,boolean attached){
+      if(id!=0x7f0e0285||attached)throw new AssertionError("wrong native template");
+      LinearLayout card=new LinearLayout(context);card.id=0x7f0b06c2;
+      LinearLayout.LayoutParams cp=new LinearLayout.LayoutParams(-1,-2);cp.topMargin=24;card.params=cp;
+      LinearLayout row=new LinearLayout(context);LinearLayout.LayoutParams rp=new LinearLayout.LayoutParams(-2,-2);
+      rp.topMargin=30;rp.bottomMargin=28;row.params=rp;
+      TextView title=new TextView(context);title.id=0x7f0b06c3;row.addView(title);
+      View radio=new View(context);radio.id=0x7f0b06c4;row.addView(radio);card.addView(row);
+      View preview=new View(context);preview.id=0x7f0b06c5;card.addView(preview);return card;
+    }
+  }
+  static void initialize(Activity activity){initializations++;}
+  static void check(boolean manual){if(!manual)throw new AssertionError("manual action became automatic");manualChecks++;}
+  static void require(boolean value){checks++;if(!value)throw new AssertionError(checks);}
+  PRODUCTION_ATTACH
+  PRODUCTION_CLICK
+  public static void main(String[] args){
+    for(boolean night:new boolean[]{false,true}){
+      Activity activity=new Activity(night);attachRecentStyles(activity);require(initializations==manualChecks);
+      View detached=new View(activity);activity.stack=detached;attachRecentStyles(activity);require(detached.parent==null);
+      LinearLayout parent=new LinearLayout(activity);View stack=new View(activity);stack.id=0x7f0b06c2;
+      parent.addView(stack);activity.stack=stack;View fan=new View(activity);parent.addView(fan);
+      int initial=initializations;attachRecentStyles(activity);require(initializations==initial+1);
+      require(parent.children.size()==3&&parent.children.get(1)==fan);
+      LinearLayout entry=(LinearLayout)parent.children.get(2);require(entry.tag.equals(KEY)&&entry.id==View.NO_ID);
+      require(entry.children.size()==1&&entry.background.equals("card_bg")&&entry.focusable&&entry.minHeight==96);
+      require(((LinearLayout.LayoutParams)entry.params).topMargin==24&&((LinearLayout.LayoutParams)entry.params).bottomMargin==24);
+      ViewGroup row=(ViewGroup)entry.children.get(0);require(row.children.size()==1&&row.params.width==-1);
+      TextView title=(TextView)row.children.get(0);require(title.text.equals("检测更新")&&title.id==View.NO_ID&&title.gravity==Gravity.CENTER);
+      require(title.color==(night?0xffeeeeee:0xff111111)&&title.font.equals("system_medium"));
+      require(entry.findViewById(0x7f0b06c4)==null&&entry.findViewById(0x7f0b06c5)==null);
+      attachRecentStyles(activity);require(parent.children.size()==3&&initializations==initial+1);
+      int manual=manualChecks;entry.listener.onClick(entry);require(manualChecks==manual+1&&foreground.get()==activity);
+      activity.finishing=true;entry.listener.onClick(entry);require(manualChecks==manual+1);activity.finishing=false;
+      activity.destroyed=true;entry.listener.onClick(entry);require(manualChecks==manual+1);
+    }
+    System.out.println("Production recent-style update attachment: "+checks+" checks passed");
+  }
+}
+'''.replace("PRODUCTION_ATTACH", attach.group()).replace("PRODUCTION_CLICK", click.group())
+        with tempfile.TemporaryDirectory(prefix="launcher-update-entry-") as directory:
+            path = Path(directory)
+            (path / "UpdateEntryTest.java").write_text(harness, encoding="utf-8")
+            subprocess.run(["javac", "-encoding", "UTF-8", "-d", str(path),
+                            str(path / "UpdateEntryTest.java")], check=True)
+            subprocess.run(["java", "-cp", str(path), "UpdateEntryTest"], check=True)
+        template = ET.parse(ROOT / "src/res/layout/recent_style_stack_card.xml").getroot()
+        self.assertEqual(template.get("{" + ANDROID + "}background"), "@drawable/card_bg")
+        title = template.find(".//TextView")
+        self.assertEqual(title.get("{" + ANDROID + "}textColor"), "@color/setting_activity_text_color")
+        fragment = (ROOT / "src/smali/com/android/launcher3/settings/SettingsActivityMFV$LauncherSettingsFragment.smali").read_text("utf-8")
+        self.assertNotIn("LsOnlineUpdates;->attachSettings", fragment)
+        self.assertIn('name.equals("com.android.launcher3.settings.RecentAppStyleActivity")', source)
+
     def test_exact_additions_only(self):
         original, modified = fixture()
         self.assertEqual(gate.strip_exact_update_nodes(modified), original)

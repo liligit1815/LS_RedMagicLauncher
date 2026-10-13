@@ -21,7 +21,7 @@
 .method private constructor <init>()V
     .locals 0
 
-    .line 383
+    .line 409
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -30,7 +30,7 @@
 .method synthetic constructor <init>(Lcom/android/quickstep/views/LsOnlineUpdates$1;)V
     .locals 0
 
-    .line 383
+    .line 409
     invoke-direct {p0}, Lcom/android/quickstep/views/LsOnlineUpdates$Dismiss;-><init>()V
 
     return-void
@@ -41,7 +41,7 @@
 .method public onDismiss(Landroid/content/DialogInterface;)V
     .locals 1
 
-    .line 384
+    .line 410
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$400()Landroid/app/AlertDialog;
 
     move-result-object v0

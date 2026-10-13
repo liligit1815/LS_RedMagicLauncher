@@ -31,10 +31,10 @@
 .method constructor <init>(ILcom/android/quickstep/views/LsOnlineUpdates$Release;ZLjava/lang/String;)V
     .locals 0
 
-    .line 450
+    .line 476
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 451
+    .line 477
     iput p1, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->action:I
 
     iput-object p2, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->release:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
@@ -43,7 +43,7 @@
 
     iput-object p4, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->message:Ljava/lang/String;
 
-    .line 452
+    .line 478
     return-void
 .end method
 
@@ -52,7 +52,7 @@
 .method public run()V
     .locals 3
 
-    .line 454
+    .line 480
     iget v0, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->action:I
 
     const/4 v1, 0x1
@@ -75,7 +75,7 @@
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1300(Ljava/lang/String;)V
 
-    .line 455
+    .line 481
     :cond_0
     iget v0, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->action:I
 
@@ -91,7 +91,7 @@
 
     invoke-static {v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2602(Z)Z
 
-    .line 456
+    .line 482
     :cond_1
     iget v0, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->action:I
 
@@ -116,7 +116,7 @@
     :cond_2
     return-void
 
-    .line 457
+    .line 483
     :cond_3
     iget v0, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->action:I
 
@@ -130,7 +130,7 @@
 
     return-void
 
-    .line 458
+    .line 484
     :cond_4
     iget v0, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->action:I
 
@@ -138,7 +138,7 @@
 
     if-ne v0, v1, :cond_8
 
-    .line 459
+    .line 485
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$500()Z
 
     move-result v0
@@ -161,7 +161,7 @@
 
     invoke-static {v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2802(Landroid/app/ProgressDialog;)Landroid/app/ProgressDialog;
 
-    .line 460
+    .line 486
     :cond_5
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2900()Z
 
@@ -169,7 +169,7 @@
 
     if-eqz v0, :cond_6
 
-    .line 461
+    .line 487
     const/4 v0, 0x0
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2902(Z)Z
@@ -178,7 +178,7 @@
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2602(Z)Z
 
-    .line 462
+    .line 488
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1200()Landroid/content/SharedPreferences;
 
     move-result-object v0
@@ -201,7 +201,7 @@
 
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 464
+    .line 490
     :cond_6
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;->manual:Z
 
@@ -211,14 +211,14 @@
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1300(Ljava/lang/String;)V
 
-    .line 465
+    .line 491
     :cond_7
     return-void
 
-    .line 467
+    .line 493
     :cond_8
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$3000()V
 
-    .line 468
+    .line 494
     return-void
 .end method

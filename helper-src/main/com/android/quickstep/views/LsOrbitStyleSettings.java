@@ -33,6 +33,7 @@ public final class LsOrbitStyleSettings {
     public static void attach(Activity activity, View.OnClickListener listener) {
         View stack = activity.findViewById(0x7f0b06c2);
         if (stack == null || !(stack.getParent() instanceof ViewGroup)) return;
+        refreshStackPreview(activity);
         ViewGroup parent = (ViewGroup) stack.getParent();
         if (parent.findViewWithTag(CARD_TAG) != null) return;
         View card = LayoutInflater.from(stack.getContext()).inflate(0x7f0e0285, parent, false);
@@ -51,6 +52,15 @@ public final class LsOrbitStyleSettings {
         preview.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         card.setOnClickListener(listener);
         parent.addView(card);
+    }
+
+    /** Match the OEM normal/grid transparent artwork, without modifying the
+     * packaged stack bitmap or retaining an Activity in the Drawable. */
+    private static void refreshStackPreview(Activity activity) {
+        View view = activity.findViewById(0x7f0b06c5);
+        if (!(view instanceof ImageView)) return;
+        ImageView image = (ImageView) view;
+        if (!(image.getDrawable() instanceof StackPreview)) image.setImageDrawable(new StackPreview());
     }
 
     private static void clearTemplateIds(View view) {
@@ -76,11 +86,10 @@ public final class LsOrbitStyleSettings {
         card.setClickable(style != ORBIT_STYLE);
     }
 
-    // Match pic_recentapp_stack_lispace_iceblue, which uses a fixed white
-    // illustration on the shared, day/night-aware recent_style_stack_card.
+    // OEM normal/grid artwork has no opaque canvas or separate night asset.
+    // Leave the shared day/night card surface visible around the illustration.
     static final int PREVIEW_WIDTH = 320;
     static final int PREVIEW_HEIGHT = 210;
-    static final int PREVIEW_BACKGROUND = 0xfffdfdfd;
     static final int ICE_BLUE = 0xff008dff;
     static final int LIGHT_BLUE = 0xff75ccff;
 
@@ -89,11 +98,6 @@ public final class LsOrbitStyleSettings {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(color);
         paint.setAlpha(Math.round(alpha * opacity));
-    }
-
-    static void drawPreviewBackground(Canvas canvas, Paint paint, int alpha) {
-        previewColor(paint, PREVIEW_BACKGROUND, alpha, 1f);
-        canvas.drawRect(0, 0, PREVIEW_WIDTH, PREVIEW_HEIGHT, paint);
     }
 
     /** Shared ice-blue artwork; layout is the only difference between styles. */
@@ -160,13 +164,40 @@ public final class LsOrbitStyleSettings {
             canvas.translate(bounds.left, bounds.top);
             canvas.scale(bounds.width() / (float) PREVIEW_WIDTH,
                     bounds.height() / (float) PREVIEW_HEIGHT);
-            drawPreviewBackground(canvas, paint, alpha);
             // Rear cards sit above and either side of the larger foreground
             // card. Their contents use the same simple icon-space palette.
             drawPreviewCard(canvas, paint, alpha, 26, 37, 59, 103, .70f);
             drawPreviewCard(canvas, paint, alpha, 236, 22, 58, 102, .76f);
             drawPreviewCard(canvas, paint, alpha, 184, 59, 80, 126, .90f);
             drawPreviewCard(canvas, paint, alpha, 95, 49, 111, 150, 1f);
+            canvas.restoreToCount(save);
+        }
+
+        @Override public void setAlpha(int value) { alpha = value; super.invalidateSelf(); }
+        @Override public void setColorFilter(ColorFilter filter) { paint.setColorFilter(filter); super.invalidateSelf(); }
+        @Override public int getOpacity() { return PixelFormat.TRANSLUCENT; }
+    }
+
+    /** Rear slices follow the larger front card, as in the stack selector. */
+    private static final class StackPreview extends Drawable {
+        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private int alpha = 255;
+
+        StackPreview() { }
+
+        @Override public int getIntrinsicWidth() { return PREVIEW_WIDTH; }
+        @Override public int getIntrinsicHeight() { return PREVIEW_HEIGHT; }
+
+        @Override public void draw(Canvas canvas) {
+            Rect bounds = super.getBounds();
+            int save = canvas.save();
+            canvas.translate(bounds.left, bounds.top);
+            canvas.scale(bounds.width() / (float) PREVIEW_WIDTH,
+                    bounds.height() / (float) PREVIEW_HEIGHT);
+            drawPreviewCard(canvas, paint, alpha, 75, 54, 64, 100, .70f);
+            drawPreviewCard(canvas, paint, alpha, 100, 45, 70, 118, .80f);
+            drawPreviewCard(canvas, paint, alpha, 124, 36, 75, 137, .90f);
+            drawPreviewCard(canvas, paint, alpha, 155, 27, 89, 156, 1f);
             canvas.restoreToCount(save);
         }
 

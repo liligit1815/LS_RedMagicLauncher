@@ -21,7 +21,7 @@
 .method private constructor <init>()V
     .locals 0
 
-    .line 470
+    .line 496
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -30,7 +30,7 @@
 .method synthetic constructor <init>(Lcom/android/quickstep/views/LsOnlineUpdates$1;)V
     .locals 0
 
-    .line 470
+    .line 496
     invoke-direct {p0}, Lcom/android/quickstep/views/LsOnlineUpdates$Lifecycle;-><init>()V
 
     return-void
@@ -41,14 +41,14 @@
 .method public onActivityCreated(Landroid/app/Activity;Landroid/os/Bundle;)V
     .locals 0
 
-    .line 484
+    .line 510
     return-void
 .end method
 
 .method public onActivityDestroyed(Landroid/app/Activity;)V
     .locals 1
 
-    .line 482
+    .line 508
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$200()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
@@ -67,7 +67,7 @@
 
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2400()V
 
-    .line 483
+    .line 509
     :cond_0
     return-void
 .end method
@@ -75,7 +75,7 @@
 .method public onActivityPaused(Landroid/app/Activity;)V
     .locals 1
 
-    .line 479
+    .line 505
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$200()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
@@ -94,7 +94,7 @@
 
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$2400()V
 
-    .line 480
+    .line 506
     :cond_0
     return-void
 .end method
@@ -102,24 +102,24 @@
 .method public onActivityResumed(Landroid/app/Activity;)V
     .locals 3
 
-    .line 472
+    .line 498
     invoke-static {p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$3100(Landroid/app/Activity;)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 473
+    .line 499
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$202(Ljava/lang/ref/WeakReference;)Ljava/lang/ref/WeakReference;
 
-    .line 474
+    .line 500
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$3200()V
 
-    .line 475
+    .line 501
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1900()Landroid/os/Handler;
 
     move-result-object p1
@@ -136,7 +136,7 @@
 
     invoke-virtual {p1, v0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 477
+    .line 503
     :cond_0
     return-void
 .end method
@@ -144,20 +144,20 @@
 .method public onActivitySaveInstanceState(Landroid/app/Activity;Landroid/os/Bundle;)V
     .locals 0
 
-    .line 487
+    .line 513
     return-void
 .end method
 
 .method public onActivityStarted(Landroid/app/Activity;)V
     .locals 0
 
-    .line 485
+    .line 511
     return-void
 .end method
 
 .method public onActivityStopped(Landroid/app/Activity;)V
     .locals 0
 
-    .line 486
+    .line 512
     return-void
 .end method

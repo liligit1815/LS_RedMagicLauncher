@@ -135,6 +135,7 @@ public final class LsNativeStack {
     private static final String SCALE_ORBIT_KEY = "orbit_card_scale_percent";
     private static final String SCALE_FAN_KEY = "fan_card_scale_percent";
     private static final String SCALE_CONTROL_TAG = "ls_stack_scale_control";
+    private static final String SCALE_SIGNATURE_TAG = "ls_style_signature";
     private static final int MIN_SCALE_PERCENT = 70;
     private static final int MAX_SCALE_PERCENT = 120;
     private static final int DEFAULT_SCALE_PERCENT = 100;
@@ -3511,6 +3512,34 @@ public final class LsNativeStack {
         configureStyleScaleControl(content.findViewWithTag("ls_fan_style_card"), FAN_STYLE, style);
     }
 
+    private static void refreshStyleCardTheme(View card) {
+        if (!(card instanceof LinearLayout)) return;
+        LinearLayout parent = (LinearLayout) card;
+        Context context = card.getContext();
+        // The same inset/radius/tinted surface used by the normal/grid cards.
+        parent.setBackground(context.getDrawable(0x7f08098f));
+        View existing = parent.findViewWithTag(SCALE_SIGNATURE_TAG);
+        if (existing == null) {
+            TextView signature = new TextView(context);
+            signature.setText("礼舟");
+            signature.setTextSize(12);
+            signature.setGravity(Gravity.END);
+            signature.setTag(SCALE_SIGNATURE_TAG);
+            int padding = Math.round(16 * context.getResources().getDisplayMetrics().density);
+            signature.setPadding(padding, 0, padding, Math.round(padding * .75f));
+            parent.addView(signature, new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            existing = signature;
+        }
+        if (existing instanceof TextView) {
+            ((TextView) existing).setTextColor(context.getColor(0x7f060574));
+        }
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            View child = parent.getChildAt(i);
+            if (child instanceof ScaleControl) ((ScaleControl) child).refreshTheme();
+        }
+    }
+
     private static void configureStyleScaleControl(View card, int cardStyle, int selectedStyle) {
         if (!(card instanceof LinearLayout)) return;
         LinearLayout parent = (LinearLayout) card;
@@ -3526,11 +3555,14 @@ public final class LsNativeStack {
         }
         if (existing instanceof ScaleControl) ((ScaleControl) existing).refreshValue();
         existing.setVisibility(selectedStyle == cardStyle ? View.VISIBLE : View.GONE);
+        refreshStyleCardTheme(card);
     }
 
     private static final class ScaleControl extends LinearLayout
             implements SeekBar.OnSeekBarChangeListener {
         private final TextView valueLabel;
+        private final TextView captionLabel;
+        private final TextView[] limitLabels = new TextView[2];
         private final String label;
         private final int style;
         private final SeekBar slider;
@@ -3547,14 +3579,12 @@ public final class LsNativeStack {
             label = chinese ? "卡片缩放" : "Card scale";
             LinearLayout heading = new LinearLayout(context);
             heading.setOrientation(HORIZONTAL);
-            TextView caption = new TextView(context);
-            caption.setText(label);
-            caption.setTextSize(14);
-            caption.setTextColor(context.getColor(0x7f060752));
-            heading.addView(caption, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f));
+            captionLabel = new TextView(context);
+            captionLabel.setText(label);
+            captionLabel.setTextSize(14);
+            heading.addView(captionLabel, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f));
             valueLabel = new TextView(context);
             valueLabel.setTextSize(14);
-            valueLabel.setTextColor(0xff409ac4);
             valueLabel.setGravity(Gravity.END);
             heading.addView(valueLabel, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
             super.addView(heading, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -3570,15 +3600,24 @@ public final class LsNativeStack {
                     Math.round(48 * context.getResources().getDisplayMetrics().density)));
             LinearLayout limits = new LinearLayout(context);
             limits.setOrientation(LinearLayout.HORIZONTAL);
+            int index = 0;
             for (int endpoint : new int[]{MIN_SCALE_PERCENT, MAX_SCALE_PERCENT}) {
                 TextView text = new TextView(context);
                 text.setText(endpoint + "%");
                 text.setTextSize(12);
-                text.setTextColor(context.getColor(0x7f060752));
                 text.setGravity(endpoint == MIN_SCALE_PERCENT ? Gravity.START : Gravity.END);
                 limits.addView(text, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f));
+                limitLabels[index++] = text;
             }
             super.addView(limits, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            refreshTheme();
+        }
+
+        private void refreshTheme() {
+            int textColor = super.getContext().getColor(0x7f060752);
+            captionLabel.setTextColor(textColor);
+            valueLabel.setTextColor(textColor);
+            for (TextView text : limitLabels) text.setTextColor(textColor);
         }
 
         private void showValue(int percent) {

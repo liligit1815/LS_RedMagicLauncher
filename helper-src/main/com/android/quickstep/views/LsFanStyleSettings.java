@@ -88,7 +88,6 @@ public final class LsFanStyleSettings {
             canvas.translate(bounds.left, bounds.top);
             canvas.scale(bounds.width() / (float) LsOrbitStyleSettings.PREVIEW_WIDTH,
                     bounds.height() / (float) LsOrbitStyleSettings.PREVIEW_HEIGHT);
-            LsOrbitStyleSettings.drawPreviewBackground(canvas, paint, alpha);
             // Draw from the upper/back card toward the lower/front card.
             card(canvas, 234, 16, 10f);
             card(canvas, 227, 52, 7.5f);

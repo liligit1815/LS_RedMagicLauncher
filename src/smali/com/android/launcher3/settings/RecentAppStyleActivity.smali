@@ -71,6 +71,8 @@
     invoke-static {p0, p0}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->attach(Landroid/app/Activity;Landroid/view/View$OnClickListener;)V
     invoke-static {p0, p0}, Lcom/android/quickstep/views/LsFanStyleSettings;->attach(Landroid/app/Activity;Landroid/view/View$OnClickListener;)V
 
+    invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->attachRecentStyles(Landroid/app/Activity;)V
+
     invoke-static {p0}, Lcom/android/launcher3/J3;->m(Landroid/content/Context;)Landroid/content/SharedPreferences;
     move-result-object v0
     const v1, 0x7f1403b7

@@ -18,10 +18,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceGroup;
-import com.zte.mifavor.androidx.preference.PreferenceZTE;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -78,19 +81,39 @@ public final class LsOnlineUpdates {
         } catch (Exception error) { /* Update availability must never interrupt HOME. */ }
     }
 
-    public static void attachSettings(Context context, PreferenceGroup screen) {
+    public static void attachRecentStyles(Activity activity) {
         try {
-            if (!(context instanceof Activity) || screen == null || screen.W0(KEY) != null) return;
-            Activity activity = (Activity) context;
+            View stack = activity.findViewById(0x7f0b06c2);
+            if (stack == null || !(stack.getParent() instanceof ViewGroup)) return;
+            ViewGroup parent = (ViewGroup) stack.getParent();
+            if (parent.findViewWithTag(KEY) != null) return;
             initialize(activity);
-            PreferenceZTE entry = new PreferenceZTE(activity, null);
-            entry.B0(KEY);
-            entry.M0("检查更新");
-            entry.J0("从 GitHub 获取堆叠桌面新版本");
-            entry.G0(1000);
-            entry.H0(false);
-            entry.F0(new SettingClick(activity));
-            screen.V0(entry);
+            // Reuse the page's own themed card, title font and day/night text
+            // treatment instead of introducing a separate button palette.
+            LinearLayout entry = (LinearLayout) LayoutInflater.from(stack.getContext())
+                    .inflate(0x7f0e0285, parent, false);
+            TextView title = (TextView) entry.findViewById(0x7f0b06c3);
+            ViewGroup row = (ViewGroup) title.getParent();
+            row.removeAllViews();
+            entry.removeAllViews();
+            title.setId(View.NO_ID);
+            title.setText("检测更新");
+            title.setGravity(Gravity.CENTER);
+            row.addView(title, new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            LinearLayout.LayoutParams rowParams = (LinearLayout.LayoutParams) row.getLayoutParams();
+            rowParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            row.setLayoutParams(rowParams);
+            entry.addView(row);
+            entry.setId(View.NO_ID);
+            entry.setTag(KEY);
+            entry.setFocusable(true);
+            entry.setMinimumHeight(Math.round(48f * activity.getResources().getDisplayMetrics().density));
+            entry.setOnClickListener(new SettingClick(activity));
+            LinearLayout.LayoutParams entryParams = (LinearLayout.LayoutParams) entry.getLayoutParams();
+            entryParams.bottomMargin = activity.getResources().getDimensionPixelSize(0x7f0709ab);
+            entry.setLayoutParams(entryParams);
+            parent.addView(entry);
         } catch (Exception error) { /* Keep OEM settings usable if its lifecycle is changing. */ }
     }
 
@@ -112,7 +135,8 @@ public final class LsOnlineUpdates {
     private static boolean allowed(Activity activity) {
         String name = activity.getClass().getName();
         return name.equals("com.android.launcher3.uioverrides.QuickstepLauncher")
-                || name.equals("com.android.launcher3.settings.SettingsActivityMFV");
+                || name.equals("com.android.launcher3.settings.SettingsActivityMFV")
+                || name.equals("com.android.launcher3.settings.RecentAppStyleActivity");
     }
     private static void check(boolean manual) {
         if (downloading || verifying) { if (manual) toast("更新正在处理中"); return; }
@@ -371,13 +395,15 @@ public final class LsOnlineUpdates {
             this.url = url; this.size = size; this.hash = hash; this.cert = cert; this.document = document;
         }
     }
-    private static final class SettingClick implements Preference.e {
+    private static final class SettingClick implements View.OnClickListener {
         final WeakReference<Activity> activity;
         SettingClick(Activity activity) { this.activity = new WeakReference<Activity>(activity); }
-        @Override public boolean f(Preference preference) {
+        @Override public void onClick(View view) {
             Activity value = activity.get();
-            if (value != null) { foreground = new WeakReference<Activity>(value); check(true); }
-            return true;
+            if (value != null && !value.isFinishing() && !value.isDestroyed()) {
+                foreground = new WeakReference<Activity>(value);
+                check(true);
+            }
         }
     }
     private static final class Dismiss implements DialogInterface.OnDismissListener {

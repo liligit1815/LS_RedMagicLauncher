@@ -27,7 +27,7 @@
 .method constructor <init>(ILcom/android/quickstep/views/LsOnlineUpdates$Release;)V
     .locals 0
 
-    .line 388
+    .line 414
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput p1, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Choice;->action:I
@@ -42,7 +42,7 @@
 .method public onClick(Landroid/content/DialogInterface;I)V
     .locals 4
 
-    .line 390
+    .line 416
     const-string p1, "resume_install"
 
     iget p2, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Choice;->action:I
@@ -59,24 +59,24 @@
 
     if-nez p2, :cond_1
 
-    .line 391
+    .line 417
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$602(Z)Z
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$702(I)I
 
     invoke-static {v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$502(Z)Z
 
-    .line 392
+    .line 418
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$800()Landroid/app/Activity;
 
     move-result-object p1
 
-    .line 393
+    .line 419
     if-eqz p1, :cond_0
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$900(Landroid/app/Activity;)V
 
-    .line 394
+    .line 420
     :cond_0
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1000()Ljava/util/concurrent/ExecutorService;
 
@@ -90,7 +90,7 @@
 
     invoke-interface {p1, p2}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 395
+    .line 421
     goto :goto_0
 
     :cond_1
@@ -102,7 +102,7 @@
 
     goto :goto_0
 
-    .line 396
+    .line 422
     :cond_2
     iget p2, p0, Lcom/android/quickstep/views/LsOnlineUpdates$Choice;->action:I
 
@@ -110,22 +110,22 @@
 
     if-ne p2, v2, :cond_4
 
-    .line 397
+    .line 423
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$800()Landroid/app/Activity;
 
     move-result-object p2
 
-    .line 398
+    .line 424
     if-nez p2, :cond_3
 
     return-void
 
-    .line 400
+    .line 426
     :cond_3
     :try_start_0
     invoke-static {v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1102(Z)Z
 
-    .line 401
+    .line 427
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1200()Landroid/content/SharedPreferences;
 
     move-result-object v2
@@ -140,36 +140,36 @@
 
     invoke-interface {v1}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 402
+    .line 428
     new-instance v1, Landroid/content/Intent;
 
     const-string v2, "android.settings.MANAGE_UNKNOWN_APP_SOURCES"
 
     const-string v3, "package:com.zte.mifavor.launcher"
 
-    .line 403
+    .line 429
     invoke-static {v3}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
 
     move-result-object v3
 
     invoke-direct {v1, v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
 
-    .line 402
+    .line 428
     invoke-virtual {p2, v1}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 408
+    .line 434
     goto :goto_0
 
-    .line 404
+    .line 430
     :catch_0
     move-exception p2
 
-    .line 405
+    .line 431
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1102(Z)Z
 
-    .line 406
+    .line 432
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1200()Landroid/content/SharedPreferences;
 
     move-result-object p2
@@ -184,12 +184,12 @@
 
     invoke-interface {p1}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 407
+    .line 433
     const-string p1, "\u65e0\u6cd5\u6253\u5f00\u5b89\u88c5\u6743\u9650\u8bbe\u7f6e"
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$1300(Ljava/lang/String;)V
 
-    .line 410
+    .line 436
     :cond_4
     :goto_0
     return-void

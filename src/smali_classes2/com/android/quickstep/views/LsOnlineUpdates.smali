@@ -69,7 +69,7 @@
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 40
+    .line 43
     new-instance v0, Landroid/os/Handler;
 
     invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
@@ -80,14 +80,14 @@
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->MAIN:Landroid/os/Handler;
 
-    .line 41
+    .line 44
     invoke-static {}, Ljava/util/concurrent/Executors;->newSingleThreadExecutor()Ljava/util/concurrent/ExecutorService;
 
     move-result-object v0
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->WORK:Ljava/util/concurrent/ExecutorService;
 
-    .line 45
+    .line 48
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     const/4 v1, 0x0
@@ -102,7 +102,7 @@
 .method private constructor <init>()V
     .locals 0
 
-    .line 59
+    .line 62
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -111,7 +111,7 @@
 .method static synthetic access$1000()Ljava/util/concurrent/ExecutorService;
     .locals 1
 
-    .line 39
+    .line 42
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->WORK:Ljava/util/concurrent/ExecutorService;
 
     return-object v0
@@ -120,7 +120,7 @@
 .method static synthetic access$1102(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->waitingForPermission:Z
 
     return p0
@@ -129,7 +129,7 @@
 .method static synthetic access$1200()Landroid/content/SharedPreferences;
     .locals 1
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->preferences()Landroid/content/SharedPreferences;
 
     move-result-object v0
@@ -140,7 +140,7 @@
 .method static synthetic access$1300(Ljava/lang/String;)V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->toast(Ljava/lang/String;)V
 
     return-void
@@ -154,7 +154,7 @@
         }
     .end annotation
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->fetch()Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     move-result-object v0
@@ -170,7 +170,7 @@
         }
     .end annotation
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->installed()Landroid/content/pm/PackageInfo;
 
     move-result-object v0
@@ -186,7 +186,7 @@
         }
     .end annotation
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->certificate(Landroid/content/pm/PackageInfo;)Ljava/lang/String;
 
     move-result-object p0
@@ -197,7 +197,7 @@
 .method static synthetic access$1700()Z
     .locals 1
 
-    .line 39
+    .line 42
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->manualRequested:Z
 
     return v0
@@ -206,7 +206,7 @@
 .method static synthetic access$1702(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->manualRequested:Z
 
     return p0
@@ -215,7 +215,7 @@
 .method static synthetic access$1802(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->checking:Z
 
     return p0
@@ -224,7 +224,7 @@
 .method static synthetic access$1900()Landroid/os/Handler;
     .locals 1
 
-    .line 39
+    .line 42
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->MAIN:Landroid/os/Handler;
 
     return-object v0
@@ -233,7 +233,7 @@
 .method static synthetic access$200()Ljava/lang/ref/WeakReference;
     .locals 1
 
-    .line 39
+    .line 42
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->foreground:Ljava/lang/ref/WeakReference;
 
     return-object v0
@@ -247,7 +247,7 @@
         }
     .end annotation
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->download(Lcom/android/quickstep/views/LsOnlineUpdates$Release;)V
 
     return-void
@@ -256,7 +256,7 @@
 .method static synthetic access$202(Ljava/lang/ref/WeakReference;)Ljava/lang/ref/WeakReference;
     .locals 0
 
-    .line 39
+    .line 42
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->foreground:Ljava/lang/ref/WeakReference;
 
     return-object p0
@@ -265,7 +265,7 @@
 .method static synthetic access$2100()Landroid/content/Context;
     .locals 1
 
-    .line 39
+    .line 42
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     return-object v0
@@ -279,7 +279,7 @@
         }
     .end annotation
 
-    .line 39
+    .line 42
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->verify(Ljava/io/File;Lcom/android/quickstep/views/LsOnlineUpdates$Release;)V
 
     return-void
@@ -288,7 +288,7 @@
 .method static synthetic access$2302(Lcom/android/quickstep/views/LsOnlineUpdates$Release;)Lcom/android/quickstep/views/LsOnlineUpdates$Release;
     .locals 0
 
-    .line 39
+    .line 42
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->offered:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     return-object p0
@@ -297,7 +297,7 @@
 .method static synthetic access$2400()V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->dismiss()V
 
     return-void
@@ -306,7 +306,7 @@
 .method static synthetic access$2502(Lcom/android/quickstep/views/LsOnlineUpdates$Release;)Lcom/android/quickstep/views/LsOnlineUpdates$Release;
     .locals 0
 
-    .line 39
+    .line 42
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->pending:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     return-object p0
@@ -315,7 +315,7 @@
 .method static synthetic access$2602(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->installRequested:Z
 
     return p0
@@ -324,7 +324,7 @@
 .method static synthetic access$2700(Lcom/android/quickstep/views/LsOnlineUpdates$Release;)V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->launchInstaller(Lcom/android/quickstep/views/LsOnlineUpdates$Release;)V
 
     return-void
@@ -333,7 +333,7 @@
 .method static synthetic access$2800()Landroid/app/ProgressDialog;
     .locals 1
 
-    .line 39
+    .line 42
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     return-object v0
@@ -342,7 +342,7 @@
 .method static synthetic access$2802(Landroid/app/ProgressDialog;)Landroid/app/ProgressDialog;
     .locals 0
 
-    .line 39
+    .line 42
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     return-object p0
@@ -351,7 +351,7 @@
 .method static synthetic access$2900()Z
     .locals 1
 
-    .line 39
+    .line 42
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->verifying:Z
 
     return v0
@@ -360,7 +360,7 @@
 .method static synthetic access$2902(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->verifying:Z
 
     return p0
@@ -369,7 +369,7 @@
 .method static synthetic access$300(Z)V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->check(Z)V
 
     return-void
@@ -378,7 +378,7 @@
 .method static synthetic access$3000()V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->maybeShow()V
 
     return-void
@@ -387,7 +387,7 @@
 .method static synthetic access$3100(Landroid/app/Activity;)Z
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->allowed(Landroid/app/Activity;)Z
 
     move-result p0
@@ -398,7 +398,7 @@
 .method static synthetic access$3200()V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->permissionReturn()V
 
     return-void
@@ -407,7 +407,7 @@
 .method static synthetic access$400()Landroid/app/AlertDialog;
     .locals 1
 
-    .line 39
+    .line 42
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
     return-object v0
@@ -416,7 +416,7 @@
 .method static synthetic access$402(Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
     .locals 0
 
-    .line 39
+    .line 42
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
     return-object p0
@@ -425,7 +425,7 @@
 .method static synthetic access$500()Z
     .locals 1
 
-    .line 39
+    .line 42
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->downloading:Z
 
     return v0
@@ -434,7 +434,7 @@
 .method static synthetic access$502(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->downloading:Z
 
     return p0
@@ -443,7 +443,7 @@
 .method static synthetic access$602(Z)Z
     .locals 0
 
-    .line 39
+    .line 42
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->cancelled:Z
 
     return p0
@@ -452,7 +452,7 @@
 .method static synthetic access$702(I)I
     .locals 0
 
-    .line 39
+    .line 42
     sput p0, Lcom/android/quickstep/views/LsOnlineUpdates;->percent:I
 
     return p0
@@ -461,7 +461,7 @@
 .method static synthetic access$800()Landroid/app/Activity;
     .locals 1
 
-    .line 39
+    .line 42
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->current()Landroid/app/Activity;
 
     move-result-object v0
@@ -472,7 +472,7 @@
 .method static synthetic access$900(Landroid/app/Activity;)V
     .locals 0
 
-    .line 39
+    .line 42
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->showProgress(Landroid/app/Activity;)V
 
     return-void
@@ -481,7 +481,7 @@
 .method private static allowed(Landroid/app/Activity;)Z
     .locals 1
 
-    .line 113
+    .line 136
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object p0
@@ -490,7 +490,7 @@
 
     move-result-object p0
 
-    .line 114
+    .line 137
     const-string v0, "com.android.launcher3.uioverrides.QuickstepLauncher"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -499,8 +499,17 @@
 
     if-nez v0, :cond_1
 
-    .line 115
+    .line 138
     const-string v0, "com.android.launcher3.settings.SettingsActivityMFV"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 139
+    const-string v0, "com.android.launcher3.settings.RecentAppStyleActivity"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -519,96 +528,222 @@
     :goto_0
     const/4 p0, 0x1
 
-    .line 114
+    .line 137
     :goto_1
     return p0
 .end method
 
-.method public static attachSettings(Landroid/content/Context;Landroidx/preference/PreferenceGroup;)V
-    .locals 3
+.method public static attachRecentStyles(Landroid/app/Activity;)V
+    .locals 8
 
-    .line 83
+    .line 86
     const-string v0, "ls_check_online_updates"
 
+    const v1, 0x7f0b06c2
+
     :try_start_0
-    instance-of v1, p0, Landroid/app/Activity;
-
-    if-eqz v1, :cond_1
-
-    if-eqz p1, :cond_1
-
-    invoke-virtual {p1, v0}, Landroidx/preference/PreferenceGroup;->W0(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+    invoke-virtual {p0, v1}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
-
-    goto :goto_0
-
-    .line 84
-    :cond_0
-    check-cast p0, Landroid/app/Activity;
-
-    .line 85
-    invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->initialize(Landroid/app/Activity;)V
-
-    .line 86
-    new-instance v1, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;
-
-    const/4 v2, 0x0
-
-    invoke-direct {v1, p0, v2}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-
     .line 87
-    invoke-virtual {v1, v0}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->B0(Ljava/lang/String;)V
+    if-eqz v1, :cond_2
+
+    invoke-virtual {v1}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v2
+
+    instance-of v2, v2, Landroid/view/ViewGroup;
+
+    if-nez v2, :cond_0
+
+    goto/16 :goto_0
 
     .line 88
-    const-string v0, "\u68c0\u67e5\u66f4\u65b0"
+    :cond_0
+    invoke-virtual {v1}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
 
-    invoke-virtual {v1, v0}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->M0(Ljava/lang/CharSequence;)V
+    move-result-object v2
+
+    check-cast v2, Landroid/view/ViewGroup;
 
     .line 89
-    const-string v0, "\u4ece GitHub \u83b7\u53d6\u5806\u53e0\u684c\u9762\u65b0\u7248\u672c"
+    invoke-virtual {v2, v0}, Landroid/view/ViewGroup;->findViewWithTag(Ljava/lang/Object;)Landroid/view/View;
 
-    invoke-virtual {v1, v0}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->J0(Ljava/lang/CharSequence;)V
+    move-result-object v3
+
+    if-eqz v3, :cond_1
+
+    return-void
 
     .line 90
-    const/16 v0, 0x3e8
+    :cond_1
+    invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->initialize(Landroid/app/Activity;)V
 
-    invoke-virtual {v1, v0}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->G0(I)V
+    .line 93
+    invoke-virtual {v1}, Landroid/view/View;->getContext()Landroid/content/Context;
 
-    .line 91
-    const/4 v0, 0x0
+    move-result-object v1
 
-    invoke-virtual {v1, v0}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->H0(Z)V
+    invoke-static {v1}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
 
-    .line 92
+    move-result-object v1
+
+    .line 94
+    const v3, 0x7f0e0285
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v1, v3, v2, v4}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/widget/LinearLayout;
+
+    .line 95
+    const v3, 0x7f0b06c3
+
+    invoke-virtual {v1, v3}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
+
+    move-result-object v3
+
+    check-cast v3, Landroid/widget/TextView;
+
+    .line 96
+    invoke-virtual {v3}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v4
+
+    check-cast v4, Landroid/view/ViewGroup;
+
+    .line 97
+    invoke-virtual {v4}, Landroid/view/ViewGroup;->removeAllViews()V
+
+    .line 98
+    invoke-virtual {v1}, Landroid/widget/LinearLayout;->removeAllViews()V
+
+    .line 99
+    const/4 v5, -0x1
+
+    invoke-virtual {v3, v5}, Landroid/widget/TextView;->setId(I)V
+
+    .line 100
+    const-string v6, "\u68c0\u6d4b\u66f4\u65b0"
+
+    invoke-virtual {v3, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 101
+    const/16 v6, 0x11
+
+    invoke-virtual {v3, v6}, Landroid/widget/TextView;->setGravity(I)V
+
+    .line 102
+    new-instance v6, Landroid/widget/LinearLayout$LayoutParams;
+
+    const/4 v7, -0x2
+
+    invoke-direct {v6, v5, v7}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v4, v3, v6}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 104
+    invoke-virtual {v4}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v3
+
+    check-cast v3, Landroid/widget/LinearLayout$LayoutParams;
+
+    .line 105
+    iput v5, v3, Landroid/widget/LinearLayout$LayoutParams;->width:I
+
+    .line 106
+    invoke-virtual {v4, v3}, Landroid/view/ViewGroup;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 107
+    invoke-virtual {v1, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+
+    .line 108
+    invoke-virtual {v1, v5}, Landroid/widget/LinearLayout;->setId(I)V
+
+    .line 109
+    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->setTag(Ljava/lang/Object;)V
+
+    .line 110
+    const/4 v0, 0x1
+
+    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->setFocusable(Z)V
+
+    .line 111
+    invoke-virtual {p0}, Landroid/app/Activity;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+
+    move-result-object v0
+
+    iget v0, v0, Landroid/util/DisplayMetrics;->density:F
+
+    const/high16 v3, 0x42400000    # 48.0f
+
+    mul-float/2addr v0, v3
+
+    invoke-static {v0}, Ljava/lang/Math;->round(F)I
+
+    move-result v0
+
+    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->setMinimumHeight(I)V
+
+    .line 112
     new-instance v0, Lcom/android/quickstep/views/LsOnlineUpdates$SettingClick;
 
     invoke-direct {v0, p0}, Lcom/android/quickstep/views/LsOnlineUpdates$SettingClick;-><init>(Landroid/app/Activity;)V
 
-    invoke-virtual {v1, v0}, Lcom/zte/mifavor/androidx/preference/PreferenceZTE;->F0(Landroidx/preference/Preference$e;)V
+    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 93
-    invoke-virtual {p1, v1}, Landroidx/preference/PreferenceGroup;->V0(Landroidx/preference/Preference;)Z
+    .line 113
+    invoke-virtual {v1}, Landroid/widget/LinearLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/LinearLayout$LayoutParams;
+
+    .line 114
+    invoke-virtual {p0}, Landroid/app/Activity;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p0
+
+    const v3, 0x7f0709ab
+
+    invoke-virtual {p0, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p0
+
+    iput p0, v0, Landroid/widget/LinearLayout$LayoutParams;->bottomMargin:I
+
+    .line 115
+    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 116
+    invoke-virtual {v2, v1}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     goto :goto_1
 
-    .line 83
-    :cond_1
+    .line 87
+    :cond_2
     :goto_0
     return-void
 
-    .line 94
+    .line 117
     :catch_0
     move-exception p0
 
     :goto_1
     nop
 
-    .line 95
+    .line 118
     return-void
 .end method
 
@@ -620,7 +755,7 @@
         }
     .end annotation
 
-    .line 210
+    .line 234
     const/4 v0, 0x1
 
     const/4 v1, 0x0
@@ -651,14 +786,14 @@
 
     invoke-static {v2, v3}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 212
+    .line 236
     iget-object p0, p0, Landroid/content/pm/PackageInfo;->signingInfo:Landroid/content/pm/SigningInfo;
 
     invoke-virtual {p0}, Landroid/content/pm/SigningInfo;->getApkContentsSigners()[Landroid/content/pm/Signature;
 
     move-result-object p0
 
-    .line 213
+    .line 237
     if-eqz p0, :cond_1
 
     array-length v2, p0
@@ -673,7 +808,7 @@
     :goto_1
     invoke-static {v0, v3}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 214
+    .line 238
     const-string v0, "SHA-256"
 
     invoke-static {v0}, Ljava/security/MessageDigest;->getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;
@@ -700,7 +835,7 @@
 .method private static check(Z)V
     .locals 3
 
-    .line 118
+    .line 142
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->downloading:Z
 
     if-nez v0, :cond_6
@@ -711,16 +846,16 @@
 
     goto :goto_0
 
-    .line 119
+    .line 143
     :cond_0
     const/4 v0, 0x1
 
     if-eqz p0, :cond_1
 
-    .line 120
+    .line 144
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->loadPending()V
 
-    .line 121
+    .line 145
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->pending:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     if-eqz v1, :cond_1
@@ -731,13 +866,13 @@
 
     return-void
 
-    .line 123
+    .line 147
     :cond_1
     if-eqz p0, :cond_2
 
     sput-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->manualRequested:Z
 
-    .line 124
+    .line 148
     :cond_2
     sget-boolean v1, Lcom/android/quickstep/views/LsOnlineUpdates;->checking:Z
 
@@ -752,16 +887,16 @@
     :cond_3
     return-void
 
-    .line 125
+    .line 149
     :cond_4
     sput-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->checking:Z
 
-    .line 126
+    .line 150
     if-eqz p0, :cond_5
 
     invoke-static {v2}, Lcom/android/quickstep/views/LsOnlineUpdates;->toast(Ljava/lang/String;)V
 
-    .line 127
+    .line 151
     :cond_5
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->WORK:Ljava/util/concurrent/ExecutorService;
 
@@ -775,10 +910,10 @@
 
     invoke-interface {p0, v0}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 128
+    .line 152
     return-void
 
-    .line 118
+    .line 142
     :cond_6
     :goto_0
     if-eqz p0, :cond_7
@@ -799,7 +934,7 @@
         }
     .end annotation
 
-    .line 173
+    .line 197
     invoke-static {p0}, Lcom/android/quickstep/views/LsUpdateProtocol;->redirect(Ljava/net/URL;)Z
 
     move-result v0
@@ -808,7 +943,7 @@
 
     invoke-static {v0, v1}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 174
+    .line 198
     const/4 v0, 0x0
 
     move v1, v0
@@ -818,44 +953,44 @@
 
     if-gt v1, v2, :cond_3
 
-    .line 175
+    .line 199
     invoke-virtual {p0}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
 
     move-result-object v3
 
     check-cast v3, Ljava/net/HttpURLConnection;
 
-    .line 176
+    .line 200
     invoke-virtual {v3, v0}, Ljava/net/HttpURLConnection;->setInstanceFollowRedirects(Z)V
 
-    .line 177
+    .line 201
     const/16 v4, 0x3a98
 
     invoke-virtual {v3, v4}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
 
-    .line 178
+    .line 202
     const/16 v4, 0x7530
 
     invoke-virtual {v3, v4}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
 
-    .line 179
+    .line 203
     invoke-virtual {v3, v0}, Ljava/net/HttpURLConnection;->setUseCaches(Z)V
 
-    .line 180
+    .line 204
     const-string v4, "Accept-Encoding"
 
     const-string v5, "identity"
 
     invoke-virtual {v3, v4, v5}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 181
+    .line 205
     const-string v4, "User-Agent"
 
     const-string v5, "StackedDesktop-Updater/1"
 
     invoke-virtual {v3, v4, v5}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 183
+    .line 207
     :try_start_0
     invoke-virtual {v3}, Ljava/net/HttpURLConnection;->getResponseCode()I
 
@@ -863,17 +998,17 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 184
+    .line 208
     nop
 
-    .line 185
+    .line 209
     const/16 v5, 0xc8
 
     if-ne v4, v5, :cond_0
 
     return-object v3
 
-    .line 186
+    .line 210
     :cond_0
     const-string v5, "Location"
 
@@ -881,10 +1016,10 @@
 
     move-result-object v5
 
-    .line 187
+    .line 211
     invoke-virtual {v3}, Ljava/net/HttpURLConnection;->disconnect()V
 
-    .line 188
+    .line 212
     const/16 v3, 0x12d
 
     if-eq v4, v3, :cond_1
@@ -922,12 +1057,12 @@
 
     invoke-static {v2, v3}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 190
+    .line 214
     new-instance v2, Ljava/net/URL;
 
     invoke-direct {v2, p0, v5}, Ljava/net/URL;-><init>(Ljava/net/URL;Ljava/lang/String;)V
 
-    .line 191
+    .line 215
     invoke-static {v2}, Lcom/android/quickstep/views/LsUpdateProtocol;->redirect(Ljava/net/URL;)Z
 
     move-result p0
@@ -936,14 +1071,14 @@
 
     invoke-static {p0, v3}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 174
+    .line 198
     add-int/lit8 v1, v1, 0x1
 
     move-object p0, v2
 
     goto :goto_0
 
-    .line 184
+    .line 208
     :catch_0
     move-exception p0
 
@@ -951,7 +1086,7 @@
 
     throw p0
 
-    .line 193
+    .line 217
     :cond_3
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -965,7 +1100,7 @@
 .method private static current()Landroid/app/Activity;
     .locals 2
 
-    .line 107
+    .line 130
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->foreground:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -974,10 +1109,10 @@
 
     check-cast v0, Landroid/app/Activity;
 
-    .line 109
+    .line 132
     if-eqz v0, :cond_2
 
-    .line 108
+    .line 131
     invoke-virtual {v0}, Landroid/app/Activity;->isFinishing()Z
 
     move-result v1
@@ -990,7 +1125,7 @@
 
     if-nez v1, :cond_2
 
-    .line 109
+    .line 132
     invoke-virtual {v0}, Landroid/app/Activity;->hasWindowFocus()Z
 
     move-result v1
@@ -1016,7 +1151,7 @@
 
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
-    .line 110
+    .line 133
     invoke-virtual {v1}, Landroid/app/ProgressDialog;->isShowing()Z
 
     move-result v1
@@ -1029,7 +1164,7 @@
     :cond_2
     const/4 v0, 0x0
 
-    .line 108
+    .line 131
     :goto_0
     return-object v0
 .end method
@@ -1037,7 +1172,7 @@
 .method private static dismiss()V
     .locals 1
 
-    .line 359
+    .line 383
     :try_start_0
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
@@ -1054,7 +1189,7 @@
     :catch_0
     move-exception v0
 
-    .line 360
+    .line 384
     :cond_0
     :goto_0
     :try_start_1
@@ -1073,17 +1208,17 @@
     :catch_1
     move-exception v0
 
-    .line 361
+    .line 385
     :cond_1
     :goto_1
     const/4 v0, 0x0
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
-    .line 362
+    .line 386
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
-    .line 363
+    .line 387
     return-void
 .end method
 
@@ -1095,7 +1230,7 @@
         }
     .end annotation
 
-    .line 231
+    .line 255
     move-object/from16 v0, p0
 
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
@@ -1104,12 +1239,12 @@
 
     move-result-object v1
 
-    .line 232
+    .line 256
     invoke-virtual {v1}, Ljava/io/File;->getParentFile()Ljava/io/File;
 
     move-result-object v2
 
-    .line 233
+    .line 257
     invoke-virtual {v2}, Ljava/io/File;->isDirectory()Z
 
     move-result v3
@@ -1138,14 +1273,14 @@
 
     invoke-static {v3, v6}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 234
+    .line 258
     new-instance v3, Ljava/io/File;
 
     const-string v6, "download.part"
 
     invoke-direct {v3, v2, v6}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
-    .line 235
+    .line 259
     invoke-virtual {v3}, Ljava/io/File;->exists()Z
 
     move-result v2
@@ -1160,7 +1295,7 @@
 
     invoke-static {v2, v6}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 236
+    .line 260
     :cond_2
     iget-object v2, v0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->url:Ljava/lang/String;
 
@@ -1172,16 +1307,16 @@
 
     move-result-object v2
 
-    .line 237
+    .line 261
     nop
 
-    .line 239
+    .line 263
     :try_start_0
     invoke-virtual {v2}, Ljava/net/HttpURLConnection;->getContentLengthLong()J
 
     move-result-wide v6
 
-    .line 240
+    .line 264
     const-wide/16 v8, 0x0
 
     cmp-long v10, v6, v8
@@ -1210,18 +1345,18 @@
 
     invoke-static {v6, v7}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 241
+    .line 265
     nop
 
-    .line 242
+    .line 266
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
 
     move-result-wide v6
 
-    .line 243
+    .line 267
     nop
 
-    .line 244
+    .line 268
     invoke-virtual {v2}, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
 
     move-result-object v10
@@ -1235,7 +1370,7 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_4
 
-    .line 245
+    .line 269
     const/high16 v12, 0x10000
 
     :try_start_2
@@ -1243,7 +1378,7 @@
 
     move-wide v13, v6
 
-    .line 247
+    .line 271
     :goto_4
     invoke-virtual {v10, v12}, Ljava/io/InputStream;->read([B)I
 
@@ -1257,7 +1392,7 @@
 
     if-eq v15, v4, :cond_9
 
-    .line 248
+    .line 272
     :try_start_3
     sget-boolean v4, Lcom/android/quickstep/views/LsOnlineUpdates;->cancelled:Z
 
@@ -1273,12 +1408,12 @@
     :goto_5
     invoke-static {v4, v5}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 249
+    .line 273
     int-to-long v4, v15
 
     add-long/2addr v8, v4
 
-    .line 250
+    .line 274
     iget-wide v4, v0, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->size:J
 
     cmp-long v4, v8, v4
@@ -1297,7 +1432,7 @@
 
     invoke-static {v4, v5}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 251
+    .line 275
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
 
     move-result-wide v4
@@ -1322,12 +1457,12 @@
 
     invoke-static {v4, v5}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 253
+    .line 277
     const/4 v4, 0x0
 
     invoke-virtual {v11, v12, v4, v15}, Ljava/io/FileOutputStream;->write([BII)V
 
-    .line 254
+    .line 278
     const-wide/16 v4, 0x64
 
     mul-long/2addr v4, v8
@@ -1342,12 +1477,12 @@
 
     sput v4, Lcom/android/quickstep/views/LsOnlineUpdates;->percent:I
 
-    .line 255
+    .line 279
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
 
     move-result-wide v4
 
-    .line 256
+    .line 280
     sub-long v16, v4, v13
 
     const-wide/16 v18, 0xfa
@@ -1386,13 +1521,13 @@
 
     const/4 v4, 0x0
 
-    .line 257
+    .line 281
     :goto_8
     move-object/from16 v2, v16
 
     goto :goto_4
 
-    .line 258
+    .line 282
     :cond_9
     move-object/from16 v16, v2
 
@@ -1406,7 +1541,7 @@
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_0
 
-    .line 259
+    .line 283
     :try_start_5
     invoke-virtual {v11}, Ljava/io/FileOutputStream;->close()V
     :try_end_5
@@ -1417,7 +1552,7 @@
     :try_start_6
     invoke-virtual {v10}, Ljava/io/InputStream;->close()V
 
-    .line 260
+    .line 284
     :cond_a
     sget-boolean v2, Lcom/android/quickstep/views/LsOnlineUpdates;->cancelled:Z
 
@@ -1433,10 +1568,10 @@
     :goto_9
     invoke-static {v2, v5}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 261
+    .line 285
     invoke-static {v3, v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->verify(Ljava/io/File;Lcom/android/quickstep/views/LsOnlineUpdates$Release;)V
 
-    .line 262
+    .line 286
     sget-boolean v2, Lcom/android/quickstep/views/LsOnlineUpdates;->cancelled:Z
 
     if-nez v2, :cond_c
@@ -1446,7 +1581,7 @@
     :cond_c
     invoke-static {v4, v5}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 263
+    .line 287
     invoke-virtual {v1}, Ljava/io/File;->exists()Z
 
     move-result v2
@@ -1461,7 +1596,7 @@
 
     invoke-static {v2, v4}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 264
+    .line 288
     :cond_d
     invoke-virtual {v3, v1}, Ljava/io/File;->renameTo(Ljava/io/File;)Z
 
@@ -1471,7 +1606,7 @@
 
     invoke-static {v1, v2}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 265
+    .line 289
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->preferences()Landroid/content/SharedPreferences;
 
     move-result-object v1
@@ -1498,16 +1633,16 @@
     :try_end_6
     .catchall {:try_start_6 .. :try_end_6} :catchall_6
 
-    .line 266
+    .line 290
     nop
 
-    .line 267
+    .line 291
     invoke-virtual/range {v16 .. v16}, Ljava/net/HttpURLConnection;->disconnect()V
 
-    .line 268
+    .line 292
     return-void
 
-    .line 244
+    .line 268
     :catchall_0
     move-exception v0
 
@@ -1573,7 +1708,7 @@
     :try_end_a
     .catchall {:try_start_a .. :try_end_a} :catchall_6
 
-    .line 267
+    .line 291
     :catchall_6
     move-exception v0
 
@@ -1607,7 +1742,7 @@
         }
     .end annotation
 
-    .line 196
+    .line 220
     new-instance v0, Ljava/net/URL;
 
     const-string v1, "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json"
@@ -1618,7 +1753,7 @@
 
     move-result-object v0
 
-    .line 198
+    .line 222
     :try_start_0
     invoke-virtual {v0}, Ljava/net/HttpURLConnection;->getContentLengthLong()J
 
@@ -1642,14 +1777,14 @@
 
     invoke-static {v1, v2}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 200
+    .line 224
     invoke-virtual {v0}, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
 
     move-result-object v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_2
 
-    .line 201
+    .line 225
     :try_start_1
     new-instance v2, Lorg/json/JSONObject;
 
@@ -1673,7 +1808,7 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 203
+    .line 227
     if-eqz v1, :cond_1
 
     :try_start_2
@@ -1681,14 +1816,14 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_2
 
-    .line 204
+    .line 228
     :cond_1
     invoke-virtual {v0}, Ljava/net/HttpURLConnection;->disconnect()V
 
-    .line 201
+    .line 225
     return-object v2
 
-    .line 200
+    .line 224
     :catchall_0
     move-exception v2
 
@@ -1713,7 +1848,7 @@
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_2
 
-    .line 204
+    .line 228
     :catchall_2
     move-exception v1
 
@@ -1725,7 +1860,7 @@
 .method private static initialize(Landroid/app/Activity;)V
     .locals 2
 
-    .line 98
+    .line 121
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     if-nez v0, :cond_0
@@ -1736,13 +1871,13 @@
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
-    .line 99
+    .line 122
     :cond_0
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->callbacksRegistered:Z
 
     if-nez v0, :cond_1
 
-    .line 100
+    .line 123
     invoke-virtual {p0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
 
     move-result-object p0
@@ -1755,12 +1890,12 @@
 
     invoke-virtual {p0, v0}, Landroid/app/Application;->registerActivityLifecycleCallbacks(Landroid/app/Application$ActivityLifecycleCallbacks;)V
 
-    .line 101
+    .line 124
     const/4 p0, 0x1
 
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->callbacksRegistered:Z
 
-    .line 103
+    .line 126
     :cond_1
     return-void
 .end method
@@ -1768,7 +1903,7 @@
 .method private static install(Landroid/app/Activity;)V
     .locals 5
 
-    .line 326
+    .line 350
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -1783,14 +1918,14 @@
 
     if-nez v0, :cond_1
 
-    .line 327
+    .line 351
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->waitingForPermission:Z
 
     if-eqz v0, :cond_0
 
     return-void
 
-    .line 329
+    .line 353
     :cond_0
     const/4 v0, 0x0
 
@@ -1807,7 +1942,7 @@
 
     const-string v2, "\u5b89\u88c5\u5305\u5df2\u901a\u8fc7\u6821\u9a8c\u3002\u8bf7\u5728\u7cfb\u7edf\u8bbe\u7f6e\u4e2d\u5141\u8bb8\u6b64\u684c\u9762\u5b89\u88c5\u5e94\u7528\uff0c\u8fd4\u56de\u540e\u7ee7\u7eed\u5b89\u88c5\u3002"
 
-    .line 330
+    .line 354
     invoke-virtual {p0, v2}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
 
     move-result-object p0
@@ -1820,7 +1955,7 @@
 
     invoke-direct {v3, v1, v4}, Lcom/android/quickstep/views/LsOnlineUpdates$Choice;-><init>(ILcom/android/quickstep/views/LsOnlineUpdates$Release;)V
 
-    .line 331
+    .line 355
     invoke-virtual {p0, v2, v3}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object p0
@@ -1837,7 +1972,7 @@
 
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
-    .line 332
+    .line 356
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
     new-instance v1, Lcom/android/quickstep/views/LsOnlineUpdates$Dismiss;
@@ -1846,14 +1981,14 @@
 
     invoke-virtual {p0, v1}, Landroid/app/AlertDialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
 
-    .line 333
+    .line 357
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
     invoke-virtual {p0}, Landroid/app/AlertDialog;->show()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 334
+    .line 358
     goto :goto_0
 
     :catch_0
@@ -1861,17 +1996,17 @@
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
-    .line 335
+    .line 359
     :goto_0
     return-void
 
-    .line 337
+    .line 361
     :cond_1
     const/4 p0, 0x1
 
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->verifying:Z
 
-    .line 338
+    .line 362
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->WORK:Ljava/util/concurrent/ExecutorService;
 
     new-instance v0, Lcom/android/quickstep/views/LsOnlineUpdates$Worker;
@@ -1882,7 +2017,7 @@
 
     invoke-interface {p0, v0}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 339
+    .line 363
     return-void
 .end method
 
@@ -1894,7 +2029,7 @@
         }
     .end annotation
 
-    .line 207
+    .line 231
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -1920,12 +2055,12 @@
         }
     .end annotation
 
-    .line 140
+    .line 164
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->value(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object p0
 
-    .line 141
+    .line 165
     instance-of p1, p0, Ljava/lang/Integer;
 
     const/4 v0, 0x0
@@ -1954,14 +2089,14 @@
 
     invoke-static {p1, v2}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 142
+    .line 166
     check-cast p0, Ljava/lang/Number;
 
     invoke-virtual {p0}, Ljava/lang/Number;->longValue()J
 
     move-result-wide p0
 
-    .line 143
+    .line 167
     cmp-long p2, p0, p2
 
     if-ltz p2, :cond_2
@@ -1977,24 +2112,24 @@
 
     invoke-static {v0, p2}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 144
+    .line 168
     return-wide p0
 .end method
 
 .method private static launchInstaller(Lcom/android/quickstep/views/LsOnlineUpdates$Release;)V
     .locals 4
 
-    .line 341
+    .line 365
     const/4 p0, 0x0
 
     sput-boolean p0, Lcom/android/quickstep/views/LsOnlineUpdates;->verifying:Z
 
-    .line 342
+    .line 366
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->current()Landroid/app/Activity;
 
     move-result-object p0
 
-    .line 343
+    .line 367
     const/4 v0, 0x1
 
     if-nez p0, :cond_0
@@ -2003,7 +2138,7 @@
 
     return-void
 
-    .line 345
+    .line 369
     :cond_0
     :try_start_0
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
@@ -2022,7 +2157,7 @@
 
     return-void
 
-    .line 346
+    .line 370
     :cond_1
     new-instance v1, Landroid/content/Intent;
 
@@ -2038,12 +2173,12 @@
 
     move-result-object v1
 
-    .line 347
+    .line 371
     invoke-virtual {v1, v0}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 348
+    .line 372
     const-string v1, "\u5806\u53e0\u684c\u9762\u66f4\u65b0"
 
     sget-object v2, Lcom/android/quickstep/views/LsUpdateFileProvider;->URI:Landroid/net/Uri;
@@ -2054,10 +2189,10 @@
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setClipData(Landroid/content/ClipData;)V
 
-    .line 349
+    .line 373
     invoke-virtual {p0, v0}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
 
-    .line 350
+    .line 374
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->preferences()Landroid/content/SharedPreferences;
 
     move-result-object p0
@@ -2080,14 +2215,14 @@
 
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 351
+    .line 375
     const/4 p0, 0x0
 
     sput-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->pending:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 352
+    .line 376
     goto :goto_0
 
     :catch_0
@@ -2097,7 +2232,7 @@
 
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->toast(Ljava/lang/String;)V
 
-    .line 353
+    .line 377
     :goto_0
     return-void
 .end method
@@ -2105,14 +2240,14 @@
 .method private static loadPending()V
     .locals 3
 
-    .line 297
+    .line 321
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->pending:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     if-eqz v0, :cond_0
 
     return-void
 
-    .line 298
+    .line 322
     :cond_0
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->preferences()Landroid/content/SharedPreferences;
 
@@ -2126,10 +2261,10 @@
 
     move-result-object v0
 
-    .line 299
+    .line 323
     if-eqz v0, :cond_1
 
-    .line 300
+    .line 324
     :try_start_0
     new-instance v1, Lorg/json/JSONObject;
 
@@ -2143,7 +2278,7 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 301
+    .line 325
     goto :goto_0
 
     :catch_0
@@ -2169,7 +2304,7 @@
 
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 303
+    .line 327
     :cond_1
     :goto_0
     return-void
@@ -2178,17 +2313,17 @@
 .method private static maybeShow()V
     .locals 11
 
-    .line 270
+    .line 294
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->current()Landroid/app/Activity;
 
     move-result-object v0
 
-    .line 271
+    .line 295
     if-nez v0, :cond_0
 
     return-void
 
-    .line 272
+    .line 296
     :cond_0
     sget-boolean v1, Lcom/android/quickstep/views/LsOnlineUpdates;->downloading:Z
 
@@ -2198,7 +2333,7 @@
 
     return-void
 
-    .line 273
+    .line 297
     :cond_1
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
@@ -2210,11 +2345,11 @@
 
     goto/16 :goto_2
 
-    .line 274
+    .line 298
     :cond_2
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->loadPending()V
 
-    .line 275
+    .line 299
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->pending:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     const/4 v2, 0x0
@@ -2225,16 +2360,16 @@
 
     if-eqz v1, :cond_3
 
-    .line 276
+    .line 300
     sput-boolean v2, Lcom/android/quickstep/views/LsOnlineUpdates;->installRequested:Z
 
-    .line 277
+    .line 301
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->install(Landroid/app/Activity;)V
 
-    .line 278
+    .line 302
     return-void
 
-    .line 280
+    .line 304
     :cond_3
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->pending:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
@@ -2242,7 +2377,7 @@
 
     return-void
 
-    .line 281
+    .line 305
     :cond_4
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->offered:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
@@ -2250,16 +2385,16 @@
 
     return-void
 
-    .line 282
+    .line 306
     :cond_5
     sget-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->offered:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
-    .line 283
+    .line 307
     const/4 v3, 0x0
 
     sput-object v3, Lcom/android/quickstep/views/LsOnlineUpdates;->offered:Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
-    .line 285
+    .line 309
     :try_start_0
     new-instance v4, Landroid/app/AlertDialog$Builder;
 
@@ -2317,7 +2452,7 @@
 
     div-double/2addr v7, v9
 
-    .line 287
+    .line 311
     invoke-static {v7, v8}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
 
     move-result-object v7
@@ -2340,7 +2475,7 @@
 
     move-result-object v4
 
-    .line 288
+    .line 312
     iget-object v5, v1, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->notes:Ljava/lang/String;
 
     invoke-virtual {v5}, Ljava/lang/String;->isEmpty()Z
@@ -2371,7 +2506,7 @@
 
     move-result-object v4
 
-    .line 286
+    .line 310
     invoke-virtual {v0, v4}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
@@ -2382,14 +2517,14 @@
 
     invoke-direct {v5, v2, v1}, Lcom/android/quickstep/views/LsOnlineUpdates$Choice;-><init>(ILcom/android/quickstep/views/LsOnlineUpdates$Release;)V
 
-    .line 290
+    .line 314
     invoke-virtual {v0, v4, v5}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
 
     const-string v1, "\u7a0d\u540e"
 
-    .line 291
+    .line 315
     invoke-virtual {v0, v1, v3}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
@@ -2400,7 +2535,7 @@
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
-    .line 292
+    .line 316
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
     new-instance v1, Lcom/android/quickstep/views/LsOnlineUpdates$Dismiss;
@@ -2409,14 +2544,14 @@
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
 
-    .line 293
+    .line 317
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
     invoke-virtual {v0}, Landroid/app/AlertDialog;->show()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 294
+    .line 318
     goto :goto_1
 
     :catch_0
@@ -2424,11 +2559,11 @@
 
     sput-object v3, Lcom/android/quickstep/views/LsOnlineUpdates;->prompt:Landroid/app/AlertDialog;
 
-    .line 295
+    .line 319
     :goto_1
     return-void
 
-    .line 273
+    .line 297
     :cond_7
     :goto_2
     return-void
@@ -2437,23 +2572,23 @@
 .method public static onHomeResume(Landroid/app/Activity;)V
     .locals 7
 
-    .line 63
+    .line 66
     const-string v0, "last_attempt"
 
     :try_start_0
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->initialize(Landroid/app/Activity;)V
 
-    .line 64
+    .line 67
     new-instance v1, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v1, p0}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     sput-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->foreground:Ljava/lang/ref/WeakReference;
 
-    .line 65
+    .line 68
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->permissionReturn()V
 
-    .line 66
+    .line 69
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->MAIN:Landroid/os/Handler;
 
     new-instance v1, Lcom/android/quickstep/views/LsOnlineUpdates$Ui;
@@ -2468,29 +2603,29 @@
 
     invoke-virtual {p0, v1, v4, v5}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 67
+    .line 70
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
-    .line 68
+    .line 71
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->preferences()Landroid/content/SharedPreferences;
 
     move-result-object p0
 
-    .line 69
+    .line 72
     const-wide/16 v4, 0x0
 
     invoke-interface {p0, v0, v4, v5}, Landroid/content/SharedPreferences;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v4
 
-    .line 70
+    .line 73
     cmp-long v6, v1, v4
 
     if-gez v6, :cond_0
 
-    .line 71
+    .line 74
     invoke-interface {p0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
 
     move-result-object p0
@@ -2501,10 +2636,10 @@
 
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 72
+    .line 75
     return-void
 
-    .line 74
+    .line 77
     :cond_0
     sget-boolean v6, Lcom/android/quickstep/views/LsOnlineUpdates;->checking:Z
 
@@ -2520,7 +2655,7 @@
 
     if-eqz v4, :cond_1
 
-    .line 75
+    .line 78
     invoke-interface {p0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
 
     move-result-object p0
@@ -2531,14 +2666,14 @@
 
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 76
+    .line 79
     invoke-static {v3}, Lcom/android/quickstep/views/LsOnlineUpdates;->check(Z)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     goto :goto_0
 
-    .line 78
+    .line 81
     :catch_0
     move-exception p0
 
@@ -2546,7 +2681,7 @@
     :goto_0
     nop
 
-    .line 79
+    .line 82
     return-void
 .end method
 
@@ -2558,7 +2693,7 @@
         }
     .end annotation
 
-    .line 147
+    .line 171
     const-wide/16 v2, 0x1
 
     const-wide/16 v4, 0x1
@@ -2585,7 +2720,7 @@
 
     if-nez v1, :cond_0
 
-    .line 148
+    .line 172
     const-string v1, "appId"
 
     invoke-static {v0, v1, v3}, Lcom/android/quickstep/views/LsOnlineUpdates;->string(Lorg/json/JSONObject;Ljava/lang/String;I)Ljava/lang/String;
@@ -2600,7 +2735,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 149
+    .line 173
     const-string v1, "packageName"
 
     invoke-static {v0, v1, v2}, Lcom/android/quickstep/views/LsOnlineUpdates;->string(Lorg/json/JSONObject;Ljava/lang/String;I)Ljava/lang/String;
@@ -2622,18 +2757,18 @@
     :cond_0
     move v1, v5
 
-    .line 147
+    .line 171
     :goto_0
     const-string v6, "\u66f4\u65b0\u4fe1\u606f\u4e0d\u5c5e\u4e8e\u5806\u53e0\u684c\u9762"
 
     invoke-static {v1, v6}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 150
+    .line 174
     const-string v1, "release"
 
     invoke-virtual {v0, v1}, Lorg/json/JSONObject;->get(Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 151
+    .line 175
     invoke-virtual {v0, v1}, Lorg/json/JSONObject;->isNull(Ljava/lang/String;)Z
 
     move-result v6
@@ -2644,13 +2779,13 @@
 
     return-object v0
 
-    .line 152
+    .line 176
     :cond_1
     invoke-virtual {v0, v1}, Lorg/json/JSONObject;->getJSONObject(Ljava/lang/String;)Lorg/json/JSONObject;
 
     move-result-object v6
 
-    .line 153
+    .line 177
     const-wide/16 v8, 0x1
 
     const-wide/32 v10, 0x7fffffff
@@ -2663,14 +2798,14 @@
 
     long-to-int v1, v7
 
-    .line 154
+    .line 178
     const-string v7, "versionName"
 
     invoke-static {v6, v7, v2}, Lcom/android/quickstep/views/LsOnlineUpdates;->string(Lorg/json/JSONObject;Ljava/lang/String;I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 155
+    .line 179
     const-wide/16 v8, 0x1
 
     const-wide/16 v10, 0x3e8
@@ -2683,14 +2818,14 @@
 
     long-to-int v12, v7
 
-    .line 156
+    .line 180
     const-string v7, "publishedAt"
 
     invoke-static {v6, v7, v3}, Lcom/android/quickstep/views/LsOnlineUpdates;->string(Lorg/json/JSONObject;Ljava/lang/String;I)Ljava/lang/String;
 
     move-result-object v3
 
-    .line 157
+    .line 181
     const-string v7, "Z"
 
     invoke-virtual {v3, v7}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
@@ -2701,17 +2836,17 @@
 
     invoke-static {v7, v8}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 158
+    .line 182
     invoke-static {v3}, Ljava/time/Instant;->parse(Ljava/lang/CharSequence;)Ljava/time/Instant;
 
-    .line 159
+    .line 183
     const-string v3, "notes"
 
     invoke-virtual {v6, v3}, Lorg/json/JSONObject;->get(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v3
 
-    .line 160
+    .line 184
     instance-of v7, v3, Ljava/lang/String;
 
     if-eqz v7, :cond_2
@@ -2740,14 +2875,14 @@
 
     invoke-static {v7, v8}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 162
+    .line 186
     const-string v7, "apk"
 
     invoke-virtual {v6, v7}, Lorg/json/JSONObject;->getJSONObject(Ljava/lang/String;)Lorg/json/JSONObject;
 
     move-result-object v13
 
-    .line 163
+    .line 187
     const-string v6, "url"
 
     const/16 v7, 0x1000
@@ -2756,10 +2891,10 @@
 
     move-result-object v6
 
-    .line 164
+    .line 188
     invoke-static {v6}, Lcom/android/quickstep/views/LsUpdateProtocol;->apkUrl(Ljava/lang/String;)Ljava/net/URL;
 
-    .line 165
+    .line 189
     const-wide/16 v15, 0x1
 
     const-wide/32 v17, 0x10000000
@@ -2770,7 +2905,7 @@
 
     move-result-wide v15
 
-    .line 166
+    .line 190
     const-string v7, "sha256"
 
     const/16 v8, 0x40
@@ -2785,7 +2920,7 @@
 
     move-result-object v17
 
-    .line 167
+    .line 191
     const-string v7, "certificateSha256"
 
     invoke-static {v13, v7, v8}, Lcom/android/quickstep/views/LsOnlineUpdates;->string(Lorg/json/JSONObject;Ljava/lang/String;I)Ljava/lang/String;
@@ -2798,7 +2933,7 @@
 
     move-result-object v7
 
-    .line 168
+    .line 192
     invoke-static/range {v17 .. v17}, Lcom/android/quickstep/views/LsUpdateProtocol;->digest(Ljava/lang/String;)Z
 
     move-result v8
@@ -2811,7 +2946,7 @@
 
     if-eqz v8, :cond_3
 
-    .line 169
+    .line 193
     const-string v8, "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb"
 
     invoke-virtual {v7, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -2825,13 +2960,13 @@
     :cond_3
     move v4, v5
 
-    .line 168
+    .line 192
     :goto_2
     const-string v5, "\u5b89\u88c5\u5305\u6821\u9a8c\u4fe1\u606f\u65e0\u6548"
 
     invoke-static {v4, v5}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 170
+    .line 194
     new-instance v9, Lcom/android/quickstep/views/LsOnlineUpdates$Release;
 
     move-object v13, v3
@@ -2858,7 +2993,7 @@
 .method private static permissionReturn()V
     .locals 3
 
-    .line 305
+    .line 329
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->waitingForPermission:Z
 
     const-string v1, "resume_install"
@@ -2879,11 +3014,11 @@
 
     return-void
 
-    .line 306
+    .line 330
     :cond_0
     sput-boolean v2, Lcom/android/quickstep/views/LsOnlineUpdates;->waitingForPermission:Z
 
-    .line 307
+    .line 331
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->preferences()Landroid/content/SharedPreferences;
 
     move-result-object v0
@@ -2898,7 +3033,7 @@
 
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 308
+    .line 332
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -2911,14 +3046,14 @@
 
     sput-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->installRequested:Z
 
-    .line 309
+    .line 333
     return-void
 .end method
 
 .method private static preferences()Landroid/content/SharedPreferences;
     .locals 3
 
-    .line 105
+    .line 128
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     const-string v1, "ls_online_updates"
@@ -2935,20 +3070,20 @@
 .method private static showProgress(Landroid/app/Activity;)V
     .locals 4
 
-    .line 311
+    .line 335
     sget-boolean v0, Lcom/android/quickstep/views/LsOnlineUpdates;->cancelled:Z
 
     if-eqz v0, :cond_0
 
     return-void
 
-    .line 312
+    .line 336
     :cond_0
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     if-nez v0, :cond_1
 
-    .line 314
+    .line 338
     const/4 v0, 0x0
 
     :try_start_0
@@ -2958,35 +3093,35 @@
 
     sput-object v1, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
-    .line 315
+    .line 339
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     const-string v1, "\u4e0b\u8f7d\u5806\u53e0\u684c\u9762\u66f4\u65b0"
 
     invoke-virtual {p0, v1}, Landroid/app/ProgressDialog;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 316
+    .line 340
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     const/4 v1, 0x1
 
     invoke-virtual {p0, v1}, Landroid/app/ProgressDialog;->setProgressStyle(I)V
 
-    .line 317
+    .line 341
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     const/16 v2, 0x64
 
     invoke-virtual {p0, v2}, Landroid/app/ProgressDialog;->setMax(I)V
 
-    .line 318
+    .line 342
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     const/4 v2, 0x0
 
     invoke-virtual {p0, v2}, Landroid/app/ProgressDialog;->setCancelable(Z)V
 
-    .line 319
+    .line 343
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     const-string v2, "\u53d6\u6d88"
@@ -2999,14 +3134,14 @@
 
     invoke-virtual {p0, v1, v2, v3}, Landroid/app/ProgressDialog;->setButton(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V
 
-    .line 320
+    .line 344
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
     invoke-virtual {p0}, Landroid/app/ProgressDialog;->show()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 321
+    .line 345
     goto :goto_0
 
     :catch_0
@@ -3014,7 +3149,7 @@
 
     sput-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
 
-    .line 323
+    .line 347
     :cond_1
     :goto_0
     sget-object p0, Lcom/android/quickstep/views/LsOnlineUpdates;->progress:Landroid/app/ProgressDialog;
@@ -3027,7 +3162,7 @@
 
     invoke-virtual {p0, v0}, Landroid/app/ProgressDialog;->setProgress(I)V
 
-    .line 324
+    .line 348
     :cond_2
     return-void
 .end method
@@ -3040,12 +3175,12 @@
         }
     .end annotation
 
-    .line 134
+    .line 158
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->value(Lorg/json/JSONObject;Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object p0
 
-    .line 135
+    .line 159
     instance-of p1, p0, Ljava/lang/String;
 
     if-eqz p1, :cond_0
@@ -3060,7 +3195,7 @@
 
     if-nez v0, :cond_0
 
-    .line 136
+    .line 160
     invoke-virtual {p1}, Ljava/lang/String;->length()I
 
     move-result p1
@@ -3074,13 +3209,13 @@
     :cond_0
     const/4 p1, 0x0
 
-    .line 135
+    .line 159
     :goto_0
     const-string p2, "\u66f4\u65b0\u4fe1\u606f\u5b57\u6bb5\u65e0\u6548"
 
     invoke-static {p1, p2}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 137
+    .line 161
     check-cast p0, Ljava/lang/String;
 
     return-object p0
@@ -3089,12 +3224,12 @@
 .method private static toast(Ljava/lang/String;)V
     .locals 2
 
-    .line 355
+    .line 379
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->current()Landroid/app/Activity;
 
     move-result-object v0
 
-    .line 356
+    .line 380
     if-eqz v0, :cond_0
 
     const/4 v1, 0x1
@@ -3105,7 +3240,7 @@
 
     invoke-virtual {p0}, Landroid/widget/Toast;->show()V
 
-    .line 357
+    .line 381
     :cond_0
     return-void
 .end method
@@ -3118,7 +3253,7 @@
         }
     .end annotation
 
-    .line 131
+    .line 155
     invoke-virtual {p0, p1}, Lorg/json/JSONObject;->get(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object p0
@@ -3134,7 +3269,7 @@
         }
     .end annotation
 
-    .line 217
+    .line 241
     invoke-virtual {p0}, Ljava/io/File;->isFile()Z
 
     move-result v0
@@ -3155,7 +3290,7 @@
 
     if-nez v0, :cond_0
 
-    .line 218
+    .line 242
     invoke-static {p0}, Lcom/android/quickstep/views/LsUpdateProtocol;->sha256(Ljava/io/File;)Ljava/lang/String;
 
     move-result-object v0
@@ -3175,13 +3310,13 @@
     :cond_0
     move v0, v2
 
-    .line 217
+    .line 241
     :goto_0
     const-string v3, "\u4e0b\u8f7d\u6587\u4ef6\u6821\u9a8c\u5931\u8d25\uff0c\u8bf7\u91cd\u65b0\u4e0b\u8f7d"
 
     invoke-static {v0, v3}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 219
+    .line 243
     sget-object v0, Lcom/android/quickstep/views/LsOnlineUpdates;->app:Landroid/content/Context;
 
     invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -3198,12 +3333,12 @@
 
     move-result-object p0
 
-    .line 220
+    .line 244
     invoke-static {}, Lcom/android/quickstep/views/LsOnlineUpdates;->installed()Landroid/content/pm/PackageInfo;
 
     move-result-object v0
 
-    .line 221
+    .line 245
     if-eqz p0, :cond_1
 
     const-string v3, "com.zte.mifavor.launcher"
@@ -3216,7 +3351,7 @@
 
     if-eqz v3, :cond_1
 
-    .line 222
+    .line 246
     invoke-virtual {p0}, Landroid/content/pm/PackageInfo;->getLongVersionCode()J
 
     move-result-wide v3
@@ -3257,7 +3392,7 @@
 
     if-lt v3, v4, :cond_1
 
-    .line 224
+    .line 248
     invoke-virtual {p0}, Landroid/content/pm/PackageInfo;->getLongVersionCode()J
 
     move-result-wide v3
@@ -3277,18 +3412,18 @@
     :cond_1
     move v3, v2
 
-    .line 221
+    .line 245
     :goto_1
     const-string v4, "\u5b89\u88c5\u5305\u8eab\u4efd\u6216\u7248\u672c\u4e0d\u7b26\u5408\u66f4\u65b0\u4fe1\u606f"
 
     invoke-static {v3, v4}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 226
+    .line 250
     invoke-static {p0}, Lcom/android/quickstep/views/LsOnlineUpdates;->certificate(Landroid/content/pm/PackageInfo;)Ljava/lang/String;
 
     move-result-object p0
 
-    .line 227
+    .line 251
     iget-object p1, p1, Lcom/android/quickstep/views/LsOnlineUpdates$Release;->cert:Ljava/lang/String;
 
     invoke-virtual {p0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -3305,7 +3440,7 @@
 
     if-eqz p1, :cond_2
 
-    .line 228
+    .line 252
     invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->certificate(Landroid/content/pm/PackageInfo;)Ljava/lang/String;
 
     move-result-object p1
@@ -3321,12 +3456,12 @@
     :cond_2
     move v1, v2
 
-    .line 227
+    .line 251
     :goto_2
     const-string p0, "\u65b0\u65e7\u5b89\u88c5\u5305\u7b7e\u540d\u4e0d\u4e00\u81f4\uff0c\u4e0d\u80fd\u8986\u76d6\u66f4\u65b0"
 
     invoke-static {v1, p0}, Lcom/android/quickstep/views/LsUpdateProtocol;->require(ZLjava/lang/String;)V
 
-    .line 229
+    .line 253
     return-void
 .end method

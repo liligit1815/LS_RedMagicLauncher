@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;
+        Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;,
+        Lcom/android/quickstep/views/LsOrbitStyleSettings$StackPreview;
     }
 .end annotation
 
@@ -19,8 +20,6 @@
 .field static final LIGHT_BLUE:I = -0x8a3301
 
 .field private static final ORBIT_STYLE:I = 0x4
-
-.field static final PREVIEW_BACKGROUND:I = -0x20203
 
 .field static final PREVIEW_HEIGHT:I = 0xd2
 
@@ -64,13 +63,16 @@
 
     .line 36
     :cond_0
+    invoke-static {p0}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->refreshStackPreview(Landroid/app/Activity;)V
+
+    .line 37
     invoke-virtual {v0}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
 
     move-result-object v1
 
     check-cast v1, Landroid/view/ViewGroup;
 
-    .line 37
+    .line 38
     const-string v2, "ls_orbit_style_card"
 
     invoke-virtual {v1, v2}, Landroid/view/ViewGroup;->findViewWithTag(Ljava/lang/Object;)Landroid/view/View;
@@ -81,7 +83,7 @@
 
     return-void
 
-    .line 38
+    .line 39
     :cond_1
     invoke-virtual {v0}, Landroid/view/View;->getContext()Landroid/content/Context;
 
@@ -99,7 +101,7 @@
 
     move-result-object v0
 
-    .line 39
+    .line 40
     const v3, 0x7f0b06c3
 
     invoke-virtual {v0, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -108,7 +110,7 @@
 
     check-cast v3, Landroid/widget/TextView;
 
-    .line 40
+    .line 41
     const v4, 0x7f0b06c4
 
     invoke-virtual {v0, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -117,7 +119,7 @@
 
     check-cast v4, Landroid/widget/RadioButton;
 
-    .line 41
+    .line 42
     const v5, 0x7f0b06c5
 
     invoke-virtual {v0, v5}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -126,18 +128,18 @@
 
     check-cast v5, Landroid/widget/ImageView;
 
-    .line 44
+    .line 45
     invoke-static {v0}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->clearTemplateIds(Landroid/view/View;)V
 
-    .line 45
+    .line 46
     invoke-virtual {v0, v2}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
-    .line 46
+    .line 47
     const-string v2, "ls_orbit_style_radio"
 
     invoke-virtual {v4, v2}, Landroid/widget/RadioButton;->setTag(Ljava/lang/Object;)V
 
-    .line 47
+    .line 48
     invoke-virtual {p0}, Landroid/app/Activity;->getResources()Landroid/content/res/Resources;
 
     move-result-object p0
@@ -146,31 +148,31 @@
 
     move-result-object p0
 
-    .line 48
+    .line 49
     invoke-virtual {v3, p0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 49
+    .line 50
     invoke-virtual {v4, p0}, Landroid/widget/RadioButton;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 50
+    .line 51
     new-instance p0, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;
 
     invoke-direct {p0}, Lcom/android/quickstep/views/LsOrbitStyleSettings$OrbitPreview;-><init>()V
 
     invoke-virtual {v5, p0}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 51
+    .line 52
     const/4 p0, 0x2
 
     invoke-virtual {v5, p0}, Landroid/widget/ImageView;->setImportantForAccessibility(I)V
 
-    .line 52
+    .line 53
     invoke-virtual {v0, p1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 53
+    .line 54
     invoke-virtual {v1, v0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    .line 54
+    .line 55
     return-void
 
     .line 35
@@ -182,20 +184,20 @@
 .method private static clearTemplateIds(Landroid/view/View;)V
     .locals 2
 
-    .line 57
+    .line 67
     const/4 v0, -0x1
 
     invoke-virtual {p0, v0}, Landroid/view/View;->setId(I)V
 
-    .line 58
+    .line 68
     instance-of v0, p0, Landroid/view/ViewGroup;
 
     if-eqz v0, :cond_0
 
-    .line 59
+    .line 69
     check-cast p0, Landroid/view/ViewGroup;
 
-    .line 60
+    .line 70
     const/4 v0, 0x0
 
     :goto_0
@@ -215,44 +217,15 @@
 
     goto :goto_0
 
-    .line 62
+    .line 72
     :cond_0
-    return-void
-.end method
-
-.method static drawPreviewBackground(Landroid/graphics/Canvas;Landroid/graphics/Paint;I)V
-    .locals 8
-
-    .line 95
-    const v0, -0x20203
-
-    const/high16 v1, 0x3f800000    # 1.0f
-
-    invoke-static {p1, v0, p2, v1}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
-
-    .line 96
-    const/high16 v5, 0x43a00000    # 320.0f
-
-    const/high16 v6, 0x43520000    # 210.0f
-
-    const/4 v3, 0x0
-
-    const/4 v4, 0x0
-
-    move-object v2, p0
-
-    move-object v7, p1
-
-    invoke-virtual/range {v2 .. v7}, Landroid/graphics/Canvas;->drawRect(FFFFLandroid/graphics/Paint;)V
-
-    .line 97
     return-void
 .end method
 
 .method static drawPreviewCard(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFFFF)V
     .locals 22
 
-    .line 102
+    .line 106
     move-object/from16 v7, p1
 
     move/from16 v8, p2
@@ -267,7 +240,7 @@
 
     mul-float v10, v0, v1
 
-    .line 105
+    .line 109
     const/4 v0, 0x3
 
     move v11, v0
@@ -281,12 +254,12 @@
 
     if-lt v11, v0, :cond_0
 
-    .line 106
+    .line 110
     mul-float v0, v9, v12
 
     invoke-static {v7, v13, v8, v0}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 107
+    .line 111
     int-to-float v0, v11
 
     sub-float v1, p3, v0
@@ -323,18 +296,18 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 105
+    .line 109
     add-int/lit8 v11, v11, -0x1
 
     goto :goto_0
 
-    .line 111
+    .line 115
     :cond_0
     const/4 v0, -0x1
 
     invoke-static {v7, v0, v8, v9}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 112
+    .line 116
     new-instance v14, Landroid/graphics/LinearGradient;
 
     add-float v3, p3, p5
@@ -359,7 +332,7 @@
 
     invoke-virtual {v7, v14}, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
 
-    .line 114
+    .line 118
     move v6, v10
 
     move-object/from16 v0, p0
@@ -372,7 +345,7 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 115
+    .line 119
     move v11, v5
 
     move-object v10, v7
@@ -381,17 +354,17 @@
 
     invoke-static {v10, v0, v8, v9}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 116
+    .line 120
     sget-object v0, Landroid/graphics/Paint$Style;->STROKE:Landroid/graphics/Paint$Style;
 
     invoke-virtual {v10, v0}, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
 
-    .line 117
+    .line 121
     const v0, 0x3f8ccccd    # 1.1f
 
     invoke-virtual {v10, v0}, Landroid/graphics/Paint;->setStrokeWidth(F)V
 
-    .line 118
+    .line 122
     new-instance v0, Landroid/graphics/LinearGradient;
 
     const v6, -0xff7201
@@ -406,7 +379,7 @@
 
     invoke-virtual {v10, v0}, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
 
-    .line 120
+    .line 124
     move v6, v11
 
     move-object/from16 v0, p0
@@ -419,27 +392,27 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 121
+    .line 125
     invoke-static {v7, v13, v8, v9}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 122
+    .line 126
     const v0, 0x3e23d70a    # 0.16f
 
     mul-float v0, v0, p5
 
     add-float v1, p3, v0
 
-    .line 123
+    .line 127
     const v0, 0x3f570a3d    # 0.84f
 
     mul-float v0, v0, p5
 
     add-float v3, p3, v0
 
-    .line 124
+    .line 128
     mul-float v5, p5, v12
 
-    .line 125
+    .line 129
     const v0, 0x3e947ae1    # 0.29f
 
     mul-float v0, v0, p5
@@ -460,7 +433,7 @@
 
     invoke-virtual {v6, v0, v2, v4, v7}, Landroid/graphics/Canvas;->drawCircle(FFFLandroid/graphics/Paint;)V
 
-    .line 126
+    .line 130
     const v0, 0x3ea3d70a    # 0.32f
 
     mul-float v0, v0, p6
@@ -479,7 +452,7 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 128
+    .line 132
     move v10, v3
 
     const v0, 0x3ecccccd    # 0.4f
@@ -506,14 +479,14 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 130
+    .line 134
     move v12, v5
 
     const v0, -0x3b1501
 
     invoke-static {v7, v0, v8, v9}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 131
+    .line 135
     const v0, 0x3f028f5c    # 0.51f
 
     mul-float v0, v0, p6
@@ -538,10 +511,10 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 133
+    .line 137
     invoke-static {v7, v13, v8, v9}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 134
+    .line 138
     const v0, 0x3f4f5c29    # 0.81f
 
     mul-float v0, v0, p6
@@ -562,7 +535,7 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 136
+    .line 140
     const v0, 0x3f63d70a    # 0.89f
 
     mul-float v0, v0, p6
@@ -587,21 +560,21 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 138
+    .line 142
     return-void
 .end method
 
 .method static drawPreviewLabel(Landroid/graphics/Canvas;Landroid/graphics/Paint;IFFF)V
     .locals 8
 
-    .line 142
+    .line 146
     const v0, -0x8a3301
 
     const/high16 v1, 0x3f800000    # 1.0f
 
     invoke-static {p1, v0, p2, v1}, Lcom/android/quickstep/views/LsOrbitStyleSettings;->previewColor(Landroid/graphics/Paint;IIF)V
 
-    .line 143
+    .line 147
     const/high16 p2, 0x40800000    # 4.0f
 
     add-float v0, p3, p2
@@ -610,7 +583,7 @@
 
     invoke-virtual {p0, v0, v1, p2, p1}, Landroid/graphics/Canvas;->drawCircle(FFFLandroid/graphics/Paint;)V
 
-    .line 144
+    .line 148
     const/high16 p2, 0x41400000    # 12.0f
 
     add-float v1, p3, p2
@@ -635,7 +608,7 @@
 
     invoke-virtual/range {v0 .. v7}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
 
-    .line 145
+    .line 149
     return-void
 .end method
 
@@ -685,7 +658,7 @@
 .method public static isOrbitCard(Landroid/view/View;)Z
     .locals 1
 
-    .line 65
+    .line 75
     if-eqz p0, :cond_0
 
     const-string v0, "ls_orbit_style_card"
@@ -714,20 +687,20 @@
 .method static previewColor(Landroid/graphics/Paint;IIF)V
     .locals 1
 
-    .line 88
+    .line 97
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
 
-    .line 89
+    .line 98
     sget-object v0, Landroid/graphics/Paint$Style;->FILL:Landroid/graphics/Paint$Style;
 
     invoke-virtual {p0, v0}, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
 
-    .line 90
+    .line 99
     invoke-virtual {p0, p1}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 91
+    .line 100
     int-to-float p1, p2
 
     mul-float/2addr p1, p3
@@ -738,21 +711,62 @@
 
     invoke-virtual {p0, p1}, Landroid/graphics/Paint;->setAlpha(I)V
 
-    .line 92
+    .line 101
+    return-void
+.end method
+
+.method private static refreshStackPreview(Landroid/app/Activity;)V
+    .locals 1
+
+    .line 60
+    const v0, 0x7f0b06c5
+
+    invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+
+    move-result-object p0
+
+    .line 61
+    instance-of v0, p0, Landroid/widget/ImageView;
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 62
+    :cond_0
+    check-cast p0, Landroid/widget/ImageView;
+
+    .line 63
+    invoke-virtual {p0}, Landroid/widget/ImageView;->getDrawable()Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/quickstep/views/LsOrbitStyleSettings$StackPreview;
+
+    if-nez v0, :cond_1
+
+    new-instance v0, Lcom/android/quickstep/views/LsOrbitStyleSettings$StackPreview;
+
+    invoke-direct {v0}, Lcom/android/quickstep/views/LsOrbitStyleSettings$StackPreview;-><init>()V
+
+    invoke-virtual {p0, v0}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+
+    .line 64
+    :cond_1
     return-void
 .end method
 
 .method public static update(Landroid/app/Activity;I)V
     .locals 5
 
-    .line 69
+    .line 79
     const v0, 0x1020002
 
     invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
 
     move-result-object p0
 
-    .line 70
+    .line 80
     if-nez p0, :cond_0
 
     const/4 p0, 0x0
@@ -766,13 +780,13 @@
 
     move-result-object p0
 
-    .line 71
+    .line 81
     :goto_0
     if-nez p0, :cond_1
 
     return-void
 
-    .line 72
+    .line 82
     :cond_1
     const-string v0, "ls_orbit_style_radio"
 
@@ -782,7 +796,7 @@
 
     check-cast v0, Landroid/widget/RadioButton;
 
-    .line 73
+    .line 83
     const/4 v1, 0x0
 
     const/4 v2, 0x4
@@ -801,10 +815,10 @@
     :goto_1
     invoke-virtual {v0, v4}, Landroid/widget/RadioButton;->setChecked(Z)V
 
-    .line 75
+    .line 85
     invoke-virtual {p0, v3}, Landroid/view/View;->setEnabled(Z)V
 
-    .line 76
+    .line 86
     if-eq p1, v2, :cond_3
 
     move v1, v3
@@ -812,6 +826,6 @@
     :cond_3
     invoke-virtual {p0, v1}, Landroid/view/View;->setClickable(Z)V
 
-    .line 77
+    .line 87
     return-void
 .end method

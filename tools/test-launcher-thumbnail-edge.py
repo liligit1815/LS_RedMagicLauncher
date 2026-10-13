@@ -1,7 +1,7 @@
-"""Execute the real Smali guard, coverage geometry, and edge alpha composition.
+"""Execute the real Smali guards, shader modes, and edge alpha composition.
 
 These are host regressions, not a claim about vendor GPU rasterization.
---baseline-ref HEAD demonstrates the former opaque RGBA guard failure.
+--baseline-ref HEAD demonstrates the former translucent/undercoverage fallback.
 """
 from itertools import product
 from pathlib import Path
@@ -50,8 +50,8 @@ def contains(bounds, draw):
 
 
 class Guard:
-    def __init__(self, source):
-        body = source.split('.method private shouldDrawThumbnailBackground(', 1)[1].split('.end method', 1)[0]
+    def __init__(self, source, method='shouldDrawThumbnailBackground'):
+        body = source.split('.method private ' + method + '(', 1)[1].split('.end method', 1)[0]
         code = [line.split('#', 1)[0].strip() for line in body.splitlines()[1:]]
         self.code = [line for line in code if line and not line.startswith('.')]
         self.labels = {line: i for i, line in enumerate(self.code) if line.startswith(':')}
@@ -60,7 +60,8 @@ class Guard:
         s = dict(view=True, recents=True, stack=True, task=True, locked=False,
                  private=False, splash=False, shader=True, matching_shader=True,
                  data=True, bitmap=True, alpha=True, real=True, translucent=False,
-                 paint_opaque=True, width=100, height=200)
+                 paint_opaque=True, background_opaque=True, coverage_valid=True,
+                 width=100, height=200)
         s.update(values or {})
         bitmap = Object(width=s['width'], height=s['height'], hasAlpha=s['alpha'])
         data = Object(thumbnail=bitmap if s['bitmap'] else None,
@@ -75,10 +76,16 @@ class Guard:
                           mThumbnailData=data if s['data'] else None,
                           mPaint=Object(shader=shader if s['matching_shader'] else Object(),
                                         alpha=255 if s['paint_opaque'] else 127),
+                          mBackgroundPaint=Object(alpha=255 if s['background_opaque'] else 127,
+                                                  color=0xfff4f4f4),
+                          nativeStackCoverageValid=s['coverage_valid'],
                           splash=s['splash'], mLsThumbnailCoverageMatrix=None,
                           mLsThumbnailCoverageBounds=None)
         if cache is not None:
             receiver.update(cache)
+        return self.execute_receiver(receiver, draw, cache)
+
+    def execute_receiver(self, receiver, draw=(0., 0., 100., 200.), cache=None):
         regs = dict(p0=receiver, **{f'p{i+1}': value for i, value in enumerate(draw)})
         pc, result, allocations = 0, None, 0
         calls = dict(getRecentsView='recents', isNativeStackStyle='stack', getThumbnail='thumbnail',
@@ -92,7 +99,7 @@ class Guard:
             words = line.replace(',', '').split()
             if line.startswith('iget'):
                 regs[words[1]] = regs[words[2]][re.search(r'->(\w+):', line)[1]]
-            elif line.startswith('iput-object'):
+            elif line.startswith('iput'):
                 regs[words[2]][re.search(r'->(\w+):', line)[1]] = regs[words[1]]
             elif line.startswith('new-instance'):
                 regs[words[1]] = Object()
@@ -160,7 +167,8 @@ class Guard:
                                  if words[0] == 'const/high16' else value)
             elif line.startswith('return '):
                 if cache is not None:
-                    cache.update({k: receiver[k] for k in ('mLsThumbnailCoverageMatrix', 'mLsThumbnailCoverageBounds')})
+                    cache.update({k: receiver[k] for k in ('mLsThumbnailCoverageMatrix',
+                                  'mLsThumbnailCoverageBounds', 'nativeStackCoverageValid')})
                     cache['allocations'] = cache.get('allocations', 0) + allocations
                 return bool(regs[words[1]])
             else:
@@ -170,6 +178,7 @@ class Guard:
 
 def verify_shader(source):
     """Execute the actual cached shader swap and restore instructions."""
+    safety = Guard(source, 'canComposeNativeStackSnapshot')
     def run(name, receiver, background=False):
         body = source.split('.method private ' + name + '(', 1)[1].split('.end method', 1)[0]
         code = [line.split('#', 1)[0].strip() for line in body.splitlines()[1:]]
@@ -205,27 +214,65 @@ def verify_shader(source):
                 obj, *params = [regs[r.strip()] for r in re.search(r'\{(.*?)\}', line)[1].split(',')]
                 method = re.search(r'->([^\(]+)\(', line)[1]
                 if method == 'getThumbnail': result = obj['thumbnail']
-                elif method == '<init>': obj.update(bitmap=params[0], x=params[1], y=params[2])
+                elif method == '<init>':
+                    if 'Matrix;' in line: obj['matrix'] = IDENTITY
+                    else: obj.update(bitmap=params[0], x=params[1], y=params[2])
                 elif method == 'setLocalMatrix': obj['matrix'] = tuple(params[0]['matrix'])
                 elif method == 'getShader': result = obj['shader']
                 elif method == 'getColor': result = obj['color']
                 elif method == 'createOpaqueSnapshotShader': result = Object(edge=obj, color=params[0])
+                elif method == 'canComposeNativeStackSnapshot': result = safety.execute_receiver(obj)
+                elif method == 'reset': obj['matrix'] = IDENTITY
+                elif method == 'getLocalMatrix':
+                    result = obj['matrix'] != IDENTITY
+                    if result: params[0]['matrix'] = tuple(obj['matrix'])
                 elif method == 'setShader': result = obj['shader']; obj['shader'] = params[0]
                 else: raise AssertionError(line)
+            elif line.startswith('return '): return bool(regs[words[1]])
             elif line == 'return-void': return
             else: raise AssertionError(line)
         raise AssertionError('shader method did not return')
 
-    shader = Object(); bitmap = Object(); paint = Object(shader=shader)
-    receiver = Object(mBitmapShader=shader, mPaint=paint, mBackgroundPaint=Object(color=0xfff4f4f4),
-                      mThumbnailData=Object(thumbnail=bitmap),
-                      mLsThumbnailCoverageMatrix=Object(matrix=IDENTITY))
-    run('prepareNativeStackOpaqueShader', receiver, True)
-    run('finishNativeStackOpaqueShader', receiver)
-    assert paint['shader'] is shader, 'fallback paint changed'
+    def verify_theme_roundtrip(background, tile):
+        edge = receiver['nativeStackClampShader']
+        matrix = tuple(shader['matrix'])
+        for color in (0xfff4f4f4, 0xff181818, 0xfff4f4f4):
+            previous = receiver['nativeStackOpaqueShader']
+            previous_color = previous['color']
+            receiver['mBackgroundPaint']['color'] = color
+            assert run('prepareNativeStackOpaqueShader', receiver, background)
+            current = paint['shader']
+            assert current['color'] == color, f'{tile} theme change retained the old background'
+            assert receiver['nativeStackOpaqueColor'] == color, f'{tile} cached color was not updated'
+            if color == previous_color:
+                assert current is previous, f'{tile} unchanged theme rebuilt the composition'
+            else:
+                assert current is not previous, f'{tile} theme change reused the old composition'
+            assert current['edge'] is edge, f'{tile} theme change reallocated the bitmap shader'
+            assert edge['x'] == edge['y'] == tile
+            assert edge['bitmap'] is bitmap and edge['matrix'] == matrix, f'{tile} theme change altered the screenshot'
+            assert receiver['nativeStackClampMode'] == int(background)
+            run('finishNativeStackOpaqueShader', receiver)
+            assert paint['shader'] is shader, f'{tile} theme draw did not restore the OEM shader'
+            assert run('prepareNativeStackOpaqueShader', receiver, background)
+            assert paint['shader'] is current, f'{tile} next frame did not reuse the theme composition'
+            assert current['edge'] is edge and edge['matrix'] == matrix
+            run('finishNativeStackOpaqueShader', receiver)
+            assert paint['shader'] is shader, f'{tile} reused theme draw did not restore the OEM shader'
+
+    shader = Object(matrix=IDENTITY); bitmap = Object(width=100, height=200)
+    paint = Object(shader=shader, alpha=255)
+    recents = Object(stack=True)
+    receiver = Object(mBitmapShader=shader, mPaint=paint,
+                      mBackgroundPaint=Object(color=0xfff4f4f4, alpha=255),
+                      mTaskView=Object(recents=recents), mTask=Object(isLocked=False),
+                      mPrivateLockedBitmap=None, splash=False,
+                      nativeStackCoverageValid=True,
+                      mThumbnailData=Object(thumbnail=bitmap, isRealSnapshot=True),
+                      mLsThumbnailCoverageMatrix=None)
     for matrix in ((.7,0,0,.7,.2,.3), IDENTITY, (0,1,-1,0,200,0)):
-        receiver['mLsThumbnailCoverageMatrix']['matrix'] = matrix
-        run('prepareNativeStackOpaqueShader', receiver)
+        shader['matrix'] = matrix
+        assert run('prepareNativeStackOpaqueShader', receiver), 'full snapshot did not compose'
         composed = paint['shader']
         assert composed['color'] == receiver['mBackgroundPaint']['color']
         clamp = composed['edge']
@@ -233,31 +280,72 @@ def verify_shader(source):
         assert clamp['bitmap'] is bitmap and clamp['matrix'] == matrix
         run('finishNativeStackOpaqueShader', receiver)
         assert paint['shader'] is shader, 'opaque draw retained temporary paint'
-        run('prepareNativeStackOpaqueShader', receiver)
+        assert run('prepareNativeStackOpaqueShader', receiver)
         assert paint['shader'] is composed, 'unchanged source/color allocated another composition'
         run('finishNativeStackOpaqueShader', receiver)
     receiver['mBackgroundPaint']['color'] = 0xff181818
-    run('prepareNativeStackOpaqueShader', receiver)
+    assert run('prepareNativeStackOpaqueShader', receiver)
     assert paint['shader'] is not composed and paint['shader']['color'] == 0xff181818
     assert paint['shader']['edge'] is clamp, 'color change needlessly reallocated bitmap shader'
     run('finishNativeStackOpaqueShader', receiver)
+    verify_theme_roundtrip(False, 'CLAMP')
     # Rebinding must rebuild from the new bitmap; fallback must preserve a custom shader.
     old = clamp
-    receiver['mBitmapShader'] = shader = Object()
-    receiver['mThumbnailData']['thumbnail'] = bitmap = Object()
-    run('prepareNativeStackOpaqueShader', receiver)
+    receiver['mBitmapShader'] = shader = Object(matrix=IDENTITY)
+    receiver['mThumbnailData']['thumbnail'] = bitmap = Object(width=100, height=200)
+    paint['shader'] = shader
+    assert run('prepareNativeStackOpaqueShader', receiver)
     assert paint['shader']['edge'] is not old and paint['shader']['edge']['bitmap'] is bitmap
     run('finishNativeStackOpaqueShader', receiver)
+    # Gaps keep DECAL and the exact source matrix. Metadata translucency or
+    # a geometric fallback must not restore two independently AA'd edges.
+    source_matrix = (.8, 0, 0, .8, 10, 20)
+    shader['matrix'] = source_matrix
+    clamp_composed = receiver['nativeStackOpaqueShader']
+    assert run('prepareNativeStackOpaqueShader', receiver, True), 'real gap kept duplicate background'
+    decal_composed = paint['shader']
+    decal = decal_composed['edge']
+    assert decal['x'] == decal['y'] == 'DECAL', 'letterbox gap was stretched by CLAMP'
+    assert decal['matrix'] == source_matrix, 'fallback changed screenshot crop/matrix'
+    assert decal_composed is not clamp_composed, 'CLAMP/DECAL composition cache confused'
+    assert receiver['nativeStackClampMode'] == 1, 'DECAL cache mode not saved'
+    run('finishNativeStackOpaqueShader', receiver)
+    assert paint['shader'] is shader
+    assert run('prepareNativeStackOpaqueShader', receiver, True)
+    assert paint['shader'] is decal_composed, 'unchanged DECAL fallback reallocated composition'
+    run('finishNativeStackOpaqueShader', receiver)
+    verify_theme_roundtrip(True, 'DECAL')
+    assert run('prepareNativeStackOpaqueShader', receiver)
+    assert paint['shader']['edge']['x'] == 'CLAMP', 'return to full coverage retained DECAL'
+    assert receiver['nativeStackClampMode'] == 0
+    run('finishNativeStackOpaqueShader', receiver)
     custom = Object(); paint['shader'] = custom
-    run('prepareNativeStackOpaqueShader', receiver, True)
+    assert not run('prepareNativeStackOpaqueShader', receiver, True)
     run('finishNativeStackOpaqueShader', receiver)
     assert paint['shader'] is custom, 'nonstack/placeholder paint overwritten'
+    paint['shader'] = shader
+    for field, value in ((receiver['mBackgroundPaint'], 'alpha'), (paint, 'alpha')):
+        field[value] = 127
+        assert not run('prepareNativeStackOpaqueShader', receiver, True), 'nonopaque paint lost OEM fallback'
+        assert paint['shader'] is shader
+        field[value] = 255
+    receiver['nativeStackCoverageValid'] = False
+    assert not run('prepareNativeStackOpaqueShader', receiver, True), 'malformed coverage lost OEM fallback'
+    assert paint['shader'] is shader
+    receiver['nativeStackCoverageValid'] = True
+    for width, height in ((0, 200), (-1, 200), (100, 0), (100, -1)):
+        bitmap.update(width=width, height=height)
+        assert not run('prepareNativeStackOpaqueShader', receiver, True), 'empty fallback bitmap composed'
+    bitmap.update(width=100, height=200)
     draw = source.split('.method public drawOnCanvas(', 1)[1].split('.end method', 1)[0]
     assert draw.index('shouldDrawThumbnailBackground') < draw.index('prepareNativeStackOpaqueShader')
     assert draw.index('prepareNativeStackOpaqueShader') < draw.index('finishNativeStackOpaqueShader')
     assert '->drawRoundRect(' in draw[draw.index(':cond_1'):draw.index('finishNativeStackOpaqueShader')]
     # The factory below checks pixel alpha; CLAMP alone does not guarantee opacity.
-    print('PASS actual opaque shader composition/cache/color/matrix/rebind/fallback/restore paths')
+    assert '->prepareNativeStackOpaqueShader(Z)Z' in draw, 'draw ignores composition success'
+    swap = draw.index('->prepareNativeStackOpaqueShader(Z)Z')
+    assert re.search(r'move-result\s+v\d+', draw[swap:swap+180]), 'draw does not consume composition success'
+    print('PASS actual one-pass shader composition/CLAMP-DECAL mode/cache/color/light-dark-light/matrix/rebind/fallback/restore paths')
 
 
 def verify_opaque_shader_factory():
@@ -323,21 +411,25 @@ public class OpaqueShaderTest {
 
 def verify(source):
     guard = Guard(source)
-    # This first assertion fails behaviorally on the old guard, before any
-    # new signature/structure checks, proving the real opaque-RGBA regression.
+    # Fail behaviorally on the former path before checking new signatures.
+    # Real RGBA metadata may say translucent even when edge pixels are opaque.
     assert not guard.execute(), 'opaque real RGBA snapshot still draws the duplicate light background'
+    assert not guard.execute({'translucent': True}), 'real translucent metadata still draws the duplicate light background'
     verify_shader(source)
     verify_opaque_shader_factory()
+    safety = Guard(source, 'canComposeNativeStackSnapshot')
     names = ('view', 'recents', 'stack', 'task', 'locked', 'private', 'splash', 'shader',
-             'matching_shader', 'data', 'bitmap', 'alpha', 'real', 'translucent', 'paint_opaque')
+             'matching_shader', 'data', 'bitmap', 'alpha', 'real', 'translucent',
+             'paint_opaque', 'background_opaque', 'coverage_valid')
     branches = 0
     for values in product((False, True), repeat=len(names)):
         v = dict(zip(names, values))
         valid = all(v[k] for k in ('view', 'recents', 'stack', 'task', 'shader', 'matching_shader',
-                                   'data', 'bitmap', 'paint_opaque'))
+                                   'data', 'bitmap', 'paint_opaque', 'background_opaque'))
         valid = valid and not any(v[k] for k in ('locked', 'private', 'splash'))
-        opaque = not v['alpha'] or (v['real'] and not v['translucent'])
-        assert guard.execute(v) == (not (valid and opaque)), v
+        covered_snapshot = not v['alpha'] or v['real']
+        assert guard.execute(v) == (not (valid and covered_snapshot)), v
+        assert safety.execute(v) == (valid and v['real'] and v['coverage_valid']), ('compose fallback', v)
         branches += 1
 
     geometry = [
@@ -375,9 +467,18 @@ def verify(source):
             geometry.append((f'nonfinite-draw-{axis}', IDENTITY, draw, True))
     for name, matrix, draw, expected in geometry:
         for has_alpha in (False, True):
-            assert guard.execute({'alpha': has_alpha}, draw, matrix) == expected, (name, has_alpha)
+            state = {}
+            assert guard.execute({'alpha': has_alpha}, draw, matrix, cache=state) == expected, (name, has_alpha)
+            malformed = (not rect_stays_rect(matrix)
+                         or any(not math.isfinite(v) for v in (*matrix, *draw))
+                         or draw[0] >= draw[2] or draw[1] >= draw[3]
+                         or mapped_rect(matrix, (0, 0, 100, 200))[0] >= mapped_rect(matrix, (0, 0, 100, 200))[2]
+                         or mapped_rect(matrix, (0, 0, 100, 200))[1] >= mapped_rect(matrix, (0, 0, 100, 200))[3])
+            assert state['nativeStackCoverageValid'] == (not malformed), ('coverage validity', name)
+            assert safety.execute(cache=state) == (not malformed), ('malformed fallback', name)
     for width, height in ((0, 200), (-1, 200), (100, 0), (100, -1)):
         assert guard.execute(dict(width=width, height=height)), 'invalid bitmap extent'
+        assert not safety.execute(dict(width=width, height=height)), 'invalid fallback bitmap extent'
 
     undershoots, scales = 0, 0
     for width in (720, 1080, 1216, 1440, 1920, 2688):
@@ -403,9 +504,14 @@ def verify(source):
         for c in (coverage, 1-coverage):
             wallpaper, background = .08, .96
             expected_single = alpha*c*snapshot_color+(1-alpha*c)*wallpaper
-            for values, fallback in (({}, False), ({'translucent': True}, True),
-                                     ({'private': True}, True), ({'locked': True}, True)):
-                draw_background = guard.execute(values)
+            for values, matrix, fallback in (({}, IDENTITY, False),
+                    ({'translucent': True}, IDENTITY, False),
+                    ({}, (.8, 0, 0, .8, 10, 20), False),
+                    ({'private': True}, IDENTITY, True),
+                    ({'locked': True}, IDENTITY, True)):
+                requested_background = guard.execute(values, matrix=matrix)
+                composed = not requested_background or safety.execute(values)
+                draw_background = requested_background and not composed
                 if grouped:
                     extra = c*(1-c) if draw_background else 0.
                     output = alpha*(c*snapshot_color+extra*background)+(1-alpha*(c+extra))*wallpaper
@@ -420,6 +526,28 @@ def verify(source):
                 assert delta > 0, 'old duplicate pass fixture must brighten the edge'
                 pixels += 1
 
+    # Spatial sampling fixture: opaque screenshot center and transparent or
+    # partial edge texels. A real gap samples transparent with DECAL, while a
+    # covering bitmap uses CLAMP. In either case the rounded edge is AA'd once.
+    samples = 0
+    for pixel_alpha, snapshot_color, coverage, view_alpha in product(
+            (0., .1, .5, .9, 1.), (.0, .18, .92), (.1, .5, .9), (.37, 1.)):
+        wallpaper, background = .08, .96
+        shader_color = snapshot_color*pixel_alpha + background*(1-pixel_alpha)
+        once = shader_color*coverage*view_alpha + wallpaper*(1-coverage*view_alpha)
+        for values, matrix in (({'translucent': True}, IDENTITY),
+                               ({}, (.8, 0, 0, .8, 10, 20))):
+            requested = guard.execute(values, matrix=matrix)
+            composed = not requested or safety.execute(values)
+            k = coverage*view_alpha
+            if composed:
+                output = shader_color*k + wallpaper*(1-k)
+            else:
+                under = background*k + wallpaper*(1-k)
+                output = snapshot_color*k*pixel_alpha + under*(1-k*pixel_alpha)
+            assert abs(output-once) < 1e-12, 'spatial alpha edge rounded twice'
+            samples += 1
+
     draw = source.split('.method public drawOnCanvas(', 1)[1].split('.end method', 1)[0]
     start = draw.index('->shouldDrawThumbnailBackground(FFFF)Z')
     branch = draw.index('if-eqz v0, :ls_thumbnail_background_done', start)
@@ -432,7 +560,8 @@ def verify(source):
         assert f'move/from16 v{reg}, p{arg}' in draw[:start]
     print(f'PASS {branches} actual Smali branches; {len(geometry)*2+4} geometry cases; '
           f'{scales} float32 scale cases ({undershoots} prior strict-cover misses); '
-          f'{pixels} alpha compositions; cached identity reset; privacy/splash/OEM retained')
+          f'{pixels} alpha compositions; {samples} spatial alpha/gap samples; '
+          'cached identity reset; privacy/splash/OEM retained')
 
 
 if __name__ == '__main__':

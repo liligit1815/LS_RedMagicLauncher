@@ -61,38 +61,38 @@
 .method constructor <init>(Lcom/android/quickstep/views/TaskView;Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)V
     .locals 2
 
-    .line 286
+    .line 287
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 287
+    .line 288
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->taskRef:Ljava/lang/ref/WeakReference;
 
-    .line 288
+    .line 289
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p2}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->recentsRef:Ljava/lang/ref/WeakReference;
 
-    .line 289
+    .line 290
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->access$500(Lcom/android/quickstep/views/TaskView;)I
 
     move-result p2
 
     iput p2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->taskId:I
 
-    .line 290
+    .line 291
     invoke-virtual {p3}, Landroid/view/MotionEvent;->getDownTime()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->downTime:J
 
-    .line 291
+    .line 292
     const/4 p2, 0x0
 
     invoke-virtual {p3, p2}, Landroid/view/MotionEvent;->getPointerId(I)I
@@ -101,7 +101,7 @@
 
     iput p2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->pointerId:I
 
-    .line 292
+    .line 293
     invoke-virtual {p3}, Landroid/view/MotionEvent;->getRawX()F
 
     move-result p2
@@ -114,7 +114,7 @@
 
     iput p2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->y:F
 
-    .line 293
+    .line 294
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getContext()Landroid/content/Context;
 
     move-result-object p1
@@ -131,7 +131,7 @@
 
     iput p1, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->slop:F
 
-    .line 294
+    .line 295
     return-void
 .end method
 
@@ -140,7 +140,7 @@
 .method moved(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 297
+    .line 298
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getRawX()F
 
     move-result v0
@@ -157,7 +157,7 @@
 
     sub-float/2addr p1, v1
 
-    .line 300
+    .line 301
     invoke-static {v0}, Ljava/lang/Math;->abs(F)F
 
     move-result v0
@@ -196,7 +196,7 @@
 .method public run()V
     .locals 11
 
-    .line 334
+    .line 335
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->taskRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -205,7 +205,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/TaskView;
 
-    .line 335
+    .line 336
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->recentsRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -214,7 +214,7 @@
 
     check-cast v1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 336
+    .line 337
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$600()Lcom/android/quickstep/views/LsNativeStack$CardLongPress;
 
     move-result-object v2
@@ -227,7 +227,7 @@
 
     goto :goto_1
 
-    .line 337
+    .line 338
     :cond_0
     if-eqz v0, :cond_3
 
@@ -239,7 +239,7 @@
 
     if-eqz v2, :cond_3
 
-    .line 338
+    .line 339
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->isAttachedToWindow()Z
 
     move-result v2
@@ -254,7 +254,7 @@
 
     iget v2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->taskId:I
 
-    .line 339
+    .line 340
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$500(Lcom/android/quickstep/views/TaskView;)I
 
     move-result v3
@@ -267,7 +267,7 @@
 
     if-ltz v2, :cond_3
 
-    .line 340
+    .line 341
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskActionsLongPress(Lcom/android/quickstep/views/TaskView;)Z
 
     move-result v2
@@ -276,16 +276,16 @@
 
     goto :goto_0
 
-    .line 347
+    .line 348
     :cond_1
     const/4 v2, 0x1
 
     iput-boolean v2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->triggered:Z
 
-    .line 350
+    .line 351
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->cancelLongPress()V
 
-    .line 351
+    .line 352
     iget-wide v3, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->downTime:J
 
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
@@ -304,16 +304,16 @@
 
     move-result-object v3
 
-    .line 353
+    .line 354
     iput-boolean v2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->cancellingNative:Z
 
-    .line 355
+    .line 356
     const/4 v2, 0x0
 
     :try_start_0
     invoke-virtual {v0, v3}, Lcom/android/quickstep/views/TaskView;->cancelNativeStackTouch(Landroid/view/MotionEvent;)V
 
-    .line 356
+    .line 357
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->observedByRecents:Z
 
     if-eqz v0, :cond_2
@@ -322,40 +322,40 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 358
+    .line 359
     :cond_2
     iput-boolean v2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->cancellingNative:Z
 
-    .line 359
+    .line 360
     invoke-virtual {v3}, Landroid/view/MotionEvent;->recycle()V
 
-    .line 360
+    .line 361
     nop
 
-    .line 361
+    .line 362
     return-void
 
-    .line 358
+    .line 359
     :catchall_0
     move-exception v0
 
     iput-boolean v2, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->cancellingNative:Z
 
-    .line 359
+    .line 360
     invoke-virtual {v3}, Landroid/view/MotionEvent;->recycle()V
 
-    .line 360
+    .line 361
     throw v0
 
-    .line 344
+    .line 345
     :cond_3
     :goto_0
     invoke-static {v1}, Lcom/android/quickstep/views/LsNativeStack;->cancelCardLongPress(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 345
+    .line 346
     return-void
 
-    .line 336
+    .line 337
     :cond_4
     :goto_1
     return-void
@@ -364,7 +364,7 @@
 .method sameStream(Landroid/view/MotionEvent;)Z
     .locals 4
 
-    .line 304
+    .line 305
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getDownTime()J
 
     move-result-wide v0
@@ -385,7 +385,7 @@
 
     if-ne v0, v2, :cond_0
 
-    .line 305
+    .line 306
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getPointerId(I)I
 
     move-result p1
@@ -401,7 +401,7 @@
     :cond_0
     nop
 
-    .line 304
+    .line 305
     :goto_0
     return v1
 .end method
@@ -409,7 +409,7 @@
 .method update(Landroid/view/MotionEvent;)Z
     .locals 5
 
-    .line 309
+    .line 310
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->cancellingNative:Z
 
     const/4 v1, 0x0
@@ -418,16 +418,16 @@
 
     return v1
 
-    .line 310
+    .line 311
     :cond_0
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->triggered:Z
 
-    .line 311
+    .line 312
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
 
     move-result v2
 
-    .line 312
+    .line 313
     const/4 v3, 0x1
 
     if-nez v0, :cond_2
@@ -440,7 +440,7 @@
 
     if-eqz v4, :cond_2
 
-    .line 316
+    .line 317
     iget-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->taskRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {p1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -449,21 +449,21 @@
 
     check-cast p1, Lcom/android/quickstep/views/TaskView;
 
-    .line 317
+    .line 318
     if-eqz p1, :cond_1
 
     invoke-virtual {p1, p0}, Lcom/android/quickstep/views/TaskView;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 318
+    .line 319
     :cond_1
     const/4 p1, 0x0
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->access$602(Lcom/android/quickstep/views/LsNativeStack$CardLongPress;)Lcom/android/quickstep/views/LsNativeStack$CardLongPress;
 
-    .line 319
+    .line 320
     return v1
 
-    .line 321
+    .line 322
     :cond_2
     invoke-virtual {p0, p1}, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->sameStream(Landroid/view/MotionEvent;)Z
 
@@ -489,14 +489,14 @@
 
     if-ne v2, v1, :cond_4
 
-    .line 325
+    .line 326
     invoke-virtual {p0, p1}, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->moved(Landroid/view/MotionEvent;)Z
 
     move-result p1
 
     if-eqz p1, :cond_4
 
-    .line 326
+    .line 327
     :cond_3
     iget-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$CardLongPress;->recentsRef:Ljava/lang/ref/WeakReference;
 
@@ -506,17 +506,17 @@
 
     check-cast p1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 327
+    .line 328
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->cancelCardLongPress(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 328
+    .line 329
     if-eq v2, v3, :cond_4
 
     if-eqz v0, :cond_4
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->onTaskMenuClosed(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 330
+    .line 331
     :cond_4
     return v0
 .end method

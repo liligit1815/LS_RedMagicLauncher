@@ -1,50 +1,44 @@
 # 独立构建与源码维护
 
-构建入口为 `tools/build-launcher.py`，以下命令均从工程根目录执行。当前功能及验证范围见 [开发状态](DEVELOPMENT_STATUS.md)。
+构建入口为 `tools/build-launcher.py`，命令从工程根目录执行。当前维护版本为 `260029`，功能与实际检查范围见 [开发状态](DEVELOPMENT_STATUS.md)。发布操作见 [README 发布流程](../README.md#后续版本如何发布并提供在线更新)，公开下载检查见 [在线更新说明](ONLINE_UPDATES.md#发布后如何核验)。
 
-签名构建通过后，按 [README 发布流程](../README.md#后续版本如何发布并提供在线更新) 将最终包发布到 `lispacerelease`，并运行 [公开在线核验](ONLINE_UPDATES.md#发布后如何核验)。构建成功或离线清单验证通过不能代替发布后的下载检查。
+## 固定输入与目录
 
-## 独立项目目录
-
-本目录就是项目根目录，可以整体放在任意位置；构建工具不读取父目录中的模块源码、脚本、SDK 配置或签名备份。
+项目可以整体迁移，构建不读取父模块的源码、脚本或签名文件。
 
 | 路径 | 用途 |
-|---|---|
-| `src/` | 完整 Apktool 工程：Smali、资源、原生库、Manifest 和打包配置 |
-| `helper-src/main/` | 最近任务堆叠与环绕卡片的辅助 Java 源码 |
-| `helper-src/stubs/` | Java 编译所需厂商类型声明，不作为新增业务类打包 |
-| `tools/` | 本项目自己的构建、签名恢复、资源保真、检查与回归测试工具 |
-| `tooling/apktool_3.0.3.jar` | 回编译工具 |
-| `tooling/framework-res-NX809J.apk` | 保留的目标设备原厂框架资源 |
-| `framework/cache/1.apk` | 原工程实际使用的 Apktool 框架缓存，构建时使用它，不能与上项互换 |
-| `original.apk` | 原厂桌面底包，用于对照；不能直接等同于可安装回滚包 |
-| `baselines/launcher-260005.apk` | 必须随 Git 保存的固定验收基线，用于构建回归核验 |
-| `docs/`、`PAGE_FEATURES.md`、`AGENTS.md` | 当前开发状态、安装边界、换机说明、功能拆分和开发约定 |
-| `out/` | 每次单独生成的构建目录及本地交付资料，不上传 Git |
-| `audit/`、`archive/`、`migration/` | 仅旧电脑可能存在的历史材料，不参与构建，不上传源码仓库 |
-| `.signing/` | 本地私有签名配置与密钥；不进入 Git 或公开源码包 |
+| --- | --- |
+| `src/` | Apktool 工程：Smali、资源、原生库、Manifest 和版本配置 |
+| `helper-src/main/`、`helper-src/stubs/` | 辅助 Java 与厂商编译声明；stubs 不作为业务类打包 |
+| `tools/` | 独立构建、签名恢复、边界检查与回归工具 |
+| `tooling/apktool_3.0.3.jar` | 固定回编译工具 |
+| `framework/cache/1.apk` | 实际框架输入，不能当普通缓存删除 |
+| `tooling/framework-res-NX809J.apk`、`original.apk` | 保留的原厂框架参考和原厂桌面底包 |
+| `baselines/launcher-260005.apk` | 随 Git 保存的固定用户验收基线 |
+| `.signing/` | 私有本地签名配置与密钥，不进入源码 Git |
+| `out/` | 每次独立构建的成品、报告和本地证据，不上传 Git |
+| `docs/`、`AGENTS.md` | 当前维护说明与开发约定 |
 
-`src/original/`、`src/unknown/` 属于 Apktool 打包输入，不能当缓存删除。`src/build/`、`helper-src/build-sync/` 和构建输出中的 `work/` 是可重新生成的材料。历史审计日志可能保留旧电脑路径，不作为当前构建入口；克隆后不需要恢复历史目录。
-
-独立目录不需要模块的 Gradle 工程、`android/`、模块版本文件或模块图标编辑工具。`tools/check-binary-manifest.py` 是本地通用解析器副本，已移除模块专属检查入口；桌面检查通过 `check-launcher-stack-only-apk.py` 调用它，模块原解析器仍由模块自行维护。
+`src/original/`、`src/unknown/` 是打包输入。`src/build/`、`src/dist/`、辅助编译输出和构建目录中的 `work/` 可重新生成。`audit/`、`archive/`、`migration/` 中的历史材料不参与构建；详见 [GitHub 与存储说明](GITHUB_AND_STORAGE.md)。
 
 ## 版本规则
 
-以 `src/apktool.yml` 的 `versionInfo` 为唯一打包版本来源。
+唯一打包版本来源是 `src/apktool.yml` 的 `versionInfo`。
 
 | 项目 | 原厂底包 | 当前修改版 |
-|---|---|---|
-| 显示版本 versionName | `16.0.010.000.2604151532` | `26.9.260.908.2609081608` |
-| 内部版本 versionCode | `160000` | `260027` |
+| --- | --- | --- |
+| `versionName` | `16.0.010.000.2604151532` | `26.9.260.908.2609081608` |
+| `versionCode` | `160000` | `260029` |
 
-- 同一轮修改、检查和重复构建使用同一个编号。图标空间显示与堆叠卡片缩放为 `260011`；第一张卡片默认按钮与长按临时显示为 `260012`；桌面入场动画修复为 `260013`；名称遮挡与快捷长按操作修复为 `260014`；桌面入场及长按操作过渡修复为 `260015`；本轮入场交接、完整侧边操作、退出与应用打开连续性及长按稳定性修复为 `260016`。侧别、短点击、按钮尺寸与弧形、线形图标及移除侧栏关闭入口、小窗入口、首屏后卡间距、非选中卡片裁剪及横屏坐标与导航方向修正均沿用 `260016`；横屏卡片尺寸与删除前卡后保留历史布局的实测修正使用 `260017`，两种入口退出消散一致性修复使用 `260018`，卡片消散与横滑竖向亮边修复使用 `260019`，圆角遮挡与左侧细线修复使用 `260020`，卡片移动边缘与横屏清理间距修复使用 `260021`，录屏 11 动画修改使用 `260022`，新增环绕卡片使用 `260023`，右侧扇形卡片使用 `260024`，三样式独立缩放与选择卡片 UI 统一使用 `260025`，环绕卡片点击目标修复使用 `260026`，本轮修正、验证与重复构建不重复加号；GitHub 在线更新使用 `260027`，下一轮独立功能修改使用 `260028`，用户已验收基线仍为 `260005`。只改说明、迁移目录或整理发布流程不另起功能版本。
-- 显示版本由用户决定，不擅自加 `LS`、`test` 后缀或按日期生成名称。
-- 签名包文件名为 `LS_红魔桌面修改版-<versionName>-<versionCode>.apk`，文件名和 APK 内实际版本都必须检查。
-- 模块和桌面版本独立。以后更换显示版本或原厂底包，需要在模块项目另行检查 `LauncherCompatibility` 的兼容性规则；这不是桌面构建依赖。
+每轮实际功能修改将 `versionCode` 加 1；同轮修正、验证及重复构建沿用编号，下一轮独立功能使用 `260030`。只改说明、迁移目录或整理发布流程不另起功能版本。显示版本由用户决定，未指定新值时保留现有值。包内版本与成品文件名都必须核对。
 
-## 换电脑：克隆与恢复签名
+更换显示版本或原厂底包时，在模块项目另行检查 `LauncherCompatibility`。这是产品兼容协作，不是桌面构建依赖；固定回归基线仍为 `260005`。
 
-以下命令以 PowerShell 为例。在新电脑准备一个开发目录，源码与签名仓库可放在同一个父目录下。先安装下一节列出的工具链，再克隆源码并运行未签名构建：
+## 工具链与首次克隆
+
+需要 Git、Python 3.10+、完整 JDK，以及 Android SDK Platform 36、Build Tools 36.0.0。Windows 构建使用 JDK 21，Apktool 3.0.3 随项目保留；源码检查使用 Python 标准库。无需模块 Gradle 工程或 NDK 重编译原生库。统一发布工具另要求 Python 3.11+。
+
+设置 `JAVA_HOME` 并把 JDK 的 `bin` 加入 PATH，保证 `java`、`javac` 可用；SDK 通过 `--sdk` 指定。首次克隆可先完成未签名构建：
 
 ```powershell
 git clone https://github.com/liligit1815/LS_RedMagicLauncher.git
@@ -52,13 +46,11 @@ cd LS_RedMagicLauncher
 python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 ```
 
-已配置 GitHub SSH 访问的电脑，可以将克隆命令改为：
+已配置 GitHub SSH 时可使用源码仓库的 SSH 地址。克隆不需要旧 `out/`、审查资料或模块目录；完整构建流程目前以 Windows 为验证环境。
 
-```powershell
-git clone git@github.com:liligit1815/LS_RedMagicLauncher.git
-```
+## 恢复既有签名
 
-未签名构建通过后，维护者可在源码项目根目录克隆有权限访问的 [私有签名仓库](https://github.com/liligit1815/LS_SSHKey)，恢复原签名，再制作可延续当前签名身份的包：
+维护者从有权访问的私有仓库恢复原材料，不生成新密钥代替已有升级身份。在源码根目录执行：
 
 ```powershell
 git clone https://github.com/liligit1815/LS_SSHKey.git ../LS_SSHKey
@@ -66,116 +58,57 @@ python tools/restore-signing.py --from-repo "../LS_SSHKey"
 python tools/build-launcher.py --sdk "<Android SDK目录>"
 ```
 
-私有仓库的等价 SSH 地址为 `git@github.com:liligit1815/LS_SSHKey.git`。电脑访问 GitHub 的 SSH 凭据与 Android APK 签名密钥用途不同；这里恢复的是 APK 签名材料，不会配置 GitHub 登录。
+私有仓库也可使用 `git@github.com:liligit1815/LS_SSHKey.git`。恢复工具读取 `redmagic-launcher/`，核对文件哈希及公开证书，恢复到本工程 `.signing/`；已有内容相同则成功，不同则拒绝覆盖。恢复后的构建只读取本工程签名目录，不依赖私有仓库的存放路径。
 
-恢复工具读取私有仓库的 `redmagic-launcher/`，核对文件哈希和公开证书身份，再恢复到本工程被忽略的 `.signing/`。已有文件内容相同时成功，不同则拒绝覆盖；它不会生成新密钥。恢复后构建只读取本工程 `.signing/`，不依赖签名仓库的存放路径。
+`.signing/signing.local.json` 的字段为 `keystore`、`keyAlias`、`storePassword`、`keyPassword`；密钥路径相对于配置目录。既有材料包含 `debug.keystore`、配置和 `signing-certificate.pem`。密码经子进程环境传递，私有值不得写入源码、提交消息或公共日志。
 
-自动新建 `.signing/` 的恢复流程目前仅支持 Windows。其他系统需先确认没有不同的本地签名，再手动创建该目录，将私有仓库中的 `debug.keystore`、`signing.local.json`、`signing-certificate.pem` 三个文件放入，运行恢复命令核验一致性；不要覆盖已有的不同签名。其他系统的完整构建尚未实测。
+固定发行证书 SHA-256 为 `4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb`。公开证书与指纹可公开；更改预期指纹或生成新密钥不会获得旧签名的升级权限。GitHub SSH 凭据与 APK 密钥用途不同。
 
-私有仓库之外仍应保留一份自己掌控、确认可读取的签名备份。手机桌面布局、账号数据和安装前恢复备份需要另外保管；克隆源码和签名仓库不会恢复手机数据，也不证明任意设备可以安装。
+恢复工具自动新建 `.signing/` 仅支持 Windows；其他系统需先确认没有不同签名，手动放入三个既有文件后运行恢复命令核验。另行保存可读取的私有备份，设备布局和恢复资料不进入源码或签名仓库。
 
-## 一次完成构建、签名和验证
+## 构建与辅助源码同步
 
-需要 Git、Python 3.10 或更高版本、完整 JDK，以及 Android SDK Platform 36 和 Build Tools 36.0.0。本次验证环境为 Windows、Python 3.12.14、JDK 21.0.8、SDK 36、Build Tools 36.0.0；Apktool 3.0.3 随项目保留。源码测试和构建脚本只用 Python 标准库，不需要模块的 Python 第三方依赖，也不需要 Gradle 或 NDK 来编译原生库。其他操作系统的完整构建尚未实测。
+统一构建依次执行源码回归、在独立副本中重编译辅助 Java 并比较 Smali、Apktool `b -f`、原厂资源与代码边界检查、16 KB ZIP 对齐、签名及成品核验。失败时以非零状态停止，每次生成新的 `out/build-<versionCode>-时间戳/`，不覆盖既有成品、不修改业务源码、不操作设备。
 
-将 JDK 的 `bin` 加入 PATH，并设置 `JAVA_HOME`，保证 `java`、`javac` 可用。Android SDK 可通过 Android Studio 的 SDK 管理器准备；需要 `platforms;android-36` 和 `build-tools;36.0.0` 两项，后者提供 D8、zipalign、apksigner 等构建工具。
+默认先检查固定 `baselines/launcher-260005.apk` 的 SHA-256，再进行载荷与签名对照。只有受审查的其他基线可通过 `--previous <APK路径>` 指定，不能用待发布 APK 自身替代基线。
 
-在本项目根目录运行，SDK 用 `--sdk` 指定，也可设置 `ANDROID_HOME` 或 `ANDROID_SDK_ROOT`：
+`--unsigned` 不读取私有签名，仍检查版本、资源、代码边界和对齐；报告为 `unsigned_verified`，产物为 `launcher-aligned-unsigned.apk`，不能作为签名安装包交付。签名构建只有最终检查通过才记录 `signed_verified`。
 
-```powershell
-python tools/build-launcher.py --sdk "<Android SDK目录>"
-```
-
-构建入口按顺序执行当前源码测试、在独立副本中重新编译辅助 Java 并核对 Smali 同步、强制回编译、原厂资源保真、16 KB ZIP 对齐、签前版本和代码边界检查、签名、签后完整核验。每次产生新的 `out/build-<versionCode>-时间戳/`，不会覆盖 `out/` 中已验收的 APK，不改项目业务源码，也不操作手机。任何步骤失败均以非零退出码停止。
-
-默认对照随 Git 保存的 `baselines/launcher-260005.apk`，并先校验固定 SHA-256。它与已验收的 260005 安装包完全一致。克隆不需要旧 `out/`，也不需要历史审查材料。核验其他受审查基线时可显式指定 `--previous <APK路径>`，仍须通过签名和载荷门禁，不能用待发布 APK 本身充当基线。
-
-没有签名材料、仅需本地回编译时使用：
-
-```powershell
-python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
-```
-
-此模式不读取私有签名配置，仍核验原厂代码与资源边界、版本、对齐和已验收基线；结果明确标记为 `unsigned_verified`，产物为 `launcher-aligned-unsigned.apk`，不能作为已签名安装包交付。
-
-首次在新电脑克隆后，先运行 `--unsigned` 验证完整构建；需要同签名产物时按上一节恢复签名。GitHub 中的 APK 和公开证书无法还原签名私钥。`.gitattributes` 固定源码换行并保留打包二进制原样，避免 Windows 克隆时改变辅助 Smali 的同步结果。
-
-已完成真实 Windows 干净 Git 克隆验证：没有旧 `out/`、模块工程和签名文件，不传 `--previous`，未签名构建通过；生成包的 **9,022 个非签名成员解压内容均与验收版一致**，构建前后业务源码未变。默认基线误依赖本地输出、辅助 Smali 的 CRLF/LF 差异导致克隆误报这两项换机构建问题已修复。
-
-2026-09-13 已进一步从 GitHub 全新克隆公开源码和私有签名仓库，按上面的相邻目录命令恢复原密钥，完成默认签名构建。结果为 `signed_verified`，恢复文件与原签名逐字节一致，生成 APK 的 9,022 个非签名成员与验收版全部一致，两个克隆工作区均无源码改动。具体输入、结果和验证范围见 [GitHub 恢复构建验收](REMOTE_RECOVERY_VERIFICATION.md)。
-
-成功的签名构建目录包含规范命名 APK、`.sha256`、`build-report.json`、`source-inputs.json`、`oem-resources.json`、`unsigned-boundary.json`、`unsigned-baseline.json`、`release-verification.json` 和各步骤日志。`build-report.json` 只有在最终验证通过后才记录 `signed_verified`；仅看到 APK 文件存在不代表通过。
-
-继续开发时，从 [LsNativeStack.java](../helper-src/main/com/android/quickstep/views/LsNativeStack.java) 阅读堆叠辅助逻辑，从 [RecentsView.smali](../src/smali_classes2/com/android/quickstep/views/RecentsView.smali) 阅读原厂接入点。修改 `helper-src/main/` 后，先同步应提交的辅助 Smali，再检查和构建：
+修改 `helper-src/main/` 后，先同步辅助 Smali，再运行统一构建：
 
 ```powershell
 python tools/build-launcher-helper.py --sdk "<Android SDK目录>"
+python tools/build-launcher.py --sdk "<Android SDK目录>"
 ```
 
-仅改 Java 而未同步 Smali 时，统一构建会在副本比较阶段拒绝继续。Windows 上 Apktool 生成的辅助 Smali 使用 CRLF，而 Git 源码使用 LF；比较仅允许属于本工程 Java 主类及内部类的辅助 Smali 存在这种精确换行差异，并单独记录 `line_ending_only_files`。指令、常量、空格、文件增删以及其他文件的字节差异仍会失败，不改写项目源码。辅助 Java 使用 source/target 8；JDK 21 的选项警告记录在日志中，不作为设备运行通过的证明。高级用法的 `--destination`、`--work-dir` 允许把辅助编译输出放到指定的构建副本。
+仅修改 Java、未同步 Smali 时构建会拒绝继续。`.gitattributes` 固定源码换行并保持二进制输入原样；比较仅允许本工程 Java 生成类的精确 CRLF/LF 等价，代码、常量、空格、文件集合等差异仍失败。辅助 Java 使用 source/target 8；`--destination`、`--work-dir` 可指定编译副本。
 
-## 本地签名与安装边界
+成功目录包含规范命名 APK、`.sha256`、`build-report.json`、`source-inputs.json`、资源/基线/发行核验报告及步骤日志。成品文件存在本身不等于核验成功。
 
-本项目 `.signing/signing.local.json` 持有四个字段：`keystore`、`keyAlias`、`storePassword`、`keyPassword`。`keystore` 是相对此配置目录的文件名，当前为 `debug.keystore`。密钥、配置和 `signing-certificate.pem` 由独立私有签名仓库恢复，构建不读取父模块的签名备份。私有材料不得进入源码 Git 仓库、公开压缩包或报告。
+## 检查边界与单独诊断
 
-构建会先核对本地密钥与已验收 APK 的公开证书 SHA-256，当前预期值为：
+- 固定使用 Apktool `b -f`，避免旧 Manifest 缓存。
+- 保留原厂资源 ID 与配置，新增布局及代码类须符合工具中的精确白名单；不能关闭检查来容纳未知差异。
+- `zipalign -P 16` 在签名前后检查。ZIP 对齐不等于设备运行或 JNI 内存安全验证。
+- 签名前后非签名 ZIP 成员必须一致，资源、原生库和 assets 按固定基线核验；这不要求不同功能版本的整个 APK 哈希相同。
+- Manifest 除版本外仅允许既定 INTERNET 与私有更新提供器差异。期望版本从源码取得，不从待测 APK 反推。
 
-`4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb`
-
-密码通过签名子进程的环境传递，签名参数及输出不写入公共日志。证书指纹是公开身份信息，不是密码。`--expected-certificate-sha256` 只能用于已经明确审核的证书身份；更改参数不会使新证书获得旧证书的安装权限。
-
-这个开发证书与 ZTE 原厂证书不同。本机用户测试通过依赖本机已有的安装环境，不能保证可在其他原厂设备直接覆盖安装。本项目不含 ZTE 私钥，也不提供关闭系统签名校验的流程。构建入口不执行安装、提权或替换系统桌面。
-
-目前没有安装前兼容性自动拦截工具。已验证范围、系统安装器能检查的条件、首次替换原厂桌面与同签名升级的区别，以及恢复入口的要求，见 [安装兼容性说明](INSTALL_COMPATIBILITY.md)。
-
-## GitHub 上传与换电脑
-
-公开源码只需要构建输入与说明，盘点约 245 MiB。`out/`、缓存、历史审查、迁移备份和私有签名目录已由 Git 排除；包含历史材料的整个工作目录大小不等于上传大小。可删除缓存与应单独归档的资料分别列在 [GitHub 与存储说明](GITHUB_AND_STORAGE.md)。
-
-在本工程根目录执行以下命令，可导出当前 Git 会收录的源码快照，并检查必需输入、私有文件边界和单文件体积：
+统一构建的源码门禁清单由 `tools/build-launcher.py` 维护。需要单项诊断时可运行：
 
 ```powershell
-python tools/export-source.py
-```
-
-输出为 `out/source-export-时间戳/LS_RedMagicLauncher-github-source.zip`，以及文件清单和大小报告。ZIP 是本地可携带的源码快照，不含 Git 历史；日常用 Git 或 GitHub Desktop 提交实际工程文件，ZIP 及报告不进入源码仓库。浏览器拖放文件不执行本地 `.gitignore`，不能据此排除签名材料或设备数据。发行安装包统一放在 [lispacerelease Releases](https://github.com/liligit1815/lispacerelease/releases)，源码仓库不再创建 Release；必要原厂输入、框架、工具 JAR 和固定 `260005` 基线继续保留，固定基线只在完成审查后更新。
-
-## 核验范围与单独执行检查
-
-- Apktool 始终使用 `b -f`，避免只改版本字段时复用旧 Manifest 缓存。
-- 资源保真不可省略：既有资源 ID 和配置必须保留，只有既定最近任务样式布局允许增加堆叠入口；未知差异导致失败。
-- 使用 `zipalign -P 16` 对齐，并在签名前后分别检查。通过 ZIP 16 KB 对齐不等于完成 16 KB 设备运行或 JNI 内存安全验证。
-- 最终验证要求签名前后全部非签名 ZIP 成员解压内容一致，相对已验收基线的全部资源、原生库和 assets 一致；这不等于整个 APK 文件逐字节或哈希相同。
-- 代码边界要求原厂类保留，新增辅助主类和内部类严格符合各版本的明确清单，无已移除功能标记，相关方法声明可解析；260027 仅精确增加 INTERNET 和私有更新文件提供器，其余 Manifest 除版本外不变。当前清单由 `check-launcher-stack-only-apk.py` 维护；版本期望从源码取得，不从待测 APK 反推。
-
-以下命令可单独诊断，统一构建也会执行当前门禁：
-
-```powershell
-python tools/test-launcher-entry-selection.py
-python tools/test-launcher-entry-freshness.py
-python tools/test-launcher-entry-interaction-cancel.py
-python tools/test-launcher-entry-rotation.py
-python tools/test-launcher-dismiss-geometry.py
-python tools/test-launcher-dismiss-integration.py
-python tools/test-launcher-touch-target.py
-python tools/test-launcher-native-gesture.py
-python tools/test-launcher-home-stack-entry.py
-python tools/test-launcher-action-visibility.py
-python tools/test-launcher-side-actions.py
-python tools/test-launcher-card-long-press.py
-python tools/test-launcher-orbit-click.py
-python tools/test-launcher-stack-transition.py
-python tools/test-launcher-release-boundary.py
-python tools/test-launcher-thumbnail-continuity.py
 python tools/test-launcher-stack-controls.py
-python tools/test-launcher-stack-visual-continuity.py
-python tools/test-launcher-style-isolation.py
-python tools/test-launcher-focus-draw.py
-python tools/check-launcher-recents-smali.py src/smali_classes2/com/android/quickstep/views/RecentsView.smali
-python tools/check-xiaomi-recents-stack.py
-python tools/check-launcher-stack-only-apk.py --apk "<待测APK>" --report "<报告路径>"
+python tools/test-launcher-fan-settings.py
+python tools/test-launcher-thumbnail-edge.py
+python tools/test-launcher-online-updates.py
+python tools/check-launcher-stack-only-apk.py --apk "<APK路径>" --report "<报告路径>"
 ```
 
-审查历史 APK 时，边界检查须同时给出 `--expected-version-code 260004 --expected-version-name 26.9.260.908.2609081608`；只传其中一项会失败。`tools/verify-launcher-release.py --help` 提供独立成品验证参数。
+核验指定历史版本时，须同时提供 `--expected-version-code` 与 `--expected-version-name`。独立成品核验参数见 `python tools/verify-launcher-release.py --help`。
 
-`redmagic-launcher-evidence.py` 和 `test-launcher-evidence.py` 是本地历史快照解析与测试工具，不控制设备。早期页面管理、内存显示和模块图标编辑的测试不是当前独立桌面的构建门禁。未来如有资源修改，须先审查允许差异，再更新核验规则，不能直接关闭现有检查。
+## 发布、导出与安装边界
+
+发行 APK 与桌面独立更新清单统一放在 [lispacerelease Releases](https://github.com/liligit1815/lispacerelease/releases)，源码仓库不创建发行 Release。发布后须完整下载并核对身份，离线清单验证不能代替公开下载检查。
+
+可携带源码快照通过 `python tools/export-source.py` 导出，ZIP 与报告留在 `out/`，不包含 Git 历史或私有材料。日常提交使用 Git；忽略目录和固定输入的处理见 [GitHub 与存储说明](GITHUB_AND_STORAGE.md)。
+
+发行证书不同于 ZTE 原厂证书，构建与签名恢复不提供安装、提权或替换系统桌面流程。已有同签名升级与首次替换原厂的条件不同，详见 [安装兼容性说明](INSTALL_COMPATIBILITY.md)。固件/特权条件的安装前自动预检和完整恢复演练尚未实现。

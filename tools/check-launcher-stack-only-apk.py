@@ -45,6 +45,7 @@ RELEASE_260027_CLASSES = {UPDATE_PROTOCOL_CLASS + ";", UPDATE_PROVIDER_CLASS + "
     UPDATE_CLASS + suffix + ";" for suffix in (
         "", "$1", "$Release", "$SettingClick", "$Dismiss", "$Choice", "$Worker", "$Ui", "$Lifecycle")
 }
+RELEASE_260029_CLASSES = {ORBIT_SETTINGS_CLASS + "$StackPreview;"}
 RELEASE_260024_CLASSES = {
     FAN_SETTINGS_CLASS + suffix + ";" for suffix in ("", "$FanPreview")
 } | {FAN_GEOMETRY_CLASS + ";", FAN_CHROME_CLASS + ";"} | {
@@ -450,6 +451,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
         expected_classes.update(RELEASE_260024_CLASSES)
     if expected["versionCode"] >= 260027:
         expected_classes.update(RELEASE_260027_CLASSES)
+    if expected["versionCode"] >= 260029:
+        expected_classes.update(RELEASE_260029_CLASSES)
     if expected["versionCode"] < 260015:
         expected_classes.discard(STACK_CLASS + "$ActionReveal;")
     if expected["versionCode"] < 260014:

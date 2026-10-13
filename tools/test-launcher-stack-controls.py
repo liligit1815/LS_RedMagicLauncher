@@ -17,7 +17,7 @@ def member(pattern):
 
 members = '\n'.join(member(r'(?:public|private) static [^\n]+ ' + name + r'\(') for name in (
     'clampScalePercent', 'getScalePreferences', 'readScalePercent', 'scaleKey', 'readStyleScalePercent', 'loadUserScale', 'loadOverviewScale', 'orbitSecondary',
-    'configureScaleControl', 'configureStyleScaleControl', 'getStackIconAlpha', 'updateStackIcons', 'getLiveRecentsScale',
+    'configureScaleControl', 'configureStyleScaleControl', 'refreshStyleCardTheme', 'getStackIconAlpha', 'updateStackIcons', 'getLiveRecentsScale',
     'normalizeLiveAppliedScale', 'styleScaleSlider', 'applyStackIconBlur', 'clamp',
     'smoothVisibility', 'getFullyVisibleFactor', 'getActionsVisibleFactor',
     'normalizeHomeEntryScale', 'normalizeHomeEntryTranslation'))
@@ -54,10 +54,11 @@ public class StackControlsTest {
     static class Configuration {Locales getLocales(){return new Locales();}}
     static class Resources {Metrics metrics=new Metrics();Metrics getDisplayMetrics(){return metrics;}Configuration getConfiguration(){return new Configuration();}}
     static class Context {
-        static final int MODE_PRIVATE=0;final SharedPreferences prefs;Resources resources=new Resources();
+        static final int MODE_PRIVATE=0;final SharedPreferences prefs;Resources resources=new Resources();boolean night;
         Context(SharedPreferences p){prefs=p;} Context getApplicationContext(){return this;}
         SharedPreferences getSharedPreferences(String name,int mode){return prefs;}
-        Resources getResources(){return resources;}Object getDrawable(int id){return null;}int getColor(int id){return id;}
+        Resources getResources(){return resources;}Object getDrawable(int id){return id+":"+night;}
+        int getColor(int id){return id==0x7f060752?(night?0xffeeeeee:0xff000000):id==0x7f060574?0xff8c8c8c:id;}
     }
     static class View {
         static final int VISIBLE=0,INVISIBLE=4,GONE=8;
@@ -66,6 +67,7 @@ public class StackControlsTest {
         Object getParent(){return parent;}void setTag(Object t){tag=t;}void setVisibility(int n){visibility=n;}int getVisibility(){return visibility;}
         View findViewWithTag(Object wanted){return wanted.equals(tag)?this:null;}
         int getWidth(){return w;}int getHeight(){return h;}void setContentDescription(String s){}
+        void setPadding(int a,int b,int c,int d){}
         RenderEffect effect;int effectWrites;
         void setRenderEffect(RenderEffect e){effect=e;effectWrites++;}
         void getDrawingRect(Rect r){r.left=r.top=0;r.right=w;r.bottom=h;}
@@ -78,10 +80,11 @@ public class StackControlsTest {
         void addView(View v,LayoutParams p){addView(v,children.size(),p);}
         void addView(View v,int i,LayoutParams p){children.add(i,v);v.parent=this;}
         int indexOfChild(View v){return children.indexOf(v);}
+        int getChildCount(){return children.size();}View getChildAt(int i){return children.get(i);}
         View findViewWithTag(Object tag){if(tag.equals(this.tag))return this;for(View v:children){View found=v.findViewWithTag(tag);if(found!=null)return found;}return null;}
     }
     static class TextView extends View {
-        String text;TextView(Context c){super(c);}void setTextSize(int n){}void setTextColor(int n){}void setText(String s){text=s;}
+        String text;int color;TextView(Context c){super(c);}void setTextSize(int n){}void setTextColor(int n){color=n;}void setText(String s){text=s;}
         Layout layout=new Layout();Layout getLayout(){return layout;}void setGravity(int n){}
         int getCompoundPaddingLeft(){return 0;}int getTotalPaddingTop(){return 0;}
     }
@@ -173,7 +176,7 @@ public class StackControlsTest {
                 ScaleControl c=control(a,style);
                 check(c.visibility==(style==selected?View.VISIBLE:View.GONE),"another style exposes its slider");
                 check(c.parent==(style==3?a.card:style==4?a.orbitCard:a.fanCard),"slider attached outside its own card");
-                check(c.parent.children.size()==1,"style reselect duplicated a slider");
+                check(c.parent.children.size()==2,"style reselect duplicated a slider/signature");
                 check(slider(c).max==50&&slider(c).thumb.color==0xff8ddbf6&&slider(c).minHeight==48,"new slider differs from stack styling/range");
             }
             check(prefs.writes==before,"programmatic refresh persisted a value");
@@ -336,8 +339,37 @@ public class StackControlsTest {
         check(prefs.writes==savedWrites,"orbit testing wrote scale preferences");
         prefs.stored=100;loadOverviewScale(context,null);
     }
+    static void themedControls(){
+        SharedPreferences prefs=new SharedPreferences();prefs.stored=88;
+        prefs.values.put(SCALE_ORBIT_KEY,120);prefs.values.put(SCALE_FAN_KEY,100);
+        Context context=new Context(prefs);scalePreferences=null;Activity a=new Activity(context);
+        configureScaleControl(a,5);int writes=prefs.writes;
+        for(boolean night:new boolean[]{false,true,false,true}){
+            context.night=night;configureScaleControl(a,5);configureScaleControl(a,5);
+            for(int style=3;style<=5;style++){
+                LinearLayout card=style==3?a.card:style==4?a.orbitCard:a.fanCard;
+                TextView signature=(TextView)card.findViewWithTag(SCALE_SIGNATURE_TAG);
+                check(signature!=null&&"礼舟".equals(signature.text),"missing per-card signature");
+                check(signature.color==context.getColor(0x7f060574),"signature did not use OEM secondary text");
+                check(card.children.size()==2&&card.children.get(1)==signature,"refresh duplicated/moved footer");
+                check(card.background.equals(context.getDrawable(0x7f08098f)),"card retained old OEM surface");
+                ScaleControl control=control(a,style);int color=context.getColor(0x7f060752);
+                check(control.captionLabel.color==color&&control.valueLabel.color==color,"caption/value retained old theme");
+                for(TextView endpoint:control.limitLabels)check(endpoint.color==color,"range label retained old theme");
+                check(control.visibility==(style==5?View.VISIBLE:View.GONE),"theme refresh changed selection");
+            }
+            check(prefs.writes==writes&&readScalePercent(context)==88&&readStyleScalePercent(context,4)==120
+                    &&readStyleScalePercent(context,5)==100,"theme refresh wrote user scale preferences");
+        }
+        scalePreferences=null;Activity reopened=new Activity(context);configureScaleControl(reopened,3);
+        check("礼舟".equals(((TextView)reopened.card.findViewWithTag(SCALE_SIGNATURE_TAG)).text),"recreated Activity lost signature");
+        check(slider(control(reopened,3)).progress==18&&slider(control(reopened,4)).progress==50
+                &&slider(control(reopened,5)).progress==30,"recreated themed cards lost independent scales");
+        check(prefs.writes==writes,"recreated themed cards persisted defaults");
+        scalePreferences=null;
+    }
     public static void main(String[] args){
-        independentControls();independentGeometry();
+        independentControls();independentGeometry();themedControls();
         SharedPreferences prefs=new SharedPreferences();Context context=new Context(prefs);
         Activity a=new Activity(context);configureScaleControl(a,1);
         ScaleControl c=control(a);check(c.visibility==View.GONE,"normal exposes scale control");
@@ -367,7 +399,7 @@ public class StackControlsTest {
         }
         slider(c).userChange(35);configureScaleControl(a,2);
         check(c.visibility==View.GONE&&readScalePercent(context)==105,"style change loses scale");
-        configureScaleControl(a,3);check(((LinearLayout)a.card).children.size()==1,"duplicate control after style toggles");
+        configureScaleControl(a,3);check(((LinearLayout)a.card).children.size()==2,"duplicate control/signature after style toggles");
         scalePreferences=null;Activity reopened=new Activity(new Context(prefs));configureScaleControl(reopened,3);
         check(slider(control(reopened)).progress==35,"recreated settings lost stored scale");
         prefs.stored=-100;check(readScalePercent(context)==70,"lower bound");prefs.stored=1000;check(readScalePercent(context)==120,"upper bound");

@@ -3,7 +3,7 @@
 .source "LsOnlineUpdates.java"
 
 # interfaces
-.implements Landroidx/preference/Preference$e;
+.implements Landroid/view/View$OnClickListener;
 
 
 # annotations
@@ -33,7 +33,7 @@
 .method constructor <init>(Landroid/app/Activity;)V
     .locals 1
 
-    .line 376
+    .line 400
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     new-instance v0, Ljava/lang/ref/WeakReference;
@@ -47,10 +47,10 @@
 
 
 # virtual methods
-.method public f(Landroidx/preference/Preference;)Z
-    .locals 2
+.method public onClick(Landroid/view/View;)V
+    .locals 1
 
-    .line 378
+    .line 402
     iget-object p1, p0, Lcom/android/quickstep/views/LsOnlineUpdates$SettingClick;->activity:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {p1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -59,20 +59,34 @@
 
     check-cast p1, Landroid/app/Activity;
 
-    .line 379
-    const/4 v0, 0x1
-
+    .line 403
     if-eqz p1, :cond_0
 
-    new-instance v1, Ljava/lang/ref/WeakReference;
+    invoke-virtual {p1}, Landroid/app/Activity;->isFinishing()Z
 
-    invoke-direct {v1, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+    move-result v0
 
-    invoke-static {v1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$202(Ljava/lang/ref/WeakReference;)Ljava/lang/ref/WeakReference;
+    if-nez v0, :cond_0
 
-    invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$300(Z)V
+    invoke-virtual {p1}, Landroid/app/Activity;->isDestroyed()Z
 
-    .line 380
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 404
+    new-instance v0, Ljava/lang/ref/WeakReference;
+
+    invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+
+    invoke-static {v0}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$202(Ljava/lang/ref/WeakReference;)Ljava/lang/ref/WeakReference;
+
+    .line 405
+    const/4 p1, 0x1
+
+    invoke-static {p1}, Lcom/android/quickstep/views/LsOnlineUpdates;->access$300(Z)V
+
+    .line 407
     :cond_0
-    return v0
+    return-void
 .end method
