@@ -11,9 +11,9 @@
 
 ## 更新清单与协议
 
-客户端唯一更新地址为 [堆叠桌面公开清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)。[完整 JSON 示例](examples/stacked-desktop.json) 保存公开清单快照，供维护者核对结构，客户端不读取本工程示例文件。
+客户端唯一更新地址为 [堆叠桌面公开清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)。清单由最终签名APK及实际Release附件生成，不在源码仓库保存过期发行快照。
 
-[统一发布工具](https://github.com/liligit1815/lispacerelease/blob/main/tools/publish.py) 从最终签名 APK 生成身份、大小、哈希和附件地址，并读取更新说明。发布时不能复制旧包的字段；操作入口见 [README 发布流程](../README.md#后续版本如何发布并提供在线更新)。
+[两个系列同批次发布工具](https://github.com/liligit1815/lispacerelease/blob/main/tools/publish-launcher-batch.py) 从最终签名 APK 生成身份、大小、哈希和附件地址，并读取更新说明。发布时不能复制旧包的字段；操作入口见 [README 发布流程](../README.md#后续版本如何发布并提供在线更新)。
 
 | 字段 | 来源与要求 |
 | --- | --- |
@@ -45,7 +45,7 @@
 
 ## 发布后如何核验
 
-先通过签名构建，再同步更新仓库、运行 `publish.py --dry-run`、正式发布、再次同步与 `validate.py`，然后进行公开下载和设备升级检查。发布工具先公开并核验 Release 附件，再写入独立清单；清单写入是客户端发现新版的生效点。中断后先读取公开清单，再用原 APK、原说明和相同参数重试。
+先通过签名构建，再同步更新仓库、运行 `publish-launcher-batch.py --dry-run`、同批次正式发布、再次同步与 `validate.py`，然后进行公开下载和设备升级检查。发布工具先公开并核验 Release 附件，再写入独立清单；清单写入是客户端发现新版的生效点。中断后先读取公开清单，再用原 APK、原说明和相同参数重试。
 
 ### 公开下载检查
 
@@ -76,3 +76,7 @@ if ($LASTEXITCODE -ne 0) { throw '公开在线核验失败，请查看报告' }
 `QuickstepLauncher.onResume` 通过 `LsOnlineUpdates.onHomeResume` 处理每日前台检查；`RecentAppStyleActivity` 通过 `LsOnlineUpdates.attachRecentStyles` 在样式页面底部加入“检测更新”按钮，复用原厂卡片资源。更新确认使用系统弹窗。
 
 Manifest 允许差异限定为版本、`INTERNET` 与精确配置的私有更新提供器。代码类与方法声明有固定边界，原厂资源、原生库、assets 及签名前后非签名成员继续核验。主机回归覆盖协议、限额、节流、文件身份、前台有效性与授权续装，设备行为按实际场景另行记录。
+
+## 当前批次
+
+[本批Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260029-10-250001) 的11安装包为 `堆叠桌面11-260029.apk`。11清单保持 `stacked-desktop`，10清单使用自己的 `stacked-desktop-redmagic10`；两个清单在同一Git提交更新，其他软件不受影响。

@@ -1,67 +1,45 @@
-# LS_RedMagicLauncher · 红魔桌面修改版
+# LS_RedMagicLauncher · 红魔11系列
 
-基于红魔原厂桌面 `com.zte.mifavor.launcher` 维护的独立修改工程，提供堆叠、环绕、扇形最近任务样式和软件内在线更新。
+本分支 `codex/redmagic-11` 维护红魔11原厂桌面及修改版。红魔10由 [codex/redmagic-10](https://github.com/liligit1815/LS_RedMagicLauncher/tree/codex/redmagic-10) 独立维护；两个系列使用自己的源码、原厂输入、框架和构建输出。
 
-当前版本：**260029**；显示版本：`26.9.260.908.2609081608`。
+当前内部版本 **260029**，显示版本 `26.9.260.908.2609081608`；下一轮独立功能版本为260030。本轮整理源码和发行流程，APK内容及版本未改动。
 
-[下载安装包](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-v260029/stacked-desktop-260029.apk) · [GitHub Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-v260029) · [在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)
+[下载堆叠桌面11-260029.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260029-10-250001/11-260029.apk) · [两个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260029-10-250001) · [11在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)
 
 APK SHA-256：`77a569bdf89747692e419afb6ce0932103c34015d53bccdc14296c3042682e5b`。
 
-## 本次更新
+GitHub会过滤附件文件名的中文部分；两个附件使用完整中文显示标签，实际下载文件名为 `11-260029.apk`、`10-250001.apk`。更新说明按显示标签标识对应系列。
 
-1. 修复堆叠、环绕样式卡片左右竖线，以及扇形样式卡片四周白线。
-2. 堆叠、环绕、扇形选项卡适配光亮和暗夜模式，与原厂标准、宫格样式保持一致。
-3. 三种自定义样式选项卡新增“礼舟”字样，保留各样式独立缩放。
-4. 将“检测更新”移至“最近应用界面样式”页面底部，支持明暗模式切换与在线更新。
+## 更新内容
 
-## 使用
+红魔11系列安装堆叠桌面11-260029.apk
+红魔10系列安装堆叠桌面10-250001.apk
+其它机型自测。
 
-在“桌面设置 → 最近应用界面样式”选择标准、宫格、堆叠、环绕或扇形。三种自定义样式分别保存 70%–120% 的卡片比例，支持点击打开、滑动浏览、删除及长按侧边操作。
+## 当前功能
 
-“检测更新”位于同一页面底部。桌面回到前台时每天自动检查一次；发现更高内部版本后显示更新说明，由用户确认下载并调用系统安装器。下载前后核对版本、包名、大小、SHA-256 与既有签名。
+在“桌面设置 → 最近应用界面样式”选择标准、宫格、堆叠、环绕或扇形。三种自定义样式分别保存70%–120%的卡片比例，支持点击、滑动浏览、删除和长按侧边操作，包含进入、退出和启动动画。
 
-`260027` 及以上版本支持在线更新；更早版本需要先手动安装支持在线更新的版本。首次替换原厂桌面和同签名覆盖升级的要求见 [安装说明](docs/INSTALL_COMPATIBILITY.md)。
+260029保留最近任务截图边缘修复、三种自定义选项卡明暗主题和“礼舟”署名。检测更新位于样式页底部，支持每天前台自动检查、确认下载、版本及签名校验和系统安装器确认。260027及以上版本支持11系列在线更新，更早版本需要先手动安装支持更新的版本。
 
-## 源码与构建
+当前身份、验收及限制见 [开发状态](docs/DEVELOPMENT_STATUS.md)；首次替换原厂桌面与覆盖升级见 [安装说明](docs/INSTALL_COMPATIBILITY.md)。安装前自动兼容性预检和完整恢复演练尚未完成。
 
-本仓库保存 Apktool 工程、辅助 Java、构建工具及固定构建输入。编译输出、中间安装包、日志、设备资料、旧版过程说明和私有签名保留在本地忽略目录。发行 APK 统一保存在 [lispacerelease Releases](https://github.com/liligit1815/lispacerelease/releases)。
+## 独立构建
 
-需要 Python 3.10+、完整 JDK、Android SDK Platform 36 和 Build Tools 36.0.0；配置 `JAVA_HOME` 并将 JDK 的 `bin` 加入 PATH。
+需要Python3.10+、JDK21、Android SDK Platform36和Build Tools36.0.0。设置JAVA_HOME并将JDK的bin加入PATH。
 
 ```powershell
-git clone https://github.com/liligit1815/LS_RedMagicLauncher.git
+git clone --branch codex/redmagic-11 https://github.com/liligit1815/LS_RedMagicLauncher.git
 cd LS_RedMagicLauncher
 python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 ```
 
-正式升级包使用既有签名。维护者从有权限访问的私有签名仓库恢复至本工程 `.signing/` 后，去掉 `--unsigned` 构建。版本取自 `src/apktool.yml`；固定基线为 `baselines/launcher-260005.apk`，不得用历史输出替代。详见 [构建说明](docs/BUILDING.md) 与 [源码维护约定](AGENTS.md)。
+源码保存Apktool工程、辅助Java及同步Smali、必要工具和固定输入。`original.apk`、`framework/cache/1.apk`、固定260005验收基线是必要构建输入；编译输出、日志、过期说明、设备资料和私有签名仅留在本地忽略目录。正式签名使用本工程恢复后的既有升级身份，不生成新密钥。版本只取src/apktool.yml。
+
+[构建与签名恢复](docs/BUILDING.md) · [源码边界](docs/GITHUB_AND_STORAGE.md) · [环绕实现](docs/ORBIT_CARDS.md) · [扇形实现](docs/FAN_CARDS.md)
 
 ## 后续版本如何发布并提供在线更新
 
-每轮功能变更加一次 `versionCode`，同轮修正与重复构建不重复加号；未指定新显示版本时保留 `versionName`。下一轮独立功能版本为 `260030`。
+分别在两个系列工作树完成签名构建，再使用统一发行仓库的 `tools/publish-launcher-batch.py` 核验并同批次发布。预检查参数包括两个最终APK、两个独立源码根目录、SDK、JDK及 `--dry-run`；核对后去掉 `--dry-run`。发布工具读取实际版本生成中文附件名和三行更新说明，核验全部附件后公开Release，再于同一Git提交更新11、10各自清单。详见 [发行仓库流程](https://github.com/liligit1815/lispacerelease#两个系列桌面同批次发布) 和 [在线更新说明](docs/ONLINE_UPDATES.md)。
 
-发布工具需要 Python 3.11+。同步独立更新仓库后，使用已完成签名构建的最终 APK 和当前更新说明：
-
-```powershell
-$releaseRoot = '<lispacerelease克隆目录>'
-$apkPath = '<构建报告artifact.path指向的最终APK>'
-$notesPath = Join-Path (Get-Location) 'docs/RELEASE_260029.md'
-
-git -C $releaseRoot pull --ff-only
-python "$releaseRoot/tools/publish.py" --app stacked-desktop --apk $apkPath `
-    --notes-file $notesPath --sdk $env:ANDROID_HOME --java-home $env:JAVA_HOME --dry-run
-```
-
-核对预检查结果后，以相同参数去掉 `--dry-run` 正式发布，再同步更新仓库。工具先上传并公开 APK，随后更新独立的 `updates/stacked-desktop.json`；清单更新是客户端发现新版的生效点。同版本不得换包或换签名，其他软件的清单不受影响。
-
-发布后执行 `tools/check-launcher-online-release.py`，传入 `--expected-version-code` 和 `--expected-apk`，核对匿名读取的清单与公开 APK。详细参数、协议和失败处理见 [在线更新说明](docs/ONLINE_UPDATES.md)。
-
-## 维护文档
-
-- [当前开发状态与版本身份](docs/DEVELOPMENT_STATUS.md)
-- [构建与签名恢复](docs/BUILDING.md)
-- [源码、固定输入与本地材料边界](docs/GITHUB_AND_STORAGE.md)
-- [环绕卡片实现](docs/ORBIT_CARDS.md) · [扇形卡片实现](docs/FAN_CARDS.md)
-
-这是基于 OEM APK 反编译输入维护的修改工程，不是红魔官方完整原生开发仓库；原厂代码、资源和第三方组件保留各自权利归属。
+这是基于OEM APK反编译输入维护的修改工程；原厂代码、资源和第三方组件保留各自权利归属。

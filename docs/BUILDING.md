@@ -41,7 +41,7 @@
 设置 `JAVA_HOME` 并把 JDK 的 `bin` 加入 PATH，保证 `java`、`javac` 可用；SDK 通过 `--sdk` 指定。首次克隆可先完成未签名构建：
 
 ```powershell
-git clone https://github.com/liligit1815/LS_RedMagicLauncher.git
+git clone --branch codex/redmagic-11 https://github.com/liligit1815/LS_RedMagicLauncher.git
 cd LS_RedMagicLauncher
 python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 ```

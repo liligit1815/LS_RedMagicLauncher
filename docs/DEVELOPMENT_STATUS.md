@@ -16,7 +16,7 @@
 
 发行证书的完整权威值同时保存在 [公开证书](update-signing-certificate.pem) 与更新清单中。
 
-[Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-v260029) · [APK](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-v260029/stacked-desktop-260029.apk) · [在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)
+[Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260029-10-250001) · [APK](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260029-10-250001/11-260029.apk) · [在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)
 
 ## 当前实现
 
