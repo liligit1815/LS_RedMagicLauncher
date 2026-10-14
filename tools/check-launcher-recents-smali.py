@@ -8,7 +8,7 @@ from pathlib import Path
 SCROLL_METHOD = ".method protected onScrollChanged(IIII)V"
 OVERVIEW_METHOD = ".method public setOverviewStateEnabled(Z)V"
 PAGE_SCROLLS_METHOD = (
-    ".method protected getPageScrolls([IZLcom/android/launcher3/V4$c;)Z"
+    ".method protected getPageScrolls([IZLcom/android/launcher3/PagedView$ComputePageScrollsLogic;)Z"
 )
 
 

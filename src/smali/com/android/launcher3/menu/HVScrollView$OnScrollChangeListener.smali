@@ -1,0 +1,19 @@
+.class public interface abstract Lcom/android/launcher3/menu/HVScrollView$OnScrollChangeListener;
+.super Ljava/lang/Object;
+.source "HVScrollView.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/launcher3/menu/HVScrollView;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x609
+    name = "OnScrollChangeListener"
+.end annotation
+
+
+# virtual methods
+.method public abstract onScrollChange(Lcom/android/launcher3/menu/HVScrollView;IIII)V
+.end method

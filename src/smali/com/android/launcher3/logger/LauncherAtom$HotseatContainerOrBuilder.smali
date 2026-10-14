@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -18,14 +18,8 @@
 
 
 # virtual methods
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
-.end method
-
 .method public abstract getIndex()I
 .end method
 
 .method public abstract hasIndex()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

@@ -18,18 +18,18 @@ def body(path, header):
     return text.split(header, 1)[1].split('.end method', 1)[0]
 
 
-recents_path = 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali'
+recents_path = 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali'
 smali_methods = {
     'drawChild': body(recents_path, '.method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z'),
-    'prepare': body('src/smali/f2/h.smali', '.method public d(').split('    :goto_8', 1)[0] + '\n:goto_8\nreturn-void\n:cond_15\nreturn-void',
-    'exitAlpha': body(recents_path, '.method public setExitAnimTaskAlpha(II)V'),
+    'prepare': body('src/smali_classes3/com/android/launcher3/uioverrides/states/QuickstepAtomicAnimationFactory.smali', '.method public prepareForAtomicAnimation(').split('    :goto_8', 1)[0] + '\n:goto_8\nreturn-void\n:cond_14\nreturn-void',
+    'exitAlpha': body(recents_path, '.method public setTaskCountAlpha(II)V'),
     'offsets': body(recents_path, '.method private updatePageOffsets()V'),
     'resistance': body(recents_path, '.method protected setTaskViewsResistanceTranslation(F)V'),
-    'adjacent': body('src/smali_classes2/com/android/quickstep/views/RecentsView$4.smali', '.method public setValue(Lcom/android/quickstep/views/RecentsView;F)V'),
-    'adjacentGet': body(recents_path, '.method static bridge synthetic n1('),
-    'adjacentSet': body(recents_path, '.method static bridge synthetic B1('),
-    'offsetCall': body(recents_path, '.method static bridge synthetic d2('),
-    'listener': body('src/smali/com/android/launcher3/uioverrides/U.smali', '.method public i(Lcom/android/launcher3/V3;LQ1/f;Lcom/android/launcher3/anim/V;)V').split('    :cond_0', 1)[0] + '\n:cond_0\nreturn-void',
+    'adjacent': body('src/smali_classes3/com/android/quickstep/views/RecentsView$4.smali', '.method public setValue(Lcom/android/quickstep/views/RecentsView;F)V'),
+    'adjacentGet': body(recents_path, '.method static bridge synthetic -$$Nest$fgetmAdjacentPageHorizontalOffset('),
+    'adjacentSet': body(recents_path, '.method static bridge synthetic -$$Nest$fputmAdjacentPageHorizontalOffset('),
+    'offsetCall': body(recents_path, '.method static bridge synthetic -$$Nest$mupdatePageOffsets('),
+    'listener': body('src/smali_classes3/com/android/launcher3/uioverrides/RecentsViewStateController.smali', '.method setStateWithAnimationInternal(Lcom/android/launcher3/LauncherState;Lcom/android/launcher3/states/StateAnimationConfig;Lcom/android/launcher3/anim/PendingAnimation;)V').split('    :native_stack_exit_listener_done', 1)[0] + '\n:native_stack_exit_listener_done\nreturn-void',
 }
 
 
@@ -143,7 +143,7 @@ public class StackTransitionTest {
     static class RecentsOrientedState {int touch,display;int getTouchRotation(){return touch;}int getDisplayRotation(){return display;}}
     static class TaskViewSimulator {
         Rect mThumbnailPosition=new Rect();RecentsOrientedState orientation=new RecentsOrientedState();
-        RecentsOrientedState getOrientationState(){return orientation;}
+        RecentsOrientedState getOrientationState(){return orientation;}Rect getNativeStackThumbnailPosition(){return mThumbnailPosition;}
     }
     static class TaskAnimationManager {static boolean SHELL_TRANSITIONS_ROTATION;}
     static class SurfaceTransaction {
@@ -153,13 +153,13 @@ public class StackTransitionTest {
         }
         static class MockProperties extends SurfaceProperties {}
     }
-    static class TaskContainer {View snapshot;Task task=new Task();TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}Task getTask(){return task;}}
     static class TaskView extends View {
+    static class TaskContainer {View snapshot;Task task=new Task();TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}Task getTask(){return task;}}
         float drawAlpha=1,stackAlpha=1;
         float getStableAlpha(){return alpha;}
         void setStableAlpha(float v){alpha=v;drawAlpha=LsStackTransition.drawStableAlpha(this,v)*stackAlpha;}
         RecentsView recents;float clip=-1;boolean skipAlpha;int[] ids={23};List<TaskContainer> containers=new ArrayList<>();
-        TaskView(RecentsView r){recents=r;parent=r;View snapshot=new View();snapshot.parent=this;containers.add(new TaskContainer(snapshot));}
+        TaskView(RecentsView r){recents=r;parent=r;View snapshot=new View();snapshot.parent=this;containers.add(new TaskView.TaskContainer(snapshot));}
         RecentsView getRecentsView(){return recents;}List<TaskContainer> getTaskContainers(){return containers;}
         int[] getTaskIds(){return ids;}
         Rect getNativeStackClipBounds(){return clip<0?null:new Rect(0,0,(int)Math.ceil(clip),height);}
@@ -241,10 +241,10 @@ public class StackTransitionTest {
         static boolean zero(Object v){return v==null||(v instanceof Number&&((Number)v).doubleValue()==0);}
         Object field(String name){
             if(name.endsWith("->nativeStackDrawPass:I"))return r.drawPass;
-            if(name.endsWith("->g:J"))return 400L;
-            if(name.endsWith("->g:Z"))return 1;
-            if(name.endsWith("->p3:Z"))return 0;
-            if(name.endsWith("->h:Lcom/android/quickstep/views/RecentsView;"))return r;
+            if(name.endsWith("->duration:J"))return 400L;
+            if(name.endsWith("->hasGestures:Z"))return 1;
+            if(name.endsWith("->isTaskbarPresent:Z"))return 0;
+            if(name.endsWith("->mRecentsView:Lcom/android/quickstep/views/RecentsView;"))return r;
             if(name.endsWith("->mAdjacentPageHorizontalOffset:F"))return r.adjacent;
             if(name.endsWith("->mTaskModalness:F"))return 0f;
             if(name.endsWith("->mRunningTaskViewId:I")||name.endsWith("->mOffsetMidpointIndexOverride:I"))return -2;
@@ -269,14 +269,14 @@ public class StackTransitionTest {
                     // TaskView; desktop entry has no running surface to hand off.
                     if(r.fromApp)for(TaskView task:r.tasks)task.x+=43;
                     return null;
-                case "C":case "B":case "x":case "m":return 0;
-                case "y":return r;
-                case "y0":return 250;
+                case "enableGridOnlyOverview":case "get":return 0;
+                case "getNavigationMode":return r;
+                case "getTaskbarToHomeDuration":return 250;
                 case "I3":return oemSkip?1:0;
-                case "i":return "interpolator";
-                case "f":return null;
+                case "clampToProgress":return "interpolator";
+                case "setInterpolator":return null;
                 case "c":return 1; // disabled view animations must still attach cancellation
-                case "g":listener=(Animator.AnimatorListener)a[1];return null;
+                case "addListener":listener=(Animator.AnimatorListener)a[1];return null;
                 case "e":case "<init>":case "updateCurveProperties":case "runActionOnRemoteHandles":return null;
                 case "min":return spec.endsWith(")F")?Math.min(f(a[0]),f(a[1])):Math.min(((Number)a[0]).longValue(),((Number)a[a.length==4?2:1]).longValue());
                 case "max":return Math.max(((Number)a[0]).longValue(),((Number)a[a.length==4?2:1]).longValue());
@@ -286,15 +286,15 @@ public class StackTransitionTest {
                 case "showAsGrid":return r.grid?1:0;
                 case "getNextPage":case "getCurrentPage":return r.page;
                 case "getTaskViewCount":case "getChildCount":return r.tasks.length;
-                case "getChildAt":case "getPageAt":return r.tasks[i(a[1])];
+                case "getChildAt":case "getPageAt":case "requireTaskViewAt":return r.tasks[i(a[1])];
                 case "isOnGridBottomRow":return Arrays.asList(r.tasks).indexOf(a[1])%2;
-                case "setExitAnimTaskAlpha":r.alphaCalls++;return run("exitAlpha",a);
+                case "setTaskCountAlpha":r.alphaCalls++;return run("exitAlpha",a);
                 case "setSkipContentAlphaChange":((TaskView)a[0]).skipAlpha=!zero(a[1]);return null;
                 case "setStableAlpha":((TaskView)a[0]).alpha=f(a[1]);return null;
                 case "snapToPage":r.snaps++;r.page=i(a[1]);r.scrollX=r.page*700;return 1;
-                case "n1":return run("adjacentGet",a);
-                case "B1":return run("adjacentSet",a);
-                case "d2":return run("offsetCall",a);
+                case "-$$Nest$fgetmAdjacentPageHorizontalOffset":return run("adjacentGet",a);
+                case "-$$Nest$fputmAdjacentPageHorizontalOffset":return run("adjacentSet",a);
+                case "-$$Nest$mupdatePageOffsets":return run("offsetCall",a);
                 case "updatePageOffsets":return run("offsets",a);
                 case "getInterpolation":return f(a[1]);
                 case "getFirstTaskViewInCarousel":return r.tasks[0];
@@ -351,7 +351,7 @@ public class StackTransitionTest {
                 if(op.startsWith("iget")){regs.put(v[0],field(v[2]));continue;}
                 if(op.startsWith("iput")){
                     if(v[2].contains("->mAdjacentPageHorizontalOffset:"))r.adjacent=f(regs.get(v[0]));
-                    else check(v[2].endsWith("->g:J")||v[2].endsWith("->mTaskViewsSecondaryTranslation:F"),"unhandled write "+line);
+                    else check(v[2].endsWith("->duration:J")||v[2].endsWith("->mTaskViewsSecondaryTranslation:F"),"unhandled write "+line);
                     continue;
                 }
                 if(op.equals("check-cast"))continue;
@@ -371,7 +371,8 @@ public class StackTransitionTest {
             }
             throw new AssertionError("Smali did not return: "+name);
         }
-        void prepare(String from,String to){run("prepare",r,"Lcom/android/launcher3/V3;->"+from+":Lcom/android/launcher3/V3;","Lcom/android/launcher3/V3;->"+to+":Lcom/android/launcher3/V3;",r);}
+        String state(String alias){return alias.equals("v")?"OVERVIEW":alias.equals("z")?"OVERVIEW_SPLIT_SELECT":alias.equals("p")?"NORMAL":alias;}
+        void prepare(String from,String to){run("prepare",r,"Lcom/android/launcher3/LauncherState;->"+state(from)+":Lcom/android/launcher3/LauncherState;","Lcom/android/launcher3/LauncherState;->"+state(to)+":Lcom/android/launcher3/LauncherState;",r);}
     }
     static RecentsView deck(int page,boolean landscape){
         RecentsView r=new RecentsView();r.page=page;r.scrollX=page*700;r.landscape=landscape;r.tasks=new TaskView[7];
@@ -426,8 +427,14 @@ public class StackTransitionTest {
             check(r.alphaCalls==1,"nonstack preparation lost OEM alpha branch");
             check(r.snaps==(page==0?0:1),"nonstack preparation lost OEM page snap");
             check(!LsStackTransition.isHomeExit(r),"nonstack Home transaction created");
-            if(page==5)check(r.tasks[0].alpha==0,"nonstack historical-card hiding changed");
-            if(skip)check(r.tasks[6].skipAlpha,"nonstack OEM skip-alpha handling changed");
+            // The ten-series native carousel hides four earlier cards at page 5;
+            // its grid page 5 still falls inside the first six-card window.
+            int hidden=page==5&&!grid?4:0;
+            for(int ordinal=0;ordinal<r.tasks.length;ordinal++){
+                check(r.tasks[ordinal].alpha==(ordinal<hidden?0:1),"OEM10 historical-card alpha changed");
+                check(r.tasks[ordinal].skipAlpha==(ordinal<hidden),"OEM10 hidden-card alpha ownership changed");
+            }
+            check(r.page==(page==5&&!grid?4:0),"OEM10 native snap target changed");
         }
         for(String[] states:new String[][]{{"p","p"},{"v","z"},{"z","v"}}){
             RecentsView r=deck(1,false);Smali vm=new Smali(r,true);vm.prepare(states[0],states[1]);
@@ -456,7 +463,7 @@ public class StackTransitionTest {
     static void homeExitCancellation(){
         for(boolean started:new boolean[]{false,true}){
             RecentsView r=deck(1,false);Smali vm=new Smali(r,true);float[] initial=appearance(r);
-            vm.prepare("v","p");vm.run("listener",r,"Lcom/android/launcher3/V3;->p:Lcom/android/launcher3/V3;",r,r);
+            vm.prepare("v","p");vm.run("listener",r,"Lcom/android/launcher3/LauncherState;->NORMAL:Lcom/android/launcher3/LauncherState;",r,r);
             check(vm.listener!=null,"state animator omitted Home cancellation listener");
             if(started)LsStackTransition.onOverviewStateChanged(r,false);
             for(TaskView t:r.tasks)t.x+=400;
@@ -546,7 +553,7 @@ public class StackTransitionTest {
             same(homeBounds(untouched,crop,rotation),clicked,"rebound task retained previous launch geometry");
             check(!LsStackTransition.beforeUpdate(r)&&!LsStackTransition.isLaunchSimulator(next),"rebound task retained transaction");
             r.stack=false;LsStackTransition.beginLaunch(task);check(!LsStackTransition.beforeUpdate(r),"nonstack launch affected");
-            r.stack=true;task.containers.add(new TaskContainer(new View()));LsStackTransition.beginLaunch(task);check(!LsStackTransition.beforeUpdate(r),"grouped OEM launch affected");
+            r.stack=true;task.containers.add(new TaskView.TaskContainer(new View()));LsStackTransition.beginLaunch(task);check(!LsStackTransition.beforeUpdate(r),"grouped OEM launch affected");
         }
     }
     static void fractionalLaunchClips(){
@@ -1018,7 +1025,7 @@ public class StackTransitionTest {
             if(excluded==1){f.r.fan=false;}
             if(excluded==2)f.snapshot.data.bitmap=new Bitmap(2688,1216);
             if(excluded==3)f.snapshot.data=null;
-            if(excluded==4)f.task.containers.add(new TaskContainer(new View()));
+            if(excluded==4)f.task.containers.add(new TaskView.TaskContainer(new View()));
             f.begin();f.frame(0);check(f.present(false).writes==0,"single-live handoff escaped fan/metadata/single-container guard");
             near(f.snapshot.alpha,.83f,"excluded style/metadata hid screenshot");LsStackTransition.clear(f.r);
         }
@@ -1087,54 +1094,67 @@ with tempfile.TemporaryDirectory(prefix='stack-transition-') as folder:
     subprocess.run(['java', '-cp', folder, 'StackTransitionTest'], check=True)
 
 
-task = body('src/smali_classes2/com/android/quickstep/views/TaskView.smali',
-            '.method public final launchWithAnimation()')
-alpha_body = body('src/smali_classes2/com/android/quickstep/views/TaskView.smali',
+task = body('src/smali_classes3/com/android/quickstep/views/TaskView.smali',
+            '.method public launchTaskAnimated()')
+alpha_body = body('src/smali_classes3/com/android/quickstep/views/TaskView.smali',
                   '.method private final applyNativeStackAlpha()V')
 assert alpha_body.index('->drawStableAlpha(') < alpha_body.index('mul-float/2addr'), 'normalize only the common fade before depth alpha'
 content_body = body(recents_path, '.method public setContentAlpha(F)V')
 assert content_body.index('iput p1, p0') < content_body.index('->onContentAlphaChanged('), 'invalidate with the new frame alpha'
-state_body = body('src/smali/com/android/launcher3/uioverrides/U.smali',
-                  '.method public i(Lcom/android/launcher3/V3;LQ1/f;Lcom/android/launcher3/anim/V;)V')
-content_anim = state_body.split('->CONTENT_ALPHA:', 1)[1]
-assert content_anim.index('->homeExitInterpolator(') < content_anim.index('->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)'), 'exit curve must reach the actual OEM content animator'
+state_body = body('src/smali_classes3/com/android/launcher3/uioverrides/BaseRecentsViewStateController.smali',
+                  '.method setStateWithAnimationInternal(Lcom/android/launcher3/LauncherState;Lcom/android/launcher3/states/StateAnimationConfig;Lcom/android/launcher3/anim/PendingAnimation;)V')
+content_property = body('src/smali_classes3/com/android/launcher3/uioverrides/RecentsViewStateController.smali', '.method getContentAlphaProperty()')
+assert '->CONTENT_ALPHA:' in content_property
+content_anim = state_body.split('->getContentAlphaProperty()', 1)[1].split('->getTaskModalnessProperty()', 1)[0]
+assert content_anim.index('->homeExitInterpolator(') < content_anim.index('->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)'), 'exit curve must reach the actual OEM content animator'
 dispatch_body = body(recents_path, '.method protected dispatchDraw(Landroid/graphics/Canvas;)V')
 assert ':cond_4\n    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsStackTransition;->drawHomeExit(' in dispatch_body
 draw_body = body(recents_path, '.method public drawNativeStackChildren(Landroid/graphics/Canvas;I)V')
 assert 'invoke-super {p0, p1}' in draw_body and '.catchall' in draw_body
 assert draw_body.count('iput v0, p0, Lcom/android/quickstep/views/RecentsView;->nativeStackDrawPass:I') == 2, 'normal and exceptional paths must reset filtering'
-assert task.index('->beginLaunch(') < task.index('->launchAsLiveTile(')
-assert task.count('->onLaunchResult(') == 2, 'both OEM failure results must release the transaction'
-assert '->launchAsStaticTile()' in task and '->launchAsLiveTile(' in task
-window = body('src/smali/com/android/quickstep/TaskViewUtils.smali',
+assert task.index('->beginLaunch(') < task.index('->startActivityFromRecents(')
+assert task.count('->onLaunchResult(') == task.count('return-object') == 4, 'every OEM10 launch outcome must release/retain the transaction'
+assert '->onTaskLaunchedInLiveTileMode(' in task and '->startActivityFromRecents(' in task
+window = body('src/smali_classes3/com/android/quickstep/TaskViewUtils.smali',
               '.method public static createRecentsWindowAnimator(')
 assert window.index('->beginLaunch(') < window.index('->isEndQuickSwitchCuj(')
 assert window.index('->bindLaunchSimulator(') < window.index('->launchListener(')
 assert '->fullScreenProgress:' in window and '->getFullScreenScale()' in window
 assert '->apply(Lcom/android/quickstep/util/TransformParams;Z)V' in window
-assert 'move-object/from16 v31, p1' in window and 'move-object/from16 v2, v31' in window, 'listener must retain TaskView before OEM reuses p1 for its snapshot View'
-assert window.index(':cond_13') < window.rindex('->launchSnapshotFrame('), 'current-page launches must register screenshot alignment too'
-assert window.index('Lcom/android/quickstep/A5;-><init>') < window.index('->launchSnapshotFrame('), 'shared snapshot geometry must run after the OEM thumbnail frame writer'
-simulator = body('src/smali_classes2/com/android/quickstep/util/TaskViewSimulator.smali',
+# OEM10 reuses p1 during the native thumbnail animation and v31 as a matrix
+# array. Both callbacks must read a dedicated copy of the original TaskView.
+original_task = re.findall(r'move-object/from16 (v\d+), p1', window)
+saved_task = max(original_task, key=lambda value: int(value[1:]))
+assert int(saved_task[1:]) >= 33, 'launch callbacks need a register outside the OEM temporary range'
+assert window.index('move-object/from16 ' + saved_task + ', p1') < window.index('move-object/from16 p1, v5'), 'save the TaskView before OEM argument reuse'
+assert window.count('move-object/from16 v0, ' + saved_task) == 2, 'listener and snapshot callback must both retain the original TaskView'
+assert window.index(':cond_10') < window.rindex('->launchSnapshotFrame('), 'current-page launches must register screenshot alignment too'
+assert window.index('Lcom/android/quickstep/TaskViewUtils$$ExternalSyntheticLambda3;-><init>') < window.index('->launchSnapshotFrame('), 'shared snapshot geometry must run after the OEM thumbnail frame writer'
+simulator = body('src/smali_classes3/com/android/quickstep/util/TaskViewSimulator.smali',
                  '.method public onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;Landroid/view/RemoteAnimationTarget;')
 assert simulator.index('->normalizeLiveEntryMatrix(') < simulator.index('->normalizeLaunchMatrix(') < simulator.index('->setMatrix(')
-assert '->isLaunchSimulator(' in simulator, 'reused live simulators can overwrite launch geometry'
-native_visibility = simulator.index('->onBuildTargetParams(Lcom/android/quickstep/util/SurfaceTransaction$SurfaceProperties;)V')
+# Unlike OEM11, this simulator has no second onBuildTargetParams callback.
+# Its launch pose must be the last geometry adjustment before the surface write.
+final_pose = simulator[simulator.index('->normalizeLaunchMatrix('):simulator.index('->setMatrix(')]
+assert '->adjustMatrixAndCrop(' not in final_pose and '->normalizeLiveEntryMatrix(' not in final_pose and '->onBuildTargetParams(' not in final_pose, 'reused live simulators can overwrite launch geometry'
 handoff = simulator.index('->onLaunchSurface(')
-assert native_visibility < simulator.rindex('->setWindowCrop(') < handoff < simulator.index('\n    :ls_launch_matrix_done\n'), 'handoff must share the final native surface transaction'
-assert 'iget-boolean v0, p0, Lcom/android/quickstep/util/TaskViewSimulator;->needHideSurface:Z' in simulator[native_visibility:handoff], 'handoff must honor the native visibility veto'
+assert simulator.index('->setMatrix(') < simulator.rindex('->setWindowCrop(') < simulator.index('->setCornerRadius(') < handoff, 'handoff must share the final native surface transaction'
+# This OEM has no upstream surface-hide flag or secondary build callback.
+# Capture its actual TransformParams target alpha before reusing p3 and pass it
+# to the handoff; the production JVM above tests alpha/geometry visibility gates.
+assert 'const/4 v0, 0x0' in simulator[simulator.index('->setCornerRadius('):handoff]
 assert simulator.index('->getTargetAlpha()F') < simulator.index('iget-object p3,'), 'capture native alpha before p3 is reused'
 assert 'invoke-static {p0, p1, v0, v4}' in simulator and 'SurfaceProperties;ZF)V' in simulator, 'pass original native target alpha to handoff'
-native_fade = window[window.index('\n    :cond_c\n'):window.index('\n    :goto_7\n')]
+native_fade = window[window.index('->TARGET_ALPHA:'):window.index('\n    :goto_7\n')]
 assert '->TARGET_ALPHA:' in native_fade and '0x3e4ccccd' in native_fade, 'regular task target fade must use native first-20-percent phase'
-assert 'const/4 v12, 0x0' in native_fade and 'const/high16 v13, 0x3f800000' in native_fade, 'regular target fade must retain explicit zero/one endpoints'
-thumbnail_path = 'src/smali_classes2/com/android/quickstep/views/TaskThumbnailViewDeprecated.smali'
+assert 'const/16 v22, 0x0' in native_fade and 'const/high16 v23, 0x3f800000' in native_fade, 'regular target fade must retain explicit zero/one endpoints'
+thumbnail_path = 'src/smali_classes3/com/android/quickstep/views/TaskThumbnailViewDeprecated.smali'
 own_data = body(thumbnail_path, '.method public getNativeStackThumbnailData()')
 bitmap_getter = body(thumbnail_path, '.method public getThumbnail()')
 assert '->mThumbnailData:' in own_data and '->mThumbnailData:' in bitmap_getter, 'bitmap and rotation metadata must share the displayed View data'
 assert 'return-object p0' in own_data and 'invoke-' not in own_data and 'iput-' not in own_data, 'metadata getter must remain a read-only field access'
-exit_body = body('src/smali_classes2/com/android/quickstep/views/LauncherRecentsView.smali',
-                 '.method public onStateTransitionComplete(Lcom/android/launcher3/V3;)V')
+exit_body = body('src/smali_classes3/com/android/quickstep/views/LauncherRecentsView.smali',
+                 '.method public onStateTransitionComplete(Lcom/android/launcher3/LauncherState;)V')
 assert exit_body.index('->reset()') < exit_body.index('->onExitComplete(')
 stack = (ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').read_text('utf-8')
 update = stack.split('public static void update(RecentsView recents)', 1)[1].split('private static void resetIfNeeded', 1)[0]

@@ -79,14 +79,13 @@ public class RecentsView {
  public boolean isFanStyle(){return style==5;}public boolean isNativeStackApplied(){return applied;}
  public com.android.quickstep.orientation.RecentsPagedOrientationHandler getPagedOrientationHandler(){return handler;}
 }""",
-    "com/android/quickstep/views/TaskContainer.java": """package com.android.quickstep.views;
-public class TaskContainer {
- public TaskView owner;public TaskView getTaskView(){return owner;}
- public android.view.View snapshot=new android.view.View();public android.widget.TextView title=new android.widget.TextView();
- public android.view.View getSnapshotView(){return snapshot;}public android.widget.TextView getTitleView(){return title;}
-}""",
     "com/android/quickstep/views/TaskView.java": """package com.android.quickstep.views;
 public class TaskView extends android.view.View {
+ public static class TaskContainer {
+  public TaskView owner;public TaskView getTaskView(){return owner;}
+  public android.view.View snapshot=new android.view.View();public android.widget.TextView title=new android.widget.TextView();
+  public android.view.View getSnapshotView(){return snapshot;}public android.widget.TextView getTitleView(){return title;}
+ }
  public RecentsView recents=new RecentsView();public float alpha=1f,scale=.19f;public int invalidates;
  public final java.util.ArrayList<TaskContainer> containers=new java.util.ArrayList<>();
  public final android.content.res.Resources resources=new android.content.res.Resources();
@@ -247,7 +246,27 @@ public final class FanChromeTest {
   LsFanChrome.refresh(t);LsFanChrome.titleChanged(t);LsFanChrome.updateTitle(t.containers.get(0),"Other style");
   check(t.invalidates==generation&&t.containers.get(0).title.text==null,"nonfan title/presentation hook changed native style");
  }
- public static void main(String[] args){geometry();isolationAndAlpha();names();refreshLifecycle();System.out.println("PASS "+checks+" production fan label geometry, asynchronous title and cached display-list lifecycle assertions");}
+ static void unloadTitles(){
+  for(int style:new int[]{1,2,3,4,5}){
+   TaskView t=new TaskView();t.recents.style=style;t.containers.get(0).title.text="Old task";
+   LsFanChrome.refresh(t);RecordedTask cache=new RecordedTask(t);Canvas old=cache.frame();int generation=t.invalidates;
+   LsFanChrome.clearTitle(t,null);check(t.invalidates==generation,"null legacy title changed parent");
+   LsFanChrome.clearTitle(t,t.containers.get(0).title);
+   if(style==5){
+    check(t.containers.get(0).title.text==null,"fan unload retained recycled task name");
+    check(t.invalidates==generation+1&&cache.frame().texts.isEmpty(),"fan unload replayed cached name");
+    LsFanChrome.updateTitle(t.containers.get(0),"Rebound task");
+    check(cache.frame().texts.get(0).value.equals("Rebound task"),"fan rebind did not replace cleared name");
+   }else{
+    check("Old task".contentEquals(t.containers.get(0).title.text),"fan cleanup changed native/other-style title");
+    check(t.invalidates==generation&&cache.frame()==old,"fan cleanup invalidated other-style presentation");
+   }
+  }
+  TaskView detached=new TaskView();detached.recents=null;int generation=detached.invalidates;
+  LsFanChrome.clearTitle(detached,detached.containers.get(0).title);
+  check("Clock".contentEquals(detached.containers.get(0).title.text)&&detached.invalidates==generation,"detached task title changed");
+ }
+ public static void main(String[] args){geometry();isolationAndAlpha();names();refreshLifecycle();unloadTitles();System.out.println("PASS "+checks+" production fan label geometry, asynchronous title, unload/rebind and cached display-list lifecycle assertions");}
 }
 """
 
@@ -262,7 +281,7 @@ with tempfile.TemporaryDirectory(prefix="launcher-fan-chrome-") as folder:
                     *map(str, work.rglob("*.java")), str(SOURCE)], check=True)
     subprocess.run(["java", "-cp", str(work), "FanChromeTest"], check=True)
 
-task = (ROOT / "src/smali_classes2/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
+task = (ROOT / "src/smali_classes3/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
 draw = task.split(".method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z", 1)[1].split(".end method", 1)[0]
 hook = "Lcom/android/quickstep/views/LsFanChrome;->draw("
 assert draw.count(hook) == 2
@@ -276,8 +295,15 @@ transform = task.split('.method public final setNativeStackTransform(FFFFF)V', 1
 assert transform.rindex('->refresh(') > transform.index(':native_stack_transform_done'), 'property-only frames must refresh label recording even when transform values are unchanged'
 old_title = task.split('.method private final setIconAndTitle(', 1)[1].split('.end method', 1)[0]
 assert old_title.rindex('->titleChanged(') > old_title.index('->setTitleText('), 'legacy asynchronous title must invalidate parent after the write'
-new_title = task.split('.method protected setIconState(', 1)[1].split('.end method', 1)[0]
-assert new_title.count('->updateTitle(') == 2, 'modern title data and unload must both update the fan label'
-launch = task.split('.method public final launchWithAnimation()', 1)[1].split('.end method', 1)[0]
+# This OEM binds titles through setIconAndTitle, including a null drawable
+# on unload. Its nested TaskContainer has no eleven-series setIconState path.
+assert '.method protected setIconState(' not in task
+assert 'if-eqz p2' in old_title and '->setTitleText(' in old_title
+unload = old_title.split('\n    :cond_5\n', 1)[1]
+assert unload.count('->clearTitle(') == 1, 'legacy unload must clear only the fan title'
+font_title = task.split('.method private final setTitleText(', 1)[1].split('.end method', 1)[0]
+assert 'move-object v0, p0' in font_title and font_title.count('->titleChanged(') == 2
+assert font_title.rindex('->titleChanged(') > font_title.index('TextView;->setText('), 'font/name refresh must invalidate after writing text'
+launch = task.split('.method public launchTaskAnimated()', 1)[1].split('.end method', 1)[0]
 assert launch.index('->beginLaunch(') < launch.index('->refresh('), 'launch must invalidate the previously drawn selected label'
 print('PASS asynchronous title, native property-frame and app-launch invalidation wiring')

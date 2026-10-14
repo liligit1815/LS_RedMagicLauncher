@@ -19,7 +19,7 @@
     <integer name="recents_stack_incoming_distance_permille">472</integer>
     <integer name="recents_stack_incoming_scale_gain_permille">25</integer>
     <integer name="recents_stack_min_back_scale_permille">895</integer>
-    <!-- Reserved for OTA-specific coordinate origins; current NX809J needs no correction. -->
+    <!-- Reserved for OTA-specific coordinate origins; the default coordinate origin uses no correction. -->
     <integer name="recents_stack_native_center_correction_permille">0</integer>
 
 </resources>

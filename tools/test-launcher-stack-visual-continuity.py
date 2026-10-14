@@ -84,7 +84,7 @@ with tempfile.TemporaryDirectory(prefix='stack-visual-continuity-') as folder:
     subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(java)], check=True)
     subprocess.run(['java', '-cp', folder, 'StackVisualContinuity'], check=True)
 
-task_source = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+task_source = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
 
 
 def instructions(body):
@@ -110,11 +110,11 @@ class TaskClipMachine:
                            mSplitScreenButton='split', mMenuButton='menu')
         # Run the actual constructor sentinel writes, so an omitted float
         # initialization cannot pass by assuming the desired initial state.
-        init = re.search(r'    const/4 v1, -0x1\s+iput v1, v4, [^\n]+nativeStackClipRight:I'
+        init = re.search(r'    const/4 v1, -0x1\s+iput v1, v0, [^\n]+nativeStackClipRight:I'
                          r'(.*?)    new-instance v1, Landroid/graphics/Rect;', task_source, re.S)
         assert init, 'missing constructor clip initialization'
         self.run_code(instructions(init[0].split('    new-instance', 1)[0]) + ['return-void'],
-                      {'v4': self.fields})
+                      {'v0': self.fields})
         assert self.fields['nativeStackClipRight'] == -1
         assert self.fields['nativeStackClipRightF'] == -1.0
 
@@ -175,7 +175,14 @@ class TaskClipMachine:
                 registers[operand] = result
             elif op.startswith('invoke-'):
                 matched = re.fullmatch(r'\{([^}]*)\}, ([^ ]+)', operand)
-                params = [registers[v] for v in matched[1].split(', ')] if matched[1] else []
+                arguments = matched[1]
+                if ' .. ' in arguments:
+                    first, last = arguments.split(' .. ')
+                    assert first[0] == last[0], line
+                    register_names = [first[0] + str(index) for index in range(int(first[1:]), int(last[1:]) + 1)]
+                else:
+                    register_names = arguments.split(', ') if arguments else []
+                params = [registers[v] for v in register_names]
                 target = matched[2].split('->')[1]
                 if target == 'getWidth()I': result = self.width
                 elif target == 'getHeight()I': result = self.height

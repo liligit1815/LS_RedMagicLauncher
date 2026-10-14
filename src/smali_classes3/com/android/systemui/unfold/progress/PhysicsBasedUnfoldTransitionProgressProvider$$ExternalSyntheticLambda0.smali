@@ -1,0 +1,42 @@
+.class public final synthetic Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider$$ExternalSyntheticLambda0;
+.super Ljava/lang/Object;
+.source "D8$$SyntheticClass"
+
+# interfaces
+.implements Ljava/lang/Runnable;
+
+
+# instance fields
+.field public final synthetic f$0:Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider;
+
+.field public final synthetic f$1:Lcom/android/systemui/unfold/UnfoldTransitionProgressProvider$TransitionProgressListener;
+
+
+# direct methods
+.method public synthetic constructor <init>(Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider;Lcom/android/systemui/unfold/UnfoldTransitionProgressProvider$TransitionProgressListener;)V
+    .locals 0
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider$$ExternalSyntheticLambda0;->f$0:Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider;
+
+    iput-object p2, p0, Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider$$ExternalSyntheticLambda0;->f$1:Lcom/android/systemui/unfold/UnfoldTransitionProgressProvider$TransitionProgressListener;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final run()V
+    .locals 1
+
+    .line 0
+    iget-object v0, p0, Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider$$ExternalSyntheticLambda0;->f$0:Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider;
+
+    iget-object p0, p0, Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider$$ExternalSyntheticLambda0;->f$1:Lcom/android/systemui/unfold/UnfoldTransitionProgressProvider$TransitionProgressListener;
+
+    invoke-static {v0, p0}, Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider;->$r8$lambda$3KfaLVlMTm1Y0PtvNmf-ztVY064(Lcom/android/systemui/unfold/progress/PhysicsBasedUnfoldTransitionProgressProvider;Lcom/android/systemui/unfold/UnfoldTransitionProgressProvider$TransitionProgressListener;)V
+
+    return-void
+.end method

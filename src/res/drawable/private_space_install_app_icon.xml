@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon
+<vector android:height="60.0dp" android:width="60.0dp" android:viewportWidth="60.0" android:viewportHeight="60.0"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/material_color_surface_container_lowest" />
-    <foreground android:drawable="@drawable/private_space_install_app_icon_foreground" />
-</adaptive-icon>
+    <group>
+        <clip-path android:pathData="M30 0H30A30 30 0 0 1 60 30V30A30 30 0 0 1 30 60H30A30 30 0 0 1 0 30V30A30 30 0 0 1 30 0Z" />
+        <path android:fillColor="@color/material_color_surface_container_lowest" android:pathData="M30 0H30A30 30 0 0 1 60 30V30A30 30 0 0 1 30 60H30A30 30 0 0 1 0 30V30A30 30 0 0 1 30 0Z" />
+        <path android:fillColor="@color/material_color_on_surface" android:pathData="M29 31h-6v-2h6v-6h2v6h6v2h-6v6h-2v-6Z" />
+    </group>
+</vector>

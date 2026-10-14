@@ -6,7 +6,6 @@
     <dimen name="action_bar_menu_drawablePadding">2.0dp</dimen>
     <dimen name="actionbar_title_margin_end">@dimen/mfvc_small_padding</dimen>
     <dimen name="cell_layout_padding">20.0dp</dimen>
-    <dimen name="components_sheet_margin_horizontal">28.0dp</dimen>
     <dimen name="dialog_bottom_margin">64.0dp</dimen>
     <dimen name="dialog_top_margin">40.0dp</dimen>
     <dimen name="drop_target_bottom_margin">6.0dp</dimen>
@@ -63,7 +62,8 @@
     <dimen name="gesture_tutorial_webpage_top_bar_margin_start">121.0dp</dimen>
     <dimen name="gesture_tutorial_webpage_url_margin_start_end">24.0dp</dimen>
     <dimen name="grid_visualization_horizontal_cell_spacing">24.0dp</dimen>
-    <dimen name="keyboard_quick_switch_taskview_width">217.6dp</dimen>
+    <dimen name="keyboard_quick_switch_taskview_height">119.0dp</dimen>
+    <dimen name="keyboard_quick_switch_taskview_width">205.0dp</dimen>
     <dimen name="material_time_picker_minimum_screen_height">450.0dp</dimen>
     <dimen name="material_time_picker_minimum_screen_width">600.0dp</dimen>
     <dimen name="mfvc_1line_list_with_avatar_height">55.0dp</dimen>
@@ -96,6 +96,5 @@
     <dimen name="taskbar_button_margin_split">88.0dp</dimen>
     <dimen name="taskbar_contextual_button_suw_height">48.0dp</dimen>
     <dimen name="taskbar_contextual_button_suw_margin">48.0dp</dimen>
-    <dimen name="taskbar_suw_insets">48.0dp</dimen>
-    <dimen name="widget_list_horizontal_margin_two_pane_mfv">24.0dp</dimen>
+    <dimen name="taskbar_suw_insets">24.0dp</dimen>
 </resources>

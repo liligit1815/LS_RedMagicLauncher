@@ -6,8 +6,8 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
-touch = (ROOT / 'src/smali/com/android/quickstep/RotationTouchHelper.smali').read_text(encoding='utf-8')
+recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+touch = (ROOT / 'src/smali_classes3/com/android/quickstep/RotationTouchHelper.smali').read_text(encoding='utf-8')
 
 
 def method(source, name):
@@ -20,7 +20,7 @@ def method(source, name):
 names = ['getNativeStackRotationPriority', 'resolveNativeStackRotationPriority',
          'syncNativeStackRotation', 'releaseNativeStackRotation', 'applyNativeStackRotationPriority']
 methods = {name: method(recents, name) for name in names}
-methods['callback'] = method(touch, 'lambda$notifySysuiOfCurrentRotation$2')
+methods['callback'] = method(touch, 'lambda$notifySysuiOfCurrentRotation$3')
 static = {}
 notifications = []
 
@@ -63,7 +63,7 @@ def run(name, *args):
                 result = values[0]['rotation']
             elif target == 'getContext':
                 result = 'context'
-            elif target == 'a':
+            elif target == 'get':
                 result = 'proxy'
             elif target == 'notifyPrioritizedRotation':
                 notifications.append(values[1])
@@ -108,7 +108,7 @@ for style in (False, True):
                 check(static['sNativeStackRotationPriority'] == expected)
                 check(notifications == ([] if expected < 0 else [expected]))
                 for queued in (-1, 0, 1, 3):
-                    run('callback', {'mSystemUiProxy': 'proxy'}, queued)
+                    run('callback', {'mContext': 'context'}, queued)
                     check(notifications[-1] == (expected if expected >= 0 else queued))
                 # Both detach and state exit restore OEM ownership.
                 for exit_kind in ('detach', 'home', 'style'):
@@ -122,7 +122,7 @@ for style in (False, True):
                         run('syncNativeStackRotation', view)
                     check(static['sNativeStackRotationPriority'] == -1)
                     check(not view['mNativeStackRotationOwned'])
-                    run('callback', {'mSystemUiProxy': 'proxy'}, -1)
+                    run('callback', {'mContext': 'context'}, -1)
                     check(notifications[-1] == -1)
 
 # Real rotation while Overview remains visible; do not freeze the first direction.

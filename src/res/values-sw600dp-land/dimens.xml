@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="allset_page_padding_horizontal">48.0dp</dimen>
+    <dimen name="allset_page_margin_horizontal">48.0dp</dimen>
     <dimen name="cell_layout_padding">20.0dp</dimen>
     <dimen name="drop_target_bottom_margin">16.0dp</dimen>
     <dimen name="drop_target_top_margin">0.0dp</dimen>
@@ -13,6 +13,7 @@
     <dimen name="gesture_tutorial_menu_padding_horizontal">48.0dp</dimen>
     <dimen name="gesture_tutorial_menu_padding_top">32.0dp</dimen>
     <dimen name="min_page_snap_velocity">3600.0dp</dimen>
+    <dimen name="overview_bottom_margin_grid_only">40.0dp</dimen>
+    <dimen name="overview_top_margin_grid_only">24.0dp</dimen>
     <dimen name="spring_loaded_hotseat_top_margin">44.0dp</dimen>
-    <dimen name="taskbar_suw_insets">24.0dp</dimen>
 </resources>

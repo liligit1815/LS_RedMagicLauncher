@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/A$d;
+.implements Lcom/google/protobuf/Internal$EnumLiteMap;
 
 
 # annotations
@@ -19,7 +19,7 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lcom/google/protobuf/A$d<",
+        "Lcom/google/protobuf/Internal$EnumLiteMap<",
         "Lcom/android/launcher3/logger/LauncherAtom$FromState;",
         ">;"
     }
@@ -30,12 +30,9 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 1
+    .line 826
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
@@ -44,7 +41,7 @@
 .method public findValueByNumber(I)Lcom/android/launcher3/logger/LauncherAtom$FromState;
     .locals 0
 
-    .line 2
+    .line 829
     invoke-static {p1}, Lcom/android/launcher3/logger/LauncherAtom$FromState;->forNumber(I)Lcom/android/launcher3/logger/LauncherAtom$FromState;
 
     move-result-object p0
@@ -52,10 +49,18 @@
     return-object p0
 .end method
 
-.method public bridge synthetic findValueByNumber(I)Lcom/google/protobuf/A$c;
+.method public bridge synthetic findValueByNumber(I)Lcom/google/protobuf/Internal$EnumLite;
     .locals 0
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x1000
+        }
+        names = {
+            null
+        }
+    .end annotation
 
-    .line 1
+    .line 826
     invoke-virtual {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FromState$1;->findValueByNumber(I)Lcom/android/launcher3/logger/LauncherAtom$FromState;
 
     move-result-object p0

@@ -3,8784 +3,5148 @@
 .source "MenuContainer.java"
 
 # interfaces
-.implements Lcom/android/launcher3/g1;
-.implements Lcom/android/launcher3/menu/c$a;
+.implements Lcom/android/launcher3/Insettable;
+.implements Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+
+# static fields
+.field private static final PRESS_DELAY_TIME:I = 0x12c
+
+.field private static final TAG:Ljava/lang/String; = "MenuContainer"
 
 
 # instance fields
-.field private A:I
+.field private mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-.field private B:I
+.field private mCurrentView:Landroid/view/ViewGroup;
 
-.field private C:Landroid/view/ViewGroup;
+.field private mEffectButton:Landroid/view/View;
 
-.field private D:Lcom/android/launcher3/menu/c;
+.field private mEnterInterpolator:Landroid/view/animation/Interpolator;
 
-.field private E:J
+.field private mExitInterpolator:Landroid/animation/TimeInterpolator;
 
-.field private F:Z
+.field private mFromHomeEnter:Z
 
-.field private G:Landroid/view/View;
+.field private mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-.field private H:Landroid/animation/AnimatorSet;
+.field private mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-.field private g:Lcom/android/launcher3/views/k;
+.field private mLastPressedTime:J
 
-.field private h:Landroid/content/res/Resources;
+.field private mMarginRightEffectLand:I
 
-.field private i:Landroid/view/View;
+.field private mMarginRightWallpaperLand:I
 
-.field private j:Landroid/view/View;
+.field private mMarginRightWidgetLand:I
 
-.field private k:Landroid/view/View;
+.field private mMenuAnimator:Landroid/animation/AnimatorSet;
 
-.field private l:Landroid/view/View;
+.field private mMenuCache:Lcom/android/launcher3/menu/MenuCache;
 
-.field private m:Landroid/widget/LinearLayout;
+.field private mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
 
-.field private n:Lcom/android/launcher3/menu/MenuWallpaper;
+.field private mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
 
-.field private o:Lcom/android/launcher3/menu/MenuEffect;
+.field private mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
 
-.field private p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+.field private mMenuWidgetView:Landroid/view/View;
 
-.field private q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+.field private mMoreButton:Landroid/view/View;
 
-.field private r:Landroid/animation/TimeInterpolator;
+.field private mNewTopBarViewAlphaTime:I
 
-.field private s:Landroid/view/animation/Interpolator;
+.field private mNewTopBarViewTransitionTime:I
 
-.field private t:I
+.field private mNewTransitionTime:I
 
-.field private u:I
+.field private mOldTopBarViewAlphaTime:I
 
-.field private v:I
+.field private mOldTopBarViewTransitionTime:I
 
-.field private w:I
+.field private mOldTransitionTime:I
 
-.field private x:I
+.field private mRes:Landroid/content/res/Resources;
 
-.field private y:I
+.field private mWallpaperButton:Landroid/view/View;
 
-.field private z:I
+.field private mWidgetsButton:Landroid/view/View;
 
 
 # direct methods
+.method public static synthetic $r8$lambda$0E8nnLPid7oeZY4piTptH3uYUxQ(Lcom/android/launcher3/menu/MenuContainer;ZLandroid/content/Context;Landroid/view/View;)V
+    .locals 0
+
+    invoke-direct {p0, p1, p2, p3}, Lcom/android/launcher3/menu/MenuContainer;->lambda$initMenuWallpaperBtn$1(ZLandroid/content/Context;Landroid/view/View;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$D0sd2LPzJA_UKehELFiZSRwBlfg(Lcom/android/launcher3/menu/MenuContainer;Landroid/view/View;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->lambda$initMenuSettingsBtn$4(Landroid/view/View;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$FMeVQuoQm1j1gQSdTIW_QCuk3fc(Lcom/android/launcher3/menu/MenuContainer;Landroid/view/View;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->lambda$initMenuEffectBtn$2(Landroid/view/View;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$YHlTeAxJZolFtdG9HiRmXb3ZyFU(Lcom/android/launcher3/menu/MenuContainer;Landroid/view/View;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->lambda$initMenuWidgetBtn$3(Landroid/view/View;)V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$fgetmActivity(Lcom/android/launcher3/menu/MenuContainer;)Lcom/android/launcher3/views/ActivityContext;
+    .locals 0
+
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    return-object p0
+.end method
+
+.method static bridge synthetic -$$Nest$fgetmMenuIconArrange(Lcom/android/launcher3/menu/MenuContainer;)Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    .locals 0
+
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    return-object p0
+.end method
+
+.method static bridge synthetic -$$Nest$fputmMenuAnimator(Lcom/android/launcher3/menu/MenuContainer;Landroid/animation/AnimatorSet;)V
+    .locals 0
+
+    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    return-void
+.end method
+
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 2
 
-    .line 1
+    .line 155
     invoke-direct {p0, p1, p2}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
-    .line 2
-    .line 3
-    .line 4
     const-wide/16 v0, 0x0
 
-    .line 5
-    .line 6
-    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 149
+    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 7
-    .line 8
     const/4 p2, 0x0
 
-    .line 9
-    iput-boolean p2, p0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
-
-    .line 10
-    .line 11
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v0
-
-    .line 15
-    invoke-static {p1, v0, p2}, Lx1/O;->D(Landroid/content/Context;Landroid/content/res/Resources;Z)V
-
-    .line 16
-    .line 17
-    .line 18
-    invoke-static {p1}, Lcom/android/launcher3/views/k;->m(Landroid/content/Context;)Landroid/content/Context;
-
-    .line 19
-    .line 20
-    .line 21
-    move-result-object p1
-
-    .line 22
-    check-cast p1, Lcom/android/launcher3/views/k;
-
-    .line 23
-    .line 24
-    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 25
-    .line 26
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 27
-    .line 28
-    .line 29
-    move-result-object p1
-
-    .line 30
-    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 31
-    .line 32
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 33
-    .line 34
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 35
-    .line 36
-    .line 37
-    move-result-object p1
-
-    .line 38
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->f2()Lcom/android/launcher3/menu/c;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object p1
-
-    .line 42
-    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->D:Lcom/android/launcher3/menu/c;
-
-    .line 43
-    .line 44
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->u()V
-
-    .line 45
-    .line 46
-    .line 47
-    return-void
-.end method
-
-.method private A(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-    .locals 5
-
-    .line 1
-    const/4 v0, 0x2
-
-    .line 2
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object v1
-
-    .line 6
-    const/4 v2, 0x0
-
-    .line 7
-    aget v1, v1, v2
-
-    .line 8
-    .line 9
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v3
-
-    .line 13
-    const/4 v4, 0x1
-
-    .line 14
-    aget v3, v3, v4
-
-    .line 15
-    .line 16
-    if-eqz p2, :cond_1
-
-    .line 17
-    .line 18
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 19
-    .line 20
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object p2
-
-    .line 24
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 25
-    .line 26
-    .line 27
-    move-result p2
-
-    .line 28
-    if-eqz p2, :cond_0
-
-    .line 29
-    .line 30
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 31
-    .line 32
-    int-to-float p3, v1
-
-    .line 33
-    new-array v0, v4, [F
-
-    .line 34
-    .line 35
-    aput p3, v0, v2
-
-    .line 36
-    .line 37
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object p1
-
-    .line 41
-    goto :goto_0
-
-    .line 42
-    :cond_0
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 43
-    .line 44
-    int-to-float p3, v3
-
-    .line 45
-    new-array v0, v4, [F
-
-    .line 46
-    .line 47
-    aput p3, v0, v2
-
-    .line 48
-    .line 49
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object p1
-
-    .line 53
-    goto :goto_0
-
-    .line 54
-    :cond_1
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 55
-    .line 56
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 57
-    .line 58
-    .line 59
-    move-result-object p2
-
-    .line 60
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 61
-    .line 62
-    .line 63
-    move-result p2
-
-    .line 64
-    const/4 v1, 0x0
-
-    .line 65
-    if-eqz p2, :cond_2
-
-    .line 66
-    .line 67
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 68
-    .line 69
-    neg-int p3, p3
-
-    .line 70
-    int-to-float p3, p3
-
-    .line 71
-    new-array v0, v0, [F
-
-    .line 72
-    .line 73
-    aput v1, v0, v2
-
-    .line 74
-    .line 75
-    aput p3, v0, v4
-
-    .line 76
-    .line 77
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 78
-    .line 79
-    .line 80
-    move-result-object p1
-
-    .line 81
-    goto :goto_0
-
-    .line 82
-    :cond_2
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 83
-    .line 84
-    neg-int p3, p3
-
-    .line 85
-    int-to-float p3, p3
-
-    .line 86
-    new-array v0, v0, [F
-
-    .line 87
-    .line 88
-    aput v1, v0, v2
-
-    .line 89
-    .line 90
-    aput p3, v0, v4
-
-    .line 91
-    .line 92
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 93
-    .line 94
-    .line 95
-    move-result-object p1
-
-    .line 96
-    :goto_0
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->r:Landroid/animation/TimeInterpolator;
-
-    .line 97
-    .line 98
-    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 99
-    .line 100
-    .line 101
-    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->x:I
-
-    .line 102
-    .line 103
-    int-to-long p2, p0
-
-    .line 104
-    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 105
-    .line 106
-    .line 107
-    return-object p1
-.end method
-
-.method private B(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-    .locals 6
-
-    .line 1
-    const/4 v0, 0x2
-
-    .line 2
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object v1
-
-    .line 6
-    const/4 v2, 0x0
-
-    .line 7
-    aget v1, v1, v2
-
-    .line 8
-    .line 9
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v3
-
-    .line 13
-    const/4 v4, 0x1
-
-    .line 14
-    aget v3, v3, v4
-
-    .line 15
-    .line 16
-    const/4 v5, 0x0
-
-    .line 17
-    if-eqz p2, :cond_1
-
-    .line 18
-    .line 19
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 20
-    .line 21
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p2
-
-    .line 25
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p2
-
-    .line 29
-    if-eqz p2, :cond_0
-
-    .line 30
-    .line 31
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 32
-    .line 33
-    neg-int p3, p3
-
-    .line 34
-    int-to-float p3, p3
-
-    .line 35
-    new-array v0, v0, [F
-
-    .line 36
-    .line 37
-    aput p3, v0, v2
-
-    .line 38
-    .line 39
-    aput v5, v0, v4
-
-    .line 40
-    .line 41
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object p1
-
-    .line 45
-    goto :goto_0
-
-    .line 46
-    :cond_0
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 47
-    .line 48
-    neg-int p3, p3
-
-    .line 49
-    int-to-float p3, p3
-
-    .line 50
-    new-array v0, v0, [F
-
-    .line 51
-    .line 52
-    aput p3, v0, v2
-
-    .line 53
-    .line 54
-    aput v5, v0, v4
-
-    .line 55
-    .line 56
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 57
-    .line 58
-    .line 59
-    move-result-object p1
-
-    .line 60
-    goto :goto_0
-
-    .line 61
-    :cond_1
-    instance-of p2, p1, Lcom/android/launcher3/widget/o;
-
-    .line 62
-    .line 63
-    if-eqz p2, :cond_2
-
-    .line 64
-    .line 65
-    check-cast p1, Lcom/android/launcher3/widget/o;
-
-    .line 66
-    .line 67
-    sget-object p2, Lcom/android/launcher3/views/f;->C:Landroid/util/FloatProperty;
-
-    .line 68
-    .line 69
-    new-array p3, v4, [F
-
-    .line 70
-    .line 71
-    aput v5, p3, v2
-
-    .line 72
-    .line 73
-    invoke-static {p1, p2, p3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 74
-    .line 75
-    .line 76
-    move-result-object p2
-
-    .line 77
-    iget-object p3, p0, Lcom/android/launcher3/menu/MenuContainer;->s:Landroid/view/animation/Interpolator;
-
-    .line 78
-    .line 79
-    invoke-virtual {p2, p3}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 80
-    .line 81
-    .line 82
-    iget p3, p0, Lcom/android/launcher3/menu/MenuContainer;->w:I
-
-    .line 83
-    .line 84
-    int-to-long v0, p3
-
-    .line 85
-    invoke-virtual {p2, v0, v1}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 86
-    .line 87
-    .line 88
-    new-instance p3, Lcom/android/launcher3/menu/MenuContainer$b;
-
-    .line 89
-    .line 90
-    invoke-direct {p3, p0, p1}, Lcom/android/launcher3/menu/MenuContainer$b;-><init>(Lcom/android/launcher3/menu/MenuContainer;Lcom/android/launcher3/widget/o;)V
-
-    .line 91
-    .line 92
-    .line 93
-    invoke-virtual {p2, p3}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 94
-    .line 95
-    .line 96
-    return-object p2
-
-    .line 97
-    :cond_2
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 98
-    .line 99
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 100
-    .line 101
-    .line 102
-    move-result-object p2
-
-    .line 103
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 104
-    .line 105
-    .line 106
-    move-result p2
-
-    .line 107
-    if-eqz p2, :cond_3
-
-    .line 108
-    .line 109
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 110
-    .line 111
-    mul-int/2addr v1, v0
-
-    .line 112
-    int-to-float p3, v1
-
-    .line 113
-    new-array v0, v0, [F
-
-    .line 114
-    .line 115
-    aput p3, v0, v2
-
-    .line 116
-    .line 117
-    aput v5, v0, v4
-
-    .line 118
-    .line 119
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 120
-    .line 121
-    .line 122
-    move-result-object p1
-
-    .line 123
-    goto :goto_0
-
-    .line 124
-    :cond_3
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 125
-    .line 126
-    mul-int/2addr v3, v0
-
-    .line 127
-    int-to-float p3, v3
-
-    .line 128
-    new-array v0, v0, [F
-
-    .line 129
-    .line 130
-    aput p3, v0, v2
-
-    .line 131
-    .line 132
-    aput v5, v0, v4
-
-    .line 133
-    .line 134
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 135
-    .line 136
-    .line 137
-    move-result-object p1
-
-    .line 138
-    :goto_0
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->s:Landroid/view/animation/Interpolator;
-
-    .line 139
-    .line 140
-    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 141
-    .line 142
-    .line 143
-    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->w:I
-
-    .line 144
-    .line 145
-    int-to-long p2, p0
-
-    .line 146
-    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 147
-    .line 148
-    .line 149
-    return-object p1
-.end method
-
-.method private G()V
-    .locals 6
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 2
-    .line 3
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getForeColor()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v0
-
-    .line 7
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 8
-    .line 9
-    if-nez v1, :cond_0
-
-    .line 10
-    .line 11
-    const v1, 0x7f0b02e3
-
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {p0, v1}, Landroid/widget/FrameLayout;->findViewById(I)Landroid/view/View;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object v1
-
-    .line 18
-    check-cast v1, Landroid/widget/LinearLayout;
-
-    .line 19
-    .line 20
-    iput-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 21
-    .line 22
-    :cond_0
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 23
-    .line 24
-    if-eqz v1, :cond_2
-
-    .line 25
-    .line 26
-    invoke-static {}, Lcom/android/launcher3/N5;->F()Z
-
-    .line 27
-    .line 28
-    .line 29
-    move-result v1
-
-    .line 30
-    if-eqz v1, :cond_2
-
-    .line 31
-    .line 32
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v1
-
-    .line 36
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 37
-    .line 38
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object v2
-
-    .line 42
-    iget-boolean v2, v2, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 43
-    .line 44
-    if-eqz v2, :cond_1
-
-    .line 45
-    .line 46
-    const v2, 0x7f0706da
-
-    .line 47
-    .line 48
-    .line 49
-    goto :goto_0
-
-    .line 50
-    :cond_1
-    const v2, 0x7f0706d9
-
-    .line 51
-    .line 52
-    .line 53
-    :goto_0
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 54
-    .line 55
-    .line 56
-    move-result v1
-
-    .line 57
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 58
-    .line 59
-    invoke-virtual {v2}, Landroid/widget/LinearLayout;->getPaddingTop()I
-
-    .line 60
-    .line 61
-    .line 62
-    move-result v3
-
-    .line 63
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 64
-    .line 65
-    invoke-virtual {v4}, Landroid/widget/LinearLayout;->getPaddingBottom()I
-
-    .line 66
-    .line 67
-    .line 68
-    move-result v4
-
-    .line 69
-    invoke-virtual {v2, v1, v3, v1, v4}, Landroid/widget/LinearLayout;->setPadding(IIII)V
-
-    .line 70
-    .line 71
-    .line 72
-    :cond_2
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 73
-    .line 74
-    invoke-interface {v1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 75
-    .line 76
-    .line 77
-    move-result-object v1
-
-    .line 78
-    invoke-virtual {v1}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 79
-    .line 80
-    .line 81
-    move-result v1
-
-    .line 82
-    if-eqz v1, :cond_3
-
-    .line 83
-    .line 84
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 85
-    .line 86
-    const v2, 0x7f07098a
-
-    .line 87
-    .line 88
-    .line 89
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 90
-    .line 91
-    .line 92
-    move-result v1
-
-    .line 93
-    goto :goto_1
-
-    .line 94
-    :cond_3
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 95
-    .line 96
-    const v2, 0x7f070988
-
-    .line 97
-    .line 98
-    .line 99
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 100
-    .line 101
-    .line 102
-    move-result v1
-
-    .line 103
-    :goto_1
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
-
-    .line 104
-    .line 105
-    .line 106
-    move-result-object v2
-
-    .line 107
-    invoke-virtual {v2}, Lcom/android/launcher3/resource/B;->s()Z
-
-    .line 108
-    .line 109
-    .line 110
-    move-result v2
-
-    .line 111
-    if-eqz v2, :cond_4
-
-    .line 112
-    .line 113
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 114
-    .line 115
-    const v2, 0x7f070989
-
-    .line 116
-    .line 117
-    .line 118
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 119
-    .line 120
-    .line 121
-    move-result v1
-
-    .line 122
-    :cond_4
-    new-instance v2, Lcom/android/launcher3/menu/d;
-
-    .line 123
-    .line 124
-    invoke-direct {v2}, Lcom/android/launcher3/menu/d;-><init>()V
-
-    .line 125
-    .line 126
-    .line 127
-    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->s(IILandroid/view/View$OnLongClickListener;)V
-
-    .line 128
-    .line 129
-    .line 130
-    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->o(IILandroid/view/View$OnLongClickListener;)V
-
-    .line 131
-    .line 132
-    .line 133
-    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->t(IILandroid/view/View$OnLongClickListener;)V
-
-    .line 134
-    .line 135
-    .line 136
-    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->r(IILandroid/view/View$OnLongClickListener;)V
-
-    .line 137
-    .line 138
-    .line 139
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->N()V
-
-    .line 140
-    .line 141
-    .line 142
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->O()V
-
-    .line 143
-    .line 144
-    .line 145
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 146
-    .line 147
-    check-cast v0, Landroid/content/Context;
-
-    .line 148
-    .line 149
-    invoke-static {v0}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
     .line 150
-    .line 151
-    .line 152
-    move-result-object v0
-
-    .line 153
-    invoke-virtual {v0}, Lcom/android/launcher3/P2;->k()Lcom/android/launcher3/H5;
-
-    .line 154
-    .line 155
-    .line 156
-    move-result-object v0
+    iput-boolean p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
 
     .line 157
-    invoke-virtual {v0}, Lcom/android/launcher3/H5;->Q0()Z
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
 
-    .line 158
-    .line 159
-    .line 160
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 161
-    .line 162
-    if-nez v0, :cond_5
-
-    .line 163
-    .line 164
-    const v0, 0x7f0b03a8
-
-    .line 165
-    .line 166
-    .line 167
-    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->findViewById(I)Landroid/view/View;
-
-    .line 168
-    .line 169
-    .line 170
     move-result-object v0
 
-    .line 171
-    check-cast v0, Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 172
-    .line 173
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 174
-    .line 175
-    :cond_5
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 176
-    .line 177
-    if-nez v0, :cond_6
-
-    .line 178
-    .line 179
-    const v0, 0x7f0b03a9
-
-    .line 180
-    .line 181
-    .line 182
-    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->findViewById(I)Landroid/view/View;
-
-    .line 183
-    .line 184
-    .line 185
-    move-result-object v0
-
-    .line 186
-    check-cast v0, Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 187
-    .line 188
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 189
-    .line 190
-    :cond_6
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 191
-    .line 192
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 193
-    .line 194
-    .line 195
-    move-result-object v0
-
-    .line 196
-    invoke-virtual {v0}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 197
-    .line 198
-    .line 199
-    move-result v0
-
-    .line 200
-    if-eqz v0, :cond_8
-
-    .line 201
-    .line 202
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
-
-    .line 203
-    .line 204
-    const/4 v1, -0x1
-
-    .line 205
-    const/4 v2, -0x2
-
-    .line 206
-    const v3, 0x800005
-
-    .line 207
-    .line 208
-    .line 209
-    const/4 v4, 0x0
-
-    .line 210
-    if-eqz v0, :cond_7
-
-    .line 211
-    .line 212
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 213
-    .line 214
-    .line 215
-    move-result-object v0
-
-    .line 216
-    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
-
-    .line 217
-    .line 218
-    iget v5, p0, Lcom/android/launcher3/menu/MenuContainer;->t:I
-
-    .line 219
-    .line 220
-    invoke-virtual {v0, v4, v4, v5, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    .line 221
-    .line 222
-    .line 223
-    iput v3, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
-    .line 224
-    .line 225
-    iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
-    .line 226
-    .line 227
-    iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->height:I
-
-    .line 228
-    .line 229
-    :cond_7
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 230
-    .line 231
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 232
-    .line 233
-    .line 234
-    move-result-object v0
-
-    .line 235
-    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
-
-    .line 236
-    .line 237
-    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->v:I
-
-    .line 238
-    .line 239
-    invoke-virtual {v0, v4, v4, p0, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    .line 240
-    .line 241
-    .line 242
-    iput v3, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
-    .line 243
-    .line 244
-    iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
-    .line 245
-    .line 246
-    iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->height:I
-
-    .line 247
-    .line 248
-    :cond_8
-    return-void
-.end method
-
-.method private L(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-    .locals 4
-
-    .line 1
-    const/4 v0, 0x2
-
-    .line 2
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object v1
-
-    .line 6
-    const/4 v2, 0x0
-
-    .line 7
-    aget v1, v1, v2
-
-    .line 8
-    .line 9
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v1
-
-    .line 13
-    const/4 v3, 0x1
-
-    .line 14
-    aget v1, v1, v3
-
-    .line 15
-    .line 16
-    const/4 v1, 0x0
-
-    .line 17
-    if-eqz p2, :cond_1
-
-    .line 18
-    .line 19
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 20
-    .line 21
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p2
-
-    .line 25
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p2
-
-    .line 29
-    if-eqz p2, :cond_0
-
-    .line 30
-    .line 31
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 32
-    .line 33
-    neg-int p3, p3
-
-    .line 34
-    int-to-float p3, p3
-
-    .line 35
-    new-array v0, v0, [F
-
-    .line 36
-    .line 37
-    aput p3, v0, v2
-
-    .line 38
-    .line 39
-    aput v1, v0, v3
-
-    .line 40
-    .line 41
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object p1
-
-    .line 45
-    goto :goto_0
-
-    .line 46
-    :cond_0
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 47
-    .line 48
-    neg-int p3, p3
-
-    .line 49
-    int-to-float p3, p3
-
-    .line 50
-    new-array v0, v0, [F
-
-    .line 51
-    .line 52
-    aput p3, v0, v2
-
-    .line 53
-    .line 54
-    aput v1, v0, v3
-
-    .line 55
-    .line 56
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 57
-    .line 58
-    .line 59
-    move-result-object p1
-
-    .line 60
-    goto :goto_0
-
-    .line 61
-    :cond_1
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 62
-    .line 63
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 64
-    .line 65
-    .line 66
-    move-result-object p2
-
-    .line 67
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 68
-    .line 69
-    .line 70
-    move-result p2
-
-    .line 71
-    if-eqz p2, :cond_2
-
-    .line 72
-    .line 73
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 74
-    .line 75
-    neg-int p3, p3
-
-    .line 76
-    int-to-float p3, p3
-
-    .line 77
-    new-array v0, v0, [F
-
-    .line 78
-    .line 79
-    aput p3, v0, v2
-
-    .line 80
-    .line 81
-    aput v1, v0, v3
-
-    .line 82
-    .line 83
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 84
-    .line 85
-    .line 86
-    move-result-object p1
-
-    .line 87
-    goto :goto_0
-
-    .line 88
-    :cond_2
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 89
-    .line 90
-    neg-int p3, p3
-
-    .line 91
-    int-to-float p3, p3
-
-    .line 92
-    new-array v0, v0, [F
-
-    .line 93
-    .line 94
-    aput p3, v0, v2
-
-    .line 95
-    .line 96
-    aput v1, v0, v3
-
-    .line 97
-    .line 98
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 99
-    .line 100
-    .line 101
-    move-result-object p1
-
-    .line 102
-    :goto_0
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->s:Landroid/view/animation/Interpolator;
-
-    .line 103
-    .line 104
-    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 105
-    .line 106
-    .line 107
-    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->A:I
-
-    .line 108
-    .line 109
-    int-to-long p2, p0
-
-    .line 110
-    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 111
-    .line 112
-    .line 113
-    return-object p1
-.end method
-
-.method private M(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-    .locals 4
-
-    .line 1
-    const/4 v0, 0x2
-
-    .line 2
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object v1
-
-    .line 6
-    const/4 v2, 0x0
-
-    .line 7
-    aget v1, v1, v2
-
-    .line 8
-    .line 9
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->m(Landroid/view/View;)[I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v1
-
-    .line 13
-    const/4 v3, 0x1
-
-    .line 14
-    aget v1, v1, v3
-
-    .line 15
-    .line 16
-    if-eqz p2, :cond_1
-
-    .line 17
-    .line 18
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 19
-    .line 20
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object p2
-
-    .line 24
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 25
-    .line 26
-    .line 27
-    move-result p2
-
-    .line 28
-    if-eqz p2, :cond_0
-
-    .line 29
-    .line 30
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 31
-    .line 32
-    neg-int p3, p3
-
-    .line 33
-    int-to-float p3, p3
-
-    .line 34
-    new-array v0, v3, [F
-
-    .line 35
-    .line 36
-    aput p3, v0, v2
-
-    .line 37
-    .line 38
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object p1
-
-    .line 42
-    goto :goto_0
-
-    .line 43
-    :cond_0
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 44
-    .line 45
-    neg-int p3, p3
-
-    .line 46
-    int-to-float p3, p3
-
-    .line 47
-    new-array v0, v3, [F
-
-    .line 48
-    .line 49
-    aput p3, v0, v2
-
-    .line 50
-    .line 51
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 52
-    .line 53
-    .line 54
-    move-result-object p1
-
-    .line 55
-    goto :goto_0
-
-    .line 56
-    :cond_1
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 57
-    .line 58
-    invoke-interface {p2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 59
-    .line 60
-    .line 61
-    move-result-object p2
-
-    .line 62
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 63
-    .line 64
-    .line 65
-    move-result p2
-
-    .line 66
-    const/4 v1, 0x0
-
-    .line 67
-    if-eqz p2, :cond_2
-
-    .line 68
-    .line 69
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_X:Landroid/util/Property;
-
-    .line 70
-    .line 71
-    neg-int p3, p3
-
-    .line 72
-    int-to-float p3, p3
-
-    .line 73
-    new-array v0, v0, [F
-
-    .line 74
-    .line 75
-    aput v1, v0, v2
-
-    .line 76
-    .line 77
-    aput p3, v0, v3
-
-    .line 78
-    .line 79
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 80
-    .line 81
-    .line 82
-    move-result-object p1
-
-    .line 83
-    goto :goto_0
-
-    .line 84
-    :cond_2
-    sget-object p2, Landroid/widget/FrameLayout;->TRANSLATION_Y:Landroid/util/Property;
-
-    .line 85
-    .line 86
-    neg-int p3, p3
-
-    .line 87
-    int-to-float p3, p3
-
-    .line 88
-    new-array v0, v0, [F
-
-    .line 89
-    .line 90
-    aput v1, v0, v2
-
-    .line 91
-    .line 92
-    aput p3, v0, v3
-
-    .line 93
-    .line 94
-    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 95
-    .line 96
-    .line 97
-    move-result-object p1
-
-    .line 98
-    :goto_0
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->r:Landroid/animation/TimeInterpolator;
-
-    .line 99
-    .line 100
-    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 101
-    .line 102
-    .line 103
-    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->B:I
-
-    .line 104
-    .line 105
-    int-to-long p2, p0
-
-    .line 106
-    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 107
-    .line 108
-    .line 109
-    return-object p1
-.end method
-
-.method private N()V
-    .locals 6
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    goto/16 :goto_3
-
-    .line 6
-    .line 7
-    :cond_0
-    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object v0
-
-    .line 11
-    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
-
-    .line 12
-    .line 13
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 14
-    .line 15
-    const v2, 0x7f070992
-
-    .line 16
-    .line 17
-    .line 18
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 19
-    .line 20
-    .line 21
-    move-result v1
-
-    .line 22
-    invoke-static {}, Lcom/android/launcher3/N5;->F()Z
-
-    .line 23
-    .line 24
-    .line 25
-    move-result v2
-
-    .line 26
-    if-eqz v2, :cond_2
-
-    .line 27
-    .line 28
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 29
-    .line 30
-    invoke-interface {v1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 31
-    .line 32
-    .line 33
-    move-result-object v1
-
-    .line 34
-    iget-boolean v1, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 35
-    .line 36
-    if-eqz v1, :cond_1
-
-    .line 37
-    .line 38
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 39
-    .line 40
-    const v2, 0x7f07048b
-
-    .line 41
-    .line 42
-    .line 43
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 44
-    .line 45
-    .line 46
-    move-result v1
-
-    .line 47
-    goto :goto_0
-
-    .line 48
-    :cond_1
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 49
-    .line 50
-    const v2, 0x7f07048a
-
-    .line 51
-    .line 52
-    .line 53
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 54
-    .line 55
-    .line 56
-    move-result v1
-
-    .line 57
-    :cond_2
-    :goto_0
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 58
-    .line 59
-    const v3, 0x7f07098b
-
-    .line 60
-    .line 61
-    .line 62
-    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 63
-    .line 64
-    .line 65
-    move-result v2
-
-    .line 66
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 67
-    .line 68
-    invoke-virtual {v4, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 69
-    .line 70
-    .line 71
-    move-result v3
-
-    .line 72
-    const/4 v4, 0x0
-
-    .line 73
-    invoke-virtual {v0, v2, v1, v3, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    .line 74
-    .line 75
-    .line 76
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 77
-    .line 78
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 79
-    .line 80
-    .line 81
-    move-result-object v0
-
-    .line 82
-    invoke-virtual {v0}, Lcom/android/launcher3/X3;->j()F
-
-    .line 83
-    .line 84
-    .line 85
-    move-result v0
-
-    .line 86
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 87
-    .line 88
-    invoke-virtual {v1}, Landroid/widget/LinearLayout;->getChildCount()I
-
-    .line 89
-    .line 90
-    .line 91
-    move-result v1
-
-    .line 92
-    :goto_1
-    if-ge v4, v1, :cond_5
-
-    .line 93
-    .line 94
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 95
-    .line 96
-    invoke-virtual {v2, v4}, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
-
-    .line 97
-    .line 98
-    .line 99
-    move-result-object v2
-
-    .line 100
-    instance-of v2, v2, Landroid/widget/TextView;
-
-    .line 101
-    .line 102
-    if-eqz v2, :cond_4
-
-    .line 103
-    .line 104
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 105
-    .line 106
-    invoke-virtual {v2, v4}, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
-
-    .line 107
-    .line 108
-    .line 109
-    move-result-object v2
-
-    .line 110
-    check-cast v2, Landroid/widget/TextView;
-
-    .line 111
-    .line 112
-    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 113
-    .line 114
-    invoke-static {}, Lcom/android/launcher3/N5;->F()Z
-
-    .line 115
-    .line 116
-    .line 117
-    move-result v5
-
-    .line 118
-    if-eqz v5, :cond_3
-
-    .line 119
-    .line 120
-    const v5, 0x7f070984
-
-    .line 121
-    .line 122
-    .line 123
-    goto :goto_2
-
-    .line 124
-    :cond_3
-    const v5, 0x7f07097d
-
-    .line 125
-    .line 126
-    .line 127
-    :goto_2
-    invoke-virtual {v3, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 128
-    .line 129
-    .line 130
-    move-result v3
-
-    .line 131
-    int-to-float v3, v3
-
-    .line 132
-    mul-float/2addr v3, v0
-
-    .line 133
-    float-to-int v3, v3
-
-    .line 134
-    invoke-virtual {v2, v3}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
-
-    .line 135
-    .line 136
-    .line 137
-    :cond_4
-    add-int/lit8 v4, v4, 0x1
-
-    .line 138
-    .line 139
-    goto :goto_1
-
-    .line 140
-    :cond_5
-    :goto_3
-    return-void
-.end method
-
-.method private O()V
-    .locals 8
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 2
-    .line 3
-    check-cast v0, Landroid/content/Context;
-
-    .line 4
-    .line 5
-    invoke-static {v0}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v0
-
-    .line 9
-    invoke-virtual {v0}, Lcom/android/launcher3/P2;->i()Lcom/android/launcher3/F1;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v0
-
-    .line 13
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 14
-    .line 15
-    invoke-interface {v1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v1
-
-    .line 19
-    iget v0, v0, Lcom/android/launcher3/r4;->R:I
-
-    .line 20
-    .line 21
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 22
-    .line 23
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 24
-    .line 25
-    .line 26
-    move-result-object v2
-
-    .line 27
-    invoke-virtual {v2}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 28
-    .line 29
-    .line 30
-    move-result v2
-
-    .line 31
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    .line 32
-    .line 33
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 34
-    .line 35
-    .line 36
-    const-string v4, "MenuContainer nav = "
-
-    .line 37
-    .line 38
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 39
-    .line 40
-    .line 41
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 42
-    .line 43
-    .line 44
-    const-string v4, " isVerticalBarLayout:"
-
-    .line 45
-    .line 46
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 47
-    .line 48
-    .line 49
-    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 50
-    .line 51
-    .line 52
-    const-string v4, "  grid.isLandscape:"
-
-    .line 53
-    .line 54
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 55
-    .line 56
-    .line 57
-    iget-boolean v4, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 58
-    .line 59
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 60
-    .line 61
-    .line 62
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 63
-    .line 64
-    .line 65
-    move-result-object v3
-
-    .line 66
-    const-string v4, "MenuContainer"
-
-    .line 67
-    .line 68
-    invoke-static {v4, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 69
-    .line 70
-    .line 71
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 72
-    .line 73
-    .line 74
-    move-result-object v3
-
-    .line 75
-    check-cast v3, Landroid/widget/FrameLayout$LayoutParams;
-
-    .line 76
-    .line 77
-    const/4 v4, 0x0
-
-    .line 78
-    if-eqz v2, :cond_0
-
-    .line 79
-    .line 80
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 81
-    .line 82
-    .line 83
-    move-result-object p0
-
-    .line 84
-    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 85
-    .line 86
-    .line 87
-    move-result-object p0
-
-    .line 88
-    const v0, 0x7f07022f
-
-    .line 89
-    .line 90
-    .line 91
-    invoke-virtual {p0, v0}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 92
-    .line 93
-    .line 94
-    move-result p0
-
-    .line 95
-    float-to-int p0, p0
-
-    .line 96
-    invoke-virtual {v3, v4, v4, p0, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    .line 97
-    .line 98
-    .line 99
-    return-void
-
-    .line 100
-    :cond_0
-    const v2, 0x7f070230
-
-    .line 101
-    .line 102
-    .line 103
-    const v5, 0x7f070231
-
-    .line 104
-    .line 105
-    .line 106
-    if-lez v0, :cond_4
-
-    .line 107
-    .line 108
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 109
-    .line 110
-    .line 111
-    move-result-object v0
-
-    .line 112
-    invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 113
-    .line 114
-    .line 115
-    move-result-object v0
-
-    .line 116
-    iget-boolean v6, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 117
-    .line 118
-    if-eqz v6, :cond_1
-
-    .line 119
-    .line 120
-    move v6, v5
-
-    .line 121
-    goto :goto_0
-
-    .line 122
-    :cond_1
-    move v6, v2
-
-    .line 123
-    :goto_0
-    invoke-virtual {v0, v6}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 124
-    .line 125
-    .line 126
-    move-result v0
-
-    .line 127
-    float-to-int v0, v0
-
-    .line 128
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 129
-    .line 130
-    .line 131
-    move-result-object v6
-
-    .line 132
-    invoke-virtual {v6}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 133
-    .line 134
-    .line 135
-    move-result-object v6
-
-    .line 136
-    iget-boolean v7, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 137
-    .line 138
-    if-eqz v7, :cond_2
-
-    .line 139
-    .line 140
-    move v2, v5
-
-    .line 141
-    :cond_2
-    invoke-virtual {v6, v2}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 142
-    .line 143
-    .line 144
-    move-result v2
-
-    .line 145
-    float-to-int v2, v2
-
-    .line 146
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 147
-    .line 148
-    .line 149
-    move-result-object p0
-
-    .line 150
-    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 151
-    .line 152
-    .line 153
-    move-result-object p0
-
-    .line 154
-    iget-boolean v1, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 155
-    .line 156
-    if-eqz v1, :cond_3
-
-    .line 157
-    .line 158
-    const v1, 0x7f0706d6
+    invoke-static {v0, p2}, Lcom/android/launcher3/mfvUtil/MFVUtils;->disableDisplaySize(Landroid/content/res/Resources;Z)V
 
     .line 159
+    invoke-static {p1}, Lcom/android/launcher3/views/ActivityContext;->lookupContext(Landroid/content/Context;)Landroid/content/Context;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/launcher3/views/ActivityContext;
+
+    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
     .line 160
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
     .line 161
-    goto :goto_1
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getMenuCache()Lcom/android/launcher3/menu/MenuCache;
+
+    move-result-object p1
+
+    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuCache:Lcom/android/launcher3/menu/MenuCache;
 
     .line 162
-    :cond_3
-    const v1, 0x7f0706d5
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->initViewParas()V
 
-    .line 163
-    .line 164
-    .line 165
-    :goto_1
-    invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 166
-    .line 167
-    .line 168
-    move-result p0
-
-    .line 169
-    float-to-int p0, p0
-
-    .line 170
-    invoke-virtual {v3, v0, v4, v2, p0}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    .line 171
-    .line 172
-    .line 173
-    return-void
-
-    .line 174
-    :cond_4
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 175
-    .line 176
-    .line 177
-    move-result-object v0
-
-    .line 178
-    invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 179
-    .line 180
-    .line 181
-    move-result-object v0
-
-    .line 182
-    iget-boolean v6, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 183
-    .line 184
-    if-eqz v6, :cond_5
-
-    .line 185
-    .line 186
-    move v6, v5
-
-    .line 187
-    goto :goto_2
-
-    .line 188
-    :cond_5
-    move v6, v2
-
-    .line 189
-    :goto_2
-    invoke-virtual {v0, v6}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 190
-    .line 191
-    .line 192
-    move-result v0
-
-    .line 193
-    float-to-int v0, v0
-
-    .line 194
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 195
-    .line 196
-    .line 197
-    move-result-object v6
-
-    .line 198
-    invoke-virtual {v6}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 199
-    .line 200
-    .line 201
-    move-result-object v6
-
-    .line 202
-    iget-boolean v7, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 203
-    .line 204
-    if-eqz v7, :cond_6
-
-    .line 205
-    .line 206
-    move v2, v5
-
-    .line 207
-    :cond_6
-    invoke-virtual {v6, v2}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 208
-    .line 209
-    .line 210
-    move-result v2
-
-    .line 211
-    float-to-int v2, v2
-
-    .line 212
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 213
-    .line 214
-    .line 215
-    move-result-object p0
-
-    .line 216
-    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 217
-    .line 218
-    .line 219
-    move-result-object p0
-
-    .line 220
-    iget-boolean v1, v1, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 221
-    .line 222
-    if-eqz v1, :cond_7
-
-    .line 223
-    .line 224
-    const v1, 0x7f0706d8
-
-    .line 225
-    .line 226
-    .line 227
-    goto :goto_3
-
-    .line 228
-    :cond_7
-    const v1, 0x7f0706d7
-
-    .line 229
-    .line 230
-    .line 231
-    :goto_3
-    invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 232
-    .line 233
-    .line 234
-    move-result p0
-
-    .line 235
-    float-to-int p0, p0
-
-    .line 236
-    invoke-virtual {v3, v0, v4, v2, p0}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    .line 237
-    .line 238
-    .line 239
     return-void
 .end method
 
-.method public static synthetic a(Lcom/android/launcher3/menu/MenuContainer;ZLandroid/content/Context;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1, p2, p3}, Lcom/android/launcher3/menu/MenuContainer;->y(ZLandroid/content/Context;Landroid/view/View;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic b(Lcom/android/launcher3/menu/MenuContainer;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->x(Landroid/view/View;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic c(Lcom/android/launcher3/menu/MenuContainer;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->w(Landroid/view/View;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic d(Lcom/android/launcher3/menu/MenuContainer;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->z(Landroid/view/View;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic e(Landroid/view/View;)Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroid/view/View;->performClick()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method static bridge synthetic g(Lcom/android/launcher3/menu/MenuContainer;)Lcom/android/launcher3/views/k;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic h(Lcom/android/launcher3/menu/MenuContainer;)Lcom/android/launcher3/iconarrange/MenuIconArrange;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic i(Lcom/android/launcher3/menu/MenuContainer;Landroid/animation/AnimatorSet;)V
-    .locals 0
-
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method private l()V
+.method private cancelAnimation()V
     .locals 3
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
+    .line 1098
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 2
-    .line 3
     if-eqz v0, :cond_0
 
-    .line 4
-    .line 5
     const-wide/16 v1, 0x0
 
-    .line 6
-    .line 7
+    .line 1099
     invoke-virtual {v0, v1, v2}, Landroid/animation/AnimatorSet;->setDuration(J)Landroid/animation/AnimatorSet;
 
-    .line 8
-    .line 9
-    .line 10
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
+    .line 1100
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 11
-    .line 12
     invoke-virtual {v0}, Landroid/animation/AnimatorSet;->cancel()V
 
-    .line 13
-    .line 14
-    .line 15
     :cond_0
     const/4 v0, 0x0
 
-    .line 16
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
+    .line 1102
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 17
-    .line 18
     return-void
 .end method
 
-.method private m(Landroid/view/View;)[I
+.method private getViewHeight(Landroid/view/View;)[I
     .locals 0
 
-    .line 1
     const/4 p0, 0x0
 
-    .line 2
     const/16 p1, 0x15f
 
-    .line 3
-    .line 4
+    .line 1094
     filled-new-array {p0, p1}, [I
 
-    .line 5
-    .line 6
-    .line 7
     move-result-object p0
 
-    .line 8
     return-object p0
 .end method
 
-.method private o(IILandroid/view/View$OnLongClickListener;)V
+.method private initMenuEffectBtn(IILandroid/view/View$OnLongClickListener;)V
     .locals 4
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 624
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
-    goto/16 :goto_1
+    return-void
 
-    .line 6
-    .line 7
     :cond_0
-    const v1, 0x7f0b0244
+    const v1, 0x7f0b0207
 
-    .line 8
-    .line 9
-    .line 10
+    .line 627
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object v0
 
-    .line 14
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 15
-    .line 16
     if-nez v0, :cond_1
 
-    .line 17
-    .line 18
-    goto :goto_1
+    return-void
 
-    .line 19
+    .line 631
     :cond_1
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
 
-    .line 20
-    .line 21
-    .line 22
     move-result-object v0
 
-    .line 23
-    invoke-virtual {v0}, Lcom/android/launcher3/resource/B;->s()Z
+    invoke-virtual {v0}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
 
-    .line 24
-    .line 25
-    .line 26
     move-result v0
 
-    .line 27
     const/4 v1, 0x0
 
-    .line 28
     if-eqz v0, :cond_2
 
-    .line 29
-    .line 30
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 632
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 31
-    .line 32
     check-cast v0, Landroid/widget/TextView;
 
-    .line 33
-    .line 34
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
 
-    .line 35
-    .line 36
-    .line 37
     move-result-object v2
 
-    .line 38
-    const v3, 0x7f07098f
+    const v3, 0x7f0708e4
 
-    .line 39
-    .line 40
-    .line 41
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimension(I)F
 
-    .line 42
-    .line 43
-    .line 44
     move-result v2
 
-    .line 45
     invoke-virtual {v0, v1, v2}, Landroid/widget/TextView;->setTextSize(IF)V
 
-    .line 46
-    .line 47
-    .line 48
+    .line 634
     :cond_2
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 49
-    .line 50
     check-cast v0, Landroid/widget/TextView;
 
-    .line 51
-    .line 52
     invoke-virtual {v0, p2}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 53
-    .line 54
-    .line 55
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 635
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
 
-    .line 56
-    .line 57
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 636
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
+
     check-cast v0, Landroid/widget/TextView;
 
-    .line 58
-    .line 59
     const/4 v2, -0x1
 
-    .line 60
     if-ne v2, p2, :cond_3
 
-    .line 61
-    .line 62
     const/4 v2, 0x1
 
-    .line 63
     goto :goto_0
 
-    .line 64
     :cond_3
     move v2, v1
 
-    .line 65
     :goto_0
-    invoke-static {v0, v2}, Lcom/android/launcher3/O6;->f(Landroid/widget/TextView;Z)V
+    invoke-static {v0, v2}, Lcom/android/launcher3/WorkspaceTextColorTask;->setTextShadowLayer(Landroid/widget/TextView;Z)V
 
-    .line 66
-    .line 67
-    .line 68
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 638
+    :cond_4
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 69
-    .line 70
     invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 71
-    .line 72
-    .line 73
     move-result-object v0
 
-    .line 74
     check-cast v0, Landroid/widget/LinearLayout$LayoutParams;
 
-    .line 75
-    .line 76
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 639
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 77
-    .line 78
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 79
-    .line 80
-    .line 81
     move-result-object v2
 
-    .line 82
-    invoke-virtual {v2}, Lcom/android/launcher3/h0;->T0()Z
+    invoke-virtual {v2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
 
-    .line 83
-    .line 84
-    .line 85
     move-result v2
 
-    .line 86
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_5
 
-    .line 87
-    .line 88
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 640
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 89
-    .line 90
-    const v3, 0x7f070987
+    const v3, 0x7f0708dc
 
-    .line 91
-    .line 92
-    .line 93
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 94
-    .line 95
-    .line 96
     move-result v2
 
-    .line 97
     iput v2, v0, Landroid/widget/LinearLayout$LayoutParams;->width:I
 
-    .line 98
-    .line 99
     const/4 v2, -0x2
 
-    .line 100
+    .line 641
     iput v2, v0, Landroid/widget/LinearLayout$LayoutParams;->height:I
 
-    .line 101
-    .line 102
-    :cond_4
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 643
+    :cond_5
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 103
-    .line 104
-    invoke-static {p2, v0}, Lf1/d;->e(ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
+    invoke-static {p2, v0}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getEffectIcon(ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
 
-    .line 105
-    .line 106
-    .line 107
     move-result-object p2
 
-    .line 108
+    .line 644
     invoke-virtual {p2, v1, v1, p1, p1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
 
-    .line 109
-    .line 110
-    .line 111
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 645
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 112
-    .line 113
     check-cast p1, Landroid/widget/TextView;
 
-    .line 114
-    .line 115
     const/4 v0, 0x0
 
-    .line 116
     invoke-virtual {p1, v0, p2, v0, v0}, Landroid/widget/TextView;->setCompoundDrawables(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 117
-    .line 118
-    .line 119
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 647
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 120
-    .line 121
     invoke-virtual {p1}, Landroid/view/View;->hasOnClickListeners()Z
 
-    .line 122
-    .line 123
-    .line 124
     move-result p1
 
-    .line 125
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_6
 
-    .line 126
-    .line 127
-    :goto_1
     return-void
 
-    .line 128
-    :cond_5
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 650
+    :cond_6
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 129
-    .line 130
-    new-instance p2, Lcom/android/launcher3/menu/f;
+    new-instance p2, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda1;
 
-    .line 131
-    .line 132
-    invoke-direct {p2, p0}, Lcom/android/launcher3/menu/f;-><init>(Lcom/android/launcher3/menu/MenuContainer;)V
+    invoke-direct {p2, p0}, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda1;-><init>(Lcom/android/launcher3/menu/MenuContainer;)V
 
-    .line 133
-    .line 134
-    .line 135
     invoke-virtual {p1, p2}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 136
-    .line 137
-    .line 138
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->j:Landroid/view/View;
+    .line 668
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEffectButton:Landroid/view/View;
 
-    .line 139
-    .line 140
     invoke-virtual {p0, p3}, Landroid/view/View;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 
-    .line 141
-    .line 142
-    .line 143
     return-void
 .end method
 
-.method private r(IILandroid/view/View$OnLongClickListener;)V
+.method private initMenuSettingsBtn(IILandroid/view/View$OnLongClickListener;)V
     .locals 4
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 749
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
-    goto/16 :goto_1
+    return-void
 
-    .line 6
-    .line 7
     :cond_0
-    const v1, 0x7f0b0547
+    const v1, 0x7f0b04be
 
-    .line 8
-    .line 9
-    .line 10
+    .line 752
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object v0
 
-    .line 14
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 15
-    .line 16
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
+    .line 754
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
 
-    .line 17
-    .line 18
-    .line 19
     move-result-object v0
 
-    .line 20
-    invoke-virtual {v0}, Lcom/android/launcher3/resource/B;->s()Z
+    invoke-virtual {v0}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
 
-    .line 21
-    .line 22
-    .line 23
     move-result v0
 
-    .line 24
     const/4 v1, 0x0
 
-    .line 25
     if-eqz v0, :cond_1
 
-    .line 26
-    .line 27
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 755
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 28
-    .line 29
     check-cast v0, Landroid/widget/TextView;
 
-    .line 30
-    .line 31
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
 
-    .line 32
-    .line 33
-    .line 34
     move-result-object v2
 
-    .line 35
-    const v3, 0x7f07098f
+    const v3, 0x7f0708e4
 
-    .line 36
-    .line 37
-    .line 38
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimension(I)F
 
-    .line 39
-    .line 40
-    .line 41
     move-result v2
 
-    .line 42
     invoke-virtual {v0, v1, v2}, Landroid/widget/TextView;->setTextSize(IF)V
 
-    .line 43
-    .line 44
-    .line 45
+    .line 757
     :cond_1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 46
-    .line 47
     check-cast v0, Landroid/widget/TextView;
 
-    .line 48
-    .line 49
     invoke-virtual {v0, p2}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 50
-    .line 51
-    .line 52
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 758
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
 
-    .line 53
-    .line 54
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 759
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
+
     check-cast v0, Landroid/widget/TextView;
 
-    .line 55
-    .line 56
     const/4 v2, -0x1
 
-    .line 57
     if-ne v2, p2, :cond_2
 
-    .line 58
-    .line 59
     const/4 v2, 0x1
 
-    .line 60
     goto :goto_0
 
-    .line 61
     :cond_2
     move v2, v1
 
-    .line 62
     :goto_0
-    invoke-static {v0, v2}, Lcom/android/launcher3/O6;->f(Landroid/widget/TextView;Z)V
+    invoke-static {v0, v2}, Lcom/android/launcher3/WorkspaceTextColorTask;->setTextShadowLayer(Landroid/widget/TextView;Z)V
 
-    .line 63
-    .line 64
-    .line 65
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 761
+    :cond_3
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 66
-    .line 67
     invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 68
-    .line 69
-    .line 70
     move-result-object v0
 
-    .line 71
     check-cast v0, Landroid/widget/LinearLayout$LayoutParams;
 
-    .line 72
-    .line 73
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 762
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 74
-    .line 75
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 76
-    .line 77
-    .line 78
     move-result-object v2
 
-    .line 79
-    invoke-virtual {v2}, Lcom/android/launcher3/h0;->T0()Z
+    invoke-virtual {v2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
 
-    .line 80
-    .line 81
-    .line 82
     move-result v2
 
-    .line 83
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_4
 
-    .line 84
-    .line 85
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 763
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 86
-    .line 87
-    const v3, 0x7f070987
+    const v3, 0x7f0708dc
 
-    .line 88
-    .line 89
-    .line 90
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 91
-    .line 92
-    .line 93
     move-result v2
 
-    .line 94
     iput v2, v0, Landroid/widget/LinearLayout$LayoutParams;->width:I
 
-    .line 95
-    .line 96
     const/4 v2, -0x2
 
-    .line 97
+    .line 764
     iput v2, v0, Landroid/widget/LinearLayout$LayoutParams;->height:I
 
-    .line 98
-    .line 99
-    :cond_3
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 767
+    :cond_4
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 100
-    .line 101
-    invoke-static {p2, v0}, Lf1/d;->g(ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
+    invoke-static {p2, v0}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getSettingIcon(ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
 
-    .line 102
-    .line 103
-    .line 104
     move-result-object p2
 
-    .line 105
+    .line 768
     invoke-virtual {p2, v1, v1, p1, p1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
 
-    .line 106
-    .line 107
-    .line 108
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 769
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 109
-    .line 110
     check-cast p1, Landroid/widget/TextView;
 
-    .line 111
-    .line 112
     const/4 v0, 0x0
 
-    .line 113
     invoke-virtual {p1, v0, p2, v0, v0}, Landroid/widget/TextView;->setCompoundDrawables(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 114
-    .line 115
-    .line 116
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 771
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 117
-    .line 118
     invoke-virtual {p1}, Landroid/view/View;->hasOnClickListeners()Z
 
-    .line 119
-    .line 120
-    .line 121
     move-result p1
 
-    .line 122
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_5
 
-    .line 123
-    .line 124
-    :goto_1
     return-void
 
-    .line 125
-    :cond_4
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 774
+    :cond_5
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 126
-    .line 127
-    new-instance p2, Lcom/android/launcher3/menu/h;
+    new-instance p2, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda3;
 
-    .line 128
-    .line 129
-    invoke-direct {p2, p0}, Lcom/android/launcher3/menu/h;-><init>(Lcom/android/launcher3/menu/MenuContainer;)V
+    invoke-direct {p2, p0}, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda3;-><init>(Lcom/android/launcher3/menu/MenuContainer;)V
 
-    .line 130
-    .line 131
-    .line 132
     invoke-virtual {p1, p2}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 133
-    .line 134
-    .line 135
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->l:Landroid/view/View;
+    .line 795
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMoreButton:Landroid/view/View;
 
-    .line 136
-    .line 137
     invoke-virtual {p0, p3}, Landroid/view/View;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 
-    .line 138
-    .line 139
-    .line 140
     return-void
 .end method
 
-.method private s(IILandroid/view/View$OnLongClickListener;)V
+.method private initMenuWallpaperBtn(IILandroid/view/View$OnLongClickListener;)V
     .locals 5
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 511
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
-    goto/16 :goto_2
-
-    .line 6
-    .line 7
-    :cond_0
-    const v1, 0x7f0b067b
-
-    .line 8
-    .line 9
-    .line 10
-    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object v0
-
-    .line 14
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
-
-    .line 15
-    .line 16
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 17
-    .line 18
-    check-cast v0, Landroid/content/Context;
-
-    .line 19
-    .line 20
-    invoke-static {v0}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object v0
-
-    .line 24
-    invoke-virtual {v0}, Lcom/android/launcher3/P2;->k()Lcom/android/launcher3/H5;
-
-    .line 25
-    .line 26
-    .line 27
-    move-result-object v0
-
-    .line 28
-    invoke-virtual {v0}, Lcom/android/launcher3/H5;->Q0()Z
-
-    .line 29
-    .line 30
-    .line 31
-    move-result v0
-
-    .line 32
-    const/16 v1, 0x8
-
-    .line 33
-    .line 34
-    const/4 v2, 0x0
-
-    .line 35
-    if-nez v0, :cond_2
-
-    .line 36
-    .line 37
-    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
-
-    .line 38
-    .line 39
-    if-nez v3, :cond_1
-
-    .line 40
-    .line 41
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
-
-    .line 42
-    .line 43
-    invoke-virtual {p0, v1}, Landroid/view/View;->setVisibility(I)V
-
-    .line 44
-    .line 45
-    .line 46
     return-void
 
-    .line 47
-    :cond_1
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    :cond_0
+    const v1, 0x7f0b05d8
 
-    .line 48
-    .line 49
+    .line 514
+    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
+
+    .line 515
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v0, Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getResourceManager()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/ResourceManager;->isThirdAppWallpaperEntrance()Z
+
+    move-result v0
+
+    const/16 v1, 0x8
+
+    const/4 v2, 0x0
+
+    if-nez v0, :cond_2
+
+    .line 517
+    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
+
+    if-nez v3, :cond_1
+
+    .line 518
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
+
+    invoke-virtual {p0, v1}, Landroid/view/View;->setVisibility(I)V
+
+    return-void
+
+    .line 521
+    :cond_1
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
+
     invoke-virtual {v1, v2}, Landroid/view/View;->setVisibility(I)V
 
-    .line 50
-    .line 51
-    .line 52
     goto :goto_0
 
-    .line 53
+    .line 523
     :cond_2
-    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 54
-    .line 55
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+    invoke-interface {v3}, Lcom/android/launcher3/views/ActivityContext;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
 
-    .line 56
-    .line 57
-    .line 58
     move-result-object v3
 
-    .line 59
-    invoke-virtual {v3}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    invoke-virtual {v3}, Lcom/android/launcher3/views/BaseDragLayer;->getContext()Landroid/content/Context;
 
-    .line 60
-    .line 61
-    .line 62
     move-result-object v3
 
-    .line 63
     const-string v4, "com.zte.beautify"
 
-    .line 64
-    .line 65
-    invoke-static {v3, v4}, Lx1/O;->h3(Landroid/content/Context;Ljava/lang/String;)Z
+    invoke-static {v3, v4}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isPkgEnable(Landroid/content/Context;Ljava/lang/String;)Z
 
-    .line 66
-    .line 67
-    .line 68
     move-result v3
 
-    .line 69
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 524
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 70
-    .line 71
     if-eqz v3, :cond_3
 
-    .line 72
-    .line 73
     move v1, v2
 
-    .line 74
     :cond_3
     invoke-virtual {v4, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 75
-    .line 76
-    .line 77
+    .line 526
     :goto_0
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
 
-    .line 78
-    .line 79
-    .line 80
     move-result-object v1
 
-    .line 81
-    invoke-virtual {v1}, Lcom/android/launcher3/resource/B;->s()Z
+    invoke-virtual {v1}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
 
-    .line 82
-    .line 83
-    .line 84
     move-result v1
 
-    .line 85
     if-eqz v1, :cond_4
 
-    .line 86
-    .line 87
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 527
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 88
-    .line 89
     check-cast v1, Landroid/widget/TextView;
 
-    .line 90
-    .line 91
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
 
-    .line 92
-    .line 93
-    .line 94
     move-result-object v3
 
-    .line 95
-    const v4, 0x7f07098f
+    const v4, 0x7f0708e4
 
-    .line 96
-    .line 97
-    .line 98
     invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getDimension(I)F
 
-    .line 99
-    .line 100
-    .line 101
     move-result v3
 
-    .line 102
     invoke-virtual {v1, v2, v3}, Landroid/widget/TextView;->setTextSize(IF)V
 
-    .line 103
-    .line 104
-    .line 105
+    .line 529
     :cond_4
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 106
-    .line 107
     check-cast v1, Landroid/widget/TextView;
 
-    .line 108
-    .line 109
     invoke-virtual {v1, p2}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 110
-    .line 111
-    .line 112
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 530
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
 
-    .line 113
-    .line 114
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_6
+
+    .line 531
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
+
     check-cast v1, Landroid/widget/TextView;
 
-    .line 115
-    .line 116
     const/4 v3, -0x1
 
-    .line 117
     if-ne v3, p2, :cond_5
 
-    .line 118
-    .line 119
     const/4 v3, 0x1
 
-    .line 120
     goto :goto_1
 
-    .line 121
     :cond_5
     move v3, v2
 
-    .line 122
     :goto_1
-    invoke-static {v1, v3}, Lcom/android/launcher3/O6;->f(Landroid/widget/TextView;Z)V
+    invoke-static {v1, v3}, Lcom/android/launcher3/WorkspaceTextColorTask;->setTextShadowLayer(Landroid/widget/TextView;Z)V
 
-    .line 123
-    .line 124
-    .line 125
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 534
+    :cond_6
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 126
-    .line 127
     invoke-virtual {v1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 128
-    .line 129
-    .line 130
     move-result-object v1
 
-    .line 131
     check-cast v1, Landroid/widget/LinearLayout$LayoutParams;
 
-    .line 132
-    .line 133
     const/4 v3, -0x2
 
-    .line 134
+    .line 535
     iput v3, v1, Landroid/widget/LinearLayout$LayoutParams;->height:I
 
-    .line 135
-    .line 136
-    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 536
+    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 137
-    .line 138
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v3}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 139
-    .line 140
-    .line 141
     move-result-object v3
 
-    .line 142
-    invoke-virtual {v3}, Lcom/android/launcher3/h0;->T0()Z
+    invoke-virtual {v3}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
 
-    .line 143
-    .line 144
-    .line 145
     move-result v3
 
-    .line 146
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_7
 
-    .line 147
-    .line 148
-    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 537
+    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 149
-    .line 150
-    const v4, 0x7f070987
+    const v4, 0x7f0708dc
 
-    .line 151
-    .line 152
-    .line 153
     invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 154
-    .line 155
-    .line 156
     move-result v3
 
-    .line 157
     iput v3, v1, Landroid/widget/LinearLayout$LayoutParams;->width:I
 
-    .line 158
-    .line 159
-    :cond_6
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 540
+    :cond_7
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 160
-    .line 161
-    invoke-static {p2, v1}, Lf1/d;->h(ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
+    invoke-static {p2, v1}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getWallpaperIcon(ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
 
-    .line 162
-    .line 163
-    .line 164
     move-result-object p2
 
-    .line 165
+    .line 541
     invoke-virtual {p2, v2, v2, p1, p1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
 
-    .line 166
-    .line 167
-    .line 168
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 542
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 169
-    .line 170
     check-cast p1, Landroid/widget/TextView;
 
-    .line 171
-    .line 172
     const/4 v1, 0x0
 
-    .line 173
     invoke-virtual {p1, v1, p2, v1, v1}, Landroid/widget/TextView;->setCompoundDrawables(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 174
-    .line 175
-    .line 176
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 544
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
 
-    .line 177
-    .line 178
-    .line 179
     move-result-object p1
 
-    .line 180
     invoke-virtual {p1}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
 
-    .line 181
-    .line 182
-    .line 183
     move-result-object p1
 
-    .line 184
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 546
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 185
-    .line 186
     invoke-virtual {p2}, Landroid/view/View;->hasOnClickListeners()Z
 
-    .line 187
-    .line 188
-    .line 189
     move-result p2
 
-    .line 190
-    if-eqz p2, :cond_7
+    if-eqz p2, :cond_8
 
-    .line 191
-    .line 192
-    :goto_2
     return-void
 
-    .line 193
-    :cond_7
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 549
+    :cond_8
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 194
-    .line 195
-    new-instance v1, Lcom/android/launcher3/menu/g;
+    new-instance v1, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda2;
 
-    .line 196
-    .line 197
-    invoke-direct {v1, p0, v0, p1}, Lcom/android/launcher3/menu/g;-><init>(Lcom/android/launcher3/menu/MenuContainer;ZLandroid/content/Context;)V
+    invoke-direct {v1, p0, v0, p1}, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda2;-><init>(Lcom/android/launcher3/menu/MenuContainer;ZLandroid/content/Context;)V
 
-    .line 198
-    .line 199
-    .line 200
     invoke-virtual {p2, v1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 201
-    .line 202
-    .line 203
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    .line 620
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 204
-    .line 205
     invoke-virtual {p0, p3}, Landroid/view/View;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 
-    .line 206
-    .line 207
-    .line 208
     return-void
 .end method
 
-.method private t(IILandroid/view/View$OnLongClickListener;)V
+.method private initMenuWidgetBtn(IILandroid/view/View$OnLongClickListener;)V
     .locals 4
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 672
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
-    goto/16 :goto_1
+    return-void
 
-    .line 6
-    .line 7
     :cond_0
-    const v1, 0x7f0b0683
+    const v1, 0x7f0b05e0
 
-    .line 8
-    .line 9
-    .line 10
+    .line 675
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object v0
 
-    .line 14
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 15
-    .line 16
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
+    .line 680
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
 
-    .line 17
-    .line 18
-    .line 19
     move-result-object v0
 
-    .line 20
-    invoke-virtual {v0}, Lcom/android/launcher3/resource/B;->s()Z
+    invoke-virtual {v0}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
 
-    .line 21
-    .line 22
-    .line 23
     move-result v0
 
-    .line 24
     const/4 v1, 0x0
 
-    .line 25
     if-eqz v0, :cond_1
 
-    .line 26
-    .line 27
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 681
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 28
-    .line 29
     check-cast v0, Landroid/widget/TextView;
 
-    .line 30
-    .line 31
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
 
-    .line 32
-    .line 33
-    .line 34
     move-result-object v2
 
-    .line 35
-    const v3, 0x7f07098f
+    const v3, 0x7f0708e4
 
-    .line 36
-    .line 37
-    .line 38
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimension(I)F
 
-    .line 39
-    .line 40
-    .line 41
     move-result v2
 
-    .line 42
     invoke-virtual {v0, v1, v2}, Landroid/widget/TextView;->setTextSize(IF)V
 
-    .line 43
-    .line 44
-    .line 45
+    .line 683
     :cond_1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 46
-    .line 47
     check-cast v0, Landroid/widget/TextView;
 
-    .line 48
-    .line 49
     invoke-virtual {v0, p2}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 50
-    .line 51
-    .line 52
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 684
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
 
-    .line 53
-    .line 54
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 685
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
+
     check-cast v0, Landroid/widget/TextView;
 
-    .line 55
-    .line 56
     const/4 v2, -0x1
 
-    .line 57
     if-ne v2, p2, :cond_2
 
-    .line 58
-    .line 59
     const/4 v2, 0x1
 
-    .line 60
     goto :goto_0
 
-    .line 61
     :cond_2
     move v2, v1
 
-    .line 62
     :goto_0
-    invoke-static {v0, v2}, Lcom/android/launcher3/O6;->f(Landroid/widget/TextView;Z)V
+    invoke-static {v0, v2}, Lcom/android/launcher3/WorkspaceTextColorTask;->setTextShadowLayer(Landroid/widget/TextView;Z)V
 
-    .line 63
-    .line 64
-    .line 65
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 687
+    :cond_3
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 66
-    .line 67
     invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 68
-    .line 69
-    .line 70
     move-result-object v0
 
-    .line 71
     check-cast v0, Landroid/widget/LinearLayout$LayoutParams;
 
-    .line 72
-    .line 73
     const/4 v2, -0x2
 
-    .line 74
+    .line 688
     iput v2, v0, Landroid/widget/LinearLayout$LayoutParams;->height:I
 
-    .line 75
-    .line 76
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 689
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 77
-    .line 78
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 79
-    .line 80
-    .line 81
     move-result-object v2
 
-    .line 82
-    invoke-virtual {v2}, Lcom/android/launcher3/h0;->T0()Z
+    invoke-virtual {v2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
 
-    .line 83
-    .line 84
-    .line 85
     move-result v2
 
-    .line 86
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_4
 
-    .line 87
-    .line 88
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 690
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 89
-    .line 90
-    const v3, 0x7f070987
+    const v3, 0x7f0708dc
 
-    .line 91
-    .line 92
-    .line 93
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 94
-    .line 95
-    .line 96
     move-result v2
 
-    .line 97
     iput v2, v0, Landroid/widget/LinearLayout$LayoutParams;->width:I
 
-    .line 98
-    .line 99
-    :cond_3
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 692
+    :cond_4
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 100
-    .line 101
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 102
-    .line 103
-    invoke-static {v0, p2, v2}, Lf1/d;->i(Landroid/view/View;ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
+    invoke-static {v0, p2, v2}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getWidgetIcon(Landroid/view/View;ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
 
-    .line 104
-    .line 105
-    .line 106
     move-result-object p2
 
-    .line 107
+    .line 693
     invoke-virtual {p2, v1, v1, p1, p1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
 
-    .line 108
-    .line 109
-    .line 110
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 694
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 111
-    .line 112
     check-cast p1, Landroid/widget/TextView;
 
-    .line 113
-    .line 114
     const/4 v0, 0x0
 
-    .line 115
     invoke-virtual {p1, v0, p2, v0, v0}, Landroid/widget/TextView;->setCompoundDrawables(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 116
-    .line 117
-    .line 118
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 696
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 119
-    .line 120
     invoke-virtual {p1}, Landroid/view/View;->hasOnClickListeners()Z
 
-    .line 121
-    .line 122
-    .line 123
     move-result p1
 
-    .line 124
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_5
 
-    .line 125
-    .line 126
-    :goto_1
     return-void
 
-    .line 127
-    :cond_4
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 699
+    :cond_5
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 128
-    .line 129
-    new-instance p2, Lcom/android/launcher3/menu/e;
+    new-instance p2, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda0;
 
-    .line 130
-    .line 131
-    invoke-direct {p2, p0}, Lcom/android/launcher3/menu/e;-><init>(Lcom/android/launcher3/menu/MenuContainer;)V
+    invoke-direct {p2, p0}, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda0;-><init>(Lcom/android/launcher3/menu/MenuContainer;)V
 
-    .line 132
-    .line 133
-    .line 134
     invoke-virtual {p1, p2}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 135
-    .line 136
-    .line 137
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->k:Landroid/view/View;
+    .line 723
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWidgetsButton:Landroid/view/View;
 
-    .line 138
-    .line 139
     invoke-virtual {p0, p3}, Landroid/view/View;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 
-    .line 140
-    .line 141
-    .line 142
     return-void
 .end method
 
-.method private u()V
+.method private initViewParas()V
     .locals 4
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 423
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 2
-    .line 3
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
-    const v1, 0x7f0b0303
+    const v1, 0x7f0b02ab
 
-    .line 8
-    .line 9
-    .line 10
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/statemanager/h;->findViewById(I)Landroid/view/View;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/Launcher;->findViewById(I)Landroid/view/View;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object v0
 
-    .line 14
     check-cast v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 15
-    .line 16
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 17
-    .line 18
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 424
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 19
-    .line 20
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getForeColor()I
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getForeColor()I
 
-    .line 21
-    .line 22
-    .line 23
     move-result v2
 
-    .line 24
-    invoke-virtual {v0, v2}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->m(I)V
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->onForeColorChanged(I)V
 
-    .line 25
-    .line 26
-    .line 27
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 425
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 28
-    .line 29
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 30
-    .line 31
-    .line 32
     move-result-object v0
 
-    .line 33
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/statemanager/h;->findViewById(I)Landroid/view/View;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/Launcher;->findViewById(I)Landroid/view/View;
 
-    .line 34
-    .line 35
-    .line 36
     move-result-object v0
 
-    .line 37
     check-cast v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 38
-    .line 39
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 40
-    .line 41
     const v0, 0x3e6b851f    # 0.23f
 
-    .line 42
-    .line 43
-    .line 44
     const/high16 v1, 0x3f800000    # 1.0f
 
-    .line 45
-    .line 46
     const v2, 0x3f028f5c    # 0.51f
 
-    .line 47
-    .line 48
-    .line 49
     const v3, 0x3dcccccd    # 0.1f
 
-    .line 50
-    .line 51
-    .line 52
-    invoke-static {v2, v3, v0, v1}, LL/a;->a(FFFF)Landroid/view/animation/Interpolator;
+    .line 427
+    invoke-static {v2, v3, v0, v1}, Landroidx/core/view/animation/PathInterpolatorCompat;->create(FFFF)Landroid/view/animation/Interpolator;
 
-    .line 53
-    .line 54
-    .line 55
     move-result-object v0
 
-    .line 56
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->r:Landroid/animation/TimeInterpolator;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mExitInterpolator:Landroid/animation/TimeInterpolator;
 
-    .line 57
-    .line 58
-    sget-object v0, Lcom/android/launcher3/anim/L;->n:Landroid/view/animation/Interpolator;
+    .line 428
+    sget-object v0, Lcom/android/launcher3/anim/InterpolatorsMFV;->EASY_EASE:Landroid/view/animation/Interpolator;
 
-    .line 59
-    .line 60
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->s:Landroid/view/animation/Interpolator;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mEnterInterpolator:Landroid/view/animation/Interpolator;
 
-    .line 61
-    .line 62
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 429
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 63
-    .line 64
-    const v1, 0x7f070c7c
+    const v1, 0x7f070b8a
 
-    .line 65
-    .line 66
-    .line 67
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 68
-    .line 69
-    .line 70
     move-result v0
 
-    .line 71
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->u:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMarginRightWidgetLand:I
 
-    .line 72
-    .line 73
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 430
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 74
-    .line 75
-    const v1, 0x7f070c49
+    const v1, 0x7f070b5b
 
-    .line 76
-    .line 77
-    .line 78
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 79
-    .line 80
-    .line 81
     move-result v0
 
-    .line 82
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->t:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMarginRightWallpaperLand:I
 
-    .line 83
-    .line 84
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 431
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 85
-    .line 86
-    const v1, 0x7f0702fb
+    const v1, 0x7f0702b6
 
-    .line 87
-    .line 88
-    .line 89
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 90
-    .line 91
-    .line 92
     move-result v0
 
-    .line 93
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->v:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMarginRightEffectLand:I
 
-    .line 94
-    .line 95
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 433
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 96
-    .line 97
+    const v1, 0x7f0c0046
+
+    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mNewTransitionTime:I
+
+    .line 434
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v1, 0x7f0c004e
+
+    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mOldTransitionTime:I
+
+    .line 436
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
     const v1, 0x7f0c0047
 
-    .line 98
-    .line 99
-    .line 100
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
-    .line 101
-    .line 102
-    .line 103
     move-result v0
 
-    .line 104
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->w:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mNewTopBarViewAlphaTime:I
 
-    .line 105
-    .line 106
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 437
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 107
-    .line 108
     const v1, 0x7f0c004f
 
-    .line 109
-    .line 110
-    .line 111
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
-    .line 112
-    .line 113
-    .line 114
     move-result v0
 
-    .line 115
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->x:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mOldTopBarViewAlphaTime:I
 
-    .line 116
-    .line 117
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 438
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 118
-    .line 119
     const v1, 0x7f0c0048
 
-    .line 120
-    .line 121
-    .line 122
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
-    .line 123
-    .line 124
-    .line 125
     move-result v0
 
-    .line 126
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->y:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mNewTopBarViewTransitionTime:I
 
-    .line 127
-    .line 128
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
+    .line 439
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 129
-    .line 130
     const v1, 0x7f0c0050
 
-    .line 131
-    .line 132
-    .line 133
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
 
-    .line 134
-    .line 135
-    .line 136
     move-result v0
 
-    .line 137
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->z:I
+    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mOldTopBarViewTransitionTime:I
 
-    .line 138
-    .line 139
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 140
-    .line 141
-    const v1, 0x7f0c0049
-
-    .line 142
-    .line 143
-    .line 144
-    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
-
-    .line 145
-    .line 146
-    .line 147
-    move-result v0
-
-    .line 148
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->A:I
-
-    .line 149
-    .line 150
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 151
-    .line 152
-    const v1, 0x7f0c0051
-
-    .line 153
-    .line 154
-    .line 155
-    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getInteger(I)I
-
-    .line 156
-    .line 157
-    .line 158
-    move-result v0
-
-    .line 159
-    iput v0, p0, Lcom/android/launcher3/menu/MenuContainer;->B:I
-
-    .line 160
-    .line 161
     return-void
 .end method
 
-.method private v(Lcom/android/launcher3/q4$a;)Z
+.method private isStatusNoCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)Z
     .locals 0
 
-    .line 1
-    sget-object p0, Lcom/android/launcher3/q4$a;->m:Lcom/android/launcher3/q4$a;
+    .line 828
+    sget-object p0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_SETTING_PAGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 2
-    .line 3
     if-eq p0, p1, :cond_1
 
-    .line 4
-    .line 5
-    sget-object p0, Lcom/android/launcher3/q4$a;->g:Lcom/android/launcher3/q4$a;
+    sget-object p0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_NONE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 6
-    .line 7
     if-eq p0, p1, :cond_1
 
-    .line 8
-    .line 9
-    sget-object p0, Lcom/android/launcher3/q4$a;->n:Lcom/android/launcher3/q4$a;
+    sget-object p0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_THIRDPARTY_WALLPAPER_PAGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 10
-    .line 11
     if-ne p0, p1, :cond_0
 
-    .line 12
-    .line 13
     goto :goto_0
 
-    .line 14
     :cond_0
     const/4 p0, 0x0
 
-    .line 15
-    return p0
+    goto :goto_1
 
-    .line 16
     :cond_1
     :goto_0
     const/4 p0, 0x1
 
-    .line 17
+    :goto_1
     return p0
 .end method
 
-.method private synthetic w(Landroid/view/View;)V
+.method private synthetic lambda$initMenuEffectBtn$2(Landroid/view/View;)V
     .locals 6
 
-    .line 1
+    .line 651
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    .line 2
-    .line 3
-    .line 4
     move-result-wide v0
 
-    .line 5
-    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 652
+    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 6
-    .line 7
     sub-long/2addr v2, v0
 
-    .line 8
     invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
 
-    .line 9
-    .line 10
-    .line 11
     move-result-wide v2
 
-    .line 12
     const-wide/16 v4, 0x12c
 
-    .line 13
-    .line 14
     cmp-long p1, v2, v4
 
-    .line 15
-    .line 16
     if-lez p1, :cond_0
 
-    .line 17
-    .line 18
-    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 653
+    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 655
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
 
-    .line 21
-    .line 22
-    .line 23
     move-result-object p1
 
-    .line 24
-    const v0, 0x7f14013e
+    const v0, 0x7f140104
 
-    .line 25
-    .line 26
-    .line 27
     invoke-virtual {p1, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
-    .line 28
-    .line 29
-    .line 30
     move-result-object p1
 
-    .line 31
-    invoke-static {p1}, Lh1/a;->D(Ljava/lang/String;)V
+    invoke-static {p1}, Lcom/android/launcher3/datacollection/DataCollectionUtils;->menuOverViewClick(Ljava/lang/String;)V
 
-    .line 32
-    .line 33
-    .line 34
+    .line 657
     const-string p1, "MenuContainer"
 
-    .line 35
-    .line 36
     const-string v0, "initMenuContainer--onClick--mEffectTypeButton"
 
-    .line 37
-    .line 38
     invoke-static {p1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 39
-    .line 40
-    .line 41
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 658
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 42
-    .line 43
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 44
-    .line 45
-    .line 46
     move-result-object p1
 
-    .line 47
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
 
-    .line 48
-    .line 49
-    .line 50
     move-result-object p1
 
-    .line 51
-    invoke-virtual {p1}, Lcom/android/launcher3/Workspace;->I1()Z
+    invoke-virtual {p1}, Lcom/android/launcher3/Workspace;->isSwitchingState()Z
 
-    .line 52
-    .line 53
-    .line 54
     move-result p1
 
-    .line 55
     if-nez p1, :cond_0
 
-    .line 56
-    .line 57
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 58
-    .line 59
     invoke-virtual {p1}, Landroid/widget/LinearLayout;->getVisibility()I
 
-    .line 60
-    .line 61
-    .line 62
     move-result p1
 
-    .line 63
     if-nez p1, :cond_0
 
-    .line 64
-    .line 65
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
+    .line 659
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
 
-    .line 66
-    .line 67
-    invoke-virtual {p1}, Lcom/android/launcher3/menu/MenuEffect;->j()V
+    invoke-virtual {p1}, Lcom/android/launcher3/menu/MenuEffect;->initMenuData()V
 
-    .line 68
-    .line 69
-    .line 70
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 660
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 71
-    .line 72
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
 
-    .line 73
-    .line 74
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 75
-    .line 76
     const/4 v5, 0x0
 
-    .line 77
     const/4 v3, 0x0
 
-    .line 78
     move-object v0, p0
 
-    .line 79
-    invoke-virtual/range {v0 .. v5}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+    invoke-virtual/range {v0 .. v5}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
 
-    .line 80
-    .line 81
-    .line 82
-    move-result p0
+    move-result p1
 
-    .line 83
-    if-eqz p0, :cond_0
+    if-eqz p1, :cond_0
 
-    .line 84
-    .line 85
-    const/4 p0, 0x1
+    const/4 p1, 0x1
 
-    .line 86
-    iput-boolean p0, v0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
+    .line 661
+    iput-boolean p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
 
-    .line 87
-    .line 88
-    sget-object p0, Lcom/android/launcher3/q4$a;->j:Lcom/android/launcher3/q4$a;
+    .line 662
+    sget-object p1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_EFFECT:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 89
-    .line 90
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
 
-    .line 91
-    .line 92
-    .line 93
-    iget-object p0, v0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 663
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 94
-    .line 95
-    invoke-static {p0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 96
-    .line 97
-    .line 98
     move-result-object p0
 
-    .line 99
-    invoke-virtual {p0}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
+    invoke-virtual {p0}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
 
-    .line 100
-    .line 101
-    .line 102
     move-result-object p0
 
-    .line 103
-    invoke-virtual {p0}, Lcom/android/launcher3/T6;->invalidate()V
+    invoke-virtual {p0}, Lcom/android/launcher3/Workspace;->invalidate()V
 
-    .line 104
-    .line 105
-    .line 106
     :cond_0
     return-void
 .end method
 
-.method private synthetic x(Landroid/view/View;)V
+.method private synthetic lambda$initMenuSettingsBtn$4(Landroid/view/View;)V
     .locals 6
 
-    .line 1
+    .line 775
     const-string p1, "MenuContainer"
 
-    .line 2
-    .line 3
     const-string v0, "initMenuContainer--onClick--mMoreButton"
 
-    .line 4
-    .line 5
     invoke-static {p1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 6
-    .line 7
-    .line 8
+    .line 776
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    .line 9
-    .line 10
-    .line 11
     move-result-wide v0
 
-    .line 12
-    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 777
+    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 13
-    .line 14
     sub-long/2addr v2, v0
 
-    .line 15
     invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
 
-    .line 16
-    .line 17
-    .line 18
     move-result-wide v2
 
-    .line 19
     const-wide/16 v4, 0x12c
 
-    .line 20
-    .line 21
     cmp-long p1, v2, v4
 
-    .line 22
-    .line 23
     if-lez p1, :cond_1
 
-    .line 24
-    .line 25
-    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 778
+    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 26
-    .line 27
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 780
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
 
-    .line 28
-    .line 29
-    .line 30
     move-result-object p1
 
-    .line 31
-    const v0, 0x7f140141
+    const v0, 0x7f140107
 
-    .line 32
-    .line 33
-    .line 34
     invoke-virtual {p1, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
-    .line 35
-    .line 36
-    .line 37
     move-result-object p1
 
-    .line 38
-    invoke-static {p1}, Lh1/a;->D(Ljava/lang/String;)V
+    invoke-static {p1}, Lcom/android/launcher3/datacollection/DataCollectionUtils;->menuOverViewClick(Ljava/lang/String;)V
 
-    .line 39
-    .line 40
-    .line 41
+    .line 782
     new-instance p1, Landroid/content/Intent;
 
-    .line 42
-    .line 43
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
 
-    .line 44
-    .line 45
-    .line 46
     move-result-object v0
 
-    .line 47
     const-class v1, Lcom/android/launcher3/settings/SettingsActivityMFV;
 
-    .line 48
-    .line 49
     invoke-direct {p1, v0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 50
-    .line 51
-    .line 52
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 783
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 53
-    .line 54
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 55
-    .line 56
-    .line 57
     move-result-object v0
 
-    .line 58
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
 
-    .line 59
-    .line 60
-    .line 61
     move-result-object v0
 
-    .line 62
-    invoke-virtual {v0}, Lcom/android/launcher3/Workspace;->I1()Z
+    invoke-virtual {v0}, Lcom/android/launcher3/Workspace;->isSwitchingState()Z
 
-    .line 63
-    .line 64
-    .line 65
     move-result v0
 
-    .line 66
     if-nez v0, :cond_0
 
-    .line 67
-    .line 68
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 69
-    .line 70
     invoke-virtual {v0}, Landroid/widget/LinearLayout;->getVisibility()I
 
-    .line 71
-    .line 72
-    .line 73
     move-result v0
 
-    .line 74
     if-nez v0, :cond_0
 
-    .line 75
-    .line 76
+    .line 785
     invoke-static {}, Landroid/app/ActivityOptions;->makeBasic()Landroid/app/ActivityOptions;
 
-    .line 77
-    .line 78
-    .line 79
     move-result-object v0
 
-    .line 80
     const/4 v1, 0x0
 
-    .line 81
+    .line 786
     invoke-virtual {v0, v1}, Landroid/app/ActivityOptions;->setSplashScreenStyle(I)Landroid/app/ActivityOptions;
 
-    .line 82
-    .line 83
-    .line 84
     const v1, 0x10008000
 
-    .line 85
-    .line 86
-    .line 87
+    .line 787
     invoke-virtual {p1, v1}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 88
-    .line 89
-    .line 90
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 788
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 91
-    .line 92
-    invoke-static {v1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 93
-    .line 94
-    .line 95
     move-result-object v1
 
-    .line 96
     const/16 v2, 0x4d2
 
-    .line 97
-    .line 98
     invoke-virtual {v0}, Landroid/app/ActivityOptions;->toBundle()Landroid/os/Bundle;
 
-    .line 99
-    .line 100
-    .line 101
     move-result-object v0
 
-    .line 102
-    invoke-virtual {v1, p1, v2, v0}, Lcom/android/launcher3/C2;->startActivityForResult(Landroid/content/Intent;ILandroid/os/Bundle;)V
+    invoke-virtual {v1, p1, v2, v0}, Lcom/android/launcher3/Launcher;->startActivityForResult(Landroid/content/Intent;ILandroid/os/Bundle;)V
 
-    .line 103
-    .line 104
-    .line 105
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 789
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 106
-    .line 107
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 108
-    .line 109
-    .line 110
     move-result-object p1
 
-    .line 111
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->getStateManager()Lcom/android/launcher3/statemanager/d;
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
 
-    .line 112
-    .line 113
-    .line 114
     move-result-object p1
 
-    .line 115
-    sget-object v0, Lcom/android/launcher3/V3;->A:Lcom/android/launcher3/V3;
+    sget-object v0, Lcom/android/launcher3/LauncherState;->MENU_OVERVIEW:Lcom/android/launcher3/LauncherState;
 
-    .line 116
-    .line 117
-    invoke-virtual {p1, v0}, Lcom/android/launcher3/statemanager/d;->i0(Lcom/android/launcher3/statemanager/a;)V
+    invoke-virtual {p1, v0}, Lcom/android/launcher3/statemanager/StateManager;->setRestState(Lcom/android/launcher3/statemanager/BaseState;)V
 
-    .line 118
-    .line 119
-    .line 120
     :cond_0
     const/4 p1, 0x1
 
-    .line 121
-    iput-boolean p1, p0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
+    .line 791
+    iput-boolean p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
 
-    .line 122
-    .line 123
-    sget-object p1, Lcom/android/launcher3/q4$a;->m:Lcom/android/launcher3/q4$a;
+    .line 792
+    sget-object p1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_SETTING_PAGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 124
-    .line 125
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
 
-    .line 126
-    .line 127
-    .line 128
     :cond_1
     return-void
 .end method
 
-.method private synthetic y(ZLandroid/content/Context;Landroid/view/View;)V
+.method private synthetic lambda$initMenuWallpaperBtn$1(ZLandroid/content/Context;Landroid/view/View;)V
     .locals 9
 
-    .line 1
+    .line 550
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    .line 2
-    .line 3
-    .line 4
     move-result-wide v0
 
-    .line 5
-    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 551
+    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 6
-    .line 7
     sub-long/2addr v2, v0
 
-    .line 8
     invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
 
-    .line 9
-    .line 10
-    .line 11
     move-result-wide v2
 
-    .line 12
     const-wide/16 v4, 0x12c
 
-    .line 13
-    .line 14
     cmp-long p3, v2, v4
 
-    .line 15
-    .line 16
     if-lez p3, :cond_8
 
-    .line 17
-    .line 18
-    invoke-static {}, Lx1/O;->R4()V
+    .line 552
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->setMonkeyRunningState()V
 
-    .line 19
-    .line 20
-    .line 21
-    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    .line 553
+    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
 
-    .line 22
-    .line 23
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 555
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
 
-    .line 24
-    .line 25
-    .line 26
     move-result-object p3
 
-    .line 27
-    const v0, 0x7f140143
+    const v0, 0x7f140109
 
-    .line 28
-    .line 29
-    .line 30
     invoke-virtual {p3, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
-    .line 31
-    .line 32
-    .line 33
     move-result-object p3
 
-    .line 34
-    invoke-static {p3}, Lh1/a;->D(Ljava/lang/String;)V
+    invoke-static {p3}, Lcom/android/launcher3/datacollection/DataCollectionUtils;->menuOverViewClick(Ljava/lang/String;)V
 
-    .line 35
-    .line 36
-    .line 37
-    iget-object p3, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 557
+    iget-object p3, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 38
-    .line 39
-    invoke-static {p3}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p3}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 40
-    .line 41
-    .line 42
     move-result-object p3
 
-    .line 43
-    invoke-virtual {p3}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
+    .line 558
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
 
-    .line 44
-    .line 45
-    .line 46
     move-result-object v0
 
-    .line 47
-    invoke-virtual {v0}, Lcom/android/launcher3/Workspace;->I1()Z
+    invoke-virtual {v0}, Lcom/android/launcher3/Workspace;->isSwitchingState()Z
 
-    .line 48
-    .line 49
-    .line 50
     move-result v0
 
-    .line 51
-    invoke-static {}, Lx1/O;->P0()I
+    .line 559
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getWallpaperEntranceFeature()I
 
-    .line 52
-    .line 53
-    .line 54
     move-result v1
 
-    .line 55
+    .line 560
     new-instance v2, Ljava/lang/StringBuilder;
 
-    .line 56
-    .line 57
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 58
-    .line 59
-    .line 60
     const-string v3, "initMenuContainer--onClick--mWallpaperButton--isSwitchingState="
 
-    .line 61
-    .line 62
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 63
-    .line 64
-    .line 65
     invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
-    .line 66
-    .line 67
-    .line 68
-    const-string v3, " wallpaperEntrance="
-
-    .line 69
-    .line 70
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 71
-    .line 72
-    .line 73
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 74
-    .line 75
-    .line 76
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 77
-    .line 78
-    .line 79
     move-result-object v2
 
-    .line 80
+    const-string v3, " wallpaperEntrance="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
     const-string v3, "MenuContainer"
 
-    .line 81
-    .line 82
     invoke-static {v3, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 83
-    .line 84
-    .line 85
     const/4 v2, 0x1
 
-    .line 86
     if-eqz p1, :cond_5
 
-    .line 87
-    .line 88
+    .line 563
     new-instance p1, Landroid/content/Intent;
 
-    .line 89
-    .line 90
     invoke-direct {p1}, Landroid/content/Intent;-><init>()V
 
-    .line 91
-    .line 92
-    .line 93
     const/high16 p2, 0x10000000
 
-    .line 94
-    .line 95
+    .line 564
     invoke-virtual {p1, p2}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 96
-    .line 97
-    .line 98
-    const-string p2, "zte.mfv.intent.action.beauty.myoswallpaper"
+    .line 566
+    const-string/jumbo p2, "zte.mfv.intent.action.beauty.myoswallpaper"
 
-    .line 99
-    .line 100
     const-string v3, "com.zte.beautify/com.zte.beautify.NewStyleWallpaperActivity"
 
-    .line 101
-    .line 102
     const/4 v4, 0x2
 
-    .line 103
     if-eq v1, v2, :cond_1
 
-    .line 104
-    .line 105
     if-eq v1, v4, :cond_1
 
-    .line 106
-    .line 107
-    invoke-virtual {p3}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
+    .line 567
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 108
-    .line 109
-    .line 110
     move-result-object v1
 
-    .line 111
-    iget-object v1, v1, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object v1, v1, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 112
-    .line 113
-    iget-object v1, v1, Lcom/android/launcher3/r4;->L:Ljava/lang/String;
+    iget-object v1, v1, Lcom/android/launcher3/InvariantDeviceProfile;->wallpaperEntranceComponentName:Ljava/lang/String;
 
-    .line 114
-    .line 115
     invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
-    .line 116
-    .line 117
-    .line 118
     move-result v1
 
-    .line 119
     if-nez v1, :cond_0
 
-    .line 120
-    .line 121
-    invoke-virtual {p3}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
+    .line 568
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 122
-    .line 123
-    .line 124
     move-result-object p2
 
-    .line 125
-    iget-object p2, p2, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p2, p2, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 126
-    .line 127
-    iget-object p2, p2, Lcom/android/launcher3/r4;->L:Ljava/lang/String;
+    iget-object p2, p2, Lcom/android/launcher3/InvariantDeviceProfile;->wallpaperEntranceComponentName:Ljava/lang/String;
 
-    .line 128
-    .line 129
     invoke-static {p2}, Landroid/content/ComponentName;->unflattenFromString(Ljava/lang/String;)Landroid/content/ComponentName;
 
-    .line 130
-    .line 131
-    .line 132
     move-result-object p2
 
-    .line 133
     invoke-virtual {p1, p2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    .line 134
-    .line 135
-    .line 136
     goto :goto_0
 
-    .line 137
+    .line 573
     :cond_0
     invoke-static {v3}, Landroid/content/ComponentName;->unflattenFromString(Ljava/lang/String;)Landroid/content/ComponentName;
 
-    .line 138
-    .line 139
-    .line 140
     move-result-object v1
 
-    .line 141
     invoke-virtual {p1, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    .line 142
-    .line 143
-    .line 144
+    .line 574
     invoke-virtual {p1, p2}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 145
-    .line 146
-    .line 147
     goto :goto_0
 
-    .line 148
     :cond_1
     if-ne v1, v2, :cond_2
 
-    .line 149
-    .line 150
+    .line 579
     const-string p2, "com.zte.beautify/com.zte.beautify.BeautifyWallpaperActivity"
 
-    .line 151
-    .line 152
     invoke-static {p2}, Landroid/content/ComponentName;->unflattenFromString(Ljava/lang/String;)Landroid/content/ComponentName;
 
-    .line 153
-    .line 154
-    .line 155
     move-result-object p2
 
-    .line 156
     invoke-virtual {p1, p2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    .line 157
-    .line 158
-    .line 159
     goto :goto_0
 
-    .line 160
     :cond_2
     if-ne v1, v4, :cond_3
 
-    .line 161
-    .line 162
+    .line 581
     invoke-static {v3}, Landroid/content/ComponentName;->unflattenFromString(Ljava/lang/String;)Landroid/content/ComponentName;
 
-    .line 163
-    .line 164
-    .line 165
     move-result-object v1
 
-    .line 166
     invoke-virtual {p1, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    .line 167
-    .line 168
-    .line 169
+    .line 582
     invoke-virtual {p1, p2}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 170
-    .line 171
-    .line 172
     :cond_3
     :goto_0
     if-nez v0, :cond_4
 
-    .line 173
-    .line 174
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 584
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 175
-    .line 176
     invoke-virtual {p2}, Landroid/widget/LinearLayout;->getVisibility()I
 
-    .line 177
-    .line 178
-    .line 179
     move-result p2
 
-    .line 180
     if-nez p2, :cond_4
 
-    .line 181
-    .line 182
-    invoke-virtual {p3}, Landroid/app/Activity;->getApplicationContext()Landroid/content/Context;
+    .line 585
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getApplicationContext()Landroid/content/Context;
 
-    .line 183
-    .line 184
-    .line 185
     move-result-object p2
 
-    .line 186
-    const v0, 0x7f010014
+    const v0, 0x7f010013
 
-    .line 187
-    .line 188
-    .line 189
-    const v1, 0x7f010013
+    const v1, 0x7f010012
 
-    .line 190
-    .line 191
-    .line 192
     invoke-static {p2, v0, v1}, Landroid/app/ActivityOptions;->makeCustomAnimation(Landroid/content/Context;II)Landroid/app/ActivityOptions;
 
-    .line 193
-    .line 194
-    .line 195
     move-result-object p2
 
-    .line 196
+    .line 587
     invoke-virtual {p2}, Landroid/app/ActivityOptions;->toBundle()Landroid/os/Bundle;
 
-    .line 197
-    .line 198
-    .line 199
     move-result-object p2
 
-    .line 200
-    invoke-virtual {p3, p1, p2}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;Landroid/os/Bundle;)V
+    invoke-virtual {p3, p1, p2}, Lcom/android/launcher3/Launcher;->startActivity(Landroid/content/Intent;Landroid/os/Bundle;)V
 
-    .line 201
-    .line 202
-    .line 203
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 588
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 204
-    .line 205
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 206
-    .line 207
-    .line 208
     move-result-object p1
 
-    .line 209
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->getStateManager()Lcom/android/launcher3/statemanager/d;
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
 
-    .line 210
-    .line 211
-    .line 212
     move-result-object p1
 
-    .line 213
-    sget-object p2, Lcom/android/launcher3/V3;->A:Lcom/android/launcher3/V3;
+    sget-object p2, Lcom/android/launcher3/LauncherState;->MENU_OVERVIEW:Lcom/android/launcher3/LauncherState;
 
-    .line 214
-    .line 215
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/statemanager/d;->i0(Lcom/android/launcher3/statemanager/a;)V
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/statemanager/StateManager;->setRestState(Lcom/android/launcher3/statemanager/BaseState;)V
 
-    .line 216
-    .line 217
-    .line 218
+    .line 590
     :cond_4
-    iput-boolean v2, p0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
+    iput-boolean v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
 
-    .line 219
-    .line 220
-    sget-object p1, Lcom/android/launcher3/q4$a;->n:Lcom/android/launcher3/q4$a;
+    .line 591
+    sget-object p1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_THIRDPARTY_WALLPAPER_PAGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 221
-    .line 222
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
 
-    .line 223
-    .line 224
-    .line 225
-    return-void
+    goto/16 :goto_2
 
-    .line 226
+    .line 593
     :cond_5
-    invoke-static {p2}, Lx1/O;->S0(Landroid/content/Context;)Z
+    invoke-static {p2}, Lcom/android/launcher3/mfvUtil/MFVUtils;->hasExternalStoragePermission(Landroid/content/Context;)Z
 
-    .line 227
-    .line 228
-    .line 229
     move-result p1
 
-    .line 230
     const/4 v1, 0x0
 
-    .line 231
+    .line 594
     const-string v3, "already_set_permission_Q"
 
-    .line 232
-    .line 233
     if-nez p1, :cond_6
 
-    .line 234
-    .line 235
-    invoke-static {p2, v3, v1}, Lx1/O;->F4(Landroid/content/Context;Ljava/lang/String;Z)V
+    .line 595
+    invoke-static {p2, v3, v1}, Lcom/android/launcher3/mfvUtil/MFVUtils;->saveConfigToPrefs(Landroid/content/Context;Ljava/lang/String;Z)V
 
-    .line 236
-    .line 237
-    .line 238
+    .line 596
     new-instance p1, Ljava/util/ArrayList;
 
-    .line 239
-    .line 240
     invoke-direct {p1}, Ljava/util/ArrayList;-><init>()V
 
-    .line 241
-    .line 242
-    .line 243
+    .line 597
     const-string p2, "android.permission.READ_EXTERNAL_STORAGE"
 
-    .line 244
-    .line 245
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 246
-    .line 247
-    .line 248
+    .line 598
     const-string p2, "android.permission.WRITE_EXTERNAL_STORAGE"
 
-    .line 249
-    .line 250
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 251
-    .line 252
-    .line 253
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 599
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 254
-    .line 255
-    invoke-static {p2}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p2}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 256
-    .line 257
-    .line 258
     move-result-object p2
 
-    .line 259
     const/16 v1, 0x3ea
 
-    .line 260
-    .line 261
-    invoke-static {p2, p1, v1}, Lx1/U;->b(Landroid/app/Activity;Ljava/util/List;I)V
+    invoke-static {p2, p1, v1}, Lcom/android/launcher3/mfvUtil/PermissionUtil;->requestPermission(Landroid/app/Activity;Ljava/util/List;I)V
 
-    .line 262
-    .line 263
-    .line 264
     goto :goto_1
 
-    .line 265
+    .line 601
     :cond_6
-    invoke-static {p2}, Lcom/android/launcher3/J3;->m(Landroid/content/Context;)Landroid/content/SharedPreferences;
+    invoke-static {p2}, Lcom/android/launcher3/LauncherPrefs;->getPrefs(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
-    .line 266
-    .line 267
-    .line 268
     move-result-object p1
 
-    .line 269
     invoke-interface {p1, v3, v1}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
 
-    .line 270
-    .line 271
-    .line 272
     move-result p1
 
-    .line 273
     if-nez p1, :cond_7
 
-    .line 274
-    .line 275
-    invoke-static {p2, v3, v2}, Lx1/O;->F4(Landroid/content/Context;Ljava/lang/String;Z)V
+    .line 602
+    invoke-static {p2, v3, v2}, Lcom/android/launcher3/mfvUtil/MFVUtils;->saveConfigToPrefs(Landroid/content/Context;Ljava/lang/String;Z)V
 
-    .line 276
-    .line 277
-    .line 278
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->D:Lcom/android/launcher3/menu/c;
+    .line 603
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuCache:Lcom/android/launcher3/menu/MenuCache;
 
-    .line 279
-    .line 280
-    invoke-virtual {p1}, Lcom/android/launcher3/menu/c;->p()V
+    invoke-virtual {p1}, Lcom/android/launcher3/menu/MenuCache;->initOnlineRes()V
 
-    .line 281
-    .line 282
-    .line 283
     :cond_7
     :goto_1
     if-nez v0, :cond_8
 
-    .line 284
-    .line 285
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 607
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 286
-    .line 287
     invoke-virtual {p1}, Landroid/widget/LinearLayout;->getVisibility()I
 
-    .line 288
-    .line 289
-    .line 290
     move-result p1
 
-    .line 291
     if-nez p1, :cond_8
 
-    .line 292
-    .line 293
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
 
-    .line 294
-    .line 295
     if-eqz p1, :cond_8
 
-    .line 296
-    .line 297
-    invoke-virtual {p1}, Lcom/android/launcher3/menu/MenuWallpaper;->j()V
+    .line 608
+    invoke-virtual {p1}, Lcom/android/launcher3/menu/MenuWallpaper;->initMenuData()V
 
-    .line 298
-    .line 299
-    .line 300
-    invoke-virtual {p3}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
+    .line 609
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
 
-    .line 301
-    .line 302
-    .line 303
     move-result-object p1
 
-    .line 304
-    invoke-virtual {p1}, Lcom/android/launcher3/T6;->invalidate()V
+    invoke-virtual {p1}, Lcom/android/launcher3/Workspace;->invalidate()V
 
-    .line 305
-    .line 306
-    .line 307
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 610
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 308
-    .line 309
-    iget-object v5, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
+    iget-object v5, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
 
-    .line 310
-    .line 311
-    iget-object v7, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    iget-object v7, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 312
-    .line 313
     const/4 v8, 0x0
 
-    .line 314
     const/4 v6, 0x0
 
-    .line 315
     move-object v3, p0
 
-    .line 316
-    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
 
-    .line 317
-    .line 318
-    .line 319
-    iput-boolean v2, v3, Lcom/android/launcher3/menu/MenuContainer;->F:Z
+    .line 611
+    iput-boolean v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
 
-    .line 320
-    .line 321
-    sget-object p0, Lcom/android/launcher3/q4$a;->i:Lcom/android/launcher3/q4$a;
+    .line 612
+    sget-object p1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_WALLPAPER:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 322
-    .line 323
-    invoke-virtual {v3, p0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
 
-    .line 324
-    .line 325
-    .line 326
-    invoke-virtual {p3}, Landroid/app/Activity;->getApplicationContext()Landroid/content/Context;
+    .line 613
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getApplicationContext()Landroid/content/Context;
 
-    .line 327
-    .line 328
-    .line 329
     move-result-object p0
 
-    .line 330
-    invoke-static {p0}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
+    invoke-static {p0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
 
-    .line 331
-    .line 332
-    .line 333
     move-result-object p0
 
-    .line 334
-    invoke-virtual {p0}, Lcom/android/launcher3/P2;->k()Lcom/android/launcher3/H5;
+    invoke-virtual {p0}, Lcom/android/launcher3/LauncherAppState;->getResourceManager()Lcom/android/launcher3/ResourceManager;
 
-    .line 335
-    .line 336
-    .line 337
     move-result-object p0
 
-    .line 338
-    invoke-virtual {p0}, Lcom/android/launcher3/H5;->Y()Lcom/android/launcher3/H5$g;
+    invoke-virtual {p0}, Lcom/android/launcher3/ResourceManager;->getMenuState()Lcom/android/launcher3/ResourceManager$MenuStateInfo;
 
-    .line 339
-    .line 340
-    .line 341
     move-result-object p0
 
-    .line 342
-    invoke-virtual {p0}, Lcom/android/launcher3/H5$g;->b()I
+    .line 614
+    invoke-virtual {p0}, Lcom/android/launcher3/ResourceManager$MenuStateInfo;->getIndicatorColor()I
 
-    .line 343
-    .line 344
-    .line 345
     move-result p0
 
-    .line 346
-    invoke-virtual {p3, p0}, Lcom/android/launcher3/C2;->T4(I)V
+    invoke-virtual {p3, p0}, Lcom/android/launcher3/Launcher;->updateMfvPageIndicatorColor(I)V
 
-    .line 347
-    .line 348
-    .line 349
-    invoke-virtual {p3}, Lcom/android/launcher3/v;->getSystemUiController()Lcom/android/launcher3/util/E2;
+    .line 615
+    invoke-virtual {p3}, Lcom/android/launcher3/Launcher;->getSystemUiController()Lcom/android/launcher3/util/SystemUiController;
 
-    .line 350
-    .line 351
-    .line 352
     move-result-object p0
 
-    .line 353
-    invoke-virtual {p0, p3}, Lcom/android/launcher3/util/E2;->d(Landroid/content/Context;)V
+    invoke-virtual {p0, p3}, Lcom/android/launcher3/util/SystemUiController;->updateUiState(Landroid/content/Context;)V
 
-    .line 354
-    .line 355
-    .line 356
+    :cond_8
+    :goto_2
+    return-void
+.end method
+
+.method private synthetic lambda$initMenuWidgetBtn$3(Landroid/view/View;)V
+    .locals 6
+
+    .line 700
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v0
+
+    .line 701
+    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
+
+    sub-long/2addr v2, v0
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
+
+    move-result-wide v2
+
+    const-wide/16 v4, 0x12c
+
+    cmp-long p1, v2, v4
+
+    if-lez p1, :cond_0
+
+    .line 702
+    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
+
+    .line 704
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object p1
+
+    const v0, 0x7f14010a
+
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {p1}, Lcom/android/launcher3/datacollection/DataCollectionUtils;->menuOverViewClick(Ljava/lang/String;)V
+
+    .line 708
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p1}, Lcom/android/launcher3/views/ActivityContext;->getLayoutInflater()Landroid/view/LayoutInflater;
+
+    move-result-object p1
+
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    .line 709
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    const v2, 0x7f0e0083
+
+    invoke-virtual {p1, v2, v0, v1}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/launcher3/widget/ComponentsFullSheet;
+
+    .line 710
+    invoke-virtual {p1, p0}, Lcom/android/launcher3/widget/ComponentsFullSheet;->show(Landroid/view/View;)Lcom/android/launcher3/widget/ComponentsFullSheet;
+
+    .line 711
+    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWidgetView:Landroid/view/View;
+
+    .line 713
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Workspace;->isSwitchingState()Z
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {p1}, Landroid/widget/LinearLayout;->getVisibility()I
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    .line 714
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWidgetView:Landroid/view/View;
+
+    check-cast p1, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    invoke-interface {p1}, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;->initMenuData()V
+
+    .line 715
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWidgetView:Landroid/view/View;
+
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    const/4 v5, 0x0
+
+    const/4 v1, 0x0
+
+    const/4 v3, 0x0
+
+    move-object v0, p0
+
+    invoke-virtual/range {v0 .. v5}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_0
+
+    const/4 p1, 0x1
+
+    .line 716
+    iput-boolean p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
+
+    .line 717
+    sget-object p1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_WIDGET:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    :cond_0
+    return-void
+.end method
+
+.method static synthetic lambda$setupHomeMenu$0(Landroid/view/View;)Z
+    .locals 0
+
+    .line 460
+    invoke-virtual {p0}, Landroid/view/View;->performClick()Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method private menuDownAnimationOfOldView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
+    .locals 4
+
+    .line 971
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    aget v0, v0, v1
+
+    .line 972
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
+
+    move-result-object v2
+
+    const/4 v3, 0x1
+
+    aget v2, v2, v3
+
+    if-eqz p2, :cond_1
+
+    .line 976
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_0
+
+    .line 977
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    int-to-float p3, v0
+
+    new-array v0, v3, [F
+
+    aput p3, v0, v1
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 979
+    :cond_0
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
+
+    int-to-float p3, v2
+
+    new-array v0, v3, [F
+
+    aput p3, v0, v1
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 982
+    :cond_1
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    const/4 v0, 0x0
+
+    const/4 v2, 0x2
+
+    if-eqz p2, :cond_2
+
+    .line 983
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v2, v2, [F
+
+    aput v0, v2, v1
+
+    aput p3, v2, v3
+
+    invoke-static {p1, p2, v2}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 985
+    :cond_2
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v2, v2, [F
+
+    aput v0, v2, v1
+
+    aput p3, v2, v3
+
+    invoke-static {p1, p2, v2}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    .line 988
+    :goto_0
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mExitInterpolator:Landroid/animation/TimeInterpolator;
+
+    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 989
+    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mOldTransitionTime:I
+
+    int-to-long p2, p0
+
+    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    return-object p1
+.end method
+
+.method private menuUpAnimationOfNewView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
+    .locals 6
+
+    .line 1017
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    aget v0, v0, v1
+
+    .line 1018
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
+
+    move-result-object v2
+
+    const/4 v3, 0x1
+
+    aget v2, v2, v3
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x2
+
+    if-eqz p2, :cond_1
+
+    .line 1022
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_0
+
+    .line 1023
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v0, v5, [F
+
+    aput p3, v0, v1
+
+    aput v4, v0, v3
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1025
+    :cond_0
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v0, v5, [F
+
+    aput p3, v0, v1
+
+    aput v4, v0, v3
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1028
+    :cond_1
+    instance-of p2, p1, Lcom/android/launcher3/widget/BaseWidgetSheet;
+
+    if-eqz p2, :cond_2
+
+    .line 1029
+    check-cast p1, Lcom/android/launcher3/widget/BaseWidgetSheet;
+
+    .line 1030
+    sget-object p2, Lcom/android/launcher3/widget/BaseWidgetSheet;->TRANSLATION_SHIFT:Landroid/util/FloatProperty;
+
+    new-array p3, v3, [F
+
+    aput v4, p3, v1
+
+    invoke-static {p1, p2, p3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p2
+
+    .line 1031
+    iget-object p3, p0, Lcom/android/launcher3/menu/MenuContainer;->mEnterInterpolator:Landroid/view/animation/Interpolator;
+
+    invoke-virtual {p2, p3}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 1032
+    iget p3, p0, Lcom/android/launcher3/menu/MenuContainer;->mNewTransitionTime:I
+
+    int-to-long v0, p3
+
+    invoke-virtual {p2, v0, v1}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    .line 1033
+    new-instance p3, Lcom/android/launcher3/menu/MenuContainer$2;
+
+    invoke-direct {p3, p0, p1}, Lcom/android/launcher3/menu/MenuContainer$2;-><init>(Lcom/android/launcher3/menu/MenuContainer;Lcom/android/launcher3/widget/BaseWidgetSheet;)V
+
+    invoke-virtual {p2, p3}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+
+    return-object p2
+
+    .line 1049
+    :cond_2
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_3
+
+    .line 1050
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    mul-int/2addr v0, v5
+
+    int-to-float p3, v0
+
+    new-array v0, v5, [F
+
+    aput p3, v0, v1
+
+    aput v4, v0, v3
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1052
+    :cond_3
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
+
+    mul-int/2addr v2, v5
+
+    int-to-float p3, v2
+
+    new-array v0, v5, [F
+
+    aput p3, v0, v1
+
+    aput v4, v0, v3
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    .line 1055
+    :goto_0
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mEnterInterpolator:Landroid/view/animation/Interpolator;
+
+    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 1056
+    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mNewTransitionTime:I
+
+    int-to-long p2, p0
+
+    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    return-object p1
+.end method
+
+.method private setupHomeMenu()V
+    .locals 6
+
+    .line 443
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getForeColor()I
+
+    move-result v0
+
+    .line 445
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    if-nez v1, :cond_0
+
+    const v1, 0x7f0b028d
+
+    .line 446
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/menu/MenuContainer;->findViewById(I)Landroid/view/View;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/widget/LinearLayout;
+
+    iput-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    .line 449
+    :cond_0
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    if-eqz v1, :cond_2
+
+    invoke-static {}, Lcom/android/launcher3/Utilities;->isTableDevice()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 450
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v2
+
+    iget-boolean v2, v2, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v2, :cond_1
+
+    const v2, 0x7f07064e
+
+    goto :goto_0
+
+    :cond_1
+    const v2, 0x7f07064d
+
+    :goto_0
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 452
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v2}, Landroid/widget/LinearLayout;->getPaddingTop()I
+
+    move-result v3
+
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v4}, Landroid/widget/LinearLayout;->getPaddingBottom()I
+
+    move-result v4
+
+    invoke-virtual {v2, v1, v3, v1, v4}, Landroid/widget/LinearLayout;->setPadding(IIII)V
+
+    .line 454
+    :cond_2
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    .line 455
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v2, 0x7f0708df
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    goto :goto_1
+
+    .line 456
+    :cond_3
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v2, 0x7f0708dd
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 457
+    :goto_1
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    .line 458
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v2, 0x7f0708de
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 460
+    :cond_4
+    new-instance v2, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda4;
+
+    invoke-direct {v2}, Lcom/android/launcher3/menu/MenuContainer$$ExternalSyntheticLambda4;-><init>()V
+
+    .line 462
+    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->initMenuWallpaperBtn(IILandroid/view/View$OnLongClickListener;)V
+
+    .line 463
+    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->initMenuEffectBtn(IILandroid/view/View$OnLongClickListener;)V
+
+    .line 464
+    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->initMenuWidgetBtn(IILandroid/view/View$OnLongClickListener;)V
+
+    .line 465
+    invoke-direct {p0, v1, v0, v2}, Lcom/android/launcher3/menu/MenuContainer;->initMenuSettingsBtn(IILandroid/view/View$OnLongClickListener;)V
+
+    .line 467
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->updateHomeLayoutPadding()V
+
+    .line 468
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->updateMenuContainerMargins()V
+
+    .line 470
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v0, Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getResourceManager()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/ResourceManager;->isThirdAppWallpaperEntrance()Z
+
+    .line 475
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
+
+    if-nez v0, :cond_5
+
+    const v0, 0x7f0b033f
+
+    .line 476
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/menu/MenuEffect;
+
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
+
+    .line 479
+    :cond_5
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    if-nez v0, :cond_6
+
+    const v0, 0x7f0b0340
+
+    .line 480
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    .line 484
+    :cond_6
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_8
+
+    .line 485
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
+
+    const/4 v1, -0x1
+
+    const/4 v2, -0x2
+
+    const v3, 0x800005
+
+    const/4 v4, 0x0
+
+    if-eqz v0, :cond_7
+
+    .line 486
+    invoke-virtual {v0}, Lcom/android/launcher3/menu/MenuWallpaper;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
+
+    .line 487
+    iget v5, p0, Lcom/android/launcher3/menu/MenuContainer;->mMarginRightWallpaperLand:I
+
+    invoke-virtual {v0, v4, v4, v5, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    .line 488
+    iput v3, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
+
+    .line 489
+    iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->width:I
+
+    .line 490
+    iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->height:I
+
+    .line 493
+    :cond_7
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/menu/MenuEffect;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
+
+    .line 494
+    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMarginRightEffectLand:I
+
+    invoke-virtual {v0, v4, v4, p0, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    .line 495
+    iput v3, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
+
+    .line 496
+    iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->width:I
+
+    .line 497
+    iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->height:I
+
     :cond_8
     return-void
 .end method
 
-.method private synthetic z(Landroid/view/View;)V
-    .locals 6
+.method private topBarDownAnimationOfNewView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
+    .locals 4
 
-    .line 1
-    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+    .line 1061
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
 
-    .line 2
-    .line 3
-    .line 4
-    move-result-wide v0
-
-    .line 5
-    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
-
-    .line 6
-    .line 7
-    sub-long/2addr v2, v0
-
-    .line 8
-    invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-wide v2
-
-    .line 12
-    const-wide/16 v4, 0x12c
-
-    .line 13
-    .line 14
-    cmp-long p1, v2, v4
-
-    .line 15
-    .line 16
-    if-lez p1, :cond_0
-
-    .line 17
-    .line 18
-    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
-
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object p1
-
-    .line 24
-    const v0, 0x7f140144
-
-    .line 25
-    .line 26
-    .line 27
-    invoke-virtual {p1, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    .line 28
-    .line 29
-    .line 30
-    move-result-object p1
-
-    .line 31
-    invoke-static {p1}, Lh1/a;->D(Ljava/lang/String;)V
-
-    .line 32
-    .line 33
-    .line 34
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 35
-    .line 36
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getLayoutInflater()Landroid/view/LayoutInflater;
-
-    .line 37
-    .line 38
-    .line 39
-    move-result-object p1
-
-    .line 40
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 41
-    .line 42
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
-
-    .line 43
-    .line 44
-    .line 45
     move-result-object v0
 
-    .line 46
     const/4 v1, 0x0
 
-    .line 47
-    const v2, 0x7f0e008b
+    aget v0, v0, v1
 
-    .line 48
-    .line 49
-    .line 50
-    invoke-virtual {p1, v2, v0, v1}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+    .line 1062
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
 
-    .line 51
-    .line 52
-    .line 53
+    move-result-object v0
+
+    const/4 v2, 0x1
+
+    aget v0, v0, v2
+
+    const/4 v0, 0x0
+
+    const/4 v3, 0x2
+
+    if-eqz p2, :cond_1
+
+    .line 1066
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_0
+
+    .line 1067
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v3, v3, [F
+
+    aput p3, v3, v1
+
+    aput v0, v3, v2
+
+    invoke-static {p1, p2, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
     move-result-object p1
 
-    .line 54
-    check-cast p1, Lcom/android/launcher3/widget/ComponentsFullSheet;
+    goto :goto_0
 
-    .line 55
-    .line 56
-    invoke-virtual {p1, p0}, Lcom/android/launcher3/widget/ComponentsFullSheet;->l1(Landroid/view/View;)Lcom/android/launcher3/widget/ComponentsFullSheet;
+    .line 1069
+    :cond_0
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
 
-    .line 57
-    .line 58
-    .line 59
-    iput-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->G:Landroid/view/View;
+    neg-int p3, p3
 
-    .line 60
-    .line 61
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    int-to-float p3, p3
 
-    .line 62
-    .line 63
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    new-array v3, v3, [F
 
-    .line 64
-    .line 65
-    .line 66
+    aput p3, v3, v1
+
+    aput v0, v3, v2
+
+    invoke-static {p1, p2, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
     move-result-object p1
 
-    .line 67
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
+    goto :goto_0
 
-    .line 68
-    .line 69
-    .line 70
+    .line 1072
+    :cond_1
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_2
+
+    .line 1073
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v3, v3, [F
+
+    aput p3, v3, v1
+
+    aput v0, v3, v2
+
+    invoke-static {p1, p2, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
     move-result-object p1
 
-    .line 71
-    invoke-virtual {p1}, Lcom/android/launcher3/Workspace;->I1()Z
+    goto :goto_0
 
-    .line 72
-    .line 73
-    .line 74
-    move-result p1
+    .line 1075
+    :cond_2
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
 
-    .line 75
-    if-nez p1, :cond_0
+    neg-int p3, p3
 
-    .line 76
-    .line 77
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    int-to-float p3, p3
 
-    .line 78
-    .line 79
-    invoke-virtual {p1}, Landroid/widget/LinearLayout;->getVisibility()I
+    new-array v3, v3, [F
 
-    .line 80
-    .line 81
-    .line 82
-    move-result p1
+    aput p3, v3, v1
 
-    .line 83
-    if-nez p1, :cond_0
+    aput v0, v3, v2
 
-    .line 84
-    .line 85
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->G:Landroid/view/View;
+    invoke-static {p1, p2, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
-    .line 86
-    .line 87
-    check-cast p1, Lcom/android/launcher3/menu/c$a;
+    move-result-object p1
 
-    .line 88
-    .line 89
-    invoke-interface {p1}, Lcom/android/launcher3/menu/c$a;->j()V
+    .line 1078
+    :goto_0
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mEnterInterpolator:Landroid/view/animation/Interpolator;
 
-    .line 90
-    .line 91
-    .line 92
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->G:Landroid/view/View;
+    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 93
-    .line 94
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    .line 1079
+    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mNewTopBarViewTransitionTime:I
 
-    .line 95
-    .line 96
-    const/4 v5, 0x0
+    int-to-long p2, p0
 
-    .line 97
+    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    return-object p1
+.end method
+
+.method private topBarUpAnimationOfOldView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
+    .locals 4
+
+    .line 994
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
+
+    move-result-object v0
+
     const/4 v1, 0x0
 
-    .line 98
-    const/4 v3, 0x0
+    aget v0, v0, v1
 
-    .line 99
-    move-object v0, p0
+    .line 995
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->getViewHeight(Landroid/view/View;)[I
 
-    .line 100
-    invoke-virtual/range {v0 .. v5}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+    move-result-object v0
 
-    .line 101
-    .line 102
-    .line 103
+    const/4 v2, 0x1
+
+    aget v0, v0, v2
+
+    if-eqz p2, :cond_1
+
+    .line 999
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_0
+
+    .line 1000
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v0, v2, [F
+
+    aput p3, v0, v1
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1002
+    :cond_0
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v0, v2, [F
+
+    aput p3, v0, v1
+
+    invoke-static {p1, p2, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1005
+    :cond_1
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p2
+
+    const/4 v0, 0x0
+
+    const/4 v3, 0x2
+
+    if-eqz p2, :cond_2
+
+    .line 1006
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_X:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v3, v3, [F
+
+    aput v0, v3, v1
+
+    aput p3, v3, v2
+
+    invoke-static {p1, p2, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 1008
+    :cond_2
+    sget-object p2, Lcom/android/launcher3/menu/MenuContainer;->TRANSLATION_Y:Landroid/util/Property;
+
+    neg-int p3, p3
+
+    int-to-float p3, p3
+
+    new-array v3, v3, [F
+
+    aput v0, v3, v1
+
+    aput p3, v3, v2
+
+    invoke-static {p1, p2, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p1
+
+    .line 1011
+    :goto_0
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mExitInterpolator:Landroid/animation/TimeInterpolator;
+
+    invoke-virtual {p1, p2}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 1012
+    iget p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mOldTopBarViewTransitionTime:I
+
+    int-to-long p2, p0
+
+    invoke-virtual {p1, p2, p3}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    return-object p1
+.end method
+
+.method private updateHomeLayoutPadding()V
+    .locals 6
+
+    .line 1106
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 1109
+    :cond_0
+    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
+
+    .line 1136
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v2, 0x7f0708e7
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 1137
+    invoke-static {}, Lcom/android/launcher3/Utilities;->isTableDevice()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 1138
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v1
+
+    iget-boolean v1, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v1, :cond_1
+
+    .line 1139
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v2, 0x7f070433
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    goto :goto_0
+
+    .line 1141
+    :cond_1
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v2, 0x7f070432
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 1144
+    :cond_2
+    :goto_0
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v3, 0x7f0708e0
+
+    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v2
+
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    .line 1145
+    invoke-virtual {v4, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v3
+
+    const/4 v4, 0x0
+
+    .line 1144
+    invoke-virtual {v0, v2, v1, v3, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    .line 1147
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v0
+
+    .line 1148
+    invoke-virtual {v0}, Lcom/android/launcher3/DeviceProfile;->getGridScale()F
+
+    move-result v0
+
+    .line 1149
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v1}, Landroid/widget/LinearLayout;->getChildCount()I
+
+    move-result v1
+
+    :goto_1
+    if-ge v4, v1, :cond_5
+
+    .line 1151
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v2, v4}, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
+
+    move-result-object v2
+
+    instance-of v2, v2, Landroid/widget/TextView;
+
+    if-eqz v2, :cond_4
+
+    .line 1152
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v2, v4}, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/widget/TextView;
+
+    .line 1153
+    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    invoke-static {}, Lcom/android/launcher3/Utilities;->isTableDevice()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_3
+
+    const v5, 0x7f0708d9
+
+    goto :goto_2
+
+    :cond_3
+    const v5, 0x7f0708d2
+
+    :goto_2
+    invoke-virtual {v3, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v3
+
+    int-to-float v3, v3
+
+    mul-float/2addr v3, v0
+
+    float-to-int v3, v3
+
+    .line 1154
+    invoke-virtual {v2, v3}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+
+    :cond_4
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_1
+
+    :cond_5
+    return-void
+.end method
+
+.method private updateMenuContainerMargins()V
+    .locals 8
+
+    .line 1160
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v0, Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getInvariantDeviceProfile()Lcom/android/launcher3/InvariantDeviceProfile;
+
+    move-result-object v0
+
+    .line 1161
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v1
+
+    .line 1162
+    iget v0, v0, Lcom/android/launcher3/InvariantDeviceProfile;->navbarHeightPx:I
+
+    .line 1163
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result v2
+
+    .line 1164
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    const-string v4, "MenuContainer nav = "
+
+    invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v4, " isVerticalBarLayout:"
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v4, "  grid.isLandscape:"
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    iget-boolean v4, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    const-string v4, "MenuContainer"
+
+    invoke-static {v4, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1165
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v3
+
+    check-cast v3, Landroid/widget/FrameLayout$LayoutParams;
+
+    const/4 v4, 0x0
+
+    if-eqz v2, :cond_0
+
+    .line 1167
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p0
+
+    const v0, 0x7f0701f3
+
+    invoke-virtual {p0, v0}, Landroid/content/res/Resources;->getDimension(I)F
+
     move-result p0
 
-    .line 104
-    if-eqz p0, :cond_0
+    float-to-int p0, p0
 
-    .line 105
-    .line 106
-    const/4 p0, 0x1
+    invoke-virtual {v3, v4, v4, p0, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
 
-    .line 107
-    iput-boolean p0, v0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
+    goto/16 :goto_6
 
-    .line 108
-    .line 109
-    sget-object p0, Lcom/android/launcher3/q4$a;->l:Lcom/android/launcher3/q4$a;
-
-    .line 110
-    .line 111
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
-
-    .line 112
-    .line 113
-    .line 114
     :cond_0
+    const v2, 0x7f0701f5
+
+    const v5, 0x7f0701f4
+
+    if-lez v0, :cond_4
+
+    .line 1170
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    iget-boolean v6, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v6, :cond_1
+
+    move v6, v2
+
+    goto :goto_0
+
+    :cond_1
+    move v6, v5
+
+    :goto_0
+    invoke-virtual {v0, v6}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result v0
+
+    float-to-int v0, v0
+
+    .line 1171
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v6
+
+    iget-boolean v7, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v7, :cond_2
+
+    goto :goto_1
+
+    :cond_2
+    move v2, v5
+
+    :goto_1
+    invoke-virtual {v6, v2}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result v2
+
+    float-to-int v2, v2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p0
+
+    iget-boolean v1, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v1, :cond_3
+
+    const v1, 0x7f07064a
+
+    goto :goto_2
+
+    :cond_3
+    const v1, 0x7f070649
+
+    :goto_2
+    invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result p0
+
+    float-to-int p0, p0
+
+    .line 1170
+    invoke-virtual {v3, v0, v4, v2, p0}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    goto :goto_6
+
+    .line 1173
+    :cond_4
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    iget-boolean v6, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v6, :cond_5
+
+    move v6, v2
+
+    goto :goto_3
+
+    :cond_5
+    move v6, v5
+
+    :goto_3
+    invoke-virtual {v0, v6}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result v0
+
+    float-to-int v0, v0
+
+    .line 1174
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v6
+
+    iget-boolean v7, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v7, :cond_6
+
+    goto :goto_4
+
+    :cond_6
+    move v2, v5
+
+    :goto_4
+    invoke-virtual {v6, v2}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result v2
+
+    float-to-int v2, v2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p0
+
+    iget-boolean v1, v1, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v1, :cond_7
+
+    const v1, 0x7f07064c
+
+    goto :goto_5
+
+    :cond_7
+    const v1, 0x7f07064b
+
+    :goto_5
+    invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result p0
+
+    float-to-int p0, p0
+
+    .line 1173
+    invoke-virtual {v3, v0, v4, v2, p0}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    :goto_6
     return-void
 .end method
 
 
 # virtual methods
-.method public C()V
-    .locals 7
+.method public animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+    .locals 16
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    move-object/from16 v7, p0
 
-    .line 2
-    .line 3
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    move-object/from16 v4, p1
 
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
+    move-object/from16 v6, p2
 
-    .line 7
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->u2()Z
+    move/from16 v5, p3
 
-    .line 8
-    .line 9
-    .line 10
+    move-object/from16 v0, p4
+
+    move-object/from16 v3, p5
+
+    .line 834
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    const-string v2, "animateBeautyMenu: ChildCount="
+
+    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v2, v7, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v2}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/launcher3/Workspace;->getChildCount()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, ",mMenuAnimator="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-object v2, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    const-string v2, "MenuContainer"
+
+    invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 835
+    iget-object v1, v7, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/Workspace;->getChildCount()I
+
     move-result v1
 
-    .line 11
-    if-eqz v1, :cond_0
+    const/4 v8, 0x0
 
-    .line 12
-    .line 13
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->e2()Lcom/android/launcher3/q4;
+    if-nez v1, :cond_0
 
-    .line 14
-    .line 15
-    .line 16
-    move-result-object p0
+    .line 836
+    const-string v0, "don\'t animateBeautyMenu"
 
-    .line 17
-    invoke-virtual {p0}, Lcom/android/launcher3/q4;->g0()V
+    invoke-static {v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 18
-    .line 19
-    .line 20
-    return-void
+    return v8
 
-    .line 21
+    .line 841
     :cond_0
-    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-wide v0
-
-    .line 25
-    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
-
-    .line 26
-    .line 27
-    sub-long/2addr v2, v0
-
-    .line 28
-    invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
-
-    .line 29
-    .line 30
-    .line 31
-    move-result-wide v2
-
-    .line 32
-    const-wide/16 v4, 0x12c
+    invoke-virtual/range {p0 .. p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
 
-    .line 33
-    .line 34
-    cmp-long v2, v2, v4
+    move-result-object v1
 
-    .line 35
-    .line 36
-    if-lez v2, :cond_1
+    const-string v2, "accessibility"
 
-    .line 37
-    .line 38
-    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->E:J
+    invoke-virtual {v1, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 39
-    .line 40
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    move-result-object v1
 
-    .line 41
-    .line 42
-    .line 43
-    move-result-object v0
-
-    .line 44
-    const v1, 0x7f14013f
+    check-cast v1, Landroid/view/accessibility/AccessibilityManager;
 
-    .line 45
-    .line 46
-    .line 47
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    .line 48
-    .line 49
-    .line 50
-    move-result-object v0
+    .line 842
+    invoke-virtual {v1}, Landroid/view/accessibility/AccessibilityManager;->isEnabled()Z
 
-    .line 51
-    invoke-static {v0}, Lh1/a;->D(Ljava/lang/String;)V
+    move-result v1
 
-    .line 52
-    .line 53
-    .line 54
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 55
-    .line 56
-    invoke-virtual {v0}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->F()V
-
-    .line 57
-    .line 58
-    .line 59
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 843
+    invoke-direct/range {p0 .. p0}, Lcom/android/launcher3/menu/MenuContainer;->cancelAnimation()V
 
-    .line 60
-    .line 61
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    .line 844
+    invoke-static {}, Lcom/android/launcher3/LauncherAnimUtils;->createAnimatorSet()Landroid/animation/AnimatorSet;
 
-    .line 62
-    .line 63
-    .line 64
-    move-result-object v0
+    move-result-object v2
 
-    .line 65
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
-
-    .line 66
-    .line 67
-    .line 68
-    move-result-object v0
+    iput-object v2, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 69
-    invoke-virtual {v0}, Lcom/android/launcher3/Workspace;->I1()Z
-
-    .line 70
-    .line 71
-    .line 72
-    move-result v0
-
-    .line 73
-    if-nez v0, :cond_1
+    .line 846
+    sget-object v2, Lcom/android/launcher3/anim/PropertySetter;->NO_ANIM_PROPERTY_SETTER:Lcom/android/launcher3/anim/PropertySetter;
 
-    .line 74
-    .line 75
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 847
+    iget-object v9, v7, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 76
-    .line 77
-    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getVisibility()I
+    invoke-static {v9}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 78
-    .line 79
-    .line 80
-    move-result v0
+    move-result-object v9
 
-    .line 81
-    if-nez v0, :cond_1
-
-    .line 82
-    .line 83
-    const/4 v0, 0x1
-
-    .line 84
-    iput-boolean v0, p0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
-
-    .line 85
-    .line 86
-    sget-object v0, Lcom/android/launcher3/q4$a;->k:Lcom/android/launcher3/q4$a;
-
-    .line 87
-    .line 88
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
-
-    .line 89
-    .line 90
-    .line 91
-    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
-
-    .line 92
-    .line 93
-    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    invoke-virtual {v9}, Lcom/android/launcher3/Launcher;->getDragLayer()Lcom/android/launcher3/dragndrop/DragLayer;
 
-    .line 94
-    .line 95
-    const/4 v4, 0x0
+    move-result-object v9
 
-    .line 96
-    iget-object v5, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 97
-    .line 98
-    move-object v6, v5
-
-    .line 99
-    move-object v1, p0
-
-    .line 100
-    invoke-virtual/range {v1 .. v6}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
-
-    .line 101
-    .line 102
-    .line 103
-    :cond_1
-    return-void
-.end method
-
-.method public D(I)V
-    .locals 1
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->G()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 5
-    .line 6
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->m(I)V
-
-    .line 7
-    .line 8
-    .line 9
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
-
-    .line 10
-    .line 11
-    if-eqz v0, :cond_0
-
-    .line 12
-    .line 13
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/menu/MenuWallpaper;->k(I)V
-
-    .line 14
-    .line 15
-    .line 16
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 17
-    .line 18
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/menu/MenuEffect;->g(I)V
-
-    .line 19
-    .line 20
-    .line 21
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 22
-    .line 23
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->O(I)V
-
-    .line 24
-    .line 25
-    .line 26
-    return-void
-.end method
-
-.method public E()V
-    .locals 3
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isStarted()Z
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v0
-
-    .line 9
-    if-eqz v0, :cond_0
-
-    .line 10
-    .line 11
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->l()V
-
-    .line 12
-    .line 13
-    .line 14
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 15
-    .line 16
-    instance-of v1, v0, Lcom/android/launcher3/menu/c$a;
-
-    .line 17
-    .line 18
-    const/4 v2, 0x0
-
-    .line 19
-    if-eqz v1, :cond_1
-
-    .line 20
-    .line 21
-    check-cast v0, Lcom/android/launcher3/menu/c$a;
-
-    .line 22
-    .line 23
-    invoke-interface {v0, v2}, Lcom/android/launcher3/menu/c$a;->K(Z)V
-
-    .line 24
-    .line 25
-    .line 26
+    invoke-virtual {v9}, Lcom/android/launcher3/dragndrop/DragLayer;->getWorkspaceDragScrim()Lcom/android/launcher3/graphics/Scrim;
+
+    move-result-object v9
+
+    .line 848
+    instance-of v10, v4, Lcom/android/launcher3/menu/MenuWallpaper;
+
+    const/4 v11, 0x0
+
+    if-eqz v10, :cond_1
+
+    .line 849
+    sget-object v10, Lcom/android/launcher3/graphics/Scrim;->SCRIM_PROGRESS:Landroid/util/FloatProperty;
+
+    iget-object v12, v7, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v12}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Lcom/android/launcher3/statemanager/StateManager;->getState()Lcom/android/launcher3/statemanager/BaseState;
+
+    move-result-object v12
+
+    check-cast v12, Lcom/android/launcher3/LauncherState;
+
+    iget-object v13, v7, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v13}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v13
+
+    invoke-virtual {v12, v13}, Lcom/android/launcher3/LauncherState;->getWorkspaceBackgroundAlpha(Lcom/android/launcher3/Launcher;)F
+
+    move-result v12
+
+    sget-object v13, Lcom/android/app/animation/Interpolators;->LINEAR:Landroid/view/animation/Interpolator;
+
+    invoke-virtual {v2, v9, v10, v12, v13}, Lcom/android/launcher3/anim/PropertySetter;->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+
     goto :goto_0
 
-    .line 27
+    .line 851
     :cond_1
-    invoke-virtual {p0, v2}, Lcom/android/launcher3/menu/MenuContainer;->K(Z)V
+    instance-of v10, v6, Lcom/android/launcher3/menu/MenuWallpaper;
 
-    .line 28
-    .line 29
-    .line 30
-    :goto_0
-    sget-object v0, Lcom/android/launcher3/q4$a;->g:Lcom/android/launcher3/q4$a;
+    if-eqz v10, :cond_2
 
-    .line 31
-    .line 32
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->H(Lcom/android/launcher3/q4$a;)V
+    .line 852
+    sget-object v10, Lcom/android/launcher3/graphics/Scrim;->SCRIM_PROGRESS:Landroid/util/FloatProperty;
 
-    .line 33
-    .line 34
-    .line 35
-    return-void
-.end method
+    sget-object v12, Lcom/android/app/animation/Interpolators;->LINEAR:Landroid/view/animation/Interpolator;
 
-.method public F()V
-    .locals 2
+    invoke-virtual {v2, v9, v10, v11, v12}, Lcom/android/launcher3/anim/PropertySetter;->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isStarted()Z
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v0
-
-    .line 9
-    if-eqz v0, :cond_0
-
-    .line 10
-    .line 11
-    const-string p0, "MenuContainer"
-
-    .line 12
-    .line 13
-    const-string v0, "onResumeForMFV--mMenuAnimator is running"
-
-    .line 14
-    .line 15
-    invoke-static {p0, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 16
-    .line 17
-    .line 18
-    return-void
-
-    .line 19
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 20
-    .line 21
-    if-nez v0, :cond_1
-
-    .line 22
-    .line 23
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 24
-    .line 25
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object v0
-
-    .line 29
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->e2()Lcom/android/launcher3/q4;
-
-    .line 30
-    .line 31
-    .line 32
-    move-result-object v0
-
-    .line 33
-    sget-object v1, Lcom/android/launcher3/q4$a;->n:Lcom/android/launcher3/q4$a;
-
-    .line 34
-    .line 35
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/q4;->Z(Lcom/android/launcher3/q4$a;)Z
-
-    .line 36
-    .line 37
-    .line 38
-    move-result v0
-
-    .line 39
-    if-eqz v0, :cond_1
-
-    .line 40
-    .line 41
-    sget-object v0, Lcom/android/launcher3/q4$a;->h:Lcom/android/launcher3/q4$a;
-
-    .line 42
-    .line 43
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
-
-    .line 44
-    .line 45
-    .line 46
-    :cond_1
-    const/4 v0, 0x0
-
-    .line 47
-    iput-boolean v0, p0, Lcom/android/launcher3/menu/MenuContainer;->F:Z
-
-    .line 48
-    .line 49
-    return-void
-.end method
-
-.method public H(Lcom/android/launcher3/q4$a;)V
-    .locals 9
-
-    .line 1
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    .line 2
-    .line 3
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 4
-    .line 5
-    .line 6
-    const-string v1, "showItemContent: "
-
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object v0
-
-    .line 18
-    const-string v1, "MenuContainer"
-
-    .line 19
-    .line 20
-    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 21
-    .line 22
-    .line 23
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 24
-    .line 25
-    if-eqz v0, :cond_0
-
-    .line 26
-    .line 27
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isRunning()Z
-
-    .line 28
-    .line 29
-    .line 30
-    move-result v0
-
-    .line 31
-    if-eqz v0, :cond_0
-
-    .line 32
-    .line 33
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 34
-    .line 35
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->cancel()V
-
-    .line 36
-    .line 37
-    .line 38
-    const/4 v0, 0x0
-
-    .line 39
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 40
-    .line 41
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 42
-    .line 43
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 44
-    .line 45
-    .line 46
-    move-result-object v0
-
-    .line 47
-    invoke-virtual {v0}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 48
-    .line 49
-    .line 50
-    move-result v0
-
-    .line 51
-    const/4 v2, 0x0
-
-    .line 52
-    if-eqz v0, :cond_1
-
-    .line 53
-    .line 54
-    invoke-virtual {p0, v2}, Landroid/widget/FrameLayout;->setTranslationY(F)V
-
-    .line 55
-    .line 56
-    .line 57
-    goto :goto_0
-
-    .line 58
-    :cond_1
-    invoke-virtual {p0, v2}, Landroid/widget/FrameLayout;->setTranslationX(F)V
-
-    .line 59
-    .line 60
-    .line 61
-    :goto_0
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 62
-    .line 63
-    if-nez v0, :cond_2
-
-    .line 64
-    .line 65
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->G()V
-
-    .line 66
-    .line 67
-    .line 68
+    .line 856
     :cond_2
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    :goto_0
+    iget-object v2, v7, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
 
-    .line 69
-    .line 70
-    const/16 v3, 0x8
+    const v9, 0x7f0708e2
 
-    .line 71
-    .line 72
-    if-eqz v0, :cond_3
+    invoke-virtual {v2, v9}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 73
-    .line 74
-    invoke-virtual {v0, v3}, Landroid/view/ViewGroup;->setVisibility(I)V
+    move-result v2
 
-    .line 75
-    .line 76
-    .line 77
-    :cond_3
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
+    const/4 v10, 0x1
 
-    .line 78
-    .line 79
-    .line 80
-    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->v(Lcom/android/launcher3/q4$a;)Z
+    if-eqz v4, :cond_3
 
-    .line 81
-    .line 82
-    .line 83
-    move-result v0
+    .line 857
+    sget-object v12, Lcom/android/launcher3/menu/MenuContainer;->ALPHA:Landroid/util/Property;
 
-    .line 84
-    if-nez v0, :cond_6
+    new-array v13, v10, [F
 
-    .line 85
-    .line 86
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    aput v11, v13, v8
 
-    .line 87
-    .line 88
-    instance-of v4, v0, Lcom/android/launcher3/menu/c$a;
+    invoke-static {v4, v12, v13}, Lcom/android/launcher3/LauncherAnimUtils;->ofFloat(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
-    .line 89
-    .line 90
-    if-eqz v4, :cond_4
+    move-result-object v12
 
-    .line 91
-    .line 92
-    check-cast v0, Lcom/android/launcher3/menu/c$a;
-
-    .line 93
-    .line 94
-    invoke-interface {v0}, Lcom/android/launcher3/menu/c$a;->j()V
-
-    .line 95
-    .line 96
-    .line 97
     goto :goto_1
 
-    .line 98
-    :cond_4
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->j()V
+    :cond_3
+    const/4 v12, 0x0
 
-    .line 99
-    .line 100
-    .line 101
     :goto_1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    const/high16 v13, 0x3f800000    # 1.0f
 
-    .line 102
-    .line 103
-    if-eqz v0, :cond_6
+    if-eqz v6, :cond_4
 
-    .line 104
-    .line 105
-    new-instance v0, Ljava/lang/StringBuilder;
+    .line 858
+    sget-object v14, Lcom/android/launcher3/menu/MenuContainer;->ALPHA:Landroid/util/Property;
 
-    .line 106
-    .line 107
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    new-array v15, v10, [F
 
-    .line 108
-    .line 109
-    .line 110
-    const-string v4, "showItemContent: mCurrentView = "
+    aput v13, v15, v8
 
-    .line 111
-    .line 112
-    invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static {v6, v14, v15}, Lcom/android/launcher3/LauncherAnimUtils;->ofFloat(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
-    .line 113
-    .line 114
-    .line 115
-    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    move-result-object v14
 
-    .line 116
-    .line 117
-    invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 118
-    .line 119
-    .line 120
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 121
-    .line 122
-    .line 123
-    move-result-object v0
-
-    .line 124
-    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 125
-    .line 126
-    .line 127
-    sget-object v0, Lcom/android/launcher3/q4$a;->h:Lcom/android/launcher3/q4$a;
-
-    .line 128
-    .line 129
-    if-ne p1, v0, :cond_5
-
-    .line 130
-    .line 131
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 132
-    .line 133
-    invoke-virtual {v0, v3}, Lcom/android/launcher3/menu/MenuEffect;->setVisibility(I)V
-
-    .line 134
-    .line 135
-    .line 136
-    :cond_5
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 137
-    .line 138
-    const/4 v1, 0x0
-
-    .line 139
-    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
-
-    .line 140
-    .line 141
-    .line 142
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 143
-    .line 144
-    invoke-virtual {v0, v2}, Landroid/view/ViewGroup;->setTranslationX(F)V
-
-    .line 145
-    .line 146
-    .line 147
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 148
-    .line 149
-    invoke-virtual {v0, v2}, Landroid/view/ViewGroup;->setTranslationY(F)V
-
-    .line 150
-    .line 151
-    .line 152
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 153
-    .line 154
-    const/high16 v1, 0x3f800000    # 1.0f
-
-    .line 155
-    .line 156
-    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setAlpha(F)V
-
-    .line 157
-    .line 158
-    .line 159
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
-
-    .line 160
-    .line 161
-    invoke-virtual {v0}, Landroid/view/ViewGroup;->invalidate()V
-
-    .line 162
-    .line 163
-    .line 164
-    :cond_6
-    sget-object v0, Lcom/android/launcher3/q4$a;->h:Lcom/android/launcher3/q4$a;
-
-    .line 165
-    .line 166
-    if-ne p1, v0, :cond_7
-
-    .line 167
-    .line 168
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 169
-    .line 170
-    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setTranslationX(F)V
-
-    .line 171
-    .line 172
-    .line 173
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 174
-    .line 175
-    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setTranslationY(F)V
-
-    .line 176
-    .line 177
-    .line 178
-    const/4 v7, 0x0
-
-    .line 179
-    iget-object v8, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 180
-    .line 181
-    const/4 v4, 0x0
-
-    .line 182
-    const/4 v5, 0x0
-
-    .line 183
-    const/4 v6, 0x0
-
-    .line 184
-    move-object v3, p0
-
-    .line 185
-    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
-
-    .line 186
-    .line 187
-    .line 188
     goto :goto_2
 
-    .line 189
-    :cond_7
-    move-object v3, p0
+    :cond_4
+    const/4 v14, 0x0
 
-    .line 190
     :goto_2
-    iget-object p0, v3, Lcom/android/launcher3/menu/MenuContainer;->D:Lcom/android/launcher3/menu/c;
+    if-eqz v4, :cond_5
 
-    .line 191
-    .line 192
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/c;->D(Lcom/android/launcher3/q4$a;)V
+    .line 860
+    new-instance v15, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;
 
-    .line 193
-    .line 194
-    .line 195
-    return-void
-.end method
+    invoke-direct {v15, v4, v1}, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;-><init>(Landroid/view/View;Z)V
 
-.method public I()V
-    .locals 3
+    invoke-virtual {v12, v15}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 1
-    new-instance v0, Ljava/lang/StringBuilder;
+    .line 861
+    iget v15, v7, Lcom/android/launcher3/menu/MenuContainer;->mOldTransitionTime:I
 
-    .line 2
-    .line 3
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    int-to-long v8, v15
 
-    .line 4
-    .line 5
-    .line 6
-    const-string v1, "stateChangeEndMFV: showWorkspace "
+    invoke-virtual {v12, v8, v9}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 862
+    iget-object v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mExitInterpolator:Landroid/animation/TimeInterpolator;
 
-    .line 9
-    .line 10
-    .line 11
-    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    invoke-virtual {v12, v8}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 12
-    .line 13
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    .line 863
+    iget-object v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 14
-    .line 15
-    .line 16
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-direct {v7, v4, v5, v2}, Lcom/android/launcher3/menu/MenuContainer;->menuDownAnimationOfOldView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
 
-    .line 17
-    .line 18
-    .line 19
-    move-result-object v0
+    move-result-object v9
 
-    .line 20
-    const-string v1, "MenuContainer"
+    invoke-virtual {v8, v9}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
 
-    .line 21
-    .line 22
-    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 864
+    iget-object v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 23
-    .line 24
-    .line 25
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    invoke-virtual {v8, v12}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
 
-    .line 26
-    .line 27
-    instance-of v1, v0, Lcom/android/launcher3/menu/c$a;
+    :cond_5
+    if-eqz v6, :cond_7
 
-    .line 28
-    .line 29
+    .line 868
+    new-instance v8, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;
+
+    invoke-direct {v8, v6, v1}, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;-><init>(Landroid/view/View;Z)V
+
+    invoke-virtual {v14, v8}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+
+    .line 869
+    iget v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mNewTransitionTime:I
+
+    int-to-long v8, v8
+
+    invoke-virtual {v14, v8, v9}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    .line 870
+    iget-object v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mEnterInterpolator:Landroid/view/animation/Interpolator;
+
+    invoke-virtual {v14, v8}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 871
+    instance-of v8, v6, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    if-eqz v8, :cond_6
+
+    .line 872
+    move-object v8, v6
+
+    check-cast v8, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    iget v9, v7, Lcom/android/launcher3/menu/MenuContainer;->mNewTransitionTime:I
+
+    iget-object v12, v7, Lcom/android/launcher3/menu/MenuContainer;->mEnterInterpolator:Landroid/view/animation/Interpolator;
+
+    invoke-interface {v8, v9, v12}, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;->updateChildEnterAnimator(ILandroid/view/animation/Interpolator;)V
+
+    .line 874
+    :cond_6
+    iget-object v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-direct {v7, v6, v5, v2}, Lcom/android/launcher3/menu/MenuContainer;->menuUpAnimationOfNewView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
+
+    move-result-object v2
+
+    invoke-virtual {v8, v2}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
+
+    .line 875
+    iget-object v2, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {v2, v14}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
+
+    .line 880
+    :cond_7
+    instance-of v2, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    if-eqz v2, :cond_8
+
+    instance-of v8, v3, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    if-eqz v8, :cond_8
+
+    const/4 v8, 0x0
+
+    goto :goto_3
+
+    :cond_8
+    move v8, v10
+
+    :goto_3
+    if-eqz v8, :cond_a
+
+    if-nez v2, :cond_9
+
+    .line 885
+    instance-of v2, v3, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    if-eqz v2, :cond_a
+
+    :cond_9
+    move v2, v10
+
+    goto :goto_4
+
+    :cond_a
     const/4 v2, 0x0
 
-    .line 30
-    if-eqz v1, :cond_0
+    :goto_4
+    if-eqz v8, :cond_e
 
-    .line 31
-    .line 32
-    check-cast v0, Lcom/android/launcher3/menu/c$a;
+    if-eqz v0, :cond_b
 
-    .line 33
-    .line 34
-    invoke-interface {v0, v2}, Lcom/android/launcher3/menu/c$a;->K(Z)V
+    .line 887
+    sget-object v8, Lcom/android/launcher3/menu/MenuContainer;->ALPHA:Landroid/util/Property;
 
-    .line 35
-    .line 36
-    .line 37
-    goto :goto_0
+    new-array v9, v10, [F
 
-    .line 38
-    :cond_0
-    invoke-virtual {p0, v2}, Lcom/android/launcher3/menu/MenuContainer;->K(Z)V
+    const/4 v12, 0x0
 
-    .line 39
-    .line 40
-    .line 41
-    :goto_0
-    sget-object v0, Lcom/android/launcher3/q4$a;->g:Lcom/android/launcher3/q4$a;
+    aput v11, v9, v12
 
-    .line 42
-    .line 43
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->H(Lcom/android/launcher3/q4$a;)V
+    invoke-static {v0, v8, v9}, Lcom/android/launcher3/LauncherAnimUtils;->ofFloat(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
-    .line 44
-    .line 45
-    .line 46
-    return-void
-.end method
+    move-result-object v8
 
-.method public J(Landroid/view/View;Landroid/view/View;)V
-    .locals 8
+    goto :goto_5
 
-    .line 1
-    const-string v0, "switchIconArrangeTopBarAndDropTargetBar"
+    :cond_b
+    const/4 v12, 0x0
 
-    .line 2
-    .line 3
-    const-string v1, "MenuContainer"
+    const/4 v8, 0x0
 
-    .line 4
-    .line 5
-    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :goto_5
+    if-eqz v3, :cond_c
 
-    .line 6
-    .line 7
-    .line 8
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 888
+    sget-object v9, Lcom/android/launcher3/menu/MenuContainer;->ALPHA:Landroid/util/Property;
 
-    .line 9
-    .line 10
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    new-array v11, v10, [F
 
-    .line 11
-    .line 12
-    .line 13
+    aput v13, v11, v12
+
+    invoke-static {v3, v9, v11}, Lcom/android/launcher3/LauncherAnimUtils;->ofFloat(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object v9
+
+    goto :goto_6
+
+    :cond_c
+    const/4 v9, 0x0
+
+    .line 889
+    :goto_6
+    iget-object v11, v7, Lcom/android/launcher3/menu/MenuContainer;->mRes:Landroid/content/res/Resources;
+
+    const v12, 0x7f070456
+
+    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v11
+
+    if-eqz v0, :cond_d
+
+    .line 891
+    new-instance v12, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;
+
+    invoke-direct {v12, v0, v1}, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;-><init>(Landroid/view/View;Z)V
+
+    invoke-virtual {v8, v12}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+
+    .line 892
+    iget v12, v7, Lcom/android/launcher3/menu/MenuContainer;->mOldTopBarViewAlphaTime:I
+
+    int-to-long v12, v12
+
+    invoke-virtual {v8, v12, v13}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    .line 894
+    iget-object v12, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-direct {v7, v0, v5, v11}, Lcom/android/launcher3/menu/MenuContainer;->topBarUpAnimationOfOldView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
+
     move-result-object v0
 
-    .line 14
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->e2()Lcom/android/launcher3/q4;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object v0
+    invoke-virtual {v12, v0}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
 
-    .line 18
-    sget-object v2, Lcom/android/launcher3/q4$a;->k:Lcom/android/launcher3/q4$a;
-
-    .line 19
-    .line 20
-    invoke-virtual {v0, v2}, Lcom/android/launcher3/q4;->Z(Lcom/android/launcher3/q4$a;)Z
-
-    .line 21
-    .line 22
-    .line 23
-    move-result v0
-
-    .line 24
-    if-eqz v0, :cond_2
-
-    .line 25
-    .line 26
-    instance-of v0, p2, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 27
-    .line 28
-    if-eqz v0, :cond_1
-
-    .line 29
-    .line 30
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 31
-    .line 32
-    .line 33
-    move-result-object v0
-
-    .line 34
-    iget-boolean v0, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->j:Z
-
-    .line 35
-    .line 36
-    if-nez v0, :cond_0
-
-    .line 37
-    .line 38
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object v0
-
-    .line 42
-    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getVisibility()I
-
-    .line 43
-    .line 44
-    .line 45
-    move-result v0
-
-    .line 46
-    if-nez v0, :cond_0
-
-    .line 47
-    .line 48
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    .line 895
+    iget-object v0, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 49
-    .line 50
-    .line 51
-    move-result-object v0
+    invoke-virtual {v0, v8}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
 
-    .line 52
-    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getAlpha()F
+    :cond_d
+    if-eqz v3, :cond_e
 
-    .line 53
-    .line 54
-    .line 55
-    move-result v0
+    .line 899
+    new-instance v0, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;
 
-    .line 56
-    const/high16 v2, 0x3f800000    # 1.0f
+    invoke-direct {v0, v3, v1}, Lcom/android/launcher3/menu/MenuAlphaUpdateListener;-><init>(Landroid/view/View;Z)V
 
-    .line 57
-    .line 58
-    invoke-static {v0, v2}, Ljava/lang/Float;->compare(FF)I
+    invoke-virtual {v9, v0}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 59
-    .line 60
-    .line 61
-    move-result v0
+    .line 900
+    iget v0, v7, Lcom/android/launcher3/menu/MenuContainer;->mNewTopBarViewAlphaTime:I
 
-    .line 62
-    if-nez v0, :cond_0
+    int-to-long v0, v0
 
-    .line 63
-    .line 64
-    const-string p0, "switchIconArrangeTopBarAndDropTargetBar 1 return"
+    invoke-virtual {v9, v0, v1}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
-    .line 65
-    .line 66
-    invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    .line 902
+    iget-object v0, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 67
-    .line 68
-    .line 69
-    return-void
+    invoke-direct {v7, v3, v5, v11}, Lcom/android/launcher3/menu/MenuContainer;->topBarDownAnimationOfNewView(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
 
-    .line 70
-    :cond_0
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    move-result-object v1
 
-    .line 71
-    .line 72
-    .line 73
-    move-result-object v0
+    invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
 
-    .line 74
-    iget-boolean v0, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->j:Z
+    .line 903
+    iget-object v0, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 75
-    .line 76
-    if-eqz v0, :cond_1
+    invoke-virtual {v0, v9}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
 
-    .line 77
-    .line 78
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    .line 907
+    :cond_e
+    iget-object v8, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 79
-    .line 80
-    .line 81
-    move-result-object v0
+    new-instance v9, Lcom/android/launcher3/menu/MenuContainer$1;
 
-    .line 82
-    iget-boolean v0, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->k:Z
+    move-object v0, v9
 
-    .line 83
-    .line 84
-    if-eqz v0, :cond_1
-
-    .line 85
-    .line 86
-    const-string p0, "switchIconArrangeTopBarAndDropTargetBar 2 return"
+    move-object/from16 v1, p0
 
-    .line 87
-    .line 88
-    invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    move-object/from16 v3, p5
 
-    .line 89
-    .line 90
-    .line 91
-    return-void
+    move-object/from16 v4, p1
 
-    .line 92
-    :cond_1
-    const/4 v4, 0x0
+    move/from16 v5, p3
 
-    .line 93
-    const/4 v5, 0x0
+    move-object/from16 v6, p2
 
-    .line 94
-    const/4 v3, 0x0
-
-    .line 95
-    move-object v2, p0
-
-    .line 96
-    move-object v6, p1
+    invoke-direct/range {v0 .. v6}, Lcom/android/launcher3/menu/MenuContainer$1;-><init>(Lcom/android/launcher3/menu/MenuContainer;ZLandroid/view/View;Landroid/view/View;ZLandroid/view/View;)V
 
-    .line 97
-    move-object v7, p2
+    invoke-virtual {v8, v9}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 98
-    invoke-virtual/range {v2 .. v7}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
-
-    .line 99
-    .line 100
-    .line 101
-    :cond_2
-    return-void
-.end method
-
-.method public K(Z)V
-    .locals 3
+    .line 965
+    iget-object v0, v7, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 1
-    const-string p1, "onViewExisted-home"
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->start()V
 
-    .line 2
-    .line 3
-    const-string v0, "MenuContainer"
-
-    .line 4
-    .line 5
-    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getCurrentView()Landroid/view/ViewGroup;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object p1
-
-    .line 12
-    instance-of p1, p1, Lcom/android/launcher3/iconarrange/MenuIconArrange;
-
-    .line 13
-    .line 14
-    const/16 v1, 0x8
-
-    .line 15
-    .line 16
-    if-nez p1, :cond_0
-
-    .line 17
-    .line 18
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 19
-    .line 20
-    invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->setVisibility(I)V
-
-    .line 21
-    .line 22
-    .line 23
-    :cond_0
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 24
-    .line 25
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object p1
-
-    .line 29
-    sget-object v2, Lcom/android/launcher3/V3;->A:Lcom/android/launcher3/V3;
-
-    .line 30
-    .line 31
-    invoke-interface {p1, v2}, Lcom/android/launcher3/statemanager/i;->isInState(Lcom/android/launcher3/statemanager/a;)Z
-
-    .line 32
-    .line 33
-    .line 34
-    move-result p1
-
-    .line 35
-    if-nez p1, :cond_1
-
-    .line 36
-    .line 37
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 38
-    .line 39
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 40
-    .line 41
-    .line 42
-    move-result-object p1
-
-    .line 43
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->R1()Lcom/android/launcher3/DropTargetBar;
-
-    .line 44
-    .line 45
-    .line 46
-    move-result-object p1
-
-    .line 47
-    invoke-virtual {p1}, Landroid/widget/FrameLayout;->getVisibility()I
-
-    .line 48
-    .line 49
-    .line 50
-    move-result p1
-
-    .line 51
-    if-nez p1, :cond_1
-
-    .line 52
-    .line 53
-    const-string p1, "onViewExisted: no MENU_OVERVIEW state , gone the dropTargetBar"
-
-    .line 54
-    .line 55
-    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 56
-    .line 57
-    .line 58
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 59
-    .line 60
-    invoke-static {p0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 61
-    .line 62
-    .line 63
-    move-result-object p0
-
-    .line 64
-    invoke-virtual {p0}, Lcom/android/launcher3/C2;->R1()Lcom/android/launcher3/DropTargetBar;
-
-    .line 65
-    .line 66
-    .line 67
-    move-result-object p0
-
-    .line 68
-    invoke-virtual {p0, v1}, Lcom/android/launcher3/DropTargetBar;->setVisibility(I)V
-
-    .line 69
-    .line 70
-    .line 71
-    :cond_1
-    return-void
-.end method
-
-.method public P()V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuEffect;->l()V
-
-    .line 6
-    .line 7
-    .line 8
-    :cond_0
-    return-void
-.end method
-
-.method public f(ILandroid/view/animation/Interpolator;)V
-    .locals 0
-
-    .line 1
-    return-void
+    return v10
 .end method
 
 .method getCurrentView()Landroid/view/ViewGroup;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    .line 419
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method public getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    .line 341
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method getMenuIconArrange()Lcom/android/launcher3/iconarrange/MenuIconArrange;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    .line 1186
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
-.method public j()V
-    .locals 2
+.method public goToOverView()V
+    .locals 9
 
-    .line 1
+    .line 333
     const-string v0, "MenuContainer"
 
-    .line 2
-    .line 3
-    const-string v1, "initMenuData for main"
+    const-string v1, "goToOverView"
 
-    .line 4
-    .line 5
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 6
-    .line 7
-    .line 8
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->G()V
+    .line 334
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 9
-    .line 10
-    .line 11
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getMFVInstance()Lcom/android/launcher3/MFVInterfaceProxy;
+
+    move-result-object v0
+
+    sget-object v1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_ICONARRANGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/MFVInterfaceProxy;->isInTargetMenuStatus(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 335
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getMoreIconDragController()Lcom/android/launcher3/MoreIconDragController;
+
+    move-result-object v0
+
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/launcher3/MoreIconDragController;->updateIconArrangeModeOrNot(ZZ)V
+
+    .line 336
+    iget-object v7, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    const/4 v8, 0x0
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    const/4 v6, 0x0
+
+    move-object v3, p0
+
+    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+
+    :cond_0
     return-void
 .end method
 
-.method public k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
-    .locals 17
+.method public initMenuData()V
+    .locals 2
 
-    .line 1
-    move-object/from16 v1, p0
-
-    .line 2
-    .line 3
-    move-object/from16 v4, p1
-
-    .line 4
-    .line 5
-    move-object/from16 v6, p2
-
-    .line 6
-    .line 7
-    move/from16 v5, p3
-
-    .line 8
-    .line 9
-    move-object/from16 v0, p4
-
-    .line 10
-    .line 11
-    move-object/from16 v3, p5
-
-    .line 12
-    .line 13
-    const/4 v7, 0x1
-
-    .line 14
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    .line 15
-    .line 16
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 17
-    .line 18
-    .line 19
-    const-string v8, "animateBeautyMenu: ChildCount="
-
-    .line 20
-    .line 21
-    invoke-virtual {v2, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 22
-    .line 23
-    .line 24
-    iget-object v8, v1, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 25
-    .line 26
-    invoke-static {v8}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 27
-    .line 28
-    .line 29
-    move-result-object v8
-
-    .line 30
-    invoke-virtual {v8}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
-
-    .line 31
-    .line 32
-    .line 33
-    move-result-object v8
-
-    .line 34
-    invoke-virtual {v8}, Landroid/view/ViewGroup;->getChildCount()I
-
-    .line 35
-    .line 36
-    .line 37
-    move-result v8
-
-    .line 38
-    invoke-virtual {v2, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 39
-    .line 40
-    .line 41
-    const-string v8, ",mMenuAnimator="
-
-    .line 42
-    .line 43
-    invoke-virtual {v2, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 44
-    .line 45
-    .line 46
-    iget-object v8, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 47
-    .line 48
-    invoke-virtual {v2, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 49
-    .line 50
-    .line 51
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 52
-    .line 53
-    .line 54
-    move-result-object v2
-
-    .line 55
-    const-string v8, "MenuContainer"
-
-    .line 56
-    .line 57
-    invoke-static {v8, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 58
-    .line 59
-    .line 60
-    iget-object v2, v1, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 61
-    .line 62
-    invoke-static {v2}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 63
-    .line 64
-    .line 65
-    move-result-object v2
-
-    .line 66
-    invoke-virtual {v2}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
-
-    .line 67
-    .line 68
-    .line 69
-    move-result-object v2
-
-    .line 70
-    invoke-virtual {v2}, Landroid/view/ViewGroup;->getChildCount()I
-
-    .line 71
-    .line 72
-    .line 73
-    move-result v2
-
-    .line 74
-    const/4 v9, 0x0
-
-    .line 75
-    if-nez v2, :cond_0
-
-    .line 76
-    .line 77
-    const-string v0, "don\'t animateBeautyMenu"
-
-    .line 78
-    .line 79
-    invoke-static {v8, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 80
-    .line 81
-    .line 82
-    return v9
-
-    .line 83
-    :cond_0
-    invoke-virtual {v1}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 84
-    .line 85
-    .line 86
-    move-result-object v2
-
-    .line 87
-    const-string v8, "accessibility"
-
-    .line 88
-    .line 89
-    invoke-virtual {v2, v8}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    .line 90
-    .line 91
-    .line 92
-    move-result-object v2
-
-    .line 93
-    check-cast v2, Landroid/view/accessibility/AccessibilityManager;
-
-    .line 94
-    .line 95
-    invoke-virtual {v2}, Landroid/view/accessibility/AccessibilityManager;->isEnabled()Z
-
-    .line 96
-    .line 97
-    .line 98
-    move-result v2
-
-    .line 99
-    invoke-direct {v1}, Lcom/android/launcher3/menu/MenuContainer;->l()V
-
-    .line 100
-    .line 101
-    .line 102
-    invoke-static {}, Lcom/android/launcher3/G2;->d()Landroid/animation/AnimatorSet;
-
-    .line 103
-    .line 104
-    .line 105
-    move-result-object v8
-
-    .line 106
-    iput-object v8, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 107
-    .line 108
-    sget-object v8, Lcom/android/launcher3/anim/Y;->a:Lcom/android/launcher3/anim/Y;
-
-    .line 109
-    .line 110
-    iget-object v10, v1, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 111
-    .line 112
-    invoke-static {v10}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 113
-    .line 114
-    .line 115
-    move-result-object v10
-
-    .line 116
-    invoke-virtual {v10}, Lcom/android/launcher3/C2;->Q1()Lcom/android/launcher3/dragndrop/DragLayer;
-
-    .line 117
-    .line 118
-    .line 119
-    move-result-object v10
-
-    .line 120
-    invoke-virtual {v10}, Lcom/android/launcher3/dragndrop/DragLayer;->getWorkspaceDragScrim()Ln1/s;
-
-    .line 121
-    .line 122
-    .line 123
-    move-result-object v10
-
-    .line 124
-    instance-of v11, v4, Lcom/android/launcher3/menu/MenuWallpaper;
-
-    .line 125
-    .line 126
-    const/4 v12, 0x0
-
-    .line 127
-    if-eqz v11, :cond_1
-
-    .line 128
-    .line 129
-    sget-object v11, Ln1/s;->f:Landroid/util/FloatProperty;
-
-    .line 130
-    .line 131
-    iget-object v13, v1, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 132
-    .line 133
-    invoke-static {v13}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 134
-    .line 135
-    .line 136
-    move-result-object v13
-
-    .line 137
-    invoke-virtual {v13}, Lcom/android/launcher3/C2;->getStateManager()Lcom/android/launcher3/statemanager/d;
-
-    .line 138
-    .line 139
-    .line 140
-    move-result-object v13
-
-    .line 141
-    invoke-virtual {v13}, Lcom/android/launcher3/statemanager/d;->C()Lcom/android/launcher3/statemanager/a;
-
-    .line 142
-    .line 143
-    .line 144
-    move-result-object v13
-
-    .line 145
-    check-cast v13, Lcom/android/launcher3/V3;
-
-    .line 146
-    .line 147
-    iget-object v14, v1, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 148
-    .line 149
-    invoke-static {v14}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 150
-    .line 151
-    .line 152
-    move-result-object v14
-
-    .line 153
-    invoke-virtual {v13, v14}, Lcom/android/launcher3/V3;->u(Lcom/android/launcher3/C2;)F
-
-    .line 154
-    .line 155
-    .line 156
-    move-result v13
-
-    .line 157
-    sget-object v14, LJ0/h;->q:Landroid/view/animation/Interpolator;
-
-    .line 158
-    .line 159
-    invoke-virtual {v8, v10, v11, v13, v14}, Lcom/android/launcher3/anim/Y;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
-
-    .line 160
-    .line 161
-    .line 162
-    goto :goto_0
-
-    .line 163
-    :cond_1
-    instance-of v11, v6, Lcom/android/launcher3/menu/MenuWallpaper;
-
-    .line 164
-    .line 165
-    if-eqz v11, :cond_2
-
-    .line 166
-    .line 167
-    sget-object v11, Ln1/s;->f:Landroid/util/FloatProperty;
-
-    .line 168
-    .line 169
-    sget-object v13, LJ0/h;->q:Landroid/view/animation/Interpolator;
-
-    .line 170
-    .line 171
-    invoke-virtual {v8, v10, v11, v12, v13}, Lcom/android/launcher3/anim/Y;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
-
-    .line 172
-    .line 173
-    .line 174
-    :cond_2
-    :goto_0
-    iget-object v8, v1, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 175
-    .line 176
-    const v10, 0x7f07098d
-
-    .line 177
-    .line 178
-    .line 179
-    invoke-virtual {v8, v10}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 180
-    .line 181
-    .line 182
-    move-result v8
-
-    .line 183
-    if-eqz v4, :cond_3
-
-    .line 184
-    .line 185
-    sget-object v11, Landroid/widget/FrameLayout;->ALPHA:Landroid/util/Property;
-
-    .line 186
-    .line 187
-    new-array v13, v7, [F
-
-    .line 188
-    .line 189
-    aput v12, v13, v9
-
-    .line 190
-    .line 191
-    invoke-static {v4, v11, v13}, Lcom/android/launcher3/G2;->h(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 192
-    .line 193
-    .line 194
-    move-result-object v11
-
-    .line 195
-    goto :goto_1
-
-    .line 196
-    :cond_3
-    const/4 v11, 0x0
-
-    .line 197
-    :goto_1
-    const/high16 v13, 0x3f800000    # 1.0f
-
-    .line 198
-    .line 199
-    if-eqz v6, :cond_4
-
-    .line 200
-    .line 201
-    sget-object v14, Landroid/widget/FrameLayout;->ALPHA:Landroid/util/Property;
-
-    .line 202
-    .line 203
-    new-array v15, v7, [F
-
-    .line 204
-    .line 205
-    aput v13, v15, v9
-
-    .line 206
     .line 207
-    invoke-static {v6, v14, v15}, Lcom/android/launcher3/G2;->h(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 208
-    .line 209
-    .line 210
-    move-result-object v14
-
-    .line 211
-    goto :goto_2
-
-    .line 212
-    :cond_4
-    const/4 v14, 0x0
-
-    .line 213
-    :goto_2
-    if-eqz v4, :cond_5
-
-    .line 214
-    .line 215
-    new-instance v15, Lcom/android/launcher3/menu/b;
-
-    .line 216
-    .line 217
-    invoke-direct {v15, v4, v2}, Lcom/android/launcher3/menu/b;-><init>(Landroid/view/View;Z)V
-
-    .line 218
-    .line 219
-    .line 220
-    invoke-virtual {v11, v15}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 221
-    .line 222
-    .line 223
-    iget v15, v1, Lcom/android/launcher3/menu/MenuContainer;->x:I
-
-    .line 224
-    .line 225
-    move/from16 v16, v9
-
-    .line 226
-    .line 227
-    int-to-long v9, v15
-
-    .line 228
-    invoke-virtual {v11, v9, v10}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 229
-    .line 230
-    .line 231
-    iget-object v9, v1, Lcom/android/launcher3/menu/MenuContainer;->r:Landroid/animation/TimeInterpolator;
-
-    .line 232
-    .line 233
-    invoke-virtual {v11, v9}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 234
-    .line 235
-    .line 236
-    iget-object v9, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 237
-    .line 238
-    invoke-direct {v1, v4, v5, v8}, Lcom/android/launcher3/menu/MenuContainer;->A(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-
-    .line 239
-    .line 240
-    .line 241
-    move-result-object v10
-
-    .line 242
-    invoke-virtual {v9, v10}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 243
-    .line 244
-    .line 245
-    iget-object v9, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 246
-    .line 247
-    invoke-virtual {v9, v11}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 248
-    .line 249
-    .line 250
-    goto :goto_3
-
-    .line 251
-    :cond_5
-    move/from16 v16, v9
-
-    .line 252
-    .line 253
-    :goto_3
-    if-eqz v6, :cond_7
-
-    .line 254
-    .line 255
-    instance-of v9, v6, Lcom/android/launcher3/widget/WidgetsTwoPaneSheetMfv;
-
-    .line 256
-    .line 257
-    if-nez v9, :cond_7
-
-    .line 258
-    .line 259
-    new-instance v9, Lcom/android/launcher3/menu/b;
-
-    .line 260
-    .line 261
-    invoke-direct {v9, v6, v2}, Lcom/android/launcher3/menu/b;-><init>(Landroid/view/View;Z)V
-
-    .line 262
-    .line 263
-    .line 264
-    invoke-virtual {v14, v9}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 265
-    .line 266
-    .line 267
-    iget v9, v1, Lcom/android/launcher3/menu/MenuContainer;->w:I
-
-    .line 268
-    .line 269
-    int-to-long v9, v9
-
-    .line 270
-    invoke-virtual {v14, v9, v10}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 271
-    .line 272
-    .line 273
-    iget-object v9, v1, Lcom/android/launcher3/menu/MenuContainer;->s:Landroid/view/animation/Interpolator;
-
-    .line 274
-    .line 275
-    invoke-virtual {v14, v9}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 276
-    .line 277
-    .line 278
-    instance-of v9, v6, Lcom/android/launcher3/menu/c$a;
-
-    .line 279
-    .line 280
-    if-eqz v9, :cond_6
-
-    .line 281
-    .line 282
-    move-object v9, v6
-
-    .line 283
-    check-cast v9, Lcom/android/launcher3/menu/c$a;
-
-    .line 284
-    .line 285
-    iget v10, v1, Lcom/android/launcher3/menu/MenuContainer;->w:I
-
-    .line 286
-    .line 287
-    iget-object v11, v1, Lcom/android/launcher3/menu/MenuContainer;->s:Landroid/view/animation/Interpolator;
-
-    .line 288
-    .line 289
-    invoke-interface {v9, v10, v11}, Lcom/android/launcher3/menu/c$a;->f(ILandroid/view/animation/Interpolator;)V
-
-    .line 290
-    .line 291
-    .line 292
-    :cond_6
-    iget-object v9, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 293
-    .line 294
-    invoke-direct {v1, v6, v5, v8}, Lcom/android/launcher3/menu/MenuContainer;->B(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-
-    .line 295
-    .line 296
-    .line 297
-    move-result-object v8
-
-    .line 298
-    invoke-virtual {v9, v8}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 299
-    .line 300
-    .line 301
-    iget-object v8, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 302
-    .line 303
-    invoke-virtual {v8, v14}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 304
-    .line 305
-    .line 306
-    :cond_7
-    instance-of v8, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 307
-    .line 308
-    if-eqz v8, :cond_8
-
-    .line 309
-    .line 310
-    instance-of v9, v3, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 311
-    .line 312
-    if-eqz v9, :cond_8
-
-    .line 313
-    .line 314
-    move/from16 v9, v16
-
-    .line 315
-    .line 316
-    goto :goto_4
-
-    .line 317
-    :cond_8
-    move v9, v7
-
-    .line 318
-    :goto_4
-    if-eqz v9, :cond_a
-
-    .line 319
-    .line 320
-    if-nez v8, :cond_9
-
-    .line 321
-    .line 322
-    instance-of v8, v3, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 323
-    .line 324
-    if-eqz v8, :cond_a
-
-    .line 325
-    .line 326
-    :cond_9
-    move v8, v7
-
-    .line 327
-    goto :goto_5
-
-    .line 328
-    :cond_a
-    move/from16 v8, v16
-
-    .line 329
-    .line 330
-    :goto_5
-    if-eqz v9, :cond_e
-
-    .line 331
-    .line 332
-    if-eqz v0, :cond_b
-
-    .line 333
-    .line 334
-    sget-object v9, Landroid/widget/FrameLayout;->ALPHA:Landroid/util/Property;
-
-    .line 335
-    .line 336
-    new-array v10, v7, [F
-
-    .line 337
-    .line 338
-    aput v12, v10, v16
-
-    .line 339
-    .line 340
-    invoke-static {v0, v9, v10}, Lcom/android/launcher3/G2;->h(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 341
-    .line 342
-    .line 343
-    move-result-object v9
-
-    .line 344
-    goto :goto_6
-
-    .line 345
-    :cond_b
-    const/4 v9, 0x0
-
-    .line 346
-    :goto_6
-    if-eqz v3, :cond_c
-
-    .line 347
-    .line 348
-    sget-object v10, Landroid/widget/FrameLayout;->ALPHA:Landroid/util/Property;
-
-    .line 349
-    .line 350
-    new-array v11, v7, [F
-
-    .line 351
-    .line 352
-    aput v13, v11, v16
-
-    .line 353
-    .line 354
-    invoke-static {v3, v10, v11}, Lcom/android/launcher3/G2;->h(Landroid/view/View;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 355
-    .line 356
-    .line 357
-    move-result-object v10
-
-    .line 358
-    goto :goto_7
-
-    .line 359
-    :cond_c
-    const/4 v10, 0x0
-
-    .line 360
-    :goto_7
-    iget-object v11, v1, Lcom/android/launcher3/menu/MenuContainer;->h:Landroid/content/res/Resources;
-
-    .line 361
-    .line 362
-    const v12, 0x7f0704b0
-
-    .line 363
-    .line 364
-    .line 365
-    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 366
-    .line 367
-    .line 368
-    move-result v11
-
-    .line 369
-    if-eqz v0, :cond_d
-
-    .line 370
-    .line 371
-    new-instance v12, Lcom/android/launcher3/menu/b;
-
-    .line 372
-    .line 373
-    invoke-direct {v12, v0, v2}, Lcom/android/launcher3/menu/b;-><init>(Landroid/view/View;Z)V
-
-    .line 374
-    .line 375
-    .line 376
-    invoke-virtual {v9, v12}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 377
-    .line 378
-    .line 379
-    iget v12, v1, Lcom/android/launcher3/menu/MenuContainer;->z:I
-
-    .line 380
-    .line 381
-    int-to-long v12, v12
-
-    .line 382
-    invoke-virtual {v9, v12, v13}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 383
-    .line 384
-    .line 385
-    iget-object v12, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 386
-    .line 387
-    invoke-direct {v1, v0, v5, v11}, Lcom/android/launcher3/menu/MenuContainer;->M(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-
-    .line 388
-    .line 389
-    .line 390
-    move-result-object v0
-
-    .line 391
-    invoke-virtual {v12, v0}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 392
-    .line 393
-    .line 394
-    iget-object v0, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 395
-    .line 396
-    invoke-virtual {v0, v9}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 397
-    .line 398
-    .line 399
-    :cond_d
-    if-eqz v3, :cond_e
-
-    .line 400
-    .line 401
-    new-instance v0, Lcom/android/launcher3/menu/b;
-
-    .line 402
-    .line 403
-    invoke-direct {v0, v3, v2}, Lcom/android/launcher3/menu/b;-><init>(Landroid/view/View;Z)V
-
-    .line 404
-    .line 405
-    .line 406
-    invoke-virtual {v10, v0}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 407
-    .line 408
-    .line 409
-    iget v0, v1, Lcom/android/launcher3/menu/MenuContainer;->y:I
-
-    .line 410
-    .line 411
-    int-to-long v12, v0
-
-    .line 412
-    invoke-virtual {v10, v12, v13}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 413
-    .line 414
-    .line 415
-    iget-object v0, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 416
-    .line 417
-    invoke-direct {v1, v3, v5, v11}, Lcom/android/launcher3/menu/MenuContainer;->L(Landroid/view/View;ZI)Landroid/animation/ObjectAnimator;
-
-    .line 418
-    .line 419
-    .line 420
-    move-result-object v2
-
-    .line 421
-    invoke-virtual {v0, v2}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 422
-    .line 423
-    .line 424
-    iget-object v0, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 425
-    .line 426
-    invoke-virtual {v0, v10}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
-
-    .line 427
-    .line 428
-    .line 429
-    :cond_e
-    iget-object v9, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 430
-    .line 431
-    new-instance v0, Lcom/android/launcher3/menu/MenuContainer$a;
-
-    .line 432
-    .line 433
-    move v2, v8
-
-    .line 434
-    invoke-direct/range {v0 .. v6}, Lcom/android/launcher3/menu/MenuContainer$a;-><init>(Lcom/android/launcher3/menu/MenuContainer;ZLandroid/view/View;Landroid/view/View;ZLandroid/view/View;)V
-
-    .line 435
-    .line 436
-    .line 437
-    invoke-virtual {v9, v0}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 438
-    .line 439
-    .line 440
-    iget-object v0, v1, Lcom/android/launcher3/menu/MenuContainer;->H:Landroid/animation/AnimatorSet;
-
-    .line 441
-    .line 442
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->start()V
-
-    .line 443
-    .line 444
-    .line 445
-    return v7
-.end method
-
-.method public n()V
-    .locals 9
-
-    .line 1
     const-string v0, "MenuContainer"
 
-    .line 2
-    .line 3
-    const-string v1, "goToOverView"
+    const-string v1, "initMenuData for main"
 
-    .line 4
-    .line 5
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 6
-    .line 7
-    .line 8
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 208
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->setupHomeMenu()V
 
-    .line 9
-    .line 10
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object v0
-
-    .line 14
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->e2()Lcom/android/launcher3/q4;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object v0
-
-    .line 18
-    sget-object v1, Lcom/android/launcher3/q4$a;->k:Lcom/android/launcher3/q4$a;
-
-    .line 19
-    .line 20
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/q4;->Z(Lcom/android/launcher3/q4$a;)Z
-
-    .line 21
-    .line 22
-    .line 23
-    move-result v0
-
-    .line 24
-    if-eqz v0, :cond_0
-
-    .line 25
-    .line 26
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 27
-    .line 28
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 29
-    .line 30
-    .line 31
-    move-result-object v0
-
-    .line 32
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->j2()Lcom/android/launcher3/G4;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v0
-
-    .line 36
-    const/4 v1, 0x1
-
-    .line 37
-    const/4 v2, 0x0
-
-    .line 38
-    invoke-virtual {v0, v1, v2}, Lcom/android/launcher3/G4;->G(ZZ)V
-
-    .line 39
-    .line 40
-    .line 41
-    iget-object v7, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
-
-    .line 42
-    .line 43
-    const/4 v8, 0x0
-
-    .line 44
-    const/4 v4, 0x0
-
-    .line 45
-    const/4 v5, 0x0
-
-    .line 46
-    const/4 v6, 0x0
-
-    .line 47
-    move-object v3, p0
-
-    .line 48
-    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->k(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
-
-    .line 49
-    .line 50
-    .line 51
-    :cond_0
     return-void
 .end method
 
 .method public onActivityResult(IILandroid/content/Intent;)V
     .locals 2
 
-    .line 1
     const/16 p3, 0x4d2
 
-    .line 2
-    .line 3
     if-eq p1, p3, :cond_0
 
-    .line 4
-    .line 5
     return-void
 
-    .line 6
+    .line 281
     :cond_0
     new-instance p3, Ljava/lang/StringBuilder;
 
-    .line 7
-    .line 8
-    invoke-direct {p3}, Ljava/lang/StringBuilder;-><init>()V
+    const-string/jumbo v0, "onActivityResult--requestCode"
 
-    .line 9
-    .line 10
-    .line 11
-    const-string v0, "onActivityResult--requestCode"
+    invoke-direct {p3, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 12
-    .line 13
-    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 14
-    .line 15
-    .line 16
     invoke-virtual {p3, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    .line 17
-    .line 18
-    .line 19
-    const-string p1, "/resultCode"
-
-    .line 20
-    .line 21
-    invoke-virtual {p3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 22
-    .line 23
-    .line 24
-    invoke-virtual {p3, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 25
-    .line 26
-    .line 27
-    invoke-virtual {p3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 28
-    .line 29
-    .line 30
     move-result-object p1
 
-    .line 31
+    const-string p3, "/resultCode"
+
+    invoke-virtual {p1, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
     const-string p2, "MenuContainer"
 
-    .line 32
-    .line 33
     invoke-static {p2, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 34
-    .line 35
-    .line 36
-    sget-object p1, Lcom/android/launcher3/q4$a;->h:Lcom/android/launcher3/q4$a;
+    .line 283
+    sget-object p1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_MAIN:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
 
-    .line 37
-    .line 38
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/q4$a;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
 
-    .line 39
-    .line 40
-    .line 41
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 284
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 42
-    .line 43
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 44
-    .line 45
-    .line 46
     move-result-object p1
 
-    .line 47
-    invoke-static {p1}, Lx1/O;->o5(Lcom/android/launcher3/C2;)V
+    invoke-static {p1}, Lcom/android/launcher3/mfvUtil/MFVUtils;->toFullScreen(Lcom/android/launcher3/Launcher;)V
 
-    .line 48
-    .line 49
-    .line 50
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 285
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 51
-    .line 52
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 53
-    .line 54
-    .line 55
     move-result-object p1
 
-    .line 56
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->I1()Lcom/android/launcher3/widget/l0;
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getAppWidgetHolder()Lcom/android/launcher3/widget/LauncherWidgetHolder;
 
-    .line 57
-    .line 58
-    .line 59
     move-result-object p1
 
-    .line 60
-    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    iget-object p2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 61
-    .line 62
-    invoke-static {p2}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p2}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 63
-    .line 64
-    .line 65
     move-result-object p2
 
-    .line 66
-    invoke-virtual {p2}, Lcom/android/launcher3/C2;->getStateManager()Lcom/android/launcher3/statemanager/d;
+    invoke-virtual {p2}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
 
-    .line 67
-    .line 68
-    .line 69
     move-result-object p2
 
-    .line 70
-    invoke-virtual {p2}, Lcom/android/launcher3/statemanager/d;->C()Lcom/android/launcher3/statemanager/a;
+    invoke-virtual {p2}, Lcom/android/launcher3/statemanager/StateManager;->getState()Lcom/android/launcher3/statemanager/BaseState;
 
-    .line 71
-    .line 72
-    .line 73
     move-result-object p2
 
-    .line 74
-    sget-object p3, Lcom/android/launcher3/V3;->A:Lcom/android/launcher3/V3;
+    sget-object p3, Lcom/android/launcher3/LauncherState;->MENU_OVERVIEW:Lcom/android/launcher3/LauncherState;
 
-    .line 75
-    .line 76
-    const/4 v0, 0x0
+    const/4 v0, 0x1
 
-    .line 77
-    const/4 v1, 0x1
+    const/4 v1, 0x0
 
-    .line 78
     if-ne p2, p3, :cond_1
 
-    .line 79
-    .line 80
-    move p2, v1
-
-    .line 81
-    goto :goto_0
-
-    .line 82
-    :cond_1
     move p2, v0
 
-    .line 83
+    goto :goto_0
+
+    :cond_1
+    move p2, v1
+
     :goto_0
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/widget/l0;->V(Z)V
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/widget/LauncherWidgetHolder;->setStateIsNormal(Z)V
 
-    .line 84
-    .line 85
-    .line 86
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
+    .line 286
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 87
-    .line 88
-    invoke-static {p0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {p0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 89
-    .line 90
-    .line 91
     move-result-object p0
 
-    .line 92
-    invoke-virtual {p0}, Lcom/android/launcher3/C2;->j2()Lcom/android/launcher3/G4;
+    invoke-virtual {p0}, Lcom/android/launcher3/Launcher;->getMoreIconDragController()Lcom/android/launcher3/MoreIconDragController;
 
-    .line 93
-    .line 94
-    .line 95
     move-result-object p0
 
-    .line 96
-    invoke-virtual {p0, v0, v1}, Lcom/android/launcher3/G4;->G(ZZ)V
+    invoke-virtual {p0, v1, v0}, Lcom/android/launcher3/MoreIconDragController;->updateIconArrangeModeOrNot(ZZ)V
 
-    .line 97
-    .line 98
-    .line 99
+    return-void
+.end method
+
+.method public onBackPressed()V
+    .locals 9
+
+    .line 291
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v1, "onBackPressed--other"
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-boolean v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, "/"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "MenuContainer"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 292
+    iget-boolean v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
+
+    if-nez v0, :cond_0
+
+    .line 293
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
+
+    move-result-object p0
+
+    sget-object v0, Lcom/android/launcher3/LauncherState;->NORMAL:Lcom/android/launcher3/LauncherState;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/statemanager/StateManager;->goToState(Lcom/android/launcher3/statemanager/BaseState;)V
+
+    goto :goto_2
+
+    .line 295
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    if-eqz v0, :cond_1
+
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isStarted()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    return-void
+
+    .line 299
+    :cond_1
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_3
+
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    if-eq v0, v2, :cond_3
+
+    .line 302
+    iget-object v8, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    .line 303
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    invoke-virtual {v0, v2}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 304
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    .line 305
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v2}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/launcher3/Launcher;->getMoreIconDragController()Lcom/android/launcher3/MoreIconDragController;
+
+    move-result-object v2
+
+    const/4 v3, 0x1
+
+    invoke-virtual {v2, v1, v3}, Lcom/android/launcher3/MoreIconDragController;->updateIconArrangeModeOrNot(ZZ)V
+
+    goto :goto_0
+
+    :cond_2
+    const/4 v0, 0x0
+
+    :goto_0
+    move-object v7, v0
+
+    .line 307
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    iget-object v5, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    const/4 v6, 0x1
+
+    move-object v3, p0
+
+    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+
+    .line 309
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_MAIN:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    goto :goto_1
+
+    .line 311
+    :cond_3
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
+
+    move-result-object v0
+
+    sget-object v2, Lcom/android/launcher3/LauncherState;->NORMAL:Lcom/android/launcher3/LauncherState;
+
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/statemanager/StateManager;->goToState(Lcom/android/launcher3/statemanager/BaseState;)V
+
+    .line 312
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_NONE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    .line 315
+    :goto_1
+    iput-boolean v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
+
+    :goto_2
+    return-void
+.end method
+
+.method public onClickMenuIconArrangeBtn()V
+    .locals 7
+
+    .line 727
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    .line 728
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getScreenLockState()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 729
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getMFVInstance()Lcom/android/launcher3/MFVInterfaceProxy;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/MFVInterfaceProxy;->layoutUnlockToast()V
+
+    return-void
+
+    .line 732
+    :cond_0
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v0
+
+    .line 733
+    iget-wide v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
+
+    sub-long/2addr v2, v0
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->abs(J)J
+
+    move-result-wide v2
+
+    const-wide/16 v4, 0x12c
+
+    cmp-long v2, v2, v4
+
+    if-lez v2, :cond_1
+
+    .line 734
+    iput-wide v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mLastPressedTime:J
+
+    .line 736
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    const v1, 0x7f140105
+
+    invoke-virtual {v0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/android/launcher3/datacollection/DataCollectionUtils;->menuOverViewClick(Ljava/lang/String;)V
+
+    .line 739
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->initIconArrangePreviewPageList()V
+
+    .line 740
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Workspace;->isSwitchingState()Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getVisibility()I
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    const/4 v0, 0x1
+
+    .line 741
+    iput-boolean v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
+
+    .line 742
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_ICONARRANGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    .line 743
+    iget-object v2, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
+
+    iget-object v3, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    const/4 v4, 0x0
+
+    iget-object v6, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    move-object v1, p0
+
+    move-object v5, v6
+
+    invoke-virtual/range {v1 .. v6}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+
+    :cond_1
     return-void
 .end method
 
 .method protected onConfigurationChanged(Landroid/content/res/Configuration;)V
     .locals 2
 
-    .line 1
+    .line 180
     invoke-super {p0, p1}, Landroid/widget/FrameLayout;->onConfigurationChanged(Landroid/content/res/Configuration;)V
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 182
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getResources()Landroid/content/res/Resources;
 
-    .line 5
-    .line 6
-    .line 7
     move-result-object p1
 
-    .line 8
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object v0
-
-    .line 12
-    const/4 v1, 0x0
-
-    .line 13
-    invoke-static {p1, v0, v1}, Lx1/O;->D(Landroid/content/Context;Landroid/content/res/Resources;Z)V
-
-    .line 14
-    .line 15
-    .line 16
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->G()V
-
-    .line 17
-    .line 18
-    .line 19
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 20
-    .line 21
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p1
-
-    .line 25
-    invoke-virtual {p1}, Lcom/android/launcher3/h0;->T0()Z
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p1
-
-    .line 29
     const/4 v0, 0x0
 
-    .line 30
+    invoke-static {p1, v0}, Lcom/android/launcher3/mfvUtil/MFVUtils;->disableDisplaySize(Landroid/content/res/Resources;Z)V
+
+    .line 184
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->setupHomeMenu()V
+
+    .line 185
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {p1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result p1
+
+    const/4 v1, 0x0
+
     if-eqz p1, :cond_1
 
-    .line 31
-    .line 32
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 186
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 33
-    .line 34
-    invoke-virtual {p1, v0}, Landroid/widget/LinearLayout;->setTranslationY(F)V
+    invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->setTranslationY(F)V
 
-    .line 35
-    .line 36
-    .line 37
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
+    .line 187
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
 
-    .line 38
-    .line 39
     if-eqz p1, :cond_0
 
-    .line 40
-    .line 41
-    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setTranslationY(F)V
+    .line 188
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/menu/MenuWallpaper;->setTranslationY(F)V
 
-    .line 42
-    .line 43
-    .line 44
+    .line 191
     :cond_0
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
 
-    .line 45
-    .line 46
-    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setTranslationY(F)V
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/menu/MenuEffect;->setTranslationY(F)V
 
-    .line 47
-    .line 48
-    .line 49
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    .line 192
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
 
-    .line 50
-    .line 51
-    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setTranslationY(F)V
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->setTranslationY(F)V
 
-    .line 52
-    .line 53
-    .line 54
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 193
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 55
-    .line 56
     const/4 p1, 0x1
 
-    .line 57
     invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 58
-    .line 59
-    .line 60
-    return-void
+    goto :goto_0
 
-    .line 61
+    .line 195
     :cond_1
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 62
-    .line 63
-    invoke-virtual {p1, v0}, Landroid/widget/LinearLayout;->setTranslationX(F)V
+    invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->setTranslationX(F)V
 
-    .line 64
-    .line 65
-    .line 66
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
+    .line 196
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
 
-    .line 67
-    .line 68
     if-eqz p1, :cond_2
 
-    .line 69
-    .line 70
-    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setTranslationX(F)V
+    .line 197
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/menu/MenuWallpaper;->setTranslationX(F)V
 
-    .line 71
-    .line 72
-    .line 73
+    .line 199
     :cond_2
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
 
-    .line 74
-    .line 75
-    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setTranslationX(F)V
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/menu/MenuEffect;->setTranslationX(F)V
 
-    .line 76
-    .line 77
-    .line 78
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    .line 200
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
 
-    .line 79
-    .line 80
-    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setTranslationX(F)V
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->setTranslationX(F)V
 
-    .line 81
-    .line 82
-    .line 83
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 201
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 84
-    .line 85
-    invoke-virtual {p0, v1}, Landroid/widget/LinearLayout;->setOrientation(I)V
+    invoke-virtual {p0, v0}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 86
-    .line 87
-    .line 88
+    :goto_0
     return-void
+.end method
+
+.method public onForeColorChanged(I)V
+    .locals 1
+
+    .line 237
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->setupHomeMenu()V
+
+    .line 238
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->onForeColorChanged(I)V
+
+    .line 239
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
+
+    if-eqz v0, :cond_0
+
+    .line 240
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/menu/MenuWallpaper;->onForeColorChanged(I)V
+
+    .line 242
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
+
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/menu/MenuEffect;->onForeColorChanged(I)V
+
+    .line 243
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->onForeColorChanged(I)V
+
+    return-void
+.end method
+
+.method public onHomeIntent()V
+    .locals 3
+
+    .line 265
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isStarted()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 266
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->cancelAnimation()V
+
+    .line 268
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    instance-of v1, v0, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    const/4 v2, 0x0
+
+    if-eqz v1, :cond_1
+
+    .line 269
+    check-cast v0, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    invoke-interface {v0, v2}, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;->onViewExisted(Z)V
+
+    goto :goto_0
+
+    .line 271
+    :cond_1
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/menu/MenuContainer;->onViewExisted(Z)V
+
+    .line 273
+    :goto_0
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_NONE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->showItemContent(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    return-void
+.end method
+
+.method public onInterceptTouchEvent(Landroid/view/MotionEvent;)Z
+    .locals 5
+
+    .line 1197
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
+
+    move-result v0
+
+    if-nez v0, :cond_4
+
+    .line 1198
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v1, "onInterceptTouchEvent:menuContainier infos : "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/Launcher;->hasWindowFocus()Z
+
+    move-result v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, "="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/Launcher;->hasBeenResumed()Z
+
+    move-result v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "MenuContainer"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1199
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getRecentProxy()Lcom/android/launcher3/MFVRecentInterfaceProxy;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/MFVRecentInterfaceProxy;->isInFullScreenMode()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    .line 1200
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getRecentProxy()Lcom/android/launcher3/MFVRecentInterfaceProxy;
+
+    move-result-object v0
+
+    new-instance v2, Landroid/graphics/PointF;
+
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
+
+    move-result v3
+
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
+
+    move-result v4
+
+    invoke-direct {v2, v3, v4}, Landroid/graphics/PointF;-><init>(FF)V
+
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/MFVRecentInterfaceProxy;->checkUpGestureCanStart(Landroid/graphics/PointF;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 1201
+    const-string/jumbo p1, "onInterceptTouchEvent: need exit menuContainier"
+
+    invoke-static {v1, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1202
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    const/4 v0, 0x1
+
+    if-nez p1, :cond_2
+
+    .line 1203
+    const-string/jumbo p1, "onInterceptTouchEvent mMenuAnimator null"
+
+    invoke-static {v1, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1205
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    invoke-virtual {p1}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->getVisibility()I
+
+    move-result p1
+
+    const/16 v1, 0x8
+
+    if-nez p1, :cond_0
+
+    .line 1206
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->setVisibility(I)V
+
+    goto :goto_0
+
+    .line 1207
+    :cond_0
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getDropTargetBar()Lcom/android/launcher3/DropTargetBar;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/DropTargetBar;->getVisibility()I
+
+    move-result p1
+
+    if-nez p1, :cond_1
+
+    .line 1208
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getDropTargetBar()Lcom/android/launcher3/DropTargetBar;
+
+    move-result-object p1
+
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/DropTargetBar;->setVisibility(I)V
+
+    .line 1210
+    :cond_1
+    :goto_0
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
+
+    move-result-object p1
+
+    sget-object v1, Lcom/android/launcher3/LauncherState;->NORMAL:Lcom/android/launcher3/LauncherState;
+
+    invoke-virtual {p1, v1, v0}, Lcom/android/launcher3/statemanager/StateManager;->goToState(Lcom/android/launcher3/statemanager/BaseState;Z)V
+
+    .line 1211
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->showWorkspace()V
+
+    goto :goto_1
+
+    .line 1212
+    :cond_2
+    invoke-virtual {p1}, Landroid/animation/AnimatorSet;->isRunning()Z
+
+    move-result p1
+
+    if-nez p1, :cond_3
+
+    .line 1214
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getStateManager()Lcom/android/launcher3/statemanager/StateManager;
+
+    move-result-object p1
+
+    sget-object v1, Lcom/android/launcher3/LauncherState;->NORMAL:Lcom/android/launcher3/LauncherState;
+
+    invoke-virtual {p1, v1, v0}, Lcom/android/launcher3/statemanager/StateManager;->goToState(Lcom/android/launcher3/statemanager/BaseState;Z)V
+
+    .line 1215
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->showWorkspace()V
+
+    .line 1217
+    :cond_3
+    :goto_1
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    const/4 p1, 0x0
+
+    invoke-static {p0, p1}, Lcom/android/launcher3/AbstractFloatingView;->closeAllOpenViews(Lcom/android/launcher3/views/ActivityContext;Z)V
+
+    return v0
+
+    .line 1221
+    :cond_4
+    invoke-super {p0, p1}, Landroid/widget/FrameLayout;->onInterceptTouchEvent(Landroid/view/MotionEvent;)Z
+
+    move-result p0
+
+    return p0
 .end method
 
 .method protected onLayout(ZIIII)V
     .locals 0
 
-    .line 1
+    .line 171
     invoke-super/range {p0 .. p5}, Landroid/widget/FrameLayout;->onLayout(ZIIII)V
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->O()V
+    .line 172
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->updateMenuContainerMargins()V
 
-    .line 5
-    .line 6
-    .line 7
     return-void
 .end method
 
-.method public p(Z)V
+.method public onResumeForMFV()V
     .locals 2
 
-    .line 1
-    new-instance v0, Ljava/lang/StringBuilder;
+    .line 321
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
 
-    .line 2
-    .line 3
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    if-eqz v0, :cond_0
 
-    .line 4
-    .line 5
-    .line 6
-    const-string v1, "onViewEntered-home"
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isStarted()Z
 
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result v0
 
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    if-eqz v0, :cond_0
 
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    .line 322
+    const-string p0, "MenuContainer"
 
-    .line 15
-    .line 16
-    .line 17
-    move-result-object p1
+    const-string/jumbo v0, "onResumeForMFV--mMenuAnimator is running"
 
-    .line 18
-    const-string v0, "MenuContainer"
+    invoke-static {p0, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 19
-    .line 20
-    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 21
-    .line 22
-    .line 23
-    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->g:Lcom/android/launcher3/views/k;
-
-    .line 24
-    .line 25
-    invoke-static {p1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object p1
-
-    .line 29
-    sget-object v0, Lcom/android/launcher3/V3;->A:Lcom/android/launcher3/V3;
-
-    .line 30
-    .line 31
-    invoke-interface {p1, v0}, Lcom/android/launcher3/statemanager/i;->isInState(Lcom/android/launcher3/statemanager/a;)Z
-
-    .line 32
-    .line 33
-    .line 34
-    move-result p1
-
-    .line 35
-    if-nez p1, :cond_0
-
-    .line 36
-    .line 37
     return-void
 
-    .line 38
+    .line 326
     :cond_0
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->q:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 39
-    .line 40
-    const/4 p1, 0x0
+    if-nez v0, :cond_1
 
-    .line 41
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setVisibility(I)V
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 42
-    .line 43
-    .line 44
-    return-void
-.end method
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-.method public q()V
-    .locals 0
-
-    .line 1
-    return-void
-.end method
-
-.method public setCurrentView(Lcom/android/launcher3/q4$a;)V
-    .locals 2
-
-    .line 1
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    .line 2
-    .line 3
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 4
-    .line 5
-    .line 6
-    const-string v1, "setCurrentView: "
-
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 15
-    .line 16
-    .line 17
     move-result-object v0
 
-    .line 18
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getMFVInstance()Lcom/android/launcher3/MFVInterfaceProxy;
+
+    move-result-object v0
+
+    sget-object v1, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_THIRDPARTY_WALLPAPER_PAGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/MFVInterfaceProxy;->isInTargetMenuStatus(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 327
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_MAIN:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    :cond_1
+    const/4 v0, 0x0
+
+    .line 329
+    iput-boolean v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mFromHomeEnter:Z
+
+    return-void
+.end method
+
+.method public onViewEntered(Z)V
+    .locals 2
+
+    .line 213
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v1, "onViewEntered-home"
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v0, "MenuContainer"
+
+    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 214
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    sget-object v0, Lcom/android/launcher3/LauncherState;->MENU_OVERVIEW:Lcom/android/launcher3/LauncherState;
+
+    invoke-virtual {p1, v0}, Lcom/android/launcher3/Launcher;->isInState(Lcom/android/launcher3/statemanager/BaseState;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    return-void
+
+    .line 217
+    :cond_0
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    const/4 p1, 0x0
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->setVisibility(I)V
+
+    return-void
+.end method
+
+.method public onViewExisted(Z)V
+    .locals 3
+
+    .line 222
+    const-string/jumbo p1, "onViewExisted-home"
+
+    const-string v0, "MenuContainer"
+
+    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 223
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getCurrentView()Landroid/view/ViewGroup;
+
+    move-result-object p1
+
+    instance-of p1, p1, Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    const/16 v1, 0x8
+
+    if-nez p1, :cond_0
+
+    .line 224
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    invoke-virtual {p1, v1}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->setVisibility(I)V
+
+    .line 226
+    :cond_0
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    sget-object v2, Lcom/android/launcher3/LauncherState;->MENU_OVERVIEW:Lcom/android/launcher3/LauncherState;
+
+    invoke-virtual {p1, v2}, Lcom/android/launcher3/Launcher;->isInState(Lcom/android/launcher3/statemanager/BaseState;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_1
+
+    iget-object p1, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/Launcher;->getDropTargetBar()Lcom/android/launcher3/DropTargetBar;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/DropTargetBar;->getVisibility()I
+
+    move-result p1
+
+    if-nez p1, :cond_1
+
+    .line 227
+    const-string/jumbo p1, "onViewExisted: no MENU_OVERVIEW state , gone the dropTargetBar"
+
+    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 228
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/Launcher;->getDropTargetBar()Lcom/android/launcher3/DropTargetBar;
+
+    move-result-object p0
+
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/DropTargetBar;->setVisibility(I)V
+
+    :cond_1
+    return-void
+.end method
+
+.method public preTransition()V
+    .locals 0
+
+    return-void
+.end method
+
+.method public removeEmptyScreen()V
+    .locals 1
+
+    .line 1190
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->getVisibility()I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 1191
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {p0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/Launcher;->getWorkspace()Lcom/android/launcher3/Workspace;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/Workspace;->stripEmptyScreens()V
+
+    :cond_0
+    return-void
+.end method
+
+.method public setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+    .locals 2
+
+    .line 799
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v1, "setCurrentView: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
     const-string v1, "MenuContainer"
 
-    .line 19
-    .line 20
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 21
-    .line 22
-    .line 23
-    sget-object v0, Lcom/android/launcher3/menu/MenuContainer$c;->a:[I
+    .line 800
+    sget-object v0, Lcom/android/launcher3/menu/MenuContainer$3;->$SwitchMap$com$android$launcher3$MFVInterfaceProxy$MENU_SHOW_STATUS:[I
 
-    .line 24
-    .line 25
-    invoke-virtual {p1}, Ljava/lang/Enum;->ordinal()I
+    invoke-virtual {p1}, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->ordinal()I
 
-    .line 26
-    .line 27
-    .line 28
     move-result v1
 
-    .line 29
     aget v0, v0, v1
 
-    .line 30
-    .line 31
     packed-switch v0, :pswitch_data_0
 
-    .line 32
-    .line 33
-    .line 34
     goto :goto_0
 
-    .line 35
     :pswitch_0
     const/4 v0, 0x0
 
-    .line 36
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    .line 821
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 37
-    .line 38
     goto :goto_0
 
-    .line 39
+    .line 814
     :pswitch_1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->G:Landroid/view/View;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWidgetView:Landroid/view/View;
 
-    .line 40
-    .line 41
     if-eqz v0, :cond_0
 
-    .line 42
-    .line 43
+    .line 815
     check-cast v0, Landroid/view/ViewGroup;
 
-    .line 44
-    .line 45
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 46
-    .line 47
     goto :goto_0
 
-    .line 48
+    .line 811
     :pswitch_2
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
 
-    .line 49
-    .line 50
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 51
-    .line 52
     goto :goto_0
 
-    .line 53
+    .line 808
     :pswitch_3
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->o:Lcom/android/launcher3/menu/MenuEffect;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
 
-    .line 54
-    .line 55
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 56
-    .line 57
     goto :goto_0
 
-    .line 58
+    .line 805
     :pswitch_4
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->n:Lcom/android/launcher3/menu/MenuWallpaper;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuWallpaper:Lcom/android/launcher3/menu/MenuWallpaper;
 
-    .line 59
-    .line 60
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 61
-    .line 62
     goto :goto_0
 
-    .line 63
+    .line 802
     :pswitch_5
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 64
-    .line 65
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->C:Landroid/view/ViewGroup;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
 
-    .line 66
-    .line 67
+    .line 824
     :cond_0
     :goto_0
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->D:Lcom/android/launcher3/menu/c;
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuCache:Lcom/android/launcher3/menu/MenuCache;
 
-    .line 68
-    .line 69
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/c;->D(Lcom/android/launcher3/q4$a;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuCache;->syncMenuStatus(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
 
-    .line 70
-    .line 71
-    .line 72
     return-void
 
-    .line 73
+    nop
+
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_5
@@ -8797,72 +5161,470 @@
 .method public setInsets(Landroid/graphics/Rect;)V
     .locals 0
 
-    .line 1
     return-void
 .end method
 
 .method public setMenuWallpaperBtnVisibility(I)V
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 502
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
     return-void
 
-    .line 6
     :cond_0
-    const v1, 0x7f0b067b
+    const v1, 0x7f0b05d8
 
-    .line 7
-    .line 8
-    .line 9
+    .line 505
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
 
-    .line 10
-    .line 11
-    .line 12
     move-result-object v0
 
-    .line 13
-    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->i:Landroid/view/View;
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mWallpaperButton:Landroid/view/View;
 
-    .line 14
-    .line 15
+    .line 506
     invoke-virtual {v0, p1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 16
-    .line 17
-    .line 18
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->m:Landroid/widget/LinearLayout;
+    .line 507
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mHomeMenuLinearLayout:Landroid/widget/LinearLayout;
 
-    .line 19
-    .line 20
     invoke-virtual {p0}, Landroid/widget/LinearLayout;->requestLayout()V
 
-    .line 21
-    .line 22
-    .line 23
     return-void
 .end method
 
 .method public setTopBarStatus(Z)V
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->p:Lcom/android/launcher3/iconarrange/MenuIconArrange;
+    .line 261
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuIconArrange:Lcom/android/launcher3/iconarrange/MenuIconArrange;
 
-    .line 2
-    .line 3
     invoke-virtual {p0, p1}, Lcom/android/launcher3/iconarrange/MenuIconArrange;->setTopBarStatus(Z)V
 
-    .line 4
-    .line 5
-    .line 6
+    return-void
+.end method
+
+.method public showItemContent(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+    .locals 9
+
+    .line 371
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v1, "showItemContent: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "MenuContainer"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 372
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isRunning()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 373
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->cancel()V
+
+    const/4 v0, 0x0
+
+    .line 374
+    iput-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuAnimator:Landroid/animation/AnimatorSet;
+
+    .line 376
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
+
+    move-result v0
+
+    const/4 v2, 0x0
+
+    if-eqz v0, :cond_1
+
+    .line 377
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/menu/MenuContainer;->setTranslationY(F)V
+
+    goto :goto_0
+
+    .line 379
+    :cond_1
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/menu/MenuContainer;->setTranslationX(F)V
+
+    .line 382
+    :goto_0
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    if-nez v0, :cond_2
+
+    .line 383
+    invoke-direct {p0}, Lcom/android/launcher3/menu/MenuContainer;->setupHomeMenu()V
+
+    .line 386
+    :cond_2
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    const/16 v3, 0x8
+
+    if-eqz v0, :cond_3
+
+    .line 387
+    invoke-virtual {v0, v3}, Landroid/view/ViewGroup;->setVisibility(I)V
+
+    .line 389
+    :cond_3
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->setCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    .line 390
+    invoke-direct {p0, p1}, Lcom/android/launcher3/menu/MenuContainer;->isStatusNoCurrentView(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_6
+
+    .line 391
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    instance-of v4, v0, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    if-eqz v4, :cond_4
+
+    .line 392
+    check-cast v0, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    invoke-interface {v0}, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;->initMenuData()V
+
+    goto :goto_1
+
+    .line 394
+    :cond_4
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->initMenuData()V
+
+    .line 396
+    :goto_1
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    if-eqz v0, :cond_6
+
+    .line 397
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v4, "showItemContent: mCurrentView = "
+
+    invoke-direct {v0, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v4, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 398
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_MAIN:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    if-ne p1, v0, :cond_5
+
+    .line 399
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
+
+    invoke-virtual {v0, v3}, Lcom/android/launcher3/menu/MenuEffect;->setVisibility(I)V
+
+    .line 401
+    :cond_5
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
+
+    .line 402
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0, v2}, Landroid/view/ViewGroup;->setTranslationX(F)V
+
+    .line 403
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0, v2}, Landroid/view/ViewGroup;->setTranslationY(F)V
+
+    .line 404
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    const/high16 v1, 0x3f800000    # 1.0f
+
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setAlpha(F)V
+
+    .line 405
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0}, Landroid/view/ViewGroup;->invalidate()V
+
+    .line 409
+    :cond_6
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_MAIN:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    if-ne p1, v0, :cond_7
+
+    .line 410
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->setTranslationX(F)V
+
+    .line 411
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->setTranslationY(F)V
+
+    const/4 v7, 0x0
+
+    .line 412
+    iget-object v8, p0, Lcom/android/launcher3/menu/MenuContainer;->mIconArrangeTopBar:Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    const/4 v6, 0x0
+
+    move-object v3, p0
+
+    invoke-virtual/range {v3 .. v8}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+
+    .line 415
+    :cond_7
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuCache:Lcom/android/launcher3/menu/MenuCache;
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/menu/MenuCache;->syncMenuStatus(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    return-void
+.end method
+
+.method public showWorkspace()V
+    .locals 3
+
+    .line 361
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v1, "stateChangeEndMFV: showWorkspace "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v1, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "MenuContainer"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 362
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mCurrentView:Landroid/view/ViewGroup;
+
+    instance-of v1, v0, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    const/4 v2, 0x0
+
+    if-eqz v1, :cond_0
+
+    .line 363
+    check-cast v0, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;
+
+    invoke-interface {v0, v2}, Lcom/android/launcher3/menu/MenuCache$MenuContainerViewTransitor;->onViewExisted(Z)V
+
+    goto :goto_0
+
+    .line 365
+    :cond_0
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/menu/MenuContainer;->onViewExisted(Z)V
+
+    .line 367
+    :goto_0
+    sget-object v0, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_NONE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/menu/MenuContainer;->showItemContent(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)V
+
+    return-void
+.end method
+
+.method public switchIconArrangeTopBarAndDropTargetBar(Landroid/view/View;Landroid/view/View;)V
+    .locals 8
+
+    .line 345
+    const-string/jumbo v0, "switchIconArrangeTopBarAndDropTargetBar"
+
+    const-string v1, "MenuContainer"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 346
+    iget-object v0, p0, Lcom/android/launcher3/menu/MenuContainer;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getMFVInstance()Lcom/android/launcher3/MFVInterfaceProxy;
+
+    move-result-object v0
+
+    sget-object v2, Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;->MENU_ICONARRANGE:Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;
+
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/MFVInterfaceProxy;->isInTargetMenuStatus(Lcom/android/launcher3/MFVInterfaceProxy$MENU_SHOW_STATUS;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 347
+    instance-of v0, p2, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    if-eqz v0, :cond_1
+
+    .line 348
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    move-result-object v0
+
+    iget-boolean v0, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->mIsShowOrHideAnimating:Z
+
+    if-nez v0, :cond_0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->getVisibility()I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->getAlpha()F
+
+    move-result v0
+
+    const/high16 v2, 0x3f800000    # 1.0f
+
+    invoke-static {v0, v2}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 349
+    const-string/jumbo p0, "switchIconArrangeTopBarAndDropTargetBar 1 return"
+
+    invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    .line 351
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    move-result-object v0
+
+    iget-boolean v0, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->mIsShowOrHideAnimating:Z
+
+    if-eqz v0, :cond_1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuContainer;->getIconArrangeTopBar()Lcom/android/launcher3/iconarrange/IconArrangeTopBar;
+
+    move-result-object v0
+
+    iget-boolean v0, v0, Lcom/android/launcher3/iconarrange/IconArrangeTopBar;->mIsShowOrHideAnimToShow:Z
+
+    if-eqz v0, :cond_1
+
+    .line 352
+    const-string/jumbo p0, "switchIconArrangeTopBarAndDropTargetBar 2 return"
+
+    invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    :cond_1
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    const/4 v3, 0x0
+
+    move-object v2, p0
+
+    move-object v6, p1
+
+    move-object v7, p2
+
+    .line 356
+    invoke-virtual/range {v2 .. v7}, Lcom/android/launcher3/menu/MenuContainer;->animateBeautyMenu(Landroid/view/View;Landroid/view/View;ZLandroid/view/View;Landroid/view/View;)Z
+
+    :cond_2
+    return-void
+.end method
+
+.method public updateChildEnterAnimator(ILandroid/view/animation/Interpolator;)V
+    .locals 0
+
+    return-void
+.end method
+
+.method public updateChildExitAnimator(ILandroid/view/animation/Interpolator;)V
+    .locals 0
+
+    return-void
+.end method
+
+.method public updateMenuEffect()V
+    .locals 0
+
+    .line 1180
+    iget-object p0, p0, Lcom/android/launcher3/menu/MenuContainer;->mMenuEffect:Lcom/android/launcher3/menu/MenuEffect;
+
+    if-eqz p0, :cond_0
+
+    .line 1181
+    invoke-virtual {p0}, Lcom/android/launcher3/menu/MenuEffect;->updateMenuParams()V
+
+    :cond_0
     return-void
 .end method

@@ -38,140 +38,106 @@
 .method private static synthetic $values()[Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
     .locals 2
 
-    .line 1
+    .line 5434
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->TASKBAR_CONTAINER:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 2
-    .line 3
     sget-object v1, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->PARENTCONTAINER_NOT_SET:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 4
-    .line 5
     filled-new-array {v0, v1}, [Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object v0
 
-    .line 9
     return-object v0
 .end method
 
 .method static constructor <clinit>()V
     .locals 4
 
-    .line 1
+    .line 5435
     new-instance v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 2
-    .line 3
     const-string v1, "TASKBAR_CONTAINER"
 
-    .line 4
-    .line 5
     const/4 v2, 0x0
 
-    .line 6
     const/4 v3, 0x1
 
-    .line 7
     invoke-direct {v0, v1, v2, v3}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;-><init>(Ljava/lang/String;II)V
 
-    .line 8
-    .line 9
-    .line 10
     sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->TASKBAR_CONTAINER:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 11
-    .line 12
+    .line 5436
     new-instance v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 13
-    .line 14
     const-string v1, "PARENTCONTAINER_NOT_SET"
 
-    .line 15
-    .line 16
     invoke-direct {v0, v1, v3, v2}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;-><init>(Ljava/lang/String;II)V
 
-    .line 17
-    .line 18
-    .line 19
     sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->PARENTCONTAINER_NOT_SET:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 20
-    .line 21
+    .line 5434
     invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->$values()[Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 22
-    .line 23
-    .line 24
     move-result-object v0
 
-    .line 25
     sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->$VALUES:[Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 26
-    .line 27
     return-void
 .end method
 
 .method private constructor <init>(Ljava/lang/String;II)V
     .locals 0
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x1000,
+            0x1000,
+            0x0
+        }
+        names = {
+            null,
+            null,
+            null
+        }
+    .end annotation
+
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I)V"
         }
     .end annotation
 
-    .line 1
+    .line 5438
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 2
-    .line 3
-    .line 4
+    .line 5439
     iput p3, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->value:I
 
-    .line 5
-    .line 6
     return-void
 .end method
 
 .method public static forNumber(I)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
     .locals 1
 
-    .line 1
     if-eqz p0, :cond_1
 
-    .line 2
-    .line 3
     const/4 v0, 0x1
 
-    .line 4
     if-eq p0, v0, :cond_0
 
-    .line 5
-    .line 6
     const/4 p0, 0x0
 
-    .line 7
     return-object p0
 
-    .line 8
+    .line 5451
     :cond_0
     sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->TASKBAR_CONTAINER:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 9
-    .line 10
     return-object p0
 
-    .line 11
+    .line 5452
     :cond_1
     sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->PARENTCONTAINER_NOT_SET:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 12
-    .line 13
     return-object p0
 .end method
 
@@ -180,7 +146,7 @@
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 
-    .line 2
+    .line 5446
     invoke-static {p0}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->forNumber(I)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
     move-result-object p0
@@ -190,8 +156,16 @@
 
 .method public static valueOf(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
     .locals 1
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x8000
+        }
+        names = {
+            null
+        }
+    .end annotation
 
-    .line 1
+    .line 5434
     const-class v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -206,23 +180,15 @@
 .method public static values()[Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
     .locals 1
 
-    .line 1
+    .line 5434
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->$VALUES:[Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 2
-    .line 3
     invoke-virtual {v0}, [Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->clone()Ljava/lang/Object;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
     check-cast v0, [Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
 
-    .line 8
-    .line 9
     return-object v0
 .end method
 
@@ -231,10 +197,8 @@
 .method public getNumber()I
     .locals 0
 
-    .line 1
+    .line 5457
     iget p0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->value:I
 
-    .line 2
-    .line 3
     return p0
 .end method

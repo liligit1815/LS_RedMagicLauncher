@@ -3,28 +3,46 @@
 .source "BubbleTextView.java"
 
 # interfaces
-.implements Ls1/P$a;
-.implements Lcom/android/launcher3/views/H;
-.implements Lcom/android/launcher3/dragndrop/y;
-.implements Lcom/android/launcher3/G5;
+.implements Lcom/android/launcher3/icons/IconCache$ItemInfoUpdateReceiver;
+.implements Lcom/android/launcher3/views/IconLabelDotView;
+.implements Lcom/android/launcher3/dragndrop/DraggableView;
+.implements Lcom/android/launcher3/Reorderable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/launcher3/BubbleTextView$f;
+        Lcom/android/launcher3/BubbleTextView$RunningAppState;
     }
 .end annotation
 
 
 # static fields
-.field private static final r0:Ljava/lang/Character;
+.field private static final DEBUG:Z = false
 
-.field private static final s0:LI1/e$b;
+.field public static final DISPLAY_ALL_APPS:I = 0x1
 
-.field private static final t0:[I
+.field private static final DISPLAY_BATCH_ICON:I = 0xc
 
-.field private static final u0:Landroid/util/Property;
+.field public static final DISPLAY_FOLDER:I = 0x2
+
+.field private static final DISPLAY_FOLDER_FINAL_ITEM:I = 0xb
+
+.field public static final DISPLAY_PREDICTION_ROW:I = 0x8
+
+.field public static final DISPLAY_SEARCH_RESULT:I = 0x6
+
+.field public static final DISPLAY_SEARCH_RESULT_APP_ROW:I = 0x9
+
+.field public static final DISPLAY_SEARCH_RESULT_SMALL:I = 0x7
+
+.field private static final DISPLAY_SPLIT_ACTIVITY:I = 0xa
+
+.field public static final DISPLAY_TASKBAR:I = 0x5
+
+.field public static final DISPLAY_WORKSPACE:I = 0x0
+
+.field private static final DOT_SCALE_PROPERTY:Landroid/util/Property;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/util/Property<",
@@ -35,7 +53,25 @@
     .end annotation
 .end field
 
-.field public static final v0:Landroid/util/Property;
+.field private static final EMPTY:Ljava/lang/String; = ""
+
+.field private static final LINE_SPACE_MULT:F = 0.9f
+
+.field private static final MATCHER:Lcom/android/launcher3/search/StringMatcherUtility$StringMatcher;
+
+.field private static final MAX_NUM_LINE:I = 0x2
+
+.field private static final MAX_SEARCH_LOOP_COUNT:I = 0x14
+
+.field private static final MIN_LETTER_SPACING:F = -0.05f
+
+.field private static final NEW_LINE:Ljava/lang/Character;
+
+.field private static final STATE_PRESSED:[I
+
+.field private static final TAG:Ljava/lang/String; = "BubbleTextView"
+
+.field public static final TEXT_ALPHA_PROPERTY:Landroid/util/Property;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/util/Property<",
@@ -46,351 +82,253 @@
     .end annotation
 .end field
 
-.field private static final w0:Landroid/util/Property;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Landroid/util/Property<",
-            "Lcom/android/launcher3/BubbleTextView;",
-            "Ljava/lang/Integer;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private static final TYPE_FOLDER:I = 0x1
 
-.field private static final x0:Landroid/util/Property;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Landroid/util/Property<",
-            "Lcom/android/launcher3/BubbleTextView;",
-            "Ljava/lang/Float;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private static final TYPE_ICON:I
 
-.field private static volatile y0:Z
+.field private static volatile isInIconArrangePreview:Z
 
 
 # instance fields
-.field private A:Lk1/a;
+.field private isAllAppRecommend:Z
+
+.field private final mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+.field private mBreakPointsIntArray:Lcom/android/launcher3/util/IntArray;
+
+.field private mCenterVertically:Z
+
+.field private mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
+
+.field private mClickScaleAnimHelper:Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;
+
+.field private mCurrentLocale:Ljava/util/Locale;
+
+.field private mDefaultIconSize:I
+
+.field private mDeleteDrawable:Landroid/graphics/drawable/Drawable;
+
+.field private mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
+
+.field protected mDisableRelayout:Z
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private B:Ls1/m;
+.field protected mDisplay:I
 
-.field protected C:Ls1/m$a;
+.field private mDotInfo:Lcom/android/launcher3/dot/DotInfo;
+    .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
+        category = "launcher"
+    .end annotation
+.end field
+
+.field protected mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
         deepExport = true
     .end annotation
 .end field
 
-.field private D:Landroid/animation/Animator;
+.field private mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
 
-.field private E:Z
+.field private mDotScaleAnim:Landroid/animation/Animator;
 
-.field private final F:I
+.field private mDragonDrawable:Lcom/android/launcher3/iconarrange/DragonDrawable;
 
-.field private final G:I
+.field private mEnableIconUpdateAnimation:Z
 
-.field private final H:I
+.field private mFolderPreviewIconAnimator:Landroid/animation/ValueAnimator;
 
-.field private final I:Landroid/graphics/Paint;
+.field private mForceHideDot:Z
 
-.field private final J:Landroid/graphics/Rect;
-
-.field private K:Lcom/android/launcher3/BubbleTextView$f;
-
-.field private final L:I
-
-.field private final M:I
-
-.field private N:I
+.field private mHideBadge:Z
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private O:F
+.field private mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+.field private mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
+
+.field protected mIconSize:I
+
+.field private mIgnorePressedStateChange:Z
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private P:I
+.field private mIsAllAppsIcon:Z
 
-.field private Q:Landroid/animation/Animator;
+.field private mIsAlreadySet:Z
 
-.field private final R:Ljava/lang/String;
+.field public mIsCustomEaseModeColor:Z
 
-.field private final S:Ljava/lang/String;
-
-.field private T:Z
+.field private mIsIconVisible:Z
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private U:Z
+.field private final mIsRtl:Z
+
+.field private mLastCheckState:Ljava/lang/String;
+
+.field private mLastModifiedText:Ljava/lang/CharSequence;
+
+.field private mLastOriginalText:Ljava/lang/CharSequence;
+
+.field private mLayoutHorizontal:Z
+
+.field private final mLongPressHelper:Lcom/android/launcher3/CheckLongPressHelper;
+
+.field private final mMinimizedAppIndicatorSize:Landroid/util/Size;
+
+.field private final mMinimizedAppIndicatorTopMargin:I
+
+.field private final mRunningAppIconBounds:Landroid/graphics/Rect;
+
+.field private final mRunningAppIndicatorPaint:Landroid/graphics/Paint;
+
+.field private final mRunningAppIndicatorSize:Landroid/util/Size;
+
+.field private final mRunningAppIndicatorTopMargin:I
+
+.field private mRunningAppState:Lcom/android/launcher3/BubbleTextView$RunningAppState;
+
+.field private mScaleForReorderBounce:F
+
+.field private mSkipUserBadge:Z
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field protected V:Z
+.field private mStayPressed:Z
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private W:Lcom/android/launcher3/util/w;
-
-.field private a0:Z
-
-.field private b0:Z
-
-.field private c0:Z
-
-.field public d0:Z
-
-.field private e0:Z
-
-.field private f0:Ljava/util/function/Consumer;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/function/Consumer<",
-            "Landroid/view/MotionEvent;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private g:F
-
-.field private g0:Ljava/lang/Runnable;
-
-.field private h:Lcom/android/launcher3/util/x0;
-
-.field private h0:Z
-
-.field private i:Ljava/lang/CharSequence;
-
-.field private i0:Lcom/android/launcher3/iconarrange/a;
-
-.field private j:Ljava/lang/CharSequence;
-
-.field private j0:Landroid/graphics/drawable/Drawable;
-
-.field private final k:Lcom/android/launcher3/util/z1;
-
-.field private k0:Ljava/lang/String;
-
-.field protected final l:Lcom/android/launcher3/views/k;
-
-.field private l0:Lx1/v;
-
-.field private m:Ls1/o;
-
-.field private m0:I
-
-.field private n:Lcom/android/launcher3/h0;
-
-.field private n0:Landroid/animation/ValueAnimator;
-
-.field private o:Z
-
-.field private o0:Z
-
-.field protected p:I
-
-.field private p0:Z
-
-.field private final q:Lcom/android/launcher3/V;
-
-.field private q0:Z
-
-.field private r:Z
-
-.field private final s:Z
-
-.field protected t:I
-
-.field private u:Z
+.field private mTextAlpha:F
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private v:Z
+.field private mTextColor:I
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field protected w:Z
+.field private mTextColorStateList:Landroid/content/res/ColorStateList;
     .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
         category = "launcher"
     .end annotation
 .end field
 
-.field private x:I
-    .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
-        category = "launcher"
-    .end annotation
-.end field
+.field private mTransformFolderIconLargeIcon:Z
 
-.field private y:Landroid/content/res/ColorStateList;
-    .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
-        category = "launcher"
-    .end annotation
-.end field
-
-.field private z:F
-    .annotation runtime Landroid/view/ViewDebug$ExportedProperty;
-        category = "launcher"
-    .end annotation
-.end field
+.field private final mTranslateDelegate:Lcom/android/launcher3/util/MultiTranslateDelegate;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 4
+.method public static synthetic $r8$lambda$dHB6K-aw0KDL-FAiGeFAgWBZeOc(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/icons/FastBitmapDrawable;)V
+    .locals 0
 
-    .line 1
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->lambda$updateProgressBarUi$0(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$fgetmTextAlpha(Lcom/android/launcher3/BubbleTextView;)F
+    .locals 0
+
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
+
+    return p0
+.end method
+
+.method static bridge synthetic -$$Nest$fputmDotScaleAnim(Lcom/android/launcher3/BubbleTextView;Landroid/animation/Animator;)V
+    .locals 0
+
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mDotScaleAnim:Landroid/animation/Animator;
+
+    return-void
+.end method
+
+.method static constructor <clinit>()V
+    .locals 3
+
     const/16 v0, 0xa
 
-    .line 2
-    .line 3
+    .line 153
     invoke-static {v0}, Ljava/lang/Character;->valueOf(C)Ljava/lang/Character;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->r0:Ljava/lang/Character;
+    sput-object v0, Lcom/android/launcher3/BubbleTextView;->NEW_LINE:Ljava/lang/Character;
 
-    .line 8
-    .line 9
-    invoke-static {}, LI1/e$b;->a()LI1/e$b;
+    .line 156
+    invoke-static {}, Lcom/android/launcher3/search/StringMatcherUtility$StringMatcher;->getInstance()Lcom/android/launcher3/search/StringMatcherUtility$StringMatcher;
 
-    .line 10
-    .line 11
-    .line 12
     move-result-object v0
 
-    .line 13
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->s0:LI1/e$b;
+    sput-object v0, Lcom/android/launcher3/BubbleTextView;->MATCHER:Lcom/android/launcher3/search/StringMatcherUtility$StringMatcher;
 
-    .line 14
-    .line 15
     const v0, 0x10100a7
 
-    .line 16
-    .line 17
-    .line 18
+    .line 158
     filled-new-array {v0}, [I
 
-    .line 19
-    .line 20
-    .line 21
     move-result-object v0
 
-    .line 22
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->t0:[I
+    sput-object v0, Lcom/android/launcher3/BubbleTextView;->STATE_PRESSED:[I
 
-    .line 23
-    .line 24
-    new-instance v0, Lcom/android/launcher3/BubbleTextView$a;
+    .line 166
+    new-instance v0, Lcom/android/launcher3/BubbleTextView$1;
 
-    .line 25
-    .line 26
     sget-object v1, Ljava/lang/Float;->TYPE:Ljava/lang/Class;
 
-    .line 27
-    .line 28
     const-string v2, "dotScale"
 
-    .line 29
-    .line 30
-    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/BubbleTextView$a;-><init>(Ljava/lang/Class;Ljava/lang/String;)V
+    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/BubbleTextView$1;-><init>(Ljava/lang/Class;Ljava/lang/String;)V
 
-    .line 31
-    .line 32
-    .line 33
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->u0:Landroid/util/Property;
+    sput-object v0, Lcom/android/launcher3/BubbleTextView;->DOT_SCALE_PROPERTY:Landroid/util/Property;
 
-    .line 34
-    .line 35
-    new-instance v0, Lcom/android/launcher3/BubbleTextView$b;
+    .line 180
+    new-instance v0, Lcom/android/launcher3/BubbleTextView$2;
 
-    .line 36
-    .line 37
-    const-class v2, Ljava/lang/Float;
+    const-class v1, Ljava/lang/Float;
 
-    .line 38
-    .line 39
-    const-string v3, "textAlpha"
+    const-string/jumbo v2, "textAlpha"
 
-    .line 40
-    .line 41
-    invoke-direct {v0, v2, v3}, Lcom/android/launcher3/BubbleTextView$b;-><init>(Ljava/lang/Class;Ljava/lang/String;)V
+    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/BubbleTextView$2;-><init>(Ljava/lang/Class;Ljava/lang/String;)V
 
-    .line 42
-    .line 43
-    .line 44
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->v0:Landroid/util/Property;
+    sput-object v0, Lcom/android/launcher3/BubbleTextView;->TEXT_ALPHA_PROPERTY:Landroid/util/Property;
 
-    .line 45
-    .line 46
-    new-instance v0, Lcom/android/launcher3/BubbleTextView$c;
-
-    .line 47
-    .line 48
-    const-class v2, Ljava/lang/Integer;
-
-    .line 49
-    .line 50
-    const-string v3, "lineIndicatorColor"
-
-    .line 51
-    .line 52
-    invoke-direct {v0, v2, v3}, Lcom/android/launcher3/BubbleTextView$c;-><init>(Ljava/lang/Class;Ljava/lang/String;)V
-
-    .line 53
-    .line 54
-    .line 55
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->w0:Landroid/util/Property;
-
-    .line 56
-    .line 57
-    new-instance v0, Lcom/android/launcher3/BubbleTextView$d;
-
-    .line 58
-    .line 59
-    const-string v2, "lineIndicatorScale"
-
-    .line 60
-    .line 61
-    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/BubbleTextView$d;-><init>(Ljava/lang/Class;Ljava/lang/String;)V
-
-    .line 62
-    .line 63
-    .line 64
-    sput-object v0, Lcom/android/launcher3/BubbleTextView;->x0:Landroid/util/Property;
-
-    .line 65
-    .line 66
     const/4 v0, 0x0
 
-    .line 67
-    sput-boolean v0, Lcom/android/launcher3/BubbleTextView;->y0:Z
+    .line 1872
+    sput-boolean v0, Lcom/android/launcher3/BubbleTextView;->isInIconArrangePreview:Z
 
-    .line 68
-    .line 69
+    return-void
+.end method
+
+.method public constructor <init>(Landroid/content/Context;)V
+    .locals 2
+
+    const/4 v0, 0x0
+
+    const/4 v1, 0x0
+
+    .line 265
+    invoke-direct {p0, p1, v0, v1}, Lcom/android/launcher3/BubbleTextView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+
     return-void
 .end method
 
@@ -399,7 +337,7 @@
 
     const/4 v0, 0x0
 
-    .line 1
+    .line 269
     invoke-direct {p0, p1, p2, v0}, Lcom/android/launcher3/BubbleTextView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     return-void
@@ -408,138 +346,103 @@
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
     .locals 6
 
-    .line 2
+    .line 273
     invoke-direct {p0, p1, p2, p3}, Landroid/widget/TextView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     const/high16 v0, 0x3f800000    # 1.0f
 
-    .line 3
-    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->g:F
+    .line 160
+    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->mScaleForReorderBounce:F
 
-    .line 4
-    new-instance v1, Lcom/android/launcher3/util/z1;
+    .line 199
+    new-instance v1, Lcom/android/launcher3/util/MultiTranslateDelegate;
 
-    invoke-direct {v1, p0}, Lcom/android/launcher3/util/z1;-><init>(Landroid/view/View;)V
+    invoke-direct {v1, p0}, Lcom/android/launcher3/util/MultiTranslateDelegate;-><init>(Landroid/view/View;)V
 
-    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->k:Lcom/android/launcher3/util/z1;
+    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mTranslateDelegate:Lcom/android/launcher3/util/MultiTranslateDelegate;
 
     const/4 v1, 0x0
 
-    .line 5
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->u:Z
+    .line 213
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mHideBadge:Z
 
-    .line 6
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->v:Z
+    .line 215
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mSkipUserBadge:Z
 
     const/4 v2, 0x1
 
-    .line 7
-    iput-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->w:Z
+    .line 217
+    iput-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->mIsIconVisible:Z
 
-    .line 8
-    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->z:F
+    .line 223
+    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
 
-    .line 9
-    new-instance v3, Lk1/a;
+    .line 226
+    new-instance v3, Lcom/android/launcher3/dot/DotInfo;
 
-    invoke-direct {v3}, Lk1/a;-><init>()V
+    invoke-direct {v3}, Lcom/android/launcher3/dot/DotInfo;-><init>()V
 
-    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->A:Lk1/a;
+    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotInfo:Lcom/android/launcher3/dot/DotInfo;
 
-    .line 10
+    .line 241
     new-instance v3, Landroid/graphics/Rect;
 
     invoke-direct {v3}, Landroid/graphics/Rect;-><init>()V
 
-    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->J:Landroid/graphics/Rect;
+    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIconBounds:Landroid/graphics/Rect;
 
-    .line 11
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->V:Z
+    .line 257
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mDisableRelayout:Z
 
-    .line 12
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->a0:Z
+    .line 262
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mEnableIconUpdateAnimation:Z
 
-    .line 13
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->b0:Z
+    .line 1613
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mIsAlreadySet:Z
 
-    .line 14
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->c0:Z
+    .line 1618
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mIsAllAppsIcon:Z
 
-    .line 15
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
+    .line 1619
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
-    .line 16
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->e0:Z
+    .line 1620
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mTransformFolderIconLargeIcon:Z
 
-    .line 17
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->h0:Z
-
-    .line 18
+    .line 1885
     const-string v3, ""
 
-    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->k0:Ljava/lang/String;
+    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mLastCheckState:Ljava/lang/String;
 
-    .line 19
-    iput v1, p0, Lcom/android/launcher3/BubbleTextView;->m0:I
+    .line 2180
+    iput v1, p0, Lcom/android/launcher3/BubbleTextView;->mDefaultIconSize:I
 
     const/4 v3, 0x0
 
-    .line 20
-    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->n0:Landroid/animation/ValueAnimator;
+    .line 2219
+    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mFolderPreviewIconAnimator:Landroid/animation/ValueAnimator;
 
-    .line 21
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->o0:Z
+    .line 2297
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->isAllAppRecommend:Z
 
-    .line 22
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->p0:Z
-
-    .line 23
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->q0:Z
-
-    .line 24
-    invoke-static {p1}, Lcom/android/launcher3/views/k;->m(Landroid/content/Context;)Landroid/content/Context;
+    .line 274
+    invoke-static {p1}, Lcom/android/launcher3/views/ActivityContext;->lookupContext(Landroid/content/Context;)Landroid/content/Context;
 
     move-result-object v3
 
-    check-cast v3, Lcom/android/launcher3/views/k;
+    check-cast v3, Lcom/android/launcher3/views/ActivityContext;
 
-    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iput-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 25
-    invoke-static {}, Lcom/android/launcher3/y0;->k()Z
+    .line 275
+    invoke-static {}, Lcom/android/launcher3/Flags;->enableCursorHoverStates()Z
 
     move-result v4
 
-    invoke-static {v4}, Ls1/o;->q(Z)V
+    invoke-static {v4}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setFlagHoverEnabled(Z)V
 
-    .line 26
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    move-result-object v4
-
-    const v5, 0x7f140095
-
-    invoke-virtual {v4, v5}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    move-result-object v4
-
-    iput-object v4, p0, Lcom/android/launcher3/BubbleTextView;->R:Ljava/lang/String;
-
-    .line 27
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    move-result-object v4
-
-    const v5, 0x7f14009d
-
-    invoke-virtual {v4, v5}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    move-result-object v4
-
-    iput-object v4, p0, Lcom/android/launcher3/BubbleTextView;->S:Ljava/lang/String;
-
-    .line 28
-    sget-object v4, Lcom/android/launcher3/x5;->J:[I
+    .line 277
+    sget-object v4, Lcom/android/launcher3/R$styleable;->BubbleTextView:[I
 
     invoke-virtual {p1, p2, v4, p3, v1}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
@@ -547,15 +450,15 @@
 
     const/4 p3, 0x4
 
-    .line 29
+    .line 279
     invoke-virtual {p2, p3, v1}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
 
     move-result p3
 
-    iput-boolean p3, p0, Lcom/android/launcher3/BubbleTextView;->r:Z
+    iput-boolean p3, p0, Lcom/android/launcher3/BubbleTextView;->mLayoutHorizontal:Z
 
-    .line 30
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 280
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p3
 
@@ -577,28 +480,28 @@
     move p3, v1
 
     :goto_0
-    iput-boolean p3, p0, Lcom/android/launcher3/BubbleTextView;->s:Z
+    iput-boolean p3, p0, Lcom/android/launcher3/BubbleTextView;->mIsRtl:Z
 
-    .line 31
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    .line 282
+    invoke-interface {v3}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
     move-result-object p3
 
-    iput-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iput-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    .line 32
+    .line 283
     invoke-virtual {p2, v1, v1}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
 
     move-result p3
 
-    iput-boolean p3, p0, Lcom/android/launcher3/BubbleTextView;->o:Z
+    iput-boolean p3, p0, Lcom/android/launcher3/BubbleTextView;->mCenterVertically:Z
 
-    .line 33
+    .line 285
     invoke-virtual {p2, v2, v1}, Landroid/content/res/TypedArray;->getInteger(II)I
 
     move-result p3
 
-    iput p3, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    iput p3, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
     const/4 v4, 0x2
 
@@ -606,56 +509,58 @@
 
     if-nez p3, :cond_2
 
-    .line 34
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 289
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget-object p3, p3, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p3, p3, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    iget-boolean p3, p3, Lcom/android/launcher3/r4;->k:Z
+    iget-boolean p3, p3, Lcom/android/launcher3/InvariantDeviceProfile;->iconNoTitleMode:Z
 
     if-eqz p3, :cond_1
 
-    .line 35
+    .line 290
     invoke-virtual {p2, v4, v1}, Landroid/content/res/TypedArray;->getInteger(II)I
 
     move-result p3
 
     if-eq p3, v2, :cond_1
 
-    .line 36
-    invoke-virtual {p0, v1, v5}, Landroid/widget/TextView;->setTextSize(IF)V
+    .line 291
+    invoke-virtual {p0, v1, v5}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
     goto :goto_1
 
-    .line 37
+    .line 294
     :cond_1
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget p3, p3, Lcom/android/launcher3/h0;->C1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconTextSizePx:I
 
     int-to-float p3, p3
 
-    invoke-virtual {p0, v1, p3}, Landroid/widget/TextView;->setTextSize(IF)V
+    invoke-virtual {p0, v1, p3}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
-    .line 38
+    .line 296
     :goto_1
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget p3, p3, Lcom/android/launcher3/h0;->D1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconDrawablePaddingPx:I
 
-    invoke-virtual {p0, p3}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+    invoke-virtual {p0, p3}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablePadding(I)V
 
-    .line 39
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 297
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget v1, p3, Lcom/android/launcher3/h0;->B1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconSizePx:I
 
-    .line 40
-    invoke-virtual {p3}, Lcom/android/launcher3/h0;->R0()Z
+    .line 298
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    move-result p3
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->isScalableGrid()Z
 
-    invoke-virtual {p0, p3}, Lcom/android/launcher3/BubbleTextView;->setCenterVertically(Z)V
+    move-result v1
+
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setCenterVertically(Z)V
 
     goto/16 :goto_6
 
@@ -679,40 +584,42 @@
     :cond_3
     if-ne p3, v4, :cond_5
 
-    .line 41
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 312
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget-object v2, p3, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p3, p3, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    iget-boolean v2, v2, Lcom/android/launcher3/r4;->k:Z
+    iget-boolean p3, p3, Lcom/android/launcher3/InvariantDeviceProfile;->iconNoTitleMode:Z
 
-    if-eqz v2, :cond_4
+    if-eqz p3, :cond_4
 
-    .line 42
-    invoke-virtual {p0, v1, v5}, Landroid/widget/TextView;->setTextSize(IF)V
+    .line 313
+    invoke-virtual {p0, v1, v5}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
     goto :goto_2
 
-    .line 43
+    .line 316
     :cond_4
-    iget p3, p3, Lcom/android/launcher3/h0;->Y1:I
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
+
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->folderChildTextSizePx:I
 
     int-to-float p3, p3
 
-    invoke-virtual {p0, v1, p3}, Landroid/widget/TextView;->setTextSize(IF)V
+    invoke-virtual {p0, v1, p3}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
-    .line 44
+    .line 318
     :goto_2
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget p3, p3, Lcom/android/launcher3/h0;->Z1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->folderChildDrawablePaddingPx:I
 
-    invoke-virtual {p0, p3}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+    invoke-virtual {p0, p3}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablePadding(I)V
 
-    .line 45
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 319
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget v1, p3, Lcom/android/launcher3/h0;->X1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->folderChildIconSizePx:I
 
     goto/16 :goto_6
 
@@ -721,23 +628,23 @@
 
     if-ne p3, v2, :cond_6
 
-    .line 46
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 321
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget p3, p3, Lcom/android/launcher3/h0;->N2:F
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->allAppsIconTextSizePx:F
 
-    invoke-virtual {p0, v1, p3}, Landroid/widget/TextView;->setTextSize(IF)V
+    invoke-virtual {p0, v1, p3}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
-    .line 47
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 322
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p3
 
-    const v1, 0x7f070a47
+    const v1, 0x7f070998
 
     invoke-virtual {p3, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    move-result v1
+    move-result p3
 
     goto/16 :goto_6
 
@@ -746,28 +653,28 @@
 
     if-ne p3, v2, :cond_7
 
-    .line 48
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 324
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p3
 
-    const v1, 0x7f070a48
+    const v1, 0x7f070999
 
     invoke-virtual {p3, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    move-result v1
+    move-result p3
 
-    goto :goto_6
+    goto/16 :goto_6
 
     :cond_7
     const/4 v2, 0x5
 
     if-ne p3, v2, :cond_8
 
-    .line 49
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 327
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget v1, p3, Lcom/android/launcher3/h0;->u3:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->taskbarIconSize:I
 
     goto :goto_6
 
@@ -776,22 +683,22 @@
 
     if-ne p3, v2, :cond_9
 
-    .line 50
-    invoke-virtual {p0, v5}, Landroid/widget/TextView;->setTextSize(F)V
+    .line 331
+    invoke-virtual {p0, v5}, Lcom/android/launcher3/BubbleTextView;->setTextSize(F)V
 
-    .line 51
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+    .line 332
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablePadding(I)V
 
-    .line 52
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 333
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p3
 
-    const v1, 0x7f070aab
+    const v1, 0x7f0709ef
 
     invoke-virtual {p3, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    move-result v1
+    move-result p3
 
     goto :goto_6
 
@@ -800,11323 +707,6188 @@
 
     if-ne p3, v2, :cond_b
 
-    .line 53
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 337
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget-object v2, p3, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p3, p3, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    iget-boolean v2, v2, Lcom/android/launcher3/r4;->k:Z
+    iget-boolean p3, p3, Lcom/android/launcher3/InvariantDeviceProfile;->iconNoTitleMode:Z
 
-    if-eqz v2, :cond_a
+    if-eqz p3, :cond_a
 
-    .line 54
-    invoke-virtual {p0, v1, v5}, Landroid/widget/TextView;->setTextSize(IF)V
+    .line 338
+    invoke-virtual {p0, v1, v5}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
     goto :goto_3
 
-    .line 55
+    .line 341
     :cond_a
-    iget p3, p3, Lcom/android/launcher3/h0;->C1:I
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
+
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconTextSizePx:I
 
     int-to-float p3, p3
 
-    invoke-virtual {p0, v1, p3}, Landroid/widget/TextView;->setTextSize(IF)V
+    invoke-virtual {p0, v1, p3}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
-    .line 56
+    .line 343
     :goto_3
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget p3, p3, Lcom/android/launcher3/h0;->D1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconDrawablePaddingPx:I
 
-    invoke-virtual {p0, p3}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+    invoke-virtual {p0, p3}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablePadding(I)V
 
-    .line 57
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 344
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget v1, p3, Lcom/android/launcher3/h0;->B1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconSizePx:I
 
-    .line 58
-    invoke-virtual {p3}, Lcom/android/launcher3/h0;->R0()Z
+    .line 345
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    move-result p3
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->isScalableGrid()Z
 
-    invoke-virtual {p0, p3}, Lcom/android/launcher3/BubbleTextView;->setCenterVertically(Z)V
+    move-result v1
+
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setCenterVertically(Z)V
 
     goto :goto_6
 
-    .line 59
+    .line 349
     :cond_b
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget v1, p3, Lcom/android/launcher3/h0;->B1:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconSizePx:I
 
     goto :goto_6
 
-    .line 60
+    .line 302
     :cond_c
     :goto_4
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget-object v2, p3, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p3, p3, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    iget-boolean v2, v2, Lcom/android/launcher3/r4;->k:Z
+    iget-boolean p3, p3, Lcom/android/launcher3/InvariantDeviceProfile;->iconNoTitleMode:Z
 
-    if-eqz v2, :cond_d
+    if-eqz p3, :cond_d
 
-    .line 61
-    invoke-virtual {p0, v1, v5}, Landroid/widget/TextView;->setTextSize(IF)V
+    .line 303
+    invoke-virtual {p0, v1, v5}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
     goto :goto_5
 
-    .line 62
+    .line 306
     :cond_d
-    iget p3, p3, Lcom/android/launcher3/h0;->N2:F
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    invoke-virtual {p0, v1, p3}, Landroid/widget/TextView;->setTextSize(IF)V
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->allAppsIconTextSizePx:F
 
-    .line 63
+    invoke-virtual {p0, v1, p3}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
+
+    .line 308
     :goto_5
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget p3, p3, Lcom/android/launcher3/h0;->K2:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->allAppsIconDrawablePaddingPx:I
 
-    invoke-virtual {p0, p3}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+    invoke-virtual {p0, p3}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablePadding(I)V
 
-    .line 64
-    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    .line 309
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    iget v1, p3, Lcom/android/launcher3/h0;->J2:I
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->allAppsIconSizePx:I
 
     :goto_6
-    const/4 p3, 0x3
+    const/4 v1, 0x3
 
-    .line 65
-    invoke-virtual {p2, p3, v1}, Landroid/content/res/TypedArray;->getDimensionPixelSize(II)I
+    .line 353
+    invoke-virtual {p2, v1, p3}, Landroid/content/res/TypedArray;->getDimensionPixelSize(II)I
 
     move-result p3
 
-    iput p3, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    iput p3, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
 
-    .line 66
-    iput p3, p0, Lcom/android/launcher3/BubbleTextView;->m0:I
+    .line 356
+    iput p3, p0, Lcom/android/launcher3/BubbleTextView;->mDefaultIconSize:I
 
-    .line 67
+    .line 358
     invoke-virtual {p2}, Landroid/content/res/TypedArray;->recycle()V
 
-    .line 68
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 360
+    new-instance p2, Landroid/util/Size;
+
+    .line 361
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p3
+
+    const v1, 0x7f070ade
+
+    invoke-virtual {p3, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p3
+
+    .line 362
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    const v2, 0x7f070adc
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    invoke-direct {p2, p3, v1}, Landroid/util/Size;-><init>(II)V
+
+    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIndicatorSize:Landroid/util/Size;
+
+    .line 363
+    new-instance p2, Landroid/util/Size;
+
+    .line 364
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p3
+
+    const v1, 0x7f070ad0
+
+    invoke-virtual {p3, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p3
+
+    .line 365
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    const v2, 0x7f070ace
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    invoke-direct {p2, p3, v1}, Landroid/util/Size;-><init>(II)V
+
+    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mMinimizedAppIndicatorSize:Landroid/util/Size;
+
+    .line 368
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p2
 
-    const p3, 0x7f070bae
+    const p3, 0x7f070add
 
     invoke-virtual {p2, p3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result p2
 
-    iput p2, p0, Lcom/android/launcher3/BubbleTextView;->F:I
+    iput p2, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIndicatorTopMargin:I
 
-    .line 69
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 371
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p2
 
-    const p3, 0x7f070bac
+    const p3, 0x7f070acf
 
     invoke-virtual {p2, p3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result p2
 
-    iput p2, p0, Lcom/android/launcher3/BubbleTextView;->G:I
+    iput p2, p0, Lcom/android/launcher3/BubbleTextView;->mMinimizedAppIndicatorTopMargin:I
 
-    .line 70
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    move-result-object p2
-
-    const p3, 0x7f070bad
-
-    invoke-virtual {p2, p3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    move-result p2
-
-    iput p2, p0, Lcom/android/launcher3/BubbleTextView;->H:I
-
-    .line 71
+    .line 373
     new-instance p2, Landroid/graphics/Paint;
 
     invoke-direct {p2}, Landroid/graphics/Paint;-><init>()V
 
-    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->I:Landroid/graphics/Paint;
+    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIndicatorPaint:Landroid/graphics/Paint;
 
-    .line 72
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 374
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
-    move-result-object p2
+    move-result-object p3
 
-    const p3, 0x7f0607ec
+    const v1, 0x7f06074b
 
-    .line 73
+    .line 375
     invoke-virtual {p1}, Landroid/content/Context;->getTheme()Landroid/content/res/Resources$Theme;
 
-    move-result-object v1
+    move-result-object v2
 
-    .line 74
-    invoke-virtual {p2, p3, v1}, Landroid/content/res/Resources;->getColor(ILandroid/content/res/Resources$Theme;)I
+    .line 374
+    invoke-virtual {p3, v1, v2}, Landroid/content/res/Resources;->getColor(ILandroid/content/res/Resources$Theme;)I
 
-    move-result p2
+    move-result p3
 
-    iput p2, p0, Lcom/android/launcher3/BubbleTextView;->L:I
+    invoke-virtual {p2, p3}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 75
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 377
+    new-instance p2, Lcom/android/launcher3/CheckLongPressHelper;
 
-    move-result-object p2
+    invoke-direct {p2, p0}, Lcom/android/launcher3/CheckLongPressHelper;-><init>(Landroid/view/View;)V
 
-    const p3, 0x7f0607e6
+    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mLongPressHelper:Lcom/android/launcher3/CheckLongPressHelper;
 
-    .line 76
-    invoke-virtual {p1}, Landroid/content/Context;->getTheme()Landroid/content/res/Resources$Theme;
+    .line 379
+    new-instance p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    invoke-direct {p2}, Lcom/android/launcher3/icons/DotRenderer$DrawParams;-><init>()V
+
+    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    .line 381
+    invoke-interface {v3}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object p3
+
+    iget p3, p3, Lcom/android/launcher3/DeviceProfile;->iconSizePx:I
+
+    iput p3, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconSize:I
+
+    .line 382
+    iget-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object p3
+
+    const v1, 0x7f060766
+
+    invoke-static {p3, v1}, Landroidx/core/content/ContextCompat;->getColor(Landroid/content/Context;I)I
+
+    move-result p3
+
+    iput p3, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotColor:I
+
+    .line 385
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    .line 77
-    invoke-virtual {p2, p3, p1}, Landroid/content/res/Resources;->getColor(ILandroid/content/res/Resources$Theme;)I
+    invoke-virtual {p1}, Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
 
-    move-result p1
+    move-result-object p1
 
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->M:I
+    iget-object p1, p1, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
-    .line 78
-    new-instance p1, Lcom/android/launcher3/V;
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mCurrentLocale:Ljava/util/Locale;
 
-    invoke-direct {p1, p0}, Lcom/android/launcher3/V;-><init>(Landroid/view/View;)V
-
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->q:Lcom/android/launcher3/V;
-
-    .line 79
-    new-instance p1, Ls1/m$a;
-
-    invoke-direct {p1}, Ls1/m$a;-><init>()V
-
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 80
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    move-result-object p2
-
-    iget p2, p2, Lcom/android/launcher3/h0;->B1:I
-
-    iput p2, p1, Ls1/m$a;->g:I
-
-    .line 81
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    move-result-object p2
-
-    const p3, 0x7f060808
-
-    invoke-static {p2, p3}, Lz/a;->c(Landroid/content/Context;I)I
-
-    move-result p2
-
-    iput p2, p1, Ls1/m$a;->a:I
-
-    .line 82
+    .line 386
     sget-object p1, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
 
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
 
-    .line 83
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getAccessibilityDelegate()Landroid/view/View$AccessibilityDelegate;
+    .line 387
+    invoke-interface {v3}, Lcom/android/launcher3/views/ActivityContext;->getAccessibilityDelegate()Landroid/view/View$AccessibilityDelegate;
 
     move-result-object p1
 
     invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setAccessibilityDelegate(Landroid/view/View$AccessibilityDelegate;)V
 
-    .line 84
+    .line 388
     invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setTextAlpha(F)V
 
-    .line 85
-    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    .line 389
+    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->h0(I)V
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->initMfv(I)V
 
     return-void
 .end method
 
-.method private D(Lcom/android/launcher3/model/data/z;)Ln1/r;
-    .locals 4
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->B()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    const/4 p0, 0x0
-
-    .line 8
-    return-object p0
-
-    .line 9
-    :cond_0
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v0
-
-    .line 13
-    const/16 v1, 0x64
-
-    .line 14
-    .line 15
-    if-lt v0, v1, :cond_2
-
-    .line 16
-    .line 17
-    iget-object v1, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
-
-    .line 18
-    .line 19
-    if-eqz v1, :cond_1
-
-    .line 20
-    .line 21
-    goto :goto_0
-
-    .line 22
-    :cond_1
-    const-string v1, ""
-
-    .line 23
-    .line 24
-    :goto_0
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 25
-    .line 26
-    .line 27
-    goto :goto_1
-
-    .line 28
-    :cond_2
-    if-lez v0, :cond_3
-
-    .line 29
-    .line 30
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->J0(Lcom/android/launcher3/model/data/z;I)V
-
-    .line 31
-    .line 32
-    .line 33
-    goto :goto_1
-
-    .line 34
-    :cond_3
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 35
-    .line 36
-    .line 37
-    move-result-object v1
-
-    .line 38
-    iget-object v2, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 39
-    .line 40
-    filled-new-array {v2}, [Ljava/lang/Object;
-
-    .line 41
-    .line 42
-    .line 43
-    move-result-object v2
-
-    .line 44
-    const v3, 0x7f1400a3
-
-    .line 45
-    .line 46
-    .line 47
-    invoke-virtual {v1, v3, v2}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 48
-    .line 49
-    .line 50
-    move-result-object v1
-
-    .line 51
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 52
-    .line 53
-    .line 54
-    :goto_1
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 55
-    .line 56
-    instance-of v2, v1, Ln1/r;
-
-    .line 57
-    .line 58
-    if-eqz v2, :cond_4
-
-    .line 59
-    .line 60
-    check-cast v1, Ln1/r;
-
-    .line 61
-    .line 62
-    invoke-virtual {v1, v0}, Landroid/graphics/drawable/Drawable;->setLevel(I)Z
-
-    .line 63
-    .line 64
-    .line 65
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->l0(Lcom/android/launcher3/model/data/z;)Z
-
-    .line 66
-    .line 67
-    .line 68
-    move-result p0
-
-    .line 69
-    invoke-virtual {v1, p0}, Ls1/o;->s(Z)V
-
-    .line 70
-    .line 71
-    .line 72
-    return-object v1
-
-    .line 73
-    :cond_4
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->w0(Lcom/android/launcher3/model/data/z;)Ln1/r;
-
-    .line 74
-    .line 75
-    .line 76
-    move-result-object p1
-
-    .line 77
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setIcon(Ls1/o;)V
-
-    .line 78
-    .line 79
-    .line 80
-    return-object p1
-.end method
-
-.method private E0()V
+.method private cancelDotScaleAnim()V
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 439
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mDotScaleAnim:Landroid/animation/Animator;
 
-    .line 2
-    .line 3
     if-eqz p0, :cond_0
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Ls1/o;->n()V
-
-    .line 6
-    .line 7
-    .line 8
-    :cond_0
-    return-void
-.end method
-
-.method private G(Lcom/android/launcher3/model/data/z;)Z
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 2
-    .line 3
-    instance-of v1, v0, Ln1/r;
-
-    .line 4
-    .line 5
-    if-eqz v1, :cond_0
-
-    .line 6
-    .line 7
-    check-cast v0, Ln1/r;
-
-    .line 8
-    .line 9
-    invoke-virtual {v0}, Ln1/r;->z()Z
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v1
-
-    .line 13
-    if-eqz v1, :cond_0
-
-    .line 14
-    .line 15
-    iget-object v1, p1, Lcom/android/launcher3/model/data/z;->g:Ls1/d;
-
-    .line 16
-    .line 17
-    invoke-virtual {v0, v1}, Ls1/o;->k(Ls1/d;)Z
-
-    .line 18
-    .line 19
-    .line 20
-    move-result v0
-
-    .line 21
-    if-nez v0, :cond_1
-
-    .line 22
-    .line 23
-    :cond_0
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 24
-    .line 25
-    instance-of v0, p0, Lr1/c;
-
-    .line 26
-    .line 27
-    if-eqz v0, :cond_2
-
-    .line 28
-    .line 29
-    check-cast p0, Lr1/c;
-
-    .line 30
-    .line 31
-    iget v0, p0, Lr1/c;->U:I
-
-    .line 32
-    .line 33
-    if-eqz v0, :cond_2
-
-    .line 34
-    .line 35
-    iget-object p1, p1, Lcom/android/launcher3/model/data/z;->g:Ls1/d;
-
-    .line 36
-    .line 37
-    invoke-virtual {p0, p1}, Ls1/o;->k(Ls1/d;)Z
-
-    .line 38
-    .line 39
-    .line 40
-    move-result p0
-
-    .line 41
-    if-eqz p0, :cond_2
-
-    .line 42
-    .line 43
-    :cond_1
-    const/4 p0, 0x1
-
-    .line 44
-    return p0
-
-    .line 45
-    :cond_2
-    const/4 p0, 0x0
-
-    .line 46
-    return p0
-.end method
-
-.method private I()V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->D:Landroid/animation/Animator;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
+    .line 440
     invoke-virtual {p0}, Landroid/animation/Animator;->cancel()V
 
-    .line 6
-    .line 7
-    .line 8
     :cond_0
     return-void
 .end method
 
-.method private I0(IZ)V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    if-ne p1, v0, :cond_1
-
-    .line 3
-    .line 4
-    if-eqz p2, :cond_0
-
-    .line 5
-    .line 6
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 7
-    .line 8
-    .line 9
-    move-result-object p1
-
-    .line 10
-    const p2, 0x7f140198
-
-    .line 11
-    .line 12
-    .line 13
-    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object p1
-
-    .line 17
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 18
-    .line 19
-    .line 20
-    return-void
-
-    .line 21
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p1
-
-    .line 25
-    const p2, 0x7f140194
-
-    .line 26
-    .line 27
-    .line 28
-    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
-
-    .line 29
-    .line 30
-    .line 31
-    move-result-object p1
-
-    .line 32
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 33
-    .line 34
-    .line 35
-    return-void
-
-    .line 36
-    :cond_1
-    const/4 p2, 0x2
-
-    .line 37
-    if-ne p1, p2, :cond_2
-
-    .line 38
-    .line 39
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 40
-    .line 41
-    .line 42
-    move-result-object p1
-
-    .line 43
-    const p2, 0x7f140196
-
-    .line 44
-    .line 45
-    .line 46
-    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
-
-    .line 47
-    .line 48
-    .line 49
-    move-result-object p1
-
-    .line 50
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 51
-    .line 52
-    .line 53
-    :cond_2
-    return-void
-.end method
-
-.method private J()V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->Q:Landroid/animation/Animator;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroid/animation/Animator;->cancel()V
-
-    .line 6
-    .line 7
-    .line 8
-    :cond_0
-    return-void
-.end method
-
-.method private J0(Lcom/android/launcher3/model/data/z;I)V
+.method private checkForEllipsis()V
     .locals 5
 
-    .line 1
-    iget v0, p1, Lcom/android/launcher3/model/data/z;->h:I
+    .line 735
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getWidth()I
 
-    .line 2
-    .line 3
-    and-int/lit16 v1, v0, 0x4000
-
-    .line 4
-    .line 5
-    if-eqz v1, :cond_1
-
-    .line 6
-    .line 7
-    if-nez p2, :cond_1
-
-    .line 8
-    .line 9
-    iget-object p2, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 10
-    .line 11
-    instance-of p2, p2, Ln1/r;
-
-    .line 12
-    .line 13
-    if-eqz p2, :cond_0
-
-    .line 14
-    .line 15
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object p2
-
-    .line 19
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 20
-    .line 21
-    filled-new-array {p1}, [Ljava/lang/Object;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p1
-
-    .line 25
-    const v0, 0x7f1400a3
-
-    .line 26
-    .line 27
-    .line 28
-    invoke-virtual {p2, v0, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 29
-    .line 30
-    .line 31
-    move-result-object p1
-
-    .line 32
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 33
-    .line 34
-    .line 35
-    return-void
-
-    .line 36
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 37
-    .line 38
-    .line 39
-    move-result-object p2
-
-    .line 40
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 41
-    .line 42
-    filled-new-array {p1}, [Ljava/lang/Object;
-
-    .line 43
-    .line 44
-    .line 45
-    move-result-object p1
-
-    .line 46
-    const v0, 0x7f14008a
-
-    .line 47
-    .line 48
-    .line 49
-    invoke-virtual {p2, v0, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object p1
-
-    .line 53
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 54
-    .line 55
-    .line 56
-    return-void
-
-    .line 57
-    :cond_1
-    and-int/lit16 v0, v0, 0xc00
-
-    .line 58
-    .line 59
-    if-eqz v0, :cond_3
-
-    .line 60
-    .line 61
-    invoke-static {}, Ljava/text/NumberFormat;->getPercentInstance()Ljava/text/NumberFormat;
-
-    .line 62
-    .line 63
-    .line 64
-    move-result-object v0
-
-    .line 65
-    int-to-double v1, p2
-
-    .line 66
-    const-wide v3, 0x3f847ae147ae147bL    # 0.01
-
-    .line 67
-    .line 68
-    .line 69
-    .line 70
-    .line 71
-    mul-double/2addr v1, v3
-
-    .line 72
-    invoke-virtual {v0, v1, v2}, Ljava/text/NumberFormat;->format(D)Ljava/lang/String;
-
-    .line 73
-    .line 74
-    .line 75
-    move-result-object p2
-
-    .line 76
-    iget v0, p1, Lcom/android/launcher3/model/data/z;->h:I
-
-    .line 77
-    .line 78
-    and-int/lit16 v1, v0, 0x400
-
-    .line 79
-    .line 80
-    if-eqz v1, :cond_2
-
-    .line 81
-    .line 82
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 83
-    .line 84
-    .line 85
-    move-result-object v0
-
-    .line 86
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 87
-    .line 88
-    filled-new-array {p1, p2}, [Ljava/lang/Object;
-
-    .line 89
-    .line 90
-    .line 91
-    move-result-object p1
-
-    .line 92
-    const p2, 0x7f140093
-
-    .line 93
-    .line 94
-    .line 95
-    invoke-virtual {v0, p2, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 96
-    .line 97
-    .line 98
-    move-result-object p1
-
-    .line 99
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 100
-    .line 101
-    .line 102
-    return-void
-
-    .line 103
-    :cond_2
-    and-int/lit16 v0, v0, 0x800
-
-    .line 104
-    .line 105
-    if-eqz v0, :cond_3
-
-    .line 106
-    .line 107
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 108
-    .line 109
-    .line 110
-    move-result-object v0
-
-    .line 111
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 112
-    .line 113
-    filled-new-array {p1, p2}, [Ljava/lang/Object;
-
-    .line 114
-    .line 115
-    .line 116
-    move-result-object p1
-
-    .line 117
-    const p2, 0x7f140090
-
-    .line 118
-    .line 119
-    .line 120
-    invoke-virtual {v0, p2, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 121
-    .line 122
-    .line 123
-    move-result-object p1
-
-    .line 124
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 125
-    .line 126
-    .line 127
-    :cond_3
-    return-void
-.end method
-
-.method private K()V
-    .locals 5
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWidth()I
-
-    .line 2
-    .line 3
-    .line 4
     move-result v0
 
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingLeft()I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundPaddingLeft()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result v1
 
-    .line 9
     sub-int/2addr v0, v1
 
-    .line 10
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingRight()I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundPaddingRight()I
 
-    .line 11
-    .line 12
-    .line 13
     move-result v1
 
-    .line 14
     sub-int/2addr v0, v1
 
-    .line 15
     int-to-float v0, v0
 
-    .line 16
     const/4 v1, 0x0
 
-    .line 17
     cmpg-float v2, v0, v1
 
-    .line 18
-    .line 19
     if-gtz v2, :cond_0
 
-    .line 20
-    .line 21
-    goto :goto_0
-
-    .line 22
-    :cond_0
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->setLetterSpacing(F)V
-
-    .line 23
-    .line 24
-    .line 25
-    invoke-virtual {p0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object v2
-
-    .line 29
-    invoke-interface {v2}, Ljava/lang/CharSequence;->toString()Ljava/lang/String;
-
-    .line 30
-    .line 31
-    .line 32
-    move-result-object v2
-
-    .line 33
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
-
-    .line 34
-    .line 35
-    .line 36
-    move-result-object v3
-
-    .line 37
-    invoke-virtual {v3, v2}, Landroid/text/TextPaint;->measureText(Ljava/lang/String;)F
-
-    .line 38
-    .line 39
-    .line 40
-    move-result v4
-
-    .line 41
-    cmpg-float v4, v4, v0
-
-    .line 42
-    .line 43
-    if-gez v4, :cond_1
-
-    .line 44
-    .line 45
-    :goto_0
     return-void
 
-    .line 46
+    .line 739
+    :cond_0
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setLetterSpacing(F)V
+
+    .line 741
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 742
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaint()Landroid/text/TextPaint;
+
+    move-result-object v3
+
+    .line 743
+    invoke-virtual {v3, v2}, Landroid/text/TextPaint;->measureText(Ljava/lang/String;)F
+
+    move-result v4
+
+    cmpg-float v4, v4, v0
+
+    if-gez v4, :cond_1
+
+    return-void
+
     :cond_1
     const v4, -0x42b33333    # -0.05f
 
-    .line 47
-    .line 48
-    .line 49
-    invoke-direct {p0, v3, v2, v0, v4}, Lcom/android/launcher3/BubbleTextView;->b0(Landroid/text/TextPaint;Ljava/lang/String;FF)F
+    .line 747
+    invoke-direct {p0, v3, v2, v0, v4}, Lcom/android/launcher3/BubbleTextView;->findBestSpacingValue(Landroid/text/TextPaint;Ljava/lang/String;FF)F
 
-    .line 50
-    .line 51
-    .line 52
     move-result v0
 
-    .line 53
+    .line 749
     invoke-virtual {v3, v1}, Landroid/text/TextPaint;->setLetterSpacing(F)V
 
-    .line 54
-    .line 55
-    .line 56
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setLetterSpacing(F)V
+    .line 750
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setLetterSpacing(F)V
 
-    .line 57
-    .line 58
-    .line 59
     return-void
 .end method
 
-.method private M0(Lcom/android/launcher3/model/data/z;Ls1/o;)Z
-    .locals 0
-
-    .line 1
-    iget p0, p1, Lcom/android/launcher3/model/data/z;->h:I
-
-    .line 2
-    .line 3
-    and-int/lit16 p0, p0, 0xc00
-
-    .line 4
-    .line 5
-    if-nez p0, :cond_2
-
-    .line 6
-    .line 7
-    instance-of p0, p1, Lcom/android/launcher3/model/data/I;
-
-    .line 8
-    .line 9
-    if-eqz p0, :cond_0
-
-    .line 10
-    .line 11
-    check-cast p1, Lcom/android/launcher3/model/data/I;
-
-    .line 12
-    .line 13
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/I;->Y()Z
-
-    .line 14
-    .line 15
-    .line 16
-    move-result p0
-
-    .line 17
-    if-nez p0, :cond_2
-
-    .line 18
-    .line 19
-    :cond_0
-    instance-of p0, p2, Ln1/r;
-
-    .line 20
-    .line 21
-    if-eqz p0, :cond_1
-
-    .line 22
-    .line 23
-    check-cast p2, Ln1/r;
-
-    .line 24
-    .line 25
-    invoke-virtual {p2}, Ln1/r;->z()Z
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p0
-
-    .line 29
-    if-eqz p0, :cond_1
-
-    .line 30
-    .line 31
-    goto :goto_0
-
-    .line 32
-    :cond_1
-    const/4 p0, 0x0
-
-    .line 33
-    return p0
-
-    .line 34
-    :cond_2
-    :goto_0
-    const/4 p0, 0x1
-
-    .line 35
-    return p0
-.end method
-
-.method private R(Landroid/graphics/Canvas;)V
+.method private drawAppNameIfNecessary(Landroid/graphics/Canvas;)V
     .locals 3
 
-    .line 1
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
+    .line 2025
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
 
-    .line 2
-    .line 3
     if-eqz p1, :cond_6
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->n0()Z
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isInTransformFolderIcon()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p1
 
-    .line 9
     if-eqz p1, :cond_0
 
-    .line 10
-    .line 11
     goto :goto_2
 
-    .line 12
+    .line 2028
     :cond_0
-    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    .line 13
-    .line 14
     const/4 v0, 0x2
 
-    .line 15
     if-eqz p1, :cond_1
 
-    .line 16
-    .line 17
     if-eq p1, v0, :cond_1
 
-    .line 18
-    .line 19
     const/16 v1, 0xc
 
-    .line 20
-    .line 21
     if-eq p1, v1, :cond_1
 
-    .line 22
-    .line 23
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->j0()Z
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->isAllAppsTitleStyle()Z
 
-    .line 24
-    .line 25
-    .line 26
     move-result p1
 
-    .line 27
     if-eqz p1, :cond_6
 
-    .line 28
-    .line 29
+    .line 2029
     :cond_1
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 30
-    .line 31
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {p1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 32
-    .line 33
-    .line 34
     move-result-object p1
 
-    .line 35
-    iget-object p1, p1, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p1, p1, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 36
-    .line 37
-    iget-boolean p1, p1, Lcom/android/launcher3/r4;->k:Z
+    iget-boolean p1, p1, Lcom/android/launcher3/InvariantDeviceProfile;->iconNoTitleMode:Z
 
-    .line 38
-    .line 39
     const/4 v1, 0x0
 
-    .line 40
     if-eqz p1, :cond_2
 
-    .line 41
-    .line 42
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 2030
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 43
-    .line 44
-    .line 45
     move-result-object p1
 
-    .line 46
-    instance-of p1, p1, Lcom/android/launcher3/model/data/y;
+    instance-of p1, p1, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 47
-    .line 48
     if-eqz p1, :cond_2
 
-    .line 49
-    .line 50
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 2031
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 51
-    .line 52
-    .line 53
     move-result-object p1
 
-    .line 54
     if-eqz p1, :cond_2
 
-    .line 55
-    .line 56
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 2032
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 57
-    .line 58
-    .line 59
     move-result-object p1
 
-    .line 60
-    check-cast p1, Lcom/android/launcher3/model/data/y;
+    check-cast p1, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 61
-    .line 62
-    iget-boolean p1, p1, Lcom/android/launcher3/model/data/y;->isShowAppName:Z
+    iget-boolean p1, p1, Lcom/android/launcher3/model/data/ItemInfo;->isShowAppName:Z
 
-    .line 63
-    .line 64
     if-nez p1, :cond_2
 
-    .line 65
-    .line 66
     const/4 p1, 0x0
 
-    .line 67
-    invoke-virtual {p0, v1, p1}, Landroid/widget/TextView;->setTextSize(IF)V
+    .line 2033
+    invoke-virtual {p0, v1, p1}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
-    .line 68
-    .line 69
-    .line 70
-    return-void
+    goto :goto_2
 
-    .line 71
+    .line 2038
     :cond_2
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 72
-    .line 73
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {p1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 74
-    .line 75
-    .line 76
     move-result-object p1
 
-    .line 77
-    iget v2, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    .line 2040
+    iget v2, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    .line 78
-    .line 79
     if-eqz v2, :cond_5
 
-    .line 80
-    .line 81
     if-eq v2, v0, :cond_4
 
-    .line 82
-    .line 83
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->j0()Z
+    .line 2048
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->isAllAppsTitleStyle()Z
 
-    .line 84
-    .line 85
-    .line 86
     move-result v0
 
-    .line 87
     if-eqz v0, :cond_3
 
-    .line 88
-    .line 89
-    iget p1, p1, Lcom/android/launcher3/h0;->N2:F
+    .line 2049
+    iget p1, p1, Lcom/android/launcher3/DeviceProfile;->allAppsIconTextSizePx:F
 
-    .line 90
-    .line 91
     goto :goto_1
 
-    .line 92
+    .line 2051
     :cond_3
-    iget p1, p1, Lcom/android/launcher3/h0;->C1:I
+    iget p1, p1, Lcom/android/launcher3/DeviceProfile;->iconTextSizePx:I
 
-    .line 93
-    .line 94
+    goto :goto_0
+
+    .line 2042
+    :cond_4
+    iget p1, p1, Lcom/android/launcher3/DeviceProfile;->folderChildTextSizePx:I
+
+    goto :goto_0
+
+    .line 2045
+    :cond_5
+    iget p1, p1, Lcom/android/launcher3/DeviceProfile;->iconTextSizePx:I
+
     :goto_0
     int-to-float p1, p1
 
-    .line 95
-    goto :goto_1
-
-    .line 96
-    :cond_4
-    iget p1, p1, Lcom/android/launcher3/h0;->Y1:I
-
-    .line 97
-    .line 98
-    goto :goto_0
-
-    .line 99
-    :cond_5
-    iget p1, p1, Lcom/android/launcher3/h0;->C1:I
-
-    .line 100
-    .line 101
-    goto :goto_0
-
-    .line 102
+    .line 2056
     :goto_1
-    invoke-virtual {p0, v1, p1}, Landroid/widget/TextView;->setTextSize(IF)V
+    invoke-virtual {p0, v1, p1}, Lcom/android/launcher3/BubbleTextView;->setTextSize(IF)V
 
-    .line 103
-    .line 104
-    .line 105
     :cond_6
     :goto_2
     return-void
 .end method
 
-.method private S(Landroid/graphics/Canvas;Ls1/m$a;F)V
+.method private drawCheckBox(Landroid/graphics/Canvas;Lcom/android/launcher3/icons/DotRenderer$DrawParams;F)V
     .locals 4
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    .line 1888
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
+    .line 1889
     const-string v1, ""
 
-    .line 6
-    .line 7
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->k0:Ljava/lang/String;
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mLastCheckState:Ljava/lang/String;
 
-    .line 8
-    .line 9
     invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 10
-    .line 11
-    .line 12
     move-result v1
 
-    .line 13
     if-eqz v1, :cond_0
 
-    .line 14
-    .line 15
-    iget-boolean v1, p2, Ls1/m$a;->h:Z
+    .line 1890
+    iget-boolean v1, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->isCheck:Z
 
-    .line 16
-    .line 17
     invoke-static {v1}, Ljava/lang/String;->valueOf(Z)Ljava/lang/String;
 
-    .line 18
-    .line 19
-    .line 20
     move-result-object v1
 
-    .line 21
-    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->k0:Ljava/lang/String;
+    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mLastCheckState:Ljava/lang/String;
 
-    .line 22
-    .line 23
-    iget-boolean v1, p2, Ls1/m$a;->h:Z
+    .line 1891
+    iget-boolean v1, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->isCheck:Z
 
-    .line 24
-    .line 25
     invoke-direct {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setCheckboxDrawable(Z)V
 
-    .line 26
-    .line 27
-    .line 28
     goto :goto_0
 
-    .line 29
+    .line 1892
     :cond_0
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->k0:Ljava/lang/String;
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mLastCheckState:Ljava/lang/String;
 
-    .line 30
-    .line 31
-    iget-boolean v2, p2, Ls1/m$a;->h:Z
+    iget-boolean v2, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->isCheck:Z
 
-    .line 32
-    .line 33
     invoke-static {v2}, Ljava/lang/String;->valueOf(Z)Ljava/lang/String;
 
-    .line 34
-    .line 35
-    .line 36
     move-result-object v2
 
-    .line 37
     invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 38
-    .line 39
-    .line 40
     move-result v1
 
-    .line 41
     if-nez v1, :cond_1
 
-    .line 42
-    .line 43
-    iget-boolean v1, p2, Ls1/m$a;->h:Z
+    .line 1893
+    iget-boolean v1, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->isCheck:Z
 
-    .line 44
-    .line 45
     invoke-static {v1}, Ljava/lang/String;->valueOf(Z)Ljava/lang/String;
 
-    .line 46
-    .line 47
-    .line 48
     move-result-object v1
 
-    .line 49
-    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->k0:Ljava/lang/String;
+    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mLastCheckState:Ljava/lang/String;
 
-    .line 50
-    .line 51
-    iget-boolean v1, p2, Ls1/m$a;->h:Z
+    .line 1894
+    iget-boolean v1, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->isCheck:Z
 
-    .line 52
-    .line 53
-    invoke-direct {p0, v1}, Lcom/android/launcher3/BubbleTextView;->S0(Z)V
+    invoke-direct {p0, v1}, Lcom/android/launcher3/BubbleTextView;->startCheckboxAnim(Z)V
 
-    .line 54
-    .line 55
-    .line 56
+    .line 1897
     :cond_1
     :goto_0
     invoke-virtual {p1}, Landroid/graphics/Canvas;->save()I
 
-    .line 57
-    .line 58
-    .line 59
+    .line 1898
     invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 60
-    .line 61
-    .line 62
     move-result-object v1
 
-    .line 63
-    const v2, 0x7f0704dc
+    const v2, 0x7f07047d
 
-    .line 64
-    .line 65
-    .line 66
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimension(I)F
 
-    .line 67
-    .line 68
-    .line 69
     move-result v1
 
-    .line 70
     mul-float/2addr v1, p3
 
-    .line 71
     float-to-int v1, v1
 
-    .line 72
+    .line 1899
     invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 73
-    .line 74
-    .line 75
     move-result-object v2
 
-    .line 76
-    const v3, 0x7f0701a4
+    const v3, 0x7f070176
 
-    .line 77
-    .line 78
-    .line 79
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 80
-    .line 81
-    .line 82
     move-result v2
 
-    .line 83
     int-to-float v2, v2
 
-    .line 84
     mul-float/2addr v2, p3
 
-    .line 85
     float-to-int v2, v2
 
-    .line 86
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
+    .line 1900
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
 
-    .line 87
-    .line 88
-    .line 89
     move-result-object v3
 
-    .line 90
-    invoke-virtual {v3}, Lcom/android/launcher3/resource/B;->s()Z
+    invoke-virtual {v3}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
 
-    .line 91
-    .line 92
-    .line 93
     move-result v3
 
-    .line 94
     if-eqz v3, :cond_2
 
-    .line 95
-    .line 96
+    .line 1901
     invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 97
-    .line 98
-    .line 99
     move-result-object v2
 
-    .line 100
-    const v3, 0x7f0701a5
+    const v3, 0x7f070177
 
-    .line 101
-    .line 102
-    .line 103
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 104
-    .line 105
-    .line 106
     move-result v2
 
-    .line 107
     int-to-float v2, v2
 
-    .line 108
     mul-float/2addr v2, p3
 
-    .line 109
     float-to-int v2, v2
 
-    .line 110
+    .line 1903
     :cond_2
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 111
-    .line 112
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v3}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 113
-    .line 114
-    .line 115
     move-result-object v3
 
-    .line 116
-    iget-boolean v3, v3, Lcom/android/launcher3/h0;->N0:Z
+    iget-boolean v3, v3, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
 
-    .line 117
-    .line 118
     if-nez v3, :cond_3
 
-    .line 119
-    .line 120
-    const v3, 0x7f0701a2
+    const v3, 0x7f070174
 
-    .line 121
-    .line 122
-    .line 123
     goto :goto_1
 
-    .line 124
     :cond_3
-    const v3, 0x7f0701a3
+    const v3, 0x7f070175
 
-    .line 125
-    .line 126
-    .line 127
+    .line 1904
     :goto_1
     invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 128
-    .line 129
-    .line 130
     move-result-object v0
 
-    .line 131
     invoke-virtual {v0, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 132
-    .line 133
-    .line 134
     move-result v0
 
-    .line 135
     int-to-float v0, v0
 
-    .line 136
     mul-float/2addr v0, p3
 
-    .line 137
     float-to-int p3, v0
 
-    .line 138
-    iget-object p2, p2, Ls1/m$a;->c:Landroid/graphics/Rect;
+    .line 1906
+    iget-object v0, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconBounds:Landroid/graphics/Rect;
 
-    .line 139
-    .line 140
-    iget v0, p2, Landroid/graphics/Rect;->left:I
+    iget v0, v0, Landroid/graphics/Rect;->left:I
 
-    .line 141
-    .line 142
     sub-int/2addr v0, p3
 
-    .line 143
     mul-int/lit8 v3, v1, 0x6
 
-    .line 144
-    .line 145
     add-int/2addr v0, v3
 
-    .line 146
+    .line 1907
+    iget-object p2, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconBounds:Landroid/graphics/Rect;
+
     iget p2, p2, Landroid/graphics/Rect;->top:I
 
-    .line 147
-    .line 148
     sub-int/2addr p2, p3
 
-    .line 149
     mul-int/lit8 v1, v1, 0x4
 
-    .line 150
-    .line 151
     add-int/2addr p2, v1
 
-    .line 152
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWidth()I
+    .line 1910
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingTop()I
 
-    .line 153
-    .line 154
-    .line 155
-    move-result p3
+    .line 1915
+    iget-object p3, p0, Lcom/android/launcher3/BubbleTextView;->mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
 
-    .line 156
-    sub-int/2addr p3, v2
+    if-eqz p3, :cond_4
 
-    .line 157
-    invoke-static {v0, p3}, Ljava/lang/Math;->min(II)I
+    add-int v1, v0, v2
 
-    .line 158
-    .line 159
-    .line 160
-    move-result p3
-
-    .line 161
-    const/4 v0, 0x0
-
-    .line 162
-    invoke-static {v0, p3}, Ljava/lang/Math;->max(II)I
-
-    .line 163
-    .line 164
-    .line 165
-    move-result p3
-
-    .line 166
-    invoke-virtual {p0}, Landroid/widget/TextView;->getHeight()I
-
-    .line 167
-    .line 168
-    .line 169
-    move-result v1
-
-    .line 170
-    sub-int/2addr v1, v2
-
-    .line 171
-    invoke-static {p2, v1}, Ljava/lang/Math;->min(II)I
-
-    .line 172
-    .line 173
-    .line 174
-    move-result p2
-
-    .line 175
-    invoke-static {v0, p2}, Ljava/lang/Math;->max(II)I
-
-    .line 176
-    .line 177
-    .line 178
-    move-result p2
-
-    .line 179
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->j0:Landroid/graphics/drawable/Drawable;
-
-    .line 180
-    .line 181
-    if-eqz v0, :cond_4
-
-    .line 182
-    .line 183
-    add-int v1, p3, v2
-
-    .line 184
-    .line 185
     add-int/2addr v2, p2
 
-    .line 186
-    invoke-virtual {v0, p3, p2, v1, v2}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+    .line 1916
+    invoke-virtual {p3, v0, p2, v1, v2}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
 
-    .line 187
-    .line 188
-    .line 189
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->j0:Landroid/graphics/drawable/Drawable;
+    .line 1917
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
 
-    .line 190
-    .line 191
     invoke-virtual {p0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
 
-    .line 192
-    .line 193
-    .line 194
+    .line 1920
     :cond_4
     invoke-virtual {p1}, Landroid/graphics/Canvas;->restore()V
 
-    .line 195
-    .line 196
-    .line 197
     return-void
 .end method
 
-.method private S0(Z)V
-    .locals 3
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->j0:Landroid/graphics/drawable/Drawable;
-
-    .line 6
-    .line 7
-    instance-of v2, v1, Landroid/graphics/drawable/AnimatedVectorDrawable;
-
-    .line 8
-    .line 9
-    if-eqz v2, :cond_0
-
-    .line 10
-    .line 11
-    check-cast v1, Landroid/graphics/drawable/AnimatedVectorDrawable;
-
-    .line 12
-    .line 13
-    invoke-virtual {v1}, Landroid/graphics/drawable/AnimatedVectorDrawable;->stop()V
-
-    .line 14
-    .line 15
-    .line 16
-    :cond_0
-    if-eqz p1, :cond_1
-
-    .line 17
-    .line 18
-    const p1, 0x7f080e2a
-
-    .line 19
-    .line 20
-    .line 21
-    goto :goto_0
-
-    .line 22
-    :cond_1
-    const p1, 0x7f080e2c
-
-    .line 23
-    .line 24
-    .line 25
-    :goto_0
-    invoke-static {v0, p1}, Lz/a;->e(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object p1
-
-    .line 29
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->j0:Landroid/graphics/drawable/Drawable;
-
-    .line 30
-    .line 31
-    if-nez p1, :cond_2
-
-    .line 32
-    .line 33
-    const-string p0, "BubbleTextView"
-
-    .line 34
-    .line 35
-    const-string p1, "startCheckBoxAnim: checkbox drawable is null."
-
-    .line 36
-    .line 37
-    invoke-static {p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 38
-    .line 39
-    .line 40
-    return-void
-
-    .line 41
-    :cond_2
-    instance-of v0, p1, Landroid/graphics/drawable/AnimatedVectorDrawable;
-
-    .line 42
-    .line 43
-    if-eqz v0, :cond_3
-
-    .line 44
-    .line 45
-    invoke-virtual {p1, p0}, Landroid/graphics/drawable/Drawable;->setCallback(Landroid/graphics/drawable/Drawable$Callback;)V
-
-    .line 46
-    .line 47
-    .line 48
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->j0:Landroid/graphics/drawable/Drawable;
-
-    .line 49
-    .line 50
-    check-cast p0, Landroid/graphics/drawable/AnimatedVectorDrawable;
-
-    .line 51
-    .line 52
-    invoke-virtual {p0}, Landroid/graphics/drawable/AnimatedVectorDrawable;->start()V
-
-    .line 53
-    .line 54
-    .line 55
-    :cond_3
-    return-void
-.end method
-
-.method private T(Landroid/graphics/Canvas;)V
+.method private drawCheckBoxIfNecessary(Landroid/graphics/Canvas;)V
     .locals 5
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 1731
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 2
-    .line 3
-    const/high16 v1, 0x1000000
+    const/high16 v1, 0x800000
 
-    .line 4
-    .line 5
-    invoke-static {v0, v1}, Lcom/android/launcher3/a;->getTopOpenViewWithType(Lcom/android/launcher3/views/k;I)Lcom/android/launcher3/a;
+    invoke-static {v0, v1}, Lcom/android/launcher3/AbstractFloatingView;->getTopOpenViewWithType(Lcom/android/launcher3/views/ActivityContext;I)Lcom/android/launcher3/AbstractFloatingView;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object v0
 
-    .line 9
     check-cast v0, Lcom/android/launcher3/folderbatch/FolderBatch;
 
-    .line 10
-    .line 11
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
+    .line 1732
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
 
-    .line 12
-    .line 13
     if-nez v1, :cond_0
 
-    .line 14
-    .line 15
-    goto/16 :goto_1
+    return-void
 
-    .line 16
-    .line 17
+    .line 1736
     :cond_0
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->o0()Z
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isInTransformFolderIconItems()Z
 
-    .line 18
-    .line 19
-    .line 20
     move-result v1
 
-    .line 21
-    if-nez v1, :cond_6
-
-    .line 22
-    .line 23
-    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->p0:Z
-
-    .line 24
-    .line 25
     if-eqz v1, :cond_1
 
-    .line 26
-    .line 27
-    goto/16 :goto_1
+    return-void
 
-    .line 28
-    .line 29
+    .line 1740
     :cond_1
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 30
-    .line 31
-    instance-of v2, v1, Lcom/android/launcher3/C2;
+    instance-of v2, v1, Lcom/android/launcher3/Launcher;
 
-    .line 32
-    .line 33
     if-eqz v2, :cond_2
 
-    .line 34
-    .line 35
-    invoke-static {v1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
 
-    .line 36
-    .line 37
-    .line 38
     move-result-object v1
 
-    .line 39
-    invoke-virtual {v1}, Lcom/android/launcher3/C2;->e2()Lcom/android/launcher3/q4;
+    invoke-virtual {v1}, Lcom/android/launcher3/Launcher;->getMFVInstance()Lcom/android/launcher3/MFVInterfaceProxy;
 
-    .line 40
-    .line 41
-    .line 42
     move-result-object v1
 
-    .line 43
-    invoke-virtual {v1}, Lcom/android/launcher3/q4;->a0()Z
+    invoke-virtual {v1}, Lcom/android/launcher3/MFVInterfaceProxy;->isShowCheckBoxInIconArrangeMode()Z
 
-    .line 44
-    .line 45
-    .line 46
     move-result v1
 
-    .line 47
     if-eqz v1, :cond_2
 
-    .line 48
-    .line 49
     const/4 v1, 0x1
 
-    .line 50
     goto :goto_0
 
-    .line 51
     :cond_2
     const/4 v1, 0x0
 
-    .line 52
+    .line 1741
     :goto_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 53
-    .line 54
-    .line 55
     move-result-object v2
 
-    .line 56
-    instance-of v2, v2, Lcom/android/launcher3/model/data/y;
+    instance-of v2, v2, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 57
-    .line 58
     if-eqz v2, :cond_6
 
-    .line 59
-    .line 60
     if-nez v0, :cond_3
 
-    .line 61
-    .line 62
     if-eqz v1, :cond_6
 
-    .line 63
-    .line 64
+    .line 1742
     :cond_3
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 65
-    .line 66
-    .line 67
     move-result-object v0
 
-    .line 68
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 69
-    .line 70
-    iget-boolean v1, v0, Lcom/android/launcher3/model/data/y;->isShowCheckbox:Z
+    .line 1743
+    iget-boolean v1, v0, Lcom/android/launcher3/model/data/ItemInfo;->isShowCheckbox:Z
 
-    .line 71
-    .line 72
     if-eqz v1, :cond_6
 
-    .line 73
-    .line 74
-    iget v0, v0, Lcom/android/launcher3/model/data/y;->container:I
+    iget v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->container:I
 
-    .line 75
-    .line 76
     const/16 v1, -0x65
 
-    .line 77
-    .line 78
     if-ne v0, v1, :cond_4
 
-    .line 79
-    .line 80
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+    .line 1744
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
 
-    .line 81
-    .line 82
-    .line 83
     move-result-object v0
 
-    .line 84
     instance-of v0, v0, Lcom/android/launcher3/folderbatch/FolderBatchRecyclerView;
 
-    .line 85
-    .line 86
     if-eqz v0, :cond_6
 
-    .line 87
-    .line 88
+    .line 1745
     :cond_4
-    invoke-static {}, Lx1/O;->C3()Z
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
 
-    .line 89
-    .line 90
-    .line 91
     move-result v0
 
-    .line 92
     if-eqz v0, :cond_5
 
-    .line 93
-    .line 94
-    invoke-static {p0}, Lp1/f;->y(Landroid/view/View;)Z
+    invoke-static {p0}, Lcom/android/launcher3/hotseat/HotseatUtils;->isViewInRecentHotseatRecent(Landroid/view/View;)Z
 
-    .line 95
-    .line 96
-    .line 97
     move-result v0
 
-    .line 98
     if-eqz v0, :cond_5
 
-    .line 99
-    .line 100
-    goto :goto_1
+    return-void
 
-    .line 101
+    .line 1748
     :cond_5
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 102
-    .line 103
-    iget-object v0, v0, Ls1/m$a;->c:Landroid/graphics/Rect;
+    iget-object v0, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconBounds:Landroid/graphics/Rect;
 
-    .line 104
-    .line 105
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
 
-    .line 106
-    .line 107
-    .line 108
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollX()I
+    .line 1749
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollX()I
 
-    .line 109
-    .line 110
-    .line 111
     move-result v0
 
-    .line 112
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollY()I
+    .line 1750
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollY()I
 
-    .line 113
-    .line 114
-    .line 115
     move-result v1
 
-    .line 116
     int-to-float v2, v0
 
-    .line 117
     int-to-float v3, v1
 
-    .line 118
+    .line 1751
     invoke-virtual {p1, v2, v3}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 119
-    .line 120
-    .line 121
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 1752
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 122
-    .line 123
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 124
-    .line 125
-    .line 126
     move-result-object v2
 
-    .line 127
-    invoke-virtual {v2}, Lcom/android/launcher3/X3;->j()F
+    invoke-virtual {v2}, Lcom/android/launcher3/DeviceProfile;->getGridScale()F
 
-    .line 128
-    .line 129
-    .line 130
     move-result v2
 
-    .line 131
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
+    .line 1753
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 132
-    .line 133
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 134
-    .line 135
-    .line 136
     move-result-object v4
 
-    .line 137
-    check-cast v4, Lcom/android/launcher3/model/data/y;
+    check-cast v4, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 138
-    .line 139
-    iget-boolean v4, v4, Lcom/android/launcher3/model/data/y;->isChecked:Z
+    iget-boolean v4, v4, Lcom/android/launcher3/model/data/ItemInfo;->isChecked:Z
 
-    .line 140
-    .line 141
-    iput-boolean v4, v3, Ls1/m$a;->h:Z
+    iput-boolean v4, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->isCheck:Z
 
-    .line 142
-    .line 143
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
+    .line 1754
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 144
-    .line 145
-    invoke-direct {p0, p1, v3, v2}, Lcom/android/launcher3/BubbleTextView;->S(Landroid/graphics/Canvas;Ls1/m$a;F)V
+    invoke-direct {p0, p1, v3, v2}, Lcom/android/launcher3/BubbleTextView;->drawCheckBox(Landroid/graphics/Canvas;Lcom/android/launcher3/icons/DotRenderer$DrawParams;F)V
 
-    .line 146
-    .line 147
-    .line 148
     neg-int p0, v0
 
-    .line 149
     int-to-float p0, p0
 
-    .line 150
     neg-int v0, v1
 
-    .line 151
     int-to-float v0, v0
 
-    .line 152
+    .line 1755
     invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 153
-    .line 154
-    .line 155
     :cond_6
-    :goto_1
     return-void
 .end method
 
-.method private U0(Landroid/graphics/drawable/Drawable;)V
-    .locals 2
+.method private drawDownloadIcon(Landroid/graphics/Canvas;)V
+    .locals 7
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->r:Z
+    .line 1769
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    if-eqz v0, :cond_0
-
-    .line 5
-    .line 6
-    invoke-virtual {p0, p1, v1, v1, v1}, Landroid/widget/TextView;->setCompoundDrawablesRelative(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
-
-    .line 7
-    .line 8
-    .line 9
-    return-void
-
-    .line 10
-    :cond_0
-    invoke-virtual {p0, v1, p1, v1, v1}, Landroid/widget/TextView;->setCompoundDrawables(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
-
-    .line 11
-    .line 12
-    .line 13
-    return-void
-.end method
-
-.method private V(Landroid/graphics/Canvas;)V
-    .locals 6
-
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->q0:Z
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    goto :goto_1
-
-    .line 6
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
-
-    .line 7
-    .line 8
-    if-eqz v0, :cond_3
-
-    .line 9
-    .line 10
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->k0()Z
-
-    .line 11
-    .line 12
-    .line 13
-    move-result v0
-
-    .line 14
-    if-eqz v0, :cond_3
-
-    .line 15
-    .line 16
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 17
-    .line 18
-    .line 19
     move-result-object v0
 
-    .line 20
-    check-cast v0, Lcom/android/launcher3/model/data/I;
+    instance-of v0, v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
 
-    .line 21
-    .line 22
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
+    if-eqz v0, :cond_2
 
-    .line 23
-    .line 24
-    iget-object v1, v1, Ls1/m$a;->c:Landroid/graphics/Rect;
+    .line 1770
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 25
-    .line 26
-    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
+    move-result-object v0
 
-    .line 27
-    .line 28
-    .line 29
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->m0()Z
+    check-cast v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
 
-    .line 30
-    .line 31
-    .line 32
+    .line 1771
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
+
+    if-eqz v1, :cond_2
+
+    if-eqz v0, :cond_2
+
+    iget v1, v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->status:I
+
+    const/4 v2, 0x2
+
+    if-ne v1, v2, :cond_2
+
+    .line 1772
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getState()I
+
     move-result v1
 
-    .line 33
+    const/4 v2, 0x4
+
+    if-eqz v1, :cond_0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getState()I
+
+    move-result v1
+
+    if-ne v1, v2, :cond_2
+
+    .line 1773
+    :cond_0
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget-object v1, v1, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconBounds:Landroid/graphics/Rect;
+
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
+
+    .line 1774
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->isInIconArrangeMenuPreview()Z
+
+    move-result v1
+
     if-eqz v1, :cond_1
 
-    .line 34
-    .line 35
     const/4 v1, 0x0
 
-    .line 36
     goto :goto_0
 
-    .line 37
     :cond_1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollX()I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollX()I
 
-    .line 38
-    .line 39
-    .line 40
     move-result v1
 
-    .line 41
+    .line 1775
     :goto_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollY()I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollY()I
 
-    .line 42
-    .line 43
-    .line 44
-    move-result v2
-
-    .line 45
-    int-to-float v3, v1
-
-    .line 46
-    int-to-float v4, v2
-
-    .line 47
-    invoke-virtual {p1, v3, v4}, Landroid/graphics/Canvas;->translate(FF)V
-
-    .line 48
-    .line 49
-    .line 50
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 51
-    .line 52
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 53
-    .line 54
-    .line 55
-    move-result-object v3
-
-    .line 56
-    invoke-virtual {v3}, Lcom/android/launcher3/X3;->j()F
-
-    .line 57
-    .line 58
-    .line 59
     move-result v3
 
-    .line 60
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->s0()Z
+    int-to-float v4, v1
 
-    .line 61
-    .line 62
-    .line 63
+    int-to-float v5, v3
+
+    .line 1776
+    invoke-virtual {p1, v4, v5}, Landroid/graphics/Canvas;->translate(FF)V
+
+    .line 1777
+    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v4}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/android/launcher3/DeviceProfile;->getGridScale()F
+
     move-result v4
 
-    .line 64
-    if-eqz v4, :cond_2
+    .line 1778
+    iget-object v5, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
 
-    .line 65
-    .line 66
-    iget v3, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 67
-    .line 68
-    int-to-float v3, v3
+    move-result-object v6
 
-    .line 69
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
+    invoke-virtual {v6}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
 
-    .line 70
-    .line 71
-    iget v4, v4, Lcom/android/launcher3/h0;->B1:I
+    move-result-object v6
 
-    .line 72
-    .line 73
-    int-to-float v4, v4
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 74
-    div-float/2addr v3, v4
+    invoke-virtual {v5, p1, v6, p0, v4}, Lcom/android/launcher3/icons/DotRenderer;->drawDownloadIcon(Landroid/graphics/Canvas;Landroid/content/Context;Lcom/android/launcher3/icons/DotRenderer$DrawParams;F)V
 
-    .line 75
-    :cond_2
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
+    .line 1779
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->setState(I)V
 
-    .line 76
-    .line 77
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 78
-    .line 79
-    .line 80
-    move-result-object v5
-
-    .line 81
-    invoke-virtual {v5}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
-
-    .line 82
-    .line 83
-    .line 84
-    move-result-object v5
-
-    .line 85
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 86
-    .line 87
-    invoke-virtual {v4, p1, v5, p0, v3}, Ls1/m;->c(Landroid/graphics/Canvas;Landroid/content/Context;Ls1/m$a;F)V
-
-    .line 88
-    .line 89
-    .line 90
-    const/4 p0, 0x4
-
-    .line 91
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/model/data/I;->g0(I)V
-
-    .line 92
-    .line 93
-    .line 94
     neg-int p0, v1
 
-    .line 95
     int-to-float p0, p0
 
-    .line 96
-    neg-int v0, v2
+    neg-int v0, v3
 
-    .line 97
     int-to-float v0, v0
 
-    .line 98
+    .line 1780
     invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 99
-    .line 100
-    .line 101
-    :cond_3
-    :goto_1
+    :cond_2
     return-void
 .end method
 
-.method private X(Landroid/graphics/Canvas;)V
+.method private drawLimitedMaskIfNecessary(Landroid/graphics/Canvas;)V
     .locals 5
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+    .line 2143
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
     instance-of v0, v0, Lcom/android/launcher3/shortcuts/DeepShortcutView;
 
-    .line 6
-    .line 7
     if-eqz v0, :cond_0
 
-    .line 8
-    .line 9
-    goto :goto_0
+    return-void
 
-    .line 10
+    .line 2146
     :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object v0
 
-    .line 14
-    instance-of v0, v0, Lcom/android/launcher3/model/data/y;
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 15
-    .line 16
     if-eqz v0, :cond_2
 
-    .line 17
-    .line 18
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 19
-    .line 20
-    .line 21
     move-result-object v0
 
-    .line 22
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 23
-    .line 24
-    iget-boolean v0, v0, Lcom/android/launcher3/model/data/y;->isAppLimited:Z
+    iget-boolean v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->isAppLimited:Z
 
-    .line 25
-    .line 26
     if-nez v0, :cond_1
 
-    .line 27
-    .line 28
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 29
-    .line 30
-    .line 31
     move-result-object v0
 
-    .line 32
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 33
-    .line 34
-    iget-boolean v0, v0, Lcom/android/launcher3/model/data/y;->isAppVdmcLimited:Z
+    iget-boolean v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->isAppVdmcLimited:Z
 
-    .line 35
-    .line 36
     if-eqz v0, :cond_2
 
-    .line 37
-    .line 38
+    .line 2147
     :cond_1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollX()I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollX()I
 
-    .line 39
-    .line 40
-    .line 41
     move-result v0
 
-    .line 42
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollY()I
+    .line 2148
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollY()I
 
-    .line 43
-    .line 44
-    .line 45
     move-result v1
 
-    .line 46
     int-to-float v2, v0
 
-    .line 47
     int-to-float v3, v1
 
-    .line 48
+    .line 2149
     invoke-virtual {p1, v2, v3}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 49
-    .line 50
-    .line 51
+    .line 2150
     new-instance v2, Landroid/graphics/Rect;
 
-    .line 52
-    .line 53
     invoke-direct {v2}, Landroid/graphics/Rect;-><init>()V
 
-    .line 54
-    .line 55
-    .line 56
-    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
+    .line 2151
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
 
-    .line 57
-    .line 58
-    .line 59
+    .line 2152
     new-instance v3, Landroid/graphics/RectF;
 
-    .line 60
-    .line 61
     invoke-direct {v3, v2}, Landroid/graphics/RectF;-><init>(Landroid/graphics/Rect;)V
 
-    .line 62
-    .line 63
-    .line 64
     new-instance v4, Landroid/graphics/Paint;
 
-    .line 65
-    .line 66
     invoke-direct {v4}, Landroid/graphics/Paint;-><init>()V
 
-    .line 67
-    .line 68
-    .line 69
     invoke-virtual {p1, v3, v4}, Landroid/graphics/Canvas;->saveLayer(Landroid/graphics/RectF;Landroid/graphics/Paint;)I
 
-    .line 70
-    .line 71
-    .line 72
+    .line 2153
     iget v3, v2, Landroid/graphics/Rect;->left:I
 
-    .line 73
-    .line 74
     int-to-float v3, v3
 
-    .line 75
     iget v2, v2, Landroid/graphics/Rect;->top:I
 
-    .line 76
-    .line 77
     int-to-float v2, v2
 
-    .line 78
     invoke-virtual {p1, v3, v2}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 79
-    .line 80
-    .line 81
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIcon()Ls1/o;
+    .line 2154
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIcon()Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 82
-    .line 83
-    .line 84
     move-result-object v2
 
-    .line 85
-    invoke-virtual {v2, p1}, Ls1/o;->draw(Landroid/graphics/Canvas;)V
+    invoke-virtual {v2, p1}, Lcom/android/launcher3/icons/FastBitmapDrawable;->draw(Landroid/graphics/Canvas;)V
 
-    .line 86
-    .line 87
-    .line 88
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    .line 2155
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 89
-    .line 90
-    .line 91
     move-result-object p0
 
-    .line 92
-    const v2, 0x7f060258
+    const v2, 0x7f060231
 
-    .line 93
-    .line 94
-    .line 95
-    invoke-static {p0, v2}, Lz/a;->c(Landroid/content/Context;I)I
+    invoke-static {p0, v2}, Landroidx/core/content/ContextCompat;->getColor(Landroid/content/Context;I)I
 
-    .line 96
-    .line 97
-    .line 98
     move-result p0
 
-    .line 99
     sget-object v2, Landroid/graphics/PorterDuff$Mode;->SRC_ATOP:Landroid/graphics/PorterDuff$Mode;
 
-    .line 100
-    .line 101
     invoke-virtual {p1, p0, v2}, Landroid/graphics/Canvas;->drawColor(ILandroid/graphics/PorterDuff$Mode;)V
 
-    .line 102
-    .line 103
-    .line 104
+    .line 2156
     invoke-virtual {p1}, Landroid/graphics/Canvas;->restore()V
 
-    .line 105
-    .line 106
-    .line 107
     neg-int p0, v0
 
-    .line 108
     int-to-float p0, p0
 
-    .line 109
     neg-int v0, v1
 
-    .line 110
     int-to-float v0, v0
 
-    .line 111
+    .line 2157
     invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 112
-    .line 113
-    .line 114
     :cond_2
-    :goto_0
     return-void
 .end method
 
-.method private b0(Landroid/text/TextPaint;Ljava/lang/String;FF)F
-    .locals 3
+.method public static drawTextAndBackground(Landroid/content/Context;Landroid/graphics/Canvas;Ljava/lang/String;III)V
+    .locals 5
 
-    .line 1
-    invoke-virtual {p1, p4}, Landroid/text/TextPaint;->setLetterSpacing(F)V
+    .line 2073
+    new-instance v0, Ljava/lang/StringBuilder;
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p1, p2}, Landroid/text/TextPaint;->measureText(Ljava/lang/String;)F
+    const-string v1, "drawTextAndBackground "
 
-    .line 5
-    .line 6
-    .line 7
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, ": width="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, ", padding="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, ", iconBottom="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "BubbleTextView"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2074
+    invoke-static {p0}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getAppNameIcon(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_1
+
+    .line 2075
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_1
+
+    .line 2076
+    new-instance v1, Landroid/graphics/Paint;
+
+    invoke-direct {v1}, Landroid/graphics/Paint;-><init>()V
+
+    const/4 v2, 0x1
+
+    .line 2077
+    invoke-virtual {v1, v2}, Landroid/graphics/Paint;->setAntiAlias(Z)V
+
+    .line 2078
+    const-string v2, "apps_name_text_size"
+
+    invoke-static {p0, v2}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result v2
+
+    int-to-float v2, v2
+
+    invoke-virtual {v1, v2}, Landroid/graphics/Paint;->setTextSize(F)V
+
+    .line 2079
+    sget-object v2, Landroid/graphics/Paint$Align;->LEFT:Landroid/graphics/Paint$Align;
+
+    invoke-virtual {v1, v2}, Landroid/graphics/Paint;->setTextAlign(Landroid/graphics/Paint$Align;)V
+
+    const/4 v2, -0x1
+
+    .line 2080
+    invoke-virtual {v1, v2}, Landroid/graphics/Paint;->setColor(I)V
+
+    mul-int/lit8 p4, p4, 0x2
+
+    sub-int p4, p3, p4
+
+    .line 2082
+    const-string v2, "apps_name_bg_padding_horizontal"
+
+    invoke-static {p0, v2}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result v2
+
+    mul-int/lit8 v2, v2, 0x2
+
+    sub-int/2addr p4, v2
+
+    .line 2083
+    const-string v2, "apps_name_text_padding_horizontal"
+
+    invoke-static {p0, v2}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result v3
+
+    mul-int/lit8 v3, v3, 0x2
+
+    sub-int/2addr p4, v3
+
+    .line 2084
+    invoke-virtual {v1, p2}, Landroid/graphics/Paint;->measureText(Ljava/lang/String;)F
+
+    move-result v3
+
+    int-to-float p4, p4
+
+    cmpl-float v4, v3, p4
+
+    if-lez v4, :cond_0
+
+    .line 2088
+    invoke-static {p2, p4, v1}, Lcom/android/launcher3/BubbleTextView;->getSuitableStr(Ljava/lang/String;FLandroid/graphics/Paint;)Ljava/lang/String;
+
+    move-result-object p2
+
+    move v3, p4
+
+    .line 2090
+    :cond_0
+    invoke-static {p0, v2}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result p4
+
+    mul-int/lit8 p4, p4, 0x2
+
+    int-to-float p4, p4
+
+    add-float/2addr v3, p4
+
+    float-to-int p4, v3
+
+    .line 2092
+    new-instance v3, Landroid/graphics/Rect;
+
+    invoke-direct {v3}, Landroid/graphics/Rect;-><init>()V
+
+    sub-int/2addr p3, p4
+
+    .line 2093
+    div-int/lit8 p3, p3, 0x2
+
+    iput p3, v3, Landroid/graphics/Rect;->left:I
+
+    .line 2094
+    iget p3, v3, Landroid/graphics/Rect;->left:I
+
+    add-int/2addr p3, p4
+
+    iput p3, v3, Landroid/graphics/Rect;->right:I
+
+    .line 2095
+    const-string p3, "apps_name_padding_bottom"
+
+    invoke-static {p0, p3}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result p3
+
+    sub-int/2addr p5, p3
+
+    iput p5, v3, Landroid/graphics/Rect;->bottom:I
+
+    .line 2096
+    iget p3, v3, Landroid/graphics/Rect;->bottom:I
+
+    const-string p4, "apps_name_bg_height"
+
+    invoke-static {p0, p4}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
+    move-result p4
+
+    sub-int/2addr p3, p4
+
+    iput p3, v3, Landroid/graphics/Rect;->top:I
+
+    .line 2097
+    invoke-virtual {v0, v3}, Landroid/graphics/drawable/Drawable;->setBounds(Landroid/graphics/Rect;)V
+
+    .line 2098
+    invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
+
+    .line 2100
+    iget p3, v3, Landroid/graphics/Rect;->left:I
+
+    invoke-static {p0, v2}, Lcom/android/launcher3/config/UtilsInternalAbroad;->getDimensionPixelSize(Landroid/content/Context;Ljava/lang/String;)I
+
     move-result p0
 
-    .line 8
+    add-int/2addr p3, p0
+
+    int-to-float p0, p3
+
+    .line 2101
+    invoke-virtual {v1}, Landroid/graphics/Paint;->getFontMetrics()Landroid/graphics/Paint$FontMetrics;
+
+    move-result-object p3
+
+    .line 2102
+    iget p4, p3, Landroid/graphics/Paint$FontMetrics;->bottom:F
+
+    iget p5, p3, Landroid/graphics/Paint$FontMetrics;->top:F
+
+    sub-float/2addr p4, p5
+
+    const/high16 p5, 0x40000000    # 2.0f
+
+    div-float/2addr p4, p5
+
+    .line 2103
+    iget p3, p3, Landroid/graphics/Paint$FontMetrics;->bottom:F
+
+    sub-float/2addr p4, p3
+
+    .line 2104
+    invoke-virtual {v3}, Landroid/graphics/Rect;->centerY()I
+
+    move-result p3
+
+    int-to-float p3, p3
+
+    add-float/2addr p3, p4
+
+    .line 2105
+    invoke-virtual {p1, p2, p0, p3, v1}, Landroid/graphics/Canvas;->drawText(Ljava/lang/String;FFLandroid/graphics/Paint;)V
+
+    :cond_1
+    return-void
+.end method
+
+.method private findBestSpacingValue(Landroid/text/TextPaint;Ljava/lang/String;FF)F
+    .locals 3
+
+    .line 765
+    invoke-virtual {p1, p4}, Landroid/text/TextPaint;->setLetterSpacing(F)V
+
+    .line 766
+    invoke-virtual {p1, p2}, Landroid/text/TextPaint;->measureText(Ljava/lang/String;)F
+
+    move-result p0
+
     cmpl-float p0, p0, p3
 
-    .line 9
-    .line 10
     if-lez p0, :cond_0
 
-    .line 11
-    .line 12
     return p4
 
-    .line 13
     :cond_0
     const/4 p0, 0x0
 
-    .line 14
     const/4 v0, 0x0
 
-    .line 15
     :goto_0
     const/16 v1, 0x14
 
-    .line 16
-    .line 17
     if-ge v0, v1, :cond_2
 
-    .line 18
-    .line 19
     add-float v1, p0, p4
 
-    .line 20
-    .line 21
     const/high16 v2, 0x40000000    # 2.0f
 
-    .line 22
-    .line 23
     div-float/2addr v1, v2
 
-    .line 24
+    .line 776
     invoke-virtual {p1, v1}, Landroid/text/TextPaint;->setLetterSpacing(F)V
 
-    .line 25
-    .line 26
-    .line 27
+    .line 777
     invoke-virtual {p1, p2}, Landroid/text/TextPaint;->measureText(Ljava/lang/String;)F
 
-    .line 28
-    .line 29
-    .line 30
     move-result v2
 
-    .line 31
     cmpg-float v2, v2, p3
 
-    .line 32
-    .line 33
     if-gez v2, :cond_1
 
-    .line 34
-    .line 35
     move p4, v1
 
-    .line 36
     goto :goto_1
 
-    .line 37
     :cond_1
     move p0, v1
 
-    .line 38
     :goto_1
     add-int/lit8 v0, v0, 0x1
 
-    .line 39
-    .line 40
     goto :goto_0
 
-    .line 41
     :cond_2
     return p4
 .end method
 
-.method public static synthetic c(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/model/data/z;Landroid/content/Context;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->u0(Lcom/android/launcher3/model/data/z;Landroid/content/Context;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method private c0(Ljava/lang/String;I)Ljava/lang/String;
+.method private getAppLabelPluralString(Ljava/lang/String;I)Ljava/lang/String;
     .locals 2
 
-    .line 1
+    .line 1577
     new-instance v0, Landroid/icu/text/MessageFormat;
 
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    .line 1578
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object p0
 
-    .line 7
-    const v1, 0x7f140193
+    const v1, 0x7f140156
 
-    .line 8
-    .line 9
-    .line 10
     invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object p0
 
-    .line 14
+    .line 1579
     invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
 
-    .line 15
-    .line 16
-    .line 17
     move-result-object v1
 
-    .line 18
     invoke-direct {v0, p0, v1}, Landroid/icu/text/MessageFormat;-><init>(Ljava/lang/String;Ljava/util/Locale;)V
 
-    .line 19
-    .line 20
-    .line 21
+    .line 1580
     new-instance p0, Ljava/util/HashMap;
 
-    .line 22
-    .line 23
     invoke-direct {p0}, Ljava/util/HashMap;-><init>()V
 
-    .line 24
-    .line 25
-    .line 26
+    .line 1581
     const-string v1, "app_name"
 
-    .line 27
-    .line 28
     invoke-virtual {p0, v1, p1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 29
-    .line 30
-    .line 31
+    .line 1582
+    const-string p1, "count"
+
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 32
-    .line 33
-    .line 34
-    move-result-object p1
+    move-result-object p2
 
-    .line 35
-    const-string p2, "count"
+    invoke-virtual {p0, p1, p2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 36
-    .line 37
-    invoke-virtual {p0, p2, p1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 38
-    .line 39
-    .line 40
+    .line 1583
     invoke-virtual {v0, p0}, Landroid/icu/text/MessageFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
 
-    .line 41
-    .line 42
-    .line 43
     move-result-object p0
 
-    .line 44
     return-object p0
 .end method
 
 .method private getIconOrTransparentColor()Landroid/graphics/drawable/Drawable;
     .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->w:Z
+    .line 1414
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsIconVisible:Z
 
-    .line 2
-    .line 3
     if-eqz v0, :cond_0
 
-    .line 4
-    .line 5
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 6
-    .line 7
-    return-object p0
+    goto :goto_0
 
-    .line 8
     :cond_0
     new-instance p0, Landroid/graphics/drawable/ColorDrawable;
 
-    .line 9
-    .line 10
     const/4 v0, 0x0
 
-    .line 11
     invoke-direct {p0, v0}, Landroid/graphics/drawable/ColorDrawable;-><init>(I)V
 
-    .line 12
-    .line 13
-    .line 14
+    :goto_0
     return-object p0
 .end method
 
 .method private getModifiedColor()I
     .locals 2
 
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->z:F
+    .line 1120
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
 
-    .line 2
-    .line 3
     const/4 v1, 0x0
 
-    .line 4
     cmpl-float v0, v0, v1
 
-    .line 5
-    .line 6
     if-nez v0, :cond_0
 
-    .line 7
-    .line 8
     const/4 p0, 0x0
 
-    .line 9
     return p0
 
-    .line 10
+    .line 1124
     :cond_0
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
-    .line 11
-    .line 12
     invoke-static {v0}, Landroid/graphics/Color;->alpha(I)I
 
-    .line 13
-    .line 14
-    .line 15
     move-result v1
 
-    .line 16
     int-to-float v1, v1
 
-    .line 17
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->z:F
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
 
-    .line 18
-    .line 19
     mul-float/2addr v1, p0
 
-    .line 20
     invoke-static {v1}, Ljava/lang/Math;->round(F)I
 
-    .line 21
-    .line 22
-    .line 23
     move-result p0
 
-    .line 24
-    invoke-static {v0, p0}, Ls1/q;->h(II)I
+    invoke-static {v0, p0}, Lcom/android/launcher3/icons/GraphicsUtils;->setColorAlphaBound(II)I
 
-    .line 25
-    .line 26
-    .line 27
     move-result p0
 
-    .line 28
     return p0
 .end method
 
 .method private getNotificationCount()I
     .locals 3
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->A:Lk1/a;
+    .line 1954
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotInfo:Lcom/android/launcher3/dot/DotInfo;
 
-    .line 2
-    .line 3
     if-eqz v0, :cond_0
 
-    .line 4
-    .line 5
-    invoke-virtual {v0}, Lk1/a;->d()I
+    invoke-virtual {v0}, Lcom/android/launcher3/dot/DotInfo;->getNotificationCount()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result v0
 
-    .line 9
     goto :goto_0
 
-    .line 10
     :cond_0
     const/4 v0, 0x0
 
-    .line 11
+    .line 1955
     :goto_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 12
-    .line 13
-    .line 14
     move-result-object v1
 
-    .line 15
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 16
-    .line 17
-    .line 18
     move-result-object v2
 
-    .line 19
-    invoke-static {v1, v2}, Lcom/android/launcher3/nubia/c;->h(Landroid/content/Context;Ljava/lang/Object;)Lcom/android/launcher3/nubia/NubiaPushConfig;
+    invoke-static {v1, v2}, Lcom/android/launcher3/nubia/NubiaPushBadgeHelper;->getPushConfig(Landroid/content/Context;Ljava/lang/Object;)Lcom/android/launcher3/nubia/NubiaPushConfig;
 
-    .line 20
-    .line 21
-    .line 22
     move-result-object v1
 
-    .line 23
-    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/v;->x(Lcom/android/launcher3/BubbleTextView;)Z
+    .line 1956
+    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils;->isSuggestBubbleTextViewCanShowSuggestNubiaPushBadgeRedDot(Lcom/android/launcher3/BubbleTextView;)Z
 
-    .line 24
-    .line 25
-    .line 26
     move-result v2
 
-    .line 27
     if-eqz v2, :cond_1
 
-    .line 28
-    .line 29
-    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/v;->q(Lcom/android/launcher3/BubbleTextView;)Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
+    .line 1957
+    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils;->getSuggestBubbleTextViewSuggestNubiaPushConfig(Lcom/android/launcher3/BubbleTextView;)Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
 
-    .line 30
-    .line 31
-    .line 32
     move-result-object p0
 
-    .line 33
     if-eqz p0, :cond_1
 
-    .line 34
-    .line 35
     move-object v1, p0
 
-    .line 36
     :cond_1
     if-eqz v1, :cond_4
 
-    .line 37
-    .line 38
+    .line 1963
     instance-of p0, v1, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
 
-    .line 39
-    .line 40
     if-eqz p0, :cond_2
 
-    .line 41
-    .line 42
     move-object v2, v1
 
-    .line 43
     check-cast v2, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
 
-    .line 44
-    .line 45
     iget-boolean v2, v2, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;->pushIconUseAppBadge:Z
 
-    .line 46
-    .line 47
     if-nez v2, :cond_3
 
-    .line 48
-    .line 49
     :cond_2
     const/4 v0, 0x1
 
-    .line 50
     :cond_3
     if-eqz p0, :cond_4
 
-    .line 51
-    .line 52
+    .line 1966
     check-cast v1, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
 
-    .line 53
-    .line 54
     iget p0, v1, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;->badgeNumber:I
 
-    .line 55
-    .line 56
     if-ltz p0, :cond_4
 
-    .line 57
-    .line 58
-    iget-boolean v1, v1, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;->pushIconUseAppBadge:Z
+    iget-boolean p0, v1, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;->pushIconUseAppBadge:Z
 
-    .line 59
-    .line 60
-    if-nez v1, :cond_4
+    if-nez p0, :cond_4
 
-    .line 61
-    .line 62
-    return p0
+    .line 1967
+    iget v0, v1, Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;->badgeNumber:I
 
-    .line 63
     :cond_4
     return v0
 .end method
 
-.method private h0(I)V
+.method public static getSuitableStr(Ljava/lang/String;FLandroid/graphics/Paint;)Ljava/lang/String;
     .locals 5
 
-    .line 1
-    const/4 v0, 0x0
+    .line 2111
+    const-string v0, ""
 
-    .line 2
-    const/4 v1, 0x1
+    const/4 v1, 0x0
 
-    .line 3
-    if-ne p1, v1, :cond_0
-
-    .line 4
-    .line 5
     move v2, v1
 
-    .line 6
+    :goto_0
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    if-ge v2, v3, :cond_1
+
+    .line 2112
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {p0, v1, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v3, "..."
+
+    invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 2113
+    invoke-virtual {p2, v0}, Landroid/graphics/Paint;->measureText(Ljava/lang/String;)F
+
+    move-result v4
+
+    cmpl-float v4, v4, p1
+
+    if-lez v4, :cond_0
+
+    const/4 v4, 0x1
+
+    if-le v2, v4, :cond_0
+
+    .line 2114
+    new-instance p1, Ljava/lang/StringBuilder;
+
+    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
+
+    sub-int/2addr v2, v4
+
+    invoke-virtual {p0, v1, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-virtual {p1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p0
+
+    invoke-virtual {p0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_0
+    add-int/lit8 v2, v2, 0x1
+
     goto :goto_0
 
-    .line 7
+    :cond_1
+    return-object v0
+.end method
+
+.method private initMfv(I)V
+    .locals 5
+
+    const/4 v0, 0x0
+
+    const/4 v1, 0x1
+
+    if-ne p1, v1, :cond_0
+
+    move v2, v1
+
+    goto :goto_0
+
     :cond_0
     move v2, v0
 
-    .line 8
+    .line 1623
     :goto_0
-    iput-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->c0:Z
+    iput-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->mIsAllAppsIcon:Z
 
-    .line 9
-    .line 10
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 1624
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 11
-    .line 12
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 13
-    .line 14
-    .line 15
     move-result-object v2
 
-    .line 16
-    iget-object v2, v2, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object v2, v2, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 17
-    .line 18
-    iget-boolean v2, v2, Lcom/android/launcher3/r4;->Y:Z
+    iget-boolean v2, v2, Lcom/android/launcher3/InvariantDeviceProfile;->customEaseMode:Z
 
-    .line 19
-    .line 20
     const/4 v3, 0x2
 
-    .line 21
     if-nez v2, :cond_1
 
-    .line 22
-    .line 23
-    invoke-static {}, Lm1/a;->a()Z
+    invoke-static {}, Lcom/android/launcher3/easymodeelder/EasyModeElderUtils;->isSoftbankElder()Z
 
-    .line 24
-    .line 25
-    .line 26
     move-result v2
 
-    .line 27
     if-eqz v2, :cond_2
 
-    .line 28
-    .line 29
     :cond_1
     if-eq p1, v3, :cond_2
 
-    .line 30
-    .line 31
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 32
-    .line 33
-    instance-of v2, v2, Lcom/android/launcher3/C2;
+    instance-of v2, v2, Lcom/android/launcher3/Launcher;
 
-    .line 34
-    .line 35
     if-eqz v2, :cond_2
 
-    .line 36
-    .line 37
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    .line 1625
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 38
-    .line 39
-    .line 40
     move-result-object v2
 
-    .line 41
-    invoke-static {v2}, Lcom/android/launcher3/C2;->Z1(Landroid/content/Context;)Lcom/android/launcher3/C2;
+    invoke-static {v2}, Lcom/android/launcher3/Launcher;->getLauncher(Landroid/content/Context;)Lcom/android/launcher3/Launcher;
 
-    .line 42
-    .line 43
-    .line 44
     move-result-object v2
 
-    .line 45
     if-eqz v2, :cond_2
 
-    .line 46
-    .line 47
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 48
-    .line 49
-    .line 50
     move-result-object v2
 
-    .line 51
-    invoke-static {v2}, Lcom/android/launcher3/C2;->Z1(Landroid/content/Context;)Lcom/android/launcher3/C2;
+    invoke-static {v2}, Lcom/android/launcher3/Launcher;->getLauncher(Landroid/content/Context;)Lcom/android/launcher3/Launcher;
 
-    .line 52
-    .line 53
-    .line 54
     move-result-object v2
 
-    .line 55
-    invoke-virtual {v2}, Lcom/android/launcher3/C2;->O2()Z
+    invoke-virtual {v2}, Lcom/android/launcher3/Launcher;->isFolderBatchShow()Z
 
-    .line 56
-    .line 57
-    .line 58
     move-result v2
 
-    .line 59
     if-nez v2, :cond_2
 
-    .line 60
-    .line 61
     move v2, v1
 
-    .line 62
     goto :goto_1
 
-    .line 63
     :cond_2
     move v2, v0
 
-    .line 64
     :goto_1
-    iput-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
+    iput-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
-    .line 65
-    .line 66
-    iget-boolean v4, p0, Lcom/android/launcher3/BubbleTextView;->c0:Z
+    .line 1626
+    iget-boolean v4, p0, Lcom/android/launcher3/BubbleTextView;->mIsAllAppsIcon:Z
 
-    .line 67
-    .line 68
     if-nez v4, :cond_3
 
-    .line 69
-    .line 70
     if-nez v2, :cond_3
 
-    .line 71
-    .line 72
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 1627
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 73
-    .line 74
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getForeColor()I
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getForeColor()I
 
-    .line 75
-    .line 76
-    .line 77
     move-result v2
 
-    .line 78
-    iput v2, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iput v2, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
-    .line 79
-    .line 80
+    .line 1630
     :cond_3
-    iget-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
+    iget-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
-    .line 81
-    .line 82
     if-eqz v2, :cond_5
 
-    .line 83
-    .line 84
     if-eq p1, v3, :cond_4
 
-    .line 85
-    .line 86
     if-eqz p1, :cond_4
 
-    .line 87
-    .line 88
     const/16 v2, 0xc
 
-    .line 89
-    .line 90
     if-ne p1, v2, :cond_5
 
-    .line 91
-    .line 92
+    .line 1631
     :cond_4
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 93
-    .line 94
-    .line 95
     move-result-object p1
 
-    .line 96
-    const v2, 0x7f060156
+    const v2, 0x7f06014b
 
-    .line 97
-    .line 98
-    .line 99
-    invoke-static {p1, v2}, Lz/a;->c(Landroid/content/Context;I)I
+    invoke-static {p1, v2}, Landroidx/core/content/ContextCompat;->getColor(Landroid/content/Context;I)I
 
-    .line 100
-    .line 101
-    .line 102
     move-result p1
 
-    .line 103
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
-    .line 104
-    .line 105
+    .line 1632
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getModifiedColor()I
 
-    .line 106
-    .line 107
-    .line 108
     move-result p1
 
-    .line 109
     invoke-super {p0, p1}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 110
-    .line 111
-    .line 112
+    .line 1635
     :cond_5
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 113
-    .line 114
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {p1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 115
-    .line 116
-    .line 117
     move-result-object p1
 
-    .line 118
-    iget-object p1, p1, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object p1, p1, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 119
-    .line 120
-    iget-boolean p1, p1, Lcom/android/launcher3/r4;->c:Z
+    iget-boolean p1, p1, Lcom/android/launcher3/InvariantDeviceProfile;->isTwoLineTitle:Z
 
-    .line 121
-    .line 122
     if-eqz p1, :cond_6
 
-    .line 123
-    .line 124
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setSingleLine(Z)V
+    .line 1636
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setSingleLine(Z)V
 
-    .line 125
-    .line 126
-    .line 127
-    invoke-virtual {p0, v3}, Landroid/widget/TextView;->setMaxLines(I)V
+    .line 1637
+    invoke-virtual {p0, v3}, Lcom/android/launcher3/BubbleTextView;->setMaxLines(I)V
 
-    .line 128
-    .line 129
-    .line 130
     const/4 p1, 0x0
 
-    .line 131
     const v0, 0x3f666666    # 0.9f
 
-    .line 132
-    .line 133
-    .line 134
-    invoke-virtual {p0, p1, v0}, Landroid/widget/TextView;->setLineSpacing(FF)V
+    .line 1638
+    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->setLineSpacing(FF)V
 
-    .line 135
-    .line 136
-    .line 137
     goto :goto_2
 
-    .line 138
+    .line 1640
     :cond_6
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->setSingleLine(Z)V
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setSingleLine(Z)V
 
-    .line 139
-    .line 140
-    .line 141
+    .line 1644
     :goto_2
-    iget-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->c0:Z
+    iget-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mIsAllAppsIcon:Z
 
-    .line 142
-    .line 143
     if-eqz p1, :cond_8
 
-    .line 144
-    .line 145
-    invoke-static {}, Lx1/O;->t()Ljava/lang/Boolean;
+    .line 1646
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
 
-    .line 146
-    .line 147
-    .line 148
     move-result-object p1
 
-    .line 149
     invoke-virtual {p1}, Ljava/lang/Boolean;->booleanValue()Z
 
-    .line 150
-    .line 151
-    .line 152
     move-result p1
 
-    .line 153
     if-eqz p1, :cond_7
 
-    .line 154
-    .line 155
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 1647
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 156
-    .line 157
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getForeColor()I
+    invoke-interface {p1}, Lcom/android/launcher3/views/ActivityContext;->getForeColor()I
 
-    .line 158
-    .line 159
-    .line 160
     move-result p1
 
-    .line 161
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
-    .line 162
-    .line 163
     goto :goto_3
 
-    .line 164
+    .line 1649
     :cond_7
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 165
-    .line 166
-    .line 167
     move-result-object p1
 
-    .line 168
-    const v0, 0x7f06003e
+    const v0, 0x7f060039
 
-    .line 169
-    .line 170
-    .line 171
-    invoke-static {p1, v0}, Lz/a;->c(Landroid/content/Context;I)I
+    invoke-static {p1, v0}, Landroidx/core/content/ContextCompat;->getColor(Landroid/content/Context;I)I
 
-    .line 172
-    .line 173
-    .line 174
     move-result p1
 
-    .line 175
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
-    .line 176
-    .line 177
+    .line 1651
     :goto_3
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getModifiedColor()I
 
-    .line 178
-    .line 179
-    .line 180
     move-result p1
 
-    .line 181
     invoke-super {p0, p1}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 182
-    .line 183
-    .line 184
     :cond_8
     return-void
 .end method
 
-.method private j0()Z
+.method private isAllAppsTitleStyle()Z
     .locals 2
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    .line 2292
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    .line 2
-    .line 3
     const/4 v0, 0x1
 
-    .line 4
     if-eq p0, v0, :cond_1
 
-    .line 5
-    .line 6
     const/16 v1, 0x8
 
-    .line 7
-    .line 8
     if-eq p0, v1, :cond_1
 
-    .line 9
-    .line 10
     const/16 v1, 0x9
 
-    .line 11
-    .line 12
     if-eq p0, v1, :cond_1
 
-    .line 13
-    .line 14
     const/16 v1, 0xa
 
-    .line 15
-    .line 16
     if-eq p0, v1, :cond_1
 
-    .line 17
-    .line 18
     const/4 v1, 0x6
 
-    .line 19
     if-ne p0, v1, :cond_0
 
-    .line 20
-    .line 21
     goto :goto_0
 
-    .line 22
     :cond_0
-    const/4 p0, 0x0
+    const/4 v0, 0x0
 
-    .line 23
-    return p0
-
-    .line 24
     :cond_1
     :goto_0
     return v0
 .end method
 
-.method public static synthetic k()V
-    .locals 0
+.method private isFolderOpen(Lcom/android/launcher3/model/data/ItemInfo;)Z
+    .locals 2
 
-    .line 1
-    return-void
-.end method
+    .line 2064
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-.method public static synthetic l(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/model/data/z;)V
-    .locals 0
+    invoke-static {p0}, Lcom/android/launcher3/AbstractFloatingView;->getTopOpenView(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/AbstractFloatingView;
 
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->t0(Lcom/android/launcher3/model/data/z;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic m(Lcom/android/launcher3/BubbleTextView;)I
-    .locals 0
-
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->N:I
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method private m0()Z
-    .locals 1
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 2
-    .line 3
-    instance-of v0, p0, Lcom/android/launcher3/C2;
-
-    .line 4
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    invoke-static {p0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 8
-    .line 9
-    .line 10
     move-result-object p0
 
-    .line 11
-    invoke-virtual {p0}, Lcom/android/launcher3/C2;->e2()Lcom/android/launcher3/q4;
+    .line 2065
+    new-instance v0, Ljava/lang/StringBuilder;
 
-    .line 12
-    .line 13
-    .line 14
-    move-result-object p0
+    const-string v1, "isFolderOpen "
 
-    .line 15
-    invoke-virtual {p0}, Lcom/android/launcher3/q4;->a0()Z
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 16
-    .line 17
-    .line 18
-    move-result p0
+    iget-object v1, p1, Lcom/android/launcher3/model/data/ItemInfo;->title:Ljava/lang/CharSequence;
 
-    .line 19
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, ", topView="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, ": iteminfo="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfo;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "BubbleTextView"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
     if-eqz p0, :cond_0
 
-    .line 20
-    .line 21
-    sget-boolean p0, Lcom/android/launcher3/BubbleTextView;->y0:Z
+    .line 2066
+    instance-of p0, p0, Lcom/android/launcher3/folder/Folder;
 
-    .line 22
-    .line 23
     if-eqz p0, :cond_0
 
-    .line 24
-    .line 25
+    iget p0, p1, Lcom/android/launcher3/model/data/ItemInfo;->container:I
+
+    if-lez p0, :cond_0
+
     const/4 p0, 0x1
 
-    .line 26
     return p0
 
-    .line 27
     :cond_0
     const/4 p0, 0x0
 
-    .line 28
     return p0
 .end method
 
-.method static bridge synthetic n(Lcom/android/launcher3/BubbleTextView;)F
+.method private isInIconArrangeMenuPreview()Z
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->O:F
+    .line 1869
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 2
-    .line 3
+    invoke-static {p0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/Launcher;->getMFVInstance()Lcom/android/launcher3/MFVInterfaceProxy;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/MFVInterfaceProxy;->isShowCheckBoxInIconArrangeMode()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    sget-boolean p0, Lcom/android/launcher3/BubbleTextView;->isInIconArrangePreview:Z
+
+    if-eqz p0, :cond_0
+
+    const/4 p0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    :goto_0
     return p0
 .end method
 
-.method static bridge synthetic o(Lcom/android/launcher3/BubbleTextView;)F
+.method static synthetic lambda$prepareDrawDragView$1()V
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->z:F
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method static bridge synthetic p(Lcom/android/launcher3/BubbleTextView;Landroid/animation/Animator;)V
-    .locals 0
-
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->D:Landroid/animation/Animator;
-
-    .line 2
-    .line 3
     return-void
 .end method
 
-.method static bridge synthetic q(Lcom/android/launcher3/BubbleTextView;I)V
+.method private synthetic lambda$updateProgressBarUi$0(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
     .locals 0
 
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->N:I
+    .line 1245
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setIcon(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
 
-    .line 2
-    .line 3
     return-void
 .end method
 
-.method static bridge synthetic r(Lcom/android/launcher3/BubbleTextView;F)V
+.method public static modifyTitleToSupportMultiLine(IILjava/lang/CharSequence;Landroid/text/TextPaint;Lcom/android/launcher3/util/IntArray;FF)Ljava/lang/CharSequence;
+    .locals 13
+
+    move-object v0, p2
+
+    move-object/from16 v3, p3
+
+    move-object/from16 v1, p4
+
+    if-eqz v0, :cond_9
+
+    .line 1157
+    invoke-interface {p2}, Ljava/lang/CharSequence;->length()I
+
+    move-result v2
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v3, p2, v4, v2}, Landroid/text/TextPaint;->measureText(Ljava/lang/CharSequence;II)F
+
+    move-result v2
+
+    move v5, p0
+
+    int-to-float v6, v5
+
+    cmpg-float v2, v2, v6
+
+    if-gtz v2, :cond_0
+
+    goto/16 :goto_4
+
+    .line 1162
+    :cond_0
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const v2, -0x42b33333    # -0.05f
+
+    .line 1163
+    invoke-virtual {v3, v2}, Landroid/text/TextPaint;->setLetterSpacing(F)V
+
+    const/4 v2, 0x0
+
+    move v7, v4
+
+    move v8, v7
+
+    .line 1165
+    :goto_0
+    invoke-virtual/range {p4 .. p4}, Lcom/android/launcher3/util/IntArray;->size()I
+
+    move-result v10
+
+    const/4 v11, 0x1
+
+    add-int/2addr v10, v11
+
+    if-ge v7, v10, :cond_8
+
+    .line 1166
+    invoke-virtual/range {p4 .. p4}, Lcom/android/launcher3/util/IntArray;->size()I
+
+    move-result v10
+
+    if-ge v7, v10, :cond_1
+
+    .line 1167
+    invoke-virtual {v1, v7}, Lcom/android/launcher3/util/IntArray;->get(I)I
+
+    move-result v10
+
+    add-int/2addr v10, v11
+
+    invoke-interface {p2, v8, v10}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+
+    move-result-object v10
+
+    goto :goto_1
+
+    .line 1170
+    :cond_1
+    invoke-interface {p2}, Ljava/lang/CharSequence;->length()I
+
+    move-result v10
+
+    invoke-interface {p2, v8, v10}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+
+    move-result-object v10
+
+    .line 1172
+    :goto_1
+    invoke-interface {v10}, Ljava/lang/CharSequence;->length()I
+
+    move-result v12
+
+    invoke-virtual {v3, v10, v4, v12}, Landroid/text/TextPaint;->measureText(Ljava/lang/CharSequence;II)F
+
+    move-result v12
+
+    add-float/2addr v2, v12
+
+    cmpg-float v12, v2, v6
+
+    if-gtz v12, :cond_3
+
+    .line 1175
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/CharSequence;)Ljava/lang/StringBuilder;
+
+    .line 1200
+    invoke-virtual/range {p4 .. p4}, Lcom/android/launcher3/util/IntArray;->size()I
+
+    move-result v8
+
+    if-lt v7, v8, :cond_2
+
+    goto :goto_3
+
+    .line 1204
+    :cond_2
+    invoke-virtual {v1, v7}, Lcom/android/launcher3/util/IntArray;->get(I)I
+
+    move-result v8
+
+    add-int/2addr v8, v11
+
+    add-int/lit8 v7, v7, 0x1
+
+    goto :goto_0
+
+    :cond_3
+    if-eqz v7, :cond_7
+
+    .line 1181
+    invoke-interface {p2}, Ljava/lang/CharSequence;->length()I
+
+    move-result v1
+
+    invoke-interface {p2, v8, v1}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+
+    move-result-object v1
+
+    .line 1183
+    invoke-static {v1, v4}, Ljava/lang/Character;->codePointAt(Ljava/lang/CharSequence;I)I
+
+    move-result v2
+
+    invoke-static {v2}, Ljava/lang/Character;->getType(I)I
+
+    move-result v2
+
+    const/16 v4, 0xc
+
+    if-eq v2, v4, :cond_4
+
+    const/16 v4, 0xd
+
+    if-ne v2, v4, :cond_6
+
+    .line 1186
+    :cond_4
+    invoke-interface {v1}, Ljava/lang/CharSequence;->length()I
+
+    move-result v2
+
+    if-le v2, v11, :cond_5
+
+    .line 1187
+    invoke-interface {v1}, Ljava/lang/CharSequence;->length()I
+
+    move-result v2
+
+    invoke-interface {v1, v11, v2}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+
+    move-result-object v1
+
+    goto :goto_2
+
+    .line 1188
+    :cond_5
+    const-string v1, ""
+
+    .line 1190
+    :cond_6
+    :goto_2
+    sget-object v2, Lcom/android/launcher3/BubbleTextView;->NEW_LINE:Ljava/lang/Character;
+
+    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/CharSequence;)Ljava/lang/StringBuilder;
+
+    .line 1191
+    new-instance v10, Landroid/text/StaticLayout;
+
+    sget-object v6, Landroid/text/Layout$Alignment;->ALIGN_NORMAL:Landroid/text/Layout$Alignment;
+
+    const/4 v8, 0x0
+
+    move-object v1, v10
+
+    move-object v2, v9
+
+    move-object/from16 v3, p3
+
+    move v4, p0
+
+    move-object v5, v6
+
+    move/from16 v6, p5
+
+    move/from16 v7, p6
+
+    invoke-direct/range {v1 .. v8}, Landroid/text/StaticLayout;-><init>(Ljava/lang/CharSequence;Landroid/text/TextPaint;ILandroid/text/Layout$Alignment;FFZ)V
+
+    .line 1193
+    invoke-virtual {v10}, Landroid/text/StaticLayout;->getHeight()I
+
+    move-result v1
+
+    move v2, p1
+
+    if-ge v1, v2, :cond_7
+
+    .line 1194
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    :cond_7
+    return-object v0
+
+    .line 1206
+    :cond_8
+    :goto_3
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    :cond_9
+    :goto_4
+    return-object v0
+.end method
+
+.method private resetIconScale()V
     .locals 0
 
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->O:F
+    .line 1563
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 2
-    .line 3
+    if-eqz p0, :cond_0
+
+    .line 1564
+    invoke-virtual {p0}, Lcom/android/launcher3/icons/FastBitmapDrawable;->resetScale()V
+
+    :cond_0
     return-void
 .end method
 
 .method private setCheckboxDrawable(Z)V
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    .line 1924
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
     if-eqz p1, :cond_0
 
-    .line 6
-    .line 7
-    const p1, 0x7f080e2b
+    const p1, 0x7f080d0e
 
-    .line 8
-    .line 9
-    .line 10
     goto :goto_0
 
-    .line 11
     :cond_0
-    const p1, 0x7f080e29
+    const p1, 0x7f080d0c
 
-    .line 12
-    .line 13
-    .line 14
+    .line 1926
     :goto_0
-    invoke-static {v0, p1}, Lz/a;->e(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+    invoke-static {v0, p1}, Landroidx/core/content/ContextCompat;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
 
-    .line 15
-    .line 16
-    .line 17
     move-result-object p1
 
-    .line 18
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->j0:Landroid/graphics/drawable/Drawable;
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
 
-    .line 19
-    .line 20
     return-void
 .end method
 
-.method private setNonPendingIcon(Lcom/android/launcher3/model/data/z;)V
-    .locals 6
+.method private setDownLoadIconText(IZ)V
+    .locals 1
 
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->getTargetPackage()Ljava/lang/String;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    const-string v1, "com.android.privatespace"
-
-    .line 6
-    .line 7
-    invoke-static {v0, v1}, Ljava/util/Objects;->equals(Ljava/lang/Object;Ljava/lang/Object;)Z
-
-    .line 8
-    .line 9
-    .line 10
-    move-result v0
-
-    .line 11
-    const/4 v1, 0x0
-
-    .line 12
-    const/4 v2, 0x1
-
-    .line 13
-    if-eqz v0, :cond_0
-
-    .line 14
-    .line 15
-    iget-object v0, p1, Lcom/android/launcher3/model/data/z;->g:Ls1/d;
-
-    .line 16
-    .line 17
-    iget v0, v0, Ls1/d;->e:I
-
-    .line 18
-    .line 19
-    goto :goto_0
-
-    .line 20
-    :cond_0
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->Q0()Z
-
-    .line 21
-    .line 22
-    .line 23
-    move-result v0
-
-    .line 24
-    if-eqz v0, :cond_1
-
-    .line 25
-    .line 26
-    move v0, v2
-
-    .line 27
-    goto :goto_0
-
-    .line 28
-    :cond_1
-    move v0, v1
-
-    .line 29
-    :goto_0
-    iget-boolean v3, p0, Lcom/android/launcher3/BubbleTextView;->u:Z
-
-    .line 30
-    .line 31
-    if-nez v3, :cond_2
-
-    .line 32
-    .line 33
-    iget v3, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 34
-    .line 35
-    const/4 v4, 0x7
-
-    .line 36
-    if-ne v3, v4, :cond_3
-
-    .line 37
-    .line 38
-    :cond_2
-    or-int/lit8 v0, v0, 0x2
-
-    .line 39
-    .line 40
-    :cond_3
-    iget-boolean v3, p0, Lcom/android/launcher3/BubbleTextView;->v:Z
-
-    .line 41
-    .line 42
-    if-eqz v3, :cond_4
-
-    .line 43
-    .line 44
-    or-int/lit8 v0, v0, 0x4
-
-    .line 45
-    .line 46
-    :cond_4
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 47
-    .line 48
-    .line 49
-    move-result-object v3
-
-    .line 50
-    invoke-virtual {p1, v3, v0}, Lcom/android/launcher3/model/data/z;->G(Landroid/content/Context;I)Ls1/o;
-
-    .line 51
-    .line 52
-    .line 53
-    move-result-object v0
-
-    .line 54
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 55
-    .line 56
-    invoke-virtual {v0}, Ls1/o;->i()I
-
-    .line 57
-    .line 58
-    .line 59
-    move-result v4
-
-    .line 60
-    iput v4, v3, Ls1/m$a;->b:I
-
-    .line 61
-    .line 62
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 63
-    .line 64
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 65
-    .line 66
-    .line 67
-    move-result-object v4
-
-    .line 68
-    const v5, 0x7f060808
-
-    .line 69
-    .line 70
-    .line 71
-    invoke-static {v4, v5}, Lz/a;->c(Landroid/content/Context;I)I
-
-    .line 72
-    .line 73
-    .line 74
-    move-result v4
-
-    .line 75
-    iput v4, v3, Ls1/m$a;->a:I
-
-    .line 76
-    .line 77
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setIcon(Ls1/o;)V
-
-    .line 78
-    .line 79
-    .line 80
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 81
-    .line 82
-    .line 83
-    move-result-object v0
-
-    .line 84
-    invoke-static {v0}, Lcom/android/launcher3/H5;->T(Landroid/content/Context;)Lcom/android/launcher3/H5;
-
-    .line 85
-    .line 86
-    .line 87
-    move-result-object v0
-
-    .line 88
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->getTargetPackage()Ljava/lang/String;
-
-    .line 89
-    .line 90
-    .line 91
-    move-result-object v3
-
-    .line 92
-    invoke-virtual {v0, v3}, Lcom/android/launcher3/H5;->w0(Ljava/lang/String;)Z
-
-    .line 93
-    .line 94
-    .line 95
-    move-result v0
-
-    .line 96
-    iput-boolean v0, p1, Lcom/android/launcher3/model/data/y;->isAppLimited:Z
-
-    .line 97
-    .line 98
-    invoke-static {}, Lx1/O;->U3()Z
-
-    .line 99
-    .line 100
-    .line 101
-    move-result v0
-
-    .line 102
-    if-eqz v0, :cond_5
-
-    .line 103
-    .line 104
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 105
-    .line 106
-    instance-of v3, v0, Lcom/android/launcher3/C2;
-
-    .line 107
-    .line 108
-    if-eqz v3, :cond_5
-
-    .line 109
-    .line 110
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
-
-    .line 111
-    .line 112
-    .line 113
-    move-result-object v0
-
-    .line 114
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->g2()Lcom/android/launcher3/D3;
-
-    .line 115
-    .line 116
-    .line 117
-    move-result-object v0
-
-    .line 118
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->getTargetPackage()Ljava/lang/String;
-
-    .line 119
-    .line 120
-    .line 121
-    move-result-object v3
-
-    .line 122
-    invoke-virtual {v0, v3}, Lcom/android/launcher3/D3;->r0(Ljava/lang/String;)Z
-
-    .line 123
-    .line 124
-    .line 125
-    move-result v0
-
-    .line 126
-    if-eqz v0, :cond_5
-
-    .line 127
-    .line 128
-    iput-boolean v2, p1, Lcom/android/launcher3/model/data/y;->isAppVdmcLimited:Z
-
-    .line 129
-    .line 130
-    :cond_5
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 131
-    .line 132
-    .line 133
-    move-result-object p0
-
-    .line 134
-    invoke-static {p0, v1}, Lx1/O;->K2(Landroid/content/Context;Z)Z
-
-    .line 135
-    .line 136
-    .line 137
-    move-result p0
-
-    .line 138
-    if-eqz p0, :cond_6
-
-    .line 139
-    .line 140
-    instance-of p0, p1, Lcom/android/launcher3/model/data/I;
-
-    .line 141
-    .line 142
-    if-eqz p0, :cond_6
-
-    .line 143
-    .line 144
-    move-object p0, p1
-
-    .line 145
-    check-cast p0, Lcom/android/launcher3/model/data/I;
-
-    .line 146
-    .line 147
-    invoke-static {p0}, Lx1/O;->J2(Lcom/android/launcher3/model/data/I;)Z
-
-    .line 148
-    .line 149
-    .line 150
-    move-result p0
-
-    .line 151
-    if-eqz p0, :cond_6
-
-    .line 152
-    .line 153
-    iput-boolean v2, p1, Lcom/android/launcher3/model/data/y;->isAppLimited:Z
-
-    .line 154
-    .line 155
-    :cond_6
-    return-void
-.end method
-
-.method private setTextWithArchivingIcon(Ljava/lang/CharSequence;)V
-    .locals 2
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-virtual {v0}, Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v0
-
-    .line 9
-    iget v0, v0, Landroid/content/res/Configuration;->fontWeightAdjustment:I
-
-    .line 10
-    .line 11
-    const/16 v1, 0x12c
-
-    .line 12
-    .line 13
-    if-lt v0, v1, :cond_0
-
-    .line 14
-    .line 15
-    const v0, 0x7f0809fe
-
-    .line 16
-    .line 17
-    .line 18
-    goto :goto_0
-
-    .line 19
-    :cond_0
-    const v0, 0x7f0809fd
-
-    .line 20
-    .line 21
-    .line 22
-    :goto_0
-    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->L0(Ljava/lang/CharSequence;I)V
-
-    .line 23
-    .line 24
-    .line 25
-    return-void
-.end method
-
-.method private synthetic t0(Lcom/android/launcher3/model/data/z;)V
-    .locals 2
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    instance-of v1, v0, Lcom/android/launcher3/model/data/z;
-
-    .line 6
-    .line 7
-    if-eqz v1, :cond_0
-
-    .line 8
-    .line 9
-    move-object p1, v0
-
-    .line 10
-    check-cast p1, Lcom/android/launcher3/model/data/z;
-
-    .line 11
-    .line 12
-    :cond_0
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setNonPendingIcon(Lcom/android/launcher3/model/data/z;)V
-
-    .line 13
-    .line 14
-    .line 15
-    return-void
-.end method
-
-.method private synthetic u0(Lcom/android/launcher3/model/data/z;Landroid/content/Context;)V
-    .locals 9
-
-    .line 1
-    const-string v0, "BubbleTextView"
-
-    .line 2
-    .line 3
-    const/4 v1, 0x1
-
-    .line 4
-    :try_start_0
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->getIntent()Landroid/content/Intent;
-
-    .line 5
-    .line 6
-    .line 7
-    move-result-object v2
-
-    .line 8
-    invoke-virtual {v2}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object v3
-
-    .line 12
-    const-string v4, "activity"
-
-    .line 13
-    .line 14
-    invoke-virtual {p2, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object p2
-
-    .line 18
-    check-cast p2, Landroid/app/ActivityManager;
-
-    .line 19
-    .line 20
-    const-string v4, "android.app.ActivityManager"
-
-    .line 21
-    .line 22
-    invoke-static {v4}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
-
-    .line 23
-    .line 24
-    .line 25
-    move-result-object v4
-
-    .line 26
-    const-string v5, "preStartProcess"
-
-    .line 27
-    .line 28
-    const-class v6, Ljava/lang/String;
-
-    .line 29
-    .line 30
-    const-class v7, Landroid/content/Intent;
-
-    .line 31
-    .line 32
-    sget-object v8, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
-
-    .line 33
-    .line 34
-    filled-new-array {v6, v7, v8}, [Ljava/lang/Class;
-
-    .line 35
-    .line 36
-    .line 37
-    move-result-object v6
-
-    .line 38
-    invoke-virtual {v4, v5, v6}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object v4
-
-    .line 42
-    invoke-virtual {v4, v1}, Ljava/lang/reflect/Method;->setAccessible(Z)V
-
-    .line 43
-    .line 44
-    .line 45
-    invoke-static {}, Lcom/zte/mifavor/launcher/adapter/compat/c;->c()Lcom/zte/mifavor/launcher/adapter/compat/c;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object v5
-
-    .line 49
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->user:Landroid/os/UserHandle;
-
-    .line 50
-    .line 51
-    invoke-virtual {v5, p1}, Lcom/zte/mifavor/launcher/adapter/compat/c;->f(Landroid/os/UserHandle;)I
-
-    .line 52
-    .line 53
-    .line 54
-    move-result p1
-
-    .line 55
-    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 56
-    .line 57
-    .line 58
-    move-result-object p1
-
-    .line 59
-    filled-new-array {v3, v2, p1}, [Ljava/lang/Object;
-
-    .line 60
-    .line 61
-    .line 62
-    move-result-object p1
-
-    .line 63
-    invoke-virtual {v4, p2, p1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 64
-    .line 65
-    .line 66
-    new-instance p1, Ljava/lang/StringBuilder;
-
-    .line 67
-    .line 68
-    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 69
-    .line 70
-    .line 71
-    const-string p2, "preStartProcess packageName:"
-
-    .line 72
-    .line 73
-    invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 74
-    .line 75
-    .line 76
-    invoke-virtual {p1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 77
-    .line 78
-    .line 79
-    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 80
-    .line 81
-    .line 82
-    move-result-object p1
-
-    .line 83
-    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/NoSuchMethodError; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 84
-    .line 85
-    .line 86
-    return-void
-
-    .line 87
-    :catch_0
-    move-exception p1
-
-    .line 88
-    new-instance p2, Ljava/lang/StringBuilder;
-
-    .line 89
-    .line 90
-    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 91
-    .line 92
-    .line 93
-    const-string v2, "preStartProcess e:"
-
-    .line 94
-    .line 95
-    invoke-virtual {p2, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 96
-    .line 97
-    .line 98
-    invoke-virtual {p1}, Ljava/lang/Throwable;->toString()Ljava/lang/String;
-
-    .line 99
-    .line 100
-    .line 101
-    move-result-object p1
-
-    .line 102
-    invoke-virtual {p2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 103
-    .line 104
-    .line 105
-    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 106
-    .line 107
-    .line 108
-    move-result-object p1
-
-    .line 109
-    invoke-static {v0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 110
-    .line 111
-    .line 112
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 113
-    .line 114
-    invoke-interface {p0}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
-
-    .line 115
-    .line 116
-    .line 117
-    move-result-object p0
-
-    .line 118
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 119
-    .line 120
-    .line 121
-    move-result-object p0
-
-    .line 122
-    const-string p1, "\u8c03\u7528\u5931\u8d25: ${e.message}"
-
-    .line 123
-    .line 124
-    invoke-static {p0, p1, v1}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-
-    .line 125
-    .line 126
-    .line 127
-    move-result-object p0
-
-    .line 128
-    invoke-virtual {p0}, Landroid/widget/Toast;->show()V
-
-    .line 129
-    .line 130
-    .line 131
-    return-void
-.end method
-
-.method private w0(Lcom/android/launcher3/model/data/z;)Ln1/r;
-    .locals 2
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v1
-
-    .line 9
-    invoke-static {v1, p1}, Ln1/r;->B(Landroid/content/Context;Lcom/android/launcher3/model/data/z;)Ln1/r;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v1
-
-    .line 13
-    invoke-virtual {v1, v0}, Landroid/graphics/drawable/Drawable;->setLevel(I)Z
-
-    .line 14
-    .line 15
-    .line 16
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->l0(Lcom/android/launcher3/model/data/z;)Z
-
-    .line 17
-    .line 18
-    .line 19
-    move-result p0
-
-    .line 20
-    invoke-virtual {v1, p0}, Ls1/o;->s(Z)V
-
-    .line 21
-    .line 22
-    .line 23
-    return-object v1
-.end method
-
-.method private x0(Lcom/android/launcher3/model/data/z;Ls1/o;)V
-    .locals 3
-
-    .line 1
-    invoke-direct {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->M0(Lcom/android/launcher3/model/data/z;Ls1/o;)Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-nez v0, :cond_0
-
-    .line 6
-    .line 7
-    goto :goto_3
-
-    .line 8
-    :cond_0
-    instance-of v0, p1, Lcom/android/launcher3/model/data/I;
-
-    .line 9
-    .line 10
-    if-eqz v0, :cond_2
-
-    .line 11
-    .line 12
-    move-object p2, p1
-
-    .line 13
-    check-cast p2, Lcom/android/launcher3/model/data/I;
-
-    .line 14
-    .line 15
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
-
-    .line 16
-    .line 17
-    .line 18
-    move-result p1
-
-    .line 19
-    invoke-virtual {p2}, Lcom/android/launcher3/model/data/I;->W()I
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v0
-
-    .line 23
-    if-eqz v0, :cond_1
-
-    .line 24
-    .line 25
     const/4 v0, 0x1
 
-    .line 26
+    if-ne p1, v0, :cond_1
+
+    if-eqz p2, :cond_0
+
+    .line 1665
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    const p2, 0x7f14015b
+
+    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setText(Ljava/lang/CharSequence;)V
+
     goto :goto_0
 
-    .line 27
-    :cond_1
-    const/4 v0, 0x0
-
-    .line 28
-    :goto_0
-    invoke-virtual {p0, p2, p1, v0}, Lcom/android/launcher3/BubbleTextView;->E(Lcom/android/launcher3/model/data/I;IZ)V
-
-    .line 29
-    .line 30
-    .line 31
-    return-void
-
-    .line 32
-    :cond_2
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->D(Lcom/android/launcher3/model/data/z;)Ln1/r;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v1
-
-    .line 36
-    if-eqz v0, :cond_4
-
-    .line 37
-    .line 38
-    move-object v0, p1
-
-    .line 39
-    check-cast v0, Lcom/android/launcher3/model/data/I;
-
-    .line 40
-    .line 41
-    invoke-virtual {v0}, Lcom/android/launcher3/model/data/I;->Y()Z
-
-    .line 42
-    .line 43
-    .line 44
-    move-result v0
-
-    .line 45
-    if-nez v0, :cond_3
-
-    .line 46
-    .line 47
-    goto :goto_1
-
-    .line 48
-    :cond_3
-    return-void
-
-    .line 49
-    :cond_4
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->A()Z
-
-    .line 50
-    .line 51
-    .line 52
-    move-result v0
-
-    .line 53
-    if-nez v0, :cond_6
-
-    .line 54
-    .line 55
-    :goto_1
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
-
-    .line 56
-    .line 57
-    .line 58
-    move-result v0
-
-    .line 59
-    const/16 v2, 0x64
-
-    .line 60
-    .line 61
-    if-ne v0, v2, :cond_6
-
-    .line 62
-    .line 63
-    if-eqz v1, :cond_6
-
-    .line 64
-    .line 65
-    instance-of v0, p2, Ln1/r;
-
-    .line 66
-    .line 67
-    if-eqz v0, :cond_5
-
-    .line 68
-    .line 69
-    check-cast p2, Ln1/r;
-
-    .line 70
-    .line 71
-    goto :goto_2
-
-    .line 72
-    :cond_5
-    move-object p2, v1
-
-    .line 73
-    :goto_2
-    new-instance v0, Lcom/android/launcher3/K;
-
-    .line 74
-    .line 75
-    invoke-direct {v0, p0, p1}, Lcom/android/launcher3/K;-><init>(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/model/data/z;)V
-
-    .line 76
-    .line 77
-    .line 78
-    invoke-virtual {v1, p2, v0}, Ln1/r;->A(Ln1/r;Ljava/lang/Runnable;)V
-
-    .line 79
-    .line 80
-    .line 81
-    :cond_6
-    :goto_3
-    return-void
-.end method
-
-.method public static y0(IILjava/lang/CharSequence;Landroid/text/TextPaint;Lcom/android/launcher3/util/x0;FF)Ljava/lang/CharSequence;
-    .locals 11
-
-    .line 1
-    if-eqz p2, :cond_9
-
-    .line 2
-    .line 3
-    invoke-interface {p2}, Ljava/lang/CharSequence;->length()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v1
-
-    .line 7
-    const/4 v3, 0x0
-
-    .line 8
-    invoke-virtual {p3, p2, v3, v1}, Landroid/text/TextPaint;->measureText(Ljava/lang/CharSequence;II)F
-
-    .line 9
-    .line 10
-    .line 11
-    move-result v1
-
-    .line 12
-    int-to-float v4, p0
-
-    .line 13
-    cmpg-float v1, v1, v4
-
-    .line 14
-    .line 15
-    if-gtz v1, :cond_0
-
-    .line 16
-    .line 17
-    goto/16 :goto_4
-
-    .line 18
-    .line 19
+    .line 1667
     :cond_0
-    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
-    .line 20
-    .line 21
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    move-result-object p1
 
-    .line 22
-    .line 23
-    .line 24
-    const v5, -0x42b33333    # -0.05f
+    const p2, 0x7f140157
 
-    .line 25
-    .line 26
-    .line 27
-    invoke-virtual {p3, v5}, Landroid/text/TextPaint;->setLetterSpacing(F)V
+    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
-    .line 28
-    .line 29
-    .line 30
-    const/4 v5, 0x0
+    move-result-object p1
 
-    .line 31
-    move v6, v3
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 32
-    move v7, v6
-
-    .line 33
-    :goto_0
-    invoke-virtual {p4}, Lcom/android/launcher3/util/x0;->size()I
-
-    .line 34
-    .line 35
-    .line 36
-    move-result v8
-
-    .line 37
-    const/4 v9, 0x1
-
-    .line 38
-    add-int/2addr v8, v9
-
-    .line 39
-    if-ge v6, v8, :cond_8
-
-    .line 40
-    .line 41
-    invoke-virtual {p4}, Lcom/android/launcher3/util/x0;->size()I
-
-    .line 42
-    .line 43
-    .line 44
-    move-result v8
-
-    .line 45
-    if-ge v6, v8, :cond_1
-
-    .line 46
-    .line 47
-    invoke-virtual {p4, v6}, Lcom/android/launcher3/util/x0;->v(I)I
-
-    .line 48
-    .line 49
-    .line 50
-    move-result v8
-
-    .line 51
-    add-int/2addr v8, v9
-
-    .line 52
-    invoke-interface {p2, v7, v8}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
-
-    .line 53
-    .line 54
-    .line 55
-    move-result-object v8
-
-    .line 56
-    goto :goto_1
-
-    .line 57
-    :cond_1
-    invoke-interface {p2}, Ljava/lang/CharSequence;->length()I
-
-    .line 58
-    .line 59
-    .line 60
-    move-result v8
-
-    .line 61
-    invoke-interface {p2, v7, v8}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
-
-    .line 62
-    .line 63
-    .line 64
-    move-result-object v8
-
-    .line 65
-    :goto_1
-    invoke-interface {v8}, Ljava/lang/CharSequence;->length()I
-
-    .line 66
-    .line 67
-    .line 68
-    move-result v10
-
-    .line 69
-    invoke-virtual {p3, v8, v3, v10}, Landroid/text/TextPaint;->measureText(Ljava/lang/CharSequence;II)F
-
-    .line 70
-    .line 71
-    .line 72
-    move-result v10
-
-    .line 73
-    add-float/2addr v5, v10
-
-    .line 74
-    cmpg-float v10, v5, v4
-
-    .line 75
-    .line 76
-    if-gtz v10, :cond_3
-
-    .line 77
-    .line 78
-    invoke-virtual {v1, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/CharSequence;)Ljava/lang/StringBuilder;
-
-    .line 79
-    .line 80
-    .line 81
-    invoke-virtual {p4}, Lcom/android/launcher3/util/x0;->size()I
-
-    .line 82
-    .line 83
-    .line 84
-    move-result v7
-
-    .line 85
-    if-lt v6, v7, :cond_2
-
-    .line 86
-    .line 87
-    goto :goto_3
-
-    .line 88
-    :cond_2
-    invoke-virtual {p4, v6}, Lcom/android/launcher3/util/x0;->v(I)I
-
-    .line 89
-    .line 90
-    .line 91
-    move-result v7
-
-    .line 92
-    add-int/2addr v7, v9
-
-    .line 93
-    add-int/lit8 v6, v6, 0x1
-
-    .line 94
-    .line 95
     goto :goto_0
 
-    .line 96
-    :cond_3
-    if-eqz v6, :cond_7
+    :cond_1
+    const/4 p2, 0x2
 
-    .line 97
-    .line 98
-    invoke-interface {p2}, Ljava/lang/CharSequence;->length()I
+    if-ne p1, p2, :cond_2
 
-    .line 99
-    .line 100
-    .line 101
-    move-result v0
+    .line 1670
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
-    .line 102
-    invoke-interface {p2, v7, v0}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
+    move-result-object p1
 
-    .line 103
-    .line 104
-    .line 105
-    move-result-object v0
+    const p2, 0x7f140159
 
-    .line 106
-    invoke-static {v0, v3}, Ljava/lang/Character;->codePointAt(Ljava/lang/CharSequence;I)I
+    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
-    .line 107
-    .line 108
-    .line 109
-    move-result v3
+    move-result-object p1
 
-    .line 110
-    invoke-static {v3}, Ljava/lang/Character;->getType(I)I
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 111
-    .line 112
-    .line 113
-    move-result v3
-
-    .line 114
-    const/16 v4, 0xc
-
-    .line 115
-    .line 116
-    if-eq v3, v4, :cond_4
-
-    .line 117
-    .line 118
-    const/16 v4, 0xd
-
-    .line 119
-    .line 120
-    if-ne v3, v4, :cond_6
-
-    .line 121
-    .line 122
-    :cond_4
-    invoke-interface {v0}, Ljava/lang/CharSequence;->length()I
-
-    .line 123
-    .line 124
-    .line 125
-    move-result v3
-
-    .line 126
-    if-le v3, v9, :cond_5
-
-    .line 127
-    .line 128
-    invoke-interface {v0}, Ljava/lang/CharSequence;->length()I
-
-    .line 129
-    .line 130
-    .line 131
-    move-result v3
-
-    .line 132
-    invoke-interface {v0, v9, v3}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
-
-    .line 133
-    .line 134
-    .line 135
-    move-result-object v0
-
-    .line 136
-    goto :goto_2
-
-    .line 137
-    :cond_5
-    const-string v0, ""
-
-    .line 138
-    .line 139
-    :cond_6
-    :goto_2
-    sget-object v3, Lcom/android/launcher3/BubbleTextView;->r0:Ljava/lang/Character;
-
-    .line 140
-    .line 141
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 142
-    .line 143
-    .line 144
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/CharSequence;)Ljava/lang/StringBuilder;
-
-    .line 145
-    .line 146
-    .line 147
-    new-instance v0, Landroid/text/StaticLayout;
-
-    .line 148
-    .line 149
-    sget-object v4, Landroid/text/Layout$Alignment;->ALIGN_NORMAL:Landroid/text/Layout$Alignment;
-
-    .line 150
-    .line 151
-    const/4 v7, 0x0
-
-    .line 152
-    move v3, p0
-
-    .line 153
-    move-object v2, p3
-
-    .line 154
-    move/from16 v5, p5
-
-    .line 155
-    .line 156
-    move/from16 v6, p6
-
-    .line 157
-    .line 158
-    invoke-direct/range {v0 .. v7}, Landroid/text/StaticLayout;-><init>(Ljava/lang/CharSequence;Landroid/text/TextPaint;ILandroid/text/Layout$Alignment;FFZ)V
-
-    .line 159
-    .line 160
-    .line 161
-    invoke-virtual {v0}, Landroid/text/StaticLayout;->getHeight()I
-
-    .line 162
-    .line 163
-    .line 164
-    move-result p0
-
-    .line 165
-    if-ge p0, p1, :cond_7
-
-    .line 166
-    .line 167
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 168
-    .line 169
-    .line 170
-    move-result-object p0
-
-    .line 171
-    return-object p0
-
-    .line 172
-    :cond_7
-    return-object p2
-
-    .line 173
-    :cond_8
-    :goto_3
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 174
-    .line 175
-    .line 176
-    move-result-object p0
-
-    .line 177
-    return-object p0
-
-    .line 178
-    :cond_9
-    :goto_4
-    return-object p2
+    :cond_2
+    :goto_0
+    return-void
 .end method
 
-.method private z0(Landroid/content/Context;Lcom/android/launcher3/model/data/z;)V
+.method private setDownloadStateContentDescription(Lcom/android/launcher3/model/data/ItemInfoWithIcon;I)V
+    .locals 5
+
+    .line 1371
+    iget v0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->runtimeStatusFlags:I
+
+    and-int/lit16 v0, v0, 0x4000
+
+    if-eqz v0, :cond_0
+
+    if-nez p2, :cond_0
+
+    .line 1372
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object p2
+
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->title:Ljava/lang/CharSequence;
+
+    filled-new-array {p1}, [Ljava/lang/Object;
+
+    move-result-object p1
+
+    const v0, 0x7f14007c
+
+    invoke-virtual {p2, v0, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    goto :goto_0
+
+    .line 1373
+    :cond_0
+    iget v0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->runtimeStatusFlags:I
+
+    and-int/lit16 v0, v0, 0xc00
+
+    if-eqz v0, :cond_2
+
+    .line 1375
+    invoke-static {}, Ljava/text/NumberFormat;->getPercentInstance()Ljava/text/NumberFormat;
+
+    move-result-object v0
+
+    int-to-double v1, p2
+
+    const-wide v3, 0x3f847ae147ae147bL    # 0.01
+
+    mul-double/2addr v1, v3
+
+    .line 1376
+    invoke-virtual {v0, v1, v2}, Ljava/text/NumberFormat;->format(D)Ljava/lang/String;
+
+    move-result-object p2
+
+    .line 1377
+    iget v0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->runtimeStatusFlags:I
+
+    and-int/lit16 v0, v0, 0x400
+
+    if-eqz v0, :cond_1
+
+    .line 1378
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->title:Ljava/lang/CharSequence;
+
+    filled-new-array {p1, p2}, [Ljava/lang/Object;
+
+    move-result-object p1
+
+    const p2, 0x7f140085
+
+    .line 1379
+    invoke-virtual {v0, p2, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1378
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    goto :goto_0
+
+    .line 1381
+    :cond_1
+    iget v0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->runtimeStatusFlags:I
+
+    and-int/lit16 v0, v0, 0x800
+
+    if-eqz v0, :cond_2
+
+    .line 1383
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->title:Ljava/lang/CharSequence;
+
+    filled-new-array {p1, p2}, [Ljava/lang/Object;
+
+    move-result-object p1
+
+    const p2, 0x7f140082
+
+    .line 1384
+    invoke-virtual {v0, p2, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1383
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    :cond_2
+    :goto_0
+    return-void
+.end method
+
+.method private startCheckboxAnim(Z)V
+    .locals 3
+
+    .line 1930
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .line 1931
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
+
+    instance-of v2, v1, Landroid/graphics/drawable/AnimatedVectorDrawable;
+
+    if-eqz v2, :cond_0
+
+    .line 1932
+    check-cast v1, Landroid/graphics/drawable/AnimatedVectorDrawable;
+
+    invoke-virtual {v1}, Landroid/graphics/drawable/AnimatedVectorDrawable;->stop()V
+
+    :cond_0
+    if-eqz p1, :cond_1
+
+    const p1, 0x7f080d0d
+
+    goto :goto_0
+
+    :cond_1
+    const p1, 0x7f080d0f
+
+    .line 1936
+    :goto_0
+    invoke-static {v0, p1}, Landroidx/core/content/ContextCompat;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object p1
+
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
+
+    if-nez p1, :cond_2
+
+    .line 1939
+    const-string p0, "BubbleTextView"
+
+    const-string/jumbo p1, "startCheckBoxAnim: checkbox drawable is null."
+
+    invoke-static {p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    .line 1943
+    :cond_2
+    instance-of v0, p1, Landroid/graphics/drawable/AnimatedVectorDrawable;
+
+    if-eqz v0, :cond_3
+
+    .line 1944
+    invoke-virtual {p1, p0}, Landroid/graphics/drawable/Drawable;->setCallback(Landroid/graphics/drawable/Drawable$Callback;)V
+
+    .line 1945
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mCheckboxDrawable:Landroid/graphics/drawable/Drawable;
+
+    check-cast p0, Landroid/graphics/drawable/AnimatedVectorDrawable;
+
+    invoke-virtual {p0}, Landroid/graphics/drawable/AnimatedVectorDrawable;->start()V
+
+    :cond_3
+    return-void
+.end method
+
+.method private updateIcon(Landroid/graphics/drawable/Drawable;)V
     .locals 2
 
-    .line 1
-    const-wide/16 v0, 0x5dc
+    .line 1569
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mLayoutHorizontal:Z
 
-    .line 2
-    .line 3
-    invoke-static {v0, v1}, Lx1/O;->p4(J)Z
+    const/4 v1, 0x0
 
-    .line 4
-    .line 5
-    .line 6
-    sget-object v0, Lcom/android/launcher3/util/m0;->c:Ljava/util/concurrent/ThreadPoolExecutor;
+    if-eqz v0, :cond_0
 
-    .line 7
-    .line 8
-    new-instance v1, Lcom/android/launcher3/L;
+    .line 1570
+    invoke-virtual {p0, p1, v1, v1, v1}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablesRelative(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 9
-    .line 10
-    invoke-direct {v1, p0, p2, p1}, Lcom/android/launcher3/L;-><init>(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/model/data/z;Landroid/content/Context;)V
+    goto :goto_0
 
-    .line 11
-    .line 12
-    .line 13
-    invoke-virtual {v0, v1}, Ljava/util/concurrent/ThreadPoolExecutor;->execute(Ljava/lang/Runnable;)V
+    .line 1572
+    :cond_0
+    invoke-virtual {p0, v1, p1, v1, v1}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawables(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 14
-    .line 15
-    .line 16
+    :goto_0
+    return-void
+.end method
+
+.method private updateProgressBarUi(Lcom/android/launcher3/graphics/PreloadIconDrawable;)V
+    .locals 3
+
+    .line 1242
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    .line 1243
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->applyProgressLevel()Lcom/android/launcher3/graphics/PreloadIconDrawable;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_0
+
+    if-eqz p1, :cond_0
+
+    .line 1245
+    new-instance v2, Lcom/android/launcher3/BubbleTextView$$ExternalSyntheticLambda0;
+
+    invoke-direct {v2, p0, v0}, Lcom/android/launcher3/BubbleTextView$$ExternalSyntheticLambda0;-><init>(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/icons/FastBitmapDrawable;)V
+
+    invoke-virtual {v1, p1, v2}, Lcom/android/launcher3/graphics/PreloadIconDrawable;->maybePerformFinishedAnimation(Lcom/android/launcher3/graphics/PreloadIconDrawable;Ljava/lang/Runnable;)V
+
+    :cond_0
     return-void
 .end method
 
 
 # virtual methods
-.method public A(Lcom/android/launcher3/model/data/z;)V
+.method public varargs animateDotScale([F)V
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 445
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->cancelDotScaleAnim()V
 
-    .line 2
-    .line 3
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->G(Lcom/android/launcher3/model/data/z;)Z
+    .line 446
+    sget-object v0, Lcom/android/launcher3/BubbleTextView;->DOT_SCALE_PROPERTY:Landroid/util/Property;
 
-    .line 4
-    .line 5
-    .line 6
-    move-result v1
+    invoke-static {p0, v0, p1}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
-    .line 7
-    if-nez v1, :cond_0
-
-    .line 8
-    .line 9
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setNonPendingIcon(Lcom/android/launcher3/model/data/z;)V
-
-    .line 10
-    .line 11
-    .line 12
-    :cond_0
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->B(Lcom/android/launcher3/model/data/y;)V
-
-    .line 13
-    .line 14
-    .line 15
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->x0(Lcom/android/launcher3/model/data/z;Ls1/o;)V
-
-    .line 16
-    .line 17
-    .line 18
-    return-void
-.end method
-
-.method public A0(Ljava/util/function/Consumer;Ljava/lang/Runnable;)V
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/function/Consumer<",
-            "Landroid/view/MotionEvent;",
-            ">;",
-            "Ljava/lang/Runnable;",
-            ")V"
-        }
-    .end annotation
-
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->f0:Ljava/util/function/Consumer;
-
-    .line 2
-    .line 3
-    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->g0:Ljava/lang/Runnable;
-
-    .line 4
-    .line 5
-    return-void
-.end method
-
-.method public B(Lcom/android/launcher3/model/data/y;)V
-    .locals 2
-
-    .line 1
-    iget-object v0, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_1
-
-    .line 4
-    .line 5
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->i:Ljava/lang/CharSequence;
-
-    .line 6
-    .line 7
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->j:Ljava/lang/CharSequence;
-
-    .line 8
-    .line 9
-    sget-object v1, Lcom/android/launcher3/BubbleTextView;->s0:LI1/e$b;
-
-    .line 10
-    .line 11
-    invoke-static {v0, v1}, LI1/e;->c(Ljava/lang/CharSequence;LI1/e$b;)Lcom/android/launcher3/util/x0;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v1
-
-    .line 15
-    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->h:Lcom/android/launcher3/util/x0;
-
-    .line 16
-    .line 17
-    invoke-static {}, Lcom/android/launcher3/y0;->I0()Z
-
-    .line 18
-    .line 19
-    .line 20
-    move-result v1
-
-    .line 21
-    if-eqz v1, :cond_0
-
-    .line 22
-    .line 23
-    instance-of v1, p1, Lcom/android/launcher3/model/data/z;
-
-    .line 24
-    .line 25
-    if-eqz v1, :cond_0
-
-    .line 26
-    .line 27
-    move-object v1, p1
-
-    .line 28
-    check-cast v1, Lcom/android/launcher3/model/data/z;
-
-    .line 29
-    .line 30
-    invoke-virtual {v1}, Lcom/android/launcher3/model/data/z;->B()Z
-
-    .line 31
-    .line 32
-    .line 33
-    move-result v1
-
-    .line 34
-    if-eqz v1, :cond_0
-
-    .line 35
-    .line 36
-    invoke-direct {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setTextWithArchivingIcon(Ljava/lang/CharSequence;)V
-
-    .line 37
-    .line 38
-    .line 39
-    goto :goto_0
-
-    .line 40
-    :cond_0
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 41
-    .line 42
-    .line 43
-    :cond_1
-    :goto_0
-    iget-object v0, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
-
-    .line 44
-    .line 45
-    if-eqz v0, :cond_3
-
-    .line 46
-    .line 47
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->isDisabled()Z
-
-    .line 48
-    .line 49
-    .line 50
-    move-result v0
-
-    .line 51
-    if-eqz v0, :cond_2
-
-    .line 52
-    .line 53
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 54
-    .line 55
-    .line 56
     move-result-object v0
 
-    .line 57
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotScaleAnim:Landroid/animation/Animator;
 
-    .line 58
-    .line 59
-    filled-new-array {p1}, [Ljava/lang/Object;
+    .line 447
+    new-instance v1, Lcom/android/launcher3/BubbleTextView$3;
 
-    .line 60
-    .line 61
-    .line 62
-    move-result-object p1
+    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/BubbleTextView$3;-><init>(Lcom/android/launcher3/BubbleTextView;[F)V
 
-    .line 63
-    const v1, 0x7f140191
+    invoke-virtual {v0, v1}, Landroid/animation/Animator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 64
-    .line 65
-    .line 66
-    invoke-virtual {v0, v1, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+    .line 465
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mDotScaleAnim:Landroid/animation/Animator;
 
-    .line 67
-    .line 68
-    .line 69
-    move-result-object p1
+    invoke-virtual {p0}, Landroid/animation/Animator;->start()V
 
-    .line 70
+    return-void
+.end method
+
+.method protected applyCompoundDrawables(Landroid/graphics/drawable/Drawable;)V
+    .locals 2
+
+    if-nez p1, :cond_0
+
+    return-void
+
+    .line 1436
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_1
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    move v0, v1
+
+    :goto_0
+    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisableRelayout:Z
+
+    .line 1438
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    invoke-virtual {p1, v1, v1, v0, v0}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+
+    .line 1440
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->updateIcon(Landroid/graphics/drawable/Drawable;)V
+
+    .line 1443
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    if-eqz v0, :cond_2
+
+    instance-of v0, v0, Lcom/android/launcher3/icons/PlaceHolderIconDrawable;
+
+    if-eqz v0, :cond_2
+
+    .line 1445
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->iconUpdateAnimationEnabled()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 1446
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    check-cast v0, Lcom/android/launcher3/icons/PlaceHolderIconDrawable;
+
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/icons/PlaceHolderIconDrawable;->animateIconUpdate(Landroid/graphics/drawable/Drawable;)V
+
+    .line 1449
+    :cond_2
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mDisableRelayout:Z
+
+    return-void
+.end method
+
+.method public applyDotState(Lcom/android/launcher3/model/data/ItemInfo;Z)V
+    .locals 11
+
+    .line 1313
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v0
+
+    iget-object v0, v0, Lcom/android/launcher3/DeviceProfile;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
+
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
+
+    .line 1314
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    instance-of v0, v0, Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    if-eqz v0, :cond_d
+
+    .line 1315
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    if-lez v0, :cond_0
+
+    move v3, v1
+
+    goto :goto_0
+
+    :cond_0
+    move v3, v2
+
+    .line 1317
+    :goto_0
+    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->mDotInfo:Lcom/android/launcher3/dot/DotInfo;
+
+    iget-object v5, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v5, p1}, Lcom/android/launcher3/views/ActivityContext;->getDotInfoForItem(Lcom/android/launcher3/model/data/ItemInfo;)Lcom/android/launcher3/dot/DotInfo;
+
+    move-result-object v5
+
+    invoke-virtual {v4, v5}, Lcom/android/launcher3/dot/DotInfo;->setDotInfo(Lcom/android/launcher3/dot/DotInfo;)V
+
+    .line 1319
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getInstanceNoCreate()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v4
+
+    if-eqz v4, :cond_1
+
+    .line 1320
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getInstanceNoCreate()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/android/launcher3/ResourceManager;->isZenForbidBadge()Z
+
+    move-result v4
+
     goto :goto_1
 
-    .line 71
-    :cond_2
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
+    :cond_1
+    move v4, v2
 
-    .line 72
-    .line 73
     :goto_1
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
+    if-eqz v4, :cond_2
 
-    .line 74
-    .line 75
-    .line 76
+    move v5, v2
+
+    goto :goto_2
+
+    .line 1323
+    :cond_2
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
+
+    move-result v5
+
+    :goto_2
+    if-eqz v4, :cond_3
+
+    move v4, v2
+
+    goto :goto_3
+
+    .line 1324
+    :cond_3
+    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->mDotInfo:Lcom/android/launcher3/dot/DotInfo;
+
+    invoke-virtual {v4}, Lcom/android/launcher3/dot/DotInfo;->getNotificationCount()I
+
+    move-result v4
+
+    .line 1326
+    :goto_3
+    iget-object v6, p0, Lcom/android/launcher3/BubbleTextView;->mDotInfo:Lcom/android/launcher3/dot/DotInfo;
+
+    invoke-virtual {v6, v4}, Lcom/android/launcher3/dot/DotInfo;->updateNumberDotInfo(I)V
+
+    if-lez v5, :cond_4
+
+    move v4, v1
+
+    goto :goto_4
+
+    :cond_4
+    move v4, v2
+
+    :goto_4
+    if-eqz v4, :cond_5
+
+    const/high16 v6, 0x3f800000    # 1.0f
+
+    goto :goto_5
+
+    :cond_5
+    const/4 v6, 0x0
+
+    .line 1336
+    :goto_5
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfo;->getTargetComponent()Landroid/content/ComponentName;
+
+    move-result-object v7
+
+    invoke-static {v7}, Lcom/android/launcher3/nubia/NubiaPushBadgeHelper;->hasPushConfig(Landroid/content/ComponentName;)Z
+
+    move-result v7
+
+    if-nez v3, :cond_6
+
+    if-nez v4, :cond_6
+
+    if-eqz v7, :cond_a
+
+    :cond_6
+    if-nez v3, :cond_7
+
+    if-eqz v4, :cond_8
+
+    .line 1339
+    :cond_7
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isAllAppRecommend()Z
+
+    move-result v8
+
+    if-nez v8, :cond_8
+
+    instance-of v8, p0, Lcom/android/launcher3/widget/suggest/SuggestBubbleTextView;
+
+    if-nez v8, :cond_8
+
+    .line 1340
+    invoke-static {v0, v5, p1}, Lcom/android/launcher3/resource/UnReadInfoManager;->sendMessageChangeToWindowReply(IILcom/android/launcher3/model/data/ItemInfo;)V
+
+    .line 1343
+    :cond_8
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    const-string v9, "applyDotState: wasDotted: "
+
+    invoke-direct {v8, v9}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v8, v3}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    const-string v9, ", isDotted: "
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    const-string v9, ", "
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, p2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isShown()Z
+
+    move-result v10
+
+    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    const-string v10, ", has push config: "
+
+    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v8
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ", Suggest="
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    instance-of v8, p0, Lcom/android/launcher3/widget/suggest/SuggestBubbleTextView;
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ", dotCount="
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v7, ", newDotCount="
+
+    invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v7, "BubbleTextView"
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    if-eqz p2, :cond_9
+
+    if-nez v3, :cond_9
+
+    if-eqz v4, :cond_9
+
+    .line 1346
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isShown()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_9
+
+    .line 1347
+    new-array p2, v1, [F
+
+    aput v6, p2, v2
+
+    invoke-virtual {p0, p2}, Lcom/android/launcher3/BubbleTextView;->animateDotScale([F)V
+
+    goto :goto_6
+
+    .line 1349
+    :cond_9
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->cancelDotScaleAnim()V
+
+    .line 1350
+    iget-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iput v6, p2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->scale:F
+
+    .line 1351
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->invalidate()V
+
+    .line 1355
+    :cond_a
+    :goto_6
+    iget-object p2, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result p2
+
+    if-nez p2, :cond_d
+
+    .line 1356
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfo;->isDisabled()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_b
+
+    .line 1357
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object p2
+
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    filled-new-array {p1}, [Ljava/lang/Object;
+
+    move-result-object p1
+
+    const v0, 0x7f140154
+
+    invoke-virtual {p2, v0, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    goto :goto_7
+
+    .line 1359
+    :cond_b
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->hasDot()Z
+
+    move-result p2
+
+    if-eqz p2, :cond_c
+
+    .line 1361
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    .line 1362
+    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1, v5}, Lcom/android/launcher3/BubbleTextView;->getAppLabelPluralString(Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1361
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    goto :goto_7
+
+    .line 1364
+    :cond_c
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    :cond_d
+    :goto_7
+    return-void
+.end method
+
+.method public applyFromApplicationInfo(Lcom/android/launcher3/model/data/AppInfo;)V
+    .locals 1
+
+    .line 518
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyIconAndLabel(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+
+    .line 521
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setItemInfo(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+
+    .line 525
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->verifyHighRes()V
+
+    .line 527
+    iget v0, p1, Lcom/android/launcher3/model/data/AppInfo;->runtimeStatusFlags:I
+
+    and-int/lit16 v0, v0, 0xc00
+
+    if-eqz v0, :cond_0
+
+    .line 528
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->applyProgressLevel()Lcom/android/launcher3/graphics/PreloadIconDrawable;
+
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 530
+    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->applyDotState(Lcom/android/launcher3/model/data/ItemInfo;Z)V
+
+    .line 531
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/AppInfo;->getProgressLevel()I
+
+    move-result v0
+
+    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->setDownloadStateContentDescription(Lcom/android/launcher3/model/data/ItemInfoWithIcon;I)V
+
+    return-void
+.end method
+
+.method public applyFromItemInfoWithIcon(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+    .locals 1
+
+    .line 539
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyIconAndLabel(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+
+    .line 541
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setItemInfo(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+
+    .line 544
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->verifyHighRes()V
+
+    .line 546
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->getProgressLevel()I
+
+    move-result v0
+
+    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->setDownloadStateContentDescription(Lcom/android/launcher3/model/data/ItemInfoWithIcon;I)V
+
+    return-void
+.end method
+
+.method public applyFromShortcutInfoMFV(Lcom/android/launcher3/model/data/WorkspaceItemInfo;)V
+    .locals 0
+
+    .line 1657
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getState()I
+
+    return-void
+.end method
+
+.method public applyFromWorkspaceItem(Lcom/android/launcher3/model/data/WorkspaceItemInfo;)V
+    .locals 1
+
+    const/4 v0, 0x0
+
+    .line 470
+    invoke-virtual {p0, p1, v0, v0}, Lcom/android/launcher3/BubbleTextView;->applyFromWorkspaceItem(Lcom/android/launcher3/model/data/WorkspaceItemInfo;ZI)V
+
+    return-void
+.end method
+
+.method public applyFromWorkspaceItem(Lcom/android/launcher3/model/data/WorkspaceItemInfo;Lcom/android/launcher3/graphics/PreloadIconDrawable;)V
+    .locals 0
+
+    .line 507
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyIconAndLabel(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+
+    .line 508
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setItemInfo(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+
+    .line 509
+    invoke-virtual {p0, p2}, Lcom/android/launcher3/BubbleTextView;->applyLoadingState(Lcom/android/launcher3/graphics/PreloadIconDrawable;)V
+
+    const/4 p2, 0x1
+
+    .line 510
+    invoke-virtual {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->applyDotState(Lcom/android/launcher3/model/data/ItemInfo;Z)V
+
+    .line 511
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getProgressLevel()I
+
+    move-result p2
+
+    invoke-direct {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->setDownloadStateContentDescription(Lcom/android/launcher3/model/data/ItemInfoWithIcon;I)V
+
+    .line 513
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyFromShortcutInfoMFV(Lcom/android/launcher3/model/data/WorkspaceItemInfo;)V
+
+    return-void
+.end method
+
+.method public applyFromWorkspaceItem(Lcom/android/launcher3/model/data/WorkspaceItemInfo;ZI)V
+    .locals 0
+
+    const/4 p2, 0x0
+
+    .line 475
+    invoke-virtual {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->applyFromWorkspaceItem(Lcom/android/launcher3/model/data/WorkspaceItemInfo;Lcom/android/launcher3/graphics/PreloadIconDrawable;)V
+
+    return-void
+.end method
+
+.method public applyIconAndLabel(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+    .locals 4
+
+    .line 562
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->shouldUseTheme()Z
+
+    move-result v0
+
+    .line 564
+    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mHideBadge:Z
+
+    if-nez v1, :cond_0
+
+    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
+    const/4 v2, 0x7
+
+    if-ne v1, v2, :cond_1
+
+    :cond_0
+    or-int/lit8 v0, v0, 0x2
+
+    .line 567
+    :cond_1
+    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mSkipUserBadge:Z
+
+    if-eqz v1, :cond_2
+
+    or-int/lit8 v0, v0, 0x4
+
+    .line 570
+    :cond_2
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {p1, v1, v0}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->newIcon(Landroid/content/Context;I)Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    move-result-object v0
+
+    .line 571
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/icons/FastBitmapDrawable;->getIconColor()I
+
+    move-result v2
+
+    iput v2, v1, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->appColor:I
+
+    .line 576
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    const v3, 0x7f060766
+
+    invoke-static {v2, v3}, Landroidx/core/content/ContextCompat;->getColor(Landroid/content/Context;I)I
+
+    move-result v2
+
+    iput v2, v1, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotColor:I
+
+    .line 578
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setIcon(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
+
+    .line 579
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyLabel(Lcom/android/launcher3/model/data/ItemInfo;)V
+
+    .line 581
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v0, Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getResourceManager()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v0
+
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->getTargetPackage()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/ResourceManager;->isAppLimited(Ljava/lang/String;)Z
+
+    move-result v0
+
+    iput-boolean v0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isAppLimited:Z
+
+    .line 582
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isVdmcAppLimitEnable()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast p0, Landroid/content/Context;
+
+    invoke-static {p0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object p0
+
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->getTargetPackage()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/LauncherAppState;->isAppVdmcLimited(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_3
+
+    const/4 p0, 0x1
+
+    .line 583
+    iput-boolean p0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isAppVdmcLimited:Z
+
     :cond_3
     return-void
 .end method
 
-.method public B0()V
-    .locals 4
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    iput v1, v0, Ls1/m$a;->a:I
-
-    .line 5
-    .line 6
-    iput v1, v0, Ls1/m$a;->b:I
-
-    .line 7
-    .line 8
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->I()V
-
-    .line 9
-    .line 10
-    .line 11
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->E:Z
-
-    .line 12
-    .line 13
-    const/4 v0, 0x0
-
-    .line 14
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
-
-    .line 15
-    .line 16
-    .line 17
-    iput v1, p0, Lcom/android/launcher3/BubbleTextView;->N:I
-
-    .line 18
-    .line 19
-    const/4 v2, 0x0
-
-    .line 20
-    iput v2, p0, Lcom/android/launcher3/BubbleTextView;->O:F
-
-    .line 21
-    .line 22
-    iput v1, p0, Lcom/android/launcher3/BubbleTextView;->P:I
-
-    .line 23
-    .line 24
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->J()V
-
-    .line 25
-    .line 26
-    .line 27
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setTag(Ljava/lang/Object;)V
-
-    .line 28
-    .line 29
-    .line 30
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 31
-    .line 32
-    if-eqz v3, :cond_0
-
-    .line 33
-    .line 34
-    invoke-virtual {v3}, Lcom/android/launcher3/util/w;->e()V
-
-    .line 35
-    .line 36
-    .line 37
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 38
-    .line 39
-    :cond_0
-    invoke-virtual {p0, v2}, Landroid/widget/TextView;->setPivotY(F)V
-
-    .line 40
-    .line 41
-    .line 42
-    const/high16 v0, 0x3f800000    # 1.0f
-
-    .line 43
-    .line 44
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setAlpha(F)V
-
-    .line 45
-    .line 46
-    .line 47
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setScaleY(F)V
-
-    .line 48
-    .line 49
-    .line 50
-    invoke-virtual {p0, v2}, Landroid/widget/TextView;->setTranslationY(F)V
-
-    .line 51
-    .line 52
-    .line 53
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->setVisibility(I)V
-
-    .line 54
-    .line 55
-    .line 56
-    return-void
-.end method
-
-.method public C(Z)V
+.method public applyLabel(Lcom/android/launcher3/model/data/ItemInfo;)V
     .locals 2
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 608
+    iget-object v0, p1, Lcom/android/launcher3/model/data/ItemInfo;->title:Ljava/lang/CharSequence;
 
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    instance-of v0, v0, Lcom/android/launcher3/model/data/y;
-
-    .line 6
-    .line 7
     if-eqz v0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 610
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mLastOriginalText:Ljava/lang/CharSequence;
 
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v0
+    .line 611
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mLastModifiedText:Ljava/lang/CharSequence;
 
-    .line 13
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    .line 612
+    sget-object v1, Lcom/android/launcher3/BubbleTextView;->MATCHER:Lcom/android/launcher3/search/StringMatcherUtility$StringMatcher;
 
-    .line 14
-    .line 15
-    iget-boolean v0, v0, Lcom/android/launcher3/model/data/y;->isAppLimited:Z
+    invoke-static {v0, v1}, Lcom/android/launcher3/search/StringMatcherUtility;->getListOfBreakpoints(Ljava/lang/CharSequence;Lcom/android/launcher3/search/StringMatcherUtility$StringMatcher;)Lcom/android/launcher3/util/IntArray;
 
-    .line 16
-    .line 17
-    if-eq p1, v0, :cond_0
-
-    .line 18
-    .line 19
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    .line 20
-    .line 21
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 22
-    .line 23
-    .line 24
-    const-string v1, "applyLimitState: item: "
-
-    .line 25
-    .line 26
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
-
-    .line 30
-    .line 31
-    .line 32
     move-result-object v1
 
-    .line 33
+    iput-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mBreakPointsIntArray:Lcom/android/launcher3/util/IntArray;
+
+    .line 613
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 615
+    :cond_0
+    iget-object v0, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    if-eqz v0, :cond_2
+
+    .line 616
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfo;->isDisabled()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 617
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    filled-new-array {p1}, [Ljava/lang/Object;
+
+    move-result-object p1
+
+    const v1, 0x7f140154
+
+    invoke-virtual {v0, v1, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 618
+    :cond_1
+    iget-object p1, p1, Lcom/android/launcher3/model/data/ItemInfo;->contentDescription:Ljava/lang/CharSequence;
+
+    .line 616
+    :goto_0
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    :cond_2
+    return-void
+.end method
+
+.method public applyLimitState(Z)V
+    .locals 2
+
+    .line 2134
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfo;
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
+
+    iget-boolean v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->isAppLimited:Z
+
+    if-eq p1, v0, :cond_0
+
+    .line 2135
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v1, "applyLimitState: item: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v1
+
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    .line 34
-    .line 35
-    .line 36
+    move-result-object v0
+
     const-string v1, ", "
 
-    .line 37
-    .line 38
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 39
-    .line 40
-    .line 41
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    move-result-object v0
 
-    .line 42
-    .line 43
+    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    .line 44
-    .line 45
-    .line 46
+    move-result-object v0
+
     const-string v1, ", isLimited: "
 
-    .line 47
-    .line 48
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 49
-    .line 50
-    .line 51
+    move-result-object v0
+
     invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
-    .line 52
-    .line 53
-    .line 54
+    move-result-object v0
+
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    .line 55
-    .line 56
-    .line 57
     move-result-object v0
 
-    .line 58
     const-string v1, "BubbleTextView"
 
-    .line 59
-    .line 60
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 61
-    .line 62
-    .line 63
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 2136
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 64
-    .line 65
-    .line 66
     move-result-object v0
 
-    .line 67
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 68
-    .line 69
-    iput-boolean p1, v0, Lcom/android/launcher3/model/data/y;->isAppLimited:Z
+    iput-boolean p1, v0, Lcom/android/launcher3/model/data/ItemInfo;->isAppLimited:Z
 
-    .line 70
-    .line 71
-    invoke-virtual {p0}, Landroid/widget/TextView;->invalidate()V
+    .line 2137
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->invalidate()V
 
-    .line 72
-    .line 73
-    .line 74
     :cond_0
     return-void
 .end method
 
-.method public C0()V
-    .locals 3
+.method public applyLoadingState(Lcom/android/launcher3/graphics/PreloadIconDrawable;)V
+    .locals 2
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
+    .line 1223
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
+    move-result-object p1
+
+    instance-of p1, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
+
+    if-eqz p1, :cond_1
+
+    .line 1224
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
+
+    .line 1227
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getProgressLevel()I
+
+    move-result v0
+
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getState()I
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const/4 v1, 0x1
+
+    goto :goto_0
+
+    :cond_0
     const/4 v1, 0x0
 
-    .line 4
-    iput v1, v0, Ls1/m$a;->a:I
+    :goto_0
+    invoke-virtual {p0, p1, v0, v1}, Lcom/android/launcher3/BubbleTextView;->applyPromiseStateMFV(Lcom/android/launcher3/model/data/WorkspaceItemInfo;IZ)V
 
-    .line 5
-    .line 6
-    iput v1, v0, Ls1/m$a;->b:I
-
-    .line 7
-    .line 8
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->I()V
-
-    .line 9
-    .line 10
-    .line 11
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->E:Z
-
-    .line 12
-    .line 13
-    const/4 v0, 0x0
-
-    .line 14
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
-
-    .line 15
-    .line 16
-    .line 17
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 18
-    .line 19
-    if-eqz v2, :cond_0
-
-    .line 20
-    .line 21
-    invoke-virtual {v2}, Lcom/android/launcher3/util/w;->e()V
-
-    .line 22
-    .line 23
-    .line 24
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 25
-    .line 26
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 27
-    .line 28
-    .line 29
-    move-result-object v0
-
-    .line 30
-    if-eqz v0, :cond_1
-
-    .line 31
-    .line 32
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v0
-
-    .line 36
-    check-cast v0, Lcom/android/launcher3/model/data/y;
-
-    .line 37
-    .line 38
-    invoke-virtual {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->u(Lcom/android/launcher3/model/data/y;Z)V
-
-    .line 39
-    .line 40
-    .line 41
     :cond_1
     return-void
 .end method
 
-.method public D0()V
-    .locals 3
+.method public applyProgressLevel()Lcom/android/launcher3/graphics/PreloadIconDrawable;
+    .locals 6
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 1252
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    instance-of v0, v0, Lr1/c;
-
-    .line 4
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 8
-    .line 9
-    .line 10
     move-result-object v0
 
-    .line 11
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
 
-    .line 12
-    .line 13
-    new-instance v1, Ljava/lang/StringBuilder;
+    const/4 v1, 0x0
 
-    .line 14
-    .line 15
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    if-eqz v0, :cond_5
 
-    .line 16
-    .line 17
-    .line 18
-    const-string v2, "resetDownloadInstallDrawable info.title: "
+    .line 1253
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 19
-    .line 20
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 21
-    .line 22
-    .line 23
-    iget-object v0, v0, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 24
-    .line 25
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 26
-    .line 27
-    .line 28
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 29
-    .line 30
-    .line 31
     move-result-object v0
 
-    .line 32
-    const-string v1, "BubbleTextView"
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
 
-    .line 33
-    .line 34
-    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isInactiveArchive()Z
 
-    .line 35
-    .line 36
-    .line 37
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 38
-    .line 39
-    check-cast v0, Lr1/c;
-
-    .line 40
-    .line 41
-    invoke-virtual {v0}, Lr1/c;->x()V
-
-    .line 42
-    .line 43
-    .line 44
-    const/4 v0, 0x0
-
-    .line 45
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 46
-    .line 47
-    :cond_0
-    return-void
-.end method
-
-.method public E(Lcom/android/launcher3/model/data/I;IZ)V
-    .locals 7
-
-    .line 1
-    if-lez p2, :cond_0
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
-
-    .line 7
-    iget-object v1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 8
-    .line 9
-    invoke-static {}, Ljava/text/NumberFormat;->getPercentInstance()Ljava/text/NumberFormat;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v2
-
-    .line 13
-    int-to-double v3, p2
-
-    .line 14
-    const-wide v5, 0x3f847ae147ae147bL    # 0.01
-
-    .line 15
-    .line 16
-    .line 17
-    .line 18
-    .line 19
-    mul-double/2addr v3, v5
-
-    .line 20
-    invoke-virtual {v2, v3, v4}, Ljava/text/NumberFormat;->format(D)Ljava/lang/String;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object v2
-
-    .line 24
-    filled-new-array {v1, v2}, [Ljava/lang/Object;
-
-    .line 25
-    .line 26
-    .line 27
-    move-result-object v1
-
-    .line 28
-    const v2, 0x7f140090
-
-    .line 29
-    .line 30
-    .line 31
-    invoke-virtual {v0, v2, v1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 32
-    .line 33
-    .line 34
-    move-result-object v0
-
-    .line 35
-    goto :goto_0
-
-    .line 36
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 37
-    .line 38
-    .line 39
-    move-result-object v0
-
-    .line 40
-    iget-object v1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 41
-    .line 42
-    filled-new-array {v1}, [Ljava/lang/Object;
-
-    .line 43
-    .line 44
-    .line 45
-    move-result-object v1
-
-    .line 46
-    const v2, 0x7f1400a3
-
-    .line 47
-    .line 48
-    .line 49
-    invoke-virtual {v0, v2, v1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object v0
-
-    .line 53
-    :goto_0
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 54
-    .line 55
-    .line 56
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/I;->W()I
-
-    .line 57
-    .line 58
-    .line 59
     move-result v0
 
-    .line 60
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/I;->U()Ljava/lang/Boolean;
+    if-eqz v0, :cond_0
 
-    .line 61
-    .line 62
-    .line 63
-    move-result-object v1
+    goto :goto_3
 
-    .line 64
-    invoke-virtual {v1}, Ljava/lang/Boolean;->booleanValue()Z
+    .line 1257
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 65
-    .line 66
-    .line 67
-    move-result v1
+    move-result-object v0
 
-    .line 68
-    invoke-direct {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->I0(IZ)V
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
 
-    .line 69
-    .line 70
-    .line 71
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 1258
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->getProgressLevel()I
 
-    .line 72
-    .line 73
-    if-eqz v2, :cond_b
+    move-result v2
 
-    .line 74
-    .line 75
-    const/4 v3, 0x2
+    const/16 v3, 0x64
 
-    .line 76
-    const/4 v4, 0x3
+    if-lt v2, v3, :cond_2
 
-    .line 77
-    const/4 v5, 0x1
+    .line 1260
+    iget-object v3, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->contentDescription:Ljava/lang/CharSequence;
 
-    .line 78
-    if-eq v0, v5, :cond_3
+    if-eqz v3, :cond_1
 
-    .line 79
-    .line 80
-    if-eq v0, v3, :cond_3
+    .line 1261
+    iget-object v3, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->contentDescription:Ljava/lang/CharSequence;
 
-    .line 81
-    .line 82
-    if-ne v0, v4, :cond_1
+    goto :goto_0
 
-    .line 83
-    .line 84
+    :cond_1
+    const-string v3, ""
+
+    .line 1260
+    :goto_0
+    invoke-virtual {p0, v3}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    goto :goto_1
+
+    :cond_2
+    if-lez v2, :cond_3
+
+    .line 1263
+    invoke-direct {p0, v0, v2}, Lcom/android/launcher3/BubbleTextView;->setDownloadStateContentDescription(Lcom/android/launcher3/model/data/ItemInfoWithIcon;I)V
+
+    goto :goto_1
+
+    .line 1265
+    :cond_3
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v3
+
+    iget-object v4, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->title:Ljava/lang/CharSequence;
+
+    filled-new-array {v4}, [Ljava/lang/Object;
+
+    move-result-object v4
+
+    const v5, 0x7f140092
+
+    .line 1266
+    invoke-virtual {v3, v5, v4}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 1265
+    invoke-virtual {p0, v3}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 1268
+    :goto_1
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    if-eqz v3, :cond_5
+
+    .line 1270
+    instance-of v1, v3, Lcom/android/launcher3/graphics/PreloadIconDrawable;
+
+    if-eqz v1, :cond_4
+
+    .line 1271
+    check-cast v3, Lcom/android/launcher3/graphics/PreloadIconDrawable;
+
+    .line 1272
+    invoke-virtual {v3, v2}, Lcom/android/launcher3/graphics/PreloadIconDrawable;->setLevel(I)Z
+
+    .line 1273
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->isIconDisabled(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)Z
+
+    move-result p0
+
+    invoke-virtual {v3, p0}, Lcom/android/launcher3/graphics/PreloadIconDrawable;->setIsDisabled(Z)V
+
     goto :goto_2
 
-    .line 85
+    .line 1275
+    :cond_4
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->makePreloadIcon()Lcom/android/launcher3/graphics/PreloadIconDrawable;
+
+    move-result-object v3
+
+    .line 1276
+    invoke-virtual {p0, v3}, Lcom/android/launcher3/BubbleTextView;->setIcon(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
+
+    :goto_2
+    return-object v3
+
+    :cond_5
+    :goto_3
+    return-object v1
+.end method
+
+.method public applyPromiseStateMFV(Lcom/android/launcher3/model/data/WorkspaceItemInfo;IZ)V
+    .locals 7
+
+    if-lez p2, :cond_0
+
+    .line 1787
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    iget-object v1, p1, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->title:Ljava/lang/CharSequence;
+
+    .line 1788
+    invoke-static {}, Ljava/text/NumberFormat;->getPercentInstance()Ljava/text/NumberFormat;
+
+    move-result-object v2
+
+    int-to-double v3, p2
+
+    const-wide v5, 0x3f847ae147ae147bL    # 0.01
+
+    mul-double/2addr v3, v5
+
+    invoke-virtual {v2, v3, v4}, Ljava/text/NumberFormat;->format(D)Ljava/lang/String;
+
+    move-result-object v2
+
+    filled-new-array {v1, v2}, [Ljava/lang/Object;
+
+    move-result-object v1
+
+    const v2, 0x7f140082
+
+    .line 1787
+    invoke-virtual {v0, v2, v1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 1789
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    iget-object v1, p1, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->title:Ljava/lang/CharSequence;
+
+    filled-new-array {v1}, [Ljava/lang/Object;
+
+    move-result-object v1
+
+    const v2, 0x7f140092
+
+    invoke-virtual {v0, v2, v1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1786
+    :goto_0
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 1791
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getState()I
+
+    move-result v0
+
+    .line 1792
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getDownloadPause()Ljava/lang/Boolean;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v1
+
+    .line 1793
+    invoke-direct {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->setDownLoadIconText(IZ)V
+
+    .line 1794
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    if-eqz v2, :cond_c
+
+    const/4 v3, 0x2
+
+    const/4 v4, 0x3
+
+    const/4 v5, 0x1
+
+    if-eq v0, v5, :cond_4
+
+    if-eq v0, v3, :cond_4
+
+    if-ne v0, v4, :cond_1
+
+    goto :goto_2
+
     :cond_1
     const/4 p2, 0x4
 
-    .line 86
-    if-ne v0, p2, :cond_b
+    if-ne v0, p2, :cond_3
 
-    .line 87
-    .line 88
-    instance-of p2, v2, Lr1/a;
+    .line 1838
+    instance-of p2, v2, Lcom/android/launcher3/iconanimation/AddIconFolderDrawable;
 
-    .line 89
-    .line 90
     if-eqz p2, :cond_2
 
-    .line 91
-    .line 92
-    check-cast v2, Lr1/a;
+    .line 1839
+    check-cast v2, Lcom/android/launcher3/iconanimation/AddIconFolderDrawable;
 
-    .line 93
-    .line 94
     goto :goto_1
 
-    .line 95
+    .line 1841
     :cond_2
-    new-instance v2, Lr1/a;
+    new-instance v2, Lcom/android/launcher3/iconanimation/AddIconFolderDrawable;
 
-    .line 96
-    .line 97
-    iget-object p2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget-object p2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 98
-    .line 99
     check-cast p2, Landroid/content/Context;
 
-    .line 100
-    .line 101
-    invoke-direct {v2, p2, p1}, Lr1/a;-><init>(Landroid/content/Context;Lcom/android/launcher3/model/data/I;)V
+    invoke-direct {v2, p2, p1}, Lcom/android/launcher3/iconanimation/AddIconFolderDrawable;-><init>(Landroid/content/Context;Lcom/android/launcher3/model/data/WorkspaceItemInfo;)V
 
-    .line 102
-    .line 103
-    .line 104
-    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setIcon(Ls1/o;)V
+    .line 1842
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setIcon(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
 
-    .line 105
-    .line 106
-    .line 107
+    .line 1844
     :goto_1
-    invoke-virtual {v2}, Lr1/a;->x()V
+    invoke-virtual {v2}, Lcom/android/launcher3/iconanimation/AddIconFolderDrawable;->startAnim()V
 
-    .line 108
-    .line 109
-    .line 110
-    return-void
-
-    .line 111
-    :cond_3
-    :goto_2
-    if-ne v0, v4, :cond_4
-
-    .line 112
-    .line 113
-    iget-boolean v6, p0, Lcom/android/launcher3/BubbleTextView;->b0:Z
-
-    .line 114
-    .line 115
-    if-eqz v6, :cond_4
-
-    .line 116
-    .line 117
     goto :goto_5
 
-    .line 118
-    :cond_4
-    instance-of v6, v2, Lr1/c;
+    .line 1849
+    :cond_3
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyIconAndLabel(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
 
-    .line 119
-    .line 120
+    goto :goto_5
+
+    :cond_4
+    :goto_2
+    if-ne v0, v4, :cond_5
+
+    .line 1797
+    iget-boolean v6, p0, Lcom/android/launcher3/BubbleTextView;->mIsAlreadySet:Z
+
     if-eqz v6, :cond_5
 
-    .line 121
-    .line 122
-    check-cast v2, Lr1/c;
+    return-void
 
-    .line 123
-    .line 124
+    .line 1803
+    :cond_5
+    instance-of v6, v2, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
+
+    if-eqz v6, :cond_6
+
+    .line 1804
+    check-cast v2, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
+
     goto :goto_3
 
-    .line 125
-    :cond_5
-    new-instance v2, Lr1/c;
+    .line 1806
+    :cond_6
+    new-instance v2, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
 
-    .line 126
-    .line 127
-    invoke-direct {v2, p0, p1}, Lr1/c;-><init>(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/model/data/I;)V
+    invoke-direct {v2, p0, p1}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;-><init>(Lcom/android/launcher3/BubbleTextView;Lcom/android/launcher3/model/data/WorkspaceItemInfo;)V
 
-    .line 128
-    .line 129
-    .line 130
-    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setIcon(Ls1/o;)V
+    .line 1807
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setIcon(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
 
-    .line 131
-    .line 132
-    .line 133
-    invoke-virtual {v2, p2}, Landroid/graphics/drawable/Drawable;->setLevel(I)Z
+    .line 1808
+    invoke-virtual {v2, p2}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->setLevel(I)Z
 
-    .line 134
-    .line 135
-    .line 136
+    .line 1810
     :goto_3
-    invoke-virtual {v2, v0}, Lr1/c;->z(I)V
+    invoke-virtual {v2, v0}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->setState(I)V
 
-    .line 137
-    .line 138
-    .line 139
-    if-nez p3, :cond_6
+    if-nez p3, :cond_7
 
-    .line 140
-    .line 141
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/I;->b0()Z
+    .line 1812
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->isPromise()Z
 
-    .line 142
-    .line 143
-    .line 144
     move-result p2
 
-    .line 145
-    if-eqz p2, :cond_a
+    if-eqz p2, :cond_b
 
-    .line 146
-    .line 147
-    :cond_6
-    if-eq v0, v5, :cond_9
+    :cond_7
+    if-eq v0, v5, :cond_a
 
-    .line 148
-    .line 149
     const/16 p2, 0x64
 
-    .line 150
-    .line 151
-    if-eq v0, v3, :cond_8
+    if-eq v0, v3, :cond_9
 
-    .line 152
-    .line 153
-    if-eq v0, v4, :cond_7
+    if-eq v0, v4, :cond_8
 
-    .line 154
-    .line 155
     goto :goto_4
 
-    .line 156
-    :cond_7
-    invoke-virtual {v2}, Lr1/c;->C()V
-
-    .line 157
-    .line 158
-    .line 159
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/model/data/I;->d0(I)V
-
-    .line 160
-    .line 161
-    .line 162
-    iput-boolean v5, p0, Lcom/android/launcher3/BubbleTextView;->b0:Z
-
-    .line 163
-    .line 164
-    goto :goto_4
-
-    .line 165
+    .line 1823
     :cond_8
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/model/data/I;->d0(I)V
+    invoke-virtual {v2}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->startInstallCompleteAnim()V
 
-    .line 166
-    .line 167
-    .line 168
+    .line 1824
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->setDownProgress(I)V
+
+    .line 1825
+    iput-boolean v5, p0, Lcom/android/launcher3/BubbleTextView;->mIsAlreadySet:Z
+
     goto :goto_4
 
-    .line 169
+    .line 1819
     :cond_9
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/I;->S()I
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->setDownProgress(I)V
 
-    .line 170
-    .line 171
-    .line 172
+    goto :goto_4
+
+    .line 1815
+    :cond_a
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getDownProgress()I
+
     move-result p0
 
-    .line 173
-    invoke-virtual {v2, p0}, Lr1/c;->A(I)V
+    invoke-virtual {v2, p0}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->startDownProgress(I)V
 
-    .line 174
-    .line 175
-    .line 176
-    :cond_a
+    :cond_b
     :goto_4
-    if-ne v0, v5, :cond_b
+    if-ne v0, v5, :cond_c
 
-    .line 177
-    .line 178
-    invoke-virtual {v2}, Lr1/c;->w()Ljava/lang/Boolean;
+    .line 1833
+    invoke-virtual {v2}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->isPaused()Ljava/lang/Boolean;
 
-    .line 179
-    .line 180
-    .line 181
     move-result-object p0
 
-    .line 182
     invoke-virtual {p0}, Ljava/lang/Boolean;->booleanValue()Z
 
-    .line 183
-    .line 184
-    .line 185
     move-result p0
 
-    .line 186
-    if-eq p0, v1, :cond_b
+    if-eq p0, v1, :cond_c
 
-    .line 187
-    .line 188
-    invoke-virtual {v2, v1}, Lr1/c;->y(Z)V
+    .line 1834
+    invoke-virtual {v2, v1}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->setPauseState(Z)V
 
-    .line 189
-    .line 190
-    .line 191
-    :cond_b
+    :cond_c
     :goto_5
     return-void
 .end method
 
-.method public F(Z)V
+.method public applyVdmcLimitState(Z)V
     .locals 2
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 2308
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    instance-of v0, v0, Lcom/android/launcher3/model/data/y;
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 6
-    .line 7
     if-eqz v0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 10
-    .line 11
-    .line 12
     move-result-object v0
 
-    .line 13
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 14
-    .line 15
-    iget-boolean v0, v0, Lcom/android/launcher3/model/data/y;->isAppVdmcLimited:Z
+    iget-boolean v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->isAppVdmcLimited:Z
 
-    .line 16
-    .line 17
     if-eq p1, v0, :cond_0
 
-    .line 18
-    .line 19
+    .line 2309
     new-instance v0, Ljava/lang/StringBuilder;
 
-    .line 20
-    .line 21
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 22
-    .line 23
-    .line 24
     const-string v1, "applyVdmcLimitState: item: "
 
-    .line 25
-    .line 26
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getText()Ljava/lang/CharSequence;
 
-    .line 30
-    .line 31
-    .line 32
     move-result-object v1
 
-    .line 33
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    .line 34
-    .line 35
-    .line 36
+    move-result-object v0
+
     const-string v1, ", "
 
-    .line 37
-    .line 38
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 39
-    .line 40
-    .line 41
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    move-result-object v0
 
-    .line 42
-    .line 43
+    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    .line 44
-    .line 45
-    .line 46
+    move-result-object v0
+
     const-string v1, ", isLimited: "
 
-    .line 47
-    .line 48
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 49
-    .line 50
-    .line 51
+    move-result-object v0
+
     invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
-    .line 52
-    .line 53
-    .line 54
+    move-result-object v0
+
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    .line 55
-    .line 56
-    .line 57
     move-result-object v0
 
-    .line 58
     const-string v1, "BubbleTextView"
 
-    .line 59
-    .line 60
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 61
-    .line 62
-    .line 63
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 2310
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 64
-    .line 65
-    .line 66
     move-result-object v0
 
-    .line 67
-    check-cast v0, Lcom/android/launcher3/model/data/y;
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 68
-    .line 69
-    iput-boolean p1, v0, Lcom/android/launcher3/model/data/y;->isAppVdmcLimited:Z
+    iput-boolean p1, v0, Lcom/android/launcher3/model/data/ItemInfo;->isAppVdmcLimited:Z
 
-    .line 70
-    .line 71
-    invoke-virtual {p0}, Landroid/widget/TextView;->invalidate()V
+    .line 2311
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->invalidate()V
 
-    .line 72
-    .line 73
-    .line 74
     :cond_0
     return-void
 .end method
 
-.method public F0()V
-    .locals 2
-
-    .line 1
-    invoke-static {}, Lx1/O;->C3()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-nez v0, :cond_0
-
-    .line 6
-    .line 7
-    return-void
-
-    .line 8
-    :cond_0
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->m0:I
-
-    .line 9
-    .line 10
-    const/4 v1, 0x0
-
-    .line 11
-    invoke-virtual {p0, v0, v1, v1}, Lcom/android/launcher3/BubbleTextView;->K0(III)V
-
-    .line 12
-    .line 13
-    .line 14
-    return-void
-.end method
-
-.method public G0()V
+.method public canShowLongPressPopup()Z
     .locals 1
 
-    .line 1
-    const-string v0, ""
+    .line 1598
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->k0:Ljava/lang/String;
-
-    .line 4
-    .line 5
-    return-void
-.end method
-
-.method public H()Z
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    instance-of v0, v0, Lcom/android/launcher3/model/data/y;
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 6
-    .line 7
     if-eqz v0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 10
-    .line 11
-    .line 12
     move-result-object p0
 
-    .line 13
-    check-cast p0, Lcom/android/launcher3/model/data/y;
+    check-cast p0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 14
-    .line 15
-    invoke-static {p0}, Lcom/android/launcher3/util/r2;->h(Lcom/android/launcher3/model/data/y;)Z
+    invoke-static {p0}, Lcom/android/launcher3/util/ShortcutUtil;->supportsShortcuts(Lcom/android/launcher3/model/data/ItemInfo;)Z
 
-    .line 16
-    .line 17
-    .line 18
     move-result p0
 
-    .line 19
     if-eqz p0, :cond_0
 
-    .line 20
-    .line 21
     const/4 p0, 0x1
 
-    .line 22
-    return p0
+    goto :goto_0
 
-    .line 23
     :cond_0
     const/4 p0, 0x0
 
-    .line 24
-    return p0
-.end method
-
-.method public H0()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->f0:Ljava/util/function/Consumer;
-
-    .line 3
-    .line 4
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->g0:Ljava/lang/Runnable;
-
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public K0(III)V
-    .locals 2
-
-    .line 1
-    invoke-static {}, Lx1/O;->C3()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-nez v0, :cond_0
-
-    .line 6
-    .line 7
-    goto :goto_0
-
-    .line 8
-    :cond_0
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 9
-    .line 10
-    if-eq v0, p1, :cond_2
-
-    .line 11
-    .line 12
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 13
-    .line 14
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 15
-    .line 16
-    iput p1, v0, Ls1/m$a;->g:I
-
-    .line 17
-    .line 18
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 19
-    .line 20
-    if-eqz v0, :cond_1
-
-    .line 21
-    .line 22
-    const/4 v1, 0x0
-
-    .line 23
-    invoke-virtual {v0, v1, v1, p1, p1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
-
-    .line 24
-    .line 25
-    .line 26
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 27
-    .line 28
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->U0(Landroid/graphics/drawable/Drawable;)V
-
-    .line 29
-    .line 30
-    .line 31
-    :cond_1
-    if-eqz p2, :cond_2
-
-    .line 32
-    .line 33
-    if-eqz p3, :cond_2
-
-    .line 34
-    .line 35
-    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 36
-    .line 37
-    sub-int/2addr p3, p1
-
-    .line 38
-    div-int/lit8 p3, p3, 0x2
-
-    .line 39
-    .line 40
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
-
-    .line 41
-    .line 42
-    .line 43
-    move-result p1
-
-    .line 44
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingRight()I
-
-    .line 45
-    .line 46
-    .line 47
-    move-result p2
-
-    .line 48
-    invoke-virtual {p0, p1, p3, p2, p3}, Landroid/widget/TextView;->setPadding(IIII)V
-
-    .line 49
-    .line 50
-    .line 51
-    :cond_2
     :goto_0
-    return-void
-.end method
-
-.method public L()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->i0:Lcom/android/launcher3/iconarrange/a;
-
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public L0(Ljava/lang/CharSequence;I)V
-    .locals 4
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-virtual {v0, p2}, Landroid/content/Context;->getDrawable(I)Landroid/graphics/drawable/Drawable;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p2
-
-    .line 9
-    if-nez p2, :cond_0
-
-    .line 10
-    .line 11
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 12
-    .line 13
-    .line 14
-    const-string p0, "BubbleTextView"
-
-    .line 15
-    .line 16
-    const-string p1, "setTextWithStartIcon: start icon Drawable not found from resources, will just set text instead."
-
-    .line 17
-    .line 18
-    invoke-static {p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 19
-    .line 20
-    .line 21
-    return-void
-
-    .line 22
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCurrentTextColor()I
-
-    .line 23
-    .line 24
-    .line 25
-    move-result v0
-
-    .line 26
-    invoke-virtual {p2, v0}, Landroid/graphics/drawable/Drawable;->setTint(I)V
-
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTextSize()F
-
-    .line 30
-    .line 31
-    .line 32
-    move-result v0
-
-    .line 33
-    invoke-static {v0}, Ljava/lang/Math;->round(F)I
-
-    .line 34
-    .line 35
-    .line 36
-    move-result v0
-
-    .line 37
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTextSize()F
-
-    .line 38
-    .line 39
-    .line 40
-    move-result v1
-
-    .line 41
-    invoke-static {v1}, Ljava/lang/Math;->round(F)I
-
-    .line 42
-    .line 43
-    .line 44
-    move-result v1
-
-    .line 45
-    const/4 v2, 0x0
-
-    .line 46
-    invoke-virtual {p2, v2, v2, v0, v1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
-
-    .line 47
-    .line 48
-    .line 49
-    new-instance v0, Landroid/text/style/ImageSpan;
-
-    .line 50
-    .line 51
-    const/4 v1, 0x2
-
-    .line 52
-    invoke-direct {v0, p2, v1}, Landroid/text/style/ImageSpan;-><init>(Landroid/graphics/drawable/Drawable;I)V
-
-    .line 53
-    .line 54
-    .line 55
-    new-instance p2, Landroid/text/SpannableString;
-
-    .line 56
-    .line 57
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    .line 58
-    .line 59
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 60
-    .line 61
-    .line 62
-    const-string v3, "  "
-
-    .line 63
-    .line 64
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 65
-    .line 66
-    .line 67
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 68
-    .line 69
-    .line 70
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 71
-    .line 72
-    .line 73
-    move-result-object p1
-
-    .line 74
-    invoke-direct {p2, p1}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
-
-    .line 75
-    .line 76
-    .line 77
-    const/4 p1, 0x1
-
-    .line 78
-    const/16 v1, 0x11
-
-    .line 79
-    .line 80
-    invoke-virtual {p2, v0, v2, p1, v1}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
-
-    .line 81
-    .line 82
-    .line 83
-    invoke-virtual {p0, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 84
-    .line 85
-    .line 86
-    return-void
-.end method
-
-.method public M()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setPressed(Z)V
-
-    .line 3
-    .line 4
-    .line 5
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setStayPressed(Z)V
-
-    .line 6
-    .line 7
-    .line 8
-    return-void
-.end method
-
-.method public N(Ljava/lang/Runnable;)Z
-    .locals 6
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->g0:Ljava/lang/Runnable;
-
-    .line 2
-    .line 3
-    const/4 v1, 0x1
-
-    .line 4
-    const/4 v2, 0x0
-
-    .line 5
-    if-nez v0, :cond_8
-
-    .line 6
-    .line 7
-    invoke-static {}, Lcom/android/launcher3/q4;->Q()Lcom/android/launcher3/C2;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object v0
-
-    .line 11
-    const/4 v3, 0x0
-
-    .line 12
-    if-nez v0, :cond_0
-
-    .line 13
-    .line 14
-    return v3
-
-    .line 15
-    :cond_0
-    invoke-virtual {v0}, Landroid/app/Activity;->getApplicationContext()Landroid/content/Context;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v4
-
-    .line 19
-    invoke-static {v4}, Lcom/android/launcher3/P2;->e(Landroid/content/Context;)Lcom/android/launcher3/F1;
-
-    .line 20
-    .line 21
-    .line 22
-    move-result-object v4
-
-    .line 23
-    iget-boolean v4, v4, Lcom/android/launcher3/r4;->g0:Z
-
-    .line 24
-    .line 25
-    if-eqz v4, :cond_1
-
-    .line 26
-    .line 27
-    invoke-static {v0}, Lcom/android/launcher3/folder/Folder;->i1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/folder/Folder;
-
-    .line 28
-    .line 29
-    .line 30
-    move-result-object v4
-
-    .line 31
-    if-eqz v4, :cond_2
-
-    .line 32
-    .line 33
-    move v5, v1
-
-    .line 34
-    goto :goto_0
-
-    .line 35
-    :cond_1
-    move-object v4, v2
-
-    .line 36
-    :cond_2
-    move v5, v3
-
-    .line 37
-    :goto_0
-    if-eqz v5, :cond_4
-
-    .line 38
-    .line 39
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 40
-    .line 41
-    .line 42
-    move-result-object v5
-
-    .line 43
-    instance-of v5, v5, Lcom/android/launcher3/model/data/y;
-
-    .line 44
-    .line 45
-    if-eqz v5, :cond_4
-
-    .line 46
-    .line 47
-    invoke-virtual {v4}, Lcom/android/launcher3/folder/Folder;->getInfo()Lcom/android/launcher3/model/data/p;
-
-    .line 48
-    .line 49
-    .line 50
-    move-result-object v4
-
-    .line 51
-    invoke-virtual {v4}, Lcom/android/launcher3/model/data/p;->y()Ljava/util/ArrayList;
-
-    .line 52
-    .line 53
-    .line 54
-    move-result-object v4
-
-    .line 55
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 56
-    .line 57
-    .line 58
-    move-result-object v5
-
-    .line 59
-    check-cast v5, Lcom/android/launcher3/model/data/y;
-
-    .line 60
-    .line 61
-    invoke-virtual {v4, v5}, Ljava/util/ArrayList;->contains(Ljava/lang/Object;)Z
-
-    .line 62
-    .line 63
-    .line 64
-    move-result v4
-
-    .line 65
-    if-nez v4, :cond_4
-
-    .line 66
-    .line 67
-    instance-of p0, p0, Lcom/android/launcher3/shortcuts/DeepShortcutTextView;
-
-    .line 68
-    .line 69
-    if-nez p0, :cond_3
-
-    .line 70
-    .line 71
-    return v1
-
-    .line 72
-    :cond_3
-    return v3
-
-    .line 73
-    :cond_4
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->Z2()Z
-
-    .line 74
-    .line 75
-    .line 76
-    move-result v4
-
-    .line 77
-    if-eqz v4, :cond_6
-
-    .line 78
-    .line 79
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTargetPackageName()Ljava/lang/String;
-
-    .line 80
-    .line 81
-    .line 82
-    move-result-object p0
-
-    .line 83
-    invoke-interface {v0, p0}, Lcom/android/launcher3/views/k;->isSpecifiedPackageRecentsClosing(Ljava/lang/String;)Z
-
-    .line 84
-    .line 85
-    .line 86
-    move-result p0
-
-    .line 87
-    if-eqz p0, :cond_5
-
-    .line 88
-    .line 89
-    goto :goto_1
-
-    .line 90
-    :cond_5
-    move-object p1, v2
-
-    .line 91
-    :goto_1
-    invoke-interface {v0, v1, p1}, Lcom/android/launcher3/views/k;->finishAppClosingAnim(ZLjava/lang/Runnable;)V
-
-    .line 92
-    .line 93
-    .line 94
     return p0
-
-    .line 95
-    :cond_6
-    invoke-static {p0}, Lcom/android/launcher3/anim/C;->u0(Landroid/view/View;)Z
-
-    .line 96
-    .line 97
-    .line 98
-    move-result p0
-
-    .line 99
-    if-eqz p0, :cond_7
-
-    .line 100
-    .line 101
-    invoke-interface {v0, v3, v2}, Lcom/android/launcher3/views/k;->finishAppClosingAnim(ZLjava/lang/Runnable;)V
-
-    .line 102
-    .line 103
-    .line 104
-    :cond_7
-    return v3
-
-    .line 105
-    :cond_8
-    invoke-interface {v0}, Ljava/lang/Runnable;->run()V
-
-    .line 106
-    .line 107
-    .line 108
-    iput-object v2, p0, Lcom/android/launcher3/BubbleTextView;->g0:Ljava/lang/Runnable;
-
-    .line 109
-    .line 110
-    return v1
-.end method
-
-.method public N0()Z
-    .locals 1
-
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->P0()Z
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v0
-
-    .line 9
-    if-eqz v0, :cond_0
-
-    .line 10
-    .line 11
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object p0
-
-    .line 15
-    invoke-static {p0}, Lcom/android/launcher3/Y4;->j(Landroid/content/Context;)Lcom/android/launcher3/Y4;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object p0
-
-    .line 19
-    invoke-virtual {p0}, Lcom/android/launcher3/Y4;->l()Z
-
-    .line 20
-    .line 21
-    .line 22
-    move-result p0
-
-    .line 23
-    if-eqz p0, :cond_0
-
-    .line 24
-    .line 25
-    invoke-static {}, Lcom/android/launcher3/y0;->j()Z
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p0
-
-    .line 29
-    if-eqz p0, :cond_0
-
-    .line 30
-    .line 31
-    const/4 p0, 0x1
-
-    .line 32
-    return p0
-
-    .line 33
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 34
-    return p0
-.end method
-
-.method public O(Landroid/graphics/Paint$FontMetrics;I)I
-    .locals 6
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 2
-    .line 3
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
-
-    .line 7
-    iget-object v0, v0, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
-
-    .line 8
-    .line 9
-    iget-boolean v0, v0, Lcom/android/launcher3/r4;->c:Z
-
-    .line 10
-    .line 11
-    const/4 v1, 0x2
-
-    .line 12
-    const/4 v2, 0x1
-
-    .line 13
-    if-eqz v0, :cond_0
-
-    .line 14
-    .line 15
-    move v0, v1
-
-    .line 16
-    goto :goto_0
-
-    .line 17
-    :cond_0
-    move v0, v2
-
-    .line 18
-    :goto_0
-    iget v3, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundDrawablePadding()I
-
-    .line 21
-    .line 22
-    .line 23
-    move-result v4
-
-    .line 24
-    add-int/2addr v3, v4
-
-    .line 25
-    iget v4, p1, Landroid/graphics/Paint$FontMetrics;->bottom:F
-
-    .line 26
-    .line 27
-    iget p1, p1, Landroid/graphics/Paint$FontMetrics;->top:F
-
-    .line 28
-    .line 29
-    sub-float/2addr v4, p1
-
-    .line 30
-    float-to-double v4, v4
-
-    .line 31
-    invoke-static {v4, v5}, Ljava/lang/Math;->ceil(D)D
-
-    .line 32
-    .line 33
-    .line 34
-    move-result-wide v4
-
-    .line 35
-    double-to-int p1, v4
-
-    .line 36
-    mul-int/2addr p1, v0
-
-    .line 37
-    add-int/2addr v3, p1
-
-    .line 38
-    sub-int/2addr p2, v3
-
-    .line 39
-    div-int/2addr p2, v1
-
-    .line 40
-    invoke-static {}, Lcom/android/launcher3/N5;->F()Z
-
-    .line 41
-    .line 42
-    .line 43
-    move-result p1
-
-    .line 44
-    if-eqz p1, :cond_3
-
-    .line 45
-    .line 46
-    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 47
-    .line 48
-    if-ne p1, v1, :cond_2
-
-    .line 49
-    .line 50
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 51
-    .line 52
-    .line 53
-    move-result-object p1
-
-    .line 54
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 55
-    .line 56
-    invoke-interface {p0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 57
-    .line 58
-    .line 59
-    move-result-object p0
-
-    .line 60
-    iget-boolean p0, p0, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 61
-    .line 62
-    if-eqz p0, :cond_1
-
-    .line 63
-    .line 64
-    const p0, 0x7f0c007e
-
-    .line 65
-    .line 66
-    .line 67
-    goto :goto_1
-
-    .line 68
-    :cond_1
-    const p0, 0x7f0c007d
-
-    .line 69
-    .line 70
-    .line 71
-    :goto_1
-    invoke-virtual {p1, p0}, Landroid/content/res/Resources;->getInteger(I)I
-
-    .line 72
-    .line 73
-    .line 74
-    move-result p0
-
-    .line 75
-    int-to-float p0, p0
-
-    .line 76
-    invoke-static {p0}, Lcom/android/launcher3/N5;->i(F)I
-
-    .line 77
-    .line 78
-    .line 79
-    move-result p0
-
-    .line 80
-    return p0
-
-    .line 81
-    :cond_2
-    if-ne p1, v2, :cond_3
-
-    .line 82
-    .line 83
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 84
-    .line 85
-    .line 86
-    move-result-object p0
-
-    .line 87
-    const p1, 0x7f0c0006
-
-    .line 88
-    .line 89
-    .line 90
-    invoke-virtual {p0, p1}, Landroid/content/res/Resources;->getInteger(I)I
-
-    .line 91
-    .line 92
-    .line 93
-    move-result p0
-
-    .line 94
-    int-to-float p0, p0
-
-    .line 95
-    invoke-static {p0}, Lcom/android/launcher3/N5;->i(F)I
-
-    .line 96
-    .line 97
-    .line 98
-    move-result p0
-
-    .line 99
-    return p0
-
-    .line 100
-    :cond_3
-    return p2
-.end method
-
-.method protected O0(FF)Z
-    .locals 2
-
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 2
-    .line 3
-    const/4 v1, 0x5
-
-    .line 4
-    if-ne v0, v1, :cond_0
-
-    .line 5
-    .line 6
-    const/4 p0, 0x0
-
-    .line 7
-    return p0
-
-    .line 8
-    :cond_0
-    invoke-virtual {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->p0(FF)Z
-
-    .line 9
-    .line 10
-    .line 11
-    move-result p0
-
-    .line 12
-    xor-int/lit8 p0, p0, 0x1
-
-    .line 13
-    .line 14
-    return p0
-.end method
-
-.method public P(Z)Landroid/animation/ObjectAnimator;
-    .locals 3
-
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->P0()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    if-eqz p1, :cond_0
-
-    .line 8
-    .line 9
-    const/high16 p1, 0x3f800000    # 1.0f
-
-    .line 10
-    .line 11
-    goto :goto_0
-
-    .line 12
-    :cond_0
-    const/4 p1, 0x0
-
-    .line 13
-    :goto_0
-    sget-object v0, Lcom/android/launcher3/BubbleTextView;->v0:Landroid/util/Property;
-
-    .line 14
-    .line 15
-    const/4 v1, 0x1
-
-    .line 16
-    new-array v1, v1, [F
-
-    .line 17
-    .line 18
-    const/4 v2, 0x0
-
-    .line 19
-    aput p1, v1, v2
-
-    .line 20
-    .line 21
-    invoke-static {p0, v0, v1}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p0
-
-    .line 25
-    return-object p0
-.end method
-
-.method public P0()Z
-    .locals 3
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    instance-of v0, v0, Lcom/android/launcher3/folder/FolderIcon;
-
-    .line 6
-    .line 7
-    if-eqz v0, :cond_0
-
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v0
-
-    .line 13
-    check-cast v0, Landroid/view/View;
-
-    .line 14
-    .line 15
-    invoke-virtual {v0}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v0
-
-    .line 19
-    goto :goto_0
-
-    .line 20
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object v0
-
-    .line 24
-    :goto_0
-    instance-of v1, v0, Lcom/android/launcher3/model/data/y;
-
-    .line 25
-    .line 26
-    if-eqz v1, :cond_1
-
-    .line 27
-    .line 28
-    check-cast v0, Lcom/android/launcher3/model/data/y;
-
-    .line 29
-    .line 30
-    goto :goto_1
-
-    .line 31
-    :cond_1
-    const/4 v0, 0x0
-
-    .line 32
-    :goto_1
-    const/4 v1, 0x0
-
-    .line 33
-    if-eqz v0, :cond_3
-
-    .line 34
-    .line 35
-    iget v0, v0, Lcom/android/launcher3/model/data/y;->container:I
-
-    .line 36
-    .line 37
-    const/16 v2, -0x65
-
-    .line 38
-    .line 39
-    if-eq v0, v2, :cond_2
-
-    .line 40
-    .line 41
-    const/16 v2, -0x67
-
-    .line 42
-    .line 43
-    if-ne v0, v2, :cond_3
-
-    .line 44
-    .line 45
-    :cond_2
-    return v1
-
-    .line 46
-    :cond_3
-    invoke-static {}, Lx1/O;->C3()Z
-
-    .line 47
-    .line 48
-    .line 49
-    move-result v0
-
-    .line 50
-    if-eqz v0, :cond_4
-
-    .line 51
-    .line 52
-    invoke-static {p0}, Lp1/f;->x(Landroid/view/View;)Z
-
-    .line 53
-    .line 54
-    .line 55
-    move-result p0
-
-    .line 56
-    if-eqz p0, :cond_4
-
-    .line 57
-    .line 58
-    return v1
-
-    .line 59
-    :cond_4
-    const/4 p0, 0x1
-
-    .line 60
-    return p0
-.end method
-
-.method public Q(Landroid/graphics/Canvas;)V
-    .locals 9
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-virtual {v0}, Landroid/text/TextPaint;->getFontMetrics()Landroid/graphics/Paint$FontMetrics;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v0
-
-    .line 9
-    new-instance v1, Landroid/graphics/Rect;
-
-    .line 10
-    .line 11
-    invoke-direct {v1}, Landroid/graphics/Rect;-><init>()V
-
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->getDrawingRect(Landroid/graphics/Rect;)V
-
-    .line 15
-    .line 16
-    .line 17
-    invoke-virtual {p0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
-
-    .line 18
-    .line 19
-    .line 20
-    move-result-object v2
-
-    .line 21
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object v3
-
-    .line 25
-    const v4, 0x7f07011a
-
-    .line 26
-    .line 27
-    .line 28
-    invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 29
-    .line 30
-    .line 31
-    move-result v3
-
-    .line 32
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v4
-
-    .line 36
-    const v5, 0x7f07011b
-
-    .line 37
-    .line 38
-    .line 39
-    invoke-virtual {v4, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 40
-    .line 41
-    .line 42
-    move-result v4
-
-    .line 43
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
-
-    .line 44
-    .line 45
-    .line 46
-    move-result-object v5
-
-    .line 47
-    invoke-interface {v2}, Ljava/lang/CharSequence;->length()I
-
-    .line 48
-    .line 49
-    .line 50
-    move-result v6
-
-    .line 51
-    const/4 v7, 0x0
-
-    .line 52
-    invoke-virtual {v5, v2, v7, v6}, Landroid/text/TextPaint;->measureText(Ljava/lang/CharSequence;II)F
-
-    .line 53
-    .line 54
-    .line 55
-    move-result v2
-
-    .line 56
-    add-int/2addr v4, v3
-
-    .line 57
-    mul-int/lit8 v4, v4, 0x2
-
-    .line 58
-    .line 59
-    int-to-float v4, v4
-
-    .line 60
-    add-float/2addr v2, v4
-
-    .line 61
-    invoke-virtual {v1}, Landroid/graphics/Rect;->width()I
-
-    .line 62
-    .line 63
-    .line 64
-    move-result v4
-
-    .line 65
-    int-to-float v4, v4
-
-    .line 66
-    invoke-static {v2, v4}, Ljava/lang/Math;->min(FF)F
-
-    .line 67
-    .line 68
-    .line 69
-    move-result v2
-
-    .line 70
-    new-instance v4, Landroid/graphics/RectF;
-
-    .line 71
-    .line 72
-    invoke-virtual {v1}, Landroid/graphics/Rect;->width()I
-
-    .line 73
-    .line 74
-    .line 75
-    move-result v5
-
-    .line 76
-    int-to-float v5, v5
-
-    .line 77
-    sub-float/2addr v5, v2
-
-    .line 78
-    const/high16 v6, 0x40000000    # 2.0f
-
-    .line 79
-    .line 80
-    div-float/2addr v5, v6
-
-    .line 81
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingLeft()I
-
-    .line 82
-    .line 83
-    .line 84
-    move-result v7
-
-    .line 85
-    int-to-float v7, v7
-
-    .line 86
-    sub-float/2addr v5, v7
-
-    .line 87
-    invoke-virtual {v1}, Landroid/graphics/Rect;->width()I
-
-    .line 88
-    .line 89
-    .line 90
-    move-result v1
-
-    .line 91
-    int-to-float v1, v1
-
-    .line 92
-    add-float/2addr v1, v2
-
-    .line 93
-    div-float/2addr v1, v6
-
-    .line 94
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingRight()I
-
-    .line 95
-    .line 96
-    .line 97
-    move-result v2
-
-    .line 98
-    int-to-float v2, v2
-
-    .line 99
-    add-float/2addr v1, v2
-
-    .line 100
-    iget v2, v0, Landroid/graphics/Paint$FontMetrics;->bottom:F
-
-    .line 101
-    .line 102
-    iget v0, v0, Landroid/graphics/Paint$FontMetrics;->top:F
-
-    .line 103
-    .line 104
-    sub-float/2addr v2, v0
-
-    .line 105
-    float-to-double v7, v2
-
-    .line 106
-    invoke-static {v7, v8}, Ljava/lang/Math;->ceil(D)D
-
-    .line 107
-    .line 108
-    .line 109
-    move-result-wide v7
-
-    .line 110
-    double-to-int v0, v7
-
-    .line 111
-    int-to-float v0, v0
-
-    .line 112
-    const/4 v2, 0x0
-
-    .line 113
-    invoke-direct {v4, v5, v2, v1, v0}, Landroid/graphics/RectF;-><init>(FFFF)V
-
-    .line 114
-    .line 115
-    .line 116
-    mul-int/lit8 v3, v3, 0x2
-
-    .line 117
-    .line 118
-    int-to-float v0, v3
-
-    .line 119
-    invoke-virtual {v4, v0, v2}, Landroid/graphics/RectF;->inset(FF)V
-
-    .line 120
-    .line 121
-    .line 122
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 123
-    .line 124
-    if-eqz v0, :cond_0
-
-    .line 125
-    .line 126
-    new-instance v0, Landroid/graphics/Rect;
-
-    .line 127
-    .line 128
-    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
-
-    .line 129
-    .line 130
-    .line 131
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
-
-    .line 132
-    .line 133
-    .line 134
-    iget v0, v0, Landroid/graphics/Rect;->bottom:I
-
-    .line 135
-    .line 136
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundDrawablePadding()I
-
-    .line 137
-    .line 138
-    .line 139
-    move-result v1
-
-    .line 140
-    add-int/2addr v0, v1
-
-    .line 141
-    int-to-float v0, v0
-
-    .line 142
-    invoke-virtual {v4, v2, v0}, Landroid/graphics/RectF;->offset(FF)V
-
-    .line 143
-    .line 144
-    .line 145
-    :cond_0
-    invoke-virtual {v4}, Landroid/graphics/RectF;->height()F
-
-    .line 146
-    .line 147
-    .line 148
-    move-result v0
-
-    .line 149
-    div-float/2addr v0, v6
-
-    .line 150
-    invoke-virtual {v4}, Landroid/graphics/RectF;->height()F
-
-    .line 151
-    .line 152
-    .line 153
-    move-result v1
-
-    .line 154
-    div-float/2addr v1, v6
-
-    .line 155
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 156
-    .line 157
-    .line 158
-    move-result-object p0
-
-    .line 159
-    invoke-static {p0}, Lcom/android/launcher3/Y4;->j(Landroid/content/Context;)Lcom/android/launcher3/Y4;
-
-    .line 160
-    .line 161
-    .line 162
-    move-result-object p0
-
-    .line 163
-    invoke-virtual {p0}, Lcom/android/launcher3/Y4;->h()Landroid/graphics/Paint;
-
-    .line 164
-    .line 165
-    .line 166
-    move-result-object p0
-
-    .line 167
-    invoke-virtual {p1, v4, v0, v1, p0}, Landroid/graphics/Canvas;->drawRoundRect(Landroid/graphics/RectF;FFLandroid/graphics/Paint;)V
-
-    .line 168
-    .line 169
-    .line 170
-    return-void
-.end method
-
-.method protected Q0()Z
-    .locals 2
-
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    const/4 v1, 0x2
-
-    .line 6
-    if-eq v0, v1, :cond_0
-
-    .line 7
-    .line 8
-    const/4 v1, 0x5
-
-    .line 9
-    if-eq v0, v1, :cond_0
-
-    .line 10
-    .line 11
-    const/16 v1, 0xc
-
-    .line 12
-    .line 13
-    if-ne v0, v1, :cond_1
-
-    .line 14
-    .line 15
-    :cond_0
-    sget-object v0, Ln1/C;->g:Lcom/android/launcher3/util/I;
-
-    .line 16
-    .line 17
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 18
-    .line 19
-    .line 20
-    move-result-object p0
-
-    .line 21
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p0
-
-    .line 25
-    check-cast p0, Ln1/C;
-
-    .line 26
-    .line 27
-    invoke-virtual {p0}, Ln1/C;->n()Z
-
-    .line 28
-    .line 29
-    .line 30
-    move-result p0
-
-    .line 31
-    if-eqz p0, :cond_1
-
-    .line 32
-    .line 33
-    const/4 p0, 0x1
-
-    .line 34
-    return p0
-
-    .line 35
-    :cond_1
-    const/4 p0, 0x0
-
-    .line 36
-    return p0
-.end method
-
-.method protected R0()Z
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
-
-    .line 2
-    .line 3
-    iget-object v0, v0, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
-
-    .line 4
-    .line 5
-    iget-boolean v0, v0, Lcom/android/launcher3/F1;->B1:Z
-
-    .line 6
-    .line 7
-    if-eqz v0, :cond_1
-
-    .line 8
-    .line 9
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 10
-    .line 11
-    const/4 v0, 0x1
-
-    .line 12
-    if-eq p0, v0, :cond_0
-
-    .line 13
-    .line 14
-    const/16 v1, 0x8
-
-    .line 15
-    .line 16
-    if-ne p0, v1, :cond_1
-
-    .line 17
-    .line 18
-    :cond_0
-    return v0
-
-    .line 19
-    :cond_1
-    const/4 p0, 0x0
-
-    .line 20
-    return p0
-.end method
-
-.method public T0()Lcom/android/launcher3/dragndrop/p$a;
-    .locals 1
-
-    .line 1
-    invoke-static {p0}, Lcom/android/launcher3/popup/PopupContainerWithArrow;->k0(Landroid/view/View;)Lcom/android/launcher3/popup/PopupContainerWithArrow;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    if-eqz p0, :cond_0
-
-    .line 6
-    .line 7
-    const/4 v0, 0x1
-
-    .line 8
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/popup/PopupContainerWithArrow;->a0(Z)Lcom/android/launcher3/dragndrop/p$a;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object p0
-
-    .line 12
-    return-object p0
-
-    .line 13
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 14
-    return-object p0
-.end method
-
-.method protected U(Landroid/graphics/Canvas;)V
-    .locals 7
-
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->f0()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v1
-
-    .line 9
-    instance-of v1, v1, Lcom/android/launcher3/model/data/y;
-
-    .line 10
-    .line 11
-    if-eqz v1, :cond_0
-
-    .line 12
-    .line 13
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v1
-
-    .line 17
-    check-cast v1, Lcom/android/launcher3/model/data/y;
-
-    .line 18
-    .line 19
-    if-eqz v0, :cond_0
-
-    .line 20
-    .line 21
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
-
-    .line 22
-    .line 23
-    if-eqz v2, :cond_0
-
-    .line 24
-    .line 25
-    iget v1, v1, Lcom/android/launcher3/model/data/y;->itemType:I
-
-    .line 26
-    .line 27
-    if-nez v1, :cond_0
-
-    .line 28
-    .line 29
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 30
-    .line 31
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
-
-    .line 32
-    .line 33
-    .line 34
-    move-result v2
-
-    .line 35
-    iput v2, v1, Ls1/m$a;->f:I
-
-    .line 36
-    .line 37
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object v1
-
-    .line 41
-    invoke-static {v1}, Lcom/android/launcher3/nubia/c;->s(Landroid/content/Context;)Z
-
-    .line 42
-    .line 43
-    .line 44
-    move-result v1
-
-    .line 45
-    const/4 v2, 0x1
-
-    .line 46
-    if-eqz v1, :cond_4
-
-    .line 47
-    .line 48
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 49
-    .line 50
-    .line 51
-    move-result-object v1
-
-    .line 52
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 53
-    .line 54
-    .line 55
-    move-result-object v3
-
-    .line 56
-    invoke-static {v1, v3}, Lcom/android/launcher3/nubia/c;->h(Landroid/content/Context;Ljava/lang/Object;)Lcom/android/launcher3/nubia/NubiaPushConfig;
-
-    .line 57
-    .line 58
-    .line 59
-    move-result-object v1
-
-    .line 60
-    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/v;->x(Lcom/android/launcher3/BubbleTextView;)Z
-
-    .line 61
-    .line 62
-    .line 63
-    move-result v3
-
-    .line 64
-    if-eqz v3, :cond_1
-
-    .line 65
-    .line 66
-    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/v;->q(Lcom/android/launcher3/BubbleTextView;)Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
-
-    .line 67
-    .line 68
-    .line 69
-    move-result-object v3
-
-    .line 70
-    if-eqz v3, :cond_1
-
-    .line 71
-    .line 72
-    move-object v1, v3
-
-    .line 73
-    :cond_1
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 74
-    .line 75
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
-
-    .line 76
-    .line 77
-    .line 78
-    move-result v4
-
-    .line 79
-    iput v4, v3, Ls1/m$a;->f:I
-
-    .line 80
-    .line 81
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 82
-    .line 83
-    if-eqz v1, :cond_2
-
-    .line 84
-    .line 85
-    invoke-virtual {v1}, Lcom/android/launcher3/nubia/NubiaPushConfig;->getMsg()Ljava/lang/String;
-
-    .line 86
-    .line 87
-    .line 88
-    move-result-object v4
-
-    .line 89
-    goto :goto_0
-
-    .line 90
-    :cond_2
-    const-string v4, ""
-
-    .line 91
-    .line 92
-    :goto_0
-    iput-object v4, v3, Ls1/m$a;->k:Ljava/lang/String;
-
-    .line 93
-    .line 94
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 95
-    .line 96
-    const-string v4, "1"
-
-    .line 97
-    .line 98
-    iget-object v5, v3, Ls1/m$a;->k:Ljava/lang/String;
-
-    .line 99
-    .line 100
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 101
-    .line 102
-    .line 103
-    move-result v4
-
-    .line 104
-    xor-int/2addr v4, v2
-
-    .line 105
-    iput-boolean v4, v3, Ls1/m$a;->l:Z
-
-    .line 106
-    .line 107
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 108
-    .line 109
-    if-eqz v1, :cond_3
-
-    .line 110
-    .line 111
-    invoke-virtual {v1}, Lcom/android/launcher3/nubia/NubiaPushConfig;->getBgColor()I
-
-    .line 112
-    .line 113
-    .line 114
-    move-result v1
-
-    .line 115
-    goto :goto_1
-
-    .line 116
-    :cond_3
-    iget v1, v3, Ls1/m$a;->m:I
-
-    .line 117
-    .line 118
-    :goto_1
-    iput v1, v3, Ls1/m$a;->m:I
-
-    .line 119
-    .line 120
-    :cond_4
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
-
-    .line 121
-    .line 122
-    if-eqz v1, :cond_a
-
-    .line 123
-    .line 124
-    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->E:Z
-
-    .line 125
-    .line 126
-    if-nez v1, :cond_a
-
-    .line 127
-    .line 128
-    if-nez v0, :cond_5
-
-    .line 129
-    .line 130
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 131
-    .line 132
-    iget v0, v0, Ls1/m$a;->d:F
-
-    .line 133
-    .line 134
-    const/4 v1, 0x0
-
-    .line 135
-    cmpl-float v0, v0, v1
-
-    .line 136
-    .line 137
-    if-lez v0, :cond_a
-
-    .line 138
-    .line 139
-    :cond_5
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->o0()Z
-
-    .line 140
-    .line 141
-    .line 142
-    move-result v0
-
-    .line 143
-    if-nez v0, :cond_a
-
-    .line 144
-    .line 145
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 146
-    .line 147
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 148
-    .line 149
-    check-cast v1, Landroid/content/Context;
-
-    .line 150
-    .line 151
-    invoke-static {v1}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
-    .line 152
-    .line 153
-    .line 154
-    move-result-object v1
-
-    .line 155
-    invoke-virtual {v1}, Lcom/android/launcher3/P2;->k()Lcom/android/launcher3/H5;
-
-    .line 156
-    .line 157
-    .line 158
-    move-result-object v1
-
-    .line 159
-    invoke-virtual {v1}, Lcom/android/launcher3/H5;->B()Lcom/android/launcher3/H5$c;
-
-    .line 160
-    .line 161
-    .line 162
-    move-result-object v1
-
-    .line 163
-    sget-object v3, Lcom/android/launcher3/H5$c;->g:Lcom/android/launcher3/H5$c;
-
-    .line 164
-    .line 165
-    const/4 v4, 0x0
-
-    .line 166
-    if-ne v1, v3, :cond_6
-
-    .line 167
-    .line 168
-    move v2, v4
-
-    .line 169
-    :cond_6
-    iput v2, v0, Ls1/m$a;->i:I
-
-    .line 170
-    .line 171
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 172
-    .line 173
-    iget-object v0, v0, Ls1/m$a;->c:Landroid/graphics/Rect;
-
-    .line 174
-    .line 175
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
-
-    .line 176
-    .line 177
-    .line 178
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->m0()Z
-
-    .line 179
-    .line 180
-    .line 181
-    move-result v0
-
-    .line 182
-    if-eqz v0, :cond_7
-
-    .line 183
-    .line 184
-    goto :goto_2
-
-    .line 185
-    :cond_7
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollX()I
-
-    .line 186
-    .line 187
-    .line 188
-    move-result v4
-
-    .line 189
-    :goto_2
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollY()I
-
-    .line 190
-    .line 191
-    .line 192
-    move-result v0
-
-    .line 193
-    int-to-float v1, v4
-
-    .line 194
-    int-to-float v2, v0
-
-    .line 195
-    invoke-virtual {p1, v1, v2}, Landroid/graphics/Canvas;->translate(FF)V
-
-    .line 196
-    .line 197
-    .line 198
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 199
-    .line 200
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 201
-    .line 202
-    check-cast v2, Landroid/content/Context;
-
-    .line 203
-    .line 204
-    invoke-static {v2}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
-    .line 205
-    .line 206
-    .line 207
-    move-result-object v2
-
-    .line 208
-    invoke-virtual {v2}, Lcom/android/launcher3/P2;->i()Lcom/android/launcher3/F1;
-
-    .line 209
-    .line 210
-    .line 211
-    move-result-object v2
-
-    .line 212
-    iget v2, v2, Lcom/android/launcher3/r4;->V:F
-
-    .line 213
-    .line 214
-    iput v2, v1, Ls1/m$a;->j:F
-
-    .line 215
-    .line 216
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 217
-    .line 218
-    iget v1, v1, Ls1/m$a;->d:F
-
-    .line 219
-    .line 220
-    invoke-static {}, Lx1/O;->C3()Z
-
-    .line 221
-    .line 222
-    .line 223
-    move-result v2
-
-    .line 224
-    if-eqz v2, :cond_8
-
-    .line 225
-    .line 226
-    invoke-static {p0}, Lp1/f;->x(Landroid/view/View;)Z
-
-    .line 227
-    .line 228
-    .line 229
-    move-result v2
-
-    .line 230
-    if-eqz v2, :cond_8
-
-    .line 231
-    .line 232
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 233
-    .line 234
-    iget v2, v2, Ls1/m$a;->d:F
-
-    .line 235
-    .line 236
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconSize()I
-
-    .line 237
-    .line 238
-    .line 239
-    move-result v3
-
-    .line 240
-    int-to-float v3, v3
-
-    .line 241
-    mul-float/2addr v2, v3
-
-    .line 242
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 243
-    .line 244
-    .line 245
-    move-result-object v3
-
-    .line 246
-    invoke-static {v3}, Lcom/android/launcher3/P2;->e(Landroid/content/Context;)Lcom/android/launcher3/F1;
-
-    .line 247
-    .line 248
-    .line 249
-    move-result-object v3
-
-    .line 250
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 251
-    .line 252
-    .line 253
-    move-result-object v5
-
-    .line 254
-    invoke-virtual {v3, v5}, Lcom/android/launcher3/F1;->t0(Landroid/content/Context;)Lcom/android/launcher3/h0;
-
-    .line 255
-    .line 256
-    .line 257
-    move-result-object v3
-
-    .line 258
-    invoke-static {v3}, Lp1/f;->a(Lcom/android/launcher3/h0;)I
-
-    .line 259
-    .line 260
-    .line 261
-    move-result v3
-
-    .line 262
-    int-to-float v3, v3
-
-    .line 263
-    div-float/2addr v2, v3
-
-    .line 264
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 265
-    .line 266
-    float-to-double v5, v2
-
-    .line 267
-    invoke-static {v5, v6}, Ljava/lang/Math;->sqrt(D)D
-
-    .line 268
-    .line 269
-    .line 270
-    move-result-wide v5
-
-    .line 271
-    double-to-float v2, v5
-
-    .line 272
-    iput v2, v3, Ls1/m$a;->d:F
-
-    .line 273
-    .line 274
-    :cond_8
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
-
-    .line 275
-    .line 276
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 277
-    .line 278
-    .line 279
-    move-result-object v3
-
-    .line 280
-    iget-object v5, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 281
-    .line 282
-    invoke-virtual {v2, v3, p1, v5}, Ls1/m;->a(Landroid/content/Context;Landroid/graphics/Canvas;Ls1/m$a;)V
-
-    .line 283
-    .line 284
-    .line 285
-    invoke-static {}, Lx1/O;->C3()Z
-
-    .line 286
-    .line 287
-    .line 288
-    move-result v2
-
-    .line 289
-    if-eqz v2, :cond_9
-
-    .line 290
-    .line 291
-    invoke-static {p0}, Lp1/f;->x(Landroid/view/View;)Z
-
-    .line 292
-    .line 293
-    .line 294
-    move-result v2
-
-    .line 295
-    if-eqz v2, :cond_9
-
-    .line 296
-    .line 297
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 298
-    .line 299
-    iput v1, p0, Ls1/m$a;->d:F
-
-    .line 300
-    .line 301
-    :cond_9
-    neg-int p0, v4
-
-    .line 302
-    int-to-float p0, p0
-
-    .line 303
-    neg-int v0, v0
-
-    .line 304
-    int-to-float v0, v0
-
-    .line 305
-    invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
-
-    .line 306
-    .line 307
-    .line 308
-    :cond_a
-    return-void
-.end method
-
-.method public V0(Lcom/android/launcher3/BubbleTextView$f;Z)V
-    .locals 6
-
-    .line 1
-    const/4 v0, 0x2
-
-    .line 2
-    const/4 v1, 0x0
-
-    .line 3
-    const/4 v2, 0x1
-
-    .line 4
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->K:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 5
-    .line 6
-    invoke-virtual {p1, v3}, Ljava/lang/Enum;->equals(Ljava/lang/Object;)Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result v3
-
-    .line 10
-    if-eqz v3, :cond_0
-
-    .line 11
-    .line 12
-    return-void
-
-    .line 13
-    :cond_0
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->K:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 14
-    .line 15
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->J()V
-
-    .line 16
-    .line 17
-    .line 18
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->K:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 19
-    .line 20
-    invoke-virtual {p1}, Ljava/lang/Enum;->ordinal()I
-
-    .line 21
-    .line 22
-    .line 23
-    move-result p1
-
-    .line 24
-    const/4 v3, 0x0
-
-    .line 25
-    if-eqz p1, :cond_3
-
-    .line 26
-    .line 27
-    if-eq p1, v2, :cond_2
-
-    .line 28
-    .line 29
-    if-ne p1, v0, :cond_1
-
-    .line 30
-    .line 31
-    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->M:I
-
-    .line 32
-    .line 33
-    goto :goto_0
-
-    .line 34
-    :cond_1
-    new-instance p0, Ljava/lang/RuntimeException;
-
-    .line 35
-    .line 36
-    invoke-direct {p0, v3, v3}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
-
-    .line 37
-    .line 38
-    .line 39
-    throw p0
-
-    .line 40
-    :cond_2
-    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->L:I
-
-    .line 41
-    .line 42
-    goto :goto_0
-
-    .line 43
-    :cond_3
-    move p1, v1
-
-    .line 44
-    :goto_0
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->K:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 45
-    .line 46
-    invoke-virtual {v4}, Ljava/lang/Enum;->ordinal()I
-
-    .line 47
-    .line 48
-    .line 49
-    move-result v4
-
-    .line 50
-    if-eqz v4, :cond_6
-
-    .line 51
-    .line 52
-    if-eq v4, v2, :cond_5
-
-    .line 53
-    .line 54
-    if-ne v4, v0, :cond_4
-
-    .line 55
-    .line 56
-    const/high16 v3, 0x3f000000    # 0.5f
-
-    .line 57
-    .line 58
-    goto :goto_1
-
-    .line 59
-    :cond_4
-    new-instance p0, Ljava/lang/RuntimeException;
-
-    .line 60
-    .line 61
-    invoke-direct {p0, v3, v3}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
-
-    .line 62
-    .line 63
-    .line 64
-    throw p0
-
-    .line 65
-    :cond_5
-    const/high16 v3, 0x3f800000    # 1.0f
-
-    .line 66
-    .line 67
-    goto :goto_1
-
-    .line 68
-    :cond_6
-    const/4 v3, 0x0
-
-    .line 69
-    :goto_1
-    if-nez p2, :cond_7
-
-    .line 70
-    .line 71
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->N:I
-
-    .line 72
-    .line 73
-    iput v3, p0, Lcom/android/launcher3/BubbleTextView;->O:F
-
-    .line 74
-    .line 75
-    invoke-virtual {p0}, Landroid/widget/TextView;->invalidate()V
-
-    .line 76
-    .line 77
-    .line 78
-    return-void
-
-    .line 79
-    :cond_7
-    new-instance p2, Landroid/animation/AnimatorSet;
-
-    .line 80
-    .line 81
-    invoke-direct {p2}, Landroid/animation/AnimatorSet;-><init>()V
-
-    .line 82
-    .line 83
-    .line 84
-    iput-object p2, p0, Lcom/android/launcher3/BubbleTextView;->Q:Landroid/animation/Animator;
-
-    .line 85
-    .line 86
-    sget-object v4, Lcom/android/launcher3/BubbleTextView;->w0:Landroid/util/Property;
-
-    .line 87
-    .line 88
-    filled-new-array {p1}, [I
-
-    .line 89
-    .line 90
-    .line 91
-    move-result-object p1
-
-    .line 92
-    invoke-static {p0, v4, p1}, Landroid/animation/ObjectAnimator;->ofArgb(Ljava/lang/Object;Landroid/util/Property;[I)Landroid/animation/ObjectAnimator;
-
-    .line 93
-    .line 94
-    .line 95
-    move-result-object p1
-
-    .line 96
-    sget-object v4, Lcom/android/launcher3/BubbleTextView;->x0:Landroid/util/Property;
-
-    .line 97
-    .line 98
-    new-array v5, v2, [F
-
-    .line 99
-    .line 100
-    aput v3, v5, v1
-
-    .line 101
-    .line 102
-    invoke-static {p0, v4, v5}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 103
-    .line 104
-    .line 105
-    move-result-object v3
-
-    .line 106
-    new-array v0, v0, [Landroid/animation/Animator;
-
-    .line 107
-    .line 108
-    aput-object p1, v0, v1
-
-    .line 109
-    .line 110
-    aput-object v3, v0, v2
-
-    .line 111
-    .line 112
-    invoke-virtual {p2, v0}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
-
-    .line 113
-    .line 114
-    .line 115
-    sget-object p1, LJ0/h;->a:Landroid/view/animation/Interpolator;
-
-    .line 116
-    .line 117
-    invoke-virtual {p2, p1}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 118
-    .line 119
-    .line 120
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->P:I
-
-    .line 121
-    .line 122
-    int-to-long p0, p0
-
-    .line 123
-    invoke-virtual {p2, p0, p1}, Landroid/animation/AnimatorSet;->setStartDelay(J)V
-
-    .line 124
-    .line 125
-    .line 126
-    const-wide/16 p0, 0x96
-
-    .line 127
-    .line 128
-    invoke-virtual {p2, p0, p1}, Landroid/animation/AnimatorSet;->setDuration(J)Landroid/animation/AnimatorSet;
-
-    .line 129
-    .line 130
-    .line 131
-    move-result-object p0
-
-    .line 132
-    invoke-virtual {p0}, Landroid/animation/AnimatorSet;->start()V
-
-    .line 133
-    .line 134
-    .line 135
-    return-void
-.end method
-
-.method public W(Landroid/graphics/Canvas;)V
-    .locals 2
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundDrawables()[Landroid/graphics/drawable/Drawable;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    const/4 v1, 0x1
-
-    .line 6
-    aget-object v0, v0, v1
-
-    .line 7
-    .line 8
-    invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
-
-    .line 9
-    .line 10
-    .line 11
-    sput-boolean v1, Lcom/android/launcher3/BubbleTextView;->y0:Z
-
-    .line 12
-    .line 13
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->U(Landroid/graphics/Canvas;)V
-
-    .line 14
-    .line 15
-    .line 16
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->V(Landroid/graphics/Canvas;)V
-
-    .line 17
-    .line 18
-    .line 19
-    const/4 p0, 0x0
-
-    .line 20
-    sput-boolean p0, Lcom/android/launcher3/BubbleTextView;->y0:Z
-
-    .line 21
-    .line 22
-    return-void
-.end method
-
-.method public W0()V
-    .locals 2
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    instance-of v1, v0, Lcom/android/launcher3/model/data/z;
-
-    .line 6
-    .line 7
-    if-eqz v1, :cond_1
-
-    .line 8
-    .line 9
-    check-cast v0, Lcom/android/launcher3/model/data/z;
-
-    .line 10
-    .line 11
-    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->a0:Z
-
-    .line 12
-    .line 13
-    if-nez v1, :cond_1
-
-    .line 14
-    .line 15
-    invoke-virtual {v0}, Lcom/android/launcher3/model/data/z;->x()Lt1/g;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v1
-
-    .line 19
-    invoke-virtual {v1}, Lt1/g;->e()Z
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v1
-
-    .line 23
-    if-eqz v1, :cond_1
-
-    .line 24
-    .line 25
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 26
-    .line 27
-    if-eqz v1, :cond_0
-
-    .line 28
-    .line 29
-    invoke-virtual {v1}, Lcom/android/launcher3/util/w;->e()V
-
-    .line 30
-    .line 31
-    .line 32
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v1
-
-    .line 36
-    invoke-static {v1}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
-    .line 37
-    .line 38
-    .line 39
-    move-result-object v1
-
-    .line 40
-    invoke-virtual {v1}, Lcom/android/launcher3/P2;->f()Ls1/P;
-
-    .line 41
-    .line 42
-    .line 43
-    move-result-object v1
-
-    .line 44
-    invoke-virtual {v1, p0, v0}, Ls1/P;->W0(Ls1/P$a;Lcom/android/launcher3/model/data/z;)Lcom/android/launcher3/util/w;
-
-    .line 45
-    .line 46
-    .line 47
-    move-result-object v0
-
-    .line 48
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 49
-    .line 50
-    :cond_1
-    return-void
-.end method
-
-.method protected Y(Landroid/graphics/Canvas;)V
-    .locals 12
-
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 2
-    .line 3
-    const/4 v1, 0x5
-
-    .line 4
-    if-ne v0, v1, :cond_1
-
-    .line 5
-    .line 6
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->O:F
-
-    .line 7
-    .line 8
-    const/4 v1, 0x0
-
-    .line 9
-    cmpl-float v0, v0, v1
-
-    .line 10
-    .line 11
-    if-eqz v0, :cond_1
-
-    .line 12
-    .line 13
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->N:I
-
-    .line 14
-    .line 15
-    if-nez v0, :cond_0
-
-    .line 16
-    .line 17
-    goto :goto_0
-
-    .line 18
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->J:Landroid/graphics/Rect;
-
-    .line 19
-    .line 20
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
-
-    .line 21
-    .line 22
-    .line 23
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->J:Landroid/graphics/Rect;
-
-    .line 24
-    .line 25
-    const v1, 0x3f6b851f    # 0.92f
-
-    .line 26
-    .line 27
-    .line 28
-    invoke-static {v0, v1}, Lcom/android/launcher3/N5;->Z(Landroid/graphics/Rect;F)V
-
-    .line 29
-    .line 30
-    .line 31
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->J:Landroid/graphics/Rect;
-
-    .line 32
-    .line 33
-    iget v0, v0, Landroid/graphics/Rect;->bottom:I
-
-    .line 34
-    .line 35
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->H:I
-
-    .line 36
-    .line 37
-    add-int/2addr v0, v1
-
-    .line 38
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->F:I
-
-    .line 39
-    .line 40
-    int-to-float v1, v1
-
-    .line 41
-    iget v2, p0, Lcom/android/launcher3/BubbleTextView;->O:F
-
-    .line 42
-    .line 43
-    mul-float/2addr v1, v2
-
-    .line 44
-    iget v2, p0, Lcom/android/launcher3/BubbleTextView;->G:I
-
-    .line 45
-    .line 46
-    int-to-float v2, v2
-
-    .line 47
-    const/high16 v3, 0x40000000    # 2.0f
-
-    .line 48
-    .line 49
-    div-float v9, v2, v3
-
-    .line 50
-    .line 51
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->I:Landroid/graphics/Paint;
-
-    .line 52
-    .line 53
-    iget v4, p0, Lcom/android/launcher3/BubbleTextView;->N:I
-
-    .line 54
-    .line 55
-    invoke-virtual {v2, v4}, Landroid/graphics/Paint;->setColor(I)V
-
-    .line 56
-    .line 57
-    .line 58
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->J:Landroid/graphics/Rect;
-
-    .line 59
-    .line 60
-    invoke-virtual {v2}, Landroid/graphics/Rect;->centerX()I
-
-    .line 61
-    .line 62
-    .line 63
-    move-result v2
-
-    .line 64
-    int-to-float v2, v2
-
-    .line 65
-    div-float/2addr v1, v3
-
-    .line 66
-    sub-float v5, v2, v1
-
-    .line 67
-    .line 68
-    int-to-float v6, v0
-
-    .line 69
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->J:Landroid/graphics/Rect;
-
-    .line 70
-    .line 71
-    invoke-virtual {v2}, Landroid/graphics/Rect;->centerX()I
-
-    .line 72
-    .line 73
-    .line 74
-    move-result v2
-
-    .line 75
-    int-to-float v2, v2
-
-    .line 76
-    add-float v7, v2, v1
-
-    .line 77
-    .line 78
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->G:I
-
-    .line 79
-    .line 80
-    add-int/2addr v0, v1
-
-    .line 81
-    int-to-float v8, v0
-
-    .line 82
-    iget-object v11, p0, Lcom/android/launcher3/BubbleTextView;->I:Landroid/graphics/Paint;
-
-    .line 83
-    .line 84
-    move v10, v9
-
-    .line 85
-    move-object v4, p1
-
-    .line 86
-    invoke-virtual/range {v4 .. v11}, Landroid/graphics/Canvas;->drawRoundRect(FFFFFFLandroid/graphics/Paint;)V
-
-    .line 87
-    .line 88
-    .line 89
-    :cond_1
-    :goto_0
-    return-void
-.end method
-
-.method protected Z(Landroid/graphics/Canvas;)V
-    .locals 8
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 2
-    .line 3
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
-
-    .line 7
-    iget-object v0, v0, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
-
-    .line 8
-    .line 9
-    iget-boolean v0, v0, Lcom/android/launcher3/r4;->k:Z
-
-    .line 10
-    .line 11
-    if-eqz v0, :cond_0
-
-    .line 12
-    .line 13
-    goto/16 :goto_2
-
-    .line 14
-    .line 15
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v0
-
-    .line 19
-    instance-of v0, v0, Lcom/android/launcher3/model/data/I;
-
-    .line 20
-    .line 21
-    if-nez v0, :cond_1
-
-    .line 22
-    .line 23
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 24
-    .line 25
-    .line 26
-    move-result-object v0
-
-    .line 27
-    instance-of v0, v0, Lcom/android/launcher3/model/data/d;
-
-    .line 28
-    .line 29
-    if-nez v0, :cond_1
-
-    .line 30
-    .line 31
-    goto/16 :goto_2
-
-    .line 32
-    .line 33
-    :cond_1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 34
-    .line 35
-    check-cast v0, Landroid/content/Context;
-
-    .line 36
-    .line 37
-    invoke-static {v0}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object v0
-
-    .line 41
-    invoke-virtual {v0}, Lcom/android/launcher3/P2;->k()Lcom/android/launcher3/H5;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object v0
-
-    .line 45
-    invoke-virtual {v0}, Lcom/android/launcher3/H5;->M0()Z
-
-    .line 46
-    .line 47
-    .line 48
-    move-result v0
-
-    .line 49
-    if-nez v0, :cond_2
-
-    .line 50
-    .line 51
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 52
-    .line 53
-    .line 54
-    move-result-object v0
-
-    .line 55
-    instance-of v0, v0, Lcom/android/launcher3/model/data/I;
-
-    .line 56
-    .line 57
-    if-eqz v0, :cond_2
-
-    .line 58
-    .line 59
-    goto/16 :goto_2
-
-    .line 60
-    .line 61
-    :cond_2
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->n0()Z
-
-    .line 62
-    .line 63
-    .line 64
-    move-result v0
-
-    .line 65
-    if-eqz v0, :cond_3
-
-    .line 66
-    .line 67
-    goto/16 :goto_2
-
-    .line 68
-    .line 69
-    :cond_3
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 70
-    .line 71
-    .line 72
-    move-result-object v0
-
-    .line 73
-    check-cast v0, Lcom/android/launcher3/model/data/z;
-
-    .line 74
-    .line 75
-    iget v1, v0, Lcom/android/launcher3/model/data/y;->itemType:I
-
-    .line 76
-    .line 77
-    if-nez v1, :cond_5
-
-    .line 78
-    .line 79
-    iget-boolean v1, v0, Lcom/android/launcher3/model/data/y;->isNewApp:Z
-
-    .line 80
-    .line 81
-    if-nez v1, :cond_5
-
-    .line 82
-    .line 83
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 84
-    .line 85
-    invoke-interface {v1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 86
-    .line 87
-    .line 88
-    move-result-object v1
-
-    .line 89
-    iget v1, v1, Lcom/android/launcher3/X3;->t:I
-
-    .line 90
-    .line 91
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
-
-    .line 92
-    .line 93
-    .line 94
-    move-result v2
-
-    .line 95
-    if-ne v2, v1, :cond_4
-
-    .line 96
-    .line 97
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingRight()I
-
-    .line 98
-    .line 99
-    .line 100
-    move-result v2
-
-    .line 101
-    if-eq v2, v1, :cond_5
-
-    .line 102
-    .line 103
-    :cond_4
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    .line 104
-    .line 105
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 106
-    .line 107
-    .line 108
-    const-string v3, "drawUnOpenMark setPadding getText="
-
-    .line 109
-    .line 110
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 111
-    .line 112
-    .line 113
-    invoke-virtual {p0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
-
-    .line 114
-    .line 115
-    .line 116
-    move-result-object v3
-
-    .line 117
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 118
-    .line 119
-    .line 120
-    const-string v3, " paddingLeftRight="
-
-    .line 121
-    .line 122
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 123
-    .line 124
-    .line 125
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 126
-    .line 127
-    .line 128
-    const-string v3, " getPaddingLeft="
-
-    .line 129
-    .line 130
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 131
-    .line 132
-    .line 133
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
-
-    .line 134
-    .line 135
-    .line 136
-    move-result v3
-
-    .line 137
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 138
-    .line 139
-    .line 140
-    const-string v3, " getPaddingRight="
-
-    .line 141
-    .line 142
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 143
-    .line 144
-    .line 145
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingRight()I
-
-    .line 146
-    .line 147
-    .line 148
-    move-result v3
-
-    .line 149
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 150
-    .line 151
-    .line 152
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 153
-    .line 154
-    .line 155
-    move-result-object v2
-
-    .line 156
-    const-string v3, "BubbleTextView"
-
-    .line 157
-    .line 158
-    invoke-static {v3, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 159
-    .line 160
-    .line 161
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingTop()I
-
-    .line 162
-    .line 163
-    .line 164
-    move-result v2
-
-    .line 165
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
-
-    .line 166
-    .line 167
-    .line 168
-    move-result v3
-
-    .line 169
-    invoke-virtual {p0, v1, v2, v1, v3}, Landroid/widget/TextView;->setPadding(IIII)V
-
-    .line 170
-    .line 171
-    .line 172
-    :cond_5
-    iget v1, v0, Lcom/android/launcher3/model/data/y;->itemType:I
-
-    .line 173
-    .line 174
-    if-nez v1, :cond_9
-
-    .line 175
-    .line 176
-    iget-boolean v0, v0, Lcom/android/launcher3/model/data/y;->isNewApp:Z
-
-    .line 177
-    .line 178
-    if-nez v0, :cond_6
-
-    .line 179
-    .line 180
-    goto/16 :goto_2
-
-    .line 181
-    .line 182
-    :cond_6
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
-
-    .line 183
-    .line 184
-    .line 185
-    move-result-object v0
-
-    .line 186
-    invoke-virtual {v0}, Landroid/text/TextPaint;->getFontMetrics()Landroid/graphics/Paint$FontMetrics;
-
-    .line 187
-    .line 188
-    .line 189
-    move-result-object v0
-
-    .line 190
-    iget v1, v0, Landroid/graphics/Paint$FontMetrics;->descent:F
-
-    .line 191
-    .line 192
-    iget v0, v0, Landroid/graphics/Paint$FontMetrics;->ascent:F
-
-    .line 193
-    .line 194
-    sub-float/2addr v1, v0
-
-    .line 195
-    const/high16 v0, 0x40000000    # 2.0f
-
-    .line 196
-    .line 197
-    div-float/2addr v1, v0
-
-    .line 198
-    float-to-int v0, v1
-
-    .line 199
-    invoke-virtual {p0}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
-
-    .line 200
-    .line 201
-    .line 202
-    move-result-object v1
-
-    .line 203
-    const/4 v2, 0x0
-
-    .line 204
-    if-eqz v1, :cond_7
-
-    .line 205
-    .line 206
-    invoke-virtual {p0}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
-
-    .line 207
-    .line 208
-    .line 209
-    move-result-object v1
-
-    .line 210
-    invoke-virtual {v1, v2}, Landroid/text/Layout;->getLineWidth(I)F
-
-    .line 211
-    .line 212
-    .line 213
-    move-result v1
-
-    .line 214
-    float-to-int v1, v1
-
-    .line 215
-    goto :goto_0
-
-    .line 216
-    :cond_7
-    move v1, v2
-
-    .line 217
-    :goto_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWidth()I
-
-    .line 218
-    .line 219
-    .line 220
-    move-result v3
-
-    .line 221
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
-
-    .line 222
-    .line 223
-    .line 224
-    move-result v4
-
-    .line 225
-    mul-int/lit8 v4, v4, 0x2
-
-    .line 226
-    .line 227
-    sub-int/2addr v3, v4
-
-    .line 228
-    sub-int/2addr v3, v1
-
-    .line 229
-    div-int/lit8 v3, v3, 0x2
-
-    .line 230
-    .line 231
-    invoke-static {v3, v2}, Ljava/lang/Math;->max(II)I
-
-    .line 232
-    .line 233
-    .line 234
-    move-result v1
-
-    .line 235
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollX()I
-
-    .line 236
-    .line 237
-    .line 238
-    move-result v3
-
-    .line 239
-    invoke-virtual {p0}, Landroid/widget/TextView;->getScrollY()I
-
-    .line 240
-    .line 241
-    .line 242
-    move-result v4
-
-    .line 243
-    int-to-float v5, v3
-
-    .line 244
-    int-to-float v6, v4
-
-    .line 245
-    invoke-virtual {p1, v5, v6}, Landroid/graphics/Canvas;->translate(FF)V
-
-    .line 246
-    .line 247
-    .line 248
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 249
-    .line 250
-    .line 251
-    move-result-object v5
-
-    .line 252
-    const v6, 0x7f070929
-
-    .line 253
-    .line 254
-    .line 255
-    invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 256
-    .line 257
-    .line 258
-    move-result v5
-
-    .line 259
-    float-to-int v5, v5
-
-    .line 260
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingTop()I
-
-    .line 261
-    .line 262
-    .line 263
-    move-result v6
-
-    .line 264
-    add-int/2addr v6, v0
-
-    .line 265
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingLeft()I
-
-    .line 266
-    .line 267
-    .line 268
-    move-result v0
-
-    .line 269
-    add-int/2addr v0, v1
-
-    .line 270
-    sub-int/2addr v0, v5
-
-    .line 271
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 272
-    .line 273
-    .line 274
-    move-result-object v1
-
-    .line 275
-    invoke-static {}, Lcom/android/launcher3/H5;->W()Lcom/android/launcher3/resource/B;
-
-    .line 276
-    .line 277
-    .line 278
-    move-result-object v7
-
-    .line 279
-    invoke-virtual {v7}, Lcom/android/launcher3/resource/B;->s()Z
-
-    .line 280
-    .line 281
-    .line 282
-    move-result v7
-
-    .line 283
-    if-eqz v7, :cond_8
-
-    .line 284
-    .line 285
-    const v7, 0x7f070928
-
-    .line 286
-    .line 287
-    .line 288
-    goto :goto_1
-
-    .line 289
-    :cond_8
-    const v7, 0x7f070927
-
-    .line 290
-    .line 291
-    .line 292
-    :goto_1
-    invoke-virtual {v1, v7}, Landroid/content/res/Resources;->getDimension(I)F
-
-    .line 293
-    .line 294
-    .line 295
-    move-result v1
-
-    .line 296
-    float-to-int v1, v1
-
-    .line 297
-    sub-int/2addr v0, v1
-
-    .line 298
-    invoke-static {v0, v2}, Ljava/lang/Math;->max(II)I
-
-    .line 299
-    .line 300
-    .line 301
-    move-result v0
-
-    .line 302
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 303
-    .line 304
-    .line 305
-    move-result-object p0
-
-    .line 306
-    const v1, 0x7f080e0b
-
-    .line 307
-    .line 308
-    .line 309
-    invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
-
-    .line 310
-    .line 311
-    .line 312
-    move-result-object p0
-
-    .line 313
-    add-int v1, v0, v5
-
-    .line 314
-    .line 315
-    add-int/2addr v5, v6
-
-    .line 316
-    invoke-virtual {p0, v0, v6, v1, v5}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
-
-    .line 317
-    .line 318
-    .line 319
-    invoke-virtual {p0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
-
-    .line 320
-    .line 321
-    .line 322
-    neg-int p0, v3
-
-    .line 323
-    int-to-float p0, p0
-
-    .line 324
-    neg-int v0, v4
-
-    .line 325
-    int-to-float v0, v0
-
-    .line 326
-    invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
-
-    .line 327
-    .line 328
-    .line 329
-    :cond_9
-    :goto_2
-    return-void
-.end method
-
-.method protected a0(Landroid/graphics/Canvas;)V
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Landroid/widget/TextView;->onDraw(Landroid/graphics/Canvas;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
 .end method
 
 .method public cancelLongPress()V
     .locals 0
 
-    .line 1
+    .line 1211
     invoke-super {p0}, Landroid/widget/TextView;->cancelLongPress()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->q:Lcom/android/launcher3/V;
+    .line 1212
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mLongPressHelper:Lcom/android/launcher3/CheckLongPressHelper;
 
-    .line 5
-    .line 6
-    invoke-virtual {p0}, Lcom/android/launcher3/V;->c()V
+    invoke-virtual {p0}, Lcom/android/launcher3/CheckLongPressHelper;->cancelLongPress()V
 
-    .line 7
-    .line 8
-    .line 9
     return-void
 .end method
 
-.method public d(Landroid/graphics/Rect;)V
-    .locals 2
-
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWidth()I
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v0
-
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getHeight()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result p0
-
-    .line 13
-    const/4 v1, 0x0
-
-    .line 14
-    invoke-virtual {p1, v1, v1, v0, p0}, Landroid/graphics/Rect;->set(IIII)V
-
-    .line 15
-    .line 16
-    .line 17
-    return-void
-
-    .line 18
-    :cond_0
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 19
-    .line 20
-    invoke-virtual {p0, p0, v0, p1}, Lcom/android/launcher3/BubbleTextView;->e0(Landroid/view/View;ILandroid/graphics/Rect;)V
-
-    .line 21
-    .line 22
-    .line 23
-    return-void
-.end method
-
-.method public d0(Landroid/graphics/Rect;)V
+.method public clearDragonDrawable()V
     .locals 1
 
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p0, v0, p1}, Lcom/android/launcher3/BubbleTextView;->e0(Landroid/view/View;ILandroid/graphics/Rect;)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public dispatchTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 4
-
-    .line 1
     const/4 v0, 0x0
 
-    .line 2
-    invoke-static {p0, v0}, Lx1/v;->u(Landroid/view/View;Z)Z
+    .line 1865
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDragonDrawable:Lcom/android/launcher3/iconarrange/DragonDrawable;
 
-    .line 3
-    .line 4
-    .line 5
-    move-result v0
-
-    .line 6
-    if-eqz v0, :cond_4
-
-    .line 7
-    .line 8
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
-
-    .line 9
-    .line 10
-    .line 11
-    move-result v0
-
-    .line 12
-    const/4 v1, 0x1
-
-    .line 13
-    if-nez v0, :cond_0
-
-    .line 14
-    .line 15
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
-
-    .line 16
-    .line 17
-    .line 18
-    move-result v0
-
-    .line 19
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v2
-
-    .line 23
-    invoke-virtual {p0, v0, v2}, Lcom/android/launcher3/BubbleTextView;->p0(FF)Z
-
-    .line 24
-    .line 25
-    .line 26
-    move-result v0
-
-    .line 27
-    invoke-static {}, Lx1/O;->G1()Z
-
-    .line 28
-    .line 29
-    .line 30
-    move-result v2
-
-    .line 31
-    if-eqz v2, :cond_1
-
-    .line 32
-    .line 33
-    if-eqz v0, :cond_1
-
-    .line 34
-    .line 35
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 36
-    .line 37
-    .line 38
-    move-result-object v2
-
-    .line 39
-    instance-of v2, v2, Lcom/android/launcher3/model/data/z;
-
-    .line 40
-    .line 41
-    if-eqz v2, :cond_1
-
-    .line 42
-    .line 43
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 44
-    .line 45
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->asContext()Landroid/content/Context;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object v2
-
-    .line 49
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object v3
-
-    .line 53
-    check-cast v3, Lcom/android/launcher3/model/data/z;
-
-    .line 54
-    .line 55
-    invoke-direct {p0, v2, v3}, Lcom/android/launcher3/BubbleTextView;->z0(Landroid/content/Context;Lcom/android/launcher3/model/data/z;)V
-
-    .line 56
-    .line 57
-    .line 58
-    goto :goto_0
-
-    .line 59
-    :cond_0
-    move v0, v1
-
-    .line 60
-    :cond_1
-    :goto_0
-    if-eqz v0, :cond_4
-
-    .line 61
-    .line 62
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 63
-    .line 64
-    invoke-static {v0}, Lcom/android/launcher3/folder/Folder;->i1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/folder/Folder;
-
-    .line 65
-    .line 66
-    .line 67
-    move-result-object v0
-
-    .line 68
-    if-eqz v0, :cond_2
-
-    .line 69
-    .line 70
-    invoke-virtual {v0}, Lcom/android/launcher3/folder/Folder;->u1()Z
-
-    .line 71
-    .line 72
-    .line 73
-    move-result v0
-
-    .line 74
-    if-eqz v0, :cond_2
-
-    .line 75
-    .line 76
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 77
-    .line 78
-    const/4 v2, 0x2
-
-    .line 79
-    if-ne v0, v2, :cond_2
-
-    .line 80
-    .line 81
-    invoke-super {p0, p1}, Landroid/widget/TextView;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
-
-    .line 82
-    .line 83
-    .line 84
-    move-result p0
-
-    .line 85
-    return p0
-
-    .line 86
-    :cond_2
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l0:Lx1/v;
-
-    .line 87
-    .line 88
-    if-nez v0, :cond_3
-
-    .line 89
-    .line 90
-    new-instance v0, Lx1/v;
-
-    .line 91
-    .line 92
-    const-string v2, "BubbleTextView"
-
-    .line 93
-    .line 94
-    invoke-direct {v0, p0, v2, v1}, Lx1/v;-><init>(Landroid/view/View;Ljava/lang/String;Z)V
-
-    .line 95
-    .line 96
-    .line 97
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l0:Lx1/v;
-
-    .line 98
-    .line 99
-    invoke-virtual {p0}, Landroid/widget/TextView;->resetPivot()V
-
-    .line 100
-    .line 101
-    .line 102
-    :cond_3
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l0:Lx1/v;
-
-    .line 103
-    .line 104
-    if-eqz v0, :cond_4
-
-    .line 105
-    .line 106
-    invoke-virtual {v0, p1}, Lx1/v;->g(Landroid/view/MotionEvent;)V
-
-    .line 107
-    .line 108
-    .line 109
-    :cond_4
-    invoke-super {p0, p1}, Landroid/widget/TextView;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
-
-    .line 110
-    .line 111
-    .line 112
-    move-result p0
-
-    .line 113
-    return p0
+    return-void
 .end method
 
-.method public e()Lcom/android/launcher3/util/a2;
+.method public clearPressedBackground()V
     .locals 1
 
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->E0()V
+    const/4 v0, 0x0
 
-    .line 2
-    .line 3
-    .line 4
-    const/4 v0, 0x1
+    .line 706
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setPressed(Z)V
 
-    .line 5
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setForceHideDot(Z)V
+    .line 707
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setStayPressed(Z)V
 
-    .line 6
-    .line 7
-    .line 8
-    new-instance p0, Lcom/android/launcher3/M;
+    return-void
+.end method
 
-    .line 9
-    .line 10
-    invoke-direct {p0}, Lcom/android/launcher3/M;-><init>()V
+.method public createTextAlphaAnimator(Z)Landroid/animation/ObjectAnimator;
+    .locals 3
 
-    .line 11
-    .line 12
-    .line 13
+    .line 1133
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->shouldTextBeVisible()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    if-eqz p1, :cond_0
+
+    const/high16 p1, 0x3f800000    # 1.0f
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p1, 0x0
+
+    .line 1134
+    :goto_0
+    sget-object v0, Lcom/android/launcher3/BubbleTextView;->TEXT_ALPHA_PROPERTY:Landroid/util/Property;
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [F
+
+    const/4 v2, 0x0
+
+    aput p1, v1, v2
+
+    invoke-static {p0, v0, v1}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object p0
+
     return-object p0
 .end method
 
-.method public e0(Landroid/view/View;ILandroid/graphics/Rect;)V
-    .locals 1
+.method public dispatchTouchEvent(Landroid/view/MotionEvent;)Z
+    .locals 3
 
-    .line 1
-    const/4 p1, 0x0
+    const/4 v0, 0x0
 
-    .line 2
-    invoke-virtual {p3, p1, p1, p2, p2}, Landroid/graphics/Rect;->set(IIII)V
+    .line 1999
+    invoke-static {p0, v0}, Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;->supportClickScaleAnim(Landroid/view/View;Z)Z
 
-    .line 3
-    .line 4
-    .line 5
-    iget-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->r:Z
-
-    .line 6
-    .line 7
-    if-eqz p1, :cond_1
-
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getHeight()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result p1
-
-    .line 13
-    sub-int/2addr p1, p2
-
-    .line 14
-    div-int/lit8 p1, p1, 0x2
-
-    .line 15
-    .line 16
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->s:Z
-
-    .line 17
-    .line 18
-    if-eqz v0, :cond_0
-
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWidth()I
-
-    .line 21
-    .line 22
-    .line 23
     move-result v0
 
-    .line 24
-    sub-int/2addr v0, p2
+    if-eqz v0, :cond_2
 
-    .line 25
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingRight()I
+    .line 2001
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
-    .line 26
-    .line 27
-    .line 28
-    move-result p0
+    move-result v0
 
-    .line 29
-    sub-int/2addr v0, p0
+    if-nez v0, :cond_0
 
-    .line 30
-    invoke-virtual {p3, v0, p1}, Landroid/graphics/Rect;->offsetTo(II)V
+    .line 2002
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
 
-    .line 31
-    .line 32
-    .line 33
-    return-void
+    move-result v0
 
-    .line 34
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
+
+    move-result v1
+
+    invoke-virtual {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->isTouchIconDrawable(FF)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 2005
     :cond_0
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mClickScaleAnimHelper:Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;
 
-    .line 35
-    .line 36
-    .line 37
-    move-result p0
+    if-nez v0, :cond_1
 
-    .line 38
-    invoke-virtual {p3, p0, p1}, Landroid/graphics/Rect;->offsetTo(II)V
+    .line 2006
+    new-instance v0, Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;
 
-    .line 39
-    .line 40
-    .line 41
-    return-void
+    const-string v1, "BubbleTextView"
 
-    .line 42
+    const/4 v2, 0x1
+
+    invoke-direct {v0, p0, v1, v2}, Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;-><init>(Landroid/view/View;Ljava/lang/String;Z)V
+
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mClickScaleAnimHelper:Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;
+
+    .line 2007
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->resetPivot()V
+
+    .line 2009
     :cond_1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWidth()I
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mClickScaleAnimHelper:Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;
 
-    .line 43
-    .line 44
-    .line 45
-    move-result p1
+    if-eqz v0, :cond_2
 
-    .line 46
-    sub-int/2addr p1, p2
+    .line 2010
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/mfvUtil/ClickScaleAnimHelper;->dispatchTouchEvent(Landroid/view/MotionEvent;)V
 
-    .line 47
-    div-int/lit8 p1, p1, 0x2
+    .line 2015
+    :cond_2
+    invoke-super {p0, p1}, Landroid/widget/TextView;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 48
-    .line 49
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingTop()I
-
-    .line 50
-    .line 51
-    .line 52
     move-result p0
 
-    .line 53
-    invoke-virtual {p3, p1, p0}, Landroid/graphics/Rect;->offset(II)V
-
-    .line 54
-    .line 55
-    .line 56
-    return-void
+    return p0
 .end method
 
-.method public f0()Z
-    .locals 0
+.method protected drawDotIfNecessary(Landroid/graphics/Canvas;)V
+    .locals 7
 
-    .line 1
+    .line 819
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->hasDot()Z
+
+    move-result v0
+
+    .line 820
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v1
+
+    instance-of v1, v1, Lcom/android/launcher3/model/data/ItemInfo;
+
+    if-eqz v1, :cond_0
+
+    .line 821
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/android/launcher3/model/data/ItemInfo;
+
+    if-eqz v0, :cond_0
+
+    .line 822
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
+
+    if-eqz v2, :cond_0
+
+    iget v1, v1, Lcom/android/launcher3/model/data/ItemInfo;->itemType:I
+
+    if-nez v1, :cond_0
+
+    .line 823
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
 
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
+    move-result v2
 
-    .line 5
-    if-lez p0, :cond_0
+    iput v2, v1, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotCount:I
 
-    .line 6
-    .line 7
-    const/4 p0, 0x1
-
-    .line 8
-    return p0
-
-    .line 9
+    .line 827
     :cond_0
-    const/4 p0, 0x0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 10
-    return p0
-.end method
+    move-result-object v1
 
-.method public g(Landroid/graphics/Rect;)V
-    .locals 1
+    invoke-static {v1}, Lcom/android/launcher3/nubia/NubiaPushBadgeHelper;->supportNubiaPushBadge(Landroid/content/Context;)Z
 
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    move-result v1
 
-    .line 2
-    .line 3
-    invoke-virtual {p0, p0, v0, p1}, Lcom/android/launcher3/BubbleTextView;->e0(Landroid/view/View;ILandroid/graphics/Rect;)V
+    const/4 v2, 0x1
 
-    .line 4
-    .line 5
-    .line 6
+    if-eqz v1, :cond_4
+
+    .line 828
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v3
+
+    invoke-static {v1, v3}, Lcom/android/launcher3/nubia/NubiaPushBadgeHelper;->getPushConfig(Landroid/content/Context;Ljava/lang/Object;)Lcom/android/launcher3/nubia/NubiaPushConfig;
+
+    move-result-object v1
+
+    .line 829
+    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils;->isSuggestBubbleTextViewCanShowSuggestNubiaPushBadgeRedDot(Lcom/android/launcher3/BubbleTextView;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_1
+
+    .line 830
+    invoke-static {p0}, Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils;->getSuggestBubbleTextViewSuggestNubiaPushConfig(Lcom/android/launcher3/BubbleTextView;)Lcom/android/launcher3/widget/suggest/data/SuggestNubiaPushConfig;
+
+    move-result-object v3
+
+    if-eqz v3, :cond_1
+
+    move-object v1, v3
+
+    .line 835
+    :cond_1
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
+
+    move-result v4
+
+    iput v4, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotCount:I
+
+    .line 836
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    if-eqz v1, :cond_2
+
+    invoke-virtual {v1}, Lcom/android/launcher3/nubia/NubiaPushConfig;->getMsg()Ljava/lang/String;
+
+    move-result-object v4
+
+    goto :goto_0
+
+    :cond_2
+    const-string v4, ""
+
+    :goto_0
+    iput-object v4, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->nubiaPushBadgeText:Ljava/lang/String;
+
+    .line 837
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    const-string v4, "1"
+
+    iget-object v5, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->nubiaPushBadgeText:Ljava/lang/String;
+
+    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    xor-int/2addr v4, v2
+
+    iput-boolean v4, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->nubiaPushBadgeIsBanner:Z
+
+    .line 838
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    if-eqz v1, :cond_3
+
+    invoke-virtual {v1}, Lcom/android/launcher3/nubia/NubiaPushConfig;->getBgColor()I
+
+    move-result v1
+
+    goto :goto_1
+
+    :cond_3
+    iget v1, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->nubiaPushBadgeColor:I
+
+    :goto_1
+    iput v1, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->nubiaPushBadgeColor:I
+
+    .line 843
+    :cond_4
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
+
+    if-eqz v1, :cond_a
+
+    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mForceHideDot:Z
+
+    if-nez v1, :cond_a
+
+    if-nez v0, :cond_5
+
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget v0, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->scale:F
+
+    const/4 v1, 0x0
+
+    cmpl-float v0, v0, v1
+
+    if-lez v0, :cond_a
+
+    .line 844
+    :cond_5
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isInTransformFolderIconItems()Z
+
+    move-result v0
+
+    if-nez v0, :cond_a
+
+    .line 845
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v1, Landroid/content/Context;
+
+    invoke-static {v1}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/LauncherAppState;->getResourceManager()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/ResourceManager;->getCurrentCornerMode()Lcom/android/launcher3/ResourceManager$CornerMode;
+
+    move-result-object v1
+
+    sget-object v3, Lcom/android/launcher3/ResourceManager$CornerMode;->NUMBERIC_CORNER:Lcom/android/launcher3/ResourceManager$CornerMode;
+
+    const/4 v4, 0x0
+
+    if-ne v1, v3, :cond_6
+
+    move v2, v4
+
+    :cond_6
+    iput v2, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotType:I
+
+    .line 846
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget-object v0, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconBounds:Landroid/graphics/Rect;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
+
+    .line 851
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->isInIconArrangeMenuPreview()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_7
+
+    goto :goto_2
+
+    :cond_7
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollX()I
+
+    move-result v4
+
+    .line 852
+    :goto_2
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollY()I
+
+    move-result v0
+
+    int-to-float v1, v4
+
+    int-to-float v2, v0
+
+    .line 853
+    invoke-virtual {p1, v1, v2}, Landroid/graphics/Canvas;->translate(FF)V
+
+    .line 854
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v2, Landroid/content/Context;
+
+    invoke-static {v2}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/launcher3/LauncherAppState;->getInvariantDeviceProfile()Lcom/android/launcher3/InvariantDeviceProfile;
+
+    move-result-object v2
+
+    iget v2, v2, Lcom/android/launcher3/InvariantDeviceProfile;->coordinateScaleOfDot:F
+
+    iput v2, v1, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->coordinateScaleOfDot:F
+
+    .line 855
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget v1, v1, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->scale:F
+
+    .line 856
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_8
+
+    invoke-static {p0}, Lcom/android/launcher3/hotseat/HotseatUtils;->isViewInRecentHotseat(Landroid/view/View;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_8
+
+    .line 857
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iget v2, v2, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->scale:F
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconSize()I
+
+    move-result v3
+
+    int-to-float v3, v3
+
+    mul-float/2addr v2, v3
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v3
+
+    invoke-static {v3}, Lcom/android/launcher3/LauncherAppState;->getIDP(Landroid/content/Context;)Lcom/android/launcher3/InvariantDeviceProfile;
+
+    move-result-object v3
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v5
+
+    invoke-virtual {v3, v5}, Lcom/android/launcher3/InvariantDeviceProfile;->getDeviceProfile(Landroid/content/Context;)Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v3
+
+    invoke-static {v3}, Lcom/android/launcher3/hotseat/HotseatUtils;->getDefaultHotseatIconSize(Lcom/android/launcher3/DeviceProfile;)I
+
+    move-result v3
+
+    int-to-float v3, v3
+
+    div-float/2addr v2, v3
+
+    .line 858
+    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    float-to-double v5, v2
+
+    invoke-static {v5, v6}, Ljava/lang/Math;->sqrt(D)D
+
+    move-result-wide v5
+
+    double-to-float v2, v5
+
+    iput v2, v3, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->scale:F
+
+    .line 860
+    :cond_8
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mDotRenderer:Lcom/android/launcher3/icons/DotRenderer;
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v3
+
+    iget-object v5, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    invoke-virtual {v2, v3, p1, v5}, Lcom/android/launcher3/icons/DotRenderer;->draw(Landroid/content/Context;Landroid/graphics/Canvas;Lcom/android/launcher3/icons/DotRenderer$DrawParams;)V
+
+    .line 861
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_9
+
+    invoke-static {p0}, Lcom/android/launcher3/hotseat/HotseatUtils;->isViewInRecentHotseat(Landroid/view/View;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_9
+
+    .line 862
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iput v1, p0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->scale:F
+
+    :cond_9
+    neg-int p0, v4
+
+    int-to-float p0, p0
+
+    neg-int v0, v0
+
+    int-to-float v0, v0
+
+    .line 864
+    invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
+
+    :cond_a
     return-void
 .end method
 
-.method public g0()V
-    .locals 1
+.method public drawInIconArrange(Landroid/graphics/Canvas;)V
+    .locals 2
 
-    .line 1
+    .line 1875
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundDrawables()[Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    const/4 v1, 0x1
+
+    aget-object v0, v0, v1
+
+    .line 1876
+    invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
+
+    .line 1877
+    sput-boolean v1, Lcom/android/launcher3/BubbleTextView;->isInIconArrangePreview:Z
+
+    .line 1878
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawDotIfNecessary(Landroid/graphics/Canvas;)V
+
+    .line 1879
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawDownloadIcon(Landroid/graphics/Canvas;)V
+
+    const/4 p0, 0x0
+
+    .line 1880
+    sput-boolean p0, Lcom/android/launcher3/BubbleTextView;->isInIconArrangePreview:Z
+
+    return-void
+.end method
+
+.method protected drawRunningAppIndicatorIfNecessary(Landroid/graphics/Canvas;)V
+    .locals 9
+
+    .line 871
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppState:Lcom/android/launcher3/BubbleTextView$RunningAppState;
+
+    sget-object v1, Lcom/android/launcher3/BubbleTextView$RunningAppState;->NOT_RUNNING:Lcom/android/launcher3/BubbleTextView$RunningAppState;
+
+    if-eq v0, v1, :cond_4
+
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
+    const/4 v1, 0x5
+
+    if-eq v0, v1, :cond_0
+
+    goto :goto_3
+
+    .line 874
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIconBounds:Landroid/graphics/Rect;
+
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
+
+    .line 876
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppState:Lcom/android/launcher3/BubbleTextView$RunningAppState;
+
+    sget-object v1, Lcom/android/launcher3/BubbleTextView$RunningAppState;->MINIMIZED:Lcom/android/launcher3/BubbleTextView$RunningAppState;
+
+    if-ne v0, v1, :cond_1
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_1
     const/4 v0, 0x0
 
-    .line 2
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setTextSize(F)V
+    .line 877
+    :goto_0
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIconBounds:Landroid/graphics/Rect;
 
-    .line 3
-    .line 4
-    .line 5
-    const/4 v0, 0x0
+    iget v1, v1, Landroid/graphics/Rect;->bottom:I
 
-    .line 6
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setCompoundDrawablePadding(I)V
+    if-eqz v0, :cond_2
 
-    .line 7
-    .line 8
-    .line 9
+    .line 878
+    iget v2, p0, Lcom/android/launcher3/BubbleTextView;->mMinimizedAppIndicatorTopMargin:I
+
+    goto :goto_1
+
+    .line 879
+    :cond_2
+    iget v2, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIndicatorTopMargin:I
+
+    :goto_1
+    add-int/2addr v1, v2
+
+    if-eqz v0, :cond_3
+
+    .line 881
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mMinimizedAppIndicatorSize:Landroid/util/Size;
+
+    goto :goto_2
+
+    :cond_3
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIndicatorSize:Landroid/util/Size;
+
+    .line 882
+    :goto_2
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIconBounds:Landroid/graphics/Rect;
+
+    invoke-virtual {v2}, Landroid/graphics/Rect;->centerX()I
+
+    move-result v2
+
+    invoke-virtual {v0}, Landroid/util/Size;->getWidth()I
+
+    move-result v3
+
+    div-int/lit8 v3, v3, 0x2
+
+    sub-int/2addr v2, v3
+
+    int-to-float v4, v2
+
+    int-to-float v5, v1
+
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIconBounds:Landroid/graphics/Rect;
+
+    .line 883
+    invoke-virtual {v2}, Landroid/graphics/Rect;->centerX()I
+
+    move-result v2
+
+    invoke-virtual {v0}, Landroid/util/Size;->getWidth()I
+
+    move-result v3
+
+    div-int/lit8 v3, v3, 0x2
+
+    add-int/2addr v2, v3
+
+    int-to-float v6, v2
+
+    .line 884
+    invoke-virtual {v0}, Landroid/util/Size;->getHeight()I
+
+    move-result v0
+
+    add-int/2addr v1, v0
+
+    int-to-float v7, v1
+
+    iget-object v8, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppIndicatorPaint:Landroid/graphics/Paint;
+
+    move-object v3, p1
+
+    .line 882
+    invoke-virtual/range {v3 .. v8}, Landroid/graphics/Canvas;->drawRect(FFFFLandroid/graphics/Paint;)V
+
+    :cond_4
+    :goto_3
+    return-void
+.end method
+
+.method protected drawUnOpenMark(Landroid/graphics/Canvas;)V
+    .locals 8
+
+    .line 1675
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v0
+
+    iget-object v0, v0, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
+
+    iget-boolean v0, v0, Lcom/android/launcher3/InvariantDeviceProfile;->iconNoTitleMode:Z
+
+    if-eqz v0, :cond_0
+
+    return-void
+
+    .line 1678
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
+
+    if-nez v0, :cond_1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/model/data/AppInfo;
+
+    if-nez v0, :cond_1
+
+    return-void
+
+    .line 1681
+    :cond_1
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    check-cast v0, Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getResourceManager()Lcom/android/launcher3/ResourceManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/ResourceManager;->isSingleLayer()Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
+
+    if-eqz v0, :cond_2
+
+    return-void
+
+    .line 1684
+    :cond_2
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isInTransformFolderIcon()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    return-void
+
+    .line 1687
+    :cond_3
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
+
+    .line 1688
+    iget v1, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->itemType:I
+
+    if-nez v1, :cond_5
+
+    iget-boolean v1, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isNewApp:Z
+
+    if-nez v1, :cond_5
+
+    .line 1689
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v1
+
+    iget v1, v1, Lcom/android/launcher3/DeviceProfile;->bubbleTextViewPaddingLeftRight:I
+
+    .line 1690
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
+    move-result v2
+
+    if-ne v2, v1, :cond_4
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingRight()I
+
+    move-result v2
+
+    if-eq v2, v1, :cond_5
+
+    .line 1691
+    :cond_4
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    const-string v3, "drawUnOpenMark setPadding getText="
+
+    invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, " paddingLeftRight="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, " getPaddingLeft="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
+    move-result v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, " getPaddingRight="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingRight()I
+
+    move-result v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v3, "BubbleTextView"
+
+    invoke-static {v3, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1692
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingTop()I
+
+    move-result v2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingBottom()I
+
+    move-result v3
+
+    invoke-virtual {p0, v1, v2, v1, v3}, Lcom/android/launcher3/BubbleTextView;->setPadding(IIII)V
+
+    .line 1696
+    :cond_5
+    iget v1, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->itemType:I
+
+    if-nez v1, :cond_9
+
+    iget-boolean v0, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isNewApp:Z
+
+    if-nez v0, :cond_6
+
+    goto/16 :goto_2
+
+    .line 1699
+    :cond_6
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaint()Landroid/text/TextPaint;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/text/TextPaint;->getFontMetrics()Landroid/graphics/Paint$FontMetrics;
+
+    move-result-object v0
+
+    .line 1700
+    iget v1, v0, Landroid/graphics/Paint$FontMetrics;->descent:F
+
+    .line 1701
+    iget v0, v0, Landroid/graphics/Paint$FontMetrics;->ascent:F
+
+    sub-float/2addr v1, v0
+
+    const/high16 v0, 0x40000000    # 2.0f
+
+    div-float/2addr v1, v0
+
+    float-to-int v0, v1
+
+    .line 1704
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getLayout()Landroid/text/Layout;
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    if-eqz v1, :cond_7
+
+    .line 1705
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getLayout()Landroid/text/Layout;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v2}, Landroid/text/Layout;->getLineWidth(I)F
+
+    move-result v1
+
+    float-to-int v1, v1
+
+    goto :goto_0
+
+    :cond_7
+    move v1, v2
+
+    .line 1707
+    :goto_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getWidth()I
+
+    move-result v3
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
+    move-result v4
+
+    mul-int/lit8 v4, v4, 0x2
+
+    sub-int/2addr v3, v4
+
+    sub-int/2addr v3, v1
+
+    .line 1708
+    div-int/lit8 v3, v3, 0x2
+
+    .line 1709
+    invoke-static {v3, v2}, Ljava/lang/Math;->max(II)I
+
+    move-result v1
+
+    .line 1710
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollX()I
+
+    move-result v3
+
+    .line 1711
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getScrollY()I
+
+    move-result v4
+
+    int-to-float v5, v3
+
+    int-to-float v6, v4
+
+    .line 1712
+    invoke-virtual {p1, v5, v6}, Landroid/graphics/Canvas;->translate(FF)V
+
+    .line 1713
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v5
+
+    const v6, 0x7f07087d
+
+    invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result v5
+
+    float-to-int v5, v5
+
+    .line 1714
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundPaddingTop()I
+
+    move-result v6
+
+    add-int/2addr v6, v0
+
+    .line 1715
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundPaddingLeft()I
+
+    move-result v0
+
+    add-int/2addr v0, v1
+
+    sub-int/2addr v0, v5
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    .line 1716
+    invoke-static {}, Lcom/android/launcher3/ResourceManager;->getLayoutDataSelector()Lcom/android/launcher3/resource/LayoutDataSelector;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Lcom/android/launcher3/resource/LayoutDataSelector;->isEaseMode()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_8
+
+    const v7, 0x7f07087c
+
+    goto :goto_1
+
+    :cond_8
+    const v7, 0x7f07087b
+
+    .line 1715
+    :goto_1
+    invoke-virtual {v1, v7}, Landroid/content/res/Resources;->getDimension(I)F
+
+    move-result v1
+
+    float-to-int v1, v1
+
+    sub-int/2addr v0, v1
+
+    .line 1718
+    invoke-static {v0, v2}, Ljava/lang/Math;->max(II)I
+
+    move-result v0
+
+    .line 1719
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p0
+
+    const v1, 0x7f080ced
+
+    invoke-virtual {p0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object p0
+
+    add-int v1, v0, v5
+
+    add-int/2addr v5, v6
+
+    .line 1720
+    invoke-virtual {p0, v0, v6, v1, v5}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+
+    .line 1721
+    invoke-virtual {p0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
+
+    neg-int p0, v3
+
+    int-to-float p0, p0
+
+    neg-int v0, v4
+
+    int-to-float v0, v0
+
+    .line 1722
+    invoke-virtual {p1, p0, v0}, Landroid/graphics/Canvas;->translate(FF)V
+
+    :cond_9
+    :goto_2
+    return-void
+.end method
+
+.method protected drawWithoutDot(Landroid/graphics/Canvas;)V
+    .locals 0
+
+    .line 790
+    invoke-super {p0, p1}, Landroid/widget/TextView;->onDraw(Landroid/graphics/Canvas;)V
+
     return-void
 .end method
 
 .method public getDefaultIconSize()I
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->m0:I
+    .line 2230
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mDefaultIconSize:I
 
-    .line 2
-    .line 3
     return p0
 .end method
 
-.method public getDownloadInstallDrawable()Lr1/c;
+.method public getDownloadInstallDrawable()Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
     .locals 1
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 2270
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 2
-    .line 3
-    instance-of v0, p0, Lr1/c;
+    instance-of v0, p0, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
 
-    .line 4
-    .line 5
     if-eqz v0, :cond_0
 
-    .line 6
-    .line 7
-    check-cast p0, Lr1/c;
+    check-cast p0, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
 
-    .line 8
-    .line 9
-    return-object p0
+    goto :goto_0
 
-    .line 10
     :cond_0
     const/4 p0, 0x0
 
-    .line 11
+    :goto_0
     return-object p0
 .end method
 
-.method public getDragonDrawable()Lcom/android/launcher3/iconarrange/a;
+.method public getDragonDrawable()Lcom/android/launcher3/iconarrange/DragonDrawable;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->i0:Lcom/android/launcher3/iconarrange/a;
+    .line 1861
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mDragonDrawable:Lcom/android/launcher3/iconarrange/DragonDrawable;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method public getFolderPreviewIconAnimator()Landroid/animation/ValueAnimator;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->n0:Landroid/animation/ValueAnimator;
+    .line 2222
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mFolderPreviewIconAnimator:Landroid/animation/ValueAnimator;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method public getForceHideDot()Z
     .locals 0
 
-    .line 1
-    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->E:Z
+    .line 903
+    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->mForceHideDot:Z
 
-    .line 2
-    .line 3
     return p0
 .end method
 
-.method public getIcon()Ls1/o;
+.method public getIcon()Lcom/android/launcher3/icons/FastBitmapDrawable;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 653
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 2
-    .line 3
     return-object p0
+.end method
+
+.method public getIconBounds(Landroid/graphics/Rect;)V
+    .locals 1
+
+    .line 917
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    invoke-virtual {p0, p0, v0, p1}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/view/View;ILandroid/graphics/Rect;)V
+
+    return-void
+.end method
+
+.method public getIconBounds(Landroid/view/View;ILandroid/graphics/Rect;)V
+    .locals 1
+
+    const/4 p1, 0x0
+
+    .line 924
+    invoke-virtual {p3, p1, p1, p2, p2}, Landroid/graphics/Rect;->set(IIII)V
+
+    .line 925
+    iget-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mLayoutHorizontal:Z
+
+    if-eqz p1, :cond_1
+
+    .line 926
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getHeight()I
+
+    move-result p1
+
+    sub-int/2addr p1, p2
+
+    div-int/lit8 p1, p1, 0x2
+
+    .line 927
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsRtl:Z
+
+    if-eqz v0, :cond_0
+
+    .line 928
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getWidth()I
+
+    move-result v0
+
+    sub-int/2addr v0, p2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingRight()I
+
+    move-result p0
+
+    sub-int/2addr v0, p0
+
+    invoke-virtual {p3, v0, p1}, Landroid/graphics/Rect;->offsetTo(II)V
+
+    goto :goto_0
+
+    .line 930
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
+    move-result p0
+
+    invoke-virtual {p3, p0, p1}, Landroid/graphics/Rect;->offsetTo(II)V
+
+    goto :goto_0
+
+    .line 933
+    :cond_1
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getWidth()I
+
+    move-result p1
+
+    sub-int/2addr p1, p2
+
+    div-int/lit8 p1, p1, 0x2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingTop()I
+
+    move-result p0
+
+    invoke-virtual {p3, p1, p0}, Landroid/graphics/Rect;->offset(II)V
+
+    :goto_0
+    return-void
 .end method
 
 .method public getIconDisplay()I
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    .line 1514
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    .line 2
-    .line 3
     return p0
 .end method
 
 .method public getIconRangeDelta()F
     .locals 0
 
-    .line 1
     const p0, 0x3da3d70a    # 0.08f
 
-    .line 2
-    .line 3
-    .line 4
     return p0
 .end method
 
 .method public getIconSize()I
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    .line 1504
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
 
-    .line 2
-    .line 3
     return p0
-.end method
-
-.method public getIconStateDescription()Ljava/lang/String;
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->K:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 2
-    .line 3
-    sget-object v1, Lcom/android/launcher3/BubbleTextView$f;->i:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 4
-    .line 5
-    if-ne v0, v1, :cond_0
-
-    .line 6
-    .line 7
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->R:Ljava/lang/String;
-
-    .line 8
-    .line 9
-    return-object p0
-
-    .line 10
-    :cond_0
-    sget-object v1, Lcom/android/launcher3/BubbleTextView$f;->h:Lcom/android/launcher3/BubbleTextView$f;
-
-    .line 11
-    .line 12
-    if-ne v0, v1, :cond_1
-
-    .line 13
-    .line 14
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->S:Ljava/lang/String;
-
-    .line 15
-    .line 16
-    return-object p0
-
-    .line 17
-    :cond_1
-    const-string p0, ""
-
-    .line 18
-    .line 19
-    return-object p0
 .end method
 
 .method public getParentTransformFolderIcon()Lcom/android/launcher3/streamer/transformfolder/TransformFolderIcon;
     .locals 1
 
-    .line 1
-    const v0, 0x7f0b0628
+    const v0, 0x7f0b0590
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->getTag(I)Ljava/lang/Object;
+    .line 2243
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->getTag(I)Ljava/lang/Object;
 
-    .line 5
-    .line 6
-    .line 7
     move-result-object p0
 
-    .line 8
+    .line 2244
     instance-of v0, p0, Lcom/android/launcher3/streamer/transformfolder/TransformFolderIcon;
 
-    .line 9
-    .line 10
     if-eqz v0, :cond_0
 
-    .line 11
-    .line 12
     check-cast p0, Lcom/android/launcher3/streamer/transformfolder/TransformFolderIcon;
 
-    .line 13
-    .line 14
-    return-object p0
+    goto :goto_0
 
-    .line 15
     :cond_0
     const/4 p0, 0x0
 
-    .line 16
+    :goto_0
     return-object p0
 .end method
 
 .method public getReorderBounceScale()F
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->g:F
+    .line 1531
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mScaleForReorderBounce:F
 
-    .line 2
-    .line 3
     return p0
+.end method
+
+.method public getSourceVisualDragBounds(Landroid/graphics/Rect;)V
+    .locals 1
+
+    .line 1551
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    invoke-virtual {p0, p0, v0, p1}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/view/View;ILandroid/graphics/Rect;)V
+
+    return-void
 .end method
 
 .method public getTargetPackageName()Ljava/lang/String;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 1603
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object p0
 
-    .line 5
-    instance-of v0, p0, Lcom/android/launcher3/model/data/y;
+    .line 1604
+    instance-of v0, p0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 6
-    .line 7
     if-eqz v0, :cond_0
 
-    .line 8
-    .line 9
-    check-cast p0, Lcom/android/launcher3/model/data/y;
+    check-cast p0, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 10
-    .line 11
-    invoke-virtual {p0}, Lcom/android/launcher3/model/data/y;->getTargetPackage()Ljava/lang/String;
+    .line 1605
+    invoke-virtual {p0}, Lcom/android/launcher3/model/data/ItemInfo;->getTargetPackage()Ljava/lang/String;
 
-    .line 12
-    .line 13
-    .line 14
     move-result-object p0
 
-    .line 15
     return-object p0
 
-    .line 16
     :cond_0
     const/4 p0, 0x0
 
-    .line 17
     return-object p0
 .end method
 
-.method public getTranslateDelegate()Lcom/android/launcher3/util/z1;
+.method public getTranslateDelegate()Lcom/android/launcher3/util/MultiTranslateDelegate;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->k:Lcom/android/launcher3/util/z1;
+    .line 1519
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mTranslateDelegate:Lcom/android/launcher3/util/MultiTranslateDelegate;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method public getViewType()I
     .locals 0
 
-    .line 1
     const/4 p0, 0x0
 
-    .line 2
     return p0
 .end method
 
-.method public i(Lcom/android/launcher3/model/data/z;)V
-    .locals 1
+.method public getWorkspaceVisualDragBounds(Landroid/graphics/Rect;)V
+    .locals 2
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 1542
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    if-ne v0, p1, :cond_2
-
-    .line 6
-    .line 7
-    const/4 v0, 0x0
-
-    .line 8
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->W:Lcom/android/launcher3/util/w;
-
-    .line 9
-    .line 10
-    const/4 v0, 0x1
-
-    .line 11
-    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->V:Z
-
-    .line 12
-    .line 13
-    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->a0:Z
-
-    .line 14
-    .line 15
-    iget-object v0, p1, Lcom/android/launcher3/model/data/z;->g:Ls1/d;
-
-    .line 16
-    .line 17
-    iget-object v0, v0, Ls1/d;->a:Landroid/graphics/Bitmap;
-
-    .line 18
-    .line 19
-    invoke-virtual {v0}, Landroid/graphics/Bitmap;->prepareToDraw()V
-
-    .line 20
-    .line 21
-    .line 22
-    instance-of v0, p1, Lcom/android/launcher3/model/data/d;
-
-    .line 23
-    .line 24
     if-eqz v0, :cond_0
 
-    .line 25
-    .line 26
-    check-cast p1, Lcom/android/launcher3/model/data/d;
+    .line 1543
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getWidth()I
 
-    .line 27
-    .line 28
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->v(Lcom/android/launcher3/model/data/d;)V
+    move-result v0
 
-    .line 29
-    .line 30
-    .line 31
-    goto :goto_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getHeight()I
 
-    .line 32
+    move-result p0
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p1, v1, v1, v0, p0}, Landroid/graphics/Rect;->set(IIII)V
+
+    return-void
+
+    .line 1547
     :cond_0
-    instance-of v0, p1, Lcom/android/launcher3/model/data/I;
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
 
-    .line 33
-    .line 34
-    if-eqz v0, :cond_1
+    invoke-virtual {p0, p0, v0, p1}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/view/View;ILandroid/graphics/Rect;)V
 
-    .line 35
-    .line 36
-    check-cast p1, Lcom/android/launcher3/model/data/I;
-
-    .line 37
-    .line 38
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->y(Lcom/android/launcher3/model/data/I;)V
-
-    .line 39
-    .line 40
-    .line 41
-    goto :goto_0
-
-    .line 42
-    :cond_1
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->w(Lcom/android/launcher3/model/data/z;)V
-
-    .line 43
-    .line 44
-    .line 45
-    :goto_0
-    const/4 p1, 0x0
-
-    .line 46
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->V:Z
-
-    .line 47
-    .line 48
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->a0:Z
-
-    .line 49
-    .line 50
-    :cond_2
     return-void
 .end method
 
-.method public i0()Z
+.method public hasDot()Z
     .locals 0
 
-    .line 1
-    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->o0:Z
+    .line 907
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
 
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method public k0()Z
-    .locals 2
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    instance-of v0, p0, Lcom/android/launcher3/model/data/I;
-
-    .line 6
-    .line 7
-    if-eqz v0, :cond_1
-
-    .line 8
-    .line 9
-    check-cast p0, Lcom/android/launcher3/model/data/I;
-
-    .line 10
-    .line 11
-    iget v0, p0, Lcom/android/launcher3/model/data/I;->m:I
-
-    .line 12
-    .line 13
-    const/4 v1, 0x2
-
-    .line 14
-    if-ne v0, v1, :cond_1
-
-    .line 15
-    .line 16
-    invoke-virtual {p0}, Lcom/android/launcher3/model/data/I;->W()I
-
-    .line 17
-    .line 18
-    .line 19
-    move-result v0
-
-    .line 20
-    if-eqz v0, :cond_0
-
-    .line 21
-    .line 22
-    invoke-virtual {p0}, Lcom/android/launcher3/model/data/I;->W()I
-
-    .line 23
-    .line 24
-    .line 25
     move-result p0
 
-    .line 26
-    const/4 v0, 0x4
+    if-lez p0, :cond_0
 
-    .line 27
-    if-ne p0, v0, :cond_1
-
-    .line 28
-    .line 29
-    :cond_0
     const/4 p0, 0x1
 
-    .line 30
-    return p0
-
-    .line 31
-    :cond_1
-    const/4 p0, 0x0
-
-    .line 32
-    return p0
-.end method
-
-.method public l0(Lcom/android/launcher3/model/data/z;)Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->isDisabled()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    if-nez p0, :cond_1
-
-    .line 6
-    .line 7
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->E()Z
-
-    .line 8
-    .line 9
-    .line 10
-    move-result p0
-
-    .line 11
-    if-eqz p0, :cond_0
-
-    .line 12
-    .line 13
     goto :goto_0
 
-    .line 14
     :cond_0
     const/4 p0, 0x0
 
-    .line 15
-    return p0
-
-    .line 16
-    :cond_1
     :goto_0
-    const/4 p0, 0x1
-
-    .line 17
     return p0
 .end method
 
-.method public n0()Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParentTransformFolderIcon()Lcom/android/launcher3/streamer/transformfolder/TransformFolderIcon;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    if-eqz p0, :cond_0
-
-    .line 6
-    .line 7
-    const/4 p0, 0x1
-
-    .line 8
-    return p0
-
-    .line 9
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 10
-    return p0
-.end method
-
-.method public o0()Z
+.method public hideTitle()V
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+    const/4 v0, 0x0
 
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
+    .line 2251
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setTextSize(F)V
 
-    .line 5
-    instance-of v0, v0, Lcom/android/launcher3/streamer/transformfolder/TransformFolderIconItems;
+    const/4 v0, 0x0
 
-    .line 6
-    .line 7
-    if-nez v0, :cond_1
+    .line 2252
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setCompoundDrawablePadding(I)V
 
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->s0()Z
+    return-void
+.end method
 
-    .line 10
-    .line 11
-    .line 12
+.method protected iconUpdateAnimationEnabled()Z
+    .locals 0
+
+    .line 1425
+    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->mEnableIconUpdateAnimation:Z
+
+    return p0
+.end method
+
+.method public isAllAppRecommend()Z
+    .locals 0
+
+    .line 2304
+    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->isAllAppRecommend:Z
+
+    return p0
+.end method
+
+.method protected isCurrentLanguageEnglish()Z
+    .locals 1
+
+    .line 603
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mCurrentLocale:Ljava/util/Locale;
+
+    sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
+
+    invoke-virtual {p0, v0}, Ljava/util/Locale;->equals(Ljava/lang/Object;)Z
+
     move-result p0
 
-    .line 13
-    if-eqz p0, :cond_0
+    return p0
+.end method
 
-    .line 14
-    .line 15
+.method public isDisplaySearchResult()Z
+    .locals 1
+
+    .line 1508
+    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
+    const/4 v0, 0x6
+
+    if-eq p0, v0, :cond_1
+
+    const/4 v0, 0x7
+
+    if-eq p0, v0, :cond_1
+
+    const/16 v0, 0x9
+
+    if-ne p0, v0, :cond_0
+
     goto :goto_0
 
-    .line 16
     :cond_0
     const/4 p0, 0x0
 
-    .line 17
-    return p0
+    goto :goto_1
 
-    .line 18
     :cond_1
     :goto_0
     const/4 p0, 0x1
 
-    .line 19
+    :goto_1
     return p0
+.end method
+
+.method public isIconDisabled(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)Z
+    .locals 0
+
+    .line 1307
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isDisabled()Z
+
+    move-result p0
+
+    if-nez p0, :cond_1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->isPendingDownload()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    goto :goto_1
+
+    :cond_1
+    :goto_0
+    const/4 p0, 0x1
+
+    :goto_1
+    return p0
+.end method
+
+.method public isInTransformFolderIcon()Z
+    .locals 0
+
+    .line 2248
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParentTransformFolderIcon()Lcom/android/launcher3/streamer/transformfolder/TransformFolderIcon;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_0
+
+    const/4 p0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    :goto_0
+    return p0
+.end method
+
+.method public isInTransformFolderIconItems()Z
+    .locals 1
+
+    .line 2256
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/streamer/transformfolder/TransformFolderIconItems;
+
+    if-nez v0, :cond_1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isTransformFolderLastItemInNormalMode()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    goto :goto_1
+
+    :cond_1
+    :goto_0
+    const/4 p0, 0x1
+
+    :goto_1
+    return p0
+.end method
+
+.method public isTouchDeleteIconDrawable(FF)Z
+    .locals 3
+
+    .line 2123
+    new-instance v0, Landroid/graphics/Rect;
+
+    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
+
+    .line 2124
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
+
+    .line 2125
+    iget v1, v0, Landroid/graphics/Rect;->right:I
+
+    iget v0, v0, Landroid/graphics/Rect;->left:I
+
+    sub-int/2addr v1, v0
+
+    invoke-static {v1}, Ljava/lang/Math;->abs(I)I
+
+    move-result v0
+
+    int-to-float v0, v0
+
+    const v1, 0x3d4ccccd    # 0.05f
+
+    mul-float/2addr v0, v1
+
+    float-to-int v0, v0
+
+    .line 2128
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->getGridScale()F
+
+    move-result v1
+
+    .line 2129
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p0
+
+    const v2, 0x7f070176
+
+    invoke-virtual {p0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p0
+
+    int-to-float p0, p0
+
+    mul-float/2addr p0, v1
+
+    float-to-int p0, p0
+
+    add-int/2addr v0, p0
+
+    int-to-float p0, v0
+
+    cmpg-float p2, p2, p0
+
+    if-gez p2, :cond_0
+
+    cmpg-float p0, p1, p0
+
+    if-gez p0, :cond_0
+
+    const/4 p0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    :goto_0
+    return p0
+.end method
+
+.method public isTouchIconDrawable(FF)Z
+    .locals 3
+
+    .line 1978
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
+
+    if-eqz v0, :cond_0
+
+    .line 1979
+    invoke-virtual {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->isTouchInBubbleTextView(FF)Z
+
+    move-result p0
+
+    return p0
+
+    .line 1981
+    :cond_0
+    new-instance v0, Landroid/graphics/Rect;
+
+    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
+
+    .line 1982
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->getIconBounds(Landroid/graphics/Rect;)V
+
+    .line 1983
+    iget v1, v0, Landroid/graphics/Rect;->right:I
+
+    iget v2, v0, Landroid/graphics/Rect;->left:I
+
+    sub-int/2addr v1, v2
+
+    invoke-static {v1}, Ljava/lang/Math;->abs(I)I
+
+    move-result v1
+
+    int-to-float v1, v1
+
+    .line 1985
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconRangeDelta()F
+
+    move-result v2
+
+    mul-float/2addr v1, v2
+
+    float-to-int v1, v1
+
+    .line 1986
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isTransformFolderIconLargeIcon()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_1
+
+    neg-int v1, v1
+
+    .line 1989
+    :cond_1
+    iget p0, v0, Landroid/graphics/Rect;->bottom:I
+
+    add-int/2addr p0, v1
+
+    int-to-float p0, p0
+
+    cmpg-float p0, p2, p0
+
+    if-gez p0, :cond_2
+
+    iget p0, v0, Landroid/graphics/Rect;->top:I
+
+    sub-int/2addr p0, v1
+
+    int-to-float p0, p0
+
+    cmpl-float p0, p2, p0
+
+    if-lez p0, :cond_2
+
+    iget p0, v0, Landroid/graphics/Rect;->right:I
+
+    add-int/2addr p0, v1
+
+    int-to-float p0, p0
+
+    cmpg-float p0, p1, p0
+
+    if-gez p0, :cond_2
+
+    iget p0, v0, Landroid/graphics/Rect;->left:I
+
+    sub-int/2addr p0, v1
+
+    int-to-float p0, p0
+
+    cmpl-float p0, p1, p0
+
+    if-lez p0, :cond_2
+
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_2
+    const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public isTouchInBubbleTextView(FF)Z
+    .locals 4
+
+    .line 2316
+    new-instance v0, Landroid/graphics/Rect;
+
+    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
+
+    .line 2317
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getMeasuredWidth()I
+
+    move-result v1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getMeasuredHeight()I
+
+    move-result v2
+
+    const/4 v3, 0x0
+
+    invoke-virtual {v0, v3, v3, v1, v2}, Landroid/graphics/Rect;->set(IIII)V
+
+    .line 2318
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getMeasuredWidth()I
+
+    move-result v1
+
+    int-to-float v1, v1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconRangeDelta()F
+
+    move-result v2
+
+    mul-float/2addr v1, v2
+
+    float-to-int v1, v1
+
+    .line 2319
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getMeasuredHeight()I
+
+    move-result v2
+
+    int-to-float v2, v2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconRangeDelta()F
+
+    move-result p0
+
+    mul-float/2addr v2, p0
+
+    float-to-int p0, v2
+
+    .line 2320
+    iget v2, v0, Landroid/graphics/Rect;->bottom:I
+
+    add-int/2addr v2, p0
+
+    int-to-float v2, v2
+
+    cmpg-float v2, p2, v2
+
+    if-gez v2, :cond_0
+
+    iget v2, v0, Landroid/graphics/Rect;->top:I
+
+    sub-int/2addr v2, p0
+
+    int-to-float p0, v2
+
+    cmpl-float p0, p2, p0
+
+    if-lez p0, :cond_0
+
+    iget p0, v0, Landroid/graphics/Rect;->right:I
+
+    add-int/2addr p0, v1
+
+    int-to-float p0, p0
+
+    cmpg-float p0, p1, p0
+
+    if-gez p0, :cond_0
+
+    iget p0, v0, Landroid/graphics/Rect;->left:I
+
+    sub-int/2addr p0, v1
+
+    int-to-float p0, p0
+
+    cmpl-float p0, p1, p0
+
+    if-lez p0, :cond_0
+
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_0
+    return v3
+.end method
+
+.method public isTransformFolderIconLargeIcon()Z
+    .locals 0
+
+    .line 2283
+    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->mTransformFolderIconLargeIcon:Z
+
+    return p0
+.end method
+
+.method public isTransformFolderLastItemInNormalMode()Z
+    .locals 2
+
+    .line 2260
+    instance-of v0, p0, Lcom/android/launcher3/views/DoubleShadowBubbleTextView;
+
+    if-eqz v0, :cond_1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    instance-of v0, v0, Landroid/view/ViewGroup;
+
+    if-eqz v0, :cond_1
+
+    .line 2261
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/view/ViewGroup;
+
+    invoke-virtual {v0}, Landroid/view/ViewGroup;->getId()I
+
+    move-result v0
+
+    const v1, 0x7f0b0593
+
+    if-eq v0, v1, :cond_0
+
+    .line 2262
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object p0
+
+    check-cast p0, Landroid/view/ViewGroup;
+
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getId()I
+
+    move-result p0
+
+    const v0, 0x7f0b0594
+
+    if-ne p0, v0, :cond_1
+
+    :cond_0
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_1
+    const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public makePreloadIcon()Lcom/android/launcher3/graphics/PreloadIconDrawable;
+    .locals 3
+
+    .line 1289
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
+
+    if-nez v0, :cond_0
+
+    const/4 p0, 0x0
+
+    return-object p0
+
+    .line 1293
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
+
+    .line 1294
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->getProgressLevel()I
+
+    move-result v1
+
+    .line 1295
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    invoke-static {v2, v0}, Lcom/android/launcher3/graphics/PreloadIconDrawable;->newPendingIcon(Landroid/content/Context;Lcom/android/launcher3/model/data/ItemInfoWithIcon;)Lcom/android/launcher3/graphics/PreloadIconDrawable;
+
+    move-result-object v2
+
+    .line 1297
+    invoke-virtual {v2, v1}, Lcom/android/launcher3/graphics/PreloadIconDrawable;->setLevel(I)Z
+
+    .line 1298
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->isIconDisabled(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)Z
+
+    move-result p0
+
+    invoke-virtual {v2, p0}, Lcom/android/launcher3/graphics/PreloadIconDrawable;->setIsDisabled(Z)V
+
+    return-object v2
 .end method
 
 .method protected onCreateDrawableState(I)[I
     .locals 0
 
-    .line 1
     add-int/lit8 p1, p1, 0x1
 
-    .line 2
-    .line 3
+    .line 644
     invoke-super {p0, p1}, Landroid/widget/TextView;->onCreateDrawableState(I)[I
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object p1
 
-    .line 7
-    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->T:Z
+    .line 645
+    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->mStayPressed:Z
 
-    .line 8
-    .line 9
     if-eqz p0, :cond_0
 
-    .line 10
-    .line 11
-    sget-object p0, Lcom/android/launcher3/BubbleTextView;->t0:[I
+    .line 646
+    sget-object p0, Lcom/android/launcher3/BubbleTextView;->STATE_PRESSED:[I
 
-    .line 12
-    .line 13
-    invoke-static {p1, p0}, Landroid/widget/TextView;->mergeDrawableStates([I[I)[I
+    invoke-static {p1, p0}, Lcom/android/launcher3/BubbleTextView;->mergeDrawableStates([I[I)[I
 
-    .line 14
-    .line 15
-    .line 16
     :cond_0
     return-object p1
 .end method
@@ -12124,1903 +6896,831 @@
 .method public onDraw(Landroid/graphics/Canvas;)V
     .locals 2
 
-    .line 1
+    .line 795
     invoke-super {p0, p1}, Landroid/widget/TextView;->onDraw(Landroid/graphics/Canvas;)V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->w:Z
+    .line 797
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsIconVisible:Z
 
-    .line 5
-    .line 6
     if-eqz v0, :cond_0
 
-    .line 7
-    .line 8
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->X(Landroid/graphics/Canvas;)V
+    .line 798
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawLimitedMaskIfNecessary(Landroid/graphics/Canvas;)V
 
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->U(Landroid/graphics/Canvas;)V
+    .line 799
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawDotIfNecessary(Landroid/graphics/Canvas;)V
 
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->Y(Landroid/graphics/Canvas;)V
+    .line 800
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawRunningAppIndicatorIfNecessary(Landroid/graphics/Canvas;)V
 
-    .line 15
-    .line 16
-    .line 17
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->T(Landroid/graphics/Canvas;)V
+    .line 801
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawCheckBoxIfNecessary(Landroid/graphics/Canvas;)V
 
-    .line 18
-    .line 19
-    .line 20
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->R(Landroid/graphics/Canvas;)V
+    .line 802
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawAppNameIfNecessary(Landroid/graphics/Canvas;)V
 
-    .line 21
-    .line 22
-    .line 23
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->V(Landroid/graphics/Canvas;)V
+    .line 803
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawDownloadIcon(Landroid/graphics/Canvas;)V
 
-    .line 24
-    .line 25
-    .line 26
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 804
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 27
-    .line 28
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 29
-    .line 30
-    .line 31
     move-result-object v0
 
-    .line 32
-    iget-boolean v1, v0, Lcom/android/launcher3/h0;->O0:Z
+    .line 805
+    iget-boolean v1, v0, Lcom/android/launcher3/DeviceProfile;->isMultiWindowMode:Z
 
-    .line 33
-    .line 34
     if-nez v1, :cond_0
 
-    .line 35
-    .line 36
-    invoke-virtual {v0}, Lcom/android/launcher3/h0;->T0()Z
+    invoke-virtual {v0}, Lcom/android/launcher3/DeviceProfile;->isVerticalBarLayout()Z
 
-    .line 37
-    .line 38
-    .line 39
     move-result v0
 
-    .line 40
     if-nez v0, :cond_0
 
-    .line 41
-    .line 42
     const/high16 v0, 0x3f800000    # 1.0f
 
-    .line 43
-    .line 44
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->z:F
+    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
 
-    .line 45
-    .line 46
     sub-float/2addr v0, v1
 
-    .line 47
     invoke-static {v0}, Ljava/lang/Math;->abs(F)F
 
-    .line 48
-    .line 49
-    .line 50
     move-result v0
 
-    .line 51
     const v1, 0x3dcccccd    # 0.1f
 
-    .line 52
-    .line 53
-    .line 54
     cmpg-float v0, v0, v1
 
-    .line 55
-    .line 56
     if-gez v0, :cond_0
 
-    .line 57
-    .line 58
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->Z(Landroid/graphics/Canvas;)V
+    .line 806
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->drawUnOpenMark(Landroid/graphics/Canvas;)V
 
-    .line 59
-    .line 60
-    .line 61
     :cond_0
     return-void
 .end method
 
 .method protected onFocusChanged(ZILandroid/graphics/Rect;)V
-    .locals 3
+    .locals 1
 
-    .line 1
     if-eqz p1, :cond_0
 
-    .line 2
-    .line 3
+    .line 395
     sget-object v0, Landroid/text/TextUtils$TruncateAt;->MARQUEE:Landroid/text/TextUtils$TruncateAt;
 
-    .line 4
-    .line 5
     goto :goto_0
 
-    .line 6
     :cond_0
     sget-object v0, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
 
-    .line 7
-    .line 8
     :goto_0
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
 
-    .line 9
-    .line 10
-    .line 11
-    invoke-static {}, Lx1/O;->k1()Z
-
-    .line 12
-    .line 13
-    .line 14
-    move-result v0
-
-    .line 15
-    if-eqz v0, :cond_2
-
-    .line 16
-    .line 17
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 18
-    .line 19
-    const/4 v1, 0x2
-
-    .line 20
-    if-ne v0, v1, :cond_2
-
-    .line 21
-    .line 22
-    if-eqz p1, :cond_1
-
-    .line 23
-    .line 24
-    const v0, 0x3f83d70a    # 1.03f
-
-    .line 25
-    .line 26
-    .line 27
-    goto :goto_1
-
-    .line 28
-    :cond_1
-    const/high16 v0, 0x3f800000    # 1.0f
-
-    .line 29
-    .line 30
-    :goto_1
-    invoke-virtual {p0}, Landroid/widget/TextView;->animate()Landroid/view/ViewPropertyAnimator;
-
-    .line 31
-    .line 32
-    .line 33
-    move-result-object v1
-
-    .line 34
-    invoke-virtual {v1, v0}, Landroid/view/ViewPropertyAnimator;->scaleX(F)Landroid/view/ViewPropertyAnimator;
-
-    .line 35
-    .line 36
-    .line 37
-    move-result-object v1
-
-    .line 38
-    invoke-virtual {v1, v0}, Landroid/view/ViewPropertyAnimator;->scaleY(F)Landroid/view/ViewPropertyAnimator;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object v0
-
-    .line 42
-    const-wide/16 v1, 0x64
-
-    .line 43
-    .line 44
-    invoke-virtual {v0, v1, v2}, Landroid/view/ViewPropertyAnimator;->setDuration(J)Landroid/view/ViewPropertyAnimator;
-
-    .line 45
-    .line 46
-    .line 47
-    move-result-object v0
-
-    .line 48
-    invoke-virtual {v0}, Landroid/view/ViewPropertyAnimator;->start()V
-
-    .line 49
-    .line 50
-    .line 51
-    :cond_2
+    .line 396
     invoke-super {p0, p1, p2, p3}, Landroid/widget/TextView;->onFocusChanged(ZILandroid/graphics/Rect;)V
 
-    .line 52
-    .line 53
-    .line 54
-    return-void
-.end method
-
-.method public onInitializeAccessibilityNodeInfo(Landroid/view/accessibility/AccessibilityNodeInfo;)V
-    .locals 2
-
-    .line 1
-    invoke-super {p0, p1}, Landroid/widget/TextView;->onInitializeAccessibilityNodeInfo(Landroid/view/accessibility/AccessibilityNodeInfo;)V
-
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 5
-    .line 6
-    .line 7
-    move-result-object v0
-
-    .line 8
-    instance-of v1, v0, Lcom/android/launcher3/model/data/z;
-
-    .line 9
-    .line 10
-    if-eqz v1, :cond_0
-
-    .line 11
-    .line 12
-    check-cast v0, Lcom/android/launcher3/model/data/z;
-
-    .line 13
-    .line 14
-    invoke-virtual {v0}, Lcom/android/launcher3/model/data/z;->B()Z
-
-    .line 15
-    .line 16
-    .line 17
-    move-result v0
-
-    .line 18
-    if-eqz v0, :cond_0
-
-    .line 19
-    .line 20
-    new-instance v0, Landroid/view/accessibility/AccessibilityNodeInfo$AccessibilityAction;
-
-    .line 21
-    .line 22
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 23
-    .line 24
-    .line 25
-    move-result-object p0
-
-    .line 26
-    const v1, 0x7f14009f
-
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    .line 30
-    .line 31
-    .line 32
-    move-result-object p0
-
-    .line 33
-    const/16 v1, 0x10
-
-    .line 34
-    .line 35
-    invoke-direct {v0, v1, p0}, Landroid/view/accessibility/AccessibilityNodeInfo$AccessibilityAction;-><init>(ILjava/lang/CharSequence;)V
-
-    .line 36
-    .line 37
-    .line 38
-    invoke-virtual {p1, v0}, Landroid/view/accessibility/AccessibilityNodeInfo;->addAction(Landroid/view/accessibility/AccessibilityNodeInfo$AccessibilityAction;)V
-
-    .line 39
-    .line 40
-    .line 41
-    :cond_0
     return-void
 .end method
 
 .method public onKeyUp(ILandroid/view/KeyEvent;)Z
     .locals 1
 
-    .line 1
     const/4 v0, 0x1
 
-    .line 2
-    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->U:Z
+    .line 715
+    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIgnorePressedStateChange:Z
 
-    .line 3
-    .line 4
+    .line 716
     invoke-super {p0, p1, p2}, Landroid/widget/TextView;->onKeyUp(ILandroid/view/KeyEvent;)Z
 
-    .line 5
-    .line 6
-    .line 7
     move-result p1
 
-    .line 8
     const/4 p2, 0x0
 
-    .line 9
-    iput-boolean p2, p0, Lcom/android/launcher3/BubbleTextView;->U:Z
+    .line 717
+    iput-boolean p2, p0, Lcom/android/launcher3/BubbleTextView;->mIgnorePressedStateChange:Z
 
-    .line 10
-    .line 11
+    .line 718
     invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->refreshDrawableState()V
 
-    .line 12
-    .line 13
-    .line 14
     return p1
 .end method
 
 .method protected onMeasure(II)V
     .locals 11
 
-    .line 1
+    .line 970
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
-    .line 2
-    .line 3
-    .line 4
     move-result v0
 
-    .line 5
-    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->o:Z
+    .line 971
+    iget-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mCenterVertically:Z
 
-    .line 6
-    .line 7
-    if-eqz v1, :cond_2
+    const/4 v2, 0x1
 
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
+    const/4 v3, 0x2
 
-    .line 10
-    .line 11
-    .line 12
+    if-eqz v1, :cond_6
+
+    .line 972
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaint()Landroid/text/TextPaint;
+
     move-result-object v1
 
-    .line 13
     invoke-virtual {v1}, Landroid/text/TextPaint;->getFontMetrics()Landroid/graphics/Paint$FontMetrics;
 
-    .line 14
-    .line 15
-    .line 16
     move-result-object v1
 
-    .line 17
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundDrawablePadding()I
+    .line 975
+    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 18
-    .line 19
-    .line 20
-    iget v2, v1, Landroid/graphics/Paint$FontMetrics;->bottom:F
+    invoke-interface {v4}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 21
-    .line 22
-    iget v3, v1, Landroid/graphics/Paint$FontMetrics;->top:F
-
-    .line 23
-    .line 24
-    sub-float/2addr v2, v3
-
-    .line 25
-    float-to-double v2, v2
-
-    .line 26
-    invoke-static {v2, v3}, Ljava/lang/Math;->ceil(D)D
-
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
-
-    .line 30
-    .line 31
-    .line 32
-    move-result v2
-
-    .line 33
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingRight()I
-
-    .line 34
-    .line 35
-    .line 36
-    move-result v3
-
-    .line 37
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 38
-    .line 39
-    if-eqz v4, :cond_1
-
-    .line 40
-    .line 41
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 42
-    .line 43
-    .line 44
     move-result-object v4
 
-    .line 45
-    instance-of v4, v4, Lcom/android/launcher3/model/data/y;
+    iget-object v4, v4, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 46
-    .line 47
-    if-eqz v4, :cond_1
+    iget-boolean v4, v4, Lcom/android/launcher3/InvariantDeviceProfile;->isTwoLineTitle:Z
 
-    .line 48
-    .line 49
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    if-eqz v4, :cond_0
 
-    .line 50
-    .line 51
-    .line 52
-    move-result-object v4
+    move v4, v3
 
-    .line 53
-    check-cast v4, Lcom/android/launcher3/model/data/y;
-
-    .line 54
-    .line 55
-    iget v4, v4, Lcom/android/launcher3/model/data/y;->itemType:I
-
-    .line 56
-    .line 57
-    if-nez v4, :cond_1
-
-    .line 58
-    .line 59
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 60
-    .line 61
-    .line 62
-    move-result-object v2
-
-    .line 63
-    check-cast v2, Lcom/android/launcher3/model/data/y;
-
-    .line 64
-    .line 65
-    iget-boolean v2, v2, Lcom/android/launcher3/model/data/y;->isNewApp:Z
-
-    .line 66
-    .line 67
-    if-eqz v2, :cond_0
-
-    .line 68
-    .line 69
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 70
-    .line 71
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 72
-    .line 73
-    .line 74
-    move-result-object v2
-
-    .line 75
-    iget v2, v2, Lcom/android/launcher3/X3;->v:I
-
-    .line 76
-    .line 77
     goto :goto_0
 
-    .line 78
     :cond_0
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    move v4, v2
 
-    .line 79
-    .line 80
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 81
-    .line 82
-    .line 83
-    move-result-object v2
-
-    .line 84
-    iget v2, v2, Lcom/android/launcher3/X3;->t:I
-
-    .line 85
-    .line 86
+    .line 979
     :goto_0
-    move v3, v2
+    iget v5, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
 
-    .line 87
-    :cond_1
-    invoke-virtual {p0, v1, v0}, Lcom/android/launcher3/BubbleTextView;->O(Landroid/graphics/Paint$FontMetrics;I)I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundDrawablePadding()I
 
-    .line 88
-    .line 89
-    .line 90
+    move-result v6
+
+    add-int/2addr v5, v6
+
+    iget v6, v1, Landroid/graphics/Paint$FontMetrics;->bottom:F
+
+    iget v1, v1, Landroid/graphics/Paint$FontMetrics;->top:F
+
+    sub-float/2addr v6, v1
+
+    float-to-double v6, v6
+
+    .line 980
+    invoke-static {v6, v7}, Ljava/lang/Math;->ceil(D)D
+
+    move-result-wide v6
+
+    double-to-int v1, v6
+
+    mul-int/2addr v1, v4
+
+    add-int/2addr v5, v1
+
+    .line 982
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
     move-result v1
 
-    .line 91
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
+    .line 983
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingRight()I
 
-    .line 92
-    .line 93
-    .line 94
     move-result v4
 
-    .line 95
-    invoke-virtual {p0, v2, v1, v3, v4}, Landroid/widget/TextView;->setPadding(IIII)V
+    .line 984
+    iget-object v6, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 96
-    .line 97
-    .line 98
-    :cond_2
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->N0()Z
+    if-eqz v6, :cond_2
 
-    .line 99
-    .line 100
-    .line 101
-    move-result v1
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 102
-    if-eqz v1, :cond_3
+    move-result-object v6
 
-    .line 103
-    .line 104
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    instance-of v6, v6, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 105
-    .line 106
-    .line 107
+    if-eqz v6, :cond_2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v6
+
+    check-cast v6, Lcom/android/launcher3/model/data/ItemInfo;
+
+    iget v6, v6, Lcom/android/launcher3/model/data/ItemInfo;->itemType:I
+
+    if-nez v6, :cond_2
+
+    .line 985
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
     move-result-object v1
 
-    .line 108
-    const v2, 0x7f07011a
+    check-cast v1, Lcom/android/launcher3/model/data/ItemInfo;
 
-    .line 109
-    .line 110
-    .line 111
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    iget-boolean v1, v1, Lcom/android/launcher3/model/data/ItemInfo;->isNewApp:Z
 
-    .line 112
-    .line 113
-    .line 114
-    move-result v1
+    if-eqz v1, :cond_1
 
-    .line 115
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 116
-    .line 117
-    .line 118
-    move-result-object v2
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 119
-    const v3, 0x7f07011b
-
-    .line 120
-    .line 121
-    .line 122
-    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 123
-    .line 124
-    .line 125
-    move-result v2
-
-    .line 126
-    add-int/2addr v1, v2
-
-    .line 127
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingTop()I
-
-    .line 128
-    .line 129
-    .line 130
-    move-result v2
-
-    .line 131
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
-
-    .line 132
-    .line 133
-    .line 134
-    move-result v3
-
-    .line 135
-    invoke-virtual {p0, v1, v2, v1, v3}, Landroid/widget/TextView;->setPadding(IIII)V
-
-    .line 136
-    .line 137
-    .line 138
-    :cond_3
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->R0()Z
-
-    .line 139
-    .line 140
-    .line 141
-    move-result v1
-
-    .line 142
-    const/4 v2, 0x2
-
-    .line 143
-    const/4 v3, 0x0
-
-    .line 144
-    if-eqz v1, :cond_6
-
-    .line 145
-    .line 146
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->i:Ljava/lang/CharSequence;
-
-    .line 147
-    .line 148
-    if-eqz v1, :cond_6
-
-    .line 149
-    .line 150
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingTop()I
-
-    .line 151
-    .line 152
-    .line 153
-    move-result v1
-
-    .line 154
-    sub-int/2addr v0, v1
-
-    .line 155
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
-
-    .line 156
-    .line 157
-    .line 158
-    move-result v1
-
-    .line 159
-    sub-int/2addr v0, v1
-
-    .line 160
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->n:Lcom/android/launcher3/h0;
-
-    .line 161
-    .line 162
-    iget v4, v1, Lcom/android/launcher3/h0;->J2:I
-
-    .line 163
-    .line 164
-    sub-int/2addr v0, v4
-
-    .line 165
-    iget v1, v1, Lcom/android/launcher3/h0;->K2:I
-
-    .line 166
-    .line 167
-    sub-int v5, v0, v1
-
-    .line 168
-    .line 169
-    invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
-
-    .line 170
-    .line 171
-    .line 172
-    move-result v0
-
-    .line 173
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingLeft()I
-
-    .line 174
-    .line 175
-    .line 176
-    move-result v1
-
-    .line 177
-    sub-int/2addr v0, v1
-
-    .line 178
-    invoke-virtual {p0}, Landroid/widget/TextView;->getCompoundPaddingRight()I
-
-    .line 179
-    .line 180
-    .line 181
-    move-result v1
-
-    .line 182
-    sub-int v4, v0, v1
-
-    .line 183
-    .line 184
-    iget-object v6, p0, Lcom/android/launcher3/BubbleTextView;->i:Ljava/lang/CharSequence;
-
-    .line 185
-    .line 186
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
-
-    .line 187
-    .line 188
-    .line 189
-    move-result-object v7
-
-    .line 190
-    iget-object v8, p0, Lcom/android/launcher3/BubbleTextView;->h:Lcom/android/launcher3/util/x0;
-
-    .line 191
-    .line 192
-    invoke-virtual {p0}, Landroid/widget/TextView;->getLineSpacingMultiplier()F
-
-    .line 193
-    .line 194
-    .line 195
-    move-result v9
-
-    .line 196
-    invoke-virtual {p0}, Landroid/widget/TextView;->getLineSpacingExtra()F
-
-    .line 197
-    .line 198
-    .line 199
-    move-result v10
-
-    .line 200
-    invoke-static/range {v4 .. v10}, Lcom/android/launcher3/BubbleTextView;->y0(IILjava/lang/CharSequence;Landroid/text/TextPaint;Lcom/android/launcher3/util/x0;FF)Ljava/lang/CharSequence;
-
-    .line 201
-    .line 202
-    .line 203
-    move-result-object v0
-
-    .line 204
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->j:Ljava/lang/CharSequence;
-
-    .line 205
-    .line 206
-    invoke-static {v0, v1}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
-
-    .line 207
-    .line 208
-    .line 209
-    move-result v1
-
-    .line 210
-    if-nez v1, :cond_6
-
-    .line 211
-    .line 212
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->j:Ljava/lang/CharSequence;
-
-    .line 213
-    .line 214
-    invoke-static {}, Lcom/android/launcher3/y0;->I0()Z
-
-    .line 215
-    .line 216
-    .line 217
-    move-result v1
-
-    .line 218
-    if-eqz v1, :cond_4
-
-    .line 219
-    .line 220
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
-
-    .line 221
-    .line 222
-    .line 223
     move-result-object v1
 
-    .line 224
-    instance-of v4, v1, Lcom/android/launcher3/model/data/z;
+    iget v1, v1, Lcom/android/launcher3/DeviceProfile;->bubbleTextViewPaddingLeftRightUnOpenMark:I
 
-    .line 225
-    .line 226
-    if-eqz v4, :cond_4
-
-    .line 227
-    .line 228
-    check-cast v1, Lcom/android/launcher3/model/data/z;
-
-    .line 229
-    .line 230
-    invoke-virtual {v1}, Lcom/android/launcher3/model/data/z;->B()Z
-
-    .line 231
-    .line 232
-    .line 233
-    move-result v1
-
-    .line 234
-    if-eqz v1, :cond_4
-
-    .line 235
-    .line 236
-    invoke-direct {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setTextWithArchivingIcon(Ljava/lang/CharSequence;)V
-
-    .line 237
-    .line 238
-    .line 239
     goto :goto_1
 
-    .line 240
-    :cond_4
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    :cond_1
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 241
-    .line 242
-    .line 243
+    invoke-interface {v1}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v1
+
+    iget v1, v1, Lcom/android/launcher3/DeviceProfile;->bubbleTextViewPaddingLeftRight:I
+
     :goto_1
-    sget-object v1, Lcom/android/launcher3/BubbleTextView;->r0:Ljava/lang/Character;
+    move v4, v1
 
-    .line 244
-    .line 245
-    invoke-virtual {v1}, Ljava/lang/Character;->charValue()C
+    :cond_2
+    sub-int v5, v0, v5
 
-    .line 246
-    .line 247
-    .line 248
-    move-result v1
+    .line 987
+    div-int/2addr v5, v3
 
-    .line 249
-    invoke-static {v0, v1}, Landroid/text/TextUtils;->indexOf(Ljava/lang/CharSequence;C)I
+    .line 988
+    invoke-static {}, Lcom/android/launcher3/Utilities;->isTableDevice()Z
 
-    .line 250
-    .line 251
-    .line 252
-    move-result v0
+    move-result v6
 
-    .line 253
-    const/4 v1, -0x1
+    if-eqz v6, :cond_5
 
-    .line 254
-    if-eq v0, v1, :cond_5
+    .line 989
+    iget v6, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    .line 255
-    .line 256
-    invoke-virtual {p0, v3}, Landroid/widget/TextView;->setSingleLine(Z)V
+    if-ne v6, v3, :cond_4
 
-    .line 257
-    .line 258
-    .line 259
-    invoke-virtual {p0, v2}, Landroid/widget/TextView;->setMaxLines(I)V
+    .line 990
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
-    .line 260
-    .line 261
-    .line 262
+    move-result-object v5
+
+    iget-object v6, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v6}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v6
+
+    iget-boolean v6, v6, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v6, :cond_3
+
+    const v6, 0x7f0c007c
+
     goto :goto_2
 
-    .line 263
-    :cond_5
-    const/4 v0, 0x1
+    :cond_3
+    const v6, 0x7f0c007b
 
-    .line 264
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setSingleLine(Z)V
-
-    .line 265
-    .line 266
-    .line 267
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setMaxLines(I)V
-
-    .line 268
-    .line 269
-    .line 270
-    :cond_6
     :goto_2
-    invoke-super {p0, p1, p2}, Landroid/widget/TextView;->onMeasure(II)V
+    invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getInteger(I)I
 
-    .line 271
-    .line 272
-    .line 273
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
-
-    .line 274
-    .line 275
-    if-eqz v0, :cond_8
-
-    .line 276
-    .line 277
-    instance-of v0, p0, Lcom/android/launcher3/views/DoubleShadowBubbleTextView;
-
-    .line 278
-    .line 279
-    if-eqz v0, :cond_8
-
-    .line 280
-    .line 281
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 282
-    .line 283
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 284
-    .line 285
-    .line 286
-    move-result-object v0
-
-    .line 287
-    iget v0, v0, Lcom/android/launcher3/X3;->Z:I
-
-    .line 288
-    .line 289
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingTop()I
-
-    .line 290
-    .line 291
-    .line 292
-    move-result v1
-
-    .line 293
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
-
-    .line 294
-    .line 295
-    .line 296
-    move-result-object v4
-
-    .line 297
-    const v5, 0x7f0703ee
-
-    .line 298
-    .line 299
-    .line 300
-    invoke-virtual {v4, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 301
-    .line 302
-    .line 303
-    move-result v4
-
-    .line 304
-    add-int/2addr v1, v4
-
-    .line 305
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 306
-    .line 307
-    invoke-interface {v4}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 308
-    .line 309
-    .line 310
-    move-result-object v4
-
-    .line 311
-    iget v4, v4, Lcom/android/launcher3/X3;->Z:I
-
-    .line 312
-    .line 313
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
-
-    .line 314
-    .line 315
-    .line 316
     move-result v5
 
-    .line 317
-    invoke-virtual {p0, v0, v1, v4, v5}, Landroid/widget/TextView;->setPadding(IIII)V
+    int-to-float v5, v5
 
-    .line 318
-    .line 319
-    .line 320
-    invoke-static {}, Lm1/a;->b()Z
+    invoke-static {v5}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
-    .line 321
-    .line 322
-    .line 323
-    move-result v0
+    move-result v5
 
-    .line 324
-    if-eqz v0, :cond_8
-
-    .line 325
-    .line 326
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->o0()Z
-
-    .line 327
-    .line 328
-    .line 329
-    move-result v0
-
-    .line 330
-    if-eqz v0, :cond_7
-
-    .line 331
-    .line 332
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 333
-    .line 334
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 335
-    .line 336
-    .line 337
-    move-result-object v0
-
-    .line 338
-    iget v0, v0, Lcom/android/launcher3/X3;->Z:I
-
-    .line 339
-    .line 340
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 341
-    .line 342
-    invoke-interface {v1}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 343
-    .line 344
-    .line 345
-    move-result-object v1
-
-    .line 346
-    iget v1, v1, Lcom/android/launcher3/X3;->Z:I
-
-    .line 347
-    .line 348
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
-
-    .line 349
-    .line 350
-    .line 351
-    move-result v4
-
-    .line 352
-    invoke-virtual {p0, v0, v3, v1, v4}, Landroid/widget/TextView;->setPadding(IIII)V
-
-    .line 353
-    .line 354
-    .line 355
     goto :goto_3
 
-    .line 356
-    :cond_7
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    :cond_4
+    if-ne v6, v2, :cond_5
 
-    .line 357
-    .line 358
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    .line 992
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getResources()Landroid/content/res/Resources;
 
-    .line 359
-    .line 360
-    .line 361
-    move-result-object v0
+    move-result-object v5
 
-    .line 362
-    iget v0, v0, Lcom/android/launcher3/X3;->Z:I
+    const v6, 0x7f0c0006
 
-    .line 363
-    .line 364
-    invoke-virtual {p0}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getInteger(I)I
 
-    .line 365
-    .line 366
-    .line 367
-    move-result-object v1
+    move-result v5
 
-    .line 368
-    const v3, 0x7f0704bf
+    int-to-float v5, v5
 
-    .line 369
-    .line 370
-    .line 371
-    invoke-virtual {v1, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-static {v5}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
-    .line 372
-    .line 373
-    .line 374
+    move-result v5
+
+    .line 996
+    :cond_5
+    :goto_3
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingBottom()I
+
+    move-result v6
+
+    invoke-virtual {p0, v1, v5, v4, v6}, Lcom/android/launcher3/BubbleTextView;->setPadding(IIII)V
+
+    .line 999
+    :cond_6
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->shouldUseTwoLine()Z
+
     move-result v1
 
-    .line 375
-    iget-object v3, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    if-eqz v1, :cond_8
 
-    .line 376
-    .line 377
-    invoke-interface {v3}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mLastOriginalText:Ljava/lang/CharSequence;
 
-    .line 378
-    .line 379
-    .line 380
-    move-result-object v3
+    if-eqz v1, :cond_8
 
-    .line 381
-    iget v3, v3, Lcom/android/launcher3/X3;->Z:I
+    .line 1000
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingTop()I
 
-    .line 382
-    .line 383
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingBottom()I
+    move-result v1
 
-    .line 384
-    .line 385
-    .line 386
-    move-result v4
+    sub-int/2addr v0, v1
 
-    .line 387
-    invoke-virtual {p0, v0, v1, v3, v4}, Landroid/widget/TextView;->setPadding(IIII)V
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingBottom()I
 
-    .line 388
-    .line 389
-    .line 390
-    :cond_8
-    :goto_3
-    invoke-static {}, Lx1/O;->C3()Z
+    move-result v1
 
-    .line 391
-    .line 392
-    .line 393
-    move-result v0
+    sub-int/2addr v0, v1
 
-    .line 394
-    if-eqz v0, :cond_a
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    .line 395
-    .line 396
-    invoke-static {p0}, Lp1/f;->x(Landroid/view/View;)Z
+    iget v1, v1, Lcom/android/launcher3/DeviceProfile;->allAppsIconSizePx:I
 
-    .line 397
-    .line 398
-    .line 399
-    move-result v0
+    sub-int/2addr v0, v1
 
-    .line 400
-    if-eqz v0, :cond_a
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    .line 401
-    .line 402
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    iget v1, v1, Lcom/android/launcher3/DeviceProfile;->allAppsIconDrawablePaddingPx:I
 
-    .line 403
-    .line 404
-    instance-of v0, v0, Lcom/android/launcher3/C2;
+    sub-int v5, v0, v1
 
-    .line 405
-    .line 406
-    if-eqz v0, :cond_a
-
-    .line 407
-    .line 408
+    .line 1004
     invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
-    .line 409
-    .line 410
-    .line 411
-    move-result p1
+    move-result v0
 
-    .line 412
-    invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundPaddingLeft()I
 
-    .line 413
-    .line 414
-    .line 415
-    move-result p2
-
-    .line 416
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 417
-    .line 418
-    sub-int v0, p2, v0
-
-    .line 419
-    .line 420
-    div-int/2addr v0, v2
-
-    .line 421
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingLeft()I
-
-    .line 422
-    .line 423
-    .line 424
     move-result v1
 
-    .line 425
-    invoke-virtual {p0}, Landroid/widget/TextView;->getPaddingRight()I
+    sub-int/2addr v0, v1
 
-    .line 426
-    .line 427
-    .line 428
-    move-result v2
+    .line 1005
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getCompoundPaddingRight()I
 
-    .line 429
-    invoke-virtual {p0, v1, v0, v2, v0}, Landroid/widget/TextView;->setPadding(IIII)V
+    move-result v1
 
-    .line 430
-    .line 431
-    .line 432
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    sub-int v4, v0, v1
 
-    .line 433
-    .line 434
-    invoke-static {v0}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    iget-object v6, p0, Lcom/android/launcher3/BubbleTextView;->mLastOriginalText:Ljava/lang/CharSequence;
 
-    .line 435
-    .line 436
-    .line 437
+    .line 1008
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaint()Landroid/text/TextPaint;
+
+    move-result-object v7
+
+    iget-object v8, p0, Lcom/android/launcher3/BubbleTextView;->mBreakPointsIntArray:Lcom/android/launcher3/util/IntArray;
+
+    .line 1010
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getLineSpacingMultiplier()F
+
+    move-result v9
+
+    .line 1011
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getLineSpacingExtra()F
+
+    move-result v10
+
+    .line 1003
+    invoke-static/range {v4 .. v10}, Lcom/android/launcher3/BubbleTextView;->modifyTitleToSupportMultiLine(IILjava/lang/CharSequence;Landroid/text/TextPaint;Lcom/android/launcher3/util/IntArray;FF)Ljava/lang/CharSequence;
+
     move-result-object v0
 
-    .line 438
-    invoke-virtual {v0}, Lcom/android/launcher3/C2;->O1()I
+    .line 1012
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mLastModifiedText:Ljava/lang/CharSequence;
 
-    .line 439
-    .line 440
-    .line 441
+    invoke-static {v0, v1}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_8
+
+    .line 1013
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mLastModifiedText:Ljava/lang/CharSequence;
+
+    .line 1014
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 1016
+    sget-object v1, Lcom/android/launcher3/BubbleTextView;->NEW_LINE:Ljava/lang/Character;
+
+    invoke-virtual {v1}, Ljava/lang/Character;->charValue()C
+
+    move-result v1
+
+    invoke-static {v0, v1}, Landroid/text/TextUtils;->indexOf(Ljava/lang/CharSequence;C)I
+
     move-result v0
 
-    .line 442
-    const v1, 0x7f0b04c8
+    const/4 v1, -0x1
 
-    .line 443
-    .line 444
-    .line 445
-    invoke-virtual {p0, v1}, Landroid/widget/TextView;->getTag(I)Ljava/lang/Object;
+    if-eq v0, v1, :cond_7
 
-    .line 446
-    .line 447
-    .line 448
-    move-result-object v1
+    const/4 v0, 0x0
 
-    .line 449
-    instance-of v2, v1, Ljava/lang/Integer;
+    .line 1017
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setSingleLine(Z)V
 
-    .line 450
-    .line 451
-    if-eqz v2, :cond_9
+    .line 1018
+    invoke-virtual {p0, v3}, Lcom/android/launcher3/BubbleTextView;->setMaxLines(I)V
 
-    .line 452
-    .line 453
-    check-cast v1, Ljava/lang/Integer;
+    goto :goto_4
 
-    .line 454
-    .line 455
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+    .line 1020
+    :cond_7
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setSingleLine(Z)V
 
-    .line 456
-    .line 457
-    .line 458
-    move-result v0
+    .line 1021
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setMaxLines(I)V
 
-    .line 459
-    :cond_9
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    .line 1025
+    :cond_8
+    :goto_4
+    invoke-super {p0, p1, p2}, Landroid/widget/TextView;->onMeasure(II)V
 
-    .line 460
-    .line 461
-    invoke-static {v1}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    .line 1028
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
-    .line 462
-    .line 463
-    .line 464
-    move-result-object v1
+    if-eqz v0, :cond_9
 
-    .line 465
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
+    instance-of v0, p0, Lcom/android/launcher3/views/DoubleShadowBubbleTextView;
 
-    .line 466
-    .line 467
-    invoke-static {v2}, Lcom/android/launcher3/C2;->e1(Lcom/android/launcher3/views/k;)Lcom/android/launcher3/C2;
+    if-eqz v0, :cond_9
 
-    .line 468
-    .line 469
-    .line 470
+    .line 1029
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v0}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v0
+
+    iget v0, v0, Lcom/android/launcher3/DeviceProfile;->clipBoardPaddingLeftRight:I
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingTop()I
+
+    move-result v1
+
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-interface {v2}, Lcom/android/launcher3/views/ActivityContext;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
     move-result-object v2
 
-    .line 471
-    invoke-static {v2}, Lp1/f;->s(Lcom/android/launcher3/C2;)I
+    iget v2, v2, Lcom/android/launcher3/DeviceProfile;->clipBoardPaddingLeftRight:I
 
-    .line 472
-    .line 473
-    .line 474
-    move-result v2
+    .line 1030
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingBottom()I
 
-    .line 475
-    invoke-static {v1, v2, v0}, Lp1/f;->j(Lcom/android/launcher3/C2;II)I
+    move-result v4
 
-    .line 476
-    .line 477
-    .line 478
+    .line 1029
+    invoke-virtual {p0, v0, v1, v2, v4}, Lcom/android/launcher3/BubbleTextView;->setPadding(IIII)V
+
+    .line 1034
+    :cond_9
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
+
     move-result v0
 
-    .line 479
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    if-eqz v0, :cond_b
 
-    .line 480
-    .line 481
-    if-eq v1, v0, :cond_a
+    invoke-static {p0}, Lcom/android/launcher3/hotseat/HotseatUtils;->isViewInRecentHotseat(Landroid/view/View;)Z
 
-    .line 482
-    .line 483
-    invoke-virtual {p0, v0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->K0(III)V
+    move-result v0
 
-    .line 484
-    .line 485
-    .line 486
+    if-eqz v0, :cond_b
+
+    .line 1035
+    invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
+
+    move-result p1
+
+    .line 1036
+    invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
+
+    move-result p2
+
+    .line 1037
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    sub-int v0, p2, v0
+
+    div-int/2addr v0, v3
+
+    .line 1039
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
+    move-result v1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingRight()I
+
+    move-result v2
+
+    invoke-virtual {p0, v1, v0, v2, v0}, Lcom/android/launcher3/BubbleTextView;->setPadding(IIII)V
+
+    .line 1040
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/Launcher;->getCurHotseatRecentCount()I
+
+    move-result v0
+
+    const v1, 0x7f0b043b
+
+    .line 1041
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->getTag(I)Ljava/lang/Object;
+
+    move-result-object v1
+
+    .line 1042
+    instance-of v2, v1, Ljava/lang/Integer;
+
+    if-eqz v2, :cond_a
+
+    .line 1043
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v0
+
+    .line 1045
     :cond_a
+    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
+
+    invoke-static {v2}, Lcom/android/launcher3/Launcher;->cast(Lcom/android/launcher3/views/ActivityContext;)Lcom/android/launcher3/Launcher;
+
+    move-result-object v2
+
+    invoke-static {v2}, Lcom/android/launcher3/hotseat/HotseatUtils;->getRecentHotseatWithoutRecentChildCount(Lcom/android/launcher3/Launcher;)I
+
+    move-result v2
+
+    invoke-static {v1, v2, v0}, Lcom/android/launcher3/hotseat/HotseatUtils;->getRecentHotseatChildIconSize(Lcom/android/launcher3/Launcher;II)I
+
+    move-result v0
+
+    .line 1046
+    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    if-eq v1, v0, :cond_b
+
+    .line 1047
+    invoke-virtual {p0, v0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->setIconSize(III)V
+
+    :cond_b
     return-void
 .end method
 
 .method protected onSizeChanged(IIII)V
     .locals 0
 
-    .line 1
+    .line 724
     invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/TextView;->onSizeChanged(IIII)V
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->K()V
+    .line 725
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->checkForEllipsis()V
 
-    .line 5
-    .line 6
-    .line 7
     return-void
 .end method
 
 .method protected onTextChanged(Ljava/lang/CharSequence;III)V
     .locals 0
 
-    .line 1
+    .line 730
     invoke-super {p0, p1, p2, p3, p4}, Landroid/widget/TextView;->onTextChanged(Ljava/lang/CharSequence;III)V
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->K()V
+    .line 731
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->checkForEllipsis()V
 
-    .line 5
-    .line 6
-    .line 7
     return-void
 .end method
 
 .method public onTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 1
+    .line 659
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
-    .line 2
-    .line 3
-    .line 4
     move-result v0
 
-    .line 5
-    iget-object v1, p0, Lcom/android/launcher3/BubbleTextView;->f0:Ljava/util/function/Consumer;
-
-    .line 6
-    .line 7
-    if-eqz v1, :cond_0
-
-    .line 8
-    .line 9
     if-nez v0, :cond_0
 
-    .line 10
-    .line 11
-    invoke-interface {v1, p1}, Ljava/util/function/Consumer;->accept(Ljava/lang/Object;)V
-
-    .line 12
-    .line 13
-    .line 14
-    :cond_0
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
-
-    .line 15
-    .line 16
-    .line 17
-    move-result v0
-
-    .line 18
-    if-nez v0, :cond_1
-
-    .line 19
-    .line 20
+    .line 660
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
 
-    .line 21
-    .line 22
-    .line 23
     move-result v0
 
-    .line 24
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
 
-    .line 25
-    .line 26
-    .line 27
     move-result v1
 
-    .line 28
-    invoke-virtual {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->O0(FF)Z
+    invoke-virtual {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->shouldIgnoreTouchDown(FF)Z
 
-    .line 29
-    .line 30
-    .line 31
     move-result v0
 
-    .line 32
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_0
 
-    .line 33
-    .line 34
     const/4 p0, 0x0
 
-    .line 35
     return p0
 
-    .line 36
-    :cond_1
-    invoke-virtual {p0}, Landroid/widget/TextView;->isLongClickable()Z
+    .line 663
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isLongClickable()Z
 
-    .line 37
-    .line 38
-    .line 39
     move-result v0
 
-    .line 40
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_1
 
-    .line 41
-    .line 42
+    .line 664
     invoke-super {p0, p1}, Landroid/widget/TextView;->onTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 43
-    .line 44
-    .line 45
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->q:Lcom/android/launcher3/V;
+    .line 665
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mLongPressHelper:Lcom/android/launcher3/CheckLongPressHelper;
 
-    .line 46
-    .line 47
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/V;->h(Landroid/view/MotionEvent;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/CheckLongPressHelper;->onTouchEvent(Landroid/view/MotionEvent;)V
 
-    .line 48
-    .line 49
-    .line 50
     const/4 p0, 0x1
 
-    .line 51
     return p0
 
-    .line 52
-    :cond_2
+    .line 669
+    :cond_1
     invoke-super {p0, p1}, Landroid/widget/TextView;->onTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 53
-    .line 54
-    .line 55
     move-result p0
 
-    .line 56
     return p0
 .end method
 
 .method public onVisibilityAggregated(Z)V
     .locals 1
 
-    .line 1
+    .line 699
     invoke-super {p0, p1}, Landroid/widget/TextView;->onVisibilityAggregated(Z)V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 700
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 5
-    .line 6
     if-eqz p0, :cond_0
 
-    .line 7
-    .line 8
     const/4 v0, 0x0
 
-    .line 9
-    invoke-virtual {p0, p1, v0}, Landroid/graphics/drawable/Drawable;->setVisible(ZZ)Z
+    .line 701
+    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setVisible(ZZ)Z
 
-    .line 10
-    .line 11
-    .line 12
     :cond_0
     return-void
 .end method
 
-.method public p0(FF)Z
-    .locals 3
+.method public prepareDrawDragView()Lcom/android/launcher3/util/SafeCloseable;
+    .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
+    .line 1556
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->resetIconScale()V
 
-    .line 2
-    .line 3
+    const/4 v0, 0x1
+
+    .line 1557
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setForceHideDot(Z)V
+
+    .line 1558
+    new-instance p0, Lcom/android/launcher3/BubbleTextView$$ExternalSyntheticLambda1;
+
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView$$ExternalSyntheticLambda1;-><init>()V
+
+    return-object p0
+.end method
+
+.method public reapplyItemInfo(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
+    .locals 1
+
+    .line 1464
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    if-ne v0, p1, :cond_3
+
+    const/4 v0, 0x0
+
+    .line 1465
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
+
+    const/4 v0, 0x1
+
+    .line 1466
+    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisableRelayout:Z
+
+    .line 1467
+    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mEnableIconUpdateAnimation:Z
+
+    .line 1470
+    iget-object v0, p1, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->bitmap:Lcom/android/launcher3/icons/BitmapInfo;
+
+    iget-object v0, v0, Lcom/android/launcher3/icons/BitmapInfo;->icon:Landroid/graphics/Bitmap;
+
+    invoke-virtual {v0}, Landroid/graphics/Bitmap;->prepareToDraw()V
+
+    .line 1472
+    instance-of v0, p1, Lcom/android/launcher3/model/data/AppInfo;
+
     if-eqz v0, :cond_0
 
-    .line 4
-    .line 5
-    invoke-virtual {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->q0(FF)Z
+    .line 1473
+    check-cast p1, Lcom/android/launcher3/model/data/AppInfo;
 
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyFromApplicationInfo(Lcom/android/launcher3/model/data/AppInfo;)V
 
-    .line 9
-    return p0
+    goto :goto_0
 
-    .line 10
+    .line 1474
     :cond_0
-    new-instance v0, Landroid/graphics/Rect;
+    instance-of v0, p1, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
 
-    .line 11
-    .line 12
-    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
+    if-eqz v0, :cond_1
 
-    .line 13
-    .line 14
-    .line 15
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->d0(Landroid/graphics/Rect;)V
+    .line 1475
+    move-object v0, p1
 
-    .line 16
-    .line 17
-    .line 18
-    iget v1, v0, Landroid/graphics/Rect;->right:I
+    check-cast v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
 
-    .line 19
-    .line 20
-    iget v2, v0, Landroid/graphics/Rect;->left:I
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->applyFromWorkspaceItem(Lcom/android/launcher3/model/data/WorkspaceItemInfo;)V
 
-    .line 21
-    .line 22
-    sub-int/2addr v1, v2
+    .line 1476
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mActivity:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 23
-    invoke-static {v1}, Ljava/lang/Math;->abs(I)I
+    invoke-interface {v0, p1}, Lcom/android/launcher3/views/ActivityContext;->invalidateParent(Lcom/android/launcher3/model/data/ItemInfo;)V
 
-    .line 24
-    .line 25
-    .line 26
-    move-result v1
+    goto :goto_0
 
-    .line 27
-    int-to-float v1, v1
-
-    .line 28
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconRangeDelta()F
-
-    .line 29
-    .line 30
-    .line 31
-    move-result v2
-
-    .line 32
-    mul-float/2addr v1, v2
-
-    .line 33
-    float-to-int v1, v1
-
-    .line 34
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->r0()Z
-
-    .line 35
-    .line 36
-    .line 37
-    move-result p0
-
-    .line 38
-    if-eqz p0, :cond_1
-
-    .line 39
-    .line 40
-    neg-int v1, v1
-
-    .line 41
     :cond_1
-    iget p0, v0, Landroid/graphics/Rect;->bottom:I
+    if-eqz p1, :cond_2
 
-    .line 42
-    .line 43
-    add-int/2addr p0, v1
+    .line 1478
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyFromItemInfoWithIcon(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
 
-    .line 44
-    int-to-float p0, p0
-
-    .line 45
-    cmpg-float p0, p2, p0
-
-    .line 46
-    .line 47
-    if-gez p0, :cond_2
-
-    .line 48
-    .line 49
-    iget p0, v0, Landroid/graphics/Rect;->top:I
-
-    .line 50
-    .line 51
-    sub-int/2addr p0, v1
-
-    .line 52
-    int-to-float p0, p0
-
-    .line 53
-    cmpl-float p0, p2, p0
-
-    .line 54
-    .line 55
-    if-lez p0, :cond_2
-
-    .line 56
-    .line 57
-    iget p0, v0, Landroid/graphics/Rect;->right:I
-
-    .line 58
-    .line 59
-    add-int/2addr p0, v1
-
-    .line 60
-    int-to-float p0, p0
-
-    .line 61
-    cmpg-float p0, p1, p0
-
-    .line 62
-    .line 63
-    if-gez p0, :cond_2
-
-    .line 64
-    .line 65
-    iget p0, v0, Landroid/graphics/Rect;->left:I
-
-    .line 66
-    .line 67
-    sub-int/2addr p0, v1
-
-    .line 68
-    int-to-float p0, p0
-
-    .line 69
-    cmpl-float p0, p1, p0
-
-    .line 70
-    .line 71
-    if-lez p0, :cond_2
-
-    .line 72
-    .line 73
-    const/4 p0, 0x1
-
-    .line 74
-    return p0
-
-    .line 75
     :cond_2
-    const/4 p0, 0x0
+    :goto_0
+    const/4 p1, 0x0
 
-    .line 76
-    return p0
-.end method
+    .line 1481
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mDisableRelayout:Z
 
-.method public q0(FF)Z
-    .locals 4
+    .line 1482
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mEnableIconUpdateAnimation:Z
 
-    .line 1
-    new-instance v0, Landroid/graphics/Rect;
-
-    .line 2
-    .line 3
-    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
-
-    .line 4
-    .line 5
-    .line 6
-    invoke-virtual {p0}, Landroid/widget/TextView;->getMeasuredWidth()I
-
-    .line 7
-    .line 8
-    .line 9
-    move-result v1
-
-    .line 10
-    invoke-virtual {p0}, Landroid/widget/TextView;->getMeasuredHeight()I
-
-    .line 11
-    .line 12
-    .line 13
-    move-result v2
-
-    .line 14
-    const/4 v3, 0x0
-
-    .line 15
-    invoke-virtual {v0, v3, v3, v1, v2}, Landroid/graphics/Rect;->set(IIII)V
-
-    .line 16
-    .line 17
-    .line 18
-    invoke-virtual {p0}, Landroid/widget/TextView;->getMeasuredWidth()I
-
-    .line 19
-    .line 20
-    .line 21
-    move-result v1
-
-    .line 22
-    int-to-float v1, v1
-
-    .line 23
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconRangeDelta()F
-
-    .line 24
-    .line 25
-    .line 26
-    move-result v2
-
-    .line 27
-    mul-float/2addr v1, v2
-
-    .line 28
-    float-to-int v1, v1
-
-    .line 29
-    invoke-virtual {p0}, Landroid/widget/TextView;->getMeasuredHeight()I
-
-    .line 30
-    .line 31
-    .line 32
-    move-result v2
-
-    .line 33
-    int-to-float v2, v2
-
-    .line 34
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIconRangeDelta()F
-
-    .line 35
-    .line 36
-    .line 37
-    move-result p0
-
-    .line 38
-    mul-float/2addr v2, p0
-
-    .line 39
-    float-to-int p0, v2
-
-    .line 40
-    iget v2, v0, Landroid/graphics/Rect;->bottom:I
-
-    .line 41
-    .line 42
-    add-int/2addr v2, p0
-
-    .line 43
-    int-to-float v2, v2
-
-    .line 44
-    cmpg-float v2, p2, v2
-
-    .line 45
-    .line 46
-    if-gez v2, :cond_0
-
-    .line 47
-    .line 48
-    iget v2, v0, Landroid/graphics/Rect;->top:I
-
-    .line 49
-    .line 50
-    sub-int/2addr v2, p0
-
-    .line 51
-    int-to-float p0, v2
-
-    .line 52
-    cmpl-float p0, p2, p0
-
-    .line 53
-    .line 54
-    if-lez p0, :cond_0
-
-    .line 55
-    .line 56
-    iget p0, v0, Landroid/graphics/Rect;->right:I
-
-    .line 57
-    .line 58
-    add-int/2addr p0, v1
-
-    .line 59
-    int-to-float p0, p0
-
-    .line 60
-    cmpg-float p0, p1, p0
-
-    .line 61
-    .line 62
-    if-gez p0, :cond_0
-
-    .line 63
-    .line 64
-    iget p0, v0, Landroid/graphics/Rect;->left:I
-
-    .line 65
-    .line 66
-    sub-int/2addr p0, v1
-
-    .line 67
-    int-to-float p0, p0
-
-    .line 68
-    cmpl-float p0, p1, p0
-
-    .line 69
-    .line 70
-    if-lez p0, :cond_0
-
-    .line 71
-    .line 72
-    const/4 p0, 0x1
-
-    .line 73
-    return p0
-
-    .line 74
-    :cond_0
-    return v3
-.end method
-
-.method public r0()Z
-    .locals 0
-
-    .line 1
-    iget-boolean p0, p0, Lcom/android/launcher3/BubbleTextView;->e0:Z
-
-    .line 2
-    .line 3
-    return p0
+    :cond_3
+    return-void
 .end method
 
 .method public refreshDrawableState()V
     .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->U:Z
+    .line 637
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIgnorePressedStateChange:Z
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
+    .line 638
     invoke-super {p0}, Landroid/widget/TextView;->refreshDrawableState()V
 
-    .line 6
-    .line 7
-    .line 8
     :cond_0
     return-void
 .end method
@@ -14028,300 +7728,341 @@
 .method public requestLayout()V
     .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->V:Z
+    .line 1454
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisableRelayout:Z
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
+    .line 1455
     invoke-super {p0}, Landroid/widget/TextView;->requestLayout()V
 
-    .line 6
-    .line 7
-    .line 8
     :cond_0
     return-void
 .end method
 
-.method public varargs s([F)V
-    .locals 2
+.method public reset()V
+    .locals 3
 
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->I()V
+    .line 412
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 2
-    .line 3
-    .line 4
-    sget-object v0, Lcom/android/launcher3/BubbleTextView;->u0:Landroid/util/Property;
+    const/4 v1, 0x0
 
-    .line 5
-    .line 6
-    invoke-static {p0, v0, p1}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    iput v1, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotColor:I
 
-    .line 7
-    .line 8
-    .line 9
-    move-result-object v0
+    .line 413
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 10
-    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->D:Landroid/animation/Animator;
+    iput v1, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->appColor:I
 
-    .line 11
-    .line 12
-    new-instance v1, Lcom/android/launcher3/BubbleTextView$e;
+    .line 414
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->cancelDotScaleAnim()V
 
-    .line 13
-    .line 14
-    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/BubbleTextView$e;-><init>(Lcom/android/launcher3/BubbleTextView;[F)V
+    .line 416
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mForceHideDot:Z
 
-    .line 15
-    .line 16
-    .line 17
-    invoke-virtual {v0, v1}, Landroid/animation/Animator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+    const/4 v0, 0x0
 
-    .line 18
-    .line 19
-    .line 20
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->D:Landroid/animation/Animator;
+    .line 417
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 21
-    .line 22
-    invoke-virtual {p0}, Landroid/animation/Animator;->start()V
+    .line 419
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setTag(Ljava/lang/Object;)V
 
-    .line 23
-    .line 24
-    .line 25
-    return-void
-.end method
+    .line 420
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
 
-.method public s0()Z
-    .locals 2
+    if-eqz v2, :cond_0
 
-    .line 1
-    instance-of v0, p0, Lcom/android/launcher3/views/DoubleShadowBubbleTextView;
+    .line 421
+    invoke-virtual {v2}, Lcom/android/launcher3/util/CancellableTask;->cancel()V
 
-    .line 2
-    .line 3
-    if-eqz v0, :cond_1
+    .line 422
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+    :cond_0
+    const/4 v0, 0x0
 
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v0
+    .line 425
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setPivotY(F)V
 
-    .line 9
-    instance-of v0, v0, Landroid/view/ViewGroup;
+    const/high16 v2, 0x3f800000    # 1.0f
 
-    .line 10
-    .line 11
-    if-eqz v0, :cond_1
+    .line 426
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setAlpha(F)V
 
-    .line 12
-    .line 13
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+    .line 427
+    invoke-virtual {p0, v2}, Lcom/android/launcher3/BubbleTextView;->setScaleY(F)V
 
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v0
+    .line 428
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setTranslationY(F)V
 
-    .line 17
-    check-cast v0, Landroid/view/ViewGroup;
+    .line 430
+    sget-object v0, Lcom/android/launcher3/config/FeatureFlags;->ENABLE_TWOLINE_ALLAPPS:Lcom/android/launcher3/config/FeatureFlags$BooleanFlag;
 
-    .line 18
-    .line 19
-    invoke-virtual {v0}, Landroid/view/ViewGroup;->getId()I
+    invoke-virtual {v0}, Lcom/android/launcher3/config/FeatureFlags$BooleanFlag;->get()Z
 
-    .line 20
-    .line 21
-    .line 22
     move-result v0
 
-    .line 23
-    const v1, 0x7f0b062b
+    if-nez v0, :cond_1
 
-    .line 24
-    .line 25
-    .line 26
-    if-eq v0, v1, :cond_0
+    sget-object v0, Lcom/android/launcher3/config/FeatureFlags;->ENABLE_TWOLINE_DEVICESEARCH:Lcom/android/launcher3/config/FeatureFlags$BooleanFlag;
 
-    .line 27
-    .line 28
-    invoke-virtual {p0}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+    .line 431
+    invoke-virtual {v0}, Lcom/android/launcher3/config/FeatureFlags$BooleanFlag;->get()Z
 
-    .line 29
-    .line 30
-    .line 31
-    move-result-object p0
+    move-result v0
 
-    .line 32
-    check-cast p0, Landroid/view/ViewGroup;
+    if-eqz v0, :cond_2
 
-    .line 33
-    .line 34
-    invoke-virtual {p0}, Landroid/view/ViewGroup;->getId()I
-
-    .line 35
-    .line 36
-    .line 37
-    move-result p0
-
-    .line 38
-    const v0, 0x7f0b062c
-
-    .line 39
-    .line 40
-    .line 41
-    if-ne p0, v0, :cond_1
-
-    .line 42
-    .line 43
-    :cond_0
-    const/4 p0, 0x1
-
-    .line 44
-    return p0
-
-    .line 45
     :cond_1
-    const/4 p0, 0x0
+    const/4 v0, 0x1
 
-    .line 46
-    return p0
+    .line 432
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setMaxLines(I)V
+
+    .line 435
+    :cond_2
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/BubbleTextView;->setVisibility(I)V
+
+    return-void
+.end method
+
+.method public resetAfterChangeDotMode()V
+    .locals 3
+
+    .line 2163
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    const/4 v1, 0x0
+
+    iput v1, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->dotColor:I
+
+    .line 2164
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iput v1, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->appColor:I
+
+    .line 2165
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->cancelDotScaleAnim()V
+
+    .line 2167
+    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->mForceHideDot:Z
+
+    const/4 v0, 0x0
+
+    .line 2168
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/BubbleTextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    .line 2170
+    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
+
+    if-eqz v2, :cond_0
+
+    .line 2171
+    invoke-virtual {v2}, Lcom/android/launcher3/util/CancellableTask;->cancel()V
+
+    .line 2172
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
+
+    .line 2175
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_1
+
+    .line 2176
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
+
+    invoke-virtual {p0, v0, v1}, Lcom/android/launcher3/BubbleTextView;->applyDotState(Lcom/android/launcher3/model/data/ItemInfo;Z)V
+
+    :cond_1
+    return-void
+.end method
+
+.method public resetDownloadInstallDrawable()V
+    .locals 3
+
+    .line 2273
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    instance-of v0, v0, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
+
+    if-eqz v0, :cond_0
+
+    .line 2274
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
+
+    .line 2275
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v2, "resetDownloadInstallDrawable info.title: "
+
+    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->title:Ljava/lang/CharSequence;
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "BubbleTextView"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2276
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    check-cast v0, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/iconanimation/DownloadInstallDrawable;->reset()V
+
+    const/4 v0, 0x0
+
+    .line 2277
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    :cond_0
+    return-void
+.end method
+
+.method public resetIconSizeToDefault()V
+    .locals 2
+
+    .line 2213
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 2216
+    :cond_0
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mDefaultIconSize:I
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1, v1}, Lcom/android/launcher3/BubbleTextView;->setIconSize(III)V
+
+    return-void
+.end method
+
+.method public resetLastCheckState()V
+    .locals 1
+
+    .line 1950
+    const-string v0, ""
+
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mLastCheckState:Ljava/lang/String;
+
+    return-void
 .end method
 
 .method public setAccessibilityDelegate(Landroid/view/View$AccessibilityDelegate;)V
     .locals 0
 
-    .line 1
-    instance-of p0, p1, LO0/c;
+    .line 493
+    instance-of p0, p1, Lcom/android/launcher3/accessibility/BaseAccessibilityDelegate;
 
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setCenterVertically(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->o:Z
+    .line 965
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mCenterVertically:Z
 
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setDisplay(I)V
     .locals 0
 
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->p:I
+    .line 625
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
 
-    .line 2
-    .line 3
     return-void
 .end method
 
-.method public setDragonDrawable(Lcom/android/launcher3/iconarrange/a;)V
+.method public setDragonDrawable(Lcom/android/launcher3/iconarrange/DragonDrawable;)V
     .locals 0
 
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->i0:Lcom/android/launcher3/iconarrange/a;
+    .line 1857
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mDragonDrawable:Lcom/android/launcher3/iconarrange/DragonDrawable;
 
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setFolderPreviewIconAnimator(Landroid/animation/ValueAnimator;)V
     .locals 0
 
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->n0:Landroid/animation/ValueAnimator;
+    .line 2226
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mFolderPreviewIconAnimator:Landroid/animation/ValueAnimator;
 
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setForceHideDot(Z)V
     .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->E:Z
+    .line 889
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mForceHideDot:Z
 
-    .line 2
-    .line 3
     if-ne v0, p1, :cond_0
 
-    .line 4
-    .line 5
-    goto :goto_0
-
-    .line 6
-    :cond_0
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->E:Z
-
-    .line 7
-    .line 8
-    if-eqz p1, :cond_1
-
-    .line 9
-    .line 10
-    invoke-virtual {p0}, Landroid/widget/TextView;->invalidate()V
-
-    .line 11
-    .line 12
-    .line 13
     return-void
 
-    .line 14
-    :cond_1
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->f0()Z
+    .line 892
+    :cond_0
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mForceHideDot:Z
 
-    .line 15
-    .line 16
-    .line 17
+    if-eqz p1, :cond_1
+
+    .line 895
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->invalidate()V
+
+    goto :goto_0
+
+    .line 896
+    :cond_1
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->hasDot()Z
+
     move-result p1
 
-    .line 18
     if-eqz p1, :cond_2
 
-    .line 19
-    .line 20
     const/4 p1, 0x2
 
-    .line 21
+    .line 897
     new-array p1, p1, [F
 
-    .line 22
-    .line 23
     fill-array-data p1, :array_0
 
-    .line 24
-    .line 25
-    .line 26
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->s([F)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->animateDotScale([F)V
 
-    .line 27
-    .line 28
-    .line 29
     :cond_2
     :goto_0
     return-void
 
-    .line 30
     nop
 
-    .line 31
     :array_0
     .array-data 4
         0x0
@@ -14329,304 +8070,146 @@
     .end array-data
 .end method
 
-.method public setForceHideDownloadMark(Z)V
-    .locals 1
-
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->q0:Z
-
-    .line 2
-    .line 3
-    if-ne v0, p1, :cond_0
-
-    .line 4
-    .line 5
-    return-void
-
-    .line 6
-    :cond_0
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->q0:Z
-
-    .line 7
-    .line 8
-    invoke-virtual {p0}, Landroid/widget/TextView;->invalidate()V
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method public bridge synthetic setForceHideRing(Z)V
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Lcom/android/launcher3/views/H;->setForceHideRing(Z)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
 .method public setHideBadge(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->u:Z
+    .line 400
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mHideBadge:Z
 
-    .line 2
-    .line 3
     return-void
 .end method
 
-.method protected setIcon(Ls1/o;)V
-    .locals 3
+.method protected setIcon(Lcom/android/launcher3/icons/FastBitmapDrawable;)V
+    .locals 2
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->w:Z
+    .line 1394
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsIconVisible:Z
 
-    .line 2
-    .line 3
     if-eqz v0, :cond_0
 
-    .line 4
-    .line 5
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->t(Landroid/graphics/drawable/Drawable;)V
+    .line 1395
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyCompoundDrawables(Landroid/graphics/drawable/Drawable;)V
 
-    .line 6
-    .line 7
-    .line 8
+    .line 1397
     :cond_0
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 9
-    .line 10
-    if-eqz p1, :cond_3
+    if-eqz p1, :cond_2
 
-    .line 11
-    .line 12
-    invoke-virtual {p0}, Landroid/widget/TextView;->getWindowVisibility()I
+    .line 1399
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getWindowVisibility()I
 
-    .line 13
-    .line 14
-    .line 15
     move-result v0
 
-    .line 16
-    const/4 v1, 0x1
+    const/4 v1, 0x0
 
-    .line 17
-    const/4 v2, 0x0
-
-    .line 18
     if-nez v0, :cond_1
 
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroid/widget/TextView;->isShown()Z
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isShown()Z
 
-    .line 21
-    .line 22
-    .line 23
-    move-result v0
+    move-result p0
 
-    .line 24
-    if-eqz v0, :cond_1
+    if-eqz p0, :cond_1
 
-    .line 25
-    .line 26
-    move v0, v1
+    const/4 p0, 0x1
 
-    .line 27
     goto :goto_0
 
-    .line 28
     :cond_1
-    move v0, v2
+    move p0, v1
 
-    .line 29
     :goto_0
-    invoke-virtual {p1, v0, v2}, Landroid/graphics/drawable/Drawable;->setVisible(ZZ)Z
+    invoke-virtual {p1, p0, v1}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setVisible(ZZ)Z
 
-    .line 30
-    .line 31
-    .line 32
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 33
-    .line 34
-    iget p0, p0, Lcom/android/launcher3/BubbleTextView;->p:I
-
-    .line 35
-    .line 36
-    const/4 v0, 0x5
-
-    .line 37
-    if-eq p0, v0, :cond_2
-
-    .line 38
-    .line 39
-    goto :goto_1
-
-    .line 40
     :cond_2
-    move v1, v2
-
-    .line 41
-    :goto_1
-    invoke-virtual {p1, v1}, Ls1/o;->r(Z)V
-
-    .line 42
-    .line 43
-    .line 44
-    :cond_3
     return-void
 .end method
 
 .method public setIconBoundsScale(F)V
     .locals 3
 
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->m0:I
+    .line 2234
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mDefaultIconSize:I
 
-    .line 2
-    .line 3
-    invoke-static {}, Lx1/O;->C3()Z
+    .line 2235
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
 
-    .line 4
-    .line 5
-    .line 6
     move-result v1
 
-    .line 7
     if-eqz v1, :cond_0
 
-    .line 8
-    .line 9
-    invoke-static {p0}, Lp1/f;->x(Landroid/view/View;)Z
+    invoke-static {p0}, Lcom/android/launcher3/hotseat/HotseatUtils;->isViewInRecentHotseat(Landroid/view/View;)Z
 
-    .line 10
-    .line 11
-    .line 12
     move-result v1
 
-    .line 13
     if-eqz v1, :cond_0
 
-    .line 14
-    .line 15
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    .line 2236
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 16
-    .line 17
-    .line 18
     move-result-object v0
 
-    .line 19
-    invoke-static {v0}, Lcom/android/launcher3/C2;->Z1(Landroid/content/Context;)Lcom/android/launcher3/C2;
+    invoke-static {v0}, Lcom/android/launcher3/Launcher;->getLauncher(Landroid/content/Context;)Lcom/android/launcher3/Launcher;
 
-    .line 20
-    .line 21
-    .line 22
     move-result-object v0
 
-    .line 23
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
 
-    .line 24
-    .line 25
-    .line 26
     move-result-object v1
 
-    .line 27
-    invoke-static {v1}, Lcom/android/launcher3/C2;->Z1(Landroid/content/Context;)Lcom/android/launcher3/C2;
+    invoke-static {v1}, Lcom/android/launcher3/Launcher;->getLauncher(Landroid/content/Context;)Lcom/android/launcher3/Launcher;
 
-    .line 28
-    .line 29
-    .line 30
     move-result-object v1
 
-    .line 31
-    invoke-static {v1}, Lp1/f;->s(Lcom/android/launcher3/C2;)I
+    invoke-static {v1}, Lcom/android/launcher3/hotseat/HotseatUtils;->getRecentHotseatWithoutRecentChildCount(Lcom/android/launcher3/Launcher;)I
 
-    .line 32
-    .line 33
-    .line 34
     move-result v1
 
-    .line 35
-    invoke-static {v0, v1}, Lp1/f;->i(Lcom/android/launcher3/C2;I)I
+    invoke-static {v0, v1}, Lcom/android/launcher3/hotseat/HotseatUtils;->getRecentHotseatChildIconSize(Lcom/android/launcher3/Launcher;I)I
 
-    .line 36
-    .line 37
-    .line 38
     move-result v0
 
-    .line 39
+    .line 2238
     :cond_0
-    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->m0:I
+    iget v1, p0, Lcom/android/launcher3/BubbleTextView;->mDefaultIconSize:I
 
-    .line 40
-    .line 41
     int-to-float v2, v1
 
-    .line 42
     int-to-float v1, v1
 
-    .line 43
     mul-float/2addr v1, p1
 
-    .line 44
     sub-float/2addr v2, v1
 
-    .line 45
     const/high16 p1, 0x40000000    # 2.0f
 
-    .line 46
-    .line 47
     div-float/2addr v2, p1
 
-    .line 48
     float-to-int p1, v2
 
-    .line 49
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIcon()Ls1/o;
+    .line 2239
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getIcon()Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 50
-    .line 51
-    .line 52
     move-result-object p0
 
-    .line 53
     sub-int/2addr v0, p1
 
-    .line 54
-    invoke-virtual {p0, p1, p1, v0, v0}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+    invoke-virtual {p0, p1, p1, v0, v0}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setBounds(IIII)V
 
-    .line 55
-    .line 56
-    .line 57
     return-void
 .end method
 
 .method public setIconDisabled(Z)V
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 1419
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 2
-    .line 3
     if-eqz p0, :cond_0
 
-    .line 4
-    .line 5
-    invoke-virtual {p0, p1}, Ls1/o;->s(Z)V
+    .line 1420
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setIsDisabled(Z)V
 
-    .line 6
-    .line 7
-    .line 8
     :cond_0
     return-void
 .end method
@@ -14634,320 +8217,288 @@
 .method public setIconSize(I)V
     .locals 2
 
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    .line 2183
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
 
-    .line 2
-    .line 3
     if-eq v0, p1, :cond_0
 
-    .line 4
-    .line 5
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->t:I
+    .line 2184
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
 
-    .line 6
-    .line 7
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
+    .line 2185
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
 
-    .line 8
-    .line 9
-    iput p1, v0, Ls1/m$a;->g:I
+    iput p1, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconSize:I
 
-    .line 10
-    .line 11
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 2186
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 12
-    .line 13
-    if-eqz v0, :cond_0
+    if-eqz p1, :cond_0
 
-    .line 14
-    .line 15
+    .line 2187
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
     const/4 v1, 0x0
 
-    .line 16
-    invoke-virtual {v0, v1, v1, p1, p1}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+    invoke-virtual {p1, v1, v1, v0, v0}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setBounds(IIII)V
 
-    .line 17
-    .line 18
-    .line 19
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
+    .line 2188
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
 
-    .line 20
-    .line 21
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->U0(Landroid/graphics/drawable/Drawable;)V
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->updateIcon(Landroid/graphics/drawable/Drawable;)V
 
-    .line 22
-    .line 23
-    .line 24
     :cond_0
+    return-void
+.end method
+
+.method public setIconSize(III)V
+    .locals 2
+
+    .line 2194
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 2197
+    :cond_0
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    if-eq v0, p1, :cond_2
+
+    .line 2198
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    .line 2199
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mDotParams:Lcom/android/launcher3/icons/DotRenderer$DrawParams;
+
+    iput p1, v0, Lcom/android/launcher3/icons/DotRenderer$DrawParams;->iconSize:I
+
+    .line 2200
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    if-eqz p1, :cond_1
+
+    .line 2201
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p1, v1, v1, v0, v0}, Lcom/android/launcher3/icons/FastBitmapDrawable;->setBounds(IIII)V
+
+    .line 2202
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mIcon:Lcom/android/launcher3/icons/FastBitmapDrawable;
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->updateIcon(Landroid/graphics/drawable/Drawable;)V
+
+    :cond_1
+    if-eqz p2, :cond_2
+
+    if-eqz p3, :cond_2
+
+    .line 2205
+    iget p1, p0, Lcom/android/launcher3/BubbleTextView;->mIconSize:I
+
+    sub-int/2addr p3, p1
+
+    div-int/lit8 p3, p3, 0x2
+
+    .line 2207
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingLeft()I
+
+    move-result p1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getPaddingRight()I
+
+    move-result p2
+
+    invoke-virtual {p0, p1, p3, p2, p3}, Lcom/android/launcher3/BubbleTextView;->setPadding(IIII)V
+
+    :cond_2
     return-void
 .end method
 
 .method public setIconVisible(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->w:Z
+    .line 1405
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mIsIconVisible:Z
 
-    .line 2
-    .line 3
     if-nez p1, :cond_0
 
-    .line 4
-    .line 5
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->E0()V
+    .line 1407
+    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->resetIconScale()V
 
-    .line 6
-    .line 7
-    .line 8
+    .line 1409
     :cond_0
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getIconOrTransparentColor()Landroid/graphics/drawable/Drawable;
 
-    .line 9
-    .line 10
-    .line 11
     move-result-object p1
 
-    .line 12
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->t(Landroid/graphics/drawable/Drawable;)V
+    .line 1410
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyCompoundDrawables(Landroid/graphics/drawable/Drawable;)V
 
-    .line 13
-    .line 14
-    .line 15
     return-void
 .end method
 
 .method public setIsAllAppRecommend(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->o0:Z
+    .line 2300
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->isAllAppRecommend:Z
 
-    .line 2
-    .line 3
     return-void
 .end method
 
-.method protected setItemInfo(Lcom/android/launcher3/model/data/z;)V
+.method protected setItemInfo(Lcom/android/launcher3/model/data/ItemInfoWithIcon;)V
     .locals 0
 
-    .line 1
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setTag(Ljava/lang/Object;)V
+    .line 556
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setTag(Ljava/lang/Object;)V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
 .method public setLayoutHorizontal(Z)V
     .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->r:Z
+    .line 953
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mLayoutHorizontal:Z
 
-    .line 2
-    .line 3
     if-ne v0, p1, :cond_0
 
-    .line 4
-    .line 5
     return-void
 
-    .line 6
+    .line 957
     :cond_0
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->r:Z
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mLayoutHorizontal:Z
 
-    .line 7
-    .line 8
+    .line 958
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getIconOrTransparentColor()Landroid/graphics/drawable/Drawable;
 
-    .line 9
-    .line 10
-    .line 11
     move-result-object p1
 
-    .line 12
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->t(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->applyCompoundDrawables(Landroid/graphics/drawable/Drawable;)V
 
-    .line 13
-    .line 14
-    .line 15
-    return-void
-.end method
-
-.method public setLineIndicatorAnimStartDelay(I)V
-    .locals 0
-
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->P:I
-
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setLongPressTimeoutFactor(F)V
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->q:Lcom/android/launcher3/V;
+    .line 632
+    iget-object p0, p0, Lcom/android/launcher3/BubbleTextView;->mLongPressHelper:Lcom/android/launcher3/CheckLongPressHelper;
 
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/V;->j(F)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/CheckLongPressHelper;->setLongPressTimeoutFactor(F)V
 
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public setPrivateSpaceItem(Z)V
-    .locals 0
-
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->h0:Z
-
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setReorderBounceScale(F)V
     .locals 0
 
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->g:F
+    .line 1524
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mScaleForReorderBounce:F
 
-    .line 2
-    .line 3
+    .line 1525
     invoke-super {p0, p1}, Landroid/widget/TextView;->setScaleX(F)V
 
-    .line 4
-    .line 5
-    .line 6
+    .line 1526
     invoke-super {p0, p1}, Landroid/widget/TextView;->setScaleY(F)V
 
-    .line 7
-    .line 8
-    .line 9
-    return-void
-.end method
-
-.method public setShouldHideCheckbox(Z)V
-    .locals 0
-
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->p0:Z
-
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setSkipUserBadge(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->v:Z
+    .line 404
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mSkipUserBadge:Z
 
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setStayPressed(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->T:Z
+    .line 693
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mStayPressed:Z
 
-    .line 2
-    .line 3
+    .line 694
     invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->refreshDrawableState()V
 
-    .line 4
-    .line 5
-    .line 6
     return-void
 .end method
 
-.method public setTextAlpha(F)V
+.method protected setTextAlpha(F)V
     .locals 0
 
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->z:F
+    .line 1111
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
 
-    .line 2
-    .line 3
-    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->y:Landroid/content/res/ColorStateList;
+    .line 1112
+    iget-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextColorStateList:Landroid/content/res/ColorStateList;
 
-    .line 4
-    .line 5
     if-eqz p1, :cond_0
 
-    .line 6
-    .line 7
+    .line 1113
     invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setTextColor(Landroid/content/res/ColorStateList;)V
 
-    .line 8
-    .line 9
-    .line 10
-    return-void
+    goto :goto_0
 
-    .line 11
+    .line 1115
     :cond_0
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getModifiedColor()I
 
-    .line 12
-    .line 13
-    .line 14
     move-result p1
 
-    .line 15
     invoke-super {p0, p1}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 16
-    .line 17
-    .line 18
+    :goto_0
     return-void
 .end method
 
 .method public setTextColor(I)V
     .locals 1
 
-    .line 1
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
+    .line 1056
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
     if-eqz v0, :cond_0
 
-    goto :goto_0
+    return-void
 
-    .line 2
+    .line 1059
     :cond_0
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->c0:Z
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsAllAppsIcon:Z
 
     if-eqz v0, :cond_1
 
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->h0:Z
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
 
     if-nez v0, :cond_1
 
-    :goto_0
     return-void
 
-    .line 3
+    .line 1063
     :cond_1
-    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iput p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
     const/4 p1, 0x0
 
-    .line 4
-    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->y:Landroid/content/res/ColorStateList;
+    .line 1064
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mTextColorStateList:Landroid/content/res/ColorStateList;
 
-    .line 5
+    .line 1065
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getModifiedColor()I
 
     move-result p1
@@ -14960,64 +8511,41 @@
 .method public setTextColor(Landroid/content/res/ColorStateList;)V
     .locals 2
 
-    .line 6
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->d0:Z
+    .line 1071
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsCustomEaseModeColor:Z
 
     if-eqz v0, :cond_0
 
-    goto :goto_0
+    return-void
 
-    .line 7
+    .line 1074
     :cond_0
-    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->c0:Z
+    iget-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->mIsAllAppsIcon:Z
 
     if-eqz v0, :cond_1
 
-    :goto_0
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->cameraUnderScreen()Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
     return-void
 
-    .line 8
+    .line 1078
     :cond_1
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->N0()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_2
-
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    .line 10
-    invoke-static {v0}, Lcom/android/launcher3/Y4;->j(Landroid/content/Context;)Lcom/android/launcher3/Y4;
-
-    move-result-object v0
-
-    .line 11
-    invoke-virtual {v0}, Lcom/android/launcher3/Y4;->i()Landroid/graphics/Paint;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/graphics/Paint;->getColor()I
-
-    move-result v0
-
-    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->x:I
-
-    goto :goto_1
-
-    .line 12
-    :cond_2
     invoke-virtual {p1}, Landroid/content/res/ColorStateList;->getDefaultColor()I
 
     move-result v0
 
-    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->x:I
+    iput v0, p0, Lcom/android/launcher3/BubbleTextView;->mTextColor:I
 
-    .line 13
-    :goto_1
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->z:F
+    .line 1082
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mTextAlpha:F
 
     const/high16 v1, 0x3f800000    # 1.0f
 
@@ -15025,1033 +8553,431 @@
 
     move-result v0
 
-    if-nez v0, :cond_3
+    if-nez v0, :cond_2
 
-    .line 14
+    .line 1083
     invoke-super {p0, p1}, Landroid/widget/TextView;->setTextColor(Landroid/content/res/ColorStateList;)V
 
-    return-void
+    goto :goto_0
 
-    .line 15
-    :cond_3
+    .line 1085
+    :cond_2
     invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getModifiedColor()I
 
     move-result p1
 
     invoke-super {p0, p1}, Landroid/widget/TextView;->setTextColor(I)V
 
+    :goto_0
     return-void
 .end method
 
 .method public setTextVisibility(Z)V
     .locals 0
 
-    .line 1
     if-eqz p1, :cond_0
 
-    .line 2
-    .line 3
     const/high16 p1, 0x3f800000    # 1.0f
 
-    .line 4
-    .line 5
     goto :goto_0
 
-    .line 6
     :cond_0
     const/4 p1, 0x0
 
-    .line 7
+    .line 1107
     :goto_0
     invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setTextAlpha(F)V
 
-    .line 8
-    .line 9
-    .line 10
     return-void
 .end method
 
 .method public setTransformFolderIconLargeIcon(Z)V
     .locals 0
 
-    .line 1
-    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->e0:Z
+    .line 2287
+    iput-boolean p1, p0, Lcom/android/launcher3/BubbleTextView;->mTransformFolderIconLargeIcon:Z
 
-    .line 2
-    .line 3
     return-void
 .end method
 
-.method protected t(Landroid/graphics/drawable/Drawable;)V
-    .locals 3
-
-    .line 1
-    if-nez p1, :cond_0
-
-    .line 2
-    .line 3
-    return-void
-
-    .line 4
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 5
-    .line 6
-    const/4 v1, 0x0
-
-    .line 7
-    if-eqz v0, :cond_1
-
-    .line 8
-    .line 9
-    const/4 v0, 0x1
-
-    .line 10
-    goto :goto_0
-
-    .line 11
-    :cond_1
-    move v0, v1
-
-    .line 12
-    :goto_0
-    iput-boolean v0, p0, Lcom/android/launcher3/BubbleTextView;->V:Z
-
-    .line 13
-    .line 14
-    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->t:I
-
-    .line 15
-    .line 16
-    invoke-virtual {p1, v1, v1, v0, v0}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
-
-    .line 17
-    .line 18
-    .line 19
-    invoke-direct {p0, p1}, Lcom/android/launcher3/BubbleTextView;->U0(Landroid/graphics/drawable/Drawable;)V
-
-    .line 20
-    .line 21
-    .line 22
-    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 23
-    .line 24
-    if-eqz v0, :cond_2
-
-    .line 25
-    .line 26
-    instance-of v2, v0, Ls1/d0;
-
-    .line 27
-    .line 28
-    if-eqz v2, :cond_2
-
-    .line 29
-    .line 30
-    iget-boolean v2, p0, Lcom/android/launcher3/BubbleTextView;->a0:Z
-
-    .line 31
-    .line 32
-    if-eqz v2, :cond_2
-
-    .line 33
-    .line 34
-    check-cast v0, Ls1/d0;
-
-    .line 35
-    .line 36
-    invoke-virtual {v0, p1}, Ls1/d0;->w(Landroid/graphics/drawable/Drawable;)V
-
-    .line 37
-    .line 38
-    .line 39
-    :cond_2
-    iput-boolean v1, p0, Lcom/android/launcher3/BubbleTextView;->V:Z
-
-    .line 40
-    .line 41
-    return-void
-.end method
-
-.method public u(Lcom/android/launcher3/model/data/y;Z)V
-    .locals 11
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    const/4 v1, 0x1
-
-    .line 3
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 4
-    .line 5
-    invoke-interface {v2}, Lcom/android/launcher3/views/k;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v2
-
-    .line 9
-    iget-object v2, v2, Lcom/android/launcher3/X3;->c:Ls1/m;
-
-    .line 10
-    .line 11
-    iput-object v2, p0, Lcom/android/launcher3/BubbleTextView;->B:Ls1/m;
-
-    .line 12
-    .line 13
-    iget-object v2, p0, Lcom/android/launcher3/BubbleTextView;->m:Ls1/o;
-
-    .line 14
-    .line 15
-    if-eqz v2, :cond_e
-
-    .line 16
-    .line 17
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
-
-    .line 18
-    .line 19
-    .line 20
-    move-result v2
-
-    .line 21
-    if-lez v2, :cond_0
-
-    .line 22
-    .line 23
-    move v3, v1
-
-    .line 24
-    goto :goto_0
-
-    .line 25
-    :cond_0
-    move v3, v0
-
-    .line 26
-    :goto_0
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->A:Lk1/a;
-
-    .line 27
-    .line 28
-    iget-object v5, p0, Lcom/android/launcher3/BubbleTextView;->l:Lcom/android/launcher3/views/k;
-
-    .line 29
-    .line 30
-    invoke-interface {v5, p1}, Lcom/android/launcher3/views/k;->getDotInfoForItem(Lcom/android/launcher3/model/data/y;)Lk1/a;
-
-    .line 31
-    .line 32
-    .line 33
-    move-result-object v5
-
-    .line 34
-    invoke-virtual {v4, v5}, Lk1/a;->g(Lk1/a;)V
-
-    .line 35
-    .line 36
-    .line 37
-    invoke-static {}, Lcom/android/launcher3/H5;->U()Lcom/android/launcher3/H5;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object v4
-
-    .line 41
-    if-eqz v4, :cond_1
-
-    .line 42
-    .line 43
-    invoke-static {}, Lcom/android/launcher3/H5;->U()Lcom/android/launcher3/H5;
-
-    .line 44
-    .line 45
-    .line 46
-    move-result-object v4
-
-    .line 47
-    invoke-virtual {v4}, Lcom/android/launcher3/H5;->R0()Z
-
-    .line 48
-    .line 49
-    .line 50
-    move-result v4
-
-    .line 51
-    goto :goto_1
-
-    .line 52
-    :cond_1
-    move v4, v0
-
-    .line 53
-    :goto_1
-    if-eqz v4, :cond_2
-
-    .line 54
-    .line 55
-    move v5, v0
-
-    .line 56
-    goto :goto_2
-
-    .line 57
-    :cond_2
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->getNotificationCount()I
-
-    .line 58
-    .line 59
-    .line 60
-    move-result v5
-
-    .line 61
-    :goto_2
-    if-eqz v4, :cond_3
-
-    .line 62
-    .line 63
-    move v4, v0
-
-    .line 64
-    goto :goto_3
-
-    .line 65
-    :cond_3
-    iget-object v4, p0, Lcom/android/launcher3/BubbleTextView;->A:Lk1/a;
-
-    .line 66
-    .line 67
-    invoke-virtual {v4}, Lk1/a;->d()I
-
-    .line 68
-    .line 69
-    .line 70
-    move-result v4
-
-    .line 71
-    :goto_3
-    iget-object v6, p0, Lcom/android/launcher3/BubbleTextView;->A:Lk1/a;
-
-    .line 72
-    .line 73
-    invoke-virtual {v6, v4}, Lk1/a;->h(I)V
-
-    .line 74
-    .line 75
-    .line 76
-    if-lez v5, :cond_4
-
-    .line 77
-    .line 78
-    move v4, v1
-
-    .line 79
-    goto :goto_4
-
-    .line 80
-    :cond_4
-    move v4, v0
-
-    .line 81
-    :goto_4
-    if-eqz v4, :cond_5
-
-    .line 82
-    .line 83
-    const/high16 v6, 0x3f800000    # 1.0f
-
-    .line 84
-    .line 85
-    goto :goto_5
-
-    .line 86
-    :cond_5
-    const/4 v6, 0x0
-
-    .line 87
-    :goto_5
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->getTargetComponent()Landroid/content/ComponentName;
-
-    .line 88
-    .line 89
-    .line 90
-    move-result-object v7
-
-    .line 91
-    invoke-static {v7}, Lcom/android/launcher3/nubia/c;->i(Landroid/content/ComponentName;)Z
-
-    .line 92
-    .line 93
-    .line 94
-    move-result v7
-
-    .line 95
-    if-nez v3, :cond_6
-
-    .line 96
-    .line 97
-    if-nez v4, :cond_6
-
-    .line 98
-    .line 99
-    if-eqz v7, :cond_a
-
-    .line 100
-    .line 101
-    :cond_6
-    if-nez v3, :cond_7
-
-    .line 102
-    .line 103
-    if-eqz v4, :cond_8
-
-    .line 104
-    .line 105
-    :cond_7
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->i0()Z
-
-    .line 106
-    .line 107
-    .line 108
-    move-result v8
-
-    .line 109
-    if-nez v8, :cond_8
-
-    .line 110
-    .line 111
-    instance-of v8, p0, Lcom/android/launcher3/widget/suggest/SuggestBubbleTextView;
-
-    .line 112
-    .line 113
-    if-nez v8, :cond_8
-
-    .line 114
-    .line 115
-    invoke-static {v2, v5, p1}, Lcom/android/launcher3/resource/u1;->E(IILcom/android/launcher3/model/data/y;)V
-
-    .line 116
-    .line 117
-    .line 118
-    :cond_8
-    new-instance v8, Ljava/lang/StringBuilder;
-
-    .line 119
-    .line 120
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 121
-    .line 122
-    .line 123
-    const-string v9, "applyDotState: wasDotted: "
-
-    .line 124
-    .line 125
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 126
-    .line 127
-    .line 128
-    invoke-virtual {v8, v3}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 129
-    .line 130
-    .line 131
-    const-string v9, ", isDotted: "
-
-    .line 132
-    .line 133
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 134
-    .line 135
-    .line 136
-    invoke-virtual {v8, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 137
-    .line 138
-    .line 139
-    const-string v9, ", "
-
-    .line 140
-    .line 141
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 142
-    .line 143
-    .line 144
-    invoke-virtual {v8, p2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 145
-    .line 146
-    .line 147
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 148
-    .line 149
-    .line 150
-    invoke-virtual {p0}, Landroid/widget/TextView;->isShown()Z
-
-    .line 151
-    .line 152
-    .line 153
-    move-result v10
-
-    .line 154
-    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 155
-    .line 156
-    .line 157
-    const-string v10, ", has push config: "
-
-    .line 158
-    .line 159
-    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 160
-    .line 161
-    .line 162
-    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 163
-    .line 164
-    .line 165
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 166
-    .line 167
-    .line 168
-    invoke-virtual {p0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
-
-    .line 169
-    .line 170
-    .line 171
-    move-result-object v7
-
-    .line 172
-    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 173
-    .line 174
-    .line 175
-    const-string v7, ", Suggest="
-
-    .line 176
-    .line 177
-    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 178
-    .line 179
-    .line 180
-    instance-of v7, p0, Lcom/android/launcher3/widget/suggest/SuggestBubbleTextView;
-
-    .line 181
-    .line 182
-    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
-
-    .line 183
-    .line 184
-    .line 185
-    const-string v7, ", dotCount="
-
-    .line 186
-    .line 187
-    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 188
-    .line 189
-    .line 190
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 191
-    .line 192
-    .line 193
-    const-string v2, ", newDotCount="
-
-    .line 194
-    .line 195
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 196
-    .line 197
-    .line 198
-    invoke-virtual {v8, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 199
-    .line 200
-    .line 201
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 202
-    .line 203
-    .line 204
-    move-result-object v2
-
-    .line 205
-    const-string v7, "BubbleTextView"
-
-    .line 206
-    .line 207
-    invoke-static {v7, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 208
-    .line 209
-    .line 210
-    if-eqz p2, :cond_9
-
-    .line 211
-    .line 212
-    if-nez v3, :cond_9
-
-    .line 213
-    .line 214
-    if-eqz v4, :cond_9
-
-    .line 215
-    .line 216
-    invoke-virtual {p0}, Landroid/widget/TextView;->isShown()Z
-
-    .line 217
-    .line 218
-    .line 219
-    move-result p2
-
-    .line 220
-    if-eqz p2, :cond_9
-
-    .line 221
-    .line 222
-    new-array p2, v1, [F
-
-    .line 223
-    .line 224
-    aput v6, p2, v0
-
-    .line 225
-    .line 226
-    invoke-virtual {p0, p2}, Lcom/android/launcher3/BubbleTextView;->s([F)V
-
-    .line 227
-    .line 228
-    .line 229
-    goto :goto_6
-
-    .line 230
-    :cond_9
-    invoke-direct {p0}, Lcom/android/launcher3/BubbleTextView;->I()V
-
-    .line 231
-    .line 232
-    .line 233
-    iget-object p2, p0, Lcom/android/launcher3/BubbleTextView;->C:Ls1/m$a;
-
-    .line 234
-    .line 235
-    iput v6, p2, Ls1/m$a;->d:F
-
-    .line 236
-    .line 237
-    invoke-virtual {p0}, Landroid/widget/TextView;->invalidate()V
-
-    .line 238
-    .line 239
-    .line 240
-    :cond_a
-    :goto_6
-    iget-object p2, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
-
-    .line 241
-    .line 242
-    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    .line 243
-    .line 244
-    .line 245
-    move-result p2
-
-    .line 246
-    if-nez p2, :cond_e
-
-    .line 247
-    .line 248
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/y;->isDisabled()Z
-
-    .line 249
-    .line 250
-    .line 251
-    move-result p2
-
-    .line 252
-    if-eqz p2, :cond_b
-
-    .line 253
-    .line 254
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 255
-    .line 256
-    .line 257
-    move-result-object p2
-
-    .line 258
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
-
-    .line 259
-    .line 260
-    filled-new-array {p1}, [Ljava/lang/Object;
-
-    .line 261
-    .line 262
-    .line 263
-    move-result-object p1
-
-    .line 264
-    const v0, 0x7f140191
-
-    .line 265
-    .line 266
-    .line 267
-    invoke-virtual {p2, v0, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 268
-    .line 269
-    .line 270
-    move-result-object p1
-
-    .line 271
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 272
-    .line 273
-    .line 274
-    return-void
-
-    .line 275
-    :cond_b
-    instance-of p2, p1, Lcom/android/launcher3/model/data/I;
-
-    .line 276
-    .line 277
-    if-eqz p2, :cond_c
-
-    .line 278
-    .line 279
-    move-object p2, p1
-
-    .line 280
-    check-cast p2, Lcom/android/launcher3/model/data/I;
-
-    .line 281
-    .line 282
-    invoke-virtual {p2}, Lcom/android/launcher3/model/data/z;->A()Z
-
-    .line 283
-    .line 284
-    .line 285
-    move-result p2
-
-    .line 286
-    if-eqz p2, :cond_c
-
-    .line 287
-    .line 288
-    invoke-virtual {p0}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    .line 289
-    .line 290
-    .line 291
-    move-result-object p2
-
-    .line 292
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->title:Ljava/lang/CharSequence;
-
-    .line 293
-    .line 294
-    filled-new-array {p1}, [Ljava/lang/Object;
-
-    .line 295
-    .line 296
-    .line 297
-    move-result-object p1
-
-    .line 298
-    const v0, 0x7f14008a
-
-    .line 299
-    .line 300
-    .line 301
-    invoke-virtual {p2, v0, p1}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 302
-    .line 303
-    .line 304
-    move-result-object p1
-
-    .line 305
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 306
-    .line 307
-    .line 308
-    return-void
-
-    .line 309
-    :cond_c
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->f0()Z
-
-    .line 310
-    .line 311
-    .line 312
-    move-result p2
-
-    .line 313
-    if-eqz p2, :cond_d
-
-    .line 314
-    .line 315
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
-
-    .line 316
-    .line 317
-    invoke-interface {p1}, Ljava/lang/CharSequence;->toString()Ljava/lang/String;
-
-    .line 318
-    .line 319
-    .line 320
-    move-result-object p1
-
-    .line 321
-    invoke-direct {p0, p1, v5}, Lcom/android/launcher3/BubbleTextView;->c0(Ljava/lang/String;I)Ljava/lang/String;
-
-    .line 322
-    .line 323
-    .line 324
-    move-result-object p1
-
-    .line 325
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 326
-    .line 327
-    .line 328
-    return-void
-
-    .line 329
-    :cond_d
-    iget-object p1, p1, Lcom/android/launcher3/model/data/y;->contentDescription:Ljava/lang/CharSequence;
-
-    .line 330
-    .line 331
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 332
-    .line 333
-    .line 334
-    :cond_e
-    return-void
-.end method
-
-.method public v(Lcom/android/launcher3/model/data/d;)V
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->A(Lcom/android/launcher3/model/data/z;)V
-
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setItemInfo(Lcom/android/launcher3/model/data/z;)V
-
-    .line 5
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->W0()V
-
-    .line 8
-    .line 9
-    .line 10
-    const/4 v0, 0x0
-
-    .line 11
-    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->u(Lcom/android/launcher3/model/data/y;Z)V
-
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
-
-    .line 15
-    .line 16
-    .line 17
-    move-result v0
-
-    .line 18
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->J0(Lcom/android/launcher3/model/data/z;I)V
-
-    .line 19
-    .line 20
-    .line 21
-    return-void
-.end method
-
-.method public v0()Ln1/r;
+.method public shouldAnimateIconChange(Lcom/android/launcher3/model/data/WorkspaceItemInfo;)Z
     .locals 2
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getTag()Ljava/lang/Object;
+    .line 482
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    instance-of v1, v0, Lcom/android/launcher3/model/data/z;
+    instance-of v0, v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
 
-    .line 6
-    .line 7
-    if-eqz v1, :cond_0
+    if-eqz v0, :cond_0
 
-    .line 8
-    .line 9
-    check-cast v0, Lcom/android/launcher3/model/data/z;
+    .line 483
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 10
-    .line 11
-    invoke-direct {p0, v0}, Lcom/android/launcher3/BubbleTextView;->w0(Lcom/android/launcher3/model/data/z;)Ln1/r;
+    move-result-object v0
 
-    .line 12
-    .line 13
-    .line 14
+    check-cast v0, Lcom/android/launcher3/model/data/WorkspaceItemInfo;
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
+    if-eqz v0, :cond_1
+
+    .line 485
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getTargetComponent()Landroid/content/ComponentName;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_1
+
+    .line 486
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getTargetComponent()Landroid/content/ComponentName;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_1
+
+    .line 487
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getTargetComponent()Landroid/content/ComponentName;
+
+    move-result-object v0
+
+    invoke-virtual {p1}, Lcom/android/launcher3/model/data/WorkspaceItemInfo;->getTargetComponent()Landroid/content/ComponentName;
+
+    move-result-object p1
+
+    invoke-virtual {v0, p1}, Landroid/content/ComponentName;->equals(Ljava/lang/Object;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_1
+
+    .line 488
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isShown()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_1
+
+    const/4 p0, 0x1
+
+    goto :goto_1
+
+    :cond_1
+    const/4 p0, 0x0
+
+    :goto_1
+    return p0
+.end method
+
+.method protected shouldIgnoreTouchDown(FF)Z
+    .locals 2
+
+    .line 677
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
+    const/4 v1, 0x5
+
+    if-ne v0, v1, :cond_0
+
+    const/4 p0, 0x0
+
+    return p0
+
+    .line 682
+    :cond_0
+    invoke-virtual {p0, p1, p2}, Lcom/android/launcher3/BubbleTextView;->isTouchIconDrawable(FF)Z
+
+    move-result p0
+
+    xor-int/lit8 p0, p0, 0x1
+
+    return p0
+.end method
+
+.method public shouldTextBeVisible()Z
+    .locals 4
+
+    .line 1091
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    instance-of v0, v0, Lcom/android/launcher3/folder/FolderIcon;
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/view/View;
+
+    invoke-virtual {v0}, Landroid/view/View;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    .line 1092
+    :goto_0
+    instance-of v1, v0, Lcom/android/launcher3/model/data/ItemInfo;
+
+    if-eqz v1, :cond_1
+
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfo;
+
+    goto :goto_1
+
+    :cond_1
+    const/4 v0, 0x0
+
+    :goto_1
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_3
+
+    .line 1094
+    iget v2, v0, Lcom/android/launcher3/model/data/ItemInfo;->container:I
+
+    const/16 v3, -0x65
+
+    if-eq v2, v3, :cond_2
+
+    iget v0, v0, Lcom/android/launcher3/model/data/ItemInfo;->container:I
+
+    const/16 v2, -0x67
+
+    if-ne v0, v2, :cond_3
+
+    :cond_2
+    return v1
+
+    .line 1099
+    :cond_3
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isSupportHotseatRecent()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    invoke-static {p0}, Lcom/android/launcher3/hotseat/HotseatUtils;->isViewInRecentHotseat(Landroid/view/View;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_4
+
+    return v1
+
+    :cond_4
+    const/4 p0, 0x1
+
+    return p0
+.end method
+
+.method protected shouldUseTheme()Z
+    .locals 2
+
+    .line 589
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
+    if-eqz v0, :cond_0
+
+    const/4 v1, 0x2
+
+    if-eq v0, v1, :cond_0
+
+    const/4 v1, 0x5
+
+    if-eq v0, v1, :cond_0
+
+    const/16 v1, 0xc
+
+    if-ne v0, v1, :cond_1
+
+    .line 590
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
     move-result-object p0
 
-    .line 15
-    return-object p0
+    invoke-static {p0}, Lcom/android/launcher3/util/Themes;->isThemedIconEnabled(Landroid/content/Context;)Z
 
-    .line 16
+    move-result p0
+
+    if-eqz p0, :cond_1
+
+    const/4 p0, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    const/4 p0, 0x0
+
+    :goto_0
+    return p0
+.end method
+
+.method protected shouldUseTwoLine()Z
+    .locals 3
+
+    .line 597
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->isCurrentLanguageEnglish()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    iget v0, p0, Lcom/android/launcher3/BubbleTextView;->mDisplay:I
+
+    const/4 v1, 0x1
+
+    if-eq v0, v1, :cond_0
+
+    const/16 v2, 0x8
+
+    if-ne v0, v2, :cond_1
+
+    .line 598
+    :cond_0
+    invoke-static {}, Lcom/android/launcher3/Flags;->enableTwolineToggle()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    sget-object v0, Lcom/android/launcher3/LauncherPrefs;->ENABLE_TWOLINE_ALLAPPS_TOGGLE:Lcom/android/launcher3/ConstantItem;
+
+    .line 599
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/ConstantItem;->get(Landroid/content/Context;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    check-cast p0, Ljava/lang/Boolean;
+
+    invoke-virtual {p0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_1
+
+    goto :goto_0
+
+    :cond_1
+    const/4 v1, 0x0
+
+    :goto_0
+    return v1
+.end method
+
+.method public startLongPressAction()Lcom/android/launcher3/dragndrop/DragOptions$PreDragCondition;
+    .locals 1
+
+    .line 1590
+    invoke-static {p0}, Lcom/android/launcher3/popup/PopupContainerWithArrow;->showForIcon(Landroid/view/View;)Lcom/android/launcher3/popup/PopupContainerWithArrow;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_0
+
+    const/4 v0, 0x1
+
+    .line 1591
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/popup/PopupContainerWithArrow;->createPreDragCondition(Z)Lcom/android/launcher3/dragndrop/DragOptions$PreDragCondition;
+
+    move-result-object p0
+
+    goto :goto_0
+
     :cond_0
     const/4 p0, 0x0
 
-    .line 17
+    :goto_0
     return-object p0
 .end method
 
-.method public w(Lcom/android/launcher3/model/data/z;)V
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->A(Lcom/android/launcher3/model/data/z;)V
-
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setItemInfo(Lcom/android/launcher3/model/data/z;)V
-
-    .line 5
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->W0()V
-
-    .line 8
-    .line 9
-    .line 10
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
-
-    .line 11
-    .line 12
-    .line 13
-    move-result v0
-
-    .line 14
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->J0(Lcom/android/launcher3/model/data/z;I)V
-
-    .line 15
-    .line 16
-    .line 17
-    return-void
-.end method
-
-.method public x(Lcom/android/launcher3/model/data/I;)V
+.method public updateRunningState(Lcom/android/launcher3/BubbleTextView$RunningAppState;)V
     .locals 0
 
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/I;->W()I
+    .line 552
+    iput-object p1, p0, Lcom/android/launcher3/BubbleTextView;->mRunningAppState:Lcom/android/launcher3/BubbleTextView$RunningAppState;
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
-.method public y(Lcom/android/launcher3/model/data/I;)V
-    .locals 1
+.method public verifyHighRes()V
+    .locals 2
 
-    .line 1
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->A(Lcom/android/launcher3/model/data/z;)V
+    .line 1490
+    iget-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->setItemInfo(Lcom/android/launcher3/model/data/z;)V
+    if-eqz v0, :cond_0
 
-    .line 5
-    .line 6
-    .line 7
-    const/4 v0, 0x1
+    .line 1491
+    invoke-virtual {v0}, Lcom/android/launcher3/util/CancellableTask;->cancel()V
 
-    .line 8
-    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->u(Lcom/android/launcher3/model/data/y;Z)V
+    const/4 v0, 0x0
 
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {p1}, Lcom/android/launcher3/model/data/z;->y()I
+    .line 1492
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
 
-    .line 12
-    .line 13
-    .line 14
-    move-result v0
+    .line 1494
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 15
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/BubbleTextView;->J0(Lcom/android/launcher3/model/data/z;I)V
+    move-result-object v0
 
-    .line 16
-    .line 17
-    .line 18
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->x(Lcom/android/launcher3/model/data/I;)V
+    instance-of v0, v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
 
-    .line 19
-    .line 20
-    .line 21
-    return-void
-.end method
+    if-eqz v0, :cond_1
 
-.method public z(Landroid/graphics/drawable/Drawable;Ljava/lang/CharSequence;)V
-    .locals 0
+    .line 1495
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getTag()Ljava/lang/Object;
 
-    .line 1
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/BubbleTextView;->t(Landroid/graphics/drawable/Drawable;)V
+    move-result-object v0
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    check-cast v0, Lcom/android/launcher3/model/data/ItemInfoWithIcon;
 
-    .line 5
-    .line 6
-    .line 7
-    invoke-virtual {p0, p2}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
+    .line 1496
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/ItemInfoWithIcon;->usingLowResIcon()Z
 
-    .line 8
-    .line 9
-    .line 10
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 1497
+    invoke-virtual {p0}, Lcom/android/launcher3/BubbleTextView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-static {v1}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/launcher3/LauncherAppState;->getIconCache()Lcom/android/launcher3/icons/IconCache;
+
+    move-result-object v1
+
+    .line 1498
+    invoke-virtual {v1, p0, v0}, Lcom/android/launcher3/icons/IconCache;->updateIconInBackground(Lcom/android/launcher3/icons/IconCache$ItemInfoUpdateReceiver;Lcom/android/launcher3/model/data/ItemInfoWithIcon;)Lcom/android/launcher3/util/CancellableTask;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/launcher3/BubbleTextView;->mIconLoadRequest:Lcom/android/launcher3/util/CancellableTask;
+
+    :cond_1
     return-void
 .end method

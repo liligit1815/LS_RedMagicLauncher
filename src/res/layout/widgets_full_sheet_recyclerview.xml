@@ -7,7 +7,7 @@
         <FrameLayout android:id="@id/search_bar_container" android:background="?widgetPickerPrimarySurfaceColor" android:paddingBottom="8.0dp" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:elevation="0.100000024dp" launcher:layout_sticky="true">
             <include layout="@layout/widgets_search_bar" />
         </FrameLayout>
-        <LinearLayout android:orientation="vertical" android:id="@id/widget_recommendations_container" android:background="@drawable/widgets_surface_background" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:layout_marginBottom="8.0dp" android:clipToOutline="true">
+        <LinearLayout android:orientation="vertical" android:id="@id/widget_recommendations_container" android:background="@drawable/widgets_surface_background" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:layout_marginBottom="8.0dp">
             <include layout="@layout/widget_recommendations" />
         </LinearLayout>
     </com.android.launcher3.views.StickyHeaderLayout>

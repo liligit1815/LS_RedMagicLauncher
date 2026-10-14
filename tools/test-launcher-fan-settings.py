@@ -261,8 +261,8 @@ for folder in ("values", "values-night"):
     assert colors.find("color[@name='mfv_common_card_bg_color']") is not None
 print("PASS shared OEM selector template, dimensions, radio and day/night container resources")
 
-recents = (ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali").read_text("utf-8")
-controller = (ROOT / "src/smali/com/android/launcher3/uioverrides/touchcontrollers/K.smali").read_text("utf-8")
+recents = (ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsView.smali").read_text("utf-8")
+controller = (ROOT / "src/smali_classes3/com/android/launcher3/uioverrides/touchcontrollers/TaskViewTouchController.smali").read_text("utf-8")
 
 
 def method(text, name):
@@ -279,3 +279,95 @@ assert "return v0" in dispatch.split("dispatchFanTouch", 1)[1].split("dispatchOr
 visibility = method(recents, "isTaskViewVisible")
 assert visibility.index("isFanStyle") < visibility.index("isNativeStackApplied") < visibility.index("isOrbitTaskVisible")
 print("PASS fan-specific parent interception, ordered touch routes and visible-card hook checks")
+
+
+# Validate the actual ten-series resource references and both summary lifecycles.
+# A mismapped ID may compile yet select an unrelated OEM resource at runtime.
+public_entries = list(ET.parse(ROOT / "src/res/values/public.xml").getroot())
+public = {(entry.get("type"), entry.get("name")): entry.get("id") for entry in public_entries}
+assert len({entry.get("id") for entry in public_entries}) == len(public_entries), "custom resource ID replaced an OEM entry"
+for name, value in {
+    "stack_style_card": "0x7f0b06c2", "textview_stack": "0x7f0b06c3",
+    "radio_btn_stack": "0x7f0b06c4", "recent_style_image_stack": "0x7f0b06c5",
+}.items():
+    assert public[("id", name)] == value
+assert public[("drawable", "pic_recentapp_stack_lispace_iceblue")] == "0x7f081870"
+assert public[("drawable", "shower")] == "0x7f081112", "OEM drawable was overwritten by the eleven-series preview ID"
+assert public[("layout", "recent_style_stack_card")] == "0x7f0e0285"
+activity = (ROOT / "src/smali_classes3/com/android/launcher3/settings/RecentAppStyleActivity.smali").read_text("utf-8")
+assert ".super Lcom/android/launcher3/settings/SettingsBaseAty;" in activity
+assert "Lcom/android/launcher3/LauncherPrefs;->getPrefs(" in activity
+assert activity.count(public[("string", "settings_preference_key_recent_style")]) == 2
+for name in ("normal_style_card", "grid_style_card", "radio_btn_normal", "radio_btn_grid"):
+    assert public[("id", name)] in activity, name
+select = method(activity, "selectStyle")
+assert select.index("updateUIState") < select.index("saveStateIntoPref") < select.index("updatePrefsRecentStyleSwitch")
+for node in ET.parse(ROOT / "src/res/layout/recent_style_stack_card.xml").getroot().iter():
+    for value in node.attrib.values():
+        match = re.fullmatch(r"@(id|drawable|dimen|color|string)/(.+)", value)
+        if match:
+            assert tuple(match.groups()) in public, "missing template resource: " + value
+
+fragment = (ROOT / "src/smali_classes3/com/android/launcher3/settings/SettingsActivityMFV$LauncherSettingsFragment.smali").read_text("utf-8")
+
+def summary(method_name, style, chinese):
+    block = method(fragment, method_name)
+    if method_name == "refreshPreferences":
+        block = block.split("    if-ne v1, v3, :ls_summary_refresh_custom", 1)[1]
+        block = "    if-ne v1, v3, :ls_summary_refresh_custom" + block.split("    :ls_summary_refresh_ready", 1)[0]
+        registers = {"v1": style, "v3": 1}
+        output = "v1"
+    else:
+        block = block.split("    if-ne v7, v5, :ls_summary_create_custom", 1)[1]
+        block = "    if-ne v7, v5, :ls_summary_create_custom" + block.split("    :ls_summary_create_ready", 1)[0]
+        registers = {"v7": style, "v5": 1}
+        output = "v7"
+    lines = [line.strip() for line in block.splitlines() if line.strip() and not line.strip().startswith(".")]
+    labels = {line: index for index, line in enumerate(lines) if line.startswith(":")}
+    folder = "values-zh-rCN" if chinese else "values"
+    base = {entry.get("name"): entry.text for entry in ET.parse(ROOT / "src/res/values/strings.xml").getroot()}
+    base.update({entry.get("name"): entry.text for entry in ET.parse(ROOT / "src/res" / folder / "strings.xml").getroot()})
+    texts = {int(public[("string", name)], 16): value for name, value in base.items() if ("string", name) in public}
+    pc, result = 0, None
+    for _ in range(100):
+        if pc >= len(lines):
+            return registers[output]
+        line = lines[pc]
+        pc += 1
+        if line.startswith(":"):
+            continue
+        if line.startswith("const"):
+            register, value = line.split(" ", 1)[1].split(", ")
+            registers[register] = int(value, 16)
+        elif line.startswith("if-ne "):
+            first, second, label = line[len("if-ne "):].split(", ")
+            if registers[first] != registers[second]:
+                pc = labels[label]
+        elif line.startswith("goto "):
+            label = line[len("goto "):]
+            if label not in labels:
+                return registers[output]
+            pc = labels[label]
+        elif "LsOrbitStyleSettings;->getLabel(" in line:
+            result = "环绕卡片" if chinese else "Orbit cards"
+        elif "LsFanStyleSettings;->getLabel(" in line:
+            result = "扇形卡片" if chinese else "Fan cards"
+        elif "Resources;->getString(" in line:
+            register = re.search(r"\{\w+, (\w+)\}", line).group(1)
+            result = texts[registers[register]]
+        elif line.startswith("move-result-object "):
+            registers[line.split(" ", 1)[1]] = result
+        else:
+            raise AssertionError("unexpected summary instruction: " + line)
+    raise AssertionError("summary loop")
+
+for chinese in (False, True):
+    folder = "values-zh-rCN" if chinese else "values"
+    strings = {entry.get("name"): entry.text for entry in ET.parse(ROOT / "src/res" / folder / "strings.xml").getroot()}
+    expected = {1: strings["settings_recent_style_normal"], 2: strings["settings_recent_style_grid"],
+                3: strings["settings_recent_style_stack"], 4: "环绕卡片" if chinese else "Orbit cards",
+                5: "扇形卡片" if chinese else "Fan cards"}
+    for lifecycle in ("refreshPreferences", "onCreate"):
+        for style, value in expected.items():
+            assert summary(lifecycle, style, chinese) == value, (lifecycle, style, chinese)
+print("PASS ten-series OEM IDs, settings inheritance and five localized style summaries in both lifecycles")

@@ -1,5 +1,5 @@
 .class public final Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
-.super Lcom/google/protobuf/y$a;
+.super Lcom/google/protobuf/GeneratedMessageLite$Builder;
 .source "LauncherAtom.java"
 
 # interfaces
@@ -18,7 +18,7 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lcom/google/protobuf/y$a<",
+        "Lcom/google/protobuf/GeneratedMessageLite$Builder<",
         "Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;",
         "Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;",
         ">;",
@@ -31,20 +31,19 @@
 .method private constructor <init>()V
     .locals 1
 
-    .line 2
-    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->j()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
+    .line 11076
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$sfgetDEFAULT_INSTANCE()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/google/protobuf/y$a;-><init>(Lcom/google/protobuf/y;)V
+    invoke-direct {p0, v0}, Lcom/google/protobuf/GeneratedMessageLite$Builder;-><init>(Lcom/google/protobuf/GeneratedMessageLite;)V
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/launcher3/logger/a;)V
+.method synthetic constructor <init>(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder-IA;)V
     .locals 0
 
-    .line 1
     invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;-><init>()V
 
     return-void
@@ -55,431 +54,278 @@
 .method public clearCardinality()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11127
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11128
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->a(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$mclearCardinality(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearFromLabelState()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11179
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11180
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->b(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$mclearFromLabelState(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearLabelInfo()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11302
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11303
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->c(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$mclearLabelInfo(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearToLabelState()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11231
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11232
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->d(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$mclearToLabelState(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public getCardinality()I
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11102
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->getCardinality()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public getFromLabelState()Lcom/android/launcher3/logger/LauncherAtom$FromState;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11154
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->getFromLabelState()Lcom/android/launcher3/logger/LauncherAtom$FromState;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public getLabelInfo()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11260
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->getLabelInfo()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getLabelInfoBytes()Lcom/google/protobuf/h;
+.method public getLabelInfoBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11274
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->getLabelInfoBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->getLabelInfoBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public getToLabelState()Lcom/android/launcher3/logger/LauncherAtom$ToState;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11206
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->getToLabelState()Lcom/android/launcher3/logger/LauncherAtom$ToState;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public hasCardinality()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11090
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->hasCardinality()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasFromLabelState()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11142
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->hasFromLabelState()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasLabelInfo()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11247
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->hasLabelInfo()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasToLabelState()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11194
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->hasToLabelState()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public setCardinality(I)Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11114
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11115
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->e(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;I)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$msetCardinality(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;I)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setFromLabelState(Lcom/android/launcher3/logger/LauncherAtom$FromState;)Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11166
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11167
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->f(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Lcom/android/launcher3/logger/LauncherAtom$FromState;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$msetFromLabelState(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Lcom/android/launcher3/logger/LauncherAtom$FromState;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setLabelInfo(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11288
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11289
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->g(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$msetLabelInfo(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setLabelInfoBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
+.method public setLabelInfoBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11318
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11319
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->h(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$msetLabelInfoBytes(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setToLabelState(Lcom/android/launcher3/logger/LauncherAtom$ToState;)Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 11218
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11219
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->i(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Lcom/android/launcher3/logger/LauncherAtom$ToState;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;->-$$Nest$msetToLabelState(Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;Lcom/android/launcher3/logger/LauncherAtom$ToState;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method

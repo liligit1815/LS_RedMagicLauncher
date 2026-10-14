@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source', type=Path,
                     default=ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java')
 args = parser.parse_args()
-source = args.source.read_text(encoding='utf-8')
+source = args.source.read_text(encoding='utf-8').replace('TaskView.TaskContainer', 'TaskContainer')
 
 
 def extract(name, fallback=None):
@@ -299,7 +299,7 @@ MEMBERS
 '''.replace('MEMBERS', members)
 
 if args.source.resolve() == (ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').resolve():
-    recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+    recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
     dispatch = recents.split('.method public dispatchTouchEvent(', 1)[1].split('.end method', 1)[0]
     assert dispatch.index('->dispatchInlineActionTouch(') < dispatch.index('->dispatchCardLongPressTouch(') < dispatch.index('invoke-super'), 'observer must run after actions and before pager interception'
     cancel = recents.split('.method public final cancelNativeStackTouch(', 1)[1].split('.end method', 1)[0]

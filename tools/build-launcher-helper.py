@@ -10,8 +10,9 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--sdk', default=os.environ.get('ANDROID_HOME') or os.environ.get('ANDROID_SDK_ROOT', ''))
-parser.add_argument('--destination', type=Path, help='Smali output directory; defaults to this project src/smali_classes2')
+parser.add_argument('--destination', type=Path, help='Smali output directory; defaults to this project src/smali_classes3')
 parser.add_argument('--work-dir', type=Path, help='Temporary compilation directory; defaults to helper-src/build-sync')
+parser.add_argument('--linkage-dex', type=Path, help='Retain this build\'s helper-only DEX for OEM linkage verification')
 args = parser.parse_args()
 sdk = Path(args.sdk)
 android = sdk / 'platforms/android-36/android.jar'
@@ -19,7 +20,7 @@ d8 = sdk / ('build-tools/36.0.0/d8.bat' if os.name == 'nt' else 'build-tools/36.
 if not android.is_file() or not d8.is_file():
     raise SystemExit('Android SDK 36 / Build Tools 36.0.0 required; use --sdk.')
 launcher = ROOT
-destination = args.destination or launcher / 'src/smali_classes2'
+destination = args.destination or launcher / 'src/smali_classes3'
 build = args.work_dir or launcher / 'helper-src/build-sync'
 build.mkdir(parents=True, exist_ok=True)
 with tempfile.TemporaryDirectory(prefix='helper-', dir=build) as temporary:
@@ -45,6 +46,9 @@ with tempfile.TemporaryDirectory(prefix='helper-', dir=build) as temporary:
     dex.mkdir()
     subprocess.run([str(d8), '--lib', str(android), '--classpath', str(stubs),
                     '--min-api', '31', '--output', str(dex), str(helper)], check=True)
+    if args.linkage_dex:
+        args.linkage_dex.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(dex / 'classes.dex', args.linkage_dex)
     apk = work / 'helper.apk'
     with zipfile.ZipFile(launcher / 'original.apk') as original, zipfile.ZipFile(apk, 'w') as output:
         output.writestr('AndroidManifest.xml', original.read('AndroidManifest.xml'))

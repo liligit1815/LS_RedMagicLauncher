@@ -47,10 +47,10 @@ def payload(path):
                 if not signature_member(item.filename)}
 
 
-def compare_payloads(before, after, select=lambda name: True):
+def compare_payloads(before, after, select=lambda name: True, *, allow_empty=False):
     old = {name: value for name, value in before.items() if select(name)}
     new = {name: value for name, value in after.items() if select(name)}
-    return {"pass": old == new and bool(old), "baseline_members": len(old),
+    return {"pass": old == new and (bool(old) or allow_empty), "baseline_members": len(old),
             "release_members": len(new), "removed": sorted(old.keys() - new.keys()),
             "added": sorted(new.keys() - old.keys()),
             "changed": sorted(name for name in old.keys() & new.keys() if old[name] != new[name])}
@@ -77,6 +77,57 @@ def checker_module():
     return module
 
 
+def oem_resources(original_apk, release_apk):
+    """Verify the 10-series OEM entries while allowing reviewed new resources.
+
+    The 11-series accepted APK is deliberately never a 10-series resource input.
+    ZIP filenames may change during Apktool's rebuild; each OEM resource still
+    has to resolve to identical bytes at its unchanged resource ID/configuration.
+    """
+    spec = importlib.util.spec_from_file_location("launcher_oem_resources",
+        ROOT / "tools/preserve-launcher-oem-resources.py")
+    require(spec is not None and spec.loader is not None, "Missing OEM resource checker")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    differences = []
+    with zipfile.ZipFile(original_apk) as before, zipfile.ZipFile(release_apk) as after:
+        old = module.ResourceTable(before.read("resources.arsc"))
+        new = module.ResourceTable(after.read("resources.arsc"))
+        old_names, new_names = set(before.namelist()), set(after.namelist())
+        for rid, identity in old.ids.items():
+            if new.ids.get(rid) != identity:
+                differences.append(f"OEM resource identity changed: 0x{rid:08x}")
+        old_by_name = {identity: rid for rid, identity in old.ids.items()}
+        for rid, identity in new.ids.items():
+            if identity in old_by_name and old_by_name[identity] != rid:
+                differences.append(f"OEM resource name moved: {identity}")
+        for identity, reference in old.entries.items():
+            current = new.entries.get(identity)
+            if current is None:
+                differences.append(f"OEM resource configuration removed: {reference.label}")
+                continue
+            if current.name in module.ALLOWED_CHANGED:
+                continue
+            old_path = module.file_path(reference, old_names)
+            new_path = module.file_path(current, new_names)
+            if old_path is not None:
+                if new_path is None or before.read(old_path) != after.read(new_path):
+                    differences.append(f"OEM resource bytes changed: {reference.label}")
+            elif current.semantic != reference.semantic:
+                differences.append(f"OEM resource value changed: {reference.label}")
+        for identity, current in new.entries.items():
+            if current.resource_id in old.ids and identity not in old.entries \
+                    and current.name not in module.ALLOWED_CHANGED:
+                differences.append(f"OEM resource configuration added: {current.label}")
+        return {"pass": not differences, "oem_resource_ids": len(old.ids),
+            "oem_configurations": len(old.entries),
+            "allowed_changed_resources": sorted(module.ALLOWED_CHANGED),
+            "added_resource_ids": [{"id": f"0x{rid:08x}", "name": identity[1]}
+                for rid, identity in sorted(new.ids.items()) if rid not in old.ids],
+            "differences": differences}
+
+
 def verify(args, report):
     paths = [args.apk, args.previous, args.unsigned_reference, args.original, args.version_source]
     require(all(path.is_file() for path in paths), "All APK inputs and authoritative version source must exist")
@@ -96,10 +147,13 @@ def verify(args, report):
                                "sha256": sha256(path.read_bytes())}
                         for name, path in zip(("release", "previous", "unsigned", "original", "version_source"), paths)}
     report["expected_certificate_sha256"] = expected_cert
-    for label, apk in (("previous", args.previous), ("release", args.apk)):
+    baseline_cert = (args.expected_baseline_certificate_sha256 or expected_cert).replace(":", "").lower()
+    require(re.fullmatch(r"[0-9a-f]{64}", baseline_cert) is not None, "Invalid baseline certificate SHA-256")
+    for label, apk, certificate in (("previous", args.previous, baseline_cert),
+                                    ("release", args.apk, expected_cert)):
         output = run(["java", "-jar", apksigner, "verify", "--verbose", "--print-certs", apk], report)
         fingerprints = re.findall(r"(?m)^Signer #\d+ certificate SHA-256 digest: ([0-9a-fA-F]+)\s*$", output)
-        require(len(fingerprints) == 1 and fingerprints[0].lower() == expected_cert,
+        require(len(fingerprints) == 1 and fingerprints[0].lower() == certificate,
                 f"{label} signer does not exactly match the expected single certificate")
         report["checks"][label + "_signature"] = {"pass": True, "certificate_sha256": fingerprints[0].lower()}
     run([zipalign, "-c", "-P", "16", "-v", "4", args.unsigned_reference], report)
@@ -110,15 +164,20 @@ def verify(args, report):
     expected = boundary.expected_versions(args.version_source)
     original = boundary.load_apk(args.original)
     modified = boundary.load_apk(args.apk)
+    sdk_spec = importlib.util.spec_from_file_location("launcher_runtime_sdk",
+        ROOT / "tools/restore-launcher-runtime-sdk.py")
+    sdk_tool = importlib.util.module_from_spec(sdk_spec)
+    sdk_spec.loader.exec_module(sdk_tool)
+    report["checks"]["redmagic10_runtime_sdk"] = {"pass": True,
+        **sdk_tool.runtime_sdk(modified["manifest"])}
     report["checks"]["stack_boundary_and_manifest_version"] = boundary.compare(original, modified, expected)
     require(report["checks"]["stack_boundary_and_manifest_version"]["pass"], "Stack-only boundary or authoritative version mismatch")
     previous, unsigned, release = (payload(path) for path in (args.previous, args.unsigned_reference, args.apk))
     checks = {
         "signed_payload_matches_unsigned": compare_payloads(unsigned, release),
-        "previous_resources_preserved": compare_payloads(previous, release,
-                                                          lambda name: name.startswith("res/") or name == "resources.arsc"),
+        "redmagic10_oem_resources_preserved": oem_resources(args.original, args.apk),
         "previous_native_libraries_preserved": compare_payloads(previous, release,
-                                                                 lambda name: name.startswith("lib/") and name.endswith(".so")),
+                                                                 lambda name: name.startswith("lib/") and name.endswith(".so"), allow_empty=True),
         "previous_assets_preserved": compare_payloads(previous, release, lambda name: name.startswith("assets/")),
     }
     report["checks"].update(checks)
@@ -134,6 +193,8 @@ def main():
     parser.add_argument("--original", type=Path, default=ROOT / "original.apk")
     parser.add_argument("--version-source", type=Path, default=ROOT / "src/apktool.yml")
     parser.add_argument("--expected-certificate-sha256", required=True)
+    parser.add_argument("--expected-baseline-certificate-sha256",
+                        help="OEM baseline certificate, separate from the modified APK upgrade identity")
     parser.add_argument("--sdk", type=Path, default=Path(os.environ.get("ANDROID_HOME") or os.environ.get("ANDROID_SDK_ROOT") or ""))
     parser.add_argument("--build-tools", default="36.0.0")
     parser.add_argument("--report", type=Path, required=True)

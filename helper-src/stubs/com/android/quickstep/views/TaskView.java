@@ -30,7 +30,7 @@ public abstract class TaskView extends FrameLayout {
     public abstract void setNativeStackClipRight(int right);
     public abstract void setNativeStackClipRight(float right);
     public abstract float getNativeStackClipRightF();
-    protected abstract com.android.quickstep.FullscreenDrawParams getThumbnailFullscreenParams();
+    protected abstract TaskView.FullscreenDrawParams getThumbnailFullscreenParams();
     public abstract android.graphics.Rect getNativeStackClipBounds();
     public abstract void setTitleAlpha(float alpha);
     public abstract TextView getNativeStackTitleView();
@@ -40,4 +40,17 @@ public abstract class TaskView extends FrameLayout {
     public abstract boolean isNativeStackMiniWindowAvailable();
     protected abstract ImageView getMSplitScreenButton();
     protected abstract ImageView getMMenuButton();
+    public abstract static class TaskContainer {
+        public abstract com.android.systemui.shared.recents.model.Task getTask();
+        public abstract TaskView getTaskView();
+        public abstract Boolean isLocked();
+        public abstract TaskViewIcon getIconView();
+        public abstract android.view.View getSnapshotView();
+        public abstract android.widget.TextView getTitleView();
+    }
+    public abstract static class FullscreenDrawParams {
+        public abstract float getCurrentDrawnCornerRadius();
+        public abstract void setCurrentDrawnCornerRadius(float radius);
+    }
 }
+

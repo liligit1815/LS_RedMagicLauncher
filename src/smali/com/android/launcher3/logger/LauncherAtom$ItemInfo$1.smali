@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/A$h$a;
+.implements Lcom/google/protobuf/Internal$ListAdapter$Converter;
 
 
 # annotations
@@ -19,7 +19,7 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lcom/google/protobuf/A$h$a<",
+        "Lcom/google/protobuf/Internal$ListAdapter$Converter<",
         "Ljava/lang/Integer;",
         "Lcom/android/launcher3/logger/LauncherAtom$Attribute;",
         ">;"
@@ -31,12 +31,9 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 1
+    .line 2028
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
@@ -45,7 +42,7 @@
 .method public convert(Ljava/lang/Integer;)Lcom/android/launcher3/logger/LauncherAtom$Attribute;
     .locals 0
 
-    .line 2
+    .line 2031
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
     move-result p0
@@ -56,7 +53,7 @@
 
     if-nez p0, :cond_0
 
-    .line 3
+    .line 2032
     sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$Attribute;->UNKNOWN:Lcom/android/launcher3/logger/LauncherAtom$Attribute;
 
     :cond_0
@@ -65,8 +62,16 @@
 
 .method public bridge synthetic convert(Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x1000
+        }
+        names = {
+            null
+        }
+    .end annotation
 
-    .line 1
+    .line 2028
     check-cast p1, Ljava/lang/Integer;
 
     invoke-virtual {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$ItemInfo$1;->convert(Ljava/lang/Integer;)Lcom/android/launcher3/logger/LauncherAtom$Attribute;

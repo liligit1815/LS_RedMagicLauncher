@@ -7,7 +7,6 @@
         <com.zte.mifavor.androidx.widget.NestedScrollView android:id="@id/scrollView" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content">
             <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <android.widget.Space android:id="@id/textSpacerNoTitle" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/mfvc_medium_padding" />
-                <com.zte.mifavor.widget.DialogMessage android:textAppearance="@style/mfvc_dialog_subheader_font" android:gravity="center_vertical" android:id="@id/subTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12.0dp" android:forceDarkAllowed="false" />
                 <com.zte.mifavor.widget.DialogMessage android:id="@android:id/message" android:layout_width="match_parent" android:layout_height="wrap_content" android:lineSpacingExtra="@dimen/mfvc_primary_font02_lineSpacingExtra" android:paddingStart="@dimen/mfvc_xlarge_padding" android:paddingEnd="@dimen/mfvc_xlarge_padding" style="@style/mfvc_primary_font02" />
                 <android.widget.Space android:id="@id/textSpacerNoButtons" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/mfvc_medium_padding" />
             </LinearLayout>
@@ -18,5 +17,4 @@
         <FrameLayout android:id="@id/custom" android:layout_width="match_parent" android:layout_height="wrap_content" />
     </FrameLayout>
     <include android:layout_width="match_parent" android:layout_height="wrap_content" layout="@layout/alert_dialog_button_bar_material_mfv" />
-    <View android:id="@id/navigation_key_area" android:background="@android:color/transparent" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/mfvc_sk_height_extra" />
 </androidx.appcompat.widget.AlertDialogLayout>

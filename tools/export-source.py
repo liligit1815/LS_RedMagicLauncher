@@ -8,12 +8,12 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-BLOCKED_ROOTS = {'.git', '.signing', 'out', 'build', 'audit', 'archive', 'migration', '__pycache__'}
+BLOCKED_ROOTS = {'.git', '.signing', '.cache', 'out', 'build', 'audit', 'archive', 'migration', '__pycache__'}
 PRIVATE_SUFFIXES = {'.keystore', '.jks', '.p12', '.pfx', '.key'}
 REQUIRED = {
     'src/apktool.yml', 'src/AndroidManifest.xml', 'original.apk',
     'framework/cache/1.apk', 'tooling/apktool_3.0.3.jar',
-    'baselines/launcher-260005.apk', 'baselines/manifest.json',
+    'baselines/redmagic10-oem.json',
     'tools/build-launcher.py', 'tools/build-launcher-helper.py',
     '.gitignore', '.gitattributes', 'README.md', 'AGENTS.md',
 }

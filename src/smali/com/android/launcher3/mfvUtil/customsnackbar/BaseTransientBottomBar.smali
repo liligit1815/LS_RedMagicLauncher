@@ -6,12 +6,14 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;,
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;,
         Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;,
-        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$r;,
-        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$t;,
-        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$u;,
-        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$s;
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;,
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$OnAttachStateChangeListener;,
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$OnLayoutChangeListener;,
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BehaviorDelegate;,
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Duration;,
+        Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$AnimationMode;
     }
 .end annotation
 
@@ -26,887 +28,857 @@
 
 
 # static fields
-.field static final s:Landroid/os/Handler;
+.field static final ANIMATION_DURATION:I = 0xfa
 
-.field private static final t:Z
+.field static final ANIMATION_FADE_DURATION:I = 0xb4
 
-.field private static final u:[I
+.field private static final ANIMATION_FADE_IN_DURATION:I = 0x96
 
-.field private static final v:Ljava/lang/String;
+.field private static final ANIMATION_FADE_OUT_DURATION:I = 0x4b
+
+.field public static final ANIMATION_MODE_FADE:I = 0x1
+
+.field public static final ANIMATION_MODE_SLIDE:I = 0x0
+
+.field private static final ANIMATION_SCALE_FROM_VALUE:F = 0.8f
+
+.field static final HANDLER:Landroid/os/Handler;
+
+.field public static final LENGTH_INDEFINITE:I = -0x2
+
+.field public static final LENGTH_LONG:I = 0x0
+
+.field public static final LENGTH_SHORT:I = -0x1
+
+.field static final MSG_DISMISS:I = 0x1
+
+.field static final MSG_SHOW:I
+
+.field private static final SNACKBAR_STYLE_ATTR:[I
+
+.field private static final TAG:Ljava/lang/String;
+
+.field private static final USE_OFFSET_API:Z
 
 
 # instance fields
-.field private final a:Landroid/view/ViewGroup;
+.field private final accessibilityManager:Landroid/view/accessibility/AccessibilityManager;
 
-.field private final b:Landroid/content/Context;
+.field private anchorView:Landroid/view/View;
 
-.field protected final c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+.field private behavior:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
 
-.field private final d:Lcom/android/launcher3/mfvUtil/customsnackbar/a;
+.field private final bottomMarginGestureInsetRunnable:Ljava/lang/Runnable;
 
-.field private e:I
-
-.field private f:Z
-
-.field private g:Landroid/view/View;
-
-.field private final h:Ljava/lang/Runnable;
-
-.field private i:Landroid/graphics/Rect;
-
-.field private j:I
-
-.field private k:I
-
-.field private l:I
-
-.field private m:I
-
-.field private n:I
-
-.field private o:Ljava/util/List;
+.field private callbacks:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
-            "Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$r<",
+            "Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback<",
             "TB;>;>;"
         }
     .end annotation
 .end field
 
-.field private p:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
+.field private final contentViewCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/ContentViewCallback;
 
-.field private final q:Landroid/view/accessibility/AccessibilityManager;
+.field private final context:Landroid/content/Context;
 
-.field r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
+.field private duration:I
+
+.field private extraBottomMarginAnchorView:I
+
+.field private extraBottomMarginGestureInset:I
+
+.field private extraBottomMarginWindowInset:I
+
+.field private extraLeftMarginWindowInset:I
+
+.field private extraRightMarginWindowInset:I
+
+.field private gestureInsetBottomIgnored:Z
+
+.field managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+.field private originalMargins:Landroid/graphics/Rect;
+
+.field private final targetParent:Landroid/view/ViewGroup;
+
+.field protected final view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
 
 # direct methods
+.method static bridge synthetic -$$Nest$fgetcontentViewCallback(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)Lcom/android/launcher3/mfvUtil/customsnackbar/ContentViewCallback;
+    .locals 0
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->contentViewCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/ContentViewCallback;
+
+    return-object p0
+.end method
+
+.method static bridge synthetic -$$Nest$fgetcontext(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)Landroid/content/Context;
+    .locals 0
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->context:Landroid/content/Context;
+
+    return-object p0
+.end method
+
+.method static bridge synthetic -$$Nest$fgetextraBottomMarginGestureInset(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)I
+    .locals 0
+
+    iget p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraBottomMarginGestureInset:I
+
+    return p0
+.end method
+
+.method static bridge synthetic -$$Nest$fputextraBottomMarginGestureInset(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    .locals 0
+
+    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraBottomMarginGestureInset:I
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$fputextraBottomMarginWindowInset(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    .locals 0
+
+    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraBottomMarginWindowInset:I
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$fputextraLeftMarginWindowInset(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    .locals 0
+
+    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraLeftMarginWindowInset:I
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$fputextraRightMarginWindowInset(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    .locals 0
+
+    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraRightMarginWindowInset:I
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$mgetScreenHeight(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)I
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getScreenHeight()I
+
+    move-result p0
+
+    return p0
+.end method
+
+.method static bridge synthetic -$$Nest$mgetViewAbsoluteBottom(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)I
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getViewAbsoluteBottom()I
+
+    move-result p0
+
+    return p0
+.end method
+
+.method static bridge synthetic -$$Nest$mshowViewImpl(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->showViewImpl()V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$mstartFadeInAnimation(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->startFadeInAnimation()V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$mstartSlideInAnimation(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->startSlideInAnimation()V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$mupdateMargins(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->updateMargins()V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$sfgetTAG()Ljava/lang/String;
+    .locals 1
+
+    sget-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->TAG:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static bridge synthetic -$$Nest$sfgetUSE_OFFSET_API()Z
+    .locals 1
+
+    sget-boolean v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->USE_OFFSET_API:Z
+
+    return v0
+.end method
+
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 1
     const/4 v0, 0x0
 
-    .line 2
-    sput-boolean v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->t:Z
+    .line 198
+    sput-boolean v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->USE_OFFSET_API:Z
 
-    .line 3
-    .line 4
-    const v0, 0x7f040602
+    const v0, 0x7f040614
 
-    .line 5
-    .line 6
-    .line 7
+    .line 202
     filled-new-array {v0}, [I
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v0
 
-    .line 11
-    sput-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->u:[I
+    sput-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->SNACKBAR_STYLE_ATTR:[I
 
-    .line 12
-    .line 13
-    const-class v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .line 204
+    const-string v0, "BaseTransientBottomBar"
 
-    .line 14
-    .line 15
-    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+    sput-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->TAG:Ljava/lang/String;
 
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v0
-
-    .line 19
-    sput-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->v:Ljava/lang/String;
-
-    .line 20
-    .line 21
+    .line 207
     new-instance v0, Landroid/os/Handler;
 
-    .line 22
-    .line 23
+    .line 209
     invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
 
-    .line 24
-    .line 25
-    .line 26
     move-result-object v1
 
-    .line 27
-    new-instance v2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$i;
+    new-instance v2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$1;
 
-    .line 28
-    .line 29
-    invoke-direct {v2}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$i;-><init>()V
+    invoke-direct {v2}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$1;-><init>()V
 
-    .line 30
-    .line 31
-    .line 32
     invoke-direct {v0, v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;Landroid/os/Handler$Callback;)V
 
-    .line 33
-    .line 34
-    .line 35
-    sput-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->s:Landroid/os/Handler;
+    sput-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->HANDLER:Landroid/os/Handler;
 
-    .line 36
-    .line 37
     return-void
 .end method
 
-.method protected constructor <init>(Landroid/view/ViewGroup;Landroid/view/View;Lcom/android/launcher3/mfvUtil/customsnackbar/a;)V
+.method protected constructor <init>(Landroid/view/ViewGroup;Landroid/view/View;Lcom/android/launcher3/mfvUtil/customsnackbar/ContentViewCallback;)V
     .locals 4
 
-    .line 1
+    .line 305
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
-    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$j;
+    .line 238
+    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$2;
 
-    .line 5
-    .line 6
-    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$j;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$2;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 7
-    .line 8
-    .line 9
-    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->h:Ljava/lang/Runnable;
+    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->bottomMarginGestureInsetRunnable:Ljava/lang/Runnable;
 
-    .line 10
-    .line 11
-    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$m;
+    .line 636
+    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$5;
 
-    .line 12
-    .line 13
-    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$m;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$5;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 14
-    .line 15
-    .line 16
-    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
+    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
 
-    .line 17
-    .line 18
     if-eqz p1, :cond_4
 
-    .line 19
-    .line 20
     if-eqz p2, :cond_3
 
-    .line 21
-    .line 22
     if-eqz p3, :cond_2
 
-    .line 23
-    .line 24
-    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->a:Landroid/view/ViewGroup;
+    .line 316
+    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->targetParent:Landroid/view/ViewGroup;
 
-    .line 25
-    .line 26
-    iput-object p3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->d:Lcom/android/launcher3/mfvUtil/customsnackbar/a;
+    .line 317
+    iput-object p3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->contentViewCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/ContentViewCallback;
 
-    .line 27
-    .line 28
+    .line 318
     invoke-virtual {p1}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
 
-    .line 29
-    .line 30
-    .line 31
     move-result-object p3
 
-    .line 32
-    iput-object p3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->b:Landroid/content/Context;
+    iput-object p3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->context:Landroid/content/Context;
 
-    .line 33
-    .line 34
+    .line 322
     invoke-static {p3}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
 
-    .line 35
-    .line 36
-    .line 37
     move-result-object v0
 
-    .line 38
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->A()I
+    .line 326
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getSnackbarBaseLayoutResId()I
 
-    .line 39
-    .line 40
-    .line 41
     move-result v1
 
-    .line 42
     const/4 v2, 0x0
 
-    .line 43
     invoke-virtual {v0, v1, p1, v2}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
 
-    .line 44
-    .line 45
-    .line 46
     move-result-object p1
 
-    .line 47
-    check-cast p1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    check-cast p1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 48
-    .line 49
-    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 50
-    .line 51
+    .line 327
     instance-of v0, p2, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarContentLayout;
 
-    .line 52
-    .line 53
     if-eqz v0, :cond_0
 
-    .line 54
-    .line 55
+    .line 328
     move-object v0, p2
 
-    .line 56
     check-cast v0, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarContentLayout;
 
-    .line 57
-    .line 58
-    invoke-virtual {p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;->getActionTextColorAlpha()F
+    .line 329
+    invoke-virtual {p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getActionTextColorAlpha()F
 
-    .line 59
-    .line 60
-    .line 61
     move-result v1
 
-    .line 62
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarContentLayout;->c(F)V
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarContentLayout;->updateActionTextColorAlphaIfNeeded(F)V
 
-    .line 63
-    .line 64
-    .line 65
+    .line 331
     :cond_0
-    invoke-virtual {p1, p2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;)V
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->addView(Landroid/view/View;)V
 
-    .line 66
-    .line 67
-    .line 68
-    invoke-virtual {p1}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    .line 333
+    invoke-virtual {p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 69
-    .line 70
-    .line 71
     move-result-object p2
 
-    .line 72
+    .line 334
     instance-of v0, p2, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 73
-    .line 74
     if-eqz v0, :cond_1
 
-    .line 75
-    .line 76
+    .line 335
     check-cast p2, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 77
-    .line 78
+    .line 336
     new-instance v0, Landroid/graphics/Rect;
 
-    .line 79
-    .line 80
     iget v1, p2, Landroid/view/ViewGroup$MarginLayoutParams;->leftMargin:I
 
-    .line 81
-    .line 82
     iget v2, p2, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
 
-    .line 83
-    .line 84
     iget v3, p2, Landroid/view/ViewGroup$MarginLayoutParams;->rightMargin:I
 
-    .line 85
-    .line 86
     iget p2, p2, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 87
-    .line 88
     invoke-direct {v0, v1, v2, v3, p2}, Landroid/graphics/Rect;-><init>(IIII)V
 
-    .line 89
-    .line 90
-    .line 91
-    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->i:Landroid/graphics/Rect;
+    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->originalMargins:Landroid/graphics/Rect;
 
-    .line 92
-    .line 93
     :cond_1
     const/4 p2, 0x1
 
-    .line 94
-    invoke-static {p1, p2}, LJ/I;->l0(Landroid/view/View;I)V
+    .line 344
+    invoke-static {p1, p2}, Landroidx/core/view/ViewCompat;->setAccessibilityLiveRegion(Landroid/view/View;I)V
 
-    .line 95
-    .line 96
-    .line 97
-    invoke-static {p1, p2}, LJ/I;->t0(Landroid/view/View;I)V
+    .line 345
+    invoke-static {p1, p2}, Landroidx/core/view/ViewCompat;->setImportantForAccessibility(Landroid/view/View;I)V
 
-    .line 98
-    .line 99
-    .line 100
-    invoke-static {p1, p2}, LJ/I;->s0(Landroid/view/View;Z)V
+    .line 348
+    invoke-static {p1, p2}, Landroidx/core/view/ViewCompat;->setFitsSystemWindows(Landroid/view/View;Z)V
 
-    .line 101
-    .line 102
-    .line 103
-    new-instance p2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$k;
+    .line 349
+    new-instance p2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$3;
 
-    .line 104
-    .line 105
-    invoke-direct {p2, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$k;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {p2, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$3;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 106
-    .line 107
-    .line 108
-    invoke-static {p1, p2}, LJ/I;->y0(Landroid/view/View;LJ/x;)V
+    invoke-static {p1, p2}, Landroidx/core/view/ViewCompat;->setOnApplyWindowInsetsListener(Landroid/view/View;Landroidx/core/view/OnApplyWindowInsetsListener;)V
 
-    .line 109
-    .line 110
-    .line 111
-    new-instance p2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$l;
+    .line 366
+    new-instance p2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$4;
 
-    .line 112
-    .line 113
-    invoke-direct {p2, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$l;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {p2, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$4;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 114
-    .line 115
-    .line 116
-    invoke-static {p1, p2}, LJ/I;->j0(Landroid/view/View;LJ/a;)V
+    invoke-static {p1, p2}, Landroidx/core/view/ViewCompat;->setAccessibilityDelegate(Landroid/view/View;Landroidx/core/view/AccessibilityDelegateCompat;)V
 
-    .line 117
-    .line 118
-    .line 119
+    .line 387
     const-string p1, "accessibility"
 
-    .line 120
-    .line 121
+    .line 388
     invoke-virtual {p3, p1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 122
-    .line 123
-    .line 124
     move-result-object p1
 
-    .line 125
     check-cast p1, Landroid/view/accessibility/AccessibilityManager;
 
-    .line 126
-    .line 127
-    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->q:Landroid/view/accessibility/AccessibilityManager;
+    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->accessibilityManager:Landroid/view/accessibility/AccessibilityManager;
 
-    .line 128
-    .line 129
     return-void
 
-    .line 130
+    .line 313
     :cond_2
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
-    .line 131
-    .line 132
     const-string p1, "Transient bottom bar must have non-null callback"
 
-    .line 133
-    .line 134
     invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
-    .line 135
-    .line 136
-    .line 137
     throw p0
 
-    .line 138
+    .line 310
     :cond_3
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
-    .line 139
-    .line 140
     const-string p1, "Transient bottom bar must have non-null content"
 
-    .line 141
-    .line 142
     invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
-    .line 143
-    .line 144
-    .line 145
     throw p0
 
-    .line 146
+    .line 307
     :cond_4
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
-    .line 147
-    .line 148
     const-string p1, "Transient bottom bar must have non-null parent"
 
-    .line 149
-    .line 150
     invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
-    .line 151
-    .line 152
-    .line 153
     throw p0
 .end method
 
-.method private B()I
+.method private animateViewOut(I)V
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 826
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 2
-    .line 3
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getHeight()I
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getAnimationMode()I
 
-    .line 4
-    .line 5
-    .line 6
     move-result v0
 
-    .line 7
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    const/4 v1, 0x1
 
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    if-ne v0, v1, :cond_0
 
-    .line 10
-    .line 11
-    .line 12
-    move-result-object p0
+    .line 827
+    invoke-direct {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->startFadeOutAnimation(I)V
 
-    .line 13
-    instance-of v1, p0, Landroid/view/ViewGroup$MarginLayoutParams;
+    goto :goto_0
 
-    .line 14
-    .line 15
-    if-eqz v1, :cond_0
+    .line 829
+    :cond_0
+    invoke-direct {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->startSlideOutAnimation(I)V
 
-    .line 16
-    .line 17
-    check-cast p0, Landroid/view/ViewGroup$MarginLayoutParams;
+    :goto_0
+    return-void
+.end method
 
-    .line 18
-    .line 19
-    iget p0, p0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
+.method private calculateBottomMarginForAnchorView()I
+    .locals 4
 
-    .line 20
-    .line 21
+    .line 790
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->anchorView:Landroid/view/View;
+
+    if-nez v0, :cond_0
+
+    const/4 p0, 0x0
+
+    return p0
+
+    :cond_0
+    const/4 v1, 0x2
+
+    .line 794
+    new-array v2, v1, [I
+
+    .line 795
+    invoke-virtual {v0, v2}, Landroid/view/View;->getLocationOnScreen([I)V
+
+    const/4 v0, 0x1
+
+    .line 796
+    aget v2, v2, v0
+
+    .line 798
+    new-array v1, v1, [I
+
+    .line 799
+    iget-object v3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->targetParent:Landroid/view/ViewGroup;
+
+    invoke-virtual {v3, v1}, Landroid/view/ViewGroup;->getLocationOnScreen([I)V
+
+    .line 800
+    aget v0, v1, v0
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->targetParent:Landroid/view/ViewGroup;
+
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getHeight()I
+
+    move-result p0
+
     add-int/2addr v0, p0
 
-    .line 22
+    sub-int/2addr v0, v2
+
+    return v0
+.end method
+
+.method private varargs getAlphaAnimator([F)Landroid/animation/ValueAnimator;
+    .locals 1
+
+    .line 864
+    invoke-static {p1}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
+
+    move-result-object p1
+
+    .line 865
+    sget-object v0, Lcom/google/android/material/animation/AnimationUtils;->LINEAR_INTERPOLATOR:Landroid/animation/TimeInterpolator;
+
+    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 866
+    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$12;
+
+    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$12;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+
+    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+
+    return-object p1
+.end method
+
+.method private varargs getScaleAnimator([F)Landroid/animation/ValueAnimator;
+    .locals 1
+
+    .line 877
+    invoke-static {p1}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
+
+    move-result-object p1
+
+    .line 878
+    sget-object v0, Lcom/google/android/material/animation/AnimationUtils;->LINEAR_OUT_SLOW_IN_INTERPOLATOR:Landroid/animation/TimeInterpolator;
+
+    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 879
+    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$13;
+
+    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$13;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+
+    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+
+    return-object p1
+.end method
+
+.method private getScreenHeight()I
+    .locals 1
+
+    .line 739
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->context:Landroid/content/Context;
+
+    const-string/jumbo v0, "window"
+
+    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    check-cast p0, Landroid/view/WindowManager;
+
+    .line 740
+    new-instance v0, Landroid/util/DisplayMetrics;
+
+    invoke-direct {v0}, Landroid/util/DisplayMetrics;-><init>()V
+
+    .line 741
+    invoke-interface {p0}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
+
+    move-result-object p0
+
+    invoke-virtual {p0, v0}, Landroid/view/Display;->getRealMetrics(Landroid/util/DisplayMetrics;)V
+
+    .line 742
+    iget p0, v0, Landroid/util/DisplayMetrics;->heightPixels:I
+
+    return p0
+.end method
+
+.method private getTranslationYBottom()I
+    .locals 2
+
+    .line 976
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getHeight()I
+
+    move-result v0
+
+    .line 977
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object p0
+
+    .line 978
+    instance-of v1, p0, Landroid/view/ViewGroup$MarginLayoutParams;
+
+    if-eqz v1, :cond_0
+
+    .line 979
+    check-cast p0, Landroid/view/ViewGroup$MarginLayoutParams;
+
+    iget p0, p0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
+
+    add-int/2addr v0, p0
+
     :cond_0
     return v0
 .end method
 
-.method private D()I
+.method private getViewAbsoluteBottom()I
     .locals 2
 
-    .line 1
     const/4 v0, 0x2
 
-    .line 2
+    .line 732
     new-array v0, v0, [I
 
-    .line 3
-    .line 4
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 733
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 5
-    .line 6
-    invoke-virtual {v1, v0}, Landroid/widget/FrameLayout;->getLocationOnScreen([I)V
+    invoke-virtual {v1, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getLocationOnScreen([I)V
 
-    .line 7
-    .line 8
-    .line 9
     const/4 v1, 0x1
 
-    .line 10
+    .line 734
     aget v0, v0, v1
 
-    .line 11
-    .line 12
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 13
-    .line 14
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getHeight()I
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getHeight()I
 
-    .line 15
-    .line 16
-    .line 17
     move-result p0
 
-    .line 18
     add-int/2addr v0, p0
 
-    .line 19
     return v0
 .end method
 
-.method private G()Z
+.method private isSwipeDismissable()Z
     .locals 1
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 425
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object p0
 
-    .line 7
-    instance-of v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;
+    .line 426
+    instance-of v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;
 
-    .line 8
-    .line 9
     if-eqz v0, :cond_0
 
-    .line 10
-    .line 11
-    check-cast p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;
+    check-cast p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;
 
-    .line 12
-    .line 13
-    invoke-virtual {p0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f()Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+    .line 427
+    invoke-virtual {p0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;->getBehavior()Landroidx/coordinatorlayout/widget/CoordinatorLayout$Behavior;
 
-    .line 14
-    .line 15
-    .line 16
     move-result-object p0
 
-    .line 17
     instance-of p0, p0, Lcom/google/android/material/behavior/SwipeDismissBehavior;
 
-    .line 18
-    .line 19
     if-eqz p0, :cond_0
 
-    .line 20
-    .line 21
     const/4 p0, 0x1
 
-    .line 22
-    return p0
+    goto :goto_0
 
-    .line 23
     :cond_0
     const/4 p0, 0x0
 
-    .line 24
+    :goto_0
     return p0
 .end method
 
-.method private L(Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;)V
+.method private setUpBehavior(Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;)V
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->p:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
+    .line 750
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->behavior:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_0
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->x()Lcom/google/android/material/behavior/SwipeDismissBehavior;
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getNewBehavior()Lcom/google/android/material/behavior/SwipeDismissBehavior;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object v0
 
-    .line 9
+    .line 752
     :cond_0
     instance-of v1, v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
 
-    .line 10
-    .line 11
     if-eqz v1, :cond_1
 
-    .line 12
-    .line 13
+    .line 753
     move-object v1, v0
 
-    .line 14
     check-cast v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
 
-    .line 15
-    .line 16
-    invoke-static {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;->T(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-static {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;->-$$Nest$msetBaseTransientBottomBar(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 17
-    .line 18
-    .line 19
+    .line 756
     :cond_1
-    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$p;
+    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$8;
 
-    .line 20
-    .line 21
-    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$p;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$8;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 22
-    .line 23
-    .line 24
-    invoke-virtual {v0, v1}, Lcom/google/android/material/behavior/SwipeDismissBehavior;->P(Lcom/google/android/material/behavior/SwipeDismissBehavior$c;)V
+    invoke-virtual {v0, v1}, Lcom/google/android/material/behavior/SwipeDismissBehavior;->setListener(Lcom/google/android/material/behavior/SwipeDismissBehavior$OnDismissListener;)V
 
-    .line 25
-    .line 26
-    .line 27
-    invoke-virtual {p1, v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->o(Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;)V
+    .line 781
+    invoke-virtual {p1, v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;->setBehavior(Landroidx/coordinatorlayout/widget/CoordinatorLayout$Behavior;)V
 
-    .line 28
-    .line 29
-    .line 30
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->g:Landroid/view/View;
+    .line 784
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->anchorView:Landroid/view/View;
 
-    .line 31
-    .line 32
     if-nez p0, :cond_2
 
-    .line 33
-    .line 34
     const/16 p0, 0x50
 
-    .line 35
-    .line 36
-    iput p0, p1, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->g:I
+    .line 785
+    iput p0, p1, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;->insetEdge:I
 
-    .line 37
-    .line 38
     :cond_2
     return-void
 .end method
 
-.method private N()Z
+.method private shouldUpdateGestureInset()Z
     .locals 1
 
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->m:I
+    .line 421
+    iget v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraBottomMarginGestureInset:I
 
-    .line 2
-    .line 3
     if-lez v0, :cond_0
 
-    .line 4
-    .line 5
-    iget-boolean v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->f:Z
+    iget-boolean v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->gestureInsetBottomIgnored:Z
 
-    .line 6
-    .line 7
     if-nez v0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->G()Z
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->isSwipeDismissable()Z
 
-    .line 10
-    .line 11
-    .line 12
     move-result p0
 
-    .line 13
     if-eqz p0, :cond_0
 
-    .line 14
-    .line 15
     const/4 p0, 0x1
 
-    .line 16
-    return p0
+    goto :goto_0
 
-    .line 17
     :cond_0
     const/4 p0, 0x0
 
-    .line 18
+    :goto_0
     return p0
 .end method
 
-.method private Q()V
+.method private showViewImpl()V
     .locals 2
 
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->M()Z
+    .line 721
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->shouldAnimate()Z
 
-    .line 2
-    .line 3
-    .line 4
     move-result v0
 
-    .line 5
     if-eqz v0, :cond_0
 
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->p()V
+    .line 723
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->animateViewIn()V
 
-    .line 8
-    .line 9
-    .line 10
-    return-void
+    goto :goto_0
 
-    .line 11
+    .line 726
     :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 12
-    .line 13
     const/4 v1, 0x0
 
-    .line 14
-    invoke-virtual {v0, v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->setVisibility(I)V
 
-    .line 15
-    .line 16
-    .line 17
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->I()V
+    .line 727
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->onViewShown()V
 
-    .line 18
-    .line 19
-    .line 20
+    :goto_0
     return-void
 .end method
 
-.method private R()V
+.method private startFadeInAnimation()V
     .locals 5
 
-    .line 1
     const/4 v0, 0x2
 
-    .line 2
+    .line 834
     new-array v1, v0, [F
 
-    .line 3
-    .line 4
     fill-array-data v1, :array_0
 
-    .line 5
-    .line 6
-    .line 7
-    invoke-direct {p0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->u([F)Landroid/animation/ValueAnimator;
+    invoke-direct {p0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getAlphaAnimator([F)Landroid/animation/ValueAnimator;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v1
 
-    .line 11
+    .line 835
     new-array v2, v0, [F
 
-    .line 12
-    .line 13
     fill-array-data v2, :array_1
 
-    .line 14
-    .line 15
-    .line 16
-    invoke-direct {p0, v2}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->y([F)Landroid/animation/ValueAnimator;
+    invoke-direct {p0, v2}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getScaleAnimator([F)Landroid/animation/ValueAnimator;
 
-    .line 17
-    .line 18
-    .line 19
     move-result-object v2
 
-    .line 20
+    .line 837
     new-instance v3, Landroid/animation/AnimatorSet;
 
-    .line 21
-    .line 22
     invoke-direct {v3}, Landroid/animation/AnimatorSet;-><init>()V
 
-    .line 23
-    .line 24
-    .line 25
+    .line 838
     new-array v0, v0, [Landroid/animation/Animator;
 
-    .line 26
-    .line 27
     const/4 v4, 0x0
 
-    .line 28
     aput-object v1, v0, v4
 
-    .line 29
-    .line 30
     const/4 v1, 0x1
 
-    .line 31
     aput-object v2, v0, v1
 
-    .line 32
-    .line 33
     invoke-virtual {v3, v0}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
 
-    .line 34
-    .line 35
-    .line 36
     const-wide/16 v0, 0x96
 
-    .line 37
-    .line 38
+    .line 839
     invoke-virtual {v3, v0, v1}, Landroid/animation/AnimatorSet;->setDuration(J)Landroid/animation/AnimatorSet;
 
-    .line 39
-    .line 40
-    .line 41
-    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$a;
+    .line 840
+    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$10;
 
-    .line 42
-    .line 43
-    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$a;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$10;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 44
-    .line 45
-    .line 46
     invoke-virtual {v3, v0}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 47
-    .line 48
-    .line 49
+    .line 847
     invoke-virtual {v3}, Landroid/animation/AnimatorSet;->start()V
 
-    .line 50
-    .line 51
-    .line 52
     return-void
 
-    .line 53
     :array_0
     .array-data 4
         0x0
         0x3f800000    # 1.0f
     .end array-data
 
-    .line 54
-    .line 55
-    .line 56
-    .line 57
-    .line 58
-    .line 59
-    .line 60
-    .line 61
     :array_1
     .array-data 4
         0x3f4ccccd    # 0.8f
@@ -914,64 +886,39 @@
     .end array-data
 .end method
 
-.method private S(I)V
+.method private startFadeOutAnimation(I)V
     .locals 3
 
-    .line 1
     const/4 v0, 0x2
 
-    .line 2
+    .line 851
     new-array v0, v0, [F
 
-    .line 3
-    .line 4
     fill-array-data v0, :array_0
 
-    .line 5
-    .line 6
-    .line 7
-    invoke-direct {p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->u([F)Landroid/animation/ValueAnimator;
+    invoke-direct {p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getAlphaAnimator([F)Landroid/animation/ValueAnimator;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v0
 
-    .line 11
     const-wide/16 v1, 0x4b
 
-    .line 12
-    .line 13
+    .line 852
     invoke-virtual {v0, v1, v2}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
 
-    .line 14
-    .line 15
-    .line 16
-    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$b;
+    .line 853
+    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$11;
 
-    .line 17
-    .line 18
-    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$b;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$11;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
 
-    .line 19
-    .line 20
-    .line 21
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 22
-    .line 23
-    .line 24
+    .line 860
     invoke-virtual {v0}, Landroid/animation/ValueAnimator;->start()V
 
-    .line 25
-    .line 26
-    .line 27
     return-void
 
-    .line 28
     nop
 
-    .line 29
     :array_0
     .array-data 4
         0x3f800000    # 1.0f
@@ -979,1546 +926,413 @@
     .end array-data
 .end method
 
-.method private T()V
+.method private startSlideInAnimation()V
     .locals 4
 
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->B()I
+    .line 892
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getTranslationYBottom()I
 
-    .line 2
-    .line 3
-    .line 4
     move-result v0
 
-    .line 5
-    sget-boolean v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->t:Z
+    .line 893
+    sget-boolean v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->USE_OFFSET_API:Z
 
-    .line 6
-    .line 7
     if-eqz v1, :cond_0
 
-    .line 8
-    .line 9
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 894
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 10
-    .line 11
-    invoke-static {v1, v0}, LJ/I;->U(Landroid/view/View;I)V
+    invoke-static {v1, v0}, Landroidx/core/view/ViewCompat;->offsetTopAndBottom(Landroid/view/View;I)V
 
-    .line 12
-    .line 13
-    .line 14
     goto :goto_0
 
-    .line 15
+    .line 896
     :cond_0
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 16
-    .line 17
     int-to-float v2, v0
 
-    .line 18
-    invoke-virtual {v1, v2}, Landroid/widget/FrameLayout;->setTranslationY(F)V
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->setTranslationY(F)V
 
-    .line 19
-    .line 20
-    .line 21
+    .line 899
     :goto_0
     new-instance v1, Landroid/animation/ValueAnimator;
 
-    .line 22
-    .line 23
     invoke-direct {v1}, Landroid/animation/ValueAnimator;-><init>()V
 
-    .line 24
-    .line 25
-    .line 26
     const/4 v2, 0x0
 
-    .line 27
+    .line 900
     filled-new-array {v0, v2}, [I
 
-    .line 28
-    .line 29
-    .line 30
     move-result-object v2
 
-    .line 31
     invoke-virtual {v1, v2}, Landroid/animation/ValueAnimator;->setIntValues([I)V
 
-    .line 32
-    .line 33
-    .line 34
-    sget-object v2, LY2/a;->b:Landroid/animation/TimeInterpolator;
+    .line 901
+    sget-object v2, Lcom/google/android/material/animation/AnimationUtils;->FAST_OUT_SLOW_IN_INTERPOLATOR:Landroid/animation/TimeInterpolator;
 
-    .line 35
-    .line 36
     invoke-virtual {v1, v2}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 37
-    .line 38
-    .line 39
     const-wide/16 v2, 0xfa
 
-    .line 40
-    .line 41
+    .line 902
     invoke-virtual {v1, v2, v3}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
 
-    .line 42
-    .line 43
-    .line 44
-    new-instance v2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$e;
+    .line 903
+    new-instance v2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$14;
 
-    .line 45
-    .line 46
-    invoke-direct {v2, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$e;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {v2, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$14;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 47
-    .line 48
-    .line 49
     invoke-virtual {v1, v2}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 50
-    .line 51
-    .line 52
-    new-instance v2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$f;
+    .line 916
+    new-instance v2, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$15;
 
-    .line 53
-    .line 54
-    invoke-direct {v2, p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$f;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    invoke-direct {v2, p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$15;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
 
-    .line 55
-    .line 56
-    .line 57
     invoke-virtual {v1, v2}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
-    .line 58
-    .line 59
-    .line 60
+    .line 934
     invoke-virtual {v1}, Landroid/animation/ValueAnimator;->start()V
 
-    .line 61
-    .line 62
-    .line 63
     return-void
 .end method
 
-.method private U(I)V
+.method private startSlideOutAnimation(I)V
     .locals 3
 
-    .line 1
+    .line 938
     new-instance v0, Landroid/animation/ValueAnimator;
 
-    .line 2
-    .line 3
     invoke-direct {v0}, Landroid/animation/ValueAnimator;-><init>()V
 
-    .line 4
-    .line 5
-    .line 6
     const/4 v1, 0x0
 
-    .line 7
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->B()I
+    .line 939
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getTranslationYBottom()I
 
-    .line 8
-    .line 9
-    .line 10
     move-result v2
 
-    .line 11
     filled-new-array {v1, v2}, [I
 
-    .line 12
-    .line 13
-    .line 14
     move-result-object v1
 
-    .line 15
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->setIntValues([I)V
 
-    .line 16
-    .line 17
-    .line 18
-    sget-object v1, LY2/a;->b:Landroid/animation/TimeInterpolator;
+    .line 940
+    sget-object v1, Lcom/google/android/material/animation/AnimationUtils;->FAST_OUT_SLOW_IN_INTERPOLATOR:Landroid/animation/TimeInterpolator;
 
-    .line 19
-    .line 20
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 21
-    .line 22
-    .line 23
     const-wide/16 v1, 0xfa
 
-    .line 24
-    .line 25
+    .line 941
     invoke-virtual {v0, v1, v2}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
 
-    .line 26
-    .line 27
-    .line 28
-    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$g;
+    .line 942
+    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$16;
 
-    .line 29
-    .line 30
-    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$g;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
+    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$16;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
 
-    .line 31
-    .line 32
-    .line 33
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 34
-    .line 35
-    .line 36
-    new-instance p1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$h;
+    .line 954
+    new-instance p1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$17;
 
-    .line 37
-    .line 38
-    invoke-direct {p1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$h;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+    invoke-direct {p1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$17;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
 
-    .line 39
-    .line 40
-    .line 41
     invoke-virtual {v0, p1}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
-    .line 42
-    .line 43
-    .line 44
+    .line 972
     invoke-virtual {v0}, Landroid/animation/ValueAnimator;->start()V
 
-    .line 45
-    .line 46
-    .line 47
     return-void
 .end method
 
-.method private V()V
+.method private updateMargins()V
     .locals 5
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 392
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 2
-    .line 3
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
+    .line 393
     instance-of v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 8
-    .line 9
     if-eqz v1, :cond_4
 
-    .line 10
-    .line 11
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->i:Landroid/graphics/Rect;
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->originalMargins:Landroid/graphics/Rect;
 
-    .line 12
-    .line 13
     if-nez v1, :cond_0
 
-    .line 14
-    .line 15
     goto :goto_0
 
-    .line 16
+    .line 398
     :cond_0
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 17
-    .line 18
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->b:Landroid/content/Context;
+    .line 399
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->context:Landroid/content/Context;
 
-    .line 19
-    .line 20
     invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 21
-    .line 22
-    .line 23
     move-result-object v1
 
-    .line 24
-    const v2, 0x7f070a76
+    const v2, 0x7f0709bb
 
-    .line 25
-    .line 26
-    .line 27
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 28
-    .line 29
-    .line 30
     move-result v1
 
-    .line 31
+    .line 400
     new-instance v2, Landroid/graphics/Rect;
 
-    .line 32
-    .line 33
     invoke-direct {v2}, Landroid/graphics/Rect;-><init>()V
 
-    .line 34
-    .line 35
-    .line 36
-    invoke-static {}, Lcom/android/launcher3/q4;->Q()Lcom/android/launcher3/C2;
+    .line 401
+    invoke-static {}, Lcom/android/launcher3/MFVInterfaceProxy;->getLauncher()Lcom/android/launcher3/Launcher;
 
-    .line 37
-    .line 38
-    .line 39
     move-result-object v3
 
-    .line 40
     if-eqz v3, :cond_2
 
-    .line 41
-    .line 42
-    invoke-static {}, Lcom/android/launcher3/q4;->Q()Lcom/android/launcher3/C2;
+    .line 402
+    invoke-static {}, Lcom/android/launcher3/MFVInterfaceProxy;->getLauncher()Lcom/android/launcher3/Launcher;
 
-    .line 43
-    .line 44
-    .line 45
     move-result-object v2
 
-    .line 46
-    invoke-virtual {v2}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-virtual {v2}, Lcom/android/launcher3/Launcher;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
-    .line 47
-    .line 48
-    .line 49
     move-result-object v2
 
-    .line 50
-    invoke-virtual {v2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    .line 403
+    invoke-virtual {v2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
-    .line 51
-    .line 52
-    .line 53
     move-result-object v3
 
-    .line 54
-    iget-boolean v4, v2, Lcom/android/launcher3/h0;->P0:Z
+    .line 404
+    iget-boolean v4, v2, Lcom/android/launcher3/DeviceProfile;->isGestureMode:Z
 
-    .line 55
-    .line 56
     if-nez v4, :cond_1
 
-    .line 57
-    .line 58
-    iget-object v2, v2, Lcom/android/launcher3/h0;->C0:Lcom/android/launcher3/F1;
+    iget-object v4, v2, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 59
-    .line 60
-    if-eqz v2, :cond_1
+    if-eqz v4, :cond_1
 
-    .line 61
-    .line 62
-    iget v2, v2, Lcom/android/launcher3/r4;->R:I
+    .line 405
+    iget-object v2, v2, Lcom/android/launcher3/DeviceProfile;->inv:Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 63
-    .line 64
+    iget v2, v2, Lcom/android/launcher3/InvariantDeviceProfile;->navbarHeightPx:I
+
     iput v2, v3, Landroid/graphics/Rect;->bottom:I
 
-    .line 65
-    .line 66
     :cond_1
     move-object v2, v3
 
-    .line 67
+    .line 408
     :cond_2
     iget v2, v2, Landroid/graphics/Rect;->bottom:I
 
-    .line 68
-    .line 69
     add-int/2addr v1, v2
 
-    .line 70
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 71
-    .line 72
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->i:Landroid/graphics/Rect;
+    .line 409
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->originalMargins:Landroid/graphics/Rect;
 
-    .line 73
-    .line 74
-    iget v2, v1, Landroid/graphics/Rect;->left:I
+    iget v1, v1, Landroid/graphics/Rect;->left:I
 
-    .line 75
-    .line 76
-    iget v3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->k:I
+    iget v2, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraLeftMarginWindowInset:I
 
-    .line 77
-    .line 78
-    add-int/2addr v2, v3
-
-    .line 79
-    iput v2, v0, Landroid/view/ViewGroup$MarginLayoutParams;->leftMargin:I
-
-    .line 80
-    .line 81
-    iget v1, v1, Landroid/graphics/Rect;->right:I
-
-    .line 82
-    .line 83
-    iget v2, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->l:I
-
-    .line 84
-    .line 85
     add-int/2addr v1, v2
 
-    .line 86
+    iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->leftMargin:I
+
+    .line 410
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->originalMargins:Landroid/graphics/Rect;
+
+    iget v1, v1, Landroid/graphics/Rect;->right:I
+
+    iget v2, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraRightMarginWindowInset:I
+
+    add-int/2addr v1, v2
+
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->rightMargin:I
 
-    .line 87
-    .line 88
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 411
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 89
-    .line 90
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->requestLayout()V
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->requestLayout()V
 
-    .line 91
-    .line 92
-    .line 93
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->N()Z
+    .line 413
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->shouldUpdateGestureInset()Z
 
-    .line 94
-    .line 95
-    .line 96
     move-result v0
 
-    .line 97
     if-eqz v0, :cond_3
 
-    .line 98
-    .line 99
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 415
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 100
-    .line 101
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->h:Ljava/lang/Runnable;
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->bottomMarginGestureInsetRunnable:Ljava/lang/Runnable;
 
-    .line 102
-    .line 103
-    invoke-virtual {v0, v1}, Landroid/widget/FrameLayout;->removeCallbacks(Ljava/lang/Runnable;)Z
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 104
-    .line 105
-    .line 106
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 416
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
 
-    .line 107
-    .line 108
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->h:Ljava/lang/Runnable;
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->bottomMarginGestureInsetRunnable:Ljava/lang/Runnable;
 
-    .line 109
-    .line 110
-    invoke-virtual {v0, p0}, Landroid/widget/FrameLayout;->post(Ljava/lang/Runnable;)Z
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->post(Ljava/lang/Runnable;)Z
 
-    .line 111
-    .line 112
-    .line 113
     :cond_3
     return-void
 
-    .line 114
+    .line 394
     :cond_4
     :goto_0
-    sget-object p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->v:Ljava/lang/String;
+    sget-object p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->TAG:Ljava/lang/String;
 
-    .line 115
-    .line 116
     const-string v0, "Unable to update margins because layout params are not MarginLayoutParams"
 
-    .line 117
-    .line 118
     invoke-static {p0, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 119
-    .line 120
-    .line 121
     return-void
-.end method
-
-.method static bridge synthetic a(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)Lcom/android/launcher3/mfvUtil/customsnackbar/a;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->d:Lcom/android/launcher3/mfvUtil/customsnackbar/a;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic b(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)Landroid/content/Context;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->b:Landroid/content/Context;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic c(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)I
-    .locals 0
-
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->m:I
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method static bridge synthetic d(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
-    .locals 0
-
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->m:I
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method static bridge synthetic e(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
-    .locals 0
-
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->j:I
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method static bridge synthetic f(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
-    .locals 0
-
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->k:I
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method static bridge synthetic g(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;I)V
-    .locals 0
-
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->l:I
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method static bridge synthetic h(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)I
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->z()I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method static bridge synthetic i(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)I
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->D()I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method static bridge synthetic j(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->Q()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic k(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->R()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic l(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->T()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic m(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->V()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic n()Ljava/lang/String;
-    .locals 1
-
-    .line 1
-    sget-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->v:Ljava/lang/String;
-
-    .line 2
-    .line 3
-    return-object v0
-.end method
-
-.method static bridge synthetic o()Z
-    .locals 1
-
-    .line 1
-    sget-boolean v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->t:Z
-
-    .line 2
-    .line 3
-    return v0
-.end method
-
-.method private q(I)V
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 2
-    .line 3
-    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;->getAnimationMode()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v0
-
-    .line 7
-    const/4 v1, 0x1
-
-    .line 8
-    if-ne v0, v1, :cond_0
-
-    .line 9
-    .line 10
-    invoke-direct {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->S(I)V
-
-    .line 11
-    .line 12
-    .line 13
-    return-void
-
-    .line 14
-    :cond_0
-    invoke-direct {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->U(I)V
-
-    .line 15
-    .line 16
-    .line 17
-    return-void
-.end method
-
-.method private r()I
-    .locals 4
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->g:Landroid/view/View;
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    const/4 p0, 0x0
-
-    .line 6
-    return p0
-
-    .line 7
-    :cond_0
-    const/4 v1, 0x2
-
-    .line 8
-    new-array v2, v1, [I
-
-    .line 9
-    .line 10
-    invoke-virtual {v0, v2}, Landroid/view/View;->getLocationOnScreen([I)V
-
-    .line 11
-    .line 12
-    .line 13
-    const/4 v0, 0x1
-
-    .line 14
-    aget v2, v2, v0
-
-    .line 15
-    .line 16
-    new-array v1, v1, [I
-
-    .line 17
-    .line 18
-    iget-object v3, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->a:Landroid/view/ViewGroup;
-
-    .line 19
-    .line 20
-    invoke-virtual {v3, v1}, Landroid/view/ViewGroup;->getLocationOnScreen([I)V
-
-    .line 21
-    .line 22
-    .line 23
-    aget v0, v1, v0
-
-    .line 24
-    .line 25
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->a:Landroid/view/ViewGroup;
-
-    .line 26
-    .line 27
-    invoke-virtual {p0}, Landroid/view/ViewGroup;->getHeight()I
-
-    .line 28
-    .line 29
-    .line 30
-    move-result p0
-
-    .line 31
-    add-int/2addr v0, p0
-
-    .line 32
-    sub-int/2addr v0, v2
-
-    .line 33
-    return v0
-.end method
-
-.method private varargs u([F)Landroid/animation/ValueAnimator;
-    .locals 1
-
-    .line 1
-    invoke-static {p1}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p1
-
-    .line 5
-    sget-object v0, LY2/a;->a:Landroid/animation/TimeInterpolator;
-
-    .line 6
-    .line 7
-    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 8
-    .line 9
-    .line 10
-    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$c;
-
-    .line 11
-    .line 12
-    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$c;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-
-    .line 13
-    .line 14
-    .line 15
-    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
-
-    .line 16
-    .line 17
-    .line 18
-    return-object p1
-.end method
-
-.method private varargs y([F)Landroid/animation/ValueAnimator;
-    .locals 1
-
-    .line 1
-    invoke-static {p1}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p1
-
-    .line 5
-    sget-object v0, LY2/a;->d:Landroid/animation/TimeInterpolator;
-
-    .line 6
-    .line 7
-    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 8
-    .line 9
-    .line 10
-    new-instance v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$d;
-
-    .line 11
-    .line 12
-    invoke-direct {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$d;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-
-    .line 13
-    .line 14
-    .line 15
-    invoke-virtual {p1, v0}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
-
-    .line 16
-    .line 17
-    .line 18
-    return-object p1
-.end method
-
-.method private z()I
-    .locals 1
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->b:Landroid/content/Context;
-
-    .line 2
-    .line 3
-    const-string v0, "window"
-
-    .line 4
-    .line 5
-    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    check-cast p0, Landroid/view/WindowManager;
-
-    .line 10
-    .line 11
-    new-instance v0, Landroid/util/DisplayMetrics;
-
-    .line 12
-    .line 13
-    invoke-direct {v0}, Landroid/util/DisplayMetrics;-><init>()V
-
-    .line 14
-    .line 15
-    .line 16
-    invoke-interface {p0}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
-
-    .line 17
-    .line 18
-    .line 19
-    move-result-object p0
-
-    .line 20
-    invoke-virtual {p0, v0}, Landroid/view/Display;->getRealMetrics(Landroid/util/DisplayMetrics;)V
-
-    .line 21
-    .line 22
-    .line 23
-    iget p0, v0, Landroid/util/DisplayMetrics;->heightPixels:I
-
-    .line 24
-    .line 25
-    return p0
 .end method
 
 
 # virtual methods
-.method protected A()I
-    .locals 0
-
-    .line 1
-    const p0, 0x7f0e0094
-
-    .line 2
-    .line 3
-    .line 4
-    return p0
-.end method
-
-.method public C()Landroid/view/View;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method final E(I)V
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->M()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 8
-    .line 9
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getVisibility()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v0
-
-    .line 13
-    if-nez v0, :cond_0
-
-    .line 14
-    .line 15
-    invoke-direct {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->q(I)V
-
-    .line 16
-    .line 17
-    .line 18
-    return-void
-
-    .line 19
-    :cond_0
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->H(I)V
-
-    .line 20
-    .line 21
-    .line 22
-    return-void
-.end method
-
-.method public F()Z
-    .locals 1
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->c()Lcom/android/launcher3/mfvUtil/customsnackbar/b;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
-
-    .line 6
-    .line 7
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->e(Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;)Z
-
-    .line 8
-    .line 9
-    .line 10
-    move-result p0
-
-    .line 11
-    return p0
-.end method
-
-.method H(I)V
-    .locals 2
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->c()Lcom/android/launcher3/mfvUtil/customsnackbar/b;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
-
-    .line 6
-    .line 7
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->h(Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;)V
-
-    .line 8
-    .line 9
-    .line 10
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->o:Ljava/util/List;
-
-    .line 11
-    .line 12
-    if-eqz v0, :cond_0
-
-    .line 13
-    .line 14
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    .line 15
-    .line 16
-    .line 17
-    move-result v0
-
-    .line 18
-    add-int/lit8 v0, v0, -0x1
-
-    .line 19
-    .line 20
-    :goto_0
-    if-ltz v0, :cond_0
-
-    .line 21
-    .line 22
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->o:Ljava/util/List;
-
-    .line 23
-    .line 24
-    invoke-interface {v1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    .line 25
-    .line 26
-    .line 27
-    move-result-object v1
-
-    .line 28
-    check-cast v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$r;
-
-    .line 29
-    .line 30
-    invoke-virtual {v1, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$r;->a(Ljava/lang/Object;I)V
-
-    .line 31
-    .line 32
-    .line 33
-    add-int/lit8 v0, v0, -0x1
-
-    .line 34
-    .line 35
-    goto :goto_0
-
-    .line 36
-    :cond_0
-    iget-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 37
-    .line 38
-    invoke-virtual {p1}, Landroid/widget/FrameLayout;->getParent()Landroid/view/ViewParent;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object p1
-
-    .line 42
-    instance-of v0, p1, Landroid/view/ViewGroup;
-
-    .line 43
-    .line 44
-    if-eqz v0, :cond_1
-
-    .line 45
-    .line 46
-    check-cast p1, Landroid/view/ViewGroup;
-
-    .line 47
-    .line 48
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 49
-    .line 50
-    invoke-virtual {p1, p0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
-
-    .line 51
-    .line 52
-    .line 53
-    :cond_1
-    return-void
-.end method
-
-.method I()V
-    .locals 2
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->c()Lcom/android/launcher3/mfvUtil/customsnackbar/b;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
-
-    .line 6
-    .line 7
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->i(Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;)V
-
-    .line 8
-    .line 9
-    .line 10
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->o:Ljava/util/List;
-
-    .line 11
-    .line 12
-    if-eqz v0, :cond_0
-
-    .line 13
-    .line 14
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    .line 15
-    .line 16
-    .line 17
-    move-result v0
-
-    .line 18
-    add-int/lit8 v0, v0, -0x1
-
-    .line 19
-    .line 20
-    :goto_0
-    if-ltz v0, :cond_0
-
-    .line 21
-    .line 22
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->o:Ljava/util/List;
-
-    .line 23
-    .line 24
-    invoke-interface {v1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    .line 25
-    .line 26
-    .line 27
-    move-result-object v1
-
-    .line 28
-    check-cast v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$r;
-
-    .line 29
-    .line 30
-    invoke-virtual {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$r;->b(Ljava/lang/Object;)V
-
-    .line 31
-    .line 32
-    .line 33
-    add-int/lit8 v0, v0, -0x1
-
-    .line 34
-    .line 35
-    goto :goto_0
-
-    .line 36
-    :cond_0
-    return-void
-.end method
-
-.method public J(I)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+.method public addCallback(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(I)TB;"
+            "(",
+            "Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback<",
+            "TB;>;)TB;"
         }
     .end annotation
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    if-nez p1, :cond_0
 
-    .line 2
-    .line 3
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;->setAnimationMode(I)V
-
-    .line 4
-    .line 5
-    .line 6
     return-object p0
-.end method
 
-.method public K(I)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(I)TB;"
-        }
-    .end annotation
-
-    .line 1
-    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->e:I
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method M()Z
-    .locals 1
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->q:Landroid/view/accessibility/AccessibilityManager;
-
-    .line 2
-    .line 3
-    const/4 v0, 0x1
-
-    .line 4
-    invoke-virtual {p0, v0}, Landroid/view/accessibility/AccessibilityManager;->getEnabledAccessibilityServiceList(I)Ljava/util/List;
-
-    .line 5
-    .line 6
-    .line 7
-    move-result-object p0
-
-    .line 8
-    if-eqz p0, :cond_0
-
-    .line 9
-    .line 10
-    invoke-interface {p0}, Ljava/util/List;->isEmpty()Z
-
-    .line 11
-    .line 12
-    .line 13
-    move-result p0
-
-    .line 14
-    if-eqz p0, :cond_0
-
-    .line 15
-    .line 16
-    return v0
-
-    .line 17
+    .line 596
     :cond_0
-    const/4 p0, 0x0
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
 
-    .line 18
-    return p0
-.end method
-
-.method public O()V
-    .locals 2
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->c()Lcom/android/launcher3/mfvUtil/customsnackbar/b;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->w()I
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v1
-
-    .line 9
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
-
-    .line 10
-    .line 11
-    invoke-virtual {v0, v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->m(ILcom/android/launcher3/mfvUtil/customsnackbar/b$b;)V
-
-    .line 12
-    .line 13
-    .line 14
-    return-void
-.end method
-
-.method final P()V
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 2
-    .line 3
-    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$n;
-
-    .line 4
-    .line 5
-    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$n;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;->setOnAttachStateChangeListener(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$t;)V
-
-    .line 9
-    .line 10
-    .line 11
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 12
-    .line 13
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getParent()Landroid/view/ViewParent;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v0
-
-    .line 17
     if-nez v0, :cond_1
 
-    .line 18
-    .line 19
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    .line 597
+    new-instance v0, Ljava/util/ArrayList;
 
-    .line 20
-    .line 21
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 22
-    .line 23
-    .line 24
-    move-result-object v0
+    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
 
-    .line 25
-    instance-of v1, v0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;
-
-    .line 26
-    .line 27
-    if-eqz v1, :cond_0
-
-    .line 28
-    .line 29
-    check-cast v0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;
-
-    .line 30
-    .line 31
-    invoke-direct {p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->L(Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;)V
-
-    .line 32
-    .line 33
-    .line 34
-    :cond_0
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r()I
-
-    .line 35
-    .line 36
-    .line 37
-    move-result v0
-
-    .line 38
-    iput v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->n:I
-
-    .line 39
-    .line 40
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->V()V
-
-    .line 41
-    .line 42
-    .line 43
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 44
-    .line 45
-    const/4 v1, 0x4
-
-    .line 46
-    invoke-virtual {v0, v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
-
-    .line 47
-    .line 48
-    .line 49
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->a:Landroid/view/ViewGroup;
-
-    .line 50
-    .line 51
-    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 52
-    .line 53
-    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
-
-    .line 54
-    .line 55
-    .line 56
+    .line 599
     :cond_1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
 
-    .line 57
-    .line 58
-    invoke-static {v0}, LJ/I;->O(Landroid/view/View;)Z
+    invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 59
-    .line 60
-    .line 61
-    move-result v0
-
-    .line 62
-    if-eqz v0, :cond_2
-
-    .line 63
-    .line 64
-    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->Q()V
-
-    .line 65
-    .line 66
-    .line 67
-    return-void
-
-    .line 68
-    :cond_2
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 69
-    .line 70
-    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$o;
-
-    .line 71
-    .line 72
-    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$o;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-
-    .line 73
-    .line 74
-    .line 75
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;->setOnLayoutChangeListener(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$u;)V
-
-    .line 76
-    .line 77
-    .line 78
-    return-void
-.end method
-
-.method p()V
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->c:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$v;
-
-    .line 2
-    .line 3
-    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$q;
-
-    .line 4
-    .line 5
-    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$q;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Landroid/widget/FrameLayout;->post(Ljava/lang/Runnable;)Z
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method public s()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x3
-
-    .line 2
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->t(I)V
-
-    .line 3
-    .line 4
-    .line 5
-    return-void
-.end method
-
-.method protected t(I)V
-    .locals 1
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->c()Lcom/android/launcher3/mfvUtil/customsnackbar/b;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->r:Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;
-
-    .line 6
-    .line 7
-    invoke-virtual {v0, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/b;->b(Lcom/android/launcher3/mfvUtil/customsnackbar/b$b;I)V
-
-    .line 8
-    .line 9
-    .line 10
-    return-void
-.end method
-
-.method public v()Landroid/content/Context;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->b:Landroid/content/Context;
-
-    .line 2
-    .line 3
     return-object p0
 .end method
 
-.method public w()I
+.method animateViewIn()V
+    .locals 2
+
+    .line 807
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$9;
+
+    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$9;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->post(Ljava/lang/Runnable;)Z
+
+    return-void
+.end method
+
+.method public dismiss()V
+    .locals 1
+
+    const/4 v0, 0x3
+
+    .line 577
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->dispatchDismiss(I)V
+
+    return-void
+.end method
+
+.method protected dispatchDismiss(I)V
+    .locals 1
+
+    .line 581
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->getInstance()Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;
+
+    move-result-object v0
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+    invoke-virtual {v0, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->dismiss(Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;I)V
+
+    return-void
+.end method
+
+.method public getAnchorView()Landroid/view/View;
     .locals 0
 
-    .line 1
-    iget p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->e:I
+    .line 513
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->anchorView:Landroid/view/View;
 
-    .line 2
-    .line 3
+    return-object p0
+.end method
+
+.method public getAnimationMode()I
+    .locals 0
+
+    .line 496
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getAnimationMode()I
+
+    move-result p0
+
     return p0
 .end method
 
-.method protected x()Lcom/google/android/material/behavior/SwipeDismissBehavior;
+.method public getBehavior()Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
+    .locals 0
+
+    .line 555
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->behavior:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
+
+    return-object p0
+.end method
+
+.method public getContext()Landroid/content/Context;
+    .locals 0
+
+    .line 561
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->context:Landroid/content/Context;
+
+    return-object p0
+.end method
+
+.method public getDuration()I
+    .locals 0
+
+    .line 468
+    iget p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->duration:I
+
+    return p0
+.end method
+
+.method protected getNewBehavior()Lcom/google/android/material/behavior/SwipeDismissBehavior;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2530,15 +1344,535 @@
         }
     .end annotation
 
-    .line 1
+    .line 653
     new-instance p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
 
-    .line 2
-    .line 3
     invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;-><init>()V
 
-    .line 4
-    .line 5
-    .line 6
     return-object p0
+.end method
+
+.method protected getSnackbarBaseLayoutResId()I
+    .locals 0
+
+    const p0, 0x7f0e0087
+
+    return p0
+.end method
+
+.method public getView()Landroid/view/View;
+    .locals 0
+
+    .line 567
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    return-object p0
+.end method
+
+.method protected hasSnackbarStyleAttr()Z
+    .locals 3
+
+    .line 443
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->context:Landroid/content/Context;
+
+    sget-object v0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->SNACKBAR_STYLE_ATTR:[I
+
+    invoke-virtual {p0, v0}, Landroid/content/Context;->obtainStyledAttributes([I)Landroid/content/res/TypedArray;
+
+    move-result-object p0
+
+    const/4 v0, 0x0
+
+    const/4 v1, -0x1
+
+    .line 444
+    invoke-virtual {p0, v0, v1}, Landroid/content/res/TypedArray;->getResourceId(II)I
+
+    move-result v2
+
+    .line 445
+    invoke-virtual {p0}, Landroid/content/res/TypedArray;->recycle()V
+
+    if-eq v2, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :cond_0
+    return v0
+.end method
+
+.method final hideView(I)V
+    .locals 1
+
+    .line 985
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->shouldAnimate()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getVisibility()I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 986
+    invoke-direct {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->animateViewOut(I)V
+
+    goto :goto_0
+
+    .line 989
+    :cond_0
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->onViewHidden(I)V
+
+    :goto_0
+    return-void
+.end method
+
+.method public isGestureInsetBottomIgnored()Z
+    .locals 0
+
+    .line 490
+    iget-boolean p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->gestureInsetBottomIgnored:Z
+
+    return p0
+.end method
+
+.method public isShown()Z
+    .locals 1
+
+    .line 625
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->getInstance()Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;
+
+    move-result-object v0
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->isCurrent(Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method public isShownOrQueued()Z
+    .locals 1
+
+    .line 633
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->getInstance()Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;
+
+    move-result-object v0
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->isCurrentOrNext(Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method onViewHidden(I)V
+    .locals 2
+
+    .line 1007
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->getInstance()Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->onDismissed(Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;)V
+
+    .line 1008
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
+
+    if-eqz v0, :cond_0
+
+    .line 1011
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    add-int/lit8 v0, v0, -0x1
+
+    :goto_0
+    if-ltz v0, :cond_0
+
+    .line 1013
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
+
+    invoke-interface {v1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;
+
+    invoke-virtual {v1, p0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;->onDismissed(Ljava/lang/Object;I)V
+
+    add-int/lit8 v0, v0, -0x1
+
+    goto :goto_0
+
+    .line 1017
+    :cond_0
+    iget-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getParent()Landroid/view/ViewParent;
+
+    move-result-object p1
+
+    .line 1018
+    instance-of v0, p1, Landroid/view/ViewGroup;
+
+    if-eqz v0, :cond_1
+
+    .line 1019
+    check-cast p1, Landroid/view/ViewGroup;
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {p1, p0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
+
+    :cond_1
+    return-void
+.end method
+
+.method onViewShown()V
+    .locals 2
+
+    .line 994
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->getInstance()Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->onShown(Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;)V
+
+    .line 995
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
+
+    if-eqz v0, :cond_0
+
+    .line 998
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v0
+
+    add-int/lit8 v0, v0, -0x1
+
+    :goto_0
+    if-ltz v0, :cond_0
+
+    .line 1000
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
+
+    invoke-interface {v1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;
+
+    invoke-virtual {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;->onShown(Ljava/lang/Object;)V
+
+    add-int/lit8 v0, v0, -0x1
+
+    goto :goto_0
+
+    :cond_0
+    return-void
+.end method
+
+.method public removeCallback(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback;)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$BaseCallback<",
+            "TB;>;)TB;"
+        }
+    .end annotation
+
+    if-nez p1, :cond_0
+
+    return-object p0
+
+    .line 615
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->callbacks:Ljava/util/List;
+
+    if-nez v0, :cond_1
+
+    return-object p0
+
+    .line 619
+    :cond_1
+    invoke-interface {v0, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
+
+    return-object p0
+.end method
+
+.method public setAnchorView(I)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(I)TB;"
+        }
+    .end annotation
+
+    .line 530
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->targetParent:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0, p1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->anchorView:Landroid/view/View;
+
+    if-eqz v0, :cond_0
+
+    return-object p0
+
+    .line 532
+    :cond_0
+    new-instance p0, Ljava/lang/IllegalArgumentException;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v1, "Unable to find anchor view with id: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+.method public setAnchorView(Landroid/view/View;)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Landroid/view/View;",
+            ")TB;"
+        }
+    .end annotation
+
+    .line 519
+    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->anchorView:Landroid/view/View;
+
+    return-object p0
+.end method
+
+.method public setAnimationMode(I)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(I)TB;"
+        }
+    .end annotation
+
+    .line 502
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->setAnimationMode(I)V
+
+    return-object p0
+.end method
+
+.method public setBehavior(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;",
+            ")TB;"
+        }
+    .end annotation
+
+    .line 545
+    iput-object p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->behavior:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$Behavior;
+
+    return-object p0
+.end method
+
+.method public setDuration(I)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(I)TB;"
+        }
+    .end annotation
+
+    .line 457
+    iput p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->duration:I
+
+    return-object p0
+.end method
+
+.method public setGestureInsetBottomIgnored(Z)Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(Z)TB;"
+        }
+    .end annotation
+
+    .line 481
+    iput-boolean p1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->gestureInsetBottomIgnored:Z
+
+    return-object p0
+.end method
+
+.method shouldAnimate()Z
+    .locals 1
+
+    .line 1026
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->accessibilityManager:Landroid/view/accessibility/AccessibilityManager;
+
+    const/4 v0, 0x1
+
+    .line 1027
+    invoke-virtual {p0, v0}, Landroid/view/accessibility/AccessibilityManager;->getEnabledAccessibilityServiceList(I)Ljava/util/List;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_0
+
+    .line 1028
+    invoke-interface {p0}, Ljava/util/List;->isEmpty()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
+    return v0
+.end method
+
+.method public show()V
+    .locals 2
+
+    .line 572
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->getInstance()Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;
+
+    move-result-object v0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->getDuration()I
+
+    move-result v1
+
+    iget-object p0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->managerCallback:Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;
+
+    invoke-virtual {v0, v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager;->show(ILcom/android/launcher3/mfvUtil/customsnackbar/SnackbarManager$Callback;)V
+
+    return-void
+.end method
+
+.method final showView()V
+    .locals 2
+
+    .line 657
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$6;
+
+    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$6;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->setOnAttachStateChangeListener(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$OnAttachStateChangeListener;)V
+
+    .line 688
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    if-nez v0, :cond_1
+
+    .line 689
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v0
+
+    .line 691
+    instance-of v1, v0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;
+
+    if-eqz v1, :cond_0
+
+    .line 692
+    check-cast v0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;
+
+    invoke-direct {p0, v0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->setUpBehavior(Landroidx/coordinatorlayout/widget/CoordinatorLayout$LayoutParams;)V
+
+    .line 695
+    :cond_0
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->calculateBottomMarginForAnchorView()I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->extraBottomMarginAnchorView:I
+
+    .line 696
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->updateMargins()V
+
+    .line 700
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    const/4 v1, 0x4
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->setVisibility(I)V
+
+    .line 701
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->targetParent:Landroid/view/ViewGroup;
+
+    iget-object v1, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    .line 704
+    :cond_1
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    invoke-static {v0}, Landroidx/core/view/ViewCompat;->isLaidOut(Landroid/view/View;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 705
+    invoke-direct {p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->showViewImpl()V
+
+    return-void
+
+    .line 710
+    :cond_2
+    iget-object v0, p0, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;->view:Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;
+
+    new-instance v1, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$7;
+
+    invoke-direct {v1, p0}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$7;-><init>(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$SnackbarBaseLayout;->setOnLayoutChangeListener(Lcom/android/launcher3/mfvUtil/customsnackbar/BaseTransientBottomBar$OnLayoutChangeListener;)V
+
+    return-void
 .end method

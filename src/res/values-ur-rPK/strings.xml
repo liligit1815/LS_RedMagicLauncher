@@ -84,6 +84,7 @@
     <string name="app_uninstall_disable">سسٹم ایپ کو ان انسٹال کرنے سے قاصر</string>
     <string name="app_waiting_download_title">%1$s انسٹال ہونے کا انتظار کر رہا ہے</string>
     <string name="application_myos_name">سسٹم لانچر</string>
+    <string name="apps_uninstall_dialog_remind">%1$d ایپس اَن انسٹال کریں؟</string>
     <string name="auto_add_shortcuts_description">نئی ایپس کے لیے</string>
     <string name="auto_add_shortcuts_label">ہوم اسکرین پر ایپ آئیکنز شامل کریں۔</string>
     <string name="auto_align">ایپ آٹو فل</string>
@@ -96,6 +97,7 @@
     <string name="back_gesture_feedback_swipe_too_far_from_edge">یقینی بنائیں کہ آپ بہت دائیں یا بہت بائیں کنارے سے سوائپ کرتے ہیں۔</string>
     <string name="back_gesture_intro_subtitle">آخری اسکرین پر واپس جانے کے لیے، بائیں یا دائیں کنارے سے اسکرین کے وسط تک سوائپ کریں۔</string>
     <string name="back_gesture_intro_title">واپس جانے کے لیے سوائپ کریں۔</string>
+    <string name="back_gesture_spoken_intro_subtitle">آخری اسکرین پر واپس جانے کے لیے، 2 انگلیوں سے بائیں یا دائیں کنارے سے اسکرین کے وسط تک سوائپ کریں۔</string>
     <string name="back_gesture_tutorial_confirm_subtitle">پیچھے کے اشارے کی حساسیت کو تبدیل کرنے کے لیے، ترتیبات پر جائیں۔</string>
     <string name="back_gesture_tutorial_subtitle">بائیں یا دائیں کنارے سے اسکرین کے درمیان تک سوائپ کریں</string>
     <string name="back_gesture_tutorial_title">پیچھے جائیں</string>
@@ -200,6 +202,7 @@
     <string name="home_gesture_feedback_wrong_swipe_direction">یقینی بنائیں کہ آپ سیدھے اوپر سوائپ کریں۔</string>
     <string name="home_gesture_intro_subtitle">اپنی اسکرین کے نیچے سے اوپر کی طرف سوائپ کریں۔ یہ اشارہ ہمیشہ آپ کو ہوم اسکرین پر لے جاتا ہے۔</string>
     <string name="home_gesture_intro_title">گھر جانے کے لیے سوائپ کریں۔</string>
+    <string name="home_gesture_spoken_intro_subtitle">اپنی اسکرین کے نیچے سے اوپر کی طرف 2 انگلیوں سے سوائپ کریں۔ یہ اشارہ ہمیشہ آپ کو ہوم اسکرین پر لے جاتا ہے۔</string>
     <string name="home_gesture_tutorial_subtitle">اپنی اسکرین کے نیچے سے اوپر کی طرف سوائپ کریں</string>
     <string name="home_gesture_tutorial_success">بہت اچھے!</string>
     <string name="home_gesture_tutorial_title">ہوم پر جائیں</string>
@@ -223,6 +226,7 @@
     <string name="icon_top_target_label">اوپر کے ساتھ سیدھ کریں۔</string>
     <string name="install_drop_target_label">انسٹال کریں</string>
     <string name="install_private_system_shortcut_label">نجی طور پر انسٹال کریں</string>
+    <string name="item_added_to_workspace">آئٹم کو ہوم اسکرین پر شامل کر دیا گیا۔</string>
     <string name="item_is_selected">%1$s کو منتخب کر لیا گیا ہے۔</string>
     <string name="item_moved">آئٹم کو منتقل کر دیا گیا۔</string>
     <string name="item_removed">آئٹم ہٹا دیا گیا۔</string>
@@ -247,6 +251,7 @@
     <string name="menu_tab_effect">اثر</string>
     <string name="menu_tab_wallpaper">وال پیپر</string>
     <string name="mfv_fullscreen_to_smallwindow_not_support_msg">یہ ایپ چھوٹی ونڈو کو سپورٹ نہیں کرتی ہے</string>
+    <string name="mfv_message_zvoice_removed">اسمارٹ آواز کو ان انسٹال کر دیا گیا ہے، آواز کو جگانے سے قاصر ہے۔ اس فنکشن کو عام طور پر استعمال کرنے کے لیے، براہ کرم اسمارٹ وائس اپلیکیشن کو \"سیٹنگز ->سسٹم اور اپ ڈیٹ ->ری سیٹ آپشنز ->ریسٹور اپلیکیشن\" میں بحال کریں۔</string>
     <string name="mfv_miniwindow_tips_moving_msg">منی ونڈو میں داخل ہونے کے لیے یہاں گھسیٹیں</string>
     <string name="mfv_miniwindow_tips_transferhang_cast_app_msg">"ایپ کو منتقل کرنے کے لیے یہاں گھسیٹیں
 %1$s"</string>
@@ -282,6 +287,7 @@
     <string name="notification_dots_service_title">اطلاع کے نقطے دکھائیں۔</string>
     <string name="notification_dots_title">اطلاع کے نقطے۔</string>
     <string name="notifications_header">اطلاعات</string>
+    <string name="one_apps_uninstall_dialog_remind">1 ایپ اَن انسٹال کریں؟</string>
     <string name="others_widget_recommendation_category_label">آپ کے لیے تجویز کردہ</string>
     <string name="out_of_space">اس ہوم اسکرین پر کوئی جگہ نہیں ہے۔</string>
     <string name="overview_gesture_feedback_complete_with_follow_up">آپ نے اشاروں کو استعمال کرنے کا طریقہ سیکھا۔ اشاروں کو بند کرنے کے لیے، ترتیبات پر جائیں۔</string>
@@ -291,6 +297,7 @@
     <string name="overview_gesture_feedback_wrong_swipe_direction">یقینی بنائیں کہ آپ سیدھے اوپر سوائپ کرتے ہیں، پھر توقف کریں۔</string>
     <string name="overview_gesture_intro_subtitle">ایپس کے درمیان سوئچ کرنے کے لیے، اپنی اسکرین کے نیچے سے اوپر کی طرف سوائپ کریں، دبائے رکھیں، پھر چھوڑ دیں۔</string>
     <string name="overview_gesture_intro_title">ایپس کو سوئچ کرنے کے لیے سوائپ کریں۔</string>
+    <string name="overview_gesture_spoken_intro_subtitle">ایپس کے درمیان سوئچ کرنے کے لیے، اپنی اسکرین کے نیچے سے 2 انگلیوں سے اوپر کی طرف سوائپ کریں، تھامے رکھیں، پھر چھوڑ دیں۔</string>
     <string name="overview_gesture_tutorial_subtitle">اپنی اسکرین کے نیچے سے اوپر کی طرف سوائپ کریں، تھامے رکھیں، پھر چھوڑ دیں</string>
     <string name="overview_gesture_tutorial_success">شاباش!</string>
     <string name="overview_gesture_tutorial_title">ایپس کو سوئچ کریں</string>
@@ -428,6 +435,8 @@
     <string name="suggested_widgets_header_title">تجاویز (%1$d)</string>
     <string name="system_shortcut_folder_change_background_color">پس منظر کا رنگ</string>
     <string name="system_shortcut_folder_rename">نام بدلیں</string>
+    <string name="task_view_closed">ٹاسک بند ہوگیا</string>
+    <string name="taskbar_a11y_hidden_title">ٹاسک بار چھپا ہوا ہے</string>
     <string name="taskbar_a11y_shown_title">ٹاسک بار دکھایا گیا ہے</string>
     <string name="taskbar_a11y_title">ٹاسک بار</string>
     <string name="taskbar_button_a11y">Accessibility</string>

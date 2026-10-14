@@ -19,7 +19,7 @@ def method(signature):
     while depth:
         depth += (source[end] == "{") - (source[end] == "}")
         end += 1
-    return source[start:end].replace("com.android.quickstep.FullscreenDrawParams", "FullscreenDrawParams")
+    return source[start:end]
 
 
 harness = r'''
@@ -31,18 +31,18 @@ public class FanCornersTest {
         int getWidth(){return width;}int getHeight(){return height;}
     }
     static class RecentsView {boolean fan=true;boolean isFanStyle(){return fan;}}
-    static class TaskContainer {View snapshot;TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}}
     static class TaskView {
+    static class TaskContainer {View snapshot;TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}}
+    static class FullscreenDrawParams {
+        float radius;int writes;
+        FullscreenDrawParams(float r){radius=r;}
+        float getCurrentDrawnCornerRadius(){return radius;}
+        void setCurrentDrawnCornerRadius(float r){radius=r;writes++;}
+    }
         RecentsView recents=new RecentsView();
         List<TaskContainer> containers=new ArrayList<>();
         RecentsView getRecentsView(){return recents;}
         List<TaskContainer> getTaskContainers(){return containers;}
-    }
-    static class FullscreenDrawParams {
-        float radius;int writes;
-        FullscreenDrawParams(float r){radius=r;}
-        float getCurrentCornerRadius(){return radius;}
-        void setCurrentCornerRadius(float r){radius=r;writes++;}
     }
     SOURCE
     static int checks;
@@ -51,7 +51,7 @@ public class FanCornersTest {
         check(Float.isFinite(actual)&&Math.abs(actual-expected)<.002f,label+": "+actual+" != "+expected);
     }
     static TaskView task(int width,int height){
-        TaskView task=new TaskView();task.containers.add(new TaskContainer(new View(width,height)));return task;
+        TaskView task=new TaskView();task.containers.add(new TaskView.TaskContainer(new View(width,height)));return task;
     }
     public static void main(String[] args){
         // The physical screenshot radius must stay below one tenth of its
@@ -60,7 +60,7 @@ public class FanCornersTest {
         for(float scale:new float[]{.08f,.12f,.2f,.4f,.7f,1f}) {
             TaskView task=task(width,height);
             float original=48f/scale,cap=Math.min(width,height)*.1f;
-            FullscreenDrawParams params=new FullscreenDrawParams(original);
+            TaskView.FullscreenDrawParams params=new TaskView.FullscreenDrawParams(original);
             adjustFanCornerRadius(task,params,0);
             near(params.radius,Math.min(original,cap),"fan radius cap");
             check(params.radius*scale<=Math.min(width,height)*scale*.10001f,"small card remains capsule");
@@ -82,8 +82,8 @@ public class FanCornersTest {
             adjustFanCornerRadius(task,params,0);
             near(params.radius,original,"other style radius changed");check(params.writes==writes,"other style params mutated");
         }
-        TaskView grouped=task(1000,1800);grouped.containers.add(new TaskContainer(new View(420,900)));
-        FullscreenDrawParams p=new FullscreenDrawParams(400);
+        TaskView grouped=task(1000,1800);grouped.containers.add(new TaskView.TaskContainer(new View(420,900)));
+        TaskView.FullscreenDrawParams p=new TaskView.FullscreenDrawParams(400);
         adjustFanCornerRadius(grouped,p,0);near(p.radius,42,"split card short side ignored");
         for(TaskView empty:new TaskView[]{new TaskView(),task(0,100),task(100,0)}){
             p.radius=400;int writes=p.writes;adjustFanCornerRadius(empty,p,0);
@@ -109,13 +109,22 @@ with tempfile.TemporaryDirectory(prefix="launcher-fan-corners-") as directory:
     subprocess.run(["javac", "-encoding", "UTF-8", "-d", directory, str(java)], check=True)
     subprocess.run(["java", "-cp", directory, "FanCornersTest"], check=True)
 
-task_source = (ROOT / "src/smali_classes2/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
-update = task_source.split(".method protected final updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V", 1)[1].split(".end method", 1)[0]
+task_source = (ROOT / "src/smali_classes3/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
+update = task_source.split(".method protected final updateFullscreenParams(Lcom/android/quickstep/views/TaskView$FullscreenDrawParams;)V", 1)[1].split(".end method", 1)[0]
 assert ".locals 3" in update
 assert "move-result p0" not in update
 assert update.index("->setProgress(FFF)V") < update.index("->adjustFanCornerRadius(")
 assert "invoke-static {p0, p1, v1}" in update
-dispatch = task_source.split(".method protected updateFullscreenParams()V", 1)[1].split(".end method", 1)[0]
-assert dispatch.index("->updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V") < dispatch.index("->setCornerRadius(F)V")
-assert dispatch.index("->updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V") < dispatch.index("->setFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V")
-print("PASS OEM progress, new/legacy thumbnail corner dispatch and preserved TaskView receiver")
+# OEM10 recalculates nested parameters before dispatching them to its
+# legacy snapshot and overlay; OEM11's combined method/new radius API is absent.
+current = task_source.split(".method protected updateCurrentFullscreenParams()V", 1)[1].split(".end method", 1)[0]
+assert "->updateFullscreenParams(Lcom/android/quickstep/views/TaskView$FullscreenDrawParams;)V" in current
+assert "->currentFullscreenParams:Lcom/android/quickstep/views/TaskView$FullscreenDrawParams;" in current
+thumbnail = task_source.split(".method protected getThumbnailFullscreenParams()", 1)[1].split(".end method", 1)[0]
+assert "->currentFullscreenParams:Lcom/android/quickstep/views/TaskView$FullscreenDrawParams;" in thumbnail
+dispatch = task_source.split(".method protected updateSnapshotRadius()V", 1)[1].split(".end method", 1)[0]
+assert dispatch.index("->updateCurrentFullscreenParams()V") < dispatch.index("->setFullscreenParams(")
+assert dispatch.count("->getThumbnailFullscreenParams()") == 2
+assert "TaskThumbnailViewDeprecated;->setFullscreenParams(Lcom/android/quickstep/views/TaskView$FullscreenDrawParams;)V" in dispatch
+assert "TaskOverlayFactory$TaskOverlay;->setFullscreenParams(Lcom/android/quickstep/views/TaskView$FullscreenDrawParams;)V" in dispatch
+print("PASS OEM10 progress, nested params, snapshot/overlay corner dispatch and preserved TaskView receiver")

@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -18,26 +18,20 @@
 
 
 # virtual methods
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
-.end method
-
 .method public abstract getPackageName()Ljava/lang/String;
 .end method
 
-.method public abstract getPackageNameBytes()Lcom/google/protobuf/h;
+.method public abstract getPackageNameBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract getTitle()Ljava/lang/String;
 .end method
 
-.method public abstract getTitleBytes()Lcom/google/protobuf/h;
+.method public abstract getTitleBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract hasPackageName()Z
 .end method
 
 .method public abstract hasTitle()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

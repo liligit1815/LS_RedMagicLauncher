@@ -44,9 +44,18 @@ public final class LsFanChrome {
         if (recents != null && recents.isFanStyle()) task.invalidate();
     }
 
+    /** The 10-series legacy unload clears the icon but leaves its TextView.
+     * Clear only a fan label so a recycled card cannot retain its prior name. */
+    public static void clearTitle(TaskView task, TextView title) {
+        RecentsView recents = task.getRecentsView();
+        if (recents == null || !recents.isFanStyle() || title == null) return;
+        title.setText(null);
+        titleChanged(task);
+    }
+
     /** Newer OEM data binding writes its chip text instead of the legacy title
      * view. Keep the fan label's text source in sync, including unload/rebind. */
-    public static void updateTitle(TaskContainer container, CharSequence text) {
+    public static void updateTitle(TaskView.TaskContainer container, CharSequence text) {
         TaskView task = container.getTaskView();
         if (task == null || task.getRecentsView() == null || !task.getRecentsView().isFanStyle()) return;
         TextView title = container.getTitleView();
@@ -61,7 +70,7 @@ public final class LsFanChrome {
                 || !labelsVisible(task)) return;
         // Always record the label, even on a transparent entry frame. The
         // TaskView RenderNode applies its current alpha when replaying it.
-        TaskContainer container = task.getTaskContainers().get(0);
+        TaskView.TaskContainer container = task.getTaskContainers().get(0);
         if (container.getSnapshotView() != child) return;
         TextView title = container.getTitleView();
         if (title == null || title.getText() == null || title.getText().length() == 0) return;

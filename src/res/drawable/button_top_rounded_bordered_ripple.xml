@@ -5,7 +5,7 @@
         <item>
             <shape android:shape="rectangle">
                 <corners android:topLeftRadius="12.0dp" android:topRightRadius="12.0dp" android:bottomLeftRadius="4.0dp" android:bottomRightRadius="4.0dp" />
-                <solid android:color="@color/materialColorSurfaceContainerHighest" />
+                <solid android:color="@color/material_color_surface_container_highest" />
                 <stroke android:width="2.0dp" android:color="@color/button_bg" />
             </shape>
         </item>

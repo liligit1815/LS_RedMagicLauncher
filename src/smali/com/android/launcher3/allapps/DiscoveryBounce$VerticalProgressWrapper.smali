@@ -3,72 +3,85 @@
 .source "DiscoveryBounce.java"
 
 
-# instance fields
-.field private final a:Landroid/view/View;
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/launcher3/allapps/DiscoveryBounce;
+.end annotation
 
-.field private final b:F
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "VerticalProgressWrapper"
+.end annotation
+
+
+# instance fields
+.field private final mLimit:F
+
+.field private final mView:Landroid/view/View;
+
+
+# direct methods
+.method private constructor <init>(Landroid/view/View;F)V
+    .locals 0
+
+    .line 155
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 156
+    iput-object p1, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->mView:Landroid/view/View;
+
+    .line 157
+    iput p2, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->mLimit:F
+
+    return-void
+.end method
+
+.method synthetic constructor <init>(Landroid/view/View;FLcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper-IA;)V
+    .locals 0
+
+    invoke-direct {p0, p1, p2}, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;-><init>(Landroid/view/View;F)V
+
+    return-void
+.end method
 
 
 # virtual methods
 .method public getProgress()F
     .locals 1
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->a:Landroid/view/View;
+    .line 161
+    iget-object v0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->mView:Landroid/view/View;
 
-    .line 2
-    .line 3
     invoke-virtual {v0}, Landroid/view/View;->getTranslationY()F
 
-    .line 4
-    .line 5
-    .line 6
     move-result v0
 
-    .line 7
-    iget p0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->b:F
+    iget p0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->mLimit:F
 
-    .line 8
-    .line 9
     div-float/2addr v0, p0
 
-    .line 10
     const/high16 p0, 0x3f800000    # 1.0f
 
-    .line 11
-    .line 12
     add-float/2addr v0, p0
 
-    .line 13
     return v0
 .end method
 
 .method public setProgress(F)V
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->a:Landroid/view/View;
+    .line 165
+    iget-object v0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->mView:Landroid/view/View;
 
-    .line 2
-    .line 3
-    iget p0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->b:F
+    iget p0, p0, Lcom/android/launcher3/allapps/DiscoveryBounce$VerticalProgressWrapper;->mLimit:F
 
-    .line 4
-    .line 5
     const/high16 v1, 0x3f800000    # 1.0f
 
-    .line 6
-    .line 7
     sub-float/2addr p1, v1
 
-    .line 8
     mul-float/2addr p0, p1
 
-    .line 9
     invoke-virtual {v0, p0}, Landroid/view/View;->setTranslationY(F)V
 
-    .line 10
-    .line 11
-    .line 12
     return-void
 .end method

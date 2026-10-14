@@ -1,5 +1,5 @@
 .class public final Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer$Builder;
-.super Lcom/google/protobuf/y$a;
+.super Lcom/google/protobuf/GeneratedMessageLite$Builder;
 .source "LauncherAtom.java"
 
 # interfaces
@@ -18,7 +18,7 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lcom/google/protobuf/y$a<",
+        "Lcom/google/protobuf/GeneratedMessageLite$Builder<",
         "Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer;",
         "Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer$Builder;",
         ">;",
@@ -31,20 +31,19 @@
 .method private constructor <init>()V
     .locals 1
 
-    .line 2
-    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer;->a()Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer;
+    .line 7197
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer;->-$$Nest$sfgetDEFAULT_INSTANCE()Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer;
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/google/protobuf/y$a;-><init>(Lcom/google/protobuf/y;)V
+    invoke-direct {p0, v0}, Lcom/google/protobuf/GeneratedMessageLite$Builder;-><init>(Lcom/google/protobuf/GeneratedMessageLite;)V
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/launcher3/logger/a;)V
+.method synthetic constructor <init>(Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer$Builder-IA;)V
     .locals 0
 
-    .line 1
     invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$SettingsContainer$Builder;-><init>()V
 
     return-void

@@ -110,16 +110,11 @@
     <string name="back_gesture_feedback_swipe_too_far_from_edge">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‏‏‏‎‎‎‎‏‏‏‎‏‏‏‏‏‎‎‏‏‏‎‏‎‎‏‎‏‏‎‎‏‎‎‏‏‎‏‏‎‎‏‎‏‏‏‎‏‎‎‎‎‎‎‏‎Make sure you swipe from the far-right or far-left edge‎‏‎‎‏‎</string>
     <string name="back_gesture_intro_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‏‏‎‏‏‏‎‎‏‏‏‏‎‎‎‏‏‏‏‎‎‏‏‎‎‎‏‏‏‎‎‎‎‎‎‏‎‎‏‏‏‎‎‎‎‏‏‎‎‎‏‏‏‎‏‎‏‏‎‏‎To go back to the last screen, swipe from the left or right edge to the middle of the screen.‎‏‎‎‏‎</string>
     <string name="back_gesture_intro_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‎‏‏‏‏‎‎‎‏‎‏‎‏‏‏‎‏‎‏‏‏‎‎‎‎‏‏‏‎‎‏‏‏‏‎‎‏‏‎‏‏‏‏‏‎‏‎‎‏‎‎‎‎‏‎‏‏‎‎‎Swipe to go back‎‏‎‎‏‎</string>
+    <string name="back_gesture_spoken_intro_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‏‏‎‎‎‎‎‎‎‎‏‎‎‎‏‏‏‏‎‏‏‎‏‎‏‎‏‏‎‏‏‎‎‎‏‎‎‏‎‎‎‎‎‎‎‎‏‏‏‏‏‏‏‎‏‎‎‎‎‎To go back to the last screen, swipe with 2 fingers from the left or right edge to the middle of the screen.‎‏‎‎‏‎</string>
     <string name="back_gesture_tutorial_confirm_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‏‏‏‏‏‏‎‎‏‏‏‏‎‏‏‎‎‎‏‏‏‎‏‎‎‎‏‏‏‏‏‎‏‏‏‎‏‎‏‎‎‏‎‏‎‎‏‏‏‏‏‎‎‏‎‎‎‏‎‎To change the sensitivity of the back gesture, go to Settings‎‏‎‎‏‎</string>
     <string name="back_gesture_tutorial_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‎‎‎‏‎‎‏‎‏‏‏‏‏‏‏‏‎‏‏‎‏‎‏‎‎‏‏‏‎‎‏‏‏‏‎‏‎‏‎‏‎‏‏‎‏‏‎‏‎‎‏‎‎‏‏‏‎‎Swipe from the left or right edge to the middle of the screen‎‏‎‎‏‎</string>
     <string name="back_gesture_tutorial_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‏‏‏‏‏‎‏‎‎‎‏‏‎‎‎‏‏‎‏‏‎‏‏‏‎‏‏‏‎‏‎‏‎‎‏‎‎‏‏‏‎‎‏‎‎‎‎‏‏‎‎‏‏‎‏‎Go back‎‏‎‎‏‎</string>
     <string name="blocked_by_policy">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‏‎‎‏‎‏‏‏‏‏‏‎‎‎‏‏‎‎‎‎‏‎‎‏‏‎‎‏‏‏‎‏‎‏‏‏‎‎‎‎‎‎‎‎‏‏‏‏‏‏‏‎‎‏‎‏‎‏‎‎This action isn't allowed by the app or your organization‎‏‎‎‏‎"</string>
-    <string name="bubble">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‎‏‎‏‎‏‎‎‏‎‏‎‏‎‏‎‎‎‎‏‏‏‏‏‎‏‏‎‏‎‎‏‏‎‏‎‏‎‎‏‏‎‎‎‎‎‏‎‏‎‎‏‏‏‏‏‏‏‎‎Bubble‎‏‎‎‏‎</string>
-    <string name="bubble_bar_accessibility_announce_collapse">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‎‏‏‎‎‏‏‏‎‎‎‎‏‏‏‏‎‏‏‎‏‏‏‏‎‏‏‎‎‏‏‏‎‏‏‏‎‏‎‏‎‎‎‏‏‏‎‏‎‎‎‎‏‏‏‎‎‎‏‏‏‎collapse ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
-    <string name="bubble_bar_accessibility_announce_expand">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‎‏‎‎‏‏‎‏‏‏‎‎‎‏‏‎‏‎‎‏‏‏‎‎‏‎‏‎‏‏‎‏‎‏‎‏‏‏‏‎‎‎‎‎‏‎‎‎‏‏‏‏‎‏‏‎‏‏‏‎‎expand ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
-    <string name="bubble_bar_action_dismiss_all">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‏‎‏‏‎‏‎‏‎‏‎‏‏‏‏‏‏‏‎‎‎‏‏‏‏‏‎‏‎‏‏‎‎‏‎‎‏‏‏‏‎‏‏‎‎‎‎‎‏‏‎‎‎‏‏‎‏‎‎‎Dismiss all‎‏‎‎‏‎</string>
-    <string name="bubble_bar_action_move_left">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‏‎‏‏‏‏‎‎‏‎‎‏‎‎‎‏‏‎‎‎‏‏‏‏‎‎‎‏‎‎‎‏‎‏‎‎‎‎‏‏‎‏‎‎‎‎‏‎‎‎‎‎‏‎‎‎‏‏‎‎Move left‎‏‎‎‏‎</string>
-    <string name="bubble_bar_action_move_right">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‏‏‏‏‏‏‏‎‎‏‎‏‏‏‏‏‎‏‎‏‏‎‏‎‎‎‎‏‎‏‏‏‏‎‎‏‎‏‎‎‎‎‏‎‎‏‎‎‏‏‏‎‎‏‏‎‎‏‏‎Move right‎‏‎‎‏‎</string>
     <string name="bubble_bar_bubble_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‎‎‎‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‏‏‏‏‎‏‏‏‏‎‏‏‏‎‎‏‏‎‎‎‏‎‏‏‎‎‏‏‏‏‏‏‏‎‏‏‏‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ from ‎‏‎‎‏‏‎%2$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
     <string name="bubble_bar_bubble_fallback_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‏‎‏‎‎‎‏‎‏‎‏‏‎‏‏‎‏‏‎‏‎‏‏‎‎‎‏‏‎‏‏‏‎‎‎‏‏‏‎‎‏‎‏‏‎‏‏‏‏‎‏‎‎‏‎Bubble‎‏‎‎‏‎</string>
     <string name="bubble_bar_description_multiple_bubbles">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‎‏‏‎‎‏‏‎‏‏‏‎‎‏‏‏‏‎‏‏‎‎‏‎‎‎‏‎‏‏‏‎‏‎‎‏‎‎‏‎‏‎‎‎‏‎‏‏‎‎‏‎‎‏‏‎‎‎‎‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ and ‎‏‎‎‏‏‎%2$d‎‏‎‎‏‏‏‎ more‎‏‎‎‏‎</string>
@@ -177,6 +172,7 @@
     <string name="home_gesture_feedback_wrong_swipe_direction">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‏‎‎‏‎‏‎‎‏‎‏‎‎‏‏‎‏‏‏‏‏‎‎‏‎‏‏‏‏‏‏‏‎‎‎‏‎‏‎‎‏‏‎‎‏‏‏‎‎‎‎‎‏‏‎‎‎Make sure you swipe straight up‎‏‎‎‏‎</string>
     <string name="home_gesture_intro_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‎‏‎‎‏‎‎‎‎‏‏‏‏‎‎‏‎‏‏‏‎‎‏‏‎‎‏‎‎‎‎‏‎‎‎‎‎‎‏‏‏‏‎‏‏‎‎‏‏‎‎‎‎‎‎‏‏‏‏‎‎Swipe up from the bottom of your screen. This gesture always takes you to the Home screen.‎‏‎‎‏‎</string>
     <string name="home_gesture_intro_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‎‏‎‏‏‏‎‎‏‏‏‎‎‎‎‏‎‏‎‏‎‎‏‏‏‎‏‎‏‎‎‎‎‎‏‎‎‎‏‏‏‎‏‎‏‏‏‎‏‏‎‎‎‎‏‏‎‎‏‏‎‎Swipe to go home‎‏‎‎‏‎</string>
+    <string name="home_gesture_spoken_intro_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‎‏‏‏‎‎‏‎‎‏‏‏‎‏‏‎‎‏‏‎‏‏‏‎‏‏‎‏‏‏‎‎‎‎‎‏‎‎‏‎‎‏‏‎‎‏‏‏‎‎‏‎‏‏‎‎‎‎‏‏‎‎Swipe up with 2 fingers from the bottom of the screen. This gesture always takes you to the Home screen.‎‏‎‎‏‎</string>
     <string name="home_gesture_tutorial_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‏‎‎‎‏‏‏‎‏‏‏‏‎‎‏‎‏‎‎‎‎‎‎‏‏‏‏‏‎‎‎‏‏‏‏‎‎‏‎‎‎‎‎‏‏‏‏‎‎‏‏‎‏‎‏‎‎Swipe up from the bottom of your screen‎‏‎‎‏‎</string>
     <string name="home_gesture_tutorial_success">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‎‎‎‎‎‎‏‏‎‎‎‏‎‎‎‏‏‏‏‎‎‎‏‏‏‏‎‏‎‎‎‎‏‏‏‏‏‎‏‏‎‎‎‏‎‏‏‏‎‏‎‏‎‎‎‏‏‏‏‎Great job!‎‏‎‎‏‎</string>
     <string name="home_gesture_tutorial_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‎‏‏‎‏‏‎‎‏‎‎‏‎‏‏‏‏‏‏‎‏‎‎‎‏‎‏‏‎‏‏‏‎‏‎‎‎‎‎‏‎‏‏‎‏‎‎‏‎‎‏‏‎‎‎‎‎‎‎‎Go home‎‏‎‎‏‎</string>
@@ -197,6 +193,7 @@
     <string name="hotseat_tip_no_empty_slots">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‎‎‏‎‎‏‏‎‎‏‎‎‎‎‎‏‏‎‎‏‏‏‏‎‏‎‎‎‏‎‏‏‏‏‎‎‎‏‏‎‏‏‎‏‏‎‏‎‏‎‏‎‎‏‏‏‎‎‎‏‎Drag apps off the bottom row to get app suggestions‎‏‎‎‏‎</string>
     <string name="install_drop_target_label">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‎‎‏‏‎‎‏‏‏‏‎‎‏‎‏‎‏‏‏‏‎‎‏‎‎‎‏‎‏‎‏‏‏‏‎‏‏‎‎‎‎‎‎‏‎‏‎‎‎‏‎‏‏‎‎‎‏‏‎‏‎Install‎‏‎‎‏‎</string>
     <string name="install_private_system_shortcut_label">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‎‏‏‎‎‏‏‏‎‎‎‎‎‏‎‏‏‎‎‎‎‎‏‏‏‎‏‏‎‎‎‏‏‎‎‏‎‎‎‏‎‏‎‏‏‏‎‏‏‎‎‎‎‏‎‎‏‎‎‏‎Install in private‎‏‎‎‏‎</string>
+    <string name="item_added_to_workspace">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‎‏‎‎‏‏‏‎‎‎‎‏‎‏‏‏‏‎‏‎‏‏‎‏‏‎‎‏‎‎‏‏‎‏‏‎‏‎‏‏‏‏‎‏‏‎‏‎‎‎‎‎‎‏‎‎‎‏‏‎Item added to home screen‎‏‎‎‏‎</string>
     <string name="item_moved">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‎‏‏‎‏‏‎‏‏‎‎‎‏‏‎‎‏‎‏‎‏‎‏‎‎‏‎‎‎‏‎‏‏‏‏‏‎‎‎‏‎‏‏‎‎‎‏‏‏‏‎Item moved‎‏‎‎‏‎</string>
     <string name="item_removed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‎‏‎‏‏‏‏‎‎‏‏‏‏‏‏‎‎‏‎‎‏‎‎‎‏‏‎‎‏‎‎‎‎‎‏‎‎‎‎‏‎‏‏‏‎‏‎‎‏‏‏‎‏‏‎‎‏‎‏‏‏‎Item removed‎‏‎‎‏‎</string>
     <string name="label_application">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‏‏‎‎‏‏‎‎‏‏‎‏‏‎‎‎‎‏‏‏‏‏‏‎‎‎‎‏‏‏‏‏‎‎‎‏‎‏‏‏‏‎‎‏‎‎‎‎‏‎‎‏‎‎‎‎‎‏‎‎App‎‏‎‎‏‎</string>
@@ -211,7 +208,6 @@
     <string name="move_to_position">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‏‏‎‏‎‏‏‎‎‏‏‎‏‏‎‎‏‎‏‏‎‎‏‏‏‏‎‎‏‎‏‏‎‏‎‏‏‏‏‏‎‏‎‎‎‏‎‏‏‏‏‎‎‏‏‏‎‎Move to position ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
     <string name="msg_disabled_by_admin">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‏‎‎‎‎‎‏‎‎‎‏‎‏‏‏‎‏‏‎‎‏‏‎‎‏‎‏‎‎‎‎‎‎‎‏‏‏‏‎‏‏‎‏‏‏‎‏‎Disabled by your admin‎‏‎‎‏‎</string>
     <string name="msg_missing_notification_access">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‎‏‎‏‏‏‏‏‎‎‏‏‎‏‎‏‏‎‏‏‏‏‎‏‏‎‎‎‎‎‏‏‎‏‎‏‏‏‏‏‏‏‎‏‎‎‎‎‎‏‎‏‎‎‏‎‏‎‏‎‎‎To show Notification Dots, turn on app notifications for ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
-    <string name="new_window_option_taskbar">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‎‎‏‎‏‏‏‏‏‏‎‏‎‏‎‏‎‏‏‏‎‏‏‏‏‎‎‏‎‎‎‏‎‏‏‏‎‏‏‏‏‎‏‎‏‎‎‎‏‎‎‏‎‏‎‏‎‏‏‎New Window‎‏‎‎‏‎</string>
     <string name="news_widget_recommendation_category_label">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‏‏‏‎‎‎‎‏‎‏‎‏‏‏‎‏‎‏‏‏‎‎‎‎‏‎‎‏‎‎‎‏‎‎‎‏‏‏‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎News &amp; magazines‎‏‎‎‏‎</string>
     <string name="no_search_results">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‎‏‎‎‏‎‎‏‎‎‎‏‏‎‎‎‎‏‏‎‎‎‎‏‎‎‎‎‏‎‎‏‎‎‎‎‎‏‎‎‎‎‎‏‎‏‎‏‎‏‏‎‎‎‏‎‎‏‎‏‎No widgets or shortcuts found‎‏‎‎‏‎</string>
     <string name="no_widgets_available">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‏‎‎‎‎‏‏‎‎‏‎‏‎‎‏‎‏‎‏‎‎‏‎‎‏‏‎‎‎‏‏‏‎‎‎‏‎‎‎‏‎‎‏‏‎‎‏‎‏‏‏‏‎‎‏‏‎‏‎‎Widgets and shortcuts aren't available‎‏‎‎‏‎"</string>
@@ -230,6 +226,7 @@
     <string name="overview_gesture_feedback_wrong_swipe_direction">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‎‎‎‎‏‎‎‎‎‏‏‏‎‏‏‏‏‎‏‎‏‎‎‏‏‏‏‏‎‏‎‎‏‎‎‏‏‏‎‎‎‎‎‏‎‏‏‎‎‎‏‏‎‏‏‏‏‏‏‎‎Make sure you swipe straight up, then pause‎‏‎‎‏‎</string>
     <string name="overview_gesture_intro_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‏‎‎‏‏‏‏‎‎‏‎‎‎‏‏‎‏‎‎‎‏‏‏‎‏‎‎‏‏‏‎‎‏‏‎‏‏‏‎‎‏‏‏‎‏‎‏‏‎‏‎‏‏‏‎‏‎‏‏‎To switch between apps, swipe up from the bottom of your screen, hold, then release.‎‏‎‎‏‎</string>
     <string name="overview_gesture_intro_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‎‎‎‎‏‎‎‎‏‏‎‎‎‏‎‏‎‏‏‎‎‎‏‏‏‎‎‏‏‎‏‏‏‎‏‏‏‏‎‎‎‎‏‏‎‎‏‎‎‎‎‏‎‏‎‎‎‏‎‎Swipe to switch apps‎‏‎‎‏‎</string>
+    <string name="overview_gesture_spoken_intro_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‎‏‎‏‎‏‏‏‏‎‎‏‏‏‏‎‏‏‎‏‎‏‎‎‎‏‎‏‎‏‎‏‎‏‏‎‏‏‏‏‏‏‏‎‎‏‎‎‏‎‎‏‎‎‎‏‎‏‏‏‎To switch between apps, swipe up with 2 fingers from the bottom of your screen, hold, then release.‎‏‎‎‏‎</string>
     <string name="overview_gesture_tutorial_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‏‏‎‏‎‎‎‎‏‎‏‏‎‏‏‏‎‏‎‏‎‏‎‏‎‏‏‎‏‎‎‏‎‎‎‎‏‏‎‏‎‎‏‏‏‏‏‏‎‎‎‏‏‏‏‎Swipe up from the bottom of your screen, hold, then release‎‏‎‎‏‎</string>
     <string name="overview_gesture_tutorial_success">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‎‎‎‎‎‏‎‏‎‏‎‎‎‏‎‎‏‎‏‏‎‎‏‏‎‏‎‎‎‎‏‏‎‏‏‏‏‏‏‎‏‎‏‏‎‏‎‏‏‎‏‎‏‎‎‎Well done!‎‏‎‎‏‎</string>
     <string name="overview_gesture_tutorial_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‎‎‏‎‏‎‎‎‎‎‏‏‏‏‎‏‎‎‏‎‎‎‏‎‎‏‏‎‏‎‎‎‏‏‏‏‏‏‏‎‎‎‎‏‏‏‏‎‎‏‏‎‏‏‏‎‎‎‎‎Switch apps‎‏‎‎‏‎</string>
@@ -253,10 +250,9 @@
     <string name="ps_container_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‏‎‎‏‏‏‏‎‎‏‎‏‏‎‎‏‎‏‏‎‏‎‏‎‏‎‎‎‏‎‎‏‎‏‎‎‎‎‎‏‎‏‏‎‎‏‏‎‎‏‎‏‏‎‏‏‏‎‏‎Private‎‏‎‎‏‎</string>
     <string name="ps_container_transition">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‎‎‏‎‎‎‏‎‎‎‏‏‎‎‎‏‎‏‏‏‎‎‏‎‎‎‏‏‏‏‏‎‎‏‎‎‎‎‏‎‎‎‏‏‎‎‎‏‎‎‏‏‎‎‎Private Space Transitioning‎‏‎‎‏‎</string>
     <string name="ps_container_unlock_button_content_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‏‏‎‏‎‏‏‎‏‏‎‏‏‎‎‏‎‏‏‎‎‏‏‏‎‏‎‎‎‎‏‏‎‏‎‏‎‏‏‎‏‏‏‏‏‎‎‏‏‎‎‏‎‏‎‎Private, unlocked.‎‏‎‎‏‎</string>
-    <string name="quick_switch_desktop">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‏‎‎‎‏‏‏‏‏‎‎‏‏‎‎‎‏‏‎‎‏‏‏‏‏‏‏‎‏‏‎‏‎‎‎‎‏‎‎‏‎‎‎‏‎‏‎‎‏‏‎‎‎‏‎‎‏‎‏‎Desktop‎‏‎‎‏‎</string>
-    <string name="quick_switch_overflow">{count,plural, =1{‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‎‎‏‏‎‎‎‏‎‎‎‏‎‎‏‏‎‏‎‏‎‎‎‎‎‎‎‏‎‏‏‏‎‎‏‏‎‎‎‏‏‏‏‎‏‏‎‎‎‏‎‎‏‏‏‎‎‎‎‎‎more app‎‏‎‎‏‎}other{‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‎‎‏‏‎‎‎‏‎‎‎‏‎‎‏‏‎‏‎‏‎‎‎‎‎‎‎‏‎‏‏‏‎‎‏‏‎‎‎‏‏‏‏‎‏‏‎‎‎‏‎‎‏‏‏‎‎‎‎‎‎more apps‎‏‎‎‏‎}}</string>
+    <string name="quick_switch_desktop">{count,plural, =1{‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‎‏‎‏‏‏‏‏‏‎‎‏‏‏‏‎‎‏‎‏‎‎‎‏‎‏‎‏‏‏‏‏‏‏‏‎‏‎‎‎‎‎‏‏‏‏‎‏‏‏‏‎‎‎‎Show # desktop app.‎‏‎‎‏‎}other{‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‎‏‎‏‏‏‏‏‏‎‎‏‏‏‏‎‎‏‎‏‎‎‎‏‎‏‎‏‏‏‏‏‏‏‏‎‏‎‎‎‎‎‏‏‏‏‎‏‏‏‏‎‎‎‎Show # desktop apps.‎‏‎‎‏‎}}</string>
+    <string name="quick_switch_overflow">{count,plural, =1{‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‎‎‎‎‎‎‏‏‏‏‏‏‎‎‎‎‎‎‏‏‏‎‏‏‎‏‎‎‎‎‎‎‏‏‎‎‏‎‎‎‏‎‏‎‏‏‏‏‎‏‏‎‎‎‎‏‏‎‎‏‎Show # more app.‎‏‎‎‏‎}other{‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‎‎‎‎‎‎‏‏‏‏‏‏‎‎‎‎‎‎‏‏‏‎‏‏‎‏‎‎‎‎‎‎‏‏‎‎‏‎‎‎‏‎‏‎‏‏‏‏‎‏‏‎‎‎‎‏‏‎‎‏‎Show # more apps.‎‏‎‎‏‎}}</string>
     <string name="quick_switch_split_task">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‏‎‏‏‎‏‏‎‎‎‎‏‏‎‎‏‎‎‎‎‏‏‏‎‎‎‎‏‏‏‏‎‎‏‎‏‎‏‏‎‏‎‎‎‏‏‏‏‏‏‎‎‎‎‎‏‎‎‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ and ‎‏‎‎‏‏‎%2$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
-    <string name="recent_task_desktop">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‎‎‎‎‎‏‎‎‏‎‏‏‏‏‎‎‎‎‏‏‏‏‏‏‎‎‎‎‎‏‏‎‏‎‏‎‏‎‏‏‏‎‎‏‏‎‏‎‎‎‎‏‏‎‏‎‏‏‎‎Desktop‎‏‎‎‏‎</string>
     <string name="recent_task_option_desktop">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‏‎‏‎‏‏‏‎‎‏‏‎‎‎‎‎‏‏‏‎‏‎‏‎‎‎‏‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‎‎‎‏‎‏‎‎‎Desktop‎‏‎‎‏‎</string>
     <string name="recent_task_option_freeform">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‎‎‎‏‎‏‎‏‏‎‏‏‎‎‏‏‎‎‎‏‎‏‏‎‎‎‎‏‏‎‏‎‏‏‏‎‏‎‏‎‏‎‏‎‎‎‎‏‎‎‏‏‏‏‎‎‏‏‏‎Freeform‎‏‎‎‏‎</string>
     <string name="recent_task_option_pin">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‏‏‏‎‎‎‎‎‏‏‎‎‏‎‎‎‎‏‏‎‎‏‎‎‎‏‎‏‏‏‏‏‏‎‏‏‎‏‎‎‎‎‏‏‏‎‎‏‏‎‏‏‏‏‎‏‎‎‏‎‎Pin‎‏‎‎‏‎</string>
@@ -286,9 +282,9 @@
     <string name="suggested_widgets_header_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‎‎‏‏‎‎‏‏‎‎‎‎‏‎‏‎‎‏‎‎‏‏‎‏‏‏‎‎‎‏‏‏‎‏‏‎‎‎‎‎‎‏‎‏‏‏‎‏‎‏‎‏‏‎‎‎‏‏‎‎Suggestions‎‏‎‎‏‎</string>
     <string name="summary_collapsed_preference_list">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‏‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‏‎‏‎‎‏‏‏‏‎‏‏‎‎‏‎‎‎‏‎‎‏‎‏‎‏‎‎‎‏‎‎‎‎‏‏‎‏‏‏‏‏‏‏‏‎‏‎‏‎‏‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎, ‎‏‎‎‏‏‎%2$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
     <string name="task_contents_description_with_remaining_time">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‏‏‎‎‎‏‎‏‎‏‏‎‎‎‎‏‏‎‏‎‎‏‎‏‏‏‎‎‎‏‏‏‎‏‏‏‏‏‎‎‏‎‏‏‏‏‏‎‎‏‏‎‎‏‎‏‏‎‏‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎, ‎‏‎‎‏‏‎%2$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+    <string name="task_view_closed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‏‎‎‎‎‏‎‏‎‎‎‎‏‎‏‎‎‏‎‏‏‏‏‎‏‏‏‎‎‏‎‏‎‎‎‎‎‏‎‎‏‏‎‎‎‏‏‏‏‏‎‎‏‏‎‎Task Closed‎‏‎‎‏‎</string>
+    <string name="taskbar_a11y_hidden_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‏‏‎‎‎‎‎‎‎‏‎‏‏‎‏‎‏‏‏‏‏‏‏‎‏‎‏‎‏‏‎‎‎‎‏‎‎‎‏‎‏‎‎‏‎‏‎‎‎Taskbar hidden‎‏‎‎‏‎</string>
     <string name="taskbar_a11y_shown_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‏‏‎‏‏‏‏‎‏‏‎‏‎‏‎‎‎‎‎‏‏‏‎‎‎‏‏‎‎‎‏‏‎‎‏‏‏‏‎‏‎‏‏‏‎‎‏‎‏‏‎‏‏‏‏‎‎‎‏‎Taskbar shown‎‏‎‎‏‎</string>
-    <string name="taskbar_a11y_shown_with_bubbles_left_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‎‏‎‏‏‏‎‎‎‎‎‎‎‏‎‎‏‎‏‎‎‏‏‏‏‎‎‎‏‎‎‏‎‎‏‏‏‏‏‎‎‎‎‏‏‎‎‏‎‏‎‏‏‎‏‏‏‏‎‎Taskbar &amp; bubbles left shown‎‏‎‎‏‎</string>
-    <string name="taskbar_a11y_shown_with_bubbles_right_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‎‎‎‏‏‎‏‎‎‏‏‏‎‎‎‏‎‏‎‏‏‎‏‎‎‎‏‎‏‎‎‏‏‎‏‎‎‏‎‎‎‏‎Taskbar &amp; bubbles right shown‎‏‎‎‏‎</string>
     <string name="taskbar_a11y_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‏‏‎‎‏‎‏‎‎‎‎‏‏‏‎‏‎‏‎‎‎‎‏‎‏‏‏‎‎‏‏‏‎‏‎‏‏‎‎‏‏‏‏‎‎‎‎‎‏‏‏‎‎‏‎‏‎‎‏‏‎‎Taskbar‎‏‎‎‏‎</string>
     <string name="taskbar_button_a11y">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‎‏‏‏‏‎‎‎‏‎‏‏‎‎‎‎‏‏‏‎‏‎‎‏‏‎‎‎‎‏‏‏‎‏‏‎‎‏‎‎‎‎‏‏‎‎‏‏‏‎‎‎‎‎‏‎Accessibility‎‏‎‎‏‎</string>
     <string name="taskbar_button_back">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‏‏‎‏‏‎‎‎‏‏‏‎‎‏‎‏‏‏‏‏‏‎‏‏‎‎‏‎‎‏‎‎‎‎‏‏‎‏‏‏‎‏‎‎‎‎‎‎‎‏‏‏‏‏‎‎‎‏‎‎Back‎‏‎‎‏‎</string>
@@ -309,7 +305,6 @@
     <string name="taskbar_edu_splitscreen">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‏‎‏‏‏‎‎‏‎‏‎‏‏‎‎‎‏‏‏‏‏‏‎‎‏‏‎‏‎‎‎‏‏‏‎‎‎‏‏‎‎‏‎‎‎‎‎‏‎‏‎‏‏‏‎‎‏‏‎‎Drag an app to the side to use 2 apps at once‎‏‎‎‏‎</string>
     <string name="taskbar_edu_stashing">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‏‏‎‎‏‎‏‏‎‎‎‏‎‏‏‎‏‎‏‎‎‏‏‎‏‎‏‎‎‎‏‏‏‏‏‎‎‏‎‎‎‏‏‎‏‎‎‏‎‏‎‎‎‎‎‏‏‏‎‎Slow-swipe up to show the Taskbar‎‏‎‎‏‎</string>
     <string name="taskbar_edu_suggestions">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‎‎‎‎‎‏‏‎‏‏‎‎‏‏‎‏‏‏‎‎‎‏‏‏‎‎‎‎‎‎‎‎‎‏‎‎‎‏‎‏‎‎‎‎‎‏‎‎‏‎‏‏‏‎‎Get app suggestions based on your routine‎‏‎‎‏‎</string>
-    <string name="taskbar_overflow_a11y_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‏‏‎‎‎‏‏‎‏‎‎‎‎‏‏‏‏‎‎‏‎‎‎‎‎‎‎‎‏‎‎‏‏‏‏‎‏‎‏‏‏‎‏‏‏‎‏‎‏‎‎‏‏‎Taskbar Overflow‎‏‎‎‏‎</string>
     <string name="taskbar_phone_a11y_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‏‎‎‎‏‏‏‎‏‏‎‏‏‎‏‎‎‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‏‎‎‏‏‏‏‏‎‎‏‏‎‏‎‎‎‏‏‎‏‎‎‏‏‎Navigation bar‎‏‎‎‏‎</string>
     <string name="taskbar_search_edu_title">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‏‎‏‎‏‎‎‏‎‎‏‏‏‎‎‎‎‎‏‎‏‎‎‎‏‏‎‎‏‏‎‎‎‎‎‏‎‏‏‎‎‎‎‎‏‎‎‎‎‏‎‎‏‏‏‎‎‏‎‎Touch &amp; hold the action key to search what's on your screen‎‏‎‎‏‎"</string>
     <string name="time_left_for_app">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‏‎‏‏‎‎‏‏‎‎‎‎‎‎‎‎‏‎‎‎‎‎‏‏‏‏‏‏‏‏‎‏‏‏‏‏‎‎‏‏‎‎‏‏‎‎‏‎‎‎‎‎‎‏‎‎‎‏‏‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ left today‎‏‎‎‏‎</string>
@@ -319,7 +314,7 @@
     <string name="toast_contextual_split_select_app">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‎‏‏‏‏‎‎‎‎‎‎‏‎‎‎‎‏‎‎‎‏‏‏‏‏‎‏‎‏‏‎‎‏‎‏‏‎‏‏‎‎‏‏‎‎‎‏‏‎‏‎‎‏‎‏‎‏‏‎‎‏‎‎Choose another app to use split screen‎‏‎‎‏‎</string>
     <string name="toast_split_app_unsupported">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‎‎‎‎‏‏‎‎‎‎‎‏‎‎‏‏‏‎‎‎‎‏‎‎‏‎‎‏‎‏‎‎‎‎‎‏‏‏‏‎‎‎‎‎‎‎‏‎‏‎‏‏‏‎‏‏‎‎‏‎‎Choose another app to use split screen‎‏‎‎‏‎</string>
     <string name="toast_split_select_app">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‏‎‏‎‏‏‏‎‏‏‏‎‏‎‎‎‏‎‏‏‎‎‏‎‏‎‏‏‎‎‎‏‏‏‏‎‎‏‎‏‎‏‏‎‎‏‏‏‏‏‎‎‎‎‏‏‎‏‎‎Tap another app to use split screen‎‏‎‎‏‎</string>
-    <string name="toast_split_select_app_cancel">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‏‏‎‏‎‎‎‏‏‎‎‏‏‎‏‎‎‎‎‏‏‏‎‏‎‏‎‏‏‎‎‎‏‎‎‎‏‏‏‏‏‏‏‎‎‎‎‎‎‎‏‏‎‏‎‎Cancel‎‏‎‎‏‎</string>
+    <string name="toast_split_select_app_cancel">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‎‏‎‏‎‏‎‎‎‏‎‏‎‎‏‏‎‏‎‏‏‏‎‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‎‏‎‏‎‏‎‎‏‎‏‎‏‏‏‏‎‎‎‏‏‏‎‎‏‎‎‏‏‎<b>‎‏‎‎‏‏‏‎Cancel‎‏‎‎‏‏‎</b>‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
     <string name="toast_split_select_cont_desc">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‏‏‎‏‎‏‏‎‏‎‏‎‏‎‏‎‎‎‏‎‎‏‎‏‎‎‏‏‏‏‏‏‎‎‏‎‎‎‏‎‎‎‏‏‎‎‎‎‏‎‏‎‎‎‏‏‎‎‏‎‎Exit split screen selection‎‏‎‎‏‎</string>
     <string name="undo">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‎‎‏‏‏‎‏‎‏‎‏‏‏‎‎‏‎‎‎‏‏‏‏‏‏‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‎‎‎‏‎‎‏‎‎‏‎Undo‎‏‎‎‏‎</string>
     <string name="uninstall_drop_target_label">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‎‎‏‏‎‎‎‏‎‎‎‎‎‎‎‏‎‎‏‎‎‎‏‏‎‏‎‎‏‎‏‎‎‏‎‏‎‏‎‎‏‏‎‎‎‎‎‏‏‏‏‏‎‎‏‏‎‎‏‎Uninstall‎‏‎‎‏‎</string>
@@ -335,8 +330,6 @@
     <string name="widget_category_note_taking">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‏‎‎‎‎‎‎‏‎‎‏‏‎‏‏‎‏‎‎‎‎‎‎‎‏‏‏‏‏‎‎‎‎‎‎‎‎‎‏‎‏‏‏‎‏‏‏‏‏‎‎‎‏‎‎‏‏‎‏‏‏‎Note-taking‎‏‎‎‏‎</string>
     <string name="widget_dims_format">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‎‏‎‎‎‎‎‏‏‏‎‎‏‏‎‏‎‎‏‏‏‏‏‏‎‎‏‏‎‎‏‏‎‏‎‎‎‎‎‎‏‎‏‎‎‎‏‎‎‎‎‎‏‎‎‎‏‎‏‏‏‏‏‎%1$d × %2$d‎‏‎‎‏‎</string>
     <string name="widget_picker_right_pane_accessibility_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‎‏‏‎‏‏‏‎‎‏‏‏‎‎‎‏‏‎‎‏‏‏‎‎‎‏‎‎‏‏‏‏‎‏‏‎‎‏‎‎‎‎‏‎‏‏‏‎‏‏‏‎‏‎‏‎‏‏‎‏‏‏‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ widgets on right, search and options on left‎‏‎‎‏‎</string>
-    <string name="widget_picker_show_all_widgets_menu_item_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‏‎‎‏‏‏‎‏‎‎‏‏‎‎‏‏‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‎‎‏‎‎‎‏‏‏‎‏‎‎‎‎‏‏‏‎‏‎‏‏‏‎Show all widgets‎‏‎‎‏‎</string>
-    <string name="widget_picker_widget_options_button_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‎‎‏‎‎‎‏‏‎‎‏‎‏‏‎‎‏‏‎‎‎‎‎‎‎‎‏‎‎‎‎‎‏‎‏‎‎‏‏‏‏‏‏‎‏‎‏‏‎‎‎‎‏‎‎‎‏‎‏‏‎More options‎‏‎‎‏‎</string>
     <string name="widget_preview_context_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‎‏‏‎‎‏‎‏‎‏‎‏‎‎‎‎‎‎‎‎‎‎‏‏‏‎‏‏‏‎‎‎‎‎‎‏‏‎‏‏‎‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ widget‎‏‎‎‏‎</string>
     <string name="widget_preview_name_and_dims_content_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‎‏‎‏‏‏‎‎‏‏‏‏‎‎‎‏‏‏‏‏‎‎‏‏‎‎‏‎‏‏‏‎‏‎‎‎‎‏‎‎‏‏‎‎‏‎‎‎‏‏‏‎‏‏‏‎‏‎‏‏‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ widget, %2$d wide by %3$d high‎‏‎‎‏‎</string>
     <string name="widget_reconfigure_button_content_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‎‏‎‎‏‎‎‏‎‎‎‏‎‏‎‎‎‏‏‏‏‎‎‎‎‎‏‎‏‎‏‏‏‏‏‏‏‎‎‎‏‏‎‎‎‎‎‏‎‏‎‎‎‎‎‎‎‏‎‎Change widget settings‎‏‎‎‏‎</string>

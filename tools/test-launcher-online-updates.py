@@ -35,7 +35,9 @@ def fixture():
         ("grantUriPermissions", 0x0101001b, 0x12, True),
         ("name", 0x01010003, 3, "com.android.quickstep.views.LsUpdateFileProvider")])
     original = [root[0], application[0], application[1], root[1]]
-    modified = [root[0], *permission, application[0], *provider, application[1], root[1]]
+    series = node("meta-data", [("name", 0x01010003, 3, "com.lizhou.launcher.series"),
+                               ("value", 0x01010024, 3, "redmagic10")])
+    modified = [root[0], *permission, application[0], *provider, *series, application[1], root[1]]
     return original, modified
 
 
@@ -57,7 +59,7 @@ public class UpdateEntryTest {
   static class Resources {
     static class Metrics {float density=2f;}
     Metrics getDisplayMetrics(){return new Metrics();}
-    int getDimensionPixelSize(int id){if(id!=0x7f0709ab)throw new AssertionError("wrong bottom inset");return 24;}
+    int getDimensionPixelSize(int id){if(id!=0x7f070901)throw new AssertionError("wrong bottom inset");return 24;}
   }
   static class Activity extends Context {
     View stack;boolean finishing,destroyed;
@@ -156,7 +158,7 @@ public class UpdateEntryTest {
         self.assertEqual(template.get("{" + ANDROID + "}background"), "@drawable/card_bg")
         title = template.find(".//TextView")
         self.assertEqual(title.get("{" + ANDROID + "}textColor"), "@color/setting_activity_text_color")
-        fragment = (ROOT / "src/smali/com/android/launcher3/settings/SettingsActivityMFV$LauncherSettingsFragment.smali").read_text("utf-8")
+        fragment = (ROOT / "src/smali_classes3/com/android/launcher3/settings/SettingsActivityMFV$LauncherSettingsFragment.smali").read_text("utf-8")
         self.assertNotIn("LsOnlineUpdates;->attachSettings", fragment)
         self.assertIn('name.equals("com.android.launcher3.settings.RecentAppStyleActivity")', source)
 
@@ -190,6 +192,16 @@ public class UpdateEntryTest {
         modified.insert(7, {"event": "end", "namespace": None, "name": "uses-permission"})
         self.assertNotEqual(gate.strip_exact_update_nodes(modified), original)
 
+    def test_cross_series_metadata_rejected(self):
+        _, modified = fixture()
+        for value in ("redmagic11", "", "redmagic10-test"):
+            candidate = deepcopy(modified)
+            candidate[6]["attributes"][1]["value"] = value
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                gate.strip_exact_update_nodes(candidate)
+        with self.assertRaises(ValueError):
+            gate.strip_exact_update_nodes(modified[:6] + modified[8:])
+
     def test_actual_java_policy(self):
         source = ROOT / "helper-src/main/com/android/quickstep/views/LsUpdateProtocol.java"
         harness = r'''
@@ -204,18 +216,22 @@ public class UpdatePolicyTest {
     catch (IllegalArgumentException | URISyntaxException | MalformedURLException expected) { }
   }
   public static void main(String[] args) throws Exception {
-    String valid="https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-260027/stacked-desktop-260027.apk";
+    String valid="https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-v25001/stacked-desktop-redmagic10-25001.apk";
     check(LsUpdateProtocol.apkUrl(valid).getHost().equals("github.com"));
-    check(LsUpdateProtocol.apkUrl(valid.replace("stacked-desktop-260027.apk", "%E5%A0%86%E5%8F%A0.apk")) != null);
+    check(LsUpdateProtocol.APP_ID.equals("stacked-desktop-redmagic10"));
+    check(LsUpdateProtocol.SERIES.equals("redmagic10"));
+    check(LsUpdateProtocol.MANIFEST.endsWith("/stacked-desktop-redmagic10.json"));
+    reject(valid.replace("stacked-desktop-redmagic10", "stacked-desktop"));
+    reject(valid.replace("stacked-desktop-redmagic10", "stacked-desktop-redmagic11"));
     for(String bad:new String[] {valid.replace("https:","http:"),valid.replace("github.com/","github.com.evil.test/"),
         valid.replace("github.com/","github.com@evil.test/"),valid.replace("github.com/","user@github.com/"),
         valid.replace("github.com/","github.com:444/"), valid.replace("liligit1815/","someone/"),
         valid.replace("lispacerelease/","other/"),valid.replace("/download/","/tag/"),
         valid+"?redirect=evil",valid+"#fragment",valid.replace(".apk",".zip"),
-        valid.replace("stacked-desktop-260027/","../"),
-        valid.replace("stacked-desktop-260027/","%2E%2E/"),
-        valid.replace("stacked-desktop-260027.apk","sub%2Ffile.apk"),
-        valid.replace("stacked-desktop-260027.apk","sub%5Cfile.apk")}) reject(bad);
+        valid.replace("stacked-desktop-redmagic10-v25001/","../"),
+        valid.replace("stacked-desktop-redmagic10-v25001/","%2E%2E/"),
+        valid.replace("stacked-desktop-redmagic10-25001.apk","sub%2Ffile.apk"),
+        valid.replace("stacked-desktop-redmagic10-25001.apk","sub%5Cfile.apk")}) reject(bad);
     for(String good:new String[]{"https://github.com/a","https://raw.githubusercontent.com/a","https://release-assets.githubusercontent.com/a"})
         check(LsUpdateProtocol.redirect(new URL(good)));
     for(String bad:new String[]{"http://github.com/a","https://githubusercontent.com.evil.test/a", "https://evilgithubusercontent.com/a",
@@ -254,7 +270,7 @@ public class UpdatePolicyTest {
             match = re.search(r"^    private static [^\n]+ " + name + r"\(.*?^    }", source, re.M | re.S)
             self.assertIsNotNone(match, name)
             return match.group()
-        methods = "\n".join(member(name) for name in ("current", "dismiss", "certificate", "verify", "permissionReturn"))
+        methods = "\n".join(member(name) for name in ("current", "dismiss", "certificate", "verify", "series", "permissionReturn"))
         harness = r'''
 import com.android.quickstep.views.LsUpdateProtocol;
 import java.lang.ref.WeakReference;
@@ -274,7 +290,10 @@ public class UpdateIdentityTest {
   static class Signature {byte[] bytes; Signature(byte[] bytes){this.bytes=bytes;} byte[] toByteArray(){return bytes;}}
   static class SigningInfo {boolean multiple; Signature[] signers;
     boolean hasMultipleSigners(){return multiple;} Signature[] getApkContentsSigners(){return signers;}}
-  static class ApplicationInfo {int minSdkVersion=31;}
+  static class Metadata extends java.util.HashMap<String,String> {
+    Metadata(){put(LsUpdateProtocol.SERIES_METADATA,LsUpdateProtocol.SERIES);}
+    String getString(String key){return get(key);}}
+  static class ApplicationInfo {int minSdkVersion=31;Metadata metaData=new Metadata();}
   static class PackageInfo {String packageName=LsUpdateProtocol.PACKAGE,versionName="preserved";long code;
     SigningInfo signingInfo; ApplicationInfo applicationInfo=new ApplicationInfo(); long getLongVersionCode(){return code;}}
   static PackageInfo existing,candidate;
@@ -284,13 +303,13 @@ public class UpdateIdentityTest {
     FakePreferences edit(){return this;} FakePreferences remove(String key){resume=false;return this;} void apply(){} }
   static FakePreferences prefs=new FakePreferences();
   static FakePreferences preferences(){return prefs;}
-  static class PackageManager {static int GET_SIGNING_CERTIFICATES=1;
+  static class PackageManager {static int GET_SIGNING_CERTIFICATES=1,GET_META_DATA=2;
     boolean canRequestPackageInstalls(){return permission;}
     PackageInfo getPackageArchiveInfo(String path,int flags){return candidate;}}
   static class App {PackageManager getPackageManager(){return new PackageManager();}}
   static App app=new App();
   static PackageInfo installed(){return existing;}
-  static class Release {long size,code=260027;String hash,name="preserved",cert=LsUpdateProtocol.CERTIFICATE;int minSdk=31;}
+  static class Release {long size,code=25002;String hash,name="preserved",cert=LsUpdateProtocol.CERTIFICATE;int minSdk=31;}
   static void check(boolean value){checks++;if(!value)throw new AssertionError(checks);}
   static void reject(File file,Release release)throws Exception {
     checks++;try{verify(file,release);throw new AssertionError("accepted invalid APK identity "+checks);}
@@ -315,8 +334,8 @@ public class UpdateIdentityTest {
     String pem=new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(args[0])),"UTF-8");
     byte[] cert=Base64.getMimeDecoder().decode(pem.replace("-----BEGIN CERTIFICATE-----","").replace("-----END CERTIFICATE-----",""));
     SigningInfo signer=new SigningInfo();signer.signers=new Signature[]{new Signature(cert)};
-    existing=new PackageInfo();existing.code=260026;existing.signingInfo=signer;
-    candidate=new PackageInfo();candidate.code=260027;candidate.signingInfo=signer;
+    existing=new PackageInfo();existing.code=25001;existing.signingInfo=signer;
+    candidate=new PackageInfo();candidate.code=25002;candidate.signingInfo=signer;
     check(certificate(existing).equals(LsUpdateProtocol.CERTIFICATE));
     File file=File.createTempFile("update-identity-", ".apk");
     try {
@@ -326,11 +345,17 @@ public class UpdateIdentityTest {
       release.size++;reject(file,release);release.size--;
       release.hash="a".repeat(64);reject(file,release);release.hash=LsUpdateProtocol.sha256(file);
       candidate.packageName="other.package";reject(file,release);candidate.packageName=LsUpdateProtocol.PACKAGE;
-      candidate.code=260028;reject(file,release);candidate.code=260027;
+      candidate.code=25003;reject(file,release);candidate.code=25002;
       candidate.versionName="other";reject(file,release);candidate.versionName="preserved";
       candidate.applicationInfo.minSdkVersion=32;reject(file,release);candidate.applicationInfo.minSdkVersion=31;
+      candidate.applicationInfo.metaData.put(LsUpdateProtocol.SERIES_METADATA,"redmagic11");reject(file,release);
+      candidate.applicationInfo.metaData.remove(LsUpdateProtocol.SERIES_METADATA);reject(file,release);
+      candidate.applicationInfo.metaData.put(LsUpdateProtocol.SERIES_METADATA,LsUpdateProtocol.SERIES);
+      existing.applicationInfo.metaData.put(LsUpdateProtocol.SERIES_METADATA,"redmagic11");reject(file,release);
+      existing.applicationInfo.metaData.put(LsUpdateProtocol.SERIES_METADATA,LsUpdateProtocol.SERIES);
       Build.VERSION.SDK_INT=30;reject(file,release);Build.VERSION.SDK_INT=36;
-      existing.code=260027;reject(file,release);existing.code=260026;
+      existing.code=25002;reject(file,release);
+      existing.code=25003;reject(file,release);existing.code=25001;
       SigningInfo wrong=new SigningInfo();wrong.signers=new Signature[]{new Signature(new byte[]{1})};
       candidate.signingInfo=wrong;reject(file,release);candidate.signingInfo=signer;
       existing.signingInfo=wrong;reject(file,release);existing.signingInfo=signer;

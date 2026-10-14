@@ -15,7 +15,7 @@ public final class LsUpdateFileProvider extends ContentProvider {
     public static final String AUTHORITY = LsUpdateProtocol.PACKAGE + ".online-updates";
     public static final Uri URI = Uri.parse("content://" + AUTHORITY + "/update.apk");
     public static File apk(android.content.Context context) {
-        return new File(context.getCacheDir(), "online-updates/update.apk");
+        return new File(context.getCacheDir(), "online-updates-redmagic10/update.apk");
     }
     private File checked(Uri uri) throws FileNotFoundException {
         android.content.Context context = ((ContentProvider) this).getContext();
@@ -45,7 +45,7 @@ public final class LsUpdateFileProvider extends ContentProvider {
             MatrixCursor cursor = new MatrixCursor(columns, 1);
             Object[] values = new Object[columns.length];
             for (int index = 0; index < columns.length; index++) {
-                if (OpenableColumns.DISPLAY_NAME.equals(columns[index])) values[index] = "stacked-desktop-update.apk";
+                if (OpenableColumns.DISPLAY_NAME.equals(columns[index])) values[index] = "stacked-desktop-redmagic10-update.apk";
                 else if (OpenableColumns.SIZE.equals(columns[index])) values[index] = file.length();
             }
             cursor.addRow(values);

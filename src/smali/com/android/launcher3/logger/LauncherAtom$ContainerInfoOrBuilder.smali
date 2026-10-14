@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -24,10 +24,7 @@
 .method public abstract getContainerCase()Lcom/android/launcher3/logger/LauncherAtom$ContainerInfo$ContainerCase;
 .end method
 
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
-.end method
-
-.method public abstract getExtendedContainers()Lcom/android/launcher3/logger/d;
+.method public abstract getExtendedContainers()Lcom/android/launcher3/logger/LauncherAtomExtensions$ExtendedContainers;
 .end method
 
 .method public abstract getFolder()Lcom/android/launcher3/logger/LauncherAtom$FolderContainer;
@@ -106,7 +103,4 @@
 .end method
 
 .method public abstract hasWorkspace()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

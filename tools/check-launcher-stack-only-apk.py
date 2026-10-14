@@ -41,36 +41,42 @@ HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS, OCCLUSION_CLASS,
                 ORBIT_GEOMETRY_CLASS, ORBIT_REFLOW_CLASS, ORBIT_SETTINGS_CLASS, ORBIT_PAGER_CLASS,
                 FAN_GEOMETRY_CLASS, FAN_REFLOW_CLASS, FAN_SETTINGS_CLASS, FAN_PAGER_CLASS,
                 FAN_CHROME_CLASS, UPDATE_CLASS, UPDATE_PROTOCOL_CLASS, UPDATE_PROVIDER_CLASS)
-RELEASE_260027_CLASSES = {UPDATE_PROTOCOL_CLASS + ";", UPDATE_PROVIDER_CLASS + ";"} | {
+ONLINE_UPDATE_CLASSES = {UPDATE_PROTOCOL_CLASS + ";", UPDATE_PROVIDER_CLASS + ";"} | {
     UPDATE_CLASS + suffix + ";" for suffix in (
         "", "$1", "$Release", "$SettingClick", "$Dismiss", "$Choice", "$Worker", "$Ui", "$Lifecycle")
 }
-RELEASE_260029_CLASSES = {ORBIT_SETTINGS_CLASS + "$StackPreview;"}
-RELEASE_260024_CLASSES = {
+STACK_PREVIEW_CLASSES = {ORBIT_SETTINGS_CLASS + "$StackPreview;"}
+FAN_CLASSES = {
     FAN_SETTINGS_CLASS + suffix + ";" for suffix in ("", "$FanPreview")
 } | {FAN_GEOMETRY_CLASS + ";", FAN_CHROME_CLASS + ";"} | {
     FAN_PAGER_CLASS + suffix + ";" for suffix in ("", "$Identity", "$State", "$1", "$2")
 } | {
     FAN_REFLOW_CLASS + suffix + ";" for suffix in ("", "$Card", "$Transaction")
 }
-RELEASE_260023_CLASSES = {ORBIT_GEOMETRY_CLASS + ";"} | {
+ORBIT_CLASSES = {ORBIT_GEOMETRY_CLASS + ";"} | {
     ORBIT_REFLOW_CLASS + suffix + ";" for suffix in ("", "$Card", "$Transaction")
 } | {ORBIT_SETTINGS_CLASS + suffix + ";" for suffix in ("", "$OrbitPreview")} | {
     TRANSITION_CLASS + "$SnapshotFrame;"
 } | {
     ORBIT_PAGER_CLASS + suffix + ";" for suffix in ("", "$Identity", "$State", "$1", "$2")
 }
-RELEASE_260016_CLASSES = {ACTION_CLASS + ";", ACTION_CLASS + "$ActionIcon;"} | {
+ACTION_TRANSITION_CLASSES = {ACTION_CLASS + ";", ACTION_CLASS + "$ActionIcon;"} | {
     TRANSITION_CLASS + suffix + ";"
     for suffix in ("", "$CardFrame", "$Transition", "$LaunchSurface", "$LaunchEnd")
 }
-EXPECTED_CLASSES = {STACK_CLASS + suffix + ";" for suffix in (
+STACK_CLASSES = {STACK_CLASS + suffix + ";" for suffix in (
     "", "$EntryRevealEnd", "$EntryRevealStart", "$EntryRevealUpdate",
     "$FrameUpdate", "$GestureLayerReset", "$InitialFrameCommit", "$ScaleControl", "$CardLongPress", "$ActionReveal",
 )}
+# RedMagic 10 starts a separate version sequence with the complete ported feature
+# set. Its user-controlled versionCode identifies releases, never capabilities.
+EXPECTED_CLASSES = frozenset(STACK_CLASSES | ACTION_TRANSITION_CLASSES |
+    {OCCLUSION_CLASS + ";"} | ORBIT_CLASSES | FAN_CLASSES |
+    ONLINE_UPDATE_CLASSES | STACK_PREVIEW_CLASSES)
 VIEW_CLASSES = {
     "Lcom/android/quickstep/views/TaskView;",
     "Lcom/android/quickstep/views/RecentsView;",
+    "Lcom/android/quickstep/views/TaskView$TaskContainer;",
 }
 FORBIDDEN_STRINGS = (
     "LsPageManager", "LsPageModel", "LsRecentsMemory", "LsRecentsOrientation",
@@ -154,7 +160,11 @@ def parse_dex(raw: bytes, name: str) -> dict:
                           for item in range(parameter_count)]
         protos.append("(" + "".join(parameters) + ")" + types[result_type])
 
-    field_count, _ = table(80, 8)
+    field_count, field_offset = table(80, 8)
+    fields = []
+    for index in range(field_count):
+        owner, field_type, field_name = struct.unpack_from("<HHI", raw, field_offset + index * 8)
+        fields.append((types[owner], strings[field_name], types[field_type]))
     method_count, method_offset = table(88, 8)
     methods = []
     for index in range(method_count):
@@ -164,6 +174,8 @@ def parse_dex(raw: bytes, name: str) -> dict:
     class_count, class_offset = table(96, 32)
     classes: set[str] = set()
     superclasses: dict[str, str] = {}
+    interfaces: dict[str, list[str]] = {}
+    declared_fields: dict[tuple, int] = {}
     declared: dict[Method, dict] = {}
     for index in range(class_count):
         definition = struct.unpack_from("<8I", raw, class_offset + index * 32)
@@ -173,6 +185,11 @@ def parse_dex(raw: bytes, name: str) -> dict:
         if definition[2] != 0xffffffff:
             ensure(definition[2] < len(types), f"{name}: superclass type index out of bounds")
             superclasses[owner] = types[definition[2]]
+        if definition[3]:
+            count = struct.unpack_from("<I", raw, definition[3])[0]
+            ensure(definition[3] + 4 + count * 2 <= len(raw), f"{name}: invalid interface list")
+            interfaces[owner] = [types[struct.unpack_from("<H", raw, definition[3] + 4 + i * 2)[0]]
+                                 for i in range(count)]
         offset = definition[6]
         if not offset:
             continue
@@ -184,9 +201,12 @@ def parse_dex(raw: bytes, name: str) -> dict:
             field_index = 0
             for _ in range(count):
                 delta, offset = uleb128(raw, offset)
-                _, offset = uleb128(raw, offset)
+                access, offset = uleb128(raw, offset)
                 field_index += delta
                 ensure(field_index < field_count, f"{name}: class_data field index out of bounds")
+                key = fields[field_index]
+                ensure(key[0] == owner and key not in declared_fields, f"{name}: invalid field declaration")
+                declared_fields[key] = access
         for count in sizes[2:]:
             method_index = 0
             for _ in range(count):
@@ -204,7 +224,8 @@ def parse_dex(raw: bytes, name: str) -> dict:
                        f"{name}: native/abstract/code declaration mismatch for {key}")
                 declared[key] = {"dex": name, "accessFlags": access, "codeOffset": code_offset}
 
-    return {"name": name, "classes": classes, "superclasses": superclasses,
+    return {"name": name, "classes": classes, "superclasses": superclasses, "interfaces": interfaces,
+            "fields": set(fields), "declared_fields": declared_fields,
             "methods": set(methods), "declared": declared,
             "forbidden": [{"dex": name, "marker": match.group(), "string": value}
                           for value in strings if (match := FORBIDDEN_PATTERN.search(value))],
@@ -233,6 +254,8 @@ def load_apk(path: Path) -> dict:
     declared: dict[Method, dict] = {}
     references: set[Method] = set()
     superclasses: dict[str, str] = {}
+    interfaces: dict[str, list[str]] = {}
+    declared_fields: dict[tuple, int] = {}
     forbidden = []
     for index in indexes:
         ensure(not classes.intersection(index["classes"]), f"{path}: class duplicated across DEX files")
@@ -240,9 +263,12 @@ def load_apk(path: Path) -> dict:
         declared.update(index["declared"])
         references.update(index["methods"])
         superclasses.update(index["superclasses"])
+        interfaces.update(index["interfaces"])
+        declared_fields.update(index["declared_fields"])
         forbidden.extend(index["forbidden"])
     return {"path": str(path), "sha256": file_sha256(path), "classes": classes,
             "declared": declared, "references": references, "superclasses": superclasses,
+            "interfaces": interfaces, "declared_fields": declared_fields,
             "forbidden": forbidden,
             "dex": [{"name": item["name"], **item["counts"]} for item in indexes],
             "manifest": manifest}
@@ -345,7 +371,10 @@ def strip_exact_update_nodes(events: list) -> list:
             ("authorities", 0x01010018, 3, "com.zte.mifavor.launcher.online-updates"),
             ("exported", 0x01010010, 0x12, False),
             ("grantUriPermissions", 0x0101001b, 0x12, True),
-            ("name", 0x01010003, 3, "com.android.quickstep.views.LsUpdateFileProvider")]))}
+            ("name", 0x01010003, 3, "com.android.quickstep.views.LsUpdateFileProvider")])),
+        "meta-data": (("manifest", "application"), attributes([
+            ("name", 0x01010003, 3, "com.lizhou.launcher.series"),
+            ("value", 0x01010024, 3, "redmagic10")]))}
     result, stack, found = [], [], {name: 0 for name in definitions}
     index = 0
     while index < len(events):
@@ -366,8 +395,8 @@ def strip_exact_update_nodes(events: list) -> list:
             ensure(stack and stack.pop() == event["name"], "Unbalanced update Manifest")
         result.append(event)
         index += 1
-    ensure(found == {"uses-permission": 1, "provider": 1},
-           "Expected exactly one reviewed INTERNET permission and one private update provider")
+    ensure(found == {"uses-permission": 1, "provider": 1, "meta-data": 1},
+           "Expected exactly one INTERNET permission, private update provider and RedMagic 10 series identity")
     return result
 
 
@@ -417,6 +446,8 @@ def expected_versions(path: Path) -> dict:
     for line in block.splitlines():
         if not line.strip() or line.lstrip().startswith("#"):
             continue
+        ensure(re.match(r"  versionCodeMajor\s*:", line) is None,
+               "versionCodeMajor is not supported; use the reviewed major=0 version sequence")
         match = re.fullmatch(r"  (versionCode|versionName):\s*(.+?)\s*", line)
         ensure(match is not None, "unsupported versionInfo entry; use explicit expected version arguments")
         key, value = match.groups()
@@ -438,27 +469,7 @@ def expected_versions(path: Path) -> dict:
 
 
 def compare(original: dict, modified: dict, expected: dict) -> dict:
-    # Keep explicit historical-version audits usable. The settings control was
-    # introduced in 260011; derive the boundary from the requested/source version.
-    expected_classes = set(EXPECTED_CLASSES)
-    if expected["versionCode"] >= 260016:
-        expected_classes.update(RELEASE_260016_CLASSES)
-    if expected["versionCode"] >= 260020:
-        expected_classes.add(OCCLUSION_CLASS + ";")
-    if expected["versionCode"] >= 260023:
-        expected_classes.update(RELEASE_260023_CLASSES)
-    if expected["versionCode"] >= 260024:
-        expected_classes.update(RELEASE_260024_CLASSES)
-    if expected["versionCode"] >= 260027:
-        expected_classes.update(RELEASE_260027_CLASSES)
-    if expected["versionCode"] >= 260029:
-        expected_classes.update(RELEASE_260029_CLASSES)
-    if expected["versionCode"] < 260015:
-        expected_classes.discard(STACK_CLASS + "$ActionReveal;")
-    if expected["versionCode"] < 260014:
-        expected_classes.discard(STACK_CLASS + "$CardLongPress;")
-    if expected["versionCode"] < 260011:
-        expected_classes.discard(STACK_CLASS + "$ScaleControl;")
+    expected_classes = EXPECTED_CLASSES
     missing = sorted(original["classes"] - modified["classes"])
     added = modified["classes"] - original["classes"]
     target_refs = {key for key in modified["references"]
@@ -473,8 +484,16 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
                           and key not in original["declared"]}
     original_events, original_versions = manifest_semantics(original["manifest"])
     modified_events, modified_versions = manifest_semantics(modified["manifest"])
-    if expected["versionCode"] >= 260027:
-        modified_events = strip_exact_update_nodes(modified_events)
+    modified_events = strip_exact_update_nodes(modified_events)
+    # The full RedMagic 10 port uses API 31 at every version. Preserve the OEM
+    # target 35 and all other attributes; only its declared minimum 29 may rise.
+    original_events = [{**event, "attributes": [
+        {**attr, "value": 31} if (event.get("name") == "uses-sdk"
+            and attr.get("namespace") == "http://schemas.android.com/apk/res/android"
+            and attr.get("name") == "minSdkVersion" and attr.get("resourceId") == 0x0101020c
+            and attr.get("type") == 0x10 and attr.get("value") == 29) else attr
+        for attr in event["attributes"]]} if event.get("event") == "start" else event
+        for event in original_events]
     differences = []
     for index in range(max(len(original_events), len(modified_events))):
         before = original_events[index] if index < len(original_events) else None
@@ -505,8 +524,10 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
             "modifiedEventCount": len(modified_events), "differenceCount": len(differences),
             "differences": differences[:20],
             "ignoredAttributes": ["manifest/android:versionCode", "manifest/android:versionName"],
+            "reviewedSdkChange": "minSdkVersion 29 -> 31; targetSdkVersion remains OEM 35",
             "exactAdditionalNodes": ["uses-permission:android.permission.INTERNET",
-                "provider:com.zte.mifavor.launcher.online-updates"] if expected["versionCode"] >= 260027 else []},
+                "provider:com.zte.mifavor.launcher.online-updates",
+                "meta-data:com.lizhou.launcher.series=redmagic10"]},
         "expectedVersion": {
             "pass": modified_versions == expected,
             "original": original_versions, "modified": modified_versions,

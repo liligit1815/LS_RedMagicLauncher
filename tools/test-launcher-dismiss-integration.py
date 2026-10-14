@@ -10,7 +10,7 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT = ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali"
+DEFAULT = ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsView.smali"
 
 
 def check_lock_cleanup(path):
@@ -23,7 +23,7 @@ def check_lock_cleanup(path):
     events = []
     for line in tail.splitlines():
         line = line.split("#", 1)[0].strip()
-        if not line or line.startswith("."):
+        if not line or line.startswith((".", ":")):
             continue
         if line.startswith("iget-object ") and "->this$0:" in line:
             _, dest, obj, _ = line.split()
@@ -37,7 +37,7 @@ def check_lock_cleanup(path):
             if "->resetTaskVisuals()" in line:
                 assert args == ["recents"]
                 events.append("reset_visuals")
-            elif "->E1(" in line:
+            elif "->-$$Nest$fputmPendingAnimation(" in line:
                 assert args == ["recents", 0]
                 events.append("clear_oem_animation")
             elif "->onDismissAnimationEnd(" in line:
@@ -58,16 +58,16 @@ def evaluate(path, upward, native_offset, adjusted_offset, needs_reflow):
     code = [line.split("#", 1)[0].strip() for line in method.splitlines()]
     code = [line for line in code if line and not line.startswith(".")]
     labels = {line: i for i, line in enumerate(code) if line.startswith(":")}
-    pc = labels[":goto_23"]
-    registers = {"v0": "recents", "v5": "child", "p2": "dismissed",
-                 "v3": native_offset if upward else 0, "p9": upward}
+    pc = code.index("if-eqz p8, :cond_2f")
+    registers = {"v6": "recents", "v0": "child", "p2": "dismissed",
+                 "v4": native_offset if upward else 0, "p8": upward}
     calls, result = [], None
     for _ in range(60):
         line = code[pc]
         pc += 1
-        if line == ":cond_32":
+        if line == ":cond_2f":
             return False, calls
-        if line.startswith("if-nez p8,"):
+        if line.startswith("instance-of v2, v0,"):
             return True, calls
         if line.startswith(":"):
             continue
@@ -98,7 +98,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--recents", type=Path, default=DEFAULT)
     args = parser.parse_args()
-    check_lock_cleanup(args.recents.with_name("RecentsView$23.smali"))
+    check_lock_cleanup(args.recents.with_name("RecentsView$20.smali"))
     cases = 0
     for up, native, adjusted, needs in product((False, True), (-500, 0, 500), (-24, 0, 24), (False, True)):
         animate, calls = evaluate(args.recents, up, native, adjusted, needs)

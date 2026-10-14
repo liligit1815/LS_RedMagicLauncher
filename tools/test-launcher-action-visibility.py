@@ -10,7 +10,7 @@ names = ('findInlineAction', 'hitsTaskAction', 'hitsHiddenTaskAction',
          'hitsActionView', 'hitsActionBounds', 'isActionMenuTask')
 members = '\n'.join(re.search(r'^    (?:private|public) static [^\n]+ '+name+r'\(.*?^    }',
                               source, re.M | re.S).group() for name in names)
-task = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text('utf-8')
+task = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text('utf-8')
 dispatch = task.split('.method public dispatchTouchEvent(', 1)[1].split('.end method', 1)[0]
 assert '->hitsHiddenTaskAction(' in dispatch
 assert dispatch.index('->nativeStackActionAlpha:F') < dispatch.index('->hitsHiddenTaskAction(')

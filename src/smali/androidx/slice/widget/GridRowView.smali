@@ -1,5 +1,5 @@
 .class public Landroidx/slice/widget/GridRowView;
-.super Landroidx/slice/widget/h;
+.super Landroidx/slice/widget/SliceChildView;
 .source "GridRowView.java"
 
 # interfaces
@@ -7,2538 +7,2361 @@
 .implements Landroid/view/View$OnTouchListener;
 
 
-# static fields
-.field private static final D:I
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroidx/slice/widget/GridRowView$TimeSetListener;,
+        Landroidx/slice/widget/GridRowView$DateSetListener;
+    }
+.end annotation
 
-.field private static final E:I
+
+# static fields
+.field private static final MAX_CELL_IMAGES:I = 0x1
+
+.field private static final MAX_CELL_TEXT:I = 0x2
+
+.field private static final MAX_CELL_TEXT_SMALL:I = 0x1
+
+.field private static final TAG:Ljava/lang/String; = "GridRowView"
+
+.field private static final TEXT_LAYOUT:I
+
+.field private static final TITLE_TEXT_LAYOUT:I
 
 
 # instance fields
-.field private A:[I
+.field private final mForeground:Landroid/view/View;
 
-.field B:Z
+.field private mGridContent:Landroidx/slice/widget/GridContent;
 
-.field private C:Landroid/view/ViewTreeObserver$OnPreDrawListener;
+.field private final mGutter:I
 
-.field private o:I
+.field private mHiddenItemCount:I
 
-.field private p:I
+.field private final mIconSize:I
 
-.field private q:I
+.field private final mLargeImageHeight:I
 
-.field private r:I
+.field private final mLoc:[I
 
-.field private s:I
+.field mMaxCellUpdateScheduled:Z
 
-.field private t:I
+.field mMaxCells:I
 
-.field private u:I
+.field private final mMaxCellsUpdater:Landroid/view/ViewTreeObserver$OnPreDrawListener;
 
-.field private v:I
+.field private mRowCount:I
 
-.field private w:Landroidx/slice/widget/c;
+.field private mRowIndex:I
 
-.field private x:Landroid/widget/LinearLayout;
+.field private final mSmallImageMinWidth:I
 
-.field private y:Landroid/view/View;
+.field private final mSmallImageSize:I
 
-.field z:I
+.field private final mTextPadding:I
+
+.field private final mViewContainer:Landroid/widget/LinearLayout;
 
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 1
-    sget v0, Li0/c;->e:I
+    .line 97
+    sget v0, Landroidx/slice/view/R$layout;->abc_slice_title:I
 
-    .line 2
-    .line 3
-    sput v0, Landroidx/slice/widget/GridRowView;->D:I
+    sput v0, Landroidx/slice/widget/GridRowView;->TITLE_TEXT_LAYOUT:I
 
-    .line 4
-    .line 5
-    sget v0, Li0/c;->d:I
+    .line 98
+    sget v0, Landroidx/slice/view/R$layout;->abc_slice_secondary_text:I
 
-    .line 6
-    .line 7
-    sput v0, Landroidx/slice/widget/GridRowView;->E:I
+    sput v0, Landroidx/slice/widget/GridRowView;->TEXT_LAYOUT:I
 
-    .line 8
-    .line 9
+    return-void
+.end method
+
+.method public constructor <init>(Landroid/content/Context;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "context"
+        }
+    .end annotation
+
+    const/4 v0, 0x0
+
+    .line 128
+    invoke-direct {p0, p1, v0}, Landroidx/slice/widget/GridRowView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+
     return-void
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 2
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0
+        }
+        names = {
+            "context",
+            "attrs"
+        }
+    .end annotation
 
-    .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/slice/widget/h;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+    .line 132
+    invoke-direct {p0, p1, p2}, Landroidx/slice/widget/SliceChildView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
-    .line 2
-    .line 3
-    .line 4
     const/4 p1, -0x1
 
-    .line 5
-    iput p1, p0, Landroidx/slice/widget/GridRowView;->z:I
+    .line 120
+    iput p1, p0, Landroidx/slice/widget/GridRowView;->mMaxCells:I
 
-    .line 6
-    .line 7
     const/4 p2, 0x2
 
-    .line 8
+    .line 121
     new-array p2, p2, [I
 
-    .line 9
-    .line 10
-    iput-object p2, p0, Landroidx/slice/widget/GridRowView;->A:[I
+    iput-object p2, p0, Landroidx/slice/widget/GridRowView;->mLoc:[I
 
-    .line 11
-    .line 12
-    new-instance p2, Landroidx/slice/widget/GridRowView$a;
+    .line 798
+    new-instance p2, Landroidx/slice/widget/GridRowView$2;
 
-    .line 13
-    .line 14
-    invoke-direct {p2, p0}, Landroidx/slice/widget/GridRowView$a;-><init>(Landroidx/slice/widget/GridRowView;)V
+    invoke-direct {p2, p0}, Landroidx/slice/widget/GridRowView$2;-><init>(Landroidx/slice/widget/GridRowView;)V
 
-    .line 15
-    .line 16
-    .line 17
-    iput-object p2, p0, Landroidx/slice/widget/GridRowView;->C:Landroid/view/ViewTreeObserver$OnPreDrawListener;
+    iput-object p2, p0, Landroidx/slice/widget/GridRowView;->mMaxCellsUpdater:Landroid/view/ViewTreeObserver$OnPreDrawListener;
 
-    .line 18
-    .line 19
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 133
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
 
-    .line 20
-    .line 21
-    .line 22
     move-result-object p2
 
-    .line 23
     invoke-virtual {p2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 24
-    .line 25
-    .line 26
     move-result-object p2
 
-    .line 27
+    .line 134
     new-instance v0, Landroid/widget/LinearLayout;
 
-    .line 28
-    .line 29
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
 
-    .line 30
-    .line 31
-    .line 32
     move-result-object v1
 
-    .line 33
     invoke-direct {v0, v1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
-    .line 34
-    .line 35
-    .line 36
-    iput-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
+    iput-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
 
-    .line 37
-    .line 38
     const/4 v1, 0x0
 
-    .line 39
+    .line 135
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 40
-    .line 41
-    .line 42
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 43
-    .line 44
+    .line 136
     new-instance v1, Landroid/widget/FrameLayout$LayoutParams;
 
-    .line 45
-    .line 46
     invoke-direct {v1, p1, p1}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
 
-    .line 47
-    .line 48
-    .line 49
-    invoke-virtual {p0, v0, v1}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {p0, v0, v1}, Landroidx/slice/widget/GridRowView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 50
-    .line 51
-    .line 52
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 53
-    .line 54
     const/16 v1, 0x10
 
-    .line 55
-    .line 56
+    .line 137
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->setGravity(I)V
 
-    .line 57
-    .line 58
-    .line 59
-    sget v0, Li0/a;->e:I
+    .line 138
+    sget v0, Landroidx/slice/view/R$dimen;->abc_slice_icon_size:I
 
-    .line 60
-    .line 61
     invoke-virtual {p2, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 62
-    .line 63
-    .line 64
     move-result v0
 
-    .line 65
-    iput v0, p0, Landroidx/slice/widget/GridRowView;->t:I
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mIconSize:I
 
-    .line 66
-    .line 67
-    sget v0, Li0/a;->f:I
+    .line 139
+    sget v0, Landroidx/slice/view/R$dimen;->abc_slice_small_image_size:I
 
-    .line 68
-    .line 69
     invoke-virtual {p2, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 70
-    .line 71
-    .line 72
     move-result v0
 
-    .line 73
-    iput v0, p0, Landroidx/slice/widget/GridRowView;->r:I
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mSmallImageSize:I
 
-    .line 74
-    .line 75
-    sget v0, Li0/a;->c:I
+    .line 140
+    sget v0, Landroidx/slice/view/R$dimen;->abc_slice_grid_image_only_height:I
 
-    .line 76
-    .line 77
     invoke-virtual {p2, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 78
-    .line 79
-    .line 80
     move-result v0
 
-    .line 81
-    iput v0, p0, Landroidx/slice/widget/GridRowView;->q:I
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mLargeImageHeight:I
 
-    .line 82
-    .line 83
-    sget v0, Li0/a;->b:I
+    .line 141
+    sget v0, Landroidx/slice/view/R$dimen;->abc_slice_grid_image_min_width:I
 
-    .line 84
-    .line 85
     invoke-virtual {p2, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 86
-    .line 87
-    .line 88
     move-result v0
 
-    .line 89
-    iput v0, p0, Landroidx/slice/widget/GridRowView;->s:I
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mSmallImageMinWidth:I
 
-    .line 90
-    .line 91
-    sget v0, Li0/a;->a:I
+    .line 142
+    sget v0, Landroidx/slice/view/R$dimen;->abc_slice_grid_gutter:I
 
-    .line 92
-    .line 93
     invoke-virtual {p2, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 94
-    .line 95
-    .line 96
     move-result v0
 
-    .line 97
-    iput v0, p0, Landroidx/slice/widget/GridRowView;->u:I
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mGutter:I
 
-    .line 98
-    .line 99
-    sget v0, Li0/a;->d:I
+    .line 143
+    sget v0, Landroidx/slice/view/R$dimen;->abc_slice_grid_text_padding:I
 
-    .line 100
-    .line 101
     invoke-virtual {p2, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 102
-    .line 103
-    .line 104
     move-result p2
 
-    .line 105
-    iput p2, p0, Landroidx/slice/widget/GridRowView;->v:I
+    iput p2, p0, Landroidx/slice/widget/GridRowView;->mTextPadding:I
 
-    .line 106
-    .line 107
+    .line 145
     new-instance p2, Landroid/view/View;
 
-    .line 108
-    .line 109
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
 
-    .line 110
-    .line 111
-    .line 112
     move-result-object v0
 
-    .line 113
     invoke-direct {p2, v0}, Landroid/view/View;-><init>(Landroid/content/Context;)V
 
-    .line 114
-    .line 115
-    .line 116
-    iput-object p2, p0, Landroidx/slice/widget/GridRowView;->y:Landroid/view/View;
+    iput-object p2, p0, Landroidx/slice/widget/GridRowView;->mForeground:Landroid/view/View;
 
-    .line 117
-    .line 118
+    .line 146
     new-instance v0, Landroid/widget/FrameLayout$LayoutParams;
 
-    .line 119
-    .line 120
     invoke-direct {v0, p1, p1}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
 
-    .line 121
-    .line 122
-    .line 123
-    invoke-virtual {p0, p2, v0}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {p0, p2, v0}, Landroidx/slice/widget/GridRowView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 124
-    .line 125
-    .line 126
     return-void
 .end method
 
-.method private c(Landroidx/slice/widget/c$a;II)V
-    .locals 19
+.method private addCell(Landroidx/slice/widget/GridContent$CellContent;II)V
+    .locals 27
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0,
+            0x0
+        }
+        names = {
+            "cell",
+            "index",
+            "total"
+        }
+    .end annotation
+
+    move-object/from16 v6, p0
+
+    move/from16 v7, p2
+
+    move/from16 v8, p3
+
+    .line 357
+    invoke-virtual/range {p0 .. p0}, Landroidx/slice/widget/GridRowView;->getMode()I
 
-    .line 1
-    move-object/from16 v0, p0
-
-    .line 2
-    .line 3
-    move/from16 v6, p2
-
-    .line 4
-    .line 5
-    move/from16 v7, p3
-
-    .line 6
-    .line 7
-    invoke-virtual {v0}, Landroidx/slice/widget/h;->getMode()I
-
-    .line 8
-    .line 9
-    .line 10
-    move-result v1
-
-    .line 11
-    const/4 v9, 0x1
-
-    .line 12
-    if-ne v1, v9, :cond_0
-
-    .line 13
-    .line 14
-    iget-object v1, v0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 15
-    .line 16
-    invoke-virtual {v1}, Landroidx/slice/widget/c;->n()Z
-
-    .line 17
-    .line 18
-    .line 19
-    move-result v1
-
-    .line 20
-    if-eqz v1, :cond_0
-
-    .line 21
-    .line 22
-    move v10, v9
-
-    .line 23
-    goto :goto_0
-
-    .line 24
-    :cond_0
-    const/4 v10, 0x2
-
-    .line 25
-    :goto_0
-    new-instance v3, Landroid/widget/LinearLayout;
-
-    .line 26
-    .line 27
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 28
-    .line 29
-    .line 30
-    move-result-object v1
-
-    .line 31
-    invoke-direct {v3, v1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-
-    .line 32
-    .line 33
-    .line 34
-    invoke-virtual {v3, v9}, Landroid/widget/LinearLayout;->setOrientation(I)V
-
-    .line 35
-    .line 36
-    .line 37
-    invoke-virtual {v3, v9}, Landroid/widget/LinearLayout;->setGravity(I)V
-
-    .line 38
-    .line 39
-    .line 40
-    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/c$a;->a()Ljava/util/ArrayList;
-
-    .line 41
-    .line 42
-    .line 43
-    move-result-object v11
-
-    .line 44
-    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/c$a;->c()Landroidx/slice/SliceItem;
-
-    .line 45
-    .line 46
-    .line 47
-    move-result-object v12
-
-    .line 48
-    invoke-virtual {v11}, Ljava/util/ArrayList;->size()I
-
-    .line 49
-    .line 50
-    .line 51
-    move-result v1
-
-    .line 52
-    if-ne v1, v9, :cond_1
-
-    .line 53
-    .line 54
-    move v5, v9
-
-    .line 55
-    goto :goto_1
-
-    .line 56
-    :cond_1
-    const/4 v5, 0x0
-
-    .line 57
-    :goto_1
-    const-string v14, "text"
-
-    .line 58
-    .line 59
-    if-nez v5, :cond_6
-
-    .line 60
-    .line 61
-    invoke-virtual {v0}, Landroidx/slice/widget/h;->getMode()I
-
-    .line 62
-    .line 63
-    .line 64
-    move-result v2
-
-    .line 65
-    if-ne v2, v9, :cond_6
-
-    .line 66
-    .line 67
-    new-instance v2, Ljava/util/ArrayList;
-
-    .line 68
-    .line 69
-    invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
-
-    .line 70
-    .line 71
-    .line 72
-    invoke-virtual {v11}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
-
-    .line 73
-    .line 74
-    .line 75
-    move-result-object v4
-
-    .line 76
-    :cond_2
-    :goto_2
-    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
-
-    .line 77
-    .line 78
-    .line 79
-    move-result v15
-
-    .line 80
-    if-eqz v15, :cond_3
-
-    .line 81
-    .line 82
-    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    .line 83
-    .line 84
-    .line 85
-    move-result-object v15
-
-    .line 86
-    check-cast v15, Landroidx/slice/SliceItem;
-
-    .line 87
-    .line 88
-    invoke-virtual {v15}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
-
-    .line 89
-    .line 90
-    .line 91
-    move-result-object v1
-
-    .line 92
-    invoke-virtual {v14, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 93
-    .line 94
-    .line 95
-    move-result v1
-
-    .line 96
-    if-eqz v1, :cond_2
-
-    .line 97
-    .line 98
-    invoke-interface {v2, v15}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 99
-    .line 100
-    .line 101
-    goto :goto_2
-
-    .line 102
-    :cond_3
-    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    .line 103
-    .line 104
-    .line 105
-    move-result-object v1
-
-    .line 106
-    :cond_4
-    :goto_3
-    invoke-interface {v2}, Ljava/util/List;->size()I
-
-    .line 107
-    .line 108
-    .line 109
-    move-result v4
-
-    .line 110
-    if-le v4, v10, :cond_5
-
-    .line 111
-    .line 112
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    .line 113
-    .line 114
-    .line 115
-    move-result-object v4
-
-    .line 116
-    check-cast v4, Landroidx/slice/SliceItem;
-
-    .line 117
-    .line 118
-    const-string v15, "title"
-
-    .line 119
-    .line 120
-    const-string v8, "large"
-
-    .line 121
-    .line 122
-    filled-new-array {v15, v8}, [Ljava/lang/String;
-
-    .line 123
-    .line 124
-    .line 125
-    move-result-object v8
-
-    .line 126
-    invoke-virtual {v4, v8}, Landroidx/slice/SliceItem;->q([Ljava/lang/String;)Z
-
-    .line 127
-    .line 128
-    .line 129
-    move-result v4
-
-    .line 130
-    if-nez v4, :cond_4
-
-    .line 131
-    .line 132
-    invoke-interface {v1}, Ljava/util/Iterator;->remove()V
-
-    .line 133
-    .line 134
-    .line 135
-    goto :goto_3
-
-    .line 136
-    :cond_5
-    move-object v8, v2
-
-    .line 137
-    goto :goto_4
-
-    .line 138
-    :cond_6
-    const/4 v8, 0x0
-
-    .line 139
-    :goto_4
-    const/4 v1, 0x0
-
-    .line 140
-    const/4 v2, 0x0
-
-    .line 141
-    const/4 v4, 0x0
-
-    .line 142
-    const/4 v15, 0x0
-
-    .line 143
-    const/16 v16, 0x0
-
-    .line 144
-    .line 145
-    :goto_5
-    invoke-virtual {v11}, Ljava/util/ArrayList;->size()I
-
-    .line 146
-    .line 147
-    .line 148
-    move-result v13
-
-    .line 149
-    if-ge v1, v13, :cond_c
-
-    .line 150
-    .line 151
-    invoke-virtual {v11, v1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    .line 152
-    .line 153
-    .line 154
-    move-result-object v13
-
-    .line 155
-    check-cast v13, Landroidx/slice/SliceItem;
-
-    .line 156
-    .line 157
-    invoke-virtual {v13}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
-
-    .line 158
-    .line 159
-    .line 160
-    move-result-object v9
-
-    .line 161
-    move/from16 v17, v4
-
-    .line 162
-    .line 163
-    invoke-direct {v0, v15}, Landroidx/slice/widget/GridRowView;->f(Landroidx/slice/SliceItem;)I
-
-    .line 164
-    .line 165
-    .line 166
-    move-result v4
-
-    .line 167
-    if-ge v2, v10, :cond_a
-
-    .line 168
-    .line 169
-    invoke-virtual {v14, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 170
-    .line 171
-    .line 172
-    move-result v18
-
-    .line 173
-    if-nez v18, :cond_8
-
-    .line 174
-    .line 175
-    move/from16 v18, v1
-
-    .line 176
-    .line 177
-    const-string v1, "long"
-
-    .line 178
-    .line 179
-    invoke-virtual {v1, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 180
-    .line 181
-    .line 182
-    move-result v1
-
-    .line 183
-    if-eqz v1, :cond_7
-
-    .line 184
-    .line 185
-    goto :goto_7
-
-    .line 186
-    :cond_7
-    :goto_6
-    move-object v1, v13
-
-    .line 187
-    move/from16 v9, v17
-
-    .line 188
-    .line 189
-    move v13, v2
-
-    .line 190
-    const/4 v2, 0x1
-
-    .line 191
-    goto :goto_9
-
-    .line 192
-    :cond_8
-    move/from16 v18, v1
-
-    .line 193
-    .line 194
-    :goto_7
-    if-eqz v8, :cond_9
-
-    .line 195
-    .line 196
-    invoke-interface {v8, v13}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
-
-    .line 197
-    .line 198
-    .line 199
-    move-result v1
-
-    .line 200
-    if-nez v1, :cond_9
-
-    .line 201
-    .line 202
-    move v13, v2
-
-    .line 203
-    move/from16 v9, v17
-
-    .line 204
-    .line 205
-    goto :goto_a
-
-    .line 206
-    :cond_9
-    move v1, v2
-
-    .line 207
-    iget v2, v0, Landroidx/slice/widget/h;->g:I
-
-    .line 208
-    .line 209
-    move-object v9, v13
-
-    .line 210
-    move v13, v1
-
-    .line 211
-    move-object v1, v9
-
-    .line 212
-    move/from16 v9, v17
-
-    .line 213
-    .line 214
-    invoke-direct/range {v0 .. v5}, Landroidx/slice/widget/GridRowView;->d(Landroidx/slice/SliceItem;ILandroid/view/ViewGroup;IZ)Z
-
-    .line 215
-    .line 216
-    .line 217
-    move-result v2
-
-    .line 218
-    if-eqz v2, :cond_b
-
-    .line 219
-    .line 220
-    add-int/lit8 v2, v13, 0x1
-
-    .line 221
-    .line 222
-    move-object v15, v1
-
-    .line 223
-    move v4, v9
-
-    .line 224
-    :goto_8
-    const/16 v16, 0x1
-
-    .line 225
-    .line 226
-    goto :goto_b
-
-    .line 227
-    :cond_a
-    move/from16 v18, v1
-
-    .line 228
-    .line 229
-    goto :goto_6
-
-    .line 230
-    :goto_9
-    if-ge v9, v2, :cond_b
-
-    .line 231
-    .line 232
-    const-string v2, "image"
-
-    .line 233
-    .line 234
-    invoke-virtual {v1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
-
-    .line 235
-    .line 236
-    .line 237
-    move-result-object v4
-
-    .line 238
-    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 239
-    .line 240
-    .line 241
-    move-result v2
-
-    .line 242
-    if-eqz v2, :cond_b
-
-    .line 243
-    .line 244
-    iget v2, v0, Landroidx/slice/widget/h;->g:I
-
-    .line 245
-    .line 246
-    const/4 v4, 0x0
-
-    .line 247
-    invoke-direct/range {v0 .. v5}, Landroidx/slice/widget/GridRowView;->d(Landroidx/slice/SliceItem;ILandroid/view/ViewGroup;IZ)Z
-
-    .line 248
-    .line 249
-    .line 250
-    move-result v2
-
-    .line 251
-    if-eqz v2, :cond_b
-
-    .line 252
-    .line 253
-    add-int/lit8 v4, v9, 0x1
-
-    .line 254
-    .line 255
-    move-object v15, v1
-
-    .line 256
-    move v2, v13
-
-    .line 257
-    goto :goto_8
-
-    .line 258
-    :cond_b
-    :goto_a
-    move v4, v9
-
-    .line 259
-    move v2, v13
-
-    .line 260
-    :goto_b
-    add-int/lit8 v1, v18, 0x1
-
-    .line 261
-    .line 262
-    const/4 v9, 0x1
-
-    .line 263
-    goto :goto_5
-
-    .line 264
-    :cond_c
-    if-eqz v16, :cond_f
-
-    .line 265
-    .line 266
-    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/c$a;->b()Ljava/lang/CharSequence;
-
-    .line 267
-    .line 268
-    .line 269
-    move-result-object v1
-
-    .line 270
-    if-eqz v1, :cond_d
-
-    .line 271
-    .line 272
-    invoke-virtual {v3, v1}, Landroid/widget/LinearLayout;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 273
-    .line 274
-    .line 275
-    :cond_d
-    iget-object v1, v0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 276
-    .line 277
-    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
-
-    .line 278
-    .line 279
-    const/4 v4, -0x2
-
-    .line 280
-    const/high16 v5, 0x3f800000    # 1.0f
-
-    .line 281
-    .line 282
-    const/4 v8, 0x0
-
-    .line 283
-    invoke-direct {v2, v8, v4, v5}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
-
-    .line 284
-    .line 285
-    .line 286
-    invoke-virtual {v1, v3, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 287
-    .line 288
-    .line 289
-    add-int/lit8 v1, v7, -0x1
-
-    .line 290
-    .line 291
-    if-eq v6, v1, :cond_e
-
-    .line 292
-    .line 293
-    invoke-virtual {v3}, Landroid/widget/LinearLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 294
-    .line 295
-    .line 296
-    move-result-object v1
-
-    .line 297
-    check-cast v1, Landroid/view/ViewGroup$MarginLayoutParams;
-
-    .line 298
-    .line 299
-    iget v2, v0, Landroidx/slice/widget/GridRowView;->u:I
-
-    .line 300
-    .line 301
-    invoke-virtual {v1, v2}, Landroid/view/ViewGroup$MarginLayoutParams;->setMarginEnd(I)V
-
-    .line 302
-    .line 303
-    .line 304
-    invoke-virtual {v3, v1}, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 305
-    .line 306
-    .line 307
-    :cond_e
-    if-eqz v12, :cond_f
-
-    .line 308
-    .line 309
-    new-instance v1, Landroidx/slice/widget/b;
-
-    .line 310
-    .line 311
-    invoke-virtual {v0}, Landroidx/slice/widget/h;->getMode()I
-
-    .line 312
-    .line 313
-    .line 314
-    move-result v2
-
-    .line 315
-    iget v4, v0, Landroidx/slice/widget/GridRowView;->o:I
-
-    .line 316
-    .line 317
-    const/4 v5, 0x1
-
-    .line 318
-    invoke-direct {v1, v2, v5, v5, v4}, Landroidx/slice/widget/b;-><init>(IIII)V
-
-    .line 319
-    .line 320
-    .line 321
-    const/4 v2, 0x2
-
-    .line 322
-    invoke-virtual {v1, v2, v6, v7}, Landroidx/slice/widget/b;->d(III)V
-
-    .line 323
-    .line 324
-    .line 325
-    new-instance v2, Landroid/util/Pair;
-
-    .line 326
-    .line 327
-    invoke-direct {v2, v12, v1}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
-
-    .line 328
-    .line 329
-    .line 330
-    invoke-virtual {v3, v2}, Landroid/widget/LinearLayout;->setTag(Ljava/lang/Object;)V
-
-    .line 331
-    .line 332
-    .line 333
-    invoke-direct {v0, v3, v5}, Landroidx/slice/widget/GridRowView;->g(Landroid/view/View;Z)V
-
-    .line 334
-    .line 335
-    .line 336
-    :cond_f
-    return-void
-.end method
-
-.method private d(Landroidx/slice/SliceItem;ILandroid/view/ViewGroup;IZ)Z
-    .locals 6
-
-    .line 1
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    const-string v1, "text"
-
-    .line 6
-    .line 7
-    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 8
-    .line 9
-    .line 10
-    move-result v1
-
-    .line 11
-    const-string v2, "large"
-
-    .line 12
-    .line 13
-    const-string v3, "long"
-
-    .line 14
-    .line 15
-    const/4 v4, 0x0
-
-    .line 16
-    const/4 v5, 0x0
-
-    .line 17
-    if-nez v1, :cond_7
-
-    .line 18
-    .line 19
-    invoke-virtual {v3, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v1
-
-    .line 23
-    if-eqz v1, :cond_0
-
-    .line 24
-    .line 25
-    goto/16 :goto_5
-
-    .line 26
-    .line 27
-    :cond_0
-    const-string p4, "image"
-
-    .line 28
-    .line 29
-    invoke-virtual {p4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 30
-    .line 31
-    .line 32
-    move-result p4
-
-    .line 33
-    if-eqz p4, :cond_a
-
-    .line 34
-    .line 35
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->i()Landroidx/core/graphics/drawable/IconCompat;
-
-    .line 36
-    .line 37
-    .line 38
-    move-result-object p4
-
-    .line 39
-    if-eqz p4, :cond_a
-
-    .line 40
-    .line 41
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->i()Landroidx/core/graphics/drawable/IconCompat;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object p4
-
-    .line 45
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object v0
-
-    .line 49
-    invoke-virtual {p4, v0}, Landroidx/core/graphics/drawable/IconCompat;->j(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object p4
-
-    .line 53
-    if-eqz p4, :cond_a
-
-    .line 54
-    .line 55
-    new-instance v5, Landroid/widget/ImageView;
-
-    .line 56
-    .line 57
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 58
-    .line 59
-    .line 60
-    move-result-object v0
-
-    .line 61
-    invoke-direct {v5, v0}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
-
-    .line 62
-    .line 63
-    .line 64
-    invoke-virtual {v5, p4}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    .line 65
-    .line 66
-    .line 67
-    const-string p4, "raw"
-
-    .line 68
-    .line 69
-    invoke-virtual {p1, p4}, Landroidx/slice/SliceItem;->r(Ljava/lang/String;)Z
-
-    .line 70
-    .line 71
-    .line 72
-    move-result p4
-
-    .line 73
-    const-string v0, "no_tint"
-
-    .line 74
-    .line 75
-    const/4 v1, -0x1
-
-    .line 76
-    if-eqz p4, :cond_1
-
-    .line 77
-    .line 78
-    sget-object p0, Landroid/widget/ImageView$ScaleType;->CENTER_INSIDE:Landroid/widget/ImageView$ScaleType;
-
-    .line 79
-    .line 80
-    invoke-virtual {v5, p0}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
-
-    .line 81
-    .line 82
-    .line 83
-    new-instance p0, Landroid/widget/LinearLayout$LayoutParams;
-
-    .line 84
-    .line 85
-    const/4 p4, -0x2
-
-    .line 86
-    invoke-direct {p0, v1, p4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-
-    .line 87
-    .line 88
-    .line 89
-    goto :goto_4
-
-    .line 90
-    :cond_1
-    invoke-virtual {p1, v2}, Landroidx/slice/SliceItem;->r(Ljava/lang/String;)Z
-
-    .line 91
-    .line 92
-    .line 93
-    move-result p4
-
-    .line 94
-    if-eqz p4, :cond_3
-
-    .line 95
-    .line 96
-    sget-object p4, Landroid/widget/ImageView$ScaleType;->CENTER_CROP:Landroid/widget/ImageView$ScaleType;
-
-    .line 97
-    .line 98
-    invoke-virtual {v5, p4}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
-
-    .line 99
-    .line 100
-    .line 101
-    if-eqz p5, :cond_2
-
-    .line 102
-    .line 103
-    move p0, v1
-
-    .line 104
-    goto :goto_0
-
-    .line 105
-    :cond_2
-    iget p0, p0, Landroidx/slice/widget/GridRowView;->q:I
-
-    .line 106
-    .line 107
-    :goto_0
-    new-instance p4, Landroid/widget/LinearLayout$LayoutParams;
-
-    .line 108
-    .line 109
-    invoke-direct {p4, v1, p0}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-
-    .line 110
-    .line 111
-    .line 112
-    :goto_1
-    move-object p0, p4
-
-    .line 113
-    goto :goto_4
-
-    .line 114
-    :cond_3
-    invoke-virtual {p1, v0}, Landroidx/slice/SliceItem;->r(Ljava/lang/String;)Z
-
-    .line 115
-    .line 116
-    .line 117
-    move-result p4
-
-    .line 118
-    if-eqz p4, :cond_4
-
-    .line 119
-    .line 120
-    iget p0, p0, Landroidx/slice/widget/GridRowView;->r:I
-
-    .line 121
-    .line 122
-    goto :goto_2
-
-    .line 123
-    :cond_4
-    iget p0, p0, Landroidx/slice/widget/GridRowView;->t:I
-
-    .line 124
-    .line 125
-    :goto_2
-    if-nez p4, :cond_5
-
-    .line 126
-    .line 127
-    sget-object p4, Landroid/widget/ImageView$ScaleType;->CENTER_INSIDE:Landroid/widget/ImageView$ScaleType;
-
-    .line 128
-    .line 129
-    goto :goto_3
-
-    .line 130
-    :cond_5
-    sget-object p4, Landroid/widget/ImageView$ScaleType;->CENTER_CROP:Landroid/widget/ImageView$ScaleType;
-
-    .line 131
-    .line 132
-    :goto_3
-    invoke-virtual {v5, p4}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
-
-    .line 133
-    .line 134
-    .line 135
-    new-instance p4, Landroid/widget/LinearLayout$LayoutParams;
-
-    .line 136
-    .line 137
-    invoke-direct {p4, p0, p0}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-
-    .line 138
-    .line 139
-    .line 140
-    goto :goto_1
-
-    .line 141
-    :goto_4
-    if-eq p2, v1, :cond_6
-
-    .line 142
-    .line 143
-    invoke-virtual {p1, v0}, Landroidx/slice/SliceItem;->r(Ljava/lang/String;)Z
-
-    .line 144
-    .line 145
-    .line 146
-    move-result p1
-
-    .line 147
-    if-nez p1, :cond_6
-
-    .line 148
-    .line 149
-    invoke-virtual {v5, p2}, Landroid/widget/ImageView;->setColorFilter(I)V
-
-    .line 150
-    .line 151
-    .line 152
-    :cond_6
-    invoke-virtual {p3, v5, p0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 153
-    .line 154
-    .line 155
-    goto :goto_8
-
-    .line 156
-    :cond_7
-    :goto_5
-    const-string p2, "title"
-
-    .line 157
-    .line 158
-    filled-new-array {v2, p2}, [Ljava/lang/String;
-
-    .line 159
-    .line 160
-    .line 161
-    move-result-object p2
-
-    .line 162
-    invoke-static {p1, p2}, Lh0/f;->p(Landroidx/slice/SliceItem;[Ljava/lang/String;)Z
-
-    .line 163
-    .line 164
-    .line 165
-    move-result p2
-
-    .line 166
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 167
-    .line 168
-    .line 169
-    move-result-object p5
-
-    .line 170
-    invoke-static {p5}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
-
-    .line 171
-    .line 172
-    .line 173
-    move-result-object p5
-
-    .line 174
-    if-eqz p2, :cond_8
-
-    .line 175
-    .line 176
-    sget p2, Landroidx/slice/widget/GridRowView;->D:I
-
-    .line 177
-    .line 178
-    goto :goto_6
-
-    .line 179
-    :cond_8
-    sget p2, Landroidx/slice/widget/GridRowView;->E:I
-
-    .line 180
-    .line 181
-    :goto_6
-    invoke-virtual {p5, p2, v5}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
-
-    .line 182
-    .line 183
-    .line 184
-    move-result-object p2
-
-    .line 185
-    move-object v5, p2
-
-    .line 186
-    check-cast v5, Landroid/widget/TextView;
-
-    .line 187
-    .line 188
-    invoke-virtual {v3, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 189
-    .line 190
-    .line 191
-    move-result p2
-
-    .line 192
-    if-eqz p2, :cond_9
-
-    .line 193
-    .line 194
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 195
-    .line 196
-    .line 197
-    move-result-object p0
-
-    .line 198
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->k()J
-
-    .line 199
-    .line 200
-    .line 201
-    move-result-wide p1
-
-    .line 202
-    invoke-static {p0, p1, p2}, Landroidx/slice/widget/o;->e(Landroid/content/Context;J)Ljava/lang/CharSequence;
-
-    .line 203
-    .line 204
-    .line 205
-    move-result-object p0
-
-    .line 206
-    goto :goto_7
-
-    .line 207
-    :cond_9
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->m()Ljava/lang/CharSequence;
-
-    .line 208
-    .line 209
-    .line 210
-    move-result-object p0
-
-    .line 211
-    :goto_7
-    invoke-virtual {v5, p0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 212
-    .line 213
-    .line 214
-    invoke-virtual {p3, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
-
-    .line 215
-    .line 216
-    .line 217
-    invoke-virtual {v5, v4, p4, v4, v4}, Landroid/widget/TextView;->setPadding(IIII)V
-
-    .line 218
-    .line 219
-    .line 220
-    :cond_a
-    :goto_8
-    if-eqz v5, :cond_b
-
-    .line 221
-    .line 222
-    const/4 p0, 0x1
-
-    .line 223
-    return p0
-
-    .line 224
-    :cond_b
-    return v4
-.end method
-
-.method private e(I)V
-    .locals 11
-
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 2
-    .line 3
-    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getChildCount()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v1
-
-    .line 7
-    const/4 v2, 0x1
-
-    .line 8
-    sub-int/2addr v1, v2
-
-    .line 9
-    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v0
-
-    .line 13
-    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 14
-    .line 15
-    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->removeView(Landroid/view/View;)V
-
-    .line 16
-    .line 17
-    .line 18
-    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 19
-    .line 20
-    invoke-virtual {v1}, Landroidx/slice/widget/c;->m()Landroidx/slice/SliceItem;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object v1
-
-    .line 24
-    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 25
-    .line 26
-    invoke-virtual {v3}, Landroid/widget/LinearLayout;->getChildCount()I
-
-    .line 27
-    .line 28
-    .line 29
-    move-result v3
-
-    .line 30
-    iget v4, p0, Landroidx/slice/widget/GridRowView;->z:I
-
-    .line 31
-    .line 32
-    invoke-virtual {v1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
-
-    .line 33
-    .line 34
-    .line 35
-    move-result-object v5
-
-    .line 36
-    const-string v6, "slice"
-
-    .line 37
-    .line 38
-    invoke-virtual {v6, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 39
-    .line 40
-    .line 41
-    move-result v5
-
-    .line 42
-    if-nez v5, :cond_0
-
-    .line 43
-    .line 44
-    const-string v5, "action"
-
-    .line 45
-    .line 46
-    invoke-virtual {v1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
-
-    .line 47
-    .line 48
-    .line 49
-    move-result-object v6
-
-    .line 50
-    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 51
-    .line 52
-    .line 53
-    move-result v5
-
-    .line 54
-    if-eqz v5, :cond_1
-
-    .line 55
-    .line 56
-    :cond_0
-    invoke-virtual {v1}, Landroidx/slice/SliceItem;->n()Landroidx/slice/Slice;
-
-    .line 57
-    .line 58
-    .line 59
-    move-result-object v5
-
-    .line 60
-    invoke-virtual {v5}, Landroidx/slice/Slice;->d()Ljava/util/List;
-
-    .line 61
-    .line 62
-    .line 63
-    move-result-object v5
-
-    .line 64
-    invoke-interface {v5}, Ljava/util/List;->size()I
-
-    .line 65
-    .line 66
-    .line 67
-    move-result v5
-
-    .line 68
-    if-lez v5, :cond_1
-
-    .line 69
-    .line 70
-    new-instance p1, Landroidx/slice/widget/c$a;
-
-    .line 71
-    .line 72
-    invoke-direct {p1, v1}, Landroidx/slice/widget/c$a;-><init>(Landroidx/slice/SliceItem;)V
-
-    .line 73
-    .line 74
-    .line 75
-    invoke-direct {p0, p1, v3, v4}, Landroidx/slice/widget/GridRowView;->c(Landroidx/slice/widget/c$a;II)V
-
-    .line 76
-    .line 77
-    .line 78
-    return-void
-
-    .line 79
-    :cond_1
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 80
-    .line 81
-    .line 82
-    move-result-object v5
-
-    .line 83
-    invoke-static {v5}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
-
-    .line 84
-    .line 85
-    .line 86
-    move-result-object v5
-
-    .line 87
-    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 88
-    .line 89
-    invoke-virtual {v6}, Landroidx/slice/widget/c;->o()Z
-
-    .line 90
-    .line 91
-    .line 92
-    move-result v6
-
-    .line 93
-    const/4 v7, -0x1
-
-    .line 94
-    const/4 v8, 0x0
-
-    .line 95
-    if-eqz v6, :cond_2
-
-    .line 96
-    .line 97
-    sget v6, Li0/c;->b:I
-
-    .line 98
-    .line 99
-    iget-object v9, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 100
-    .line 101
-    invoke-virtual {v5, v6, v9, v8}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
-
-    .line 102
-    .line 103
-    .line 104
-    move-result-object v5
-
-    .line 105
-    check-cast v5, Landroid/widget/FrameLayout;
-
-    .line 106
-    .line 107
-    new-instance v6, Landroid/widget/FrameLayout$LayoutParams;
-
-    .line 108
-    .line 109
-    invoke-direct {v6, v7, v7}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
-
-    .line 110
-    .line 111
-    .line 112
-    invoke-virtual {v5, v0, v8, v6}, Landroid/view/ViewGroup;->addView(Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
-
-    .line 113
-    .line 114
-    .line 115
-    sget v0, Li0/b;->d:I
-
-    .line 116
-    .line 117
-    invoke-virtual {v5, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
-
-    .line 118
-    .line 119
-    .line 120
-    move-result-object v0
-
-    .line 121
-    check-cast v0, Landroid/widget/TextView;
-
-    .line 122
-    .line 123
-    goto :goto_0
-
-    .line 124
-    :cond_2
-    sget v0, Li0/c;->a:I
-
-    .line 125
-    .line 126
-    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 127
-    .line 128
-    invoke-virtual {v5, v0, v6, v8}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
-
-    .line 129
-    .line 130
-    .line 131
-    move-result-object v0
-
-    .line 132
-    move-object v5, v0
-
-    .line 133
-    check-cast v5, Landroid/widget/LinearLayout;
-
-    .line 134
-    .line 135
-    sget v0, Li0/b;->d:I
-
-    .line 136
-    .line 137
-    invoke-virtual {v5, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
-
-    .line 138
-    .line 139
-    .line 140
-    move-result-object v0
-
-    .line 141
-    check-cast v0, Landroid/widget/TextView;
-
-    .line 142
-    .line 143
-    sget v6, Li0/b;->c:I
-
-    .line 144
-    .line 145
-    invoke-virtual {v5, v6}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
-
-    .line 146
-    .line 147
-    .line 148
-    move-result-object v6
-
-    .line 149
-    check-cast v6, Landroid/widget/TextView;
-
-    .line 150
-    .line 151
-    :goto_0
-    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 152
-    .line 153
-    new-instance v9, Landroid/widget/LinearLayout$LayoutParams;
-
-    .line 154
-    .line 155
-    const/high16 v10, 0x3f800000    # 1.0f
-
-    .line 156
-    .line 157
-    invoke-direct {v9, v8, v7, v10}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
-
-    .line 158
-    .line 159
-    .line 160
-    invoke-virtual {v6, v5, v9}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 161
-    .line 162
-    .line 163
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 164
-    .line 165
-    .line 166
-    move-result-object v6
-
-    .line 167
-    sget v7, Li0/d;->a:I
-
-    .line 168
-    .line 169
-    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 170
-    .line 171
-    .line 172
-    move-result-object p1
-
-    .line 173
-    filled-new-array {p1}, [Ljava/lang/Object;
-
-    .line 174
-    .line 175
-    .line 176
-    move-result-object p1
-
-    .line 177
-    invoke-virtual {v6, v7, p1}, Landroid/content/res/Resources;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 178
-    .line 179
-    .line 180
-    move-result-object p1
-
-    .line 181
-    invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 182
-    .line 183
-    .line 184
-    new-instance p1, Landroidx/slice/widget/b;
-
-    .line 185
-    .line 186
-    invoke-virtual {p0}, Landroidx/slice/widget/h;->getMode()I
-
-    .line 187
-    .line 188
-    .line 189
     move-result v0
 
-    .line 190
-    const/4 v6, 0x4
+    const/4 v9, 0x2
 
-    .line 191
-    iget v7, p0, Landroidx/slice/widget/GridRowView;->o:I
+    const/4 v10, 0x1
 
-    .line 192
-    .line 193
-    invoke-direct {p1, v0, v6, v2, v7}, Landroidx/slice/widget/b;-><init>(IIII)V
+    if-ne v0, v10, :cond_0
 
-    .line 194
-    .line 195
-    .line 196
-    const/4 v0, 0x2
+    iget-object v0, v6, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 197
-    invoke-virtual {p1, v0, v3, v4}, Landroidx/slice/widget/b;->d(III)V
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->hasImage()Z
 
-    .line 198
-    .line 199
-    .line 200
-    new-instance v0, Landroid/util/Pair;
+    move-result v0
 
-    .line 201
-    .line 202
-    invoke-direct {v0, v1, p1}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+    if-eqz v0, :cond_0
 
-    .line 203
-    .line 204
-    .line 205
-    invoke-virtual {v5, v0}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
+    move v11, v10
 
-    .line 206
-    .line 207
-    .line 208
-    invoke-direct {p0, v5, v2}, Landroidx/slice/widget/GridRowView;->g(Landroid/view/View;Z)V
+    goto :goto_0
 
-    .line 209
-    .line 210
-    .line 211
+    :cond_0
+    move v11, v9
+
+    .line 359
+    :goto_0
+    new-instance v12, Landroid/widget/LinearLayout;
+
+    invoke-virtual/range {p0 .. p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    invoke-direct {v12, v0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
+    .line 360
+    invoke-virtual {v12, v10}, Landroid/widget/LinearLayout;->setOrientation(I)V
+
+    .line 361
+    invoke-virtual {v12, v10}, Landroid/widget/LinearLayout;->setGravity(I)V
+
+    .line 363
+    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/GridContent$CellContent;->getCellItems()Ljava/util/ArrayList;
+
+    move-result-object v13
+
+    .line 364
+    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/GridContent$CellContent;->getContentIntent()Landroidx/slice/SliceItem;
+
+    move-result-object v14
+
+    .line 365
+    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/GridContent$CellContent;->getPicker()Landroidx/slice/SliceItem;
+
+    move-result-object v15
+
+    .line 366
+    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/GridContent$CellContent;->getToggleItem()Landroidx/slice/SliceItem;
+
+    move-result-object v5
+
+    .line 371
+    invoke-virtual {v13}, Ljava/util/ArrayList;->size()I
+
+    move-result v0
+
+    const/4 v4, 0x0
+
+    if-ne v0, v10, :cond_1
+
+    move/from16 v16, v10
+
+    goto :goto_1
+
+    :cond_1
+    move/from16 v16, v4
+
+    .line 374
+    :goto_1
+    const-string/jumbo v3, "text"
+
+    const/16 v17, 0x0
+
+    if-nez v16, :cond_6
+
+    invoke-virtual/range {p0 .. p0}, Landroidx/slice/widget/GridRowView;->getMode()I
+
+    move-result v0
+
+    if-ne v0, v10, :cond_6
+
+    .line 376
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 377
+    invoke-virtual {v13}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    :goto_2
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroidx/slice/SliceItem;
+
+    .line 378
+    invoke-virtual {v2}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    .line 379
+    invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    :cond_2
+    const/4 v10, 0x1
+
+    goto :goto_2
+
+    .line 383
+    :cond_3
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    .line 384
+    :cond_4
+    :goto_3
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v2
+
+    if-le v2, v11, :cond_5
+
+    .line 385
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroidx/slice/SliceItem;
+
+    .line 386
+    new-array v10, v9, [Ljava/lang/String;
+
+    const-string/jumbo v19, "title"
+
+    aput-object v19, v10, v4
+
+    const-string v19, "large"
+
+    const/16 v18, 0x1
+
+    aput-object v19, v10, v18
+
+    invoke-virtual {v2, v10}, Landroidx/slice/SliceItem;->hasAnyHints([Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_4
+
+    .line 387
+    invoke-interface {v1}, Ljava/util/Iterator;->remove()V
+
+    goto :goto_3
+
+    :cond_5
+    move-object v10, v0
+
+    goto :goto_4
+
+    :cond_6
+    move-object/from16 v10, v17
+
+    :goto_4
+    move v0, v4
+
+    move v2, v0
+
+    move v9, v2
+
+    move/from16 v19, v9
+
+    move-object/from16 v1, v17
+
+    .line 392
+    :goto_5
+    invoke-virtual {v13}, Ljava/util/ArrayList;->size()I
+
+    move-result v4
+
+    if-ge v2, v4, :cond_d
+
+    .line 393
+    invoke-virtual {v13, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, Landroidx/slice/SliceItem;
+
+    move/from16 v21, v2
+
+    .line 394
+    invoke-virtual {v4}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v2
+
+    move-object/from16 v22, v5
+
+    .line 395
+    invoke-direct {v6, v1}, Landroidx/slice/widget/GridRowView;->determinePadding(Landroidx/slice/SliceItem;)I
+
+    move-result v5
+
+    if-ge v0, v11, :cond_9
+
+    .line 396
+    invoke-virtual {v3, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v23
+
+    if-nez v23, :cond_7
+
+    move-object/from16 v23, v1
+
+    const-string v1, "long"
+
+    .line 397
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_a
+
+    goto :goto_6
+
+    :cond_7
+    move-object/from16 v23, v1
+
+    :goto_6
+    if-eqz v10, :cond_8
+
+    .line 398
+    invoke-interface {v10, v4}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_8
+
+    goto :goto_7
+
+    .line 401
+    :cond_8
+    invoke-direct {v6, v4, v12, v5}, Landroidx/slice/widget/GridRowView;->addTextItem(Landroidx/slice/SliceItem;Landroid/view/ViewGroup;I)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_b
+
+    add-int/lit8 v0, v0, 0x1
+
+    move-object/from16 v23, v3
+
+    move-object v1, v4
+
+    move-object/from16 v25, v10
+
+    move/from16 v26, v11
+
+    move-object/from16 v11, v22
+
+    const/16 v19, 0x1
+
+    move-object/from16 v22, v13
+
+    const/4 v13, 0x0
+
+    goto :goto_8
+
+    :cond_9
+    move-object/from16 v23, v1
+
+    :cond_a
+    const/4 v1, 0x1
+
+    if-ge v9, v1, :cond_b
+
+    .line 406
+    const-string v1, "image"
+
+    invoke-virtual {v4}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_b
+
+    .line 407
+    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/GridContent$CellContent;->getOverlayItem()Landroidx/slice/SliceItem;
+
+    move-result-object v2
+
+    iget v5, v6, Landroidx/slice/widget/GridRowView;->mTintColor:I
+
+    move/from16 v24, v0
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v25, v10
+
+    move-object/from16 v10, v23
+
+    move-object v1, v4
+
+    move-object/from16 v23, v3
+
+    move v3, v5
+
+    move-object/from16 v20, v4
+
+    const/4 v5, 0x0
+
+    move-object v4, v12
+
+    move/from16 v26, v11
+
+    move-object/from16 v11, v22
+
+    move-object/from16 v22, v13
+
+    move v13, v5
+
+    move/from16 v5, v16
+
+    invoke-direct/range {v0 .. v5}, Landroidx/slice/widget/GridRowView;->addImageItem(Landroidx/slice/SliceItem;Landroidx/slice/SliceItem;ILandroid/view/ViewGroup;Z)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_c
+
+    add-int/lit8 v9, v9, 0x1
+
+    move-object/from16 v1, v20
+
+    move/from16 v0, v24
+
+    const/16 v19, 0x1
+
+    goto :goto_8
+
+    :cond_b
+    :goto_7
+    move/from16 v24, v0
+
+    move-object/from16 v25, v10
+
+    move/from16 v26, v11
+
+    move-object/from16 v11, v22
+
+    move-object/from16 v10, v23
+
+    move-object/from16 v23, v3
+
+    move-object/from16 v22, v13
+
+    const/4 v13, 0x0
+
+    :cond_c
+    move-object v1, v10
+
+    move/from16 v0, v24
+
+    :goto_8
+    add-int/lit8 v2, v21, 0x1
+
+    move-object v5, v11
+
+    move-object/from16 v13, v22
+
+    move-object/from16 v3, v23
+
+    move-object/from16 v10, v25
+
+    move/from16 v11, v26
+
+    goto/16 :goto_5
+
+    :cond_d
+    move-object v10, v1
+
+    move-object v11, v5
+
+    const/4 v13, 0x0
+
+    if-eqz v15, :cond_f
+
+    .line 416
+    const-string v0, "date_picker"
+
+    invoke-virtual {v15}, Landroidx/slice/SliceItem;->getSubType()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_e
+
+    .line 417
+    invoke-direct {v6, v10}, Landroidx/slice/widget/GridRowView;->determinePadding(Landroidx/slice/SliceItem;)I
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    invoke-direct {v6, v15, v12, v0, v1}, Landroidx/slice/widget/GridRowView;->addPickerItem(Landroidx/slice/SliceItem;Landroid/view/ViewGroup;IZ)Z
+
+    move-result v0
+
+    goto :goto_9
+
+    .line 419
+    :cond_e
+    const-string/jumbo v0, "time_picker"
+
+    invoke-virtual {v15}, Landroidx/slice/SliceItem;->getSubType()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_f
+
+    .line 420
+    invoke-direct {v6, v10}, Landroidx/slice/widget/GridRowView;->determinePadding(Landroidx/slice/SliceItem;)I
+
+    move-result v0
+
+    invoke-direct {v6, v15, v12, v0, v13}, Landroidx/slice/widget/GridRowView;->addPickerItem(Landroidx/slice/SliceItem;Landroid/view/ViewGroup;IZ)Z
+
+    move-result v0
+
+    goto :goto_9
+
+    :cond_f
+    move/from16 v0, v19
+
+    :goto_9
+    if-eqz v11, :cond_10
+
+    .line 426
+    new-instance v0, Landroidx/slice/widget/SliceActionView;
+
+    invoke-virtual/range {p0 .. p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    iget-object v2, v6, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    iget-object v3, v6, Landroidx/slice/widget/GridRowView;->mRowStyle:Landroidx/slice/widget/RowStyle;
+
+    invoke-direct {v0, v1, v2, v3}, Landroidx/slice/widget/SliceActionView;-><init>(Landroid/content/Context;Landroidx/slice/widget/SliceStyle;Landroidx/slice/widget/RowStyle;)V
+
+    .line 427
+    invoke-virtual {v12, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+
+    move-object/from16 v20, v0
+
+    const/4 v0, 0x1
+
+    goto :goto_a
+
+    :cond_10
+    move-object/from16 v20, v17
+
+    :goto_a
+    if-eqz v0, :cond_14
+
+    .line 431
+    invoke-virtual/range {p1 .. p1}, Landroidx/slice/widget/GridContent$CellContent;->getContentDescription()Ljava/lang/CharSequence;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_11
+
+    .line 433
+    invoke-virtual {v12, v0}, Landroid/widget/LinearLayout;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 435
+    :cond_11
+    iget-object v0, v6, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
+
+    const/4 v2, -0x2
+
+    const/high16 v3, 0x3f800000    # 1.0f
+
+    invoke-direct {v1, v13, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+
+    invoke-virtual {v0, v12, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    add-int/lit8 v0, v8, -0x1
+
+    if-eq v7, v0, :cond_12
+
+    .line 440
+    invoke-virtual {v12}, Landroid/widget/LinearLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
+
+    .line 441
+    iget v1, v6, Landroidx/slice/widget/GridRowView;->mGutter:I
+
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup$MarginLayoutParams;->setMarginEnd(I)V
+
+    .line 442
+    invoke-virtual {v12, v0}, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    :cond_12
+    if-eqz v14, :cond_13
+
+    .line 445
+    new-instance v0, Landroidx/slice/widget/EventInfo;
+
+    invoke-virtual/range {p0 .. p0}, Landroidx/slice/widget/GridRowView;->getMode()I
+
+    move-result v1
+
+    iget v2, v6, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    const/4 v3, 0x1
+
+    invoke-direct {v0, v1, v3, v3, v2}, Landroidx/slice/widget/EventInfo;-><init>(IIII)V
+
+    const/4 v1, 0x2
+
+    .line 447
+    invoke-virtual {v0, v1, v7, v8}, Landroidx/slice/widget/EventInfo;->setPosition(III)V
+
+    .line 448
+    new-instance v1, Landroid/util/Pair;
+
+    invoke-direct {v1, v14, v0}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 449
+    invoke-virtual {v12, v1}, Landroid/widget/LinearLayout;->setTag(Ljava/lang/Object;)V
+
+    .line 450
+    invoke-direct {v6, v12, v3}, Landroidx/slice/widget/GridRowView;->makeClickable(Landroid/view/View;Z)V
+
+    :cond_13
+    if-eqz v11, :cond_14
+
+    .line 453
+    new-instance v0, Landroidx/slice/widget/EventInfo;
+
+    .line 454
+    invoke-virtual/range {p0 .. p0}, Landroidx/slice/widget/GridRowView;->getMode()I
+
+    move-result v1
+
+    const/4 v2, 0x3
+
+    iget v3, v6, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    invoke-direct {v0, v1, v13, v2, v3}, Landroidx/slice/widget/EventInfo;-><init>(IIII)V
+
+    .line 455
+    new-instance v1, Landroidx/slice/core/SliceActionImpl;
+
+    invoke-direct {v1, v11}, Landroidx/slice/core/SliceActionImpl;-><init>(Landroidx/slice/SliceItem;)V
+
+    iget-object v2, v6, Landroidx/slice/widget/GridRowView;->mObserver:Landroidx/slice/widget/SliceView$OnSliceActionListener;
+
+    iget v3, v6, Landroidx/slice/widget/GridRowView;->mTintColor:I
+
+    iget-object v4, v6, Landroidx/slice/widget/GridRowView;->mLoadingListener:Landroidx/slice/widget/SliceActionView$SliceActionLoadingListener;
+
+    move-object/from16 v21, v1
+
+    move-object/from16 v22, v0
+
+    move-object/from16 v23, v2
+
+    move/from16 v24, v3
+
+    move-object/from16 v25, v4
+
+    invoke-virtual/range {v20 .. v25}, Landroidx/slice/widget/SliceActionView;->setAction(Landroidx/slice/core/SliceActionImpl;Landroidx/slice/widget/EventInfo;Landroidx/slice/widget/SliceView$OnSliceActionListener;ILandroidx/slice/widget/SliceActionView$SliceActionLoadingListener;)V
+
+    const/4 v1, 0x2
+
+    .line 458
+    invoke-virtual {v0, v1, v7, v8}, Landroidx/slice/widget/EventInfo;->setPosition(III)V
+
+    :cond_14
     return-void
 .end method
 
-.method private f(Landroidx/slice/SliceItem;)I
-    .locals 3
+.method private addImageItem(Landroidx/slice/SliceItem;Landroidx/slice/SliceItem;ILandroid/view/ViewGroup;Z)Z
+    .locals 8
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0,
+            0x0,
+            0x0,
+            0x0
+        }
+        names = {
+            "item",
+            "overlayItem",
+            "color",
+            "container",
+            "isSingle"
+        }
+    .end annotation
 
-    .line 1
+    .line 506
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 507
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    .line 508
+    invoke-virtual {v1}, Landroidx/slice/widget/SliceStyle;->getApplyCornerRadiusToLargeImages()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    move v1, v2
+
+    goto :goto_0
+
+    :cond_0
+    move v1, v3
+
+    .line 509
+    :goto_0
+    const-string v4, "image"
+
+    invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_d
+
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getIcon()Landroidx/core/graphics/drawable/IconCompat;
+
+    move-result-object v0
+
+    if-nez v0, :cond_1
+
+    goto/16 :goto_8
+
+    .line 512
+    :cond_1
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getIcon()Landroidx/core/graphics/drawable/IconCompat;
+
+    move-result-object v0
+
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v4
+
+    invoke-virtual {v0, v4}, Landroidx/core/graphics/drawable/IconCompat;->loadDrawable(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    if-nez v0, :cond_2
+
+    return v3
+
+    .line 516
+    :cond_2
+    new-instance v4, Landroid/widget/ImageView;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v5
+
+    invoke-direct {v4, v5}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
+
+    if-eqz v1, :cond_3
+
+    .line 518
+    new-instance v5, Landroidx/slice/CornerDrawable;
+
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {v6}, Landroidx/slice/widget/SliceStyle;->getImageCornerRadius()F
+
+    move-result v6
+
+    invoke-direct {v5, v0, v6}, Landroidx/slice/CornerDrawable;-><init>(Landroid/graphics/drawable/Drawable;F)V
+
+    .line 519
+    invoke-virtual {v4, v5}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+
+    goto :goto_1
+
+    .line 521
+    :cond_3
+    invoke-virtual {v4, v0}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+
+    .line 524
+    :goto_1
+    const-string/jumbo v0, "raw"
+
+    invoke-virtual {p1, v0}, Landroidx/slice/SliceItem;->hasHint(Ljava/lang/String;)Z
+
+    move-result v0
+
+    const-string/jumbo v5, "no_tint"
+
+    const/4 v6, -0x1
+
+    if-eqz v0, :cond_4
+
+    .line 525
+    sget-object p5, Landroid/widget/ImageView$ScaleType;->CENTER_INSIDE:Landroid/widget/ImageView$ScaleType;
+
+    invoke-virtual {v4, p5}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
+
+    .line 526
+    new-instance p5, Landroid/widget/LinearLayout$LayoutParams;
+
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroidx/slice/widget/GridContent;->getFirstImageSize(Landroid/content/Context;)Landroid/graphics/Point;
+
+    move-result-object v0
+
+    iget v0, v0, Landroid/graphics/Point;->x:I
+
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    .line 527
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v7
+
+    invoke-virtual {v1, v7}, Landroidx/slice/widget/GridContent;->getFirstImageSize(Landroid/content/Context;)Landroid/graphics/Point;
+
+    move-result-object v1
+
+    iget v1, v1, Landroid/graphics/Point;->y:I
+
+    invoke-direct {p5, v0, v1}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    goto :goto_6
+
+    .line 528
+    :cond_4
+    const-string v0, "large"
+
+    invoke-virtual {p1, v0}, Landroidx/slice/SliceItem;->hasHint(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_7
+
+    if-eqz v1, :cond_5
+
+    .line 529
+    sget-object v0, Landroid/widget/ImageView$ScaleType;->FIT_XY:Landroid/widget/ImageView$ScaleType;
+
+    goto :goto_2
+
+    :cond_5
+    sget-object v0, Landroid/widget/ImageView$ScaleType;->CENTER_CROP:Landroid/widget/ImageView$ScaleType;
+
+    :goto_2
+    invoke-virtual {v4, v0}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
+
+    if-eqz p5, :cond_6
+
+    move p5, v6
+
+    goto :goto_3
+
+    .line 530
+    :cond_6
+    iget p5, p0, Landroidx/slice/widget/GridRowView;->mLargeImageHeight:I
+
+    .line 531
+    :goto_3
+    new-instance v0, Landroid/widget/LinearLayout$LayoutParams;
+
+    invoke-direct {v0, v6, p5}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    move-object p5, v0
+
+    goto :goto_6
+
+    .line 533
+    :cond_7
+    invoke-virtual {p1, v5}, Landroidx/slice/SliceItem;->hasHint(Ljava/lang/String;)Z
+
+    move-result p5
+
+    xor-int/2addr p5, v2
+
+    if-nez p5, :cond_8
+
+    .line 534
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mSmallImageSize:I
+
+    goto :goto_4
+
+    :cond_8
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mIconSize:I
+
+    :goto_4
+    if-eqz p5, :cond_9
+
+    .line 535
+    sget-object p5, Landroid/widget/ImageView$ScaleType;->CENTER_INSIDE:Landroid/widget/ImageView$ScaleType;
+
+    goto :goto_5
+
+    :cond_9
+    sget-object p5, Landroid/widget/ImageView$ScaleType;->CENTER_CROP:Landroid/widget/ImageView$ScaleType;
+
+    :goto_5
+    invoke-virtual {v4, p5}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
+
+    .line 536
+    new-instance p5, Landroid/widget/LinearLayout$LayoutParams;
+
+    invoke-direct {p5, v0, v0}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    :goto_6
+    if-eq p3, v6, :cond_a
+
+    .line 538
+    invoke-virtual {p1, v5}, Landroidx/slice/SliceItem;->hasHint(Ljava/lang/String;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_a
+
+    .line 539
+    invoke-virtual {v4, p3}, Landroid/widget/ImageView;->setColorFilter(I)V
+
+    :cond_a
+    if-eqz p2, :cond_c
+
+    .line 542
+    iget-object p1, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {p1}, Landroid/widget/LinearLayout;->getChildCount()I
+
+    move-result p1
+
+    iget p3, p0, Landroidx/slice/widget/GridRowView;->mMaxCells:I
+
+    sub-int/2addr p3, v2
+
+    if-ne p1, p3, :cond_b
+
+    goto :goto_7
+
+    .line 547
+    :cond_b
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object p1
+
+    invoke-static {p1}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+
+    move-result-object p1
+
+    .line 551
+    sget p3, Landroidx/slice/view/R$layout;->abc_slice_grid_text_overlay_image:I
+
+    invoke-virtual {p1, p3, p4, v3}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Landroid/widget/FrameLayout;
+
+    .line 553
+    new-instance p3, Landroid/widget/FrameLayout$LayoutParams;
+
+    const/4 v0, -0x2
+
+    invoke-direct {p3, v0, v0}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {p1, v4, v3, p3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
+
+    .line 554
+    sget p3, Landroidx/slice/view/R$id;->text_overlay:I
+
+    invoke-virtual {p1, p3}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object p3
+
+    check-cast p3, Landroid/widget/TextView;
+
+    .line 555
+    invoke-virtual {p2}, Landroidx/slice/SliceItem;->getText()Ljava/lang/CharSequence;
+
+    move-result-object p2
+
+    invoke-virtual {p3, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 556
+    sget p2, Landroidx/slice/view/R$id;->tint_overlay:I
+
+    invoke-virtual {p1, p2}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object p2
+
+    .line 557
+    new-instance p3, Landroidx/slice/CornerDrawable;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    sget v1, Landroidx/slice/view/R$drawable;->abc_slice_gradient:I
+
+    invoke-static {v0, v1}, Landroidx/core/content/ContextCompat;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    .line 558
+    invoke-virtual {p0}, Landroidx/slice/widget/SliceStyle;->getImageCornerRadius()F
+
+    move-result p0
+
+    invoke-direct {p3, v0, p0}, Landroidx/slice/CornerDrawable;-><init>(Landroid/graphics/drawable/Drawable;F)V
+
+    .line 557
+    invoke-virtual {p2, p3}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    .line 559
+    invoke-virtual {p4, p1, p5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    return v2
+
+    .line 543
+    :cond_c
+    :goto_7
+    invoke-virtual {p4, v4, p5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    return v2
+
+    :cond_d
+    :goto_8
+    return v3
+.end method
+
+.method private addPickerItem(Landroidx/slice/SliceItem;Landroid/view/ViewGroup;IZ)Z
+    .locals 9
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0,
+            0x0,
+            0x0
+        }
+        names = {
+            "pickerItem",
+            "container",
+            "padding",
+            "isDatePicker"
+        }
+    .end annotation
+
+    .line 574
+    const-string v0, "long"
+
+    const-string v1, "millis"
+
+    invoke-static {p1, v0, v1}, Landroidx/slice/core/SliceQuery;->findSubtype(Landroidx/slice/SliceItem;Ljava/lang/String;Ljava/lang/String;)Landroidx/slice/SliceItem;
+
+    move-result-object v0
+
+    const/4 v6, 0x0
+
+    if-nez v0, :cond_0
+
+    return v6
+
+    .line 579
+    :cond_0
+    invoke-virtual {v0}, Landroidx/slice/SliceItem;->getLong()J
+
+    move-result-wide v0
+
+    .line 581
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    invoke-static {v2}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+
+    move-result-object v2
+
+    sget v3, Landroidx/slice/widget/GridRowView;->TITLE_TEXT_LAYOUT:I
+
+    const/4 v5, 0x0
+
+    invoke-virtual {v2, v3, v5}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
+
+    move-result-object v2
+
+    move-object v7, v2
+
+    check-cast v7, Landroid/widget/TextView;
+
+    .line 582
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    if-eqz v2, :cond_1
+
+    .line 583
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {v2}, Landroidx/slice/widget/SliceStyle;->getGridTitleSize()I
+
+    move-result v2
+
+    int-to-float v2, v2
+
+    invoke-virtual {v7, v6, v2}, Landroid/widget/TextView;->setTextSize(IF)V
+
+    .line 584
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {v2}, Landroidx/slice/widget/SliceStyle;->getTitleColor()I
+
+    move-result v2
+
+    invoke-virtual {v7, v2}, Landroid/widget/TextView;->setTextColor(I)V
+
+    .line 587
+    :cond_1
+    new-instance v2, Ljava/util/Date;
+
+    invoke-direct {v2, v0, v1}, Ljava/util/Date;-><init>(J)V
+
+    .line 588
+    const-string/jumbo v0, "text"
+
+    const-string/jumbo v1, "title"
+
+    invoke-static {p1, v0, v1, v5}, Landroidx/slice/core/SliceQuery;->find(Landroidx/slice/SliceItem;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroidx/slice/SliceItem;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_2
+
+    .line 591
+    invoke-virtual {v0}, Landroidx/slice/SliceItem;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v0
+
+    invoke-virtual {v7, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 594
+    :cond_2
+    iget v5, p0, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    .line 596
+    new-instance v8, Landroidx/slice/widget/GridRowView$1;
+
+    move-object v0, v8
+
+    move-object v1, p0
+
+    move v3, p4
+
+    move-object v4, p1
+
+    invoke-direct/range {v0 .. v5}, Landroidx/slice/widget/GridRowView$1;-><init>(Landroidx/slice/widget/GridRowView;Ljava/util/Date;ZLandroidx/slice/SliceItem;I)V
+
+    invoke-virtual {p2, v8}, Landroid/view/ViewGroup;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    const/4 v0, 0x1
+
+    .line 622
+    invoke-virtual {p2, v0}, Landroid/view/ViewGroup;->setClickable(Z)V
+
+    .line 628
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    const v2, 0x101045c
+
+    invoke-static {v1, v2}, Landroidx/slice/widget/SliceViewUtil;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v1
+
+    invoke-virtual {p2, v1}, Landroid/view/ViewGroup;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    .line 629
+    invoke-virtual {p2, v7}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    .line 630
+    invoke-virtual {v7, v6, p3, v6, v6}, Landroid/widget/TextView;->setPadding(IIII)V
+
+    return v0
+.end method
+
+.method private addSeeMoreCount(I)V
+    .locals 12
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "numExtra"
+        }
+    .end annotation
+
+    .line 301
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v0}, Landroid/widget/LinearLayout;->getChildCount()I
+
+    move-result v1
+
+    const/4 v2, 0x1
+
+    sub-int/2addr v1, v2
+
+    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
+
+    move-result-object v0
+
+    .line 302
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->removeView(Landroid/view/View;)V
+
+    .line 304
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v1}, Landroidx/slice/widget/GridContent;->getSeeMoreItem()Landroidx/slice/SliceItem;
+
+    move-result-object v1
+
+    .line 305
+    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v3}, Landroid/widget/LinearLayout;->getChildCount()I
+
+    move-result v3
+
+    .line 306
+    iget v4, p0, Landroidx/slice/widget/GridRowView;->mMaxCells:I
+
+    .line 307
+    const-string/jumbo v5, "slice"
+
+    invoke-virtual {v1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-nez v5, :cond_0
+
+    const-string v5, "action"
+
+    .line 308
+    invoke-virtual {v1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_1
+
+    .line 309
+    :cond_0
+    invoke-virtual {v1}, Landroidx/slice/SliceItem;->getSlice()Landroidx/slice/Slice;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Landroidx/slice/Slice;->getItems()Ljava/util/List;
+
+    move-result-object v5
+
+    invoke-interface {v5}, Ljava/util/List;->size()I
+
+    move-result v5
+
+    if-lez v5, :cond_1
+
+    .line 311
+    new-instance p1, Landroidx/slice/widget/GridContent$CellContent;
+
+    invoke-direct {p1, v1}, Landroidx/slice/widget/GridContent$CellContent;-><init>(Landroidx/slice/SliceItem;)V
+
+    invoke-direct {p0, p1, v3, v4}, Landroidx/slice/widget/GridRowView;->addCell(Landroidx/slice/widget/GridContent$CellContent;II)V
+
+    return-void
+
+    .line 316
+    :cond_1
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v5
+
+    invoke-static {v5}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+
+    move-result-object v5
+
+    .line 320
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v6}, Landroidx/slice/widget/GridContent;->isAllImages()Z
+
+    move-result v6
+
+    const/4 v7, -0x1
+
+    const/4 v8, 0x0
+
+    if-eqz v6, :cond_2
+
+    .line 321
+    sget v6, Landroidx/slice/view/R$layout;->abc_slice_grid_see_more_overlay:I
+
+    iget-object v9, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v5, v6, v9, v8}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object v5
+
+    check-cast v5, Landroid/widget/FrameLayout;
+
+    .line 323
+    new-instance v6, Landroid/widget/FrameLayout$LayoutParams;
+
+    invoke-direct {v6, v7, v7}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v5, v0, v8, v6}, Landroid/view/ViewGroup;->addView(Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
+
+    .line 324
+    sget v0, Landroidx/slice/view/R$id;->text_see_more_count:I
+
+    invoke-virtual {v5, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/TextView;
+
+    .line 325
+    sget v6, Landroidx/slice/view/R$id;->overlay_see_more:I
+
+    invoke-virtual {v5, v6}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object v6
+
+    .line 326
+    new-instance v9, Landroidx/slice/CornerDrawable;
+
+    .line 327
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v10
+
+    const v11, 0x1010030
+
+    .line 326
+    invoke-static {v10, v11}, Landroidx/slice/widget/SliceViewUtil;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v10
+
+    iget-object v11, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    .line 328
+    invoke-virtual {v11}, Landroidx/slice/widget/SliceStyle;->getImageCornerRadius()F
+
+    move-result v11
+
+    invoke-direct {v9, v10, v11}, Landroidx/slice/CornerDrawable;-><init>(Landroid/graphics/drawable/Drawable;F)V
+
+    .line 326
+    invoke-virtual {v6, v9}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    goto :goto_0
+
+    .line 330
+    :cond_2
+    sget v0, Landroidx/slice/view/R$layout;->abc_slice_grid_see_more:I
+
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v5, v0, v6, v8}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object v0
+
+    move-object v5, v0
+
+    check-cast v5, Landroid/widget/LinearLayout;
+
+    .line 332
+    sget v0, Landroidx/slice/view/R$id;->text_see_more_count:I
+
+    invoke-virtual {v5, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/TextView;
+
+    .line 335
+    sget v6, Landroidx/slice/view/R$id;->text_see_more:I
+
+    invoke-virtual {v5, v6}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object v6
+
+    check-cast v6, Landroid/widget/TextView;
+
+    .line 336
+    iget-object v9, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    if-eqz v9, :cond_3
+
+    iget-object v9, p0, Landroidx/slice/widget/GridRowView;->mRowStyle:Landroidx/slice/widget/RowStyle;
+
+    if-eqz v9, :cond_3
+
+    .line 337
+    iget-object v9, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {v9}, Landroidx/slice/widget/SliceStyle;->getGridTitleSize()I
+
+    move-result v9
+
+    int-to-float v9, v9
+
+    invoke-virtual {v6, v8, v9}, Landroid/widget/TextView;->setTextSize(IF)V
+
+    .line 338
+    iget-object v9, p0, Landroidx/slice/widget/GridRowView;->mRowStyle:Landroidx/slice/widget/RowStyle;
+
+    invoke-virtual {v9}, Landroidx/slice/widget/RowStyle;->getTitleColor()I
+
+    move-result v9
+
+    invoke-virtual {v6, v9}, Landroid/widget/TextView;->setTextColor(I)V
+
+    .line 341
+    :cond_3
+    :goto_0
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    new-instance v9, Landroid/widget/LinearLayout$LayoutParams;
+
+    const/high16 v10, 0x3f800000    # 1.0f
+
+    invoke-direct {v9, v8, v7, v10}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+
+    invoke-virtual {v6, v5, v9}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 342
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v6
+
+    sget v7, Landroidx/slice/view/R$string;->abc_slice_more_content:I
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p1
+
+    filled-new-array {p1}, [Ljava/lang/Object;
+
+    move-result-object p1
+
+    invoke-virtual {v6, v7, p1}, Landroid/content/res/Resources;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 345
+    new-instance p1, Landroidx/slice/widget/EventInfo;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getMode()I
+
+    move-result v0
+
+    const/4 v6, 0x4
+
+    iget v7, p0, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    invoke-direct {p1, v0, v6, v2, v7}, Landroidx/slice/widget/EventInfo;-><init>(IIII)V
+
+    const/4 v0, 0x2
+
+    .line 347
+    invoke-virtual {p1, v0, v3, v4}, Landroidx/slice/widget/EventInfo;->setPosition(III)V
+
+    .line 348
+    new-instance v0, Landroid/util/Pair;
+
+    invoke-direct {v0, v1, p1}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 349
+    invoke-virtual {v5, v0}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
+
+    .line 350
+    invoke-direct {p0, v5, v2}, Landroidx/slice/widget/GridRowView;->makeClickable(Landroid/view/View;Z)V
+
+    return-void
+.end method
+
+.method private addTextItem(Landroidx/slice/SliceItem;Landroid/view/ViewGroup;I)Z
+    .locals 8
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0,
+            0x0
+        }
+        names = {
+            "item",
+            "container",
+            "padding"
+        }
+    .end annotation
+
+    .line 473
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 474
+    const-string/jumbo v1, "text"
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    const-string v2, "long"
+
+    const/4 v3, 0x0
+
+    if-nez v1, :cond_0
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    return v3
+
+    :cond_0
+    const/4 v1, 0x2
+
+    .line 477
+    new-array v1, v1, [Ljava/lang/String;
+
+    const-string v4, "large"
+
+    aput-object v4, v1, v3
+
+    const-string/jumbo v4, "title"
+
+    const/4 v5, 0x1
+
+    aput-object v4, v1, v5
+
+    invoke-static {p1, v1}, Landroidx/slice/core/SliceQuery;->hasAnyHints(Landroidx/slice/SliceItem;[Ljava/lang/String;)Z
+
+    move-result v1
+
+    .line 478
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v4
+
+    invoke-static {v4}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+
+    move-result-object v4
+
+    if-eqz v1, :cond_1
+
+    .line 479
+    sget v6, Landroidx/slice/widget/GridRowView;->TITLE_TEXT_LAYOUT:I
+
+    goto :goto_0
+
+    :cond_1
+    sget v6, Landroidx/slice/widget/GridRowView;->TEXT_LAYOUT:I
+
+    :goto_0
+    const/4 v7, 0x0
+
+    .line 478
+    invoke-virtual {v4, v6, v7}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
+
+    move-result-object v4
+
+    check-cast v4, Landroid/widget/TextView;
+
+    .line 480
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    if-eqz v6, :cond_4
+
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mRowStyle:Landroidx/slice/widget/RowStyle;
+
+    if-eqz v6, :cond_4
+
+    if-eqz v1, :cond_2
+
+    .line 482
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {v6}, Landroidx/slice/widget/SliceStyle;->getGridTitleSize()I
+
+    move-result v6
+
+    goto :goto_1
+
+    :cond_2
+    iget-object v6, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {v6}, Landroidx/slice/widget/SliceStyle;->getGridSubtitleSize()I
+
+    move-result v6
+
+    :goto_1
+    int-to-float v6, v6
+
+    .line 481
+    invoke-virtual {v4, v3, v6}, Landroid/widget/TextView;->setTextSize(IF)V
+
+    if-eqz v1, :cond_3
+
+    .line 484
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mRowStyle:Landroidx/slice/widget/RowStyle;
+
+    invoke-virtual {v1}, Landroidx/slice/widget/RowStyle;->getTitleColor()I
+
+    move-result v1
+
+    goto :goto_2
+
+    :cond_3
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mRowStyle:Landroidx/slice/widget/RowStyle;
+
+    invoke-virtual {v1}, Landroidx/slice/widget/RowStyle;->getSubtitleColor()I
+
+    move-result v1
+
+    .line 483
+    :goto_2
+    invoke-virtual {v4, v1}, Landroid/widget/TextView;->setTextColor(I)V
+
+    .line 486
+    :cond_4
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_5
+
+    .line 487
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getLong()J
+
+    move-result-wide v0
+
+    invoke-static {p0, v0, v1}, Landroidx/slice/widget/SliceViewUtil;->getTimestampString(Landroid/content/Context;J)Ljava/lang/CharSequence;
+
+    move-result-object p0
+
+    goto :goto_3
+
+    .line 488
+    :cond_5
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getSanitizedText()Ljava/lang/CharSequence;
+
+    move-result-object p0
+
+    .line 489
+    :goto_3
+    invoke-virtual {v4, p0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 490
+    invoke-virtual {p2, v4}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    .line 491
+    invoke-virtual {v4, v3, p3, v3, v3}, Landroid/widget/TextView;->setPadding(IIII)V
+
+    return v5
+.end method
+
+.method private determinePadding(Landroidx/slice/SliceItem;)I
+    .locals 3
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "prevItem"
+        }
+    .end annotation
+
     const/4 v0, 0x0
 
-    .line 2
     if-nez p1, :cond_0
 
-    .line 3
-    .line 4
     return v0
 
-    .line 5
+    .line 706
     :cond_0
     const-string v1, "image"
 
-    .line 6
-    .line 7
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v2
 
-    .line 11
     invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 12
-    .line 13
-    .line 14
     move-result v1
 
-    .line 15
     if-eqz v1, :cond_1
 
-    .line 16
-    .line 17
-    iget p0, p0, Landroidx/slice/widget/GridRowView;->v:I
+    .line 707
+    iget p0, p0, Landroidx/slice/widget/GridRowView;->mTextPadding:I
 
-    .line 18
-    .line 19
     return p0
 
-    .line 20
+    .line 708
     :cond_1
-    const-string p0, "text"
+    const-string/jumbo v1, "text"
 
-    .line 21
-    .line 22
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
 
-    .line 23
-    .line 24
-    .line 25
-    move-result-object v1
+    move-result-object v2
 
-    .line 26
-    invoke-virtual {p0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 27
-    .line 28
-    .line 29
-    move-result p0
+    move-result v1
 
-    .line 30
-    if-nez p0, :cond_2
+    if-nez v1, :cond_3
 
-    .line 31
-    .line 32
-    const-string p0, "long"
+    const-string v1, "long"
 
-    .line 33
-    .line 34
-    invoke-virtual {p1}, Landroidx/slice/SliceItem;->h()Ljava/lang/String;
+    .line 709
+    invoke-virtual {p1}, Landroidx/slice/SliceItem;->getFormat()Ljava/lang/String;
 
-    .line 35
-    .line 36
-    .line 37
     move-result-object p1
 
-    .line 38
-    invoke-virtual {p0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 39
-    .line 40
-    .line 41
+    move-result p1
+
+    if-eqz p1, :cond_2
+
+    goto :goto_0
+
     :cond_2
+    return v0
+
+    .line 710
+    :cond_3
+    :goto_0
+    iget-object p1, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    if-eqz p1, :cond_4
+
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/SliceStyle;->getVerticalGridTextPadding()I
+
+    move-result v0
+
+    :cond_4
     return v0
 .end method
 
-.method private g(Landroid/view/View;Z)V
-    .locals 2
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    if-eqz p2, :cond_0
-
-    .line 3
-    .line 4
-    move-object v1, p0
-
-    .line 5
-    goto :goto_0
-
-    .line 6
-    :cond_0
-    move-object v1, v0
-
-    .line 7
-    :goto_0
-    invoke-virtual {p1, v1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 8
-    .line 9
-    .line 10
-    if-eqz p2, :cond_1
-
-    .line 11
-    .line 12
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
-
-    .line 13
-    .line 14
-    .line 15
-    move-result-object p0
-
-    .line 16
-    const v0, 0x101045c
-
-    .line 17
-    .line 18
-    .line 19
-    invoke-static {p0, v0}, Landroidx/slice/widget/o;->d(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
-
-    .line 20
-    .line 21
-    .line 22
-    move-result-object v0
-
-    .line 23
-    :cond_1
-    invoke-virtual {p1, v0}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
-
-    .line 24
-    .line 25
-    .line 26
-    invoke-virtual {p1, p2}, Landroid/view/View;->setClickable(Z)V
-
-    .line 27
-    .line 28
-    .line 29
-    return-void
-.end method
-
 .method private getExtraBottomPadding()I
-    .locals 3
+    .locals 4
 
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 166
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 2
-    .line 3
     const/4 v1, 0x0
 
-    .line 4
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
-    .line 5
-    .line 6
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->o()Z
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->isAllImages()Z
 
-    .line 7
-    .line 8
-    .line 9
     move-result v0
 
-    .line 10
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
-    .line 11
-    .line 12
-    iget v0, p0, Landroidx/slice/widget/GridRowView;->o:I
+    .line 167
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mRowIndex:I
 
-    .line 13
-    .line 14
-    iget v2, p0, Landroidx/slice/widget/GridRowView;->p:I
+    iget v2, p0, Landroidx/slice/widget/GridRowView;->mRowCount:I
 
-    .line 15
-    .line 16
-    add-int/lit8 v2, v2, -0x1
+    const/4 v3, 0x1
 
-    .line 17
-    .line 18
+    sub-int/2addr v2, v3
+
     if-eq v0, v2, :cond_0
 
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroidx/slice/widget/h;->getMode()I
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getMode()I
 
-    .line 21
-    .line 22
-    .line 23
+    move-result v0
+
+    if-ne v0, v3, :cond_1
+
+    .line 168
     :cond_0
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    if-eqz v0, :cond_1
+
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/SliceStyle;->getGridBottomPadding()I
+
+    move-result v1
+
+    :cond_1
     return v1
 .end method
 
 .method private getExtraTopPadding()I
-    .locals 1
+    .locals 2
 
-    .line 1
-    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 156
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 2
-    .line 3
-    const/4 v0, 0x0
-
-    .line 4
-    if-eqz p0, :cond_0
-
-    .line 5
-    .line 6
-    invoke-virtual {p0}, Landroidx/slice/widget/c;->o()Z
-
-    .line 7
-    .line 8
-    .line 9
-    :cond_0
-    return v0
-.end method
-
-.method private h(Z)V
-    .locals 3
-
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 2
-    .line 3
     const/4 v1, 0x0
 
-    .line 4
-    if-eqz p1, :cond_0
+    if-eqz v0, :cond_0
 
-    .line 5
-    .line 6
-    move-object v2, p0
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->isAllImages()Z
 
-    .line 7
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 158
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    if-nez v0, :cond_0
+
+    .line 159
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    if-eqz v0, :cond_0
+
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/SliceStyle;->getGridTopPadding()I
+
+    move-result v1
+
+    :cond_0
+    return v1
+.end method
+
+.method private makeClickable(Landroid/view/View;Z)V
+    .locals 2
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0
+        }
+        names = {
+            "layout",
+            "isClickable"
+        }
+    .end annotation
+
+    const/4 v0, 0x0
+
+    if-eqz p2, :cond_0
+
+    move-object v1, p0
+
     goto :goto_0
 
-    .line 8
+    :cond_0
+    move-object v1, v0
+
+    .line 726
+    :goto_0
+    invoke-virtual {p1, v1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    if-eqz p2, :cond_1
+
+    .line 732
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object p0
+
+    const v0, 0x101045c
+
+    invoke-static {p0, v0}, Landroidx/slice/widget/SliceViewUtil;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    .line 731
+    :cond_1
+    invoke-virtual {p1, v0}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    .line 734
+    invoke-virtual {p1, p2}, Landroid/view/View;->setClickable(Z)V
+
+    return-void
+.end method
+
+.method private makeEntireGridClickable(Z)V
+    .locals 3
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "isClickable"
+        }
+    .end annotation
+
+    .line 716
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    const/4 v1, 0x0
+
+    if-eqz p1, :cond_0
+
+    move-object v2, p0
+
+    goto :goto_0
+
     :cond_0
     move-object v2, v1
 
-    .line 9
     :goto_0
     invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 
-    .line 10
-    .line 11
-    .line 12
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
+    .line 717
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
 
-    .line 13
-    .line 14
     if-eqz p1, :cond_1
 
-    .line 15
-    .line 16
     move-object v2, p0
 
-    .line 17
     goto :goto_1
 
-    .line 18
     :cond_1
     move-object v2, v1
 
-    .line 19
     :goto_1
     invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 20
-    .line 21
-    .line 22
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->y:Landroid/view/View;
+    .line 718
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mForeground:Landroid/view/View;
 
-    .line 23
-    .line 24
     if-eqz p1, :cond_2
 
-    .line 25
-    .line 26
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 720
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
 
-    .line 27
-    .line 28
-    .line 29
     move-result-object v1
 
-    .line 30
     const v2, 0x101030e
 
-    .line 31
-    .line 32
-    .line 33
-    invoke-static {v1, v2}, Landroidx/slice/widget/o;->d(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
+    .line 719
+    invoke-static {v1, v2}, Landroidx/slice/widget/SliceViewUtil;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
 
-    .line 34
-    .line 35
-    .line 36
     move-result-object v1
 
-    .line 37
+    .line 718
     :cond_2
     invoke-virtual {v0, v1}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 38
-    .line 39
-    .line 40
-    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
+    .line 722
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
 
-    .line 41
-    .line 42
     invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setClickable(Z)V
 
-    .line 43
-    .line 44
-    .line 45
     return-void
 .end method
 
-.method private i(Landroid/view/MotionEvent;)V
+.method private onForegroundActivated(Landroid/view/MotionEvent;)V
     .locals 5
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "event"
+        }
+    .end annotation
 
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->y:Landroid/view/View;
+    .line 767
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mForeground:Landroid/view/View;
 
-    .line 2
-    .line 3
-    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->A:[I
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mLoc:[I
 
-    .line 4
-    .line 5
     invoke-virtual {v0, v1}, Landroid/view/View;->getLocationOnScreen([I)V
 
-    .line 6
-    .line 7
-    .line 8
+    .line 768
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getRawX()F
 
-    .line 9
-    .line 10
-    .line 11
     move-result v0
 
-    .line 12
-    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->A:[I
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mLoc:[I
 
-    .line 13
-    .line 14
     const/4 v2, 0x0
 
-    .line 15
     aget v1, v1, v2
 
-    .line 16
-    .line 17
     int-to-float v1, v1
 
-    .line 18
     sub-float/2addr v0, v1
 
-    .line 19
     float-to-int v0, v0
 
-    .line 20
+    .line 769
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getRawY()F
 
-    .line 21
-    .line 22
-    .line 23
     move-result v1
 
-    .line 24
-    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->A:[I
+    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->mLoc:[I
 
-    .line 25
-    .line 26
     const/4 v4, 0x1
 
-    .line 27
     aget v3, v3, v4
 
-    .line 28
-    .line 29
     int-to-float v3, v3
 
-    .line 30
     sub-float/2addr v1, v3
 
-    .line 31
     float-to-int v1, v1
 
-    .line 32
-    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->y:Landroid/view/View;
+    .line 770
+    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->mForeground:Landroid/view/View;
 
-    .line 33
-    .line 34
     invoke-virtual {v3}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
 
-    .line 35
-    .line 36
-    .line 37
     move-result-object v3
 
-    .line 38
     int-to-float v0, v0
 
-    .line 39
     int-to-float v1, v1
 
-    .line 40
     invoke-virtual {v3, v0, v1}, Landroid/graphics/drawable/Drawable;->setHotspot(FF)V
 
-    .line 41
-    .line 42
-    .line 43
+    .line 772
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
 
-    .line 44
-    .line 45
-    .line 46
     move-result p1
 
-    .line 47
     if-nez p1, :cond_0
 
-    .line 48
-    .line 49
-    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->y:Landroid/view/View;
+    .line 774
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mForeground:Landroid/view/View;
 
-    .line 50
-    .line 51
     invoke-virtual {p0, v4}, Landroid/view/View;->setPressed(Z)V
 
-    .line 52
-    .line 53
-    .line 54
-    return-void
+    goto :goto_0
 
-    .line 55
     :cond_0
     const/4 v0, 0x3
 
-    .line 56
-    if-eq p1, v0, :cond_2
+    if-eq p1, v0, :cond_1
 
-    .line 57
-    .line 58
-    if-eq p1, v4, :cond_2
+    if-eq p1, v4, :cond_1
 
-    .line 59
-    .line 60
     const/4 v0, 0x2
 
-    .line 61
-    if-ne p1, v0, :cond_1
+    if-ne p1, v0, :cond_2
 
-    .line 62
-    .line 63
-    goto :goto_0
-
-    .line 64
+    .line 778
     :cond_1
-    return-void
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mForeground:Landroid/view/View;
 
-    .line 65
-    :cond_2
-    :goto_0
-    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->y:Landroid/view/View;
-
-    .line 66
-    .line 67
     invoke-virtual {p0, v2}, Landroid/view/View;->setPressed(Z)V
 
-    .line 68
-    .line 69
-    .line 70
+    :cond_2
+    :goto_0
     return-void
 .end method
 
-.method private k()Z
+.method private scheduleMaxCellsUpdate()Z
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 218
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 2
-    .line 3
     const/4 v1, 0x1
 
-    .line 4
     if-eqz v0, :cond_2
 
-    .line 5
-    .line 6
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->g()Z
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->isValid()Z
 
-    .line 7
-    .line 8
-    .line 9
     move-result v0
 
-    .line 10
     if-nez v0, :cond_0
 
-    .line 11
-    .line 12
     goto :goto_0
 
-    .line 13
+    .line 221
     :cond_0
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getWidth()I
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getWidth()I
 
-    .line 14
-    .line 15
-    .line 16
     move-result v0
 
-    .line 17
     if-nez v0, :cond_1
 
-    .line 18
-    .line 19
-    iput-boolean v1, p0, Landroidx/slice/widget/GridRowView;->B:Z
+    .line 223
+    iput-boolean v1, p0, Landroidx/slice/widget/GridRowView;->mMaxCellUpdateScheduled:Z
 
-    .line 20
-    .line 21
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
+    .line 224
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
-    .line 22
-    .line 23
-    .line 24
     move-result-object v0
 
-    .line 25
-    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->C:Landroid/view/ViewTreeObserver$OnPreDrawListener;
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mMaxCellsUpdater:Landroid/view/ViewTreeObserver$OnPreDrawListener;
 
-    .line 26
-    .line 27
     invoke-virtual {v0, p0}, Landroid/view/ViewTreeObserver;->addOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
 
-    .line 28
-    .line 29
-    .line 30
     return v1
 
-    .line 31
+    .line 227
     :cond_1
     invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getMaxCells()I
 
-    .line 32
-    .line 33
-    .line 34
     move-result v0
 
-    .line 35
-    iput v0, p0, Landroidx/slice/widget/GridRowView;->z:I
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mMaxCells:I
 
-    .line 36
-    .line 37
     const/4 p0, 0x0
 
-    .line 38
     return p0
 
-    .line 39
     :cond_2
     :goto_0
     return v1
@@ -2546,826 +2369,698 @@
 
 
 # virtual methods
-.method public a()V
-    .locals 3
+.method public getHiddenItemCount()I
+    .locals 0
 
-    .line 1
-    iget-boolean v0, p0, Landroidx/slice/widget/GridRowView;->B:Z
+    .line 795
+    iget p0, p0, Landroidx/slice/widget/GridRowView;->mHiddenItemCount:I
 
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    if-eqz v0, :cond_0
-
-    .line 5
-    .line 6
-    iput-boolean v1, p0, Landroidx/slice/widget/GridRowView;->B:Z
-
-    .line 7
-    .line 8
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object v0
-
-    .line 12
-    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->C:Landroid/view/ViewTreeObserver$OnPreDrawListener;
-
-    .line 13
-    .line 14
-    invoke-virtual {v0, v2}, Landroid/view/ViewTreeObserver;->removeOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
-
-    .line 15
-    .line 16
-    .line 17
-    :cond_0
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 18
-    .line 19
-    invoke-virtual {v0}, Landroid/widget/LinearLayout;->removeAllViews()V
-
-    .line 20
-    .line 21
-    .line 22
-    const/4 v0, 0x2
-
-    .line 23
-    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->setLayoutDirection(I)V
-
-    .line 24
-    .line 25
-    .line 26
-    invoke-direct {p0, v1}, Landroidx/slice/widget/GridRowView;->h(Z)V
-
-    .line 27
-    .line 28
-    .line 29
-    return-void
-.end method
-
-.method public b(IIII)V
-    .locals 2
-
-    .line 1
-    invoke-super {p0, p1, p2, p3, p4}, Landroidx/slice/widget/h;->b(IIII)V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 5
-    .line 6
-    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->getExtraTopPadding()I
-
-    .line 7
-    .line 8
-    .line 9
-    move-result v1
-
-    .line 10
-    add-int/2addr p2, v1
-
-    .line 11
-    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->getExtraBottomPadding()I
-
-    .line 12
-    .line 13
-    .line 14
-    move-result p0
-
-    .line 15
-    add-int/2addr p4, p0
-
-    .line 16
-    invoke-virtual {v0, p1, p2, p3, p4}, Landroid/widget/LinearLayout;->setPadding(IIII)V
-
-    .line 17
-    .line 18
-    .line 19
-    return-void
+    return p0
 .end method
 
 .method getMaxCells()I
     .locals 2
 
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 233
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 2
-    .line 3
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_4
 
-    .line 4
-    .line 5
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->g()Z
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->isValid()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result v0
 
-    .line 9
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_4
 
-    .line 10
-    .line 11
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getWidth()I
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getWidth()I
 
-    .line 12
-    .line 13
-    .line 14
     move-result v0
 
-    .line 15
     if-nez v0, :cond_0
 
-    .line 16
-    .line 17
     goto :goto_1
 
-    .line 18
+    .line 236
     :cond_0
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 19
-    .line 20
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->j()Ljava/util/ArrayList;
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getGridContent()Ljava/util/ArrayList;
 
-    .line 21
-    .line 22
-    .line 23
     move-result-object v0
 
-    .line 24
+    .line 237
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
 
-    .line 25
-    .line 26
-    .line 27
     move-result v0
 
-    .line 28
     const/4 v1, 0x1
 
-    .line 29
-    if-le v0, v1, :cond_2
+    if-le v0, v1, :cond_3
 
-    .line 30
-    .line 31
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 239
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 32
-    .line 33
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->l()I
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getLargestImageMode()I
 
-    .line 34
-    .line 35
-    .line 36
     move-result v0
 
-    .line 37
     const/4 v1, 0x2
 
-    .line 38
-    if-ne v0, v1, :cond_1
+    if-eq v0, v1, :cond_2
 
-    .line 39
-    .line 40
-    iget v0, p0, Landroidx/slice/widget/GridRowView;->q:I
+    const/4 v1, 0x4
 
-    .line 41
-    .line 42
+    if-eq v0, v1, :cond_1
+
+    .line 247
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mSmallImageMinWidth:I
+
     goto :goto_0
 
-    .line 43
+    .line 244
     :cond_1
-    iget v0, p0, Landroidx/slice/widget/GridRowView;->s:I
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 44
-    .line 45
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroidx/slice/widget/GridContent;->getFirstImageSize(Landroid/content/Context;)Landroid/graphics/Point;
+
+    move-result-object v0
+
+    iget v0, v0, Landroid/graphics/Point;->x:I
+
+    goto :goto_0
+
+    .line 241
+    :cond_2
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mLargeImageHeight:I
+
+    .line 249
     :goto_0
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getWidth()I
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getWidth()I
 
-    .line 46
-    .line 47
-    .line 48
     move-result v1
 
-    .line 49
-    iget p0, p0, Landroidx/slice/widget/GridRowView;->u:I
+    iget p0, p0, Landroidx/slice/widget/GridRowView;->mGutter:I
 
-    .line 50
-    .line 51
     add-int/2addr v0, p0
 
-    .line 52
     div-int/2addr v1, v0
 
-    .line 53
-    :cond_2
+    :cond_3
     return v1
 
-    .line 54
-    :cond_3
+    :cond_4
     :goto_1
     const/4 p0, -0x1
 
-    .line 55
     return p0
 .end method
 
-.method j()V
-    .locals 6
-
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_9
-
-    .line 4
-    .line 5
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->g()Z
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v0
-
-    .line 9
-    if-nez v0, :cond_0
-
-    .line 10
-    .line 11
-    goto/16 :goto_3
-
-    .line 12
-    .line 13
-    :cond_0
-    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->k()Z
-
-    .line 14
-    .line 15
-    .line 16
-    move-result v0
-
-    .line 17
-    if-eqz v0, :cond_1
-
-    .line 18
-    .line 19
-    goto/16 :goto_2
-
-    .line 20
-    .line 21
-    :cond_1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 22
-    .line 23
-    invoke-virtual {v0}, Landroidx/slice/widget/i;->c()I
-
-    .line 24
-    .line 25
-    .line 26
-    move-result v0
-
-    .line 27
-    const/4 v1, -0x1
-
-    .line 28
-    if-eq v0, v1, :cond_2
-
-    .line 29
-    .line 30
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 31
-    .line 32
-    invoke-virtual {v0}, Landroidx/slice/widget/i;->c()I
-
-    .line 33
-    .line 34
-    .line 35
-    move-result v0
-
-    .line 36
-    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->setLayoutDirection(I)V
-
-    .line 37
-    .line 38
-    .line 39
-    :cond_2
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 40
-    .line 41
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->i()Landroidx/slice/SliceItem;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object v0
-
-    .line 45
-    const/4 v1, 0x1
-
-    .line 46
-    if-eqz v0, :cond_3
-
-    .line 47
-    .line 48
-    new-instance v0, Landroidx/slice/widget/b;
-
-    .line 49
-    .line 50
-    invoke-virtual {p0}, Landroidx/slice/widget/h;->getMode()I
-
-    .line 51
-    .line 52
-    .line 53
-    move-result v2
-
-    .line 54
-    const/4 v3, 0x3
-
-    .line 55
-    iget v4, p0, Landroidx/slice/widget/GridRowView;->o:I
-
-    .line 56
-    .line 57
-    invoke-direct {v0, v2, v3, v1, v4}, Landroidx/slice/widget/b;-><init>(IIII)V
-
-    .line 58
-    .line 59
-    .line 60
-    new-instance v2, Landroid/util/Pair;
-
-    .line 61
-    .line 62
-    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 63
-    .line 64
-    invoke-virtual {v3}, Landroidx/slice/widget/c;->i()Landroidx/slice/SliceItem;
-
-    .line 65
-    .line 66
-    .line 67
-    move-result-object v3
-
-    .line 68
-    invoke-direct {v2, v3, v0}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
-
-    .line 69
-    .line 70
-    .line 71
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 72
-    .line 73
-    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setTag(Ljava/lang/Object;)V
-
-    .line 74
-    .line 75
-    .line 76
-    invoke-direct {p0, v1}, Landroidx/slice/widget/GridRowView;->h(Z)V
-
-    .line 77
-    .line 78
-    .line 79
-    :cond_3
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 80
-    .line 81
-    invoke-virtual {v0}, Landroidx/slice/widget/i;->b()Ljava/lang/CharSequence;
-
-    .line 82
-    .line 83
-    .line 84
-    move-result-object v0
-
-    .line 85
-    if-eqz v0, :cond_4
-
-    .line 86
-    .line 87
-    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 88
-    .line 89
-    invoke-virtual {v2, v0}, Landroid/widget/LinearLayout;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 90
-    .line 91
-    .line 92
-    :cond_4
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 93
-    .line 94
-    invoke-virtual {v0}, Landroidx/slice/widget/c;->j()Ljava/util/ArrayList;
-
-    .line 95
-    .line 96
-    .line 97
-    move-result-object v0
-
-    .line 98
-    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 99
-    .line 100
-    invoke-virtual {v2}, Landroidx/slice/widget/c;->l()I
-
-    .line 101
-    .line 102
-    .line 103
-    move-result v2
-
-    .line 104
-    const/4 v3, 0x2
-
-    .line 105
-    if-ne v2, v3, :cond_5
-
-    .line 106
-    .line 107
-    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 108
-    .line 109
-    const/16 v3, 0x30
-
-    .line 110
-    .line 111
-    invoke-virtual {v2, v3}, Landroid/widget/LinearLayout;->setGravity(I)V
-
-    .line 112
-    .line 113
-    .line 114
-    goto :goto_0
-
-    .line 115
-    :cond_5
-    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 116
-    .line 117
-    const/16 v3, 0x10
-
-    .line 118
-    .line 119
-    invoke-virtual {v2, v3}, Landroid/widget/LinearLayout;->setGravity(I)V
-
-    .line 120
-    .line 121
-    .line 122
-    :goto_0
-    iget v2, p0, Landroidx/slice/widget/GridRowView;->z:I
-
-    .line 123
-    .line 124
-    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
-
-    .line 125
-    .line 126
-    invoke-virtual {v3}, Landroidx/slice/widget/c;->m()Landroidx/slice/SliceItem;
-
-    .line 127
-    .line 128
-    .line 129
-    move-result-object v3
-
-    .line 130
-    const/4 v4, 0x0
-
-    .line 131
-    if-eqz v3, :cond_6
-
-    .line 132
-    .line 133
-    goto :goto_1
-
-    .line 134
-    :cond_6
-    move v1, v4
-
-    .line 135
-    :goto_1
-    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
-
-    .line 136
-    .line 137
-    .line 138
-    move-result v3
-
-    .line 139
-    if-ge v4, v3, :cond_8
-
-    .line 140
-    .line 141
-    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
-
-    .line 142
-    .line 143
-    invoke-virtual {v3}, Landroid/widget/LinearLayout;->getChildCount()I
-
-    .line 144
-    .line 145
-    .line 146
-    move-result v3
-
-    .line 147
-    if-lt v3, v2, :cond_7
-
-    .line 148
-    .line 149
-    if-eqz v1, :cond_8
-
-    .line 150
-    .line 151
-    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
-
-    .line 152
-    .line 153
-    .line 154
-    move-result v0
-
-    .line 155
-    sub-int/2addr v0, v2
-
-    .line 156
-    invoke-direct {p0, v0}, Landroidx/slice/widget/GridRowView;->e(I)V
-
-    .line 157
-    .line 158
-    .line 159
-    return-void
-
-    .line 160
-    :cond_7
-    invoke-virtual {v0, v4}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    .line 161
-    .line 162
-    .line 163
-    move-result-object v3
-
-    .line 164
-    check-cast v3, Landroidx/slice/widget/c$a;
-
-    .line 165
-    .line 166
-    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
-
-    .line 167
-    .line 168
-    .line 169
-    move-result v5
-
-    .line 170
-    invoke-static {v5, v2}, Ljava/lang/Math;->min(II)I
-
-    .line 171
-    .line 172
-    .line 173
-    move-result v5
-
-    .line 174
-    invoke-direct {p0, v3, v4, v5}, Landroidx/slice/widget/GridRowView;->c(Landroidx/slice/widget/c$a;II)V
-
-    .line 175
-    .line 176
-    .line 177
-    add-int/lit8 v4, v4, 0x1
-
-    .line 178
-    .line 179
-    goto :goto_1
-
-    .line 180
-    :cond_8
-    :goto_2
-    return-void
-
-    .line 181
-    :cond_9
-    :goto_3
-    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->a()V
-
-    .line 182
-    .line 183
-    .line 184
-    return-void
-.end method
-
 .method public onClick(Landroid/view/View;)V
-    .locals 1
+    .locals 3
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "view"
+        }
+    .end annotation
 
-    .line 1
+    .line 740
     invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
 
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
+    move-result-object p1
 
-    .line 5
-    check-cast p0, Landroid/util/Pair;
+    check-cast p1, Landroid/util/Pair;
 
-    .line 6
-    .line 7
-    iget-object p1, p0, Landroid/util/Pair;->first:Ljava/lang/Object;
+    .line 741
+    iget-object v0, p1, Landroid/util/Pair;->first:Ljava/lang/Object;
 
-    .line 8
-    .line 9
-    check-cast p1, Landroidx/slice/SliceItem;
+    check-cast v0, Landroidx/slice/SliceItem;
 
-    .line 10
-    .line 11
-    iget-object p0, p0, Landroid/util/Pair;->second:Ljava/lang/Object;
+    .line 742
+    iget-object p1, p1, Landroid/util/Pair;->second:Ljava/lang/Object;
 
-    .line 12
-    .line 13
-    check-cast p0, Landroidx/slice/widget/b;
+    check-cast p1, Landroidx/slice/widget/EventInfo;
 
-    .line 14
-    .line 15
-    if-eqz p1, :cond_0
+    if-eqz v0, :cond_0
 
-    .line 16
-    .line 17
-    const-string p0, "action"
+    const/4 v1, 0x0
 
-    .line 18
-    .line 19
-    const/4 v0, 0x0
+    .line 744
+    move-object v2, v1
 
-    .line 20
-    invoke-static {p1, p0, v0, v0}, Lh0/f;->g(Landroidx/slice/SliceItem;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroidx/slice/SliceItem;
+    check-cast v2, Ljava/lang/String;
 
-    .line 21
-    .line 22
-    .line 23
-    move-result-object p0
+    const-string v2, "action"
 
-    .line 24
-    if-eqz p0, :cond_0
+    invoke-static {v0, v2, v1, v1}, Landroidx/slice/core/SliceQuery;->find(Landroidx/slice/SliceItem;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroidx/slice/SliceItem;
 
-    .line 25
-    .line 26
+    move-result-object v0
+
+    if-eqz v0, :cond_0
+
+    .line 748
     :try_start_0
-    invoke-virtual {p0, v0, v0}, Landroidx/slice/SliceItem;->c(Landroid/content/Context;Landroid/content/Intent;)V
+    invoke-virtual {v0, v1, v1}, Landroidx/slice/SliceItem;->fireAction(Landroid/content/Context;Landroid/content/Intent;)V
+
+    .line 749
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mObserver:Landroidx/slice/widget/SliceView$OnSliceActionListener;
+
+    if-eqz v1, :cond_0
+
+    .line 750
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView;->mObserver:Landroidx/slice/widget/SliceView$OnSliceActionListener;
+
+    invoke-interface {p0, p1, v0}, Landroidx/slice/widget/SliceView$OnSliceActionListener;->onSliceAction(Landroidx/slice/widget/EventInfo;Landroidx/slice/SliceItem;)V
     :try_end_0
     .catch Landroid/app/PendingIntent$CanceledException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 27
-    .line 28
-    .line 29
-    return-void
+    goto :goto_0
 
-    .line 30
     :catch_0
     move-exception p0
 
-    .line 31
+    .line 753
     const-string p1, "GridRowView"
 
-    .line 32
-    .line 33
     const-string v0, "PendingIntent for slice cannot be sent"
 
-    .line 34
-    .line 35
     invoke-static {p1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 36
-    .line 37
-    .line 38
     :cond_0
+    :goto_0
     return-void
 .end method
 
 .method protected onMeasure(II)V
     .locals 2
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0
+        }
+        names = {
+            "widthMeasureSpec",
+            "heightMeasureSpec"
+        }
+    .end annotation
 
-    .line 1
-    iget-object p2, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 176
+    iget-object p2, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 2
-    .line 3
-    const/4 v0, 0x0
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mSliceStyle:Landroidx/slice/widget/SliceStyle;
 
-    .line 4
-    invoke-virtual {p2, v0, v0}, Landroidx/slice/widget/c;->k(Landroidx/slice/widget/l;Landroidx/slice/widget/n;)I
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mViewPolicy:Landroidx/slice/widget/SliceViewPolicy;
 
-    .line 5
-    .line 6
-    .line 7
+    invoke-virtual {p2, v0, v1}, Landroidx/slice/widget/GridContent;->getHeight(Landroidx/slice/widget/SliceStyle;Landroidx/slice/widget/SliceViewPolicy;)I
+
     move-result p2
 
-    .line 8
-    iget v0, p0, Landroidx/slice/widget/h;->k:I
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mInsetTop:I
 
-    .line 9
-    .line 10
     add-int/2addr p2, v0
 
-    .line 11
-    iget v0, p0, Landroidx/slice/widget/h;->m:I
+    iget v0, p0, Landroidx/slice/widget/GridRowView;->mInsetBottom:I
 
-    .line 12
-    .line 13
     add-int/2addr p2, v0
 
-    .line 14
     const/high16 v0, 0x40000000    # 2.0f
 
-    .line 15
-    .line 16
+    .line 178
     invoke-static {p2, v0}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
-    .line 17
-    .line 18
-    .line 19
     move-result v0
 
-    .line 20
-    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->x:Landroid/widget/LinearLayout;
+    .line 179
+    iget-object v1, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
 
-    .line 21
-    .line 22
     invoke-virtual {v1}, Landroid/widget/LinearLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 23
-    .line 24
-    .line 25
     move-result-object v1
 
-    .line 26
     iput p2, v1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 27
-    .line 28
-    invoke-super {p0, p1, v0}, Landroid/widget/FrameLayout;->onMeasure(II)V
+    .line 180
+    invoke-super {p0, p1, v0}, Landroidx/slice/widget/SliceChildView;->onMeasure(II)V
 
-    .line 29
-    .line 30
-    .line 31
     return-void
 .end method
 
 .method public onTouch(Landroid/view/View;Landroid/view/MotionEvent;)Z
     .locals 0
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0
+        }
+        names = {
+            "view",
+            "event"
+        }
+    .end annotation
 
-    .line 1
-    invoke-direct {p0, p2}, Landroidx/slice/widget/GridRowView;->i(Landroid/view/MotionEvent;)V
+    .line 761
+    invoke-direct {p0, p2}, Landroidx/slice/widget/GridRowView;->onForegroundActivated(Landroid/view/MotionEvent;)V
 
-    .line 2
-    .line 3
-    .line 4
     const/4 p0, 0x0
 
-    .line 5
     return p0
+.end method
+
+.method populateViews()V
+    .locals 6
+
+    .line 256
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    if-eqz v0, :cond_a
+
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->isValid()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    goto/16 :goto_5
+
+    .line 260
+    :cond_0
+    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->scheduleMaxCellsUpdate()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    return-void
+
+    .line 263
+    :cond_1
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getLayoutDir()I
+
+    move-result v0
+
+    const/4 v1, -0x1
+
+    if-eq v0, v1, :cond_2
+
+    .line 264
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getLayoutDir()I
+
+    move-result v0
+
+    invoke-virtual {p0, v0}, Landroidx/slice/widget/GridRowView;->setLayoutDirection(I)V
+
+    .line 266
+    :cond_2
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getContentIntent()Landroidx/slice/SliceItem;
+
+    move-result-object v0
+
+    const/4 v1, 0x1
+
+    if-eqz v0, :cond_3
+
+    .line 267
+    new-instance v0, Landroidx/slice/widget/EventInfo;
+
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getMode()I
+
+    move-result v2
+
+    const/4 v3, 0x3
+
+    iget v4, p0, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    invoke-direct {v0, v2, v3, v1, v4}, Landroidx/slice/widget/EventInfo;-><init>(IIII)V
+
+    .line 269
+    new-instance v2, Landroid/util/Pair;
+
+    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v3}, Landroidx/slice/widget/GridContent;->getContentIntent()Landroidx/slice/SliceItem;
+
+    move-result-object v3
+
+    invoke-direct {v2, v3, v0}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 270
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setTag(Ljava/lang/Object;)V
+
+    .line 271
+    invoke-direct {p0, v1}, Landroidx/slice/widget/GridRowView;->makeEntireGridClickable(Z)V
+
+    .line 273
+    :cond_3
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getContentDescription()Ljava/lang/CharSequence;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_4
+
+    .line 275
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v2, v0}, Landroid/widget/LinearLayout;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 277
+    :cond_4
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v0}, Landroidx/slice/widget/GridContent;->getGridContent()Ljava/util/ArrayList;
+
+    move-result-object v0
+
+    .line 278
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v2}, Landroidx/slice/widget/GridContent;->getLargestImageMode()I
+
+    move-result v2
+
+    const/4 v3, 0x2
+
+    if-eq v2, v3, :cond_6
+
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    .line 279
+    invoke-virtual {v2}, Landroidx/slice/widget/GridContent;->getLargestImageMode()I
+
+    move-result v2
+
+    const/4 v3, 0x4
+
+    if-ne v2, v3, :cond_5
+
+    goto :goto_0
+
+    .line 282
+    :cond_5
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    const/16 v3, 0x10
+
+    invoke-virtual {v2, v3}, Landroid/widget/LinearLayout;->setGravity(I)V
+
+    goto :goto_1
+
+    .line 280
+    :cond_6
+    :goto_0
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    const/16 v3, 0x30
+
+    invoke-virtual {v2, v3}, Landroid/widget/LinearLayout;->setGravity(I)V
+
+    .line 284
+    :goto_1
+    iget v2, p0, Landroidx/slice/widget/GridRowView;->mMaxCells:I
+
+    .line 285
+    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    invoke-virtual {v3}, Landroidx/slice/widget/GridContent;->getSeeMoreItem()Landroidx/slice/SliceItem;
+
+    move-result-object v3
+
+    const/4 v4, 0x0
+
+    if-eqz v3, :cond_7
+
+    goto :goto_2
+
+    :cond_7
+    move v1, v4
+
+    .line 286
+    :goto_2
+    iput v4, p0, Landroidx/slice/widget/GridRowView;->mHiddenItemCount:I
+
+    .line 287
+    :goto_3
+    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+
+    move-result v3
+
+    if-ge v4, v3, :cond_9
+
+    .line 288
+    iget-object v3, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v3}, Landroid/widget/LinearLayout;->getChildCount()I
+
+    move-result v3
+
+    if-lt v3, v2, :cond_8
+
+    .line 289
+    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+
+    move-result v0
+
+    sub-int/2addr v0, v2
+
+    iput v0, p0, Landroidx/slice/widget/GridRowView;->mHiddenItemCount:I
+
+    if-eqz v1, :cond_9
+
+    .line 291
+    invoke-direct {p0, v0}, Landroidx/slice/widget/GridRowView;->addSeeMoreCount(I)V
+
+    goto :goto_4
+
+    .line 295
+    :cond_8
+    invoke-virtual {v0, v4}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Landroidx/slice/widget/GridContent$CellContent;
+
+    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+
+    move-result v5
+
+    invoke-static {v5, v2}, Ljava/lang/Math;->min(II)I
+
+    move-result v5
+
+    invoke-direct {p0, v3, v4, v5}, Landroidx/slice/widget/GridRowView;->addCell(Landroidx/slice/widget/GridContent$CellContent;II)V
+
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_3
+
+    :cond_9
+    :goto_4
+    return-void
+
+    .line 257
+    :cond_a
+    :goto_5
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->resetView()V
+
+    return-void
+.end method
+
+.method public resetView()V
+    .locals 3
+
+    .line 784
+    iget-boolean v0, p0, Landroidx/slice/widget/GridRowView;->mMaxCellUpdateScheduled:Z
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_0
+
+    .line 785
+    iput-boolean v1, p0, Landroidx/slice/widget/GridRowView;->mMaxCellUpdateScheduled:Z
+
+    .line 786
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
+
+    move-result-object v0
+
+    iget-object v2, p0, Landroidx/slice/widget/GridRowView;->mMaxCellsUpdater:Landroid/view/ViewTreeObserver$OnPreDrawListener;
+
+    invoke-virtual {v0, v2}, Landroid/view/ViewTreeObserver;->removeOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
+
+    .line 788
+    :cond_0
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v0}, Landroid/widget/LinearLayout;->removeAllViews()V
+
+    const/4 v0, 0x2
+
+    .line 789
+    invoke-virtual {p0, v0}, Landroidx/slice/widget/GridRowView;->setLayoutDirection(I)V
+
+    .line 790
+    invoke-direct {p0, v1}, Landroidx/slice/widget/GridRowView;->makeEntireGridClickable(Z)V
+
+    return-void
+.end method
+
+.method public setInsets(IIII)V
+    .locals 2
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0,
+            0x0,
+            0x0
+        }
+        names = {
+            "l",
+            "t",
+            "r",
+            "b"
+        }
+    .end annotation
+
+    .line 151
+    invoke-super {p0, p1, p2, p3, p4}, Landroidx/slice/widget/SliceChildView;->setInsets(IIII)V
+
+    .line 152
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->getExtraTopPadding()I
+
+    move-result v1
+
+    add-int/2addr p2, v1
+
+    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->getExtraBottomPadding()I
+
+    move-result p0
+
+    add-int/2addr p4, p0
+
+    invoke-virtual {v0, p1, p2, p3, p4}, Landroid/widget/LinearLayout;->setPadding(IIII)V
+
+    return-void
+.end method
+
+.method public setSliceItem(Landroidx/slice/widget/SliceContent;ZIILandroidx/slice/widget/SliceView$OnSliceActionListener;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0,
+            0x0,
+            0x0,
+            0x0,
+            0x0
+        }
+        names = {
+            "slice",
+            "isHeader",
+            "rowIndex",
+            "rowCount",
+            "observer"
+        }
+    .end annotation
+
+    .line 199
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->resetView()V
+
+    .line 200
+    invoke-virtual {p0, p5}, Landroidx/slice/widget/GridRowView;->setSliceActionListener(Landroidx/slice/widget/SliceView$OnSliceActionListener;)V
+
+    .line 201
+    iput p3, p0, Landroidx/slice/widget/GridRowView;->mRowIndex:I
+
+    .line 202
+    iput p4, p0, Landroidx/slice/widget/GridRowView;->mRowCount:I
+
+    .line 203
+    check-cast p1, Landroidx/slice/widget/GridContent;
+
+    iput-object p1, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
+
+    .line 205
+    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->scheduleMaxCellsUpdate()Z
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    .line 206
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->populateViews()V
+
+    .line 208
+    :cond_0
+    iget-object p1, p0, Landroidx/slice/widget/GridRowView;->mViewContainer:Landroid/widget/LinearLayout;
+
+    iget p2, p0, Landroidx/slice/widget/GridRowView;->mInsetStart:I
+
+    iget p3, p0, Landroidx/slice/widget/GridRowView;->mInsetTop:I
+
+    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->getExtraTopPadding()I
+
+    move-result p4
+
+    add-int/2addr p3, p4
+
+    iget p4, p0, Landroidx/slice/widget/GridRowView;->mInsetEnd:I
+
+    iget p5, p0, Landroidx/slice/widget/GridRowView;->mInsetBottom:I
+
+    .line 209
+    invoke-direct {p0}, Landroidx/slice/widget/GridRowView;->getExtraBottomPadding()I
+
+    move-result p0
+
+    add-int/2addr p5, p0
+
+    .line 208
+    invoke-virtual {p1, p2, p3, p4, p5}, Landroid/widget/LinearLayout;->setPadding(IIII)V
+
+    return-void
 .end method
 
 .method public setTint(I)V
     .locals 0
+    .annotation system Ldalvik/annotation/MethodParameters;
+        accessFlags = {
+            0x0
+        }
+        names = {
+            "tintColor"
+        }
+    .end annotation
 
-    .line 1
-    invoke-super {p0, p1}, Landroidx/slice/widget/h;->setTint(I)V
+    .line 185
+    invoke-super {p0, p1}, Landroidx/slice/widget/SliceChildView;->setTint(I)V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object p1, p0, Landroidx/slice/widget/GridRowView;->w:Landroidx/slice/widget/c;
+    .line 186
+    iget-object p1, p0, Landroidx/slice/widget/GridRowView;->mGridContent:Landroidx/slice/widget/GridContent;
 
-    .line 5
-    .line 6
     if-eqz p1, :cond_0
 
-    .line 7
-    .line 8
-    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->a()V
+    .line 188
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->resetView()V
 
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->j()V
+    .line 189
+    invoke-virtual {p0}, Landroidx/slice/widget/GridRowView;->populateViews()V
 
-    .line 12
-    .line 13
-    .line 14
     :cond_0
     return-void
 .end method

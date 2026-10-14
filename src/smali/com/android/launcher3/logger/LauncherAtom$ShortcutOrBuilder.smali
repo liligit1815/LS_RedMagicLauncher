@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -18,26 +18,20 @@
 
 
 # virtual methods
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
-.end method
-
 .method public abstract getShortcutId()Ljava/lang/String;
 .end method
 
-.method public abstract getShortcutIdBytes()Lcom/google/protobuf/h;
+.method public abstract getShortcutIdBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract getShortcutName()Ljava/lang/String;
 .end method
 
-.method public abstract getShortcutNameBytes()Lcom/google/protobuf/h;
+.method public abstract getShortcutNameBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract hasShortcutId()Z
 .end method
 
 .method public abstract hasShortcutName()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

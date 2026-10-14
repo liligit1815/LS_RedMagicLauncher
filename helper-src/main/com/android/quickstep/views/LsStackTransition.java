@@ -676,7 +676,7 @@ public final class LsStackTransition {
         int rotation = TaskAnimationManager.SHELL_TRANSITIONS_ROTATION
                 ? nativeSimulator.getOrientationState().getTouchRotation()
                 : nativeSimulator.getOrientationState().getDisplayRotation();
-        Rect bounds = nativeSimulator.mThumbnailPosition;
+        Rect bounds = nativeSimulator.getNativeStackThumbnailPosition();
         fanDiagnostic(transition, "sourceRotation=" + rotation
                 + " touchRotation=" + nativeSimulator.getOrientationState().getTouchRotation()
                 + " displayRotation=" + nativeSimulator.getOrientationState().getDisplayRotation()

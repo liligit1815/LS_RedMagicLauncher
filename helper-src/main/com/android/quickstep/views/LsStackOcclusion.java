@@ -62,7 +62,7 @@ public final class LsStackOcclusion {
                 // RenderNode transform. A separately transformed clip can expose
                 // a seam or alternate corner coverage at fractional positions.
                 if (front.getAlpha() >= 1f) continue;
-                for (TaskContainer container : front.getTaskContainers()) {
+                for (TaskView.TaskContainer container : front.getTaskContainers()) {
                     View snapshot = container.getSnapshotView();
                     if (snapshot == null || snapshot.getWidth() <= 0 || snapshot.getHeight() <= 0
                             || snapshot.getVisibility() != View.VISIBLE) continue;
@@ -72,7 +72,7 @@ public final class LsStackOcclusion {
                     if (!matrix.rectStaysRect()) continue;
                     RectF rect = new RectF(0f, 0f, snapshot.getWidth(), snapshot.getHeight());
                     matrix.mapRect(rect);
-                    float radius = front.getThumbnailFullscreenParams().getCurrentCornerRadius();
+                    float radius = front.getThumbnailFullscreenParams().getCurrentDrawnCornerRadius();
                     RectF radii = new RectF(0f, 0f, radius, radius);
                     matrix.mapRect(radii);
                     float rx = Math.min(rect.width() * .5f, radii.width());
@@ -116,7 +116,7 @@ public final class LsStackOcclusion {
     public static boolean clip(TaskView task, Canvas canvas, View child) {
         // Zero is the entry/hidden sentinel, not an opaque-overlap fallback.
         if (task.getNativeStackClipRightF() <= 0f) return false;
-        for (TaskContainer container : task.getTaskContainers()) {
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
             if (container.getSnapshotView() == child) {
                 Path path = paths.get(task);
                 if (path != null) canvas.clipOutPath(path);

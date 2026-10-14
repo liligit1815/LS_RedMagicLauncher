@@ -46,19 +46,19 @@ public final class LsNativeStack {
      * On a tiny fan card that turns its short edges into semicircles. Limit the
      * local radius before it is sent to either thumbnail implementation. */
     public static void adjustFanCornerRadius(TaskView task,
-            com.android.quickstep.FullscreenDrawParams params, float fullscreenProgress) {
+            TaskView.FullscreenDrawParams params, float fullscreenProgress) {
         if (task == null || params == null) return;
         RecentsView recents = task.getRecentsView();
         if (recents == null || !recents.isFanStyle()) return;
         float shortSide = Float.MAX_VALUE;
-        for (TaskContainer container : task.getTaskContainers()) {
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
             View snapshot = container.getSnapshotView();
             if (snapshot == null || snapshot.getWidth() <= 0 || snapshot.getHeight() <= 0) continue;
             shortSide = Math.min(shortSide, Math.min(snapshot.getWidth(), snapshot.getHeight()));
         }
         if (shortSide == Float.MAX_VALUE) return;
-        params.setCurrentCornerRadius(fanCornerRadius(
-                params.getCurrentCornerRadius(), shortSide, fullscreenProgress));
+        params.setCurrentDrawnCornerRadius(fanCornerRadius(
+                params.getCurrentDrawnCornerRadius(), shortSide, fullscreenProgress));
     }
 
     static float fanCornerRadius(float nativeRadius, float shortSide, float fullscreenProgress) {
@@ -124,7 +124,7 @@ public final class LsNativeStack {
     private static final int RES_MIN_BACK_SCALE = 0x7f0c010f;
     private static final int RES_NATIVE_CENTER_CORRECTION = 0x7f0c0110;
 
-    private static final int RES_RECENT_STYLE_KEY = 0x7f1403b7;
+    private static final int RES_RECENT_STYLE_KEY = 0x7f140351;
     private static final int NATIVE_STACK_STYLE = 3;
     private static final int ORBIT_STYLE = 4;
     private static final int FAN_STYLE = 5;
@@ -414,7 +414,7 @@ public final class LsNativeStack {
             // TaskView can include empty layout space around its screenshot.
             // Only actual visible content is eligible, never clear-all/blank.
             boolean hit = false;
-            for (TaskContainer container : task.getTaskContainers()) {
+            for (TaskView.TaskContainer container : task.getTaskContainers()) {
                 if (hitsActionBounds(container.getSnapshotView(), point)
                         || hitsActionView(container.getTitleView(), point)
                         || (container.getIconView() != null
@@ -493,7 +493,7 @@ public final class LsNativeStack {
                 || point[1] >= task.getHeight()
                 || (clip != null && !clip.contains((int) point[0], (int) point[1]))) return false;
         boolean hit = false;
-        for (TaskContainer container : task.getTaskContainers()) {
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
             if (hitsActionBounds(container.getSnapshotView(), point)
                     || hitsActionView(container.getTitleView(), point)
                     || (container.getIconView() != null
@@ -512,7 +512,7 @@ public final class LsNativeStack {
 
     public static boolean isStackHeaderView(TaskView task, View child) {
         if (child instanceof TaskViewIcon) return true;
-        for (TaskContainer container : task.getTaskContainers()) {
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
             if (container.getTitleView() == child) return true;
         }
         return false;
@@ -760,9 +760,9 @@ public final class LsNativeStack {
             return false;
         }
         try {
-            Class<?> launcherPrefs = Class.forName("com.android.launcher3.J3");
+            Class<?> launcherPrefs = Class.forName("com.android.launcher3.LauncherPrefs");
             java.lang.reflect.Method getter = launcherPrefs.getDeclaredMethod(
-                    "m", Context.class);
+                    "getPrefs", Context.class);
             Object value = getter.invoke(null, context);
             if (!(value instanceof SharedPreferences)) {
                 return false;
@@ -782,8 +782,8 @@ public final class LsNativeStack {
         if (active != null) return active.isOrbitStyle();
         if (context == null) return false;
         try {
-            Class<?> prefs = Class.forName("com.android.launcher3.J3");
-            Object value = prefs.getDeclaredMethod("m", Context.class).invoke(null, context);
+            Class<?> prefs = Class.forName("com.android.launcher3.LauncherPrefs");
+            Object value = prefs.getDeclaredMethod("getPrefs", Context.class).invoke(null, context);
             return value instanceof SharedPreferences && ((SharedPreferences) value).getInt(
                     context.getString(RES_RECENT_STYLE_KEY), 0) == ORBIT_STYLE;
         } catch (Throwable ignored) {
@@ -797,8 +797,8 @@ public final class LsNativeStack {
         if (active != null) return active.isFanStyle();
         if (context == null) return false;
         try {
-            Class<?> prefs = Class.forName("com.android.launcher3.J3");
-            Object value = prefs.getDeclaredMethod("m", Context.class).invoke(null, context);
+            Class<?> prefs = Class.forName("com.android.launcher3.LauncherPrefs");
+            Object value = prefs.getDeclaredMethod("getPrefs", Context.class).invoke(null, context);
             return value instanceof SharedPreferences && ((SharedPreferences) value).getInt(
                     context.getString(RES_RECENT_STYLE_KEY), 0) == FAN_STYLE;
         } catch (Throwable ignored) { return false; }
@@ -2289,7 +2289,7 @@ public final class LsNativeStack {
             task.transformMatrixToLocal(local);
             float[] point = {event.getX(), event.getY()};
             local.mapPoints(point);
-            for (TaskContainer container : task.getTaskContainers()) {
+            for (TaskView.TaskContainer container : task.getTaskContainers()) {
                 if (hitsActionBounds(container.getSnapshotView(), point)) return true;
             }
             return false;
@@ -3301,7 +3301,7 @@ public final class LsNativeStack {
                 // Chrome no longer calls OEM setTitleAlpha: that toggles icons
                 // INVISIBLE/VISIBLE twice per draw and invalidates their layout.
                 if (freeLayout) {
-                    for (TaskContainer container : task.getTaskContainers()) {
+                    for (TaskView.TaskContainer container : task.getTaskContainers()) {
                         TaskViewIcon icon = container.getIconView();
                         if (icon != null) {
                             icon.setContentAlpha(fan || hideHeader || (entryLoading && !entryDeckReady)
@@ -3356,7 +3356,7 @@ public final class LsNativeStack {
                 task.setNativeStackClipRight(-1);
                 task.setNativeStackHeaderHidden(false);
                 task.setNativeStackChromeAlpha(1.0f, 1.0f);
-                for (TaskContainer container : task.getTaskContainers()) {
+                for (TaskView.TaskContainer container : task.getTaskContainers()) {
                     TaskViewIcon icon = container.getIconView();
                     if (icon != null) {
                         icon.setContentAlpha(1.0f);
@@ -3517,7 +3517,7 @@ public final class LsNativeStack {
         LinearLayout parent = (LinearLayout) card;
         Context context = card.getContext();
         // The same inset/radius/tinted surface used by the normal/grid cards.
-        parent.setBackground(context.getDrawable(0x7f08098f));
+        parent.setBackground(context.getDrawable(0x7f0808df));
         View existing = parent.findViewWithTag(SCALE_SIGNATURE_TAG);
         if (existing == null) {
             TextView signature = new TextView(context);
@@ -3532,7 +3532,7 @@ public final class LsNativeStack {
             existing = signature;
         }
         if (existing instanceof TextView) {
-            ((TextView) existing).setTextColor(context.getColor(0x7f060574));
+            ((TextView) existing).setTextColor(context.getColor(0x7f060527));
         }
         for (int i = 0; i < parent.getChildCount(); i++) {
             View child = parent.getChildAt(i);
@@ -3614,7 +3614,7 @@ public final class LsNativeStack {
         }
 
         private void refreshTheme() {
-            int textColor = super.getContext().getColor(0x7f060752);
+            int textColor = super.getContext().getColor(0x7f0606fe);
             captionLabel.setTextColor(textColor);
             valueLabel.setTextColor(textColor);
             for (TextView text : limitLabels) text.setTextColor(textColor);
@@ -3680,7 +3680,7 @@ public final class LsNativeStack {
     private static void updateStackIcons(RecentsView recents, TaskView task,
             float displayedStart, float scale, float higherLayerStart,
             int primarySize, boolean hidden) {
-        for (TaskContainer container : task.getTaskContainers()) {
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
             TaskViewIcon icon = container.getIconView();
             if (icon != null) {
                 float visible = hidden ? 0.0f : getStackIconAlpha(recents,

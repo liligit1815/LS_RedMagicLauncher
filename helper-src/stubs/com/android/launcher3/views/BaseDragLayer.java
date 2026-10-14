@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class BaseDragLayer extends com.android.launcher3.h1 {
+public abstract class BaseDragLayer extends com.android.launcher3.InsettableFrameLayout {
     protected BaseDragLayer(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -15,7 +15,7 @@ public abstract class BaseDragLayer extends com.android.launcher3.h1 {
     public abstract boolean isEventOverView(View view, MotionEvent event);
     public abstract float getDescendantRectRelativeToSelf(View view, Rect rect);
 
-    public static class LayoutParams extends com.android.launcher3.h1.a {
+    public static class LayoutParams extends com.android.launcher3.InsettableFrameLayout.LayoutParams {
         public LayoutParams(int width, int height) { super(width, height); }
     }
 }

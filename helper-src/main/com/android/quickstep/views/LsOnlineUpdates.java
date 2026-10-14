@@ -42,7 +42,7 @@ import org.json.JSONObject;
 public final class LsOnlineUpdates {
     private static final Handler MAIN = new Handler(Looper.getMainLooper());
     private static final ExecutorService WORK = Executors.newSingleThreadExecutor();
-    private static final String PREFS = "ls_online_updates";
+    private static final String PREFS = "ls_online_updates_redmagic10";
     private static final String KEY = "ls_check_online_updates";
     private static Context app;
     private static WeakReference<Activity> foreground = new WeakReference<Activity>(null);
@@ -111,7 +111,7 @@ public final class LsOnlineUpdates {
             entry.setMinimumHeight(Math.round(48f * activity.getResources().getDisplayMetrics().density));
             entry.setOnClickListener(new SettingClick(activity));
             LinearLayout.LayoutParams entryParams = (LinearLayout.LayoutParams) entry.getLayoutParams();
-            entryParams.bottomMargin = activity.getResources().getDimensionPixelSize(0x7f0709ab);
+            entryParams.bottomMargin = activity.getResources().getDimensionPixelSize(0x7f070901);
             entry.setLayoutParams(entryParams);
             parent.addView(entry);
         } catch (Exception error) { /* Keep OEM settings usable if its lifecycle is changing. */ }
@@ -170,7 +170,7 @@ public final class LsOnlineUpdates {
     private static Release parse(JSONObject root) throws Exception {
         LsUpdateProtocol.require(integer(root, "schemaVersion", 1, 1) == 1
                 && LsUpdateProtocol.APP_ID.equals(string(root, "appId", 80))
-                && LsUpdateProtocol.PACKAGE.equals(string(root, "packageName", 160)), "更新信息不属于堆叠桌面");
+                && LsUpdateProtocol.PACKAGE.equals(string(root, "packageName", 160)), "更新信息不属于红魔10桌面");
         root.get("release");
         if (root.isNull("release")) return null;
         JSONObject release = root.getJSONObject("release");
@@ -228,7 +228,8 @@ public final class LsOnlineUpdates {
         } finally { connection.disconnect(); }
     }
     private static PackageInfo installed() throws Exception {
-        return app.getPackageManager().getPackageInfo(LsUpdateProtocol.PACKAGE, PackageManager.GET_SIGNING_CERTIFICATES);
+        return app.getPackageManager().getPackageInfo(LsUpdateProtocol.PACKAGE,
+                PackageManager.GET_SIGNING_CERTIFICATES | PackageManager.GET_META_DATA);
     }
     private static String certificate(PackageInfo info) throws Exception {
         LsUpdateProtocol.require(info != null && info.signingInfo != null && !info.signingInfo.hasMultipleSigners(),
@@ -240,16 +241,23 @@ public final class LsOnlineUpdates {
     private static void verify(File file, Release release) throws Exception {
         LsUpdateProtocol.require(file.isFile() && file.length() == release.size
                 && LsUpdateProtocol.sha256(file).equals(release.hash), "下载文件校验失败，请重新下载");
-        PackageInfo candidate = app.getPackageManager().getPackageArchiveInfo(file.getAbsolutePath(), PackageManager.GET_SIGNING_CERTIFICATES);
+        PackageInfo candidate = app.getPackageManager().getPackageArchiveInfo(file.getAbsolutePath(),
+                PackageManager.GET_SIGNING_CERTIFICATES | PackageManager.GET_META_DATA);
         PackageInfo existing = installed();
         LsUpdateProtocol.require(candidate != null && LsUpdateProtocol.PACKAGE.equals(candidate.packageName)
                 && candidate.getLongVersionCode() == release.code && release.name.equals(candidate.versionName)
                 && candidate.applicationInfo != null && candidate.applicationInfo.minSdkVersion == release.minSdk
                 && Build.VERSION.SDK_INT >= release.minSdk && candidate.getLongVersionCode() > existing.getLongVersionCode(),
                 "安装包身份或版本不符合更新信息");
+        LsUpdateProtocol.require(series(candidate) && series(existing),
+                "安装包不属于红魔10系列，不能跨系列更新");
         String signer = certificate(candidate);
         LsUpdateProtocol.require(signer.equals(release.cert) && signer.equals(LsUpdateProtocol.CERTIFICATE)
                 && signer.equals(certificate(existing)), "新旧安装包签名不一致，不能覆盖更新");
+    }
+    private static boolean series(PackageInfo info) {
+        return info != null && info.applicationInfo != null && info.applicationInfo.metaData != null
+                && LsUpdateProtocol.SERIES.equals(info.applicationInfo.metaData.getString(LsUpdateProtocol.SERIES_METADATA));
     }
     private static void download(Release release) throws Exception {
         File target = LsUpdateFileProvider.apk(app);
@@ -306,11 +314,11 @@ public final class LsOnlineUpdates {
         Release release = offered;
         offered = null;
         try {
-            prompt = new AlertDialog.Builder(activity).setTitle("堆叠桌面有新版本")
+            prompt = new AlertDialog.Builder(activity).setTitle("红魔10桌面有新版本")
                     .setMessage("版本：" + release.name + "（" + release.code + "）\n大小："
                             + String.format(java.util.Locale.CHINA, "%.1f MB", release.size / 1048576.0)
                             + "\n\n" + (release.notes.isEmpty() ? "暂无更新说明" : release.notes)
-                            + "\n\n适用于已经安装同签名修改版桌面的设备。")
+                            + "\n\n适用于已经安装红魔10同签名修改版桌面的设备。")
                     .setPositiveButton("下载并安装", new Choice(0, release))
                     .setNegativeButton("稍后", null).create();
             prompt.setOnDismissListener(new Dismiss());
@@ -336,7 +344,7 @@ public final class LsOnlineUpdates {
         if (progress == null) {
             try {
                 progress = new ProgressDialog(activity);
-                progress.setTitle("下载堆叠桌面更新");
+                progress.setTitle("下载红魔10桌面更新");
                 progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 progress.setMax(100);
                 progress.setCancelable(false);
@@ -369,7 +377,7 @@ public final class LsOnlineUpdates {
             if (!app.getPackageManager().canRequestPackageInstalls()) { install(activity); return; }
             Intent intent = new Intent(Intent.ACTION_VIEW).setDataAndType(LsUpdateFileProvider.URI,
                     "application/vnd.android.package-archive").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.setClipData(ClipData.newRawUri("堆叠桌面更新", LsUpdateFileProvider.URI));
+            intent.setClipData(ClipData.newRawUri("红魔10桌面更新", LsUpdateFileProvider.URI));
             activity.startActivity(intent);
             preferences().edit().remove("pending").remove("resume_install").apply();
             pending = null;
@@ -443,6 +451,7 @@ public final class LsOnlineUpdates {
                 if (action == 0) {
                     Release found = fetch();
                     PackageInfo existing = installed();
+                    LsUpdateProtocol.require(series(existing), "当前桌面不属于红魔10系列更新通道");
                     LsUpdateProtocol.require(LsUpdateProtocol.CERTIFICATE.equals(certificate(existing)),
                             "当前桌面签名不支持此更新源");
                     String status = "当前已是最新版本";

@@ -12,6 +12,6 @@
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeStepGranularity">1.0px</item>
         <item name="android:autoSizeMinTextSize">10.0sp</item>
-        <item name="android:autoSizeMaxTextSize">16.0sp</item>
+        <item name="android:autoSizeMaxTextSize">15.0sp</item>
     </style>
 </resources>

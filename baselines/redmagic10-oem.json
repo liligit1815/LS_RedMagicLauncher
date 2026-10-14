@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "file": "../original.apk",
+  "purpose": "Pinned RedMagic 10 OEM input for initial port; not a user-accepted modified APK",
+  "device_series": "redmagic10",
+  "package_name": "com.zte.mifavor.launcher",
+  "version_code": 150000,
+  "version_name": "15.5.000.000.2505121541",
+  "min_sdk": 29,
+  "target_sdk": 35,
+  "size_bytes": 28491108,
+  "sha256": "949ccdef74e02e5c1515e28fc51c3dd1bb8e56adca59a06d998d0a6075fb9cbc",
+  "certificate_sha256": "d7bb72ea42adfcadf52c3d641b2b40181d6a36932a81c93207db172811ca46b7",
+  "modified_certificate_sha256": "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb",
+  "acceptance": "OEM input supplied by user; RedMagic 10 modified port requires device testing",
+  "private_signing_material_included": false
+}

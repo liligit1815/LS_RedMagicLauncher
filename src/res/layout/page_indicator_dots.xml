@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.launcher3.pageindicators.PageIndicatorDots android:theme="@style/HomeScreenElementTheme" android:layout_gravity="center|bottom" android:id="@id/page_indicator" android:layout_width="match_parent" android:layout_height="@dimen/workspace_page_indicator_height"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

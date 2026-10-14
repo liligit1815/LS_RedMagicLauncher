@@ -298,7 +298,7 @@ public final class LsFanPager {
                 if (dismiss && target != null && recents.indexOfChild(target) >= 0
                         && Arrays.equals(state.touchedIds, target.getTaskIds())) {
                     boolean locked = false;
-                    for (TaskContainer c : target.getTaskContainers()) {
+                    for (TaskView.TaskContainer c : target.getTaskContainers()) {
                         if (Boolean.TRUE.equals(c.isLocked())) locked = true;
                     }
                     if (!locked) {

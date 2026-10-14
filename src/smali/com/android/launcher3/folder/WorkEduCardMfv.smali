@@ -8,18 +8,31 @@
 
 
 # instance fields
-.field private final g:Lcom/android/launcher3/views/k;
+.field private final mActivityContext:Lcom/android/launcher3/views/ActivityContext;
 
-.field h:Landroid/view/animation/Animation;
+.field mDismissAnim:Landroid/view/animation/Animation;
 
 
 # direct methods
+.method public constructor <init>(Landroid/content/Context;)V
+    .locals 2
+
+    const/4 v0, 0x0
+
+    const/4 v1, 0x0
+
+    .line 43
+    invoke-direct {p0, p1, v0, v1}, Lcom/android/launcher3/folder/WorkEduCardMfv;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+
+    return-void
+.end method
+
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 1
 
     const/4 v0, 0x0
 
-    .line 1
+    .line 47
     invoke-direct {p0, p1, p2, v0}, Lcom/android/launcher3/folder/WorkEduCardMfv;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     return-void
@@ -28,77 +41,63 @@
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
     .locals 0
 
-    .line 2
+    .line 51
     invoke-direct {p0, p1, p2, p3}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
-    .line 3
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 52
+    invoke-virtual {p0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->getContext()Landroid/content/Context;
 
     move-result-object p2
 
-    invoke-static {p2}, Lcom/android/launcher3/views/k;->m(Landroid/content/Context;)Landroid/content/Context;
+    invoke-static {p2}, Lcom/android/launcher3/views/ActivityContext;->lookupContext(Landroid/content/Context;)Landroid/content/Context;
 
     move-result-object p2
 
-    check-cast p2, Lcom/android/launcher3/views/k;
+    check-cast p2, Lcom/android/launcher3/views/ActivityContext;
 
-    iput-object p2, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->g:Lcom/android/launcher3/views/k;
+    iput-object p2, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->mActivityContext:Lcom/android/launcher3/views/ActivityContext;
 
     const p2, 0x10a0001
 
-    .line 4
+    .line 53
     invoke-static {p1, p2}, Landroid/view/animation/AnimationUtils;->loadAnimation(Landroid/content/Context;I)Landroid/view/animation/Animation;
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->h:Landroid/view/animation/Animation;
+    iput-object p1, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->mDismissAnim:Landroid/view/animation/Animation;
 
     const-wide/16 p2, 0x1f4
 
-    .line 5
+    .line 54
     invoke-virtual {p1, p2, p3}, Landroid/view/animation/Animation;->setDuration(J)V
 
-    .line 6
-    iget-object p1, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->h:Landroid/view/animation/Animation;
+    .line 55
+    iget-object p1, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->mDismissAnim:Landroid/view/animation/Animation;
 
     invoke-virtual {p1, p0}, Landroid/view/animation/Animation;->setAnimationListener(Landroid/view/animation/Animation$AnimationListener;)V
 
     return-void
 .end method
 
-.method private a()V
+.method private removeCard()V
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getParent()Landroid/view/ViewParent;
+    .line 99
+    invoke-virtual {p0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->getParent()Landroid/view/ViewParent;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
     if-eqz v0, :cond_0
 
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getParent()Landroid/view/ViewParent;
+    .line 100
+    invoke-virtual {p0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->getParent()Landroid/view/ViewParent;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v0
 
-    .line 11
     check-cast v0, Landroid/view/ViewGroup;
 
-    .line 12
-    .line 13
     invoke-virtual {v0, p0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
 
-    .line 14
-    .line 15
-    .line 16
     :cond_0
     return-void
 .end method
@@ -108,157 +107,101 @@
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->a()V
+    .line 85
+    invoke-direct {p0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->removeCard()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
 .method public onAnimationRepeat(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 1
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 1
     return-void
 .end method
 
 .method protected onAttachedToWindow()V
     .locals 0
 
-    .line 1
+    .line 60
     invoke-super {p0}, Landroid/widget/FrameLayout;->onAttachedToWindow()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->h:Landroid/view/animation/Animation;
+    .line 61
+    iget-object p0, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->mDismissAnim:Landroid/view/animation/Animation;
 
-    .line 5
-    .line 6
     invoke-virtual {p0}, Landroid/view/animation/Animation;->reset()V
 
-    .line 7
-    .line 8
-    .line 9
     return-void
 .end method
 
 .method public onClick(Landroid/view/View;)V
     .locals 1
 
-    .line 1
-    iget-object p1, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->h:Landroid/view/animation/Animation;
+    .line 78
+    iget-object p1, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->mDismissAnim:Landroid/view/animation/Animation;
 
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/widget/FrameLayout;->startAnimation(Landroid/view/animation/Animation;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/folder/WorkEduCardMfv;->startAnimation(Landroid/view/animation/Animation;)V
 
-    .line 4
-    .line 5
-    .line 6
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getContext()Landroid/content/Context;
+    .line 79
+    invoke-virtual {p0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->getContext()Landroid/content/Context;
 
-    .line 7
-    .line 8
-    .line 9
     move-result-object p0
 
-    .line 10
-    invoke-static {p0}, Lcom/android/launcher3/J3;->m(Landroid/content/Context;)Landroid/content/SharedPreferences;
+    invoke-static {p0}, Lcom/android/launcher3/LauncherPrefs;->getPrefs(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
-    .line 11
-    .line 12
-    .line 13
     move-result-object p0
 
-    .line 14
     invoke-interface {p0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
 
-    .line 15
-    .line 16
-    .line 17
     move-result-object p0
 
-    .line 18
-    const-string p1, "showed_work_profile_edu"
+    const-string/jumbo p1, "showed_work_profile_edu"
 
-    .line 19
-    .line 20
     const/4 v0, 0x1
 
-    .line 21
     invoke-interface {p0, p1, v0}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
 
-    .line 22
-    .line 23
-    .line 24
     move-result-object p0
 
-    .line 25
+    .line 80
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 26
-    .line 27
-    .line 28
     return-void
 .end method
 
 .method protected onDetachedFromWindow()V
     .locals 0
 
-    .line 1
+    .line 66
     invoke-super {p0}, Landroid/widget/FrameLayout;->onDetachedFromWindow()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->h:Landroid/view/animation/Animation;
+    .line 67
+    iget-object p0, p0, Lcom/android/launcher3/folder/WorkEduCardMfv;->mDismissAnim:Landroid/view/animation/Animation;
 
-    .line 5
-    .line 6
     invoke-virtual {p0}, Landroid/view/animation/Animation;->cancel()V
 
-    .line 7
-    .line 8
-    .line 9
     return-void
 .end method
 
 .method protected onFinishInflate()V
     .locals 1
 
-    .line 1
+    .line 72
     invoke-super {p0}, Landroid/widget/FrameLayout;->onFinishInflate()V
 
-    .line 2
-    .line 3
-    .line 4
-    const v0, 0x7f0b0044
+    const v0, 0x7f0b0043
 
-    .line 5
-    .line 6
-    .line 7
-    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->findViewById(I)Landroid/view/View;
+    .line 73
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/folder/WorkEduCardMfv;->findViewById(I)Landroid/view/View;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v0
 
-    .line 11
     invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 12
-    .line 13
-    .line 14
     return-void
 .end method

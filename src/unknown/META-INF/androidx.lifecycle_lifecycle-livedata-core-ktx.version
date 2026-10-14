@@ -1,1 +1,1 @@
-2.8.7
+task ':lifecycle:lifecycle-livedata-core-ktx:writeVersionFile' property 'version'

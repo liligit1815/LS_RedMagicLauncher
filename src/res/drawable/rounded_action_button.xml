@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape android:shape="rectangle"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/materialColorSurfaceContainerLow" />
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:androidprv="http://schemas.android.com/apk/prv/res/android">
+    <solid android:color="@color/system_surface_variant_light" />
     <corners android:radius="@dimen/rounded_button_radius" />
     <padding android:left="@dimen/rounded_button_padding" android:right="@dimen/rounded_button_padding" />
 </shape>

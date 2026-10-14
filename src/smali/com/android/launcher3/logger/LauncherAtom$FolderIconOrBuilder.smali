@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -21,16 +21,13 @@
 .method public abstract getCardinality()I
 .end method
 
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
-.end method
-
 .method public abstract getFromLabelState()Lcom/android/launcher3/logger/LauncherAtom$FromState;
 .end method
 
 .method public abstract getLabelInfo()Ljava/lang/String;
 .end method
 
-.method public abstract getLabelInfoBytes()Lcom/google/protobuf/h;
+.method public abstract getLabelInfoBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract getToLabelState()Lcom/android/launcher3/logger/LauncherAtom$ToState;
@@ -46,7 +43,4 @@
 .end method
 
 .method public abstract hasToLabelState()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

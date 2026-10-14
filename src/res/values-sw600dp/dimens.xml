@@ -10,7 +10,7 @@
     <dimen name="abc_text_size_title_material_toolbar">20.0dp</dimen>
     <dimen name="all_apps_search_bar_content_overlap">0.0dp</dimen>
     <dimen name="allset_page_allset_text_size">38.0sp</dimen>
-    <dimen name="allset_page_padding_horizontal">120.0dp</dimen>
+    <dimen name="allset_page_margin_horizontal">120.0dp</dimen>
     <dimen name="allset_page_swipe_up_text_size">15.0sp</dimen>
     <dimen name="cell_layout_padding">0.0dp</dimen>
     <dimen name="design_navigation_max_width">320.0dp</dimen>
@@ -39,9 +39,12 @@
     <dimen name="mtrl_toolbar_default_height">64.0dp</dimen>
     <dimen name="navigation_key_padding">25.0dp</dimen>
     <dimen name="overview_actions_top_margin">24.0dp</dimen>
+    <dimen name="overview_bottom_margin_grid_only">80.0dp</dimen>
     <dimen name="overview_grid_row_spacing">28.0dp</dimen>
     <dimen name="overview_grid_side_margin">64.0dp</dimen>
     <dimen name="overview_page_spacing">36.0dp</dimen>
+    <dimen name="overview_top_margin_grid_only">80.0dp</dimen>
+    <dimen name="split_instructions_view_max_width">300.0dp</dimen>
     <dimen name="spring_loaded_hotseat_top_margin">65.0dp</dimen>
     <dimen name="task_thumbnail_icon_drawable_size_grid">44.0dp</dimen>
     <dimen name="widget_list_horizontal_margin">32.0dp</dimen>

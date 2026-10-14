@@ -1,5 +1,5 @@
 .class public final Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
-.super Lcom/google/protobuf/y$a;
+.super Lcom/google/protobuf/GeneratedMessageLite$Builder;
 .source "LauncherAtom.java"
 
 # interfaces
@@ -18,7 +18,7 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lcom/google/protobuf/y$a<",
+        "Lcom/google/protobuf/GeneratedMessageLite$Builder<",
         "Lcom/android/launcher3/logger/LauncherAtom$Widget;",
         "Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;",
         ">;",
@@ -31,20 +31,19 @@
 .method private constructor <init>()V
     .locals 1
 
-    .line 2
-    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->o()Lcom/android/launcher3/logger/LauncherAtom$Widget;
+    .line 9709
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$sfgetDEFAULT_INSTANCE()Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/google/protobuf/y$a;-><init>(Lcom/google/protobuf/y;)V
+    invoke-direct {p0, v0}, Lcom/google/protobuf/GeneratedMessageLite$Builder;-><init>(Lcom/google/protobuf/GeneratedMessageLite;)V
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/launcher3/logger/a;)V
+.method synthetic constructor <init>(Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder-IA;)V
     .locals 0
 
-    .line 1
     invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;-><init>()V
 
     return-void
@@ -55,671 +54,433 @@
 .method public clearAppWidgetId()Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9816
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9817
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->a(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$mclearAppWidgetId(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearComponentName()Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9963
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9964
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->b(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$mclearComponentName(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearPackageName()Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9882
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9883
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->c(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$mclearPackageName(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearSpanX()Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9744
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9745
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->d(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$mclearSpanX(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearSpanY()Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9780
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9781
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->e(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$mclearSpanY(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearWidgetFeatures()Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 10014
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 10015
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->f(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$mclearWidgetFeatures(Lcom/android/launcher3/logger/LauncherAtom$Widget;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public getAppWidgetId()I
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9799
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getAppWidgetId()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public getComponentName()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9924
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getComponentName()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getComponentNameBytes()Lcom/google/protobuf/h;
+.method public getComponentNameBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9937
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getComponentNameBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getComponentNameBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public getPackageName()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9843
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getPackageName()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getPackageNameBytes()Lcom/google/protobuf/h;
+.method public getPackageNameBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9856
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getPackageNameBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getPackageNameBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public getSpanX()I
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9727
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getSpanX()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public getSpanY()I
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9763
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getSpanY()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public getWidgetFeatures()I
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9997
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->getWidgetFeatures()I
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasAppWidgetId()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9791
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->hasAppWidgetId()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasComponentName()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9912
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->hasComponentName()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasPackageName()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9831
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->hasPackageName()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasSpanX()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9719
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->hasSpanX()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasSpanY()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9755
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->hasSpanY()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasWidgetFeatures()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9989
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->hasWidgetFeatures()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public setAppWidgetId(I)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9807
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9808
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->g(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetAppWidgetId(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setComponentName(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9950
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9951
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->h(Lcom/android/launcher3/logger/LauncherAtom$Widget;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetComponentName(Lcom/android/launcher3/logger/LauncherAtom$Widget;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setComponentNameBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
+.method public setComponentNameBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9978
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9979
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->i(Lcom/android/launcher3/logger/LauncherAtom$Widget;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetComponentNameBytes(Lcom/android/launcher3/logger/LauncherAtom$Widget;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setPackageName(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9869
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9870
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->j(Lcom/android/launcher3/logger/LauncherAtom$Widget;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetPackageName(Lcom/android/launcher3/logger/LauncherAtom$Widget;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setPackageNameBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
+.method public setPackageNameBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9897
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9898
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->k(Lcom/android/launcher3/logger/LauncherAtom$Widget;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetPackageNameBytes(Lcom/android/launcher3/logger/LauncherAtom$Widget;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setSpanX(I)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9735
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9736
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->l(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetSpanX(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setSpanY(I)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9771
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9772
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->m(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetSpanY(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setWidgetFeatures(I)Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 10005
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 10006
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Widget$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Widget;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->n(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Widget;->-$$Nest$msetWidgetFeatures(Lcom/android/launcher3/logger/LauncherAtom$Widget;I)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method

@@ -31,12 +31,9 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 1
+    .line 5
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
@@ -45,11 +42,9 @@
 .method public getCode()I
     .locals 0
 
-    .line 1
+    .line 11
     iget p0, p0, Lcom/android/launcher3/mfvUtil/ResultBean;->code:I
 
-    .line 2
-    .line 3
     return p0
 .end method
 
@@ -64,33 +59,27 @@
         }
     .end annotation
 
-    .line 1
+    .line 27
     iget-object p0, p0, Lcom/android/launcher3/mfvUtil/ResultBean;->data:Ljava/util/List;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method public getMsg()Ljava/lang/String;
     .locals 0
 
-    .line 1
+    .line 19
     iget-object p0, p0, Lcom/android/launcher3/mfvUtil/ResultBean;->msg:Ljava/lang/String;
 
-    .line 2
-    .line 3
     return-object p0
 .end method
 
 .method public setCode(I)V
     .locals 0
 
-    .line 1
+    .line 15
     iput p1, p0, Lcom/android/launcher3/mfvUtil/ResultBean;->code:I
 
-    .line 2
-    .line 3
     return-void
 .end method
 
@@ -105,21 +94,17 @@
         }
     .end annotation
 
-    .line 1
+    .line 31
     iput-object p1, p0, Lcom/android/launcher3/mfvUtil/ResultBean;->data:Ljava/util/List;
 
-    .line 2
-    .line 3
     return-void
 .end method
 
 .method public setMsg(Ljava/lang/String;)V
     .locals 0
 
-    .line 1
+    .line 23
     iput-object p1, p0, Lcom/android/launcher3/mfvUtil/ResultBean;->msg:Ljava/lang/String;
 
-    .line 2
-    .line 3
     return-void
 .end method

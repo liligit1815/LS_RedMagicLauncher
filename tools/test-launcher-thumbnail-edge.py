@@ -13,7 +13,7 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RELATIVE = 'src/smali_classes2/com/android/quickstep/views/TaskThumbnailViewDeprecated.smali'
+RELATIVE = 'src/smali_classes3/com/android/quickstep/views/TaskThumbnailViewDeprecated.smali'
 IDENTITY = (1., 0., 0., 1., 0., 0.)
 TOLERANCE = 1 / 1024
 
@@ -88,7 +88,7 @@ class Guard:
     def execute_receiver(self, receiver, draw=(0., 0., 100., 200.), cache=None):
         regs = dict(p0=receiver, **{f'p{i+1}': value for i, value in enumerate(draw)})
         pc, result, allocations = 0, None, 0
-        calls = dict(getRecentsView='recents', isNativeStackStyle='stack', getThumbnail='thumbnail',
+        calls = dict(getTaskView='mTaskView', getRecentsView='recents', isNativeStackStyle='stack', getThumbnail='thumbnail',
                      hasAlpha='hasAlpha', isTranslucent='isTranslucent', getShader='shader',
                      getAlpha='alpha', getWidth='width', getHeight='height', shouldShowSplashView='splash')
         for _ in range(280):
@@ -550,8 +550,8 @@ def verify(source):
 
     draw = source.split('.method public drawOnCanvas(', 1)[1].split('.end method', 1)[0]
     start = draw.index('->shouldDrawThumbnailBackground(FFFF)Z')
-    branch = draw.index('if-eqz v0, :ls_thumbnail_background_done', start)
-    end = draw.index(':ls_thumbnail_background_done', branch+len('if-eqz v0, :ls_thumbnail_background_done'))
+    branch = draw.index('if-eqz v14, :ls_thumbnail_background_done', start)
+    end = draw.index(':ls_thumbnail_background_done', branch+len('if-eqz v14, :ls_thumbnail_background_done'))
     assert draw[branch:end].count('->drawRoundRect(') == 1
     assert '->mPaint:Landroid/graphics/Paint;' in draw[end:]
     assert '->mSplashBackgroundPaint:' in draw[end:]

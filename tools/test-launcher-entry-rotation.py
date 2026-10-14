@@ -13,7 +13,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source',type=Path,default=ROOT/'helper-src/main/com/android/quickstep/views/LsNativeStack.java')
-source=parser.parse_args().source.read_text(encoding='utf-8')
+source=parser.parse_args().source.read_text(encoding='utf-8').replace('TaskView.TaskContainer', 'TaskContainer')
 
 
 def extract(name):
@@ -329,15 +329,15 @@ public class EntryRotationTest {
 '''.replace('CONSTANTS', constants).replace('METHODS', methods)
 
 # Inspect actual packaged integration, including the no-window-rotation path.
-simulator = (ROOT / 'src/smali_classes2/com/android/quickstep/util/TaskViewSimulator.smali').read_text(encoding='utf-8')
+simulator = (ROOT / 'src/smali_classes3/com/android/quickstep/util/TaskViewSimulator.smali').read_text(encoding='utf-8')
 apply_start = simulator.index('.method public apply(Lcom/android/quickstep/util/TransformParams;Lcom/android/quickstep/util/SurfaceTransaction;Z)V')
 apply_body = simulator[apply_start:simulator.index('.end method', apply_start)]
 reset = apply_body.index('Landroid/graphics/Matrix;->reset()V')
-guard = apply_body.index('if-eqz p3, :cond_8', reset)
+guard = apply_body.index('if-eqz p3, :cond_6', reset)
 mapping_call = apply_body.index('invoke-virtual {p0, v1}', guard)
 native_call = apply_body.index('invoke-virtual {p0, p3}', mapping_call)
 assert reset < guard < mapping_call < native_call
-assert 'invoke-static {p3, v0, v1, v2}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryMatrix' in simulator
+assert 'invoke-static {v3, v0, v1, v2}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryMatrix' in simulator
 scroll_setter = simulator.split('.method public setScroll(F)V', 1)[1].split('.end method', 1)[0]
 assert 'normalizeLiveEntryScroll' not in scroll_setter, 'preserve raw native scroll; fade only at draw time'
 assert apply_body.count('->normalizeLiveEntryScroll(F)F') == 1, 'entry scroll must be sampled once per frame'

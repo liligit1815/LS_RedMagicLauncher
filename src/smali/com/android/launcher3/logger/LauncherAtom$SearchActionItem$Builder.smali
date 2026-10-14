@@ -1,5 +1,5 @@
 .class public final Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
-.super Lcom/google/protobuf/y$a;
+.super Lcom/google/protobuf/GeneratedMessageLite$Builder;
 .source "LauncherAtom.java"
 
 # interfaces
@@ -18,7 +18,7 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lcom/google/protobuf/y$a<",
+        "Lcom/google/protobuf/GeneratedMessageLite$Builder<",
         "Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;",
         "Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;",
         ">;",
@@ -31,20 +31,19 @@
 .method private constructor <init>()V
     .locals 1
 
-    .line 2
-    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->g()Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
+    .line 11984
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$sfgetDEFAULT_INSTANCE()Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/google/protobuf/y$a;-><init>(Lcom/google/protobuf/y;)V
+    invoke-direct {p0, v0}, Lcom/google/protobuf/GeneratedMessageLite$Builder;-><init>(Lcom/google/protobuf/GeneratedMessageLite;)V
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/launcher3/logger/a;)V
+.method synthetic constructor <init>(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder-IA;)V
     .locals 0
 
-    .line 1
     invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;-><init>()V
 
     return-void
@@ -55,287 +54,185 @@
 .method public clearPackageName()Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 12029
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12030
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->a(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$mclearPackageName(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearTitle()Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 12086
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12087
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->b(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$mclearTitle(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public getPackageName()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12002
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->getPackageName()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getPackageNameBytes()Lcom/google/protobuf/h;
+.method public getPackageNameBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12011
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->getPackageNameBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->getPackageNameBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public getTitle()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12059
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->getTitle()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getTitleBytes()Lcom/google/protobuf/h;
+.method public getTitleBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12068
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->getTitleBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->getTitleBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public hasPackageName()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 11994
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->hasPackageName()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasTitle()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12051
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->hasTitle()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public setPackageName(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 12020
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12021
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->c(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$msetPackageName(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setPackageNameBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
+.method public setPackageNameBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 12040
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12041
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->d(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$msetPackageNameBytes(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setTitle(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 12077
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12078
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->e(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$msetTitle(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setTitleBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
+.method public setTitleBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 12097
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 12098
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->f(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;->-$$Nest$msetTitleBytes(Lcom/android/launcher3/logger/LauncherAtom$SearchActionItem;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method

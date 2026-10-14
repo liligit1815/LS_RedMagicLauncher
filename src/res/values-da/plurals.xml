@@ -5,8 +5,8 @@
         <item quantity="other">for %d dage siden</item>
     </plurals>
     <plurals name="abc_slice_duration_min">
-        <item quantity="one">for %d min. siden</item>
-        <item quantity="other">for %d min. siden</item>
+        <item quantity="one">%d min. siden</item>
+        <item quantity="other">%d min. siden</item>
     </plurals>
     <plurals name="abc_slice_duration_years">
         <item quantity="one">for %d år siden</item>

@@ -21,8 +21,8 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.launcher3.a;
-import com.android.launcher3.popup.P;
+import com.android.launcher3.AbstractFloatingView;
+import com.android.launcher3.popup.SystemShortcut;
 import com.android.launcher3.views.BaseDragLayer;
 import com.android.quickstep.TaskOverlayFactory;
 import com.android.quickstep.TaskShortcutFactory;
@@ -31,19 +31,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Side actions participate in the OEM floating-view/back lifecycle. */
-public final class LsStackActions extends a implements View.OnClickListener, Runnable {
+public final class LsStackActions extends AbstractFloatingView implements View.OnClickListener, Runnable {
     private static WeakReference<LsStackActions> active = new WeakReference<>(null);
     private final WeakReference<RecentsView> owner;
     private final WeakReference<TaskView> taskRef;
     private final int taskId;
     private final boolean right;
     private final ArrayList<ImageView> buttons = new ArrayList<>();
-    private final ArrayList<P> shortcuts = new ArrayList<>();
-    private P directMiniWindowShortcut;
+    private final ArrayList<SystemShortcut> shortcuts = new ArrayList<>();
+    private SystemShortcut directMiniWindowShortcut;
     private int measuredButtonDiameter;
     private float progress;
     private boolean closing;
-    private P pending;
+    private SystemShortcut pending;
     private View pendingView;
     private View hiddenClearButton;
     private int clearButtonVisibility;
@@ -60,10 +60,10 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
         super.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_YES);
         super.setAccessibilityPaneTitle("任务操作");
         super.setElevation(32.0f * super.getResources().getDisplayMetrics().density);
-        for (TaskContainer container : task.getTaskContainers()) {
-            List<P> enabled = TaskOverlayFactory.getEnabledShortcuts(task, container);
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
+            List<SystemShortcut> enabled = TaskOverlayFactory.getEnabledShortcuts(task, container);
             boolean hasMiniWindow = false;
-            if (enabled != null) for (P shortcut : enabled) {
+            if (enabled != null) for (SystemShortcut shortcut : enabled) {
                 addAction(shortcut);
                 hasMiniWindow |= shortcut instanceof TaskShortcutFactory.MiniWindowSystemShortcut;
             }
@@ -81,16 +81,17 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
         }
     }
 
-    private void addAction(P shortcut) {
-        // Only the side rail omits Close; the native menu and clear-all remain native.
-        if (shortcut instanceof TaskShortcutFactory.CloseSystemShortcut) return;
+    private void addAction(SystemShortcut shortcut) {
+        // The 10-series factory has no Close class. Preserve the side rail's
+        // close-action exclusion without linking to the absent 11-series type.
+        if ("CloseSystemShortcut".equals(shortcut.getClass().getSimpleName())) return;
         FrameLayout holder = new FrameLayout(super.getContext());
         ImageView button = new ImageView(super.getContext());
-        button.setId(0x7f0b02fc);
+        button.setId(0x7f0b02a4);
         button.setScaleType(ImageView.ScaleType.FIT_CENTER);
         holder.addView(button, new FrameLayout.LayoutParams(-1, -1));
         TextView label = new TextView(super.getContext());
-        label.setId(0x7f0b05e0);
+        label.setId(0x7f0b0549);
         label.setVisibility(View.GONE);
         holder.addView(label, new FrameLayout.LayoutParams(0, 0));
         if (shortcut instanceof TaskShortcutFactory.LockAppSystemShortcut) {
@@ -113,13 +114,13 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
         shortcuts.add(shortcut);
     }
 
-    private int actionIcon(P shortcut) {
-        if (shortcut instanceof P.b) return 1;
+    private int actionIcon(SystemShortcut shortcut) {
+        if (shortcut instanceof SystemShortcut.AppInfo) return 1;
         if (shortcut instanceof TaskShortcutFactory.SplitSelectSystemShortcut) return 2;
         if (shortcut instanceof TaskShortcutFactory.LockAppSystemShortcut) {
             TaskView task = taskRef.get();
             return task != null && ((TaskShortcutFactory.LockAppSystemShortcut) shortcut)
-                    .isAppLocked(task, x1.O.Q0()) ? 4 : 3;
+                    .isAppLocked(task, com.android.launcher3.mfvUtil.MFVUtils.getZteSceneDecisionFeature()) ? 4 : 3;
         }
         if (shortcut instanceof TaskShortcutFactory.PinSystemShortcut) return 5;
         if (shortcut instanceof TaskShortcutFactory.MiniWindowSystemShortcut) return 6;
@@ -219,7 +220,7 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
         BaseDragLayer.LayoutParams params = new BaseDragLayer.LayoutParams(-1, -1);
         // The overlay applies safeInsets itself. InsettableFrameLayout must not
         // also add margins, which would shrink and offset the side actions twice.
-        params.a(true);
+        params.setIgnoreInsets(true);
         ((ViewGroup) parent).addView(panel, params);
         panel.hiddenClearButton = recents.getNativeStackClearButton();
         if (panel.hiddenClearButton != null) {
@@ -244,7 +245,7 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
         RectF window = globalBounds(recents.getRootView(), null);
         if (!hasFiniteBounds(window)) window = globalBounds(recents, null);
         RectF card = new RectF();
-        for (TaskContainer container : selected.getTaskContainers()) {
+        for (TaskView.TaskContainer container : selected.getTaskContainers()) {
             View snapshot = container == null ? null : container.getSnapshotView();
             if (snapshot == null) continue;
             RectF bounds = globalBounds(snapshot, null);
@@ -448,7 +449,7 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
 
     private RectF cardBounds(TaskView task) {
         RectF bounds = new RectF();
-        for (TaskContainer container : task.getTaskContainers()) {
+        for (TaskView.TaskContainer container : task.getTaskContainers()) {
             View snapshot = container == null ? null : container.getSnapshotView();
             if (snapshot == null) continue;
             RectF next = globalBounds(snapshot, null);
@@ -461,7 +462,7 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
         return bounds;
     }
 
-    private boolean isActionAvailable(P action) {
+    private boolean isActionAvailable(SystemShortcut action) {
         if (action == null || !action.isEnabled()) return false;
         if (action != directMiniWindowShortcut) return true;
         TaskView task = taskRef.get();
@@ -541,7 +542,7 @@ public final class LsStackActions extends a implements View.OnClickListener, Run
     @Override public void run() {
         TaskView task = taskRef.get();
         RecentsView recents = owner.get();
-        P action = pending;
+        SystemShortcut action = pending;
         View view = pendingView;
         pending = null;
         pendingView = null;

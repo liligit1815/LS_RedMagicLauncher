@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/A$e;
+.implements Lcom/google/protobuf/Internal$EnumVerifier;
 
 
 # annotations
@@ -18,39 +18,29 @@
 
 
 # static fields
-.field static final INSTANCE:Lcom/google/protobuf/A$e;
+.field static final INSTANCE:Lcom/google/protobuf/Internal$EnumVerifier;
 
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 1
+    .line 840
     new-instance v0, Lcom/android/launcher3/logger/LauncherAtom$FromState$FromStateVerifier;
 
-    .line 2
-    .line 3
     invoke-direct {v0}, Lcom/android/launcher3/logger/LauncherAtom$FromState$FromStateVerifier;-><init>()V
 
-    .line 4
-    .line 5
-    .line 6
-    sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$FromState$FromStateVerifier;->INSTANCE:Lcom/google/protobuf/A$e;
+    sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$FromState$FromStateVerifier;->INSTANCE:Lcom/google/protobuf/Internal$EnumVerifier;
 
-    .line 7
-    .line 8
     return-void
 .end method
 
 .method private constructor <init>()V
     .locals 0
 
-    .line 1
+    .line 838
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
@@ -59,28 +49,20 @@
 .method public isInRange(I)Z
     .locals 0
 
-    .line 1
+    .line 843
     invoke-static {p1}, Lcom/android/launcher3/logger/LauncherAtom$FromState;->forNumber(I)Lcom/android/launcher3/logger/LauncherAtom$FromState;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object p0
 
-    .line 5
     if-eqz p0, :cond_0
 
-    .line 6
-    .line 7
     const/4 p0, 0x1
 
-    .line 8
-    return p0
+    goto :goto_0
 
-    .line 9
     :cond_0
     const/4 p0, 0x0
 
-    .line 10
+    :goto_0
     return p0
 .end method

@@ -62,7 +62,7 @@ def require_stack_only_sources() -> None:
 
 def main() -> int:
     require_stack_only_sources()
-    helper = (SRC / "smali_classes2/com/android/quickstep/views/LsNativeStack.smali").read_text(
+    helper = (SRC / "smali_classes3/com/android/quickstep/views/LsNativeStack.smali").read_text(
         encoding="utf-8"
     )
     helper_java = (
@@ -70,24 +70,24 @@ def main() -> int:
         / "helper-src/main/com/android/quickstep/views/LsNativeStack.java"
     ).read_text(encoding="utf-8")
     initial_commit = (
-        SRC / "smali_classes2/com/android/quickstep/views/LsNativeStack$InitialFrameCommit.smali"
+        SRC / "smali_classes3/com/android/quickstep/views/LsNativeStack$InitialFrameCommit.smali"
     ).read_text(encoding="utf-8")
-    recents = (SRC / "smali_classes2/com/android/quickstep/views/RecentsView.smali").read_text(
+    recents = (SRC / "smali_classes3/com/android/quickstep/views/RecentsView.smali").read_text(
         encoding="utf-8"
     )
-    task = (SRC / "smali_classes2/com/android/quickstep/views/TaskView.smali").read_text(
+    task = (SRC / "smali_classes3/com/android/quickstep/views/TaskView.smali").read_text(
         encoding="utf-8"
     )
     simulator = (
-        SRC / "smali_classes2/com/android/quickstep/util/TaskViewSimulator.smali"
+        SRC / "smali_classes3/com/android/quickstep/util/TaskViewSimulator.smali"
     ).read_text(encoding="utf-8")
     swipe_handler = (
-        SRC / "smali/com/android/quickstep/AbsSwipeUpHandler.smali"
+        SRC / "smali_classes3/com/android/quickstep/AbsSwipeUpHandler.smali"
     ).read_text(encoding="utf-8")
     config = (SRC / "res/values/recents_stack_config.xml").read_text(encoding="utf-8")
     dimens = (SRC / "res/values/dimens.xml").read_text(encoding="utf-8")
     style_activity = (
-        SRC / "smali/com/android/launcher3/settings/RecentAppStyleActivity.smali"
+        SRC / "smali_classes3/com/android/launcher3/settings/RecentAppStyleActivity.smali"
     ).read_text(encoding="utf-8")
     style_layout = (
         SRC / "res/layout/setting_recent_app_style_layout.xml"
@@ -144,8 +144,8 @@ def main() -> int:
         "stack-style click does not select style 3",
     )
     require(
-        method(style_activity, ".method private s0(I)V"),
-        "RecentAppStyleActivity;->p0(I)V",
+        method(style_activity, ".method private selectStyle(I)V"),
+        "RecentAppStyleActivity;->saveStateIntoPref(I)V",
         "style selection is not persisted",
     )
     preview = SRC / "res/drawable-xxxhdpi/pic_recentapp_stack_lispace_iceblue.png"
@@ -426,12 +426,19 @@ def main() -> int:
         "public static float normalizeLiveAppliedScale(Context context, float nativeScale)",
         "late RecentsView scale writers can still undershoot the Xiaomi front card",
     )
+    # RedMagic 10 reads its matrix X/Y scales separately, as well as the
+    # FullscreenDrawParams scale. All three native reads share the same clock.
     if simulator.count(
         "LsNativeStack;->normalizeLiveAppliedScale(Landroid/content/Context;F)F"
-    ) != 2:
+    ) != 3:
         raise AssertionError(
-            "live scale floor must cover draw parameters and the surface matrix"
+            "live scale floor must cover draw parameters and both matrix axes"
         )
+    matrix_scale = method(simulator, ".method public apply(Lcom/android/quickstep/util/TransformParams;Lcom/android/quickstep/util/SurfaceTransaction;Z)V")
+    x = matrix_scale.index("invoke-static {v10, v3}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveAppliedScale")
+    y = matrix_scale.index("invoke-static {v10, v4}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveAppliedScale", x)
+    matrix_write = matrix_scale.index("invoke-virtual {v1, v3, v4, v5, v6}, Landroid/graphics/Matrix;->postScale", y)
+    assert x < y < matrix_write, "both normalized axes must feed the actual matrix"
     commit_start = helper_java.find(
         "public static void commitInitialPage(RecentsView recents, int requestedPage)"
     )
@@ -610,7 +617,7 @@ def main() -> int:
     )
     page_scrolls = method(
         recents,
-        ".method protected getPageScrolls([IZLcom/android/launcher3/V4$c;)Z",
+        ".method protected getPageScrolls([IZLcom/android/launcher3/PagedView$ComputePageScrollsLogic;)Z",
     )
     if "LsNativeStack" in page_scrolls:
         raise AssertionError("OEM page scroll array is modified by stack code")
@@ -647,7 +654,7 @@ def main() -> int:
     )
 
     dismiss_end = (
-        SRC / "smali_classes2/com/android/quickstep/views/RecentsView$23.smali"
+        SRC / "smali_classes3/com/android/quickstep/views/RecentsView$20.smali"
     ).read_text(encoding="utf-8")
     require(
         dismiss_end,

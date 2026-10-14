@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 def check_mini_window_bridge():
     """Execute the actual tiny Smali bridge against observable OEM-update effects."""
-    task_smali = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+    task_smali = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
     match = re.search(r'(?ms)^\.method public final isNativeStackMiniWindowAvailable\(\)Z\n(.*?)^\.end method', task_smali)
     assert match, 'Missing native mini-window eligibility bridge'
     code = [line.strip() for line in match.group(1).splitlines()
@@ -88,7 +88,7 @@ def check_mini_window_bridge():
 
 
 check_mini_window_bridge()
-source = args.source.read_text(encoding='utf-8')
+source = args.source.read_text(encoding='utf-8').replace('TaskView.TaskContainer', 'TaskContainer').replace('com.android.launcher3.mfvUtil.MFVUtils', 'MFVUtils')
 source = re.sub(r'^(?:package|import) .*?;\s*$', '', source, flags=re.M)
 source = 'import java.util.*;\nimport java.lang.ref.WeakReference;\n' + source
 
@@ -144,7 +144,7 @@ class Canvas {
     void drawCircle(float x,float y,float radius,Paint paint){trace+="C"+x+","+y+","+radius;render(new java.awt.geom.Ellipse2D.Float(x-radius,y-radius,radius*2,radius*2),paint);}
     void drawLine(float x,float y,float r,float b,Paint paint){trace+="L"+x+","+y+","+r+","+b;render(new java.awt.geom.Line2D.Float(x,y,r,b),paint);}
     void drawRoundRect(float l,float t,float r,float b,float rx,float ry,Paint paint){trace+="R"+l+","+t+","+r+","+b;render(new java.awt.geom.RoundRectangle2D.Float(l,t,r-l,b-t,rx*2,ry*2),paint);}
-    void drawPath(Path path,Paint paint){trace+="P"+path.trace;render(path.shape,paint);}
+    void drawPath(Path path,Paint paint){trace+="SystemShortcut"+path.trace;render(path.shape,paint);}
 }
 class Insets {
     static final Insets NONE=new Insets(0,0,0,0);final int left,top,right,bottom;
@@ -255,14 +255,14 @@ class FrameLayout extends ViewGroup {
 class ImageView extends View {Drawable drawable;enum ScaleType {FIT_CENTER}ImageView(Context c){super(c);}void setScaleType(ScaleType t){}void setImageTintList(ColorStateList c){}
     void setImageDrawable(Drawable value){drawable=value;}Drawable getDrawable(){return drawable;}}
 class TextView extends View {TextView(Context c){super(c);}}
-abstract class a extends ViewGroup {
-    protected boolean mIsOpen;a(Context c,Object attrs){super(c);}
+abstract class AbstractFloatingView extends ViewGroup {
+    protected boolean mIsOpen;AbstractFloatingView(Context c,Object attrs){super(c);}
     protected abstract boolean isOfType(int t);protected abstract void handleClose(boolean animate);
     public abstract boolean onControllerInterceptTouchEvent(MotionEvent e);
 }
 class BaseDragLayer extends FrameLayout {
     static class LayoutParams extends FrameLayout.LayoutParams {
-        boolean ignoreInsets;LayoutParams(int w,int h){super(w,h);}void a(boolean ignore){ignoreInsets=ignore;}
+        boolean ignoreInsets;LayoutParams(int w,int h){super(w,h);}void setIgnoreInsets(boolean ignore){ignoreInsets=ignore;}
     }
     BaseDragLayer(Context c){super(c);}
     @Override void addView(View view,ViewGroup.LayoutParams params){
@@ -273,31 +273,31 @@ class BaseDragLayer extends FrameLayout {
         super.addView(view,params);
     }
 }
-class P {
-    static class b extends P {}
+class SystemShortcut {
+    static class AppInfo extends SystemShortcut {}
     boolean enabled=true;int clicks;void setIconAndContentDescriptionFor(ImageView v){v.setContentDescription("action");v.setEnabled(enabled);v.setImageDrawable(new OemDrawable());}
     boolean isEnabled(){return enabled;}void onClick(View v){clicks++;if(SideActionsTest.drag.getChildCount()!=1)throw new AssertionError("action ran before overlay removal");}
 }
 class TaskShortcutFactory {
-    static class SplitSelectSystemShortcut extends P {}
-    static class PinSystemShortcut extends P {}
-    static class CloseSystemShortcut extends P {}
-    static class MiniWindowSystemShortcut extends P {
+    static class SplitSelectSystemShortcut extends SystemShortcut {}
+    static class PinSystemShortcut extends SystemShortcut {}
+    static class CloseSystemShortcut extends SystemShortcut {}
+    static class MiniWindowSystemShortcut extends SystemShortcut {
         final TaskView task;MiniWindowSystemShortcut(RecentsViewContainer owner,TaskContainer container){task=container.task;}
         @Override void setIconAndContentDescriptionFor(ImageView v){super.setIconAndContentDescriptionFor(v);v.setContentDescription("mini-window");}
         @Override void onClick(View v){super.onClick(v);task.miniLaunches++;}
     }
-    static class LockAppSystemShortcut extends P {
+    static class LockAppSystemShortcut extends SystemShortcut {
         boolean initialized,locked=true,seenMode;int stateQueries;String labelOverride;
         boolean isAppLocked(TaskView task,boolean mode){stateQueries++;seenMode=mode;return locked;}
         void init(ViewGroup holder){
-            if(!(holder.findViewById(0x7f0b02fc) instanceof ImageView)||!(holder.findViewById(0x7f0b05e0) instanceof TextView))throw new AssertionError("OEM lock view ids/types missing");
+            if(!(holder.findViewById(0x7f0b02a4) instanceof ImageView)||!(holder.findViewById(0x7f0b0549) instanceof TextView))throw new AssertionError("OEM lock view ids/types missing");
             initialized=true;
         }
         @Override void setIconAndContentDescriptionFor(ImageView v){if(!initialized)throw new AssertionError("lock rendered before state initialized");super.setIconAndContentDescriptionFor(v);v.setContentDescription(labelOverride!=null?labelOverride:locked?"unlock":"lock");}
     }
 }
-class TaskOverlayFactory {static List<P> actions;static List<P> getEnabledShortcuts(TaskView t,TaskContainer c){return actions;}}
+class TaskOverlayFactory {static List<SystemShortcut> actions;static List<SystemShortcut> getEnabledShortcuts(TaskView t,TaskContainer c){return actions;}}
 interface RecentsViewContainer {}
 class TaskContainer {final View snapshot;TaskView task;TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}}
 class TaskView extends View {
@@ -323,7 +323,7 @@ class RecentsView extends View {
     boolean canLaunchFullscreenTask(){return launchable;}
 }
 class LsNativeStack {static int closed;static void onTaskMenuClosed(RecentsView r){closed++;}}
-class x1 {static class O {static boolean mode;static boolean Q0(){return mode;}}}
+class MFVUtils {static boolean mode;static boolean getZteSceneDecisionFeature(){return mode;}}
 '''
 
 harness = r'''
@@ -340,7 +340,7 @@ public class SideActionsTest {
         task=new TaskView(context);task.recents=recents;task.layout(0,0,(int)(w*.7f),(int)(h*.7f));
         View snapshot=new View(context);snapshot.layout(0,0,task.w,task.h);snapshot.globalY=h*.2f;
         TaskContainer container=new TaskContainer(snapshot);container.task=task;task.containers.add(container);
-        TaskOverlayFactory.actions=new ArrayList<>();for(int i=0;i<count;i++)TaskOverlayFactory.actions.add(i==0?new TaskShortcutFactory.LockAppSystemShortcut():new P());
+        TaskOverlayFactory.actions=new ArrayList<>();for(int i=0;i<count;i++)TaskOverlayFactory.actions.add(i==0?new TaskShortcutFactory.LockAppSystemShortcut():new SystemShortcut());
         check(LsStackActions.show(recents,task,right),"panel did not show");
         setExpandedCard();
         LsStackActions panel=(LsStackActions)drag.getChildAt(1);panel.measure(w,h);panel.layout(0,0,w,h);
@@ -458,7 +458,7 @@ public class SideActionsTest {
         }
     }
     static void lifecycle(){
-        LsStackActions p=setup(1216,2688,3,3,Insets.NONE,true);P action=TaskOverlayFactory.actions.get(0);
+        LsStackActions p=setup(1216,2688,3,3,Insets.NONE,true);SystemShortcut action=TaskOverlayFactory.actions.get(0);
         check(((TaskShortcutFactory.LockAppSystemShortcut)action).initialized,"lock shortcut not initialized");
         check("unlock".contentEquals(button(p,0).getContentDescription()),"lock state label lost");
         LsStackActions.update(recents,.5f);p.onClick(button(p,0));check(action.clicks==0&&LsStackActions.finish(recents)==null,"opening accepted action");
@@ -498,7 +498,7 @@ public class SideActionsTest {
         if(recents!=null)LsStackActions.abort(recents);
         Context context=new Context();drag=new BaseDragLayer(context);drag.layout(0,0,1000,1600);
         recents=new RecentsView(context);recents.measure(1000,1600);recents.layout(0,0,1000,1600);drag.addView(recents,new FrameLayout.LayoutParams(1000,1600));
-        TaskOverlayFactory.actions=Arrays.asList(new P());
+        TaskOverlayFactory.actions=Arrays.asList(new SystemShortcut());
         TaskView first=addCard(10,100,200,10),second=addCard(11,200,240,9);task=first;return new TaskView[]{first,second};
     }
     static void side(TaskView card,boolean right,String reason){
@@ -627,7 +627,7 @@ public class SideActionsTest {
     }
     static LsStackActions stylePanel(){
         setup(1216,1600,3,5,Insets.NONE,true);task.miniAvailable=true;
-        TaskOverlayFactory.actions=new ArrayList<>(Arrays.asList(new P.b(),new TaskShortcutFactory.LockAppSystemShortcut(),
+        TaskOverlayFactory.actions=new ArrayList<>(Arrays.asList(new SystemShortcut.AppInfo(),new TaskShortcutFactory.LockAppSystemShortcut(),
                 new TaskShortcutFactory.SplitSelectSystemShortcut(),new TaskShortcutFactory.PinSystemShortcut(),new TaskShortcutFactory.CloseSystemShortcut()));
         return reopen();
     }
@@ -662,11 +662,11 @@ public class SideActionsTest {
             icon.setBounds(10,20,10,20);c=new Canvas();icon.draw(c);check(c.operations==0,"empty drawable bounds must not draw");
         }
         TaskShortcutFactory.LockAppSystemShortcut lock=(TaskShortcutFactory.LockAppSystemShortcut)TaskOverlayFactory.actions.get(1);
-        lock.labelOverride="same localized label";lock.locked=false;x1.O.mode=true;panel=reopen();
+        lock.labelOverride="same localized label";lock.locked=false;MFVUtils.mode=true;panel=reopen();
         Canvas closed=new Canvas();button(panel,1).getDrawable().draw(closed);
         check(lock.stateQueries>0&&lock.seenMode,"lock outline did not use native current lock-mode policy");
         check("same localized label".contentEquals(button(panel,1).description),"outline replaced native content description");
-        lock.locked=true;x1.O.mode=false;panel=reopen();Canvas open=new Canvas();button(panel,1).getDrawable().draw(open);
+        lock.locked=true;MFVUtils.mode=false;panel=reopen();Canvas open=new Canvas();button(panel,1).getDrawable().draw(open);
         check(!closed.trace.equals(open.trace)&&!lock.seenMode,"lock outline inferred state from unchanged label/accessibility ID");
         panel.onClick(button(panel,1));Runnable done=LsStackActions.finish(recents);check(lock.clicks==0,"styled native lock bypassed reverse animation");
         done.run();check(lock.clicks==1,"styled native lock executor was replaced");
@@ -675,7 +675,7 @@ public class SideActionsTest {
         TaskOverlayFactory.actions.add(0,new TaskShortcutFactory.CloseSystemShortcut());TaskOverlayFactory.actions.add(new TaskShortcutFactory.CloseSystemShortcut());
         panel=reopen();check(panel.getChildCount()==2,"Close filter depended on action order/index");
         for(boolean known:new boolean[]{false,true}){
-            setup(1216,2688,3,2,Insets.NONE,true);P disabled=known?new P.b():new P();disabled.enabled=false;
+            setup(1216,2688,3,2,Insets.NONE,true);SystemShortcut disabled=known?new SystemShortcut.AppInfo():new SystemShortcut();disabled.enabled=false;
             TaskOverlayFactory.actions=new ArrayList<>(Arrays.asList(disabled));panel=reopen();ImageView view=button(panel,0);
             check(!view.isEnabled()&&view.alpha==.38f&&panel.getChildAt(0).alpha==1,"native disabled state/fade lost during icon replacement");
             check(known?!(view.getDrawable() instanceof OemDrawable):view.getDrawable() instanceof OemDrawable,"disabled unknown fallback changed icon identity");

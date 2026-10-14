@@ -6,7 +6,6 @@
     <dimen name="mfvc_dial_area_radius">18.0px</dimen>
     <dimen name="mfvc_dial_grid_pad_height">271.0px</dimen>
     <dimen name="mfvc_dial_grid_pad_key_padding_left">39.0px</dimen>
-    <dimen name="mfvc_dial_grid_pad_padding_bottom">0.0px</dimen>
     <dimen name="mfvc_dial_grid_pad_padding_horizontal">21.0px</dimen>
     <dimen name="mfvc_dial_key_font_size">41.0px</dimen>
     <dimen name="mfvc_dial_key_height">59.0px</dimen>
@@ -37,4 +36,5 @@
     <dimen name="mfvc_dial_pad_star_padding_bottom">11.0px</dimen>
     <dimen name="mfvc_dial_pad_zero_l_font_size">30.0px</dimen>
     <dimen name="mfvc_dial_pad_zero_l_padding_top">12.0px</dimen>
+    <dimen name="mfvc_dial_ring_off_padding_left">24.0px</dimen>
 </resources>

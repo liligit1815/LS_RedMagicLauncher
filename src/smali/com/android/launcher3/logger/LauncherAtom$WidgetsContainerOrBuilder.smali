@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -15,11 +15,3 @@
     accessFlags = 0x609
     name = "WidgetsContainerOrBuilder"
 .end annotation
-
-
-# virtual methods
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
-.end method
-
-.method public abstract synthetic isInitialized()Z
-.end method

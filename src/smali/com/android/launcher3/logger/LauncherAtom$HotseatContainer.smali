@@ -1,5 +1,5 @@
 .class public final Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
-.super Lcom/google/protobuf/y;
+.super Lcom/google/protobuf/GeneratedMessageLite;
 .source "LauncherAtom.java"
 
 # interfaces
@@ -24,7 +24,7 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lcom/google/protobuf/y<",
+        "Lcom/google/protobuf/GeneratedMessageLite<",
         "Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;",
         "Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder;",
         ">;",
@@ -38,10 +38,10 @@
 
 .field public static final INDEX_FIELD_NUMBER:I = 0x1
 
-.field private static volatile PARSER:Lcom/google/protobuf/c0;
+.field private static volatile PARSER:Lcom/google/protobuf/Parser;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Lcom/google/protobuf/c0<",
+            "Lcom/google/protobuf/Parser<",
             "Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;",
             ">;"
         }
@@ -56,126 +56,92 @@
 
 
 # direct methods
+.method static bridge synthetic -$$Nest$mclearIndex(Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->clearIndex()V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$msetIndex(Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;I)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->setIndex(I)V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$sfgetDEFAULT_INSTANCE()Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+    .locals 1
+
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+
+    return-object v0
+.end method
+
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 1
+    .line 12980
     new-instance v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 2
-    .line 3
     invoke-direct {v0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;-><init>()V
 
-    .line 4
-    .line 5
-    .line 6
+    .line 12983
     sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 7
-    .line 8
+    .line 12984
     const-class v1, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 9
-    .line 10
-    invoke-static {v1, v0}, Lcom/google/protobuf/y;->registerDefaultInstance(Ljava/lang/Class;Lcom/google/protobuf/y;)V
+    invoke-static {v1, v0}, Lcom/google/protobuf/GeneratedMessageLite;->registerDefaultInstance(Ljava/lang/Class;Lcom/google/protobuf/GeneratedMessageLite;)V
 
-    .line 11
-    .line 12
-    .line 13
     return-void
 .end method
 
 .method private constructor <init>()V
     .locals 0
 
-    .line 1
-    invoke-direct {p0}, Lcom/google/protobuf/y;-><init>()V
+    .line 12756
+    invoke-direct {p0}, Lcom/google/protobuf/GeneratedMessageLite;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
-.end method
-
-.method static bridge synthetic a(Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->clearIndex()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic b(Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;I)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->setIndex(I)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic c()Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
-    .locals 1
-
-    .line 1
-    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
-
-    .line 2
-    .line 3
-    return-object v0
 .end method
 
 .method private clearIndex()V
     .locals 1
 
-    .line 1
+    .line 12789
     iget v0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->bitField0_:I
 
-    .line 2
-    .line 3
     and-int/lit8 v0, v0, -0x2
 
-    .line 4
-    .line 5
     iput v0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->bitField0_:I
 
-    .line 6
-    .line 7
     const/4 v0, 0x0
 
-    .line 8
+    .line 12790
     iput v0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->index_:I
 
-    .line 9
-    .line 10
     return-void
 .end method
 
 .method public static getDefaultInstance()Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
 
-    .line 1
+    .line 12989
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 2
-    .line 3
     return-object v0
 .end method
 
 .method public static newBuilder()Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder;
     .locals 1
 
-    .line 1
+    .line 12868
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-virtual {v0}, Lcom/google/protobuf/y;->createBuilder()Lcom/google/protobuf/y$a;
+    invoke-virtual {v0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->createBuilder()Lcom/google/protobuf/GeneratedMessageLite$Builder;
 
     move-result-object v0
 
@@ -187,10 +153,10 @@
 .method public static newBuilder(Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder;
     .locals 1
 
-    .line 2
+    .line 12871
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-virtual {v0, p0}, Lcom/google/protobuf/y;->createBuilder(Lcom/google/protobuf/y;)Lcom/google/protobuf/y$a;
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->createBuilder(Lcom/google/protobuf/GeneratedMessageLite;)Lcom/google/protobuf/GeneratedMessageLite$Builder;
 
     move-result-object p0
 
@@ -202,12 +168,15 @@
 .method public static parseDelimitedFrom(Ljava/io/InputStream;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
     .end annotation
 
-    .line 1
+    .line 12845
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseDelimitedFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->parseDelimitedFrom(Lcom/google/protobuf/GeneratedMessageLite;Ljava/io/InputStream;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -216,15 +185,18 @@
     return-object p0
 .end method
 
-.method public static parseDelimitedFrom(Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseDelimitedFrom(Ljava/io/InputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
     .end annotation
 
-    .line 2
+    .line 12851
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseDelimitedFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->parseDelimitedFrom(Lcom/google/protobuf/GeneratedMessageLite;Ljava/io/InputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -233,15 +205,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/protobuf/InvalidProtocolBufferException;
+        }
     .end annotation
 
-    .line 3
+    .line 12809
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/h;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Lcom/google/protobuf/ByteString;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -250,15 +225,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom(Lcom/google/protobuf/h;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom(Lcom/google/protobuf/ByteString;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/protobuf/InvalidProtocolBufferException;
+        }
     .end annotation
 
-    .line 4
+    .line 12816
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/h;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Lcom/google/protobuf/ByteString;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -267,15 +245,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom(Lcom/google/protobuf/i;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom(Lcom/google/protobuf/CodedInputStream;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
     .end annotation
 
-    .line 9
+    .line 12856
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/i;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Lcom/google/protobuf/CodedInputStream;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -284,15 +265,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom(Lcom/google/protobuf/i;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom(Lcom/google/protobuf/CodedInputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
     .end annotation
 
-    .line 10
+    .line 12863
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/i;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Lcom/google/protobuf/CodedInputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -304,12 +288,15 @@
 .method public static parseFrom(Ljava/io/InputStream;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
     .end annotation
 
-    .line 7
+    .line 12833
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Ljava/io/InputStream;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -318,15 +305,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom(Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom(Ljava/io/InputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
     .end annotation
 
-    .line 8
+    .line 12840
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Ljava/io/InputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -338,12 +328,15 @@
 .method public static parseFrom(Ljava/nio/ByteBuffer;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/protobuf/InvalidProtocolBufferException;
+        }
     .end annotation
 
-    .line 1
+    .line 12796
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/nio/ByteBuffer;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Ljava/nio/ByteBuffer;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -352,15 +345,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom(Ljava/nio/ByteBuffer;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom(Ljava/nio/ByteBuffer;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/protobuf/InvalidProtocolBufferException;
+        }
     .end annotation
 
-    .line 2
+    .line 12803
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/nio/ByteBuffer;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;Ljava/nio/ByteBuffer;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -372,12 +368,15 @@
 .method public static parseFrom([B)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/protobuf/InvalidProtocolBufferException;
+        }
     .end annotation
 
-    .line 5
+    .line 12821
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;[B)Lcom/google/protobuf/y;
+    invoke-static {v0, p0}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;[B)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -386,15 +385,18 @@
     return-object p0
 .end method
 
-.method public static parseFrom([BLcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
+.method public static parseFrom([BLcom/google/protobuf/ExtensionRegistryLite;)Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/google/protobuf/InvalidProtocolBufferException;
+        }
     .end annotation
 
-    .line 6
+    .line 12828
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;[BLcom/google/protobuf/p;)Lcom/google/protobuf/y;
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/GeneratedMessageLite;->parseFrom(Lcom/google/protobuf/GeneratedMessageLite;[BLcom/google/protobuf/ExtensionRegistryLite;)Lcom/google/protobuf/GeneratedMessageLite;
 
     move-result-object p0
 
@@ -403,263 +405,173 @@
     return-object p0
 .end method
 
-.method public static parser()Lcom/google/protobuf/c0;
+.method public static parser()Lcom/google/protobuf/Parser;
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
-            "Lcom/google/protobuf/c0<",
+            "Lcom/google/protobuf/Parser<",
             "Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;",
             ">;"
         }
     .end annotation
 
-    .line 1
+    .line 12995
     sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 2
-    .line 3
-    invoke-virtual {v0}, Lcom/google/protobuf/y;->getParserForType()Lcom/google/protobuf/c0;
+    invoke-virtual {v0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->getParserForType()Lcom/google/protobuf/Parser;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
     return-object v0
 .end method
 
 .method private setIndex(I)V
     .locals 1
 
-    .line 1
+    .line 12782
     iget v0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->bitField0_:I
 
-    .line 2
-    .line 3
     or-int/lit8 v0, v0, 0x1
 
-    .line 4
-    .line 5
     iput v0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->bitField0_:I
 
-    .line 6
-    .line 7
+    .line 12783
     iput p1, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->index_:I
 
-    .line 8
-    .line 9
     return-void
 .end method
 
 
 # virtual methods
-.method protected final dynamicMethod(Lcom/google/protobuf/y$f;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+.method protected final dynamicMethod(Lcom/google/protobuf/GeneratedMessageLite$MethodToInvoke;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
-    .line 1
+    .line 12931
     sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$1;->$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke:[I
 
-    .line 2
-    .line 3
-    invoke-virtual {p1}, Ljava/lang/Enum;->ordinal()I
+    invoke-virtual {p1}, Lcom/google/protobuf/GeneratedMessageLite$MethodToInvoke;->ordinal()I
 
-    .line 4
-    .line 5
-    .line 6
     move-result p1
 
-    .line 7
     aget p0, p0, p1
 
-    .line 8
-    .line 9
     const/4 p1, 0x0
 
-    .line 10
     packed-switch p0, :pswitch_data_0
 
-    .line 11
-    .line 12
-    .line 13
+    .line 12973
     new-instance p0, Ljava/lang/UnsupportedOperationException;
 
-    .line 14
-    .line 15
     invoke-direct {p0}, Ljava/lang/UnsupportedOperationException;-><init>()V
 
-    .line 16
-    .line 17
-    .line 18
     throw p0
 
-    .line 19
     :pswitch_0
     return-object p1
 
-    .line 20
     :pswitch_1
     const/4 p0, 0x1
 
-    .line 21
+    .line 12967
     invoke-static {p0}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
 
-    .line 22
-    .line 23
-    .line 24
     move-result-object p0
 
-    .line 25
     return-object p0
 
-    .line 26
+    .line 12952
     :pswitch_2
-    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->PARSER:Lcom/google/protobuf/c0;
+    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->PARSER:Lcom/google/protobuf/Parser;
 
-    .line 27
-    .line 28
     if-nez p0, :cond_1
 
-    .line 29
-    .line 30
+    .line 12954
     const-class p1, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 31
-    .line 32
     monitor-enter p1
 
-    .line 33
+    .line 12955
     :try_start_0
-    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->PARSER:Lcom/google/protobuf/c0;
+    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->PARSER:Lcom/google/protobuf/Parser;
 
-    .line 34
-    .line 35
     if-nez p0, :cond_0
 
-    .line 36
-    .line 37
-    new-instance p0, Lcom/google/protobuf/y$b;
+    .line 12957
+    new-instance p0, Lcom/google/protobuf/GeneratedMessageLite$DefaultInstanceBasedParser;
 
-    .line 38
-    .line 39
     sget-object p2, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 40
-    .line 41
-    invoke-direct {p0, p2}, Lcom/google/protobuf/y$b;-><init>(Lcom/google/protobuf/y;)V
+    invoke-direct {p0, p2}, Lcom/google/protobuf/GeneratedMessageLite$DefaultInstanceBasedParser;-><init>(Lcom/google/protobuf/GeneratedMessageLite;)V
 
-    .line 42
-    .line 43
-    .line 44
-    sput-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->PARSER:Lcom/google/protobuf/c0;
+    .line 12960
+    sput-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->PARSER:Lcom/google/protobuf/Parser;
 
-    .line 45
-    .line 46
+    .line 12962
+    :cond_0
+    monitor-exit p1
+
     goto :goto_0
 
-    .line 47
     :catchall_0
     move-exception p0
 
-    .line 48
-    goto :goto_1
-
-    .line 49
-    :cond_0
-    :goto_0
-    monitor-exit p1
-
-    .line 50
-    return-object p0
-
-    .line 51
-    :goto_1
     monitor-exit p1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 52
     throw p0
 
-    .line 53
     :cond_1
+    :goto_0
     return-object p0
 
-    .line 54
+    .line 12949
     :pswitch_3
     sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 55
-    .line 56
     return-object p0
 
-    .line 57
+    .line 12939
     :pswitch_4
     const-string p0, "bitField0_"
 
-    .line 58
-    .line 59
     const-string p1, "index_"
 
-    .line 60
-    .line 61
     filled-new-array {p0, p1}, [Ljava/lang/Object;
 
-    .line 62
-    .line 63
-    .line 64
     move-result-object p0
 
-    .line 65
+    .line 12943
     const-string p1, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001\u1004\u0000"
 
-    .line 66
-    .line 67
+    .line 12945
     sget-object p2, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 68
-    .line 69
-    invoke-static {p2, p1, p0}, Lcom/google/protobuf/y;->newMessageInfo(Lcom/google/protobuf/T;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {p2, p1, p0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->newMessageInfo(Lcom/google/protobuf/MessageLite;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 70
-    .line 71
-    .line 72
     move-result-object p0
 
-    .line 73
     return-object p0
 
-    .line 74
+    .line 12936
     :pswitch_5
     new-instance p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder;
 
-    .line 75
-    .line 76
-    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder;-><init>(Lcom/android/launcher3/logger/a;)V
+    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder;-><init>(Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer$Builder-IA;)V
 
-    .line 77
-    .line 78
-    .line 79
     return-object p0
 
-    .line 80
+    .line 12933
     :pswitch_6
     new-instance p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;
 
-    .line 81
-    .line 82
     invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;-><init>()V
 
-    .line 83
-    .line 84
-    .line 85
     return-object p0
 
-    .line 86
     nop
 
-    .line 87
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_6
@@ -675,38 +587,29 @@
 .method public getIndex()I
     .locals 0
 
-    .line 1
+    .line 12775
     iget p0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->index_:I
 
-    .line 2
-    .line 3
     return p0
 .end method
 
 .method public hasIndex()Z
     .locals 1
 
-    .line 1
+    .line 12767
     iget p0, p0, Lcom/android/launcher3/logger/LauncherAtom$HotseatContainer;->bitField0_:I
 
-    .line 2
-    .line 3
     const/4 v0, 0x1
 
-    .line 4
     and-int/2addr p0, v0
 
-    .line 5
     if-eqz p0, :cond_0
 
-    .line 6
-    .line 7
-    return v0
+    goto :goto_0
 
-    .line 8
     :cond_0
-    const/4 p0, 0x0
+    const/4 v0, 0x0
 
-    .line 9
-    return p0
+    :goto_0
+    return v0
 .end method

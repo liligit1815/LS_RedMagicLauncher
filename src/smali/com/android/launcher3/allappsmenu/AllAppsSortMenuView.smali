@@ -1,5 +1,5 @@
 .class public Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;
-.super Lcom/android/launcher3/a;
+.super Lcom/android/launcher3/AbstractFloatingView;
 .source "AllAppsSortMenuView.java"
 
 # interfaces
@@ -7,39 +7,56 @@
 
 
 # static fields
-.field private static final l:Landroid/graphics/Rect;
+.field private static final REVEAL_CLOSE_DURATION:I = 0x64
+
+.field private static final REVEAL_OPEN_DURATION:I = 0x96
+
+.field private static final S_TEMP_RECT:Landroid/graphics/Rect;
+
+.field private static final TAG:Ljava/lang/String; = "AllAppsSortMenuView"
+
+.field private static final USE_SPACE_FOR_PADDING:Ljava/lang/String; = "    "
 
 
 # instance fields
-.field private g:Lcom/android/launcher3/v;
+.field private mActivity:Lcom/android/launcher3/BaseDraggingActivity;
 
-.field private h:Landroid/animation/AnimatorSet;
+.field private mAlphabeticalSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
 
-.field private i:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+.field private mFrequencySortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
 
-.field private j:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+.field private mInstallTimeSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
 
-.field private k:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+.field private mOpenCloseAnimator:Landroid/animation/AnimatorSet;
 
 
 # direct methods
+.method public static synthetic $r8$lambda$gOMrhAIQTlB-0dR2i7yBdfRZNTQ(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->animateOpen()V
+
+    return-void
+.end method
+
+.method static bridge synthetic -$$Nest$mcloseComplete(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->closeComplete()V
+
+    return-void
+.end method
+
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 1
+    .line 36
     new-instance v0, Landroid/graphics/Rect;
 
-    .line 2
-    .line 3
     invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
 
-    .line 4
-    .line 5
-    .line 6
-    sput-object v0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->l:Landroid/graphics/Rect;
+    sput-object v0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->S_TEMP_RECT:Landroid/graphics/Rect;
 
-    .line 7
-    .line 8
     return-void
 .end method
 
@@ -48,7 +65,7 @@
 
     const/4 v0, 0x0
 
-    .line 1
+    .line 47
     invoke-direct {p0, p1, p2, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     return-void
@@ -57,1341 +74,713 @@
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
     .locals 0
 
-    .line 2
-    invoke-direct {p0, p1, p2, p3}, Lcom/android/launcher3/a;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+    .line 52
+    invoke-direct {p0, p1, p2, p3}, Lcom/android/launcher3/AbstractFloatingView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
-    .line 3
-    invoke-static {p1}, Lcom/android/launcher3/v;->fromContext(Landroid/content/Context;)Lcom/android/launcher3/v;
+    .line 54
+    invoke-static {p1}, Lcom/android/launcher3/BaseDraggingActivity;->fromContext(Landroid/content/Context;)Lcom/android/launcher3/BaseActivity;
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    check-cast p1, Lcom/android/launcher3/BaseDraggingActivity;
+
+    iput-object p1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
 
     const/4 p1, 0x1
 
-    .line 4
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setClipToOutline(Z)V
-
-    .line 5
-    new-instance p1, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$a;
-
-    invoke-direct {p1, p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$a;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
-
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
-
-    return-void
-.end method
-
-.method public static synthetic N(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->animateOpen()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method static bridge synthetic O(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->closeComplete()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method private Q(Z)V
-    .locals 10
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    const/4 v1, 0x0
-
-    .line 3
-    const/4 v2, 0x3
-
-    .line 4
-    const/4 v3, 0x2
-
-    .line 5
-    iget-object v4, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 6
-    .line 7
-    if-eqz v4, :cond_0
-
-    .line 8
-    .line 9
-    invoke-virtual {v4}, Landroid/animation/AnimatorSet;->isRunning()Z
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v4
-
-    .line 13
-    if-eqz v4, :cond_0
-
-    .line 14
-    .line 15
-    iget-object v4, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 16
-    .line 17
-    invoke-virtual {v4}, Landroid/animation/AnimatorSet;->end()V
-
-    .line 18
-    .line 19
-    .line 20
-    :cond_0
-    new-instance v4, Landroid/animation/AnimatorSet;
-
-    .line 21
-    .line 22
-    invoke-direct {v4}, Landroid/animation/AnimatorSet;-><init>()V
-
-    .line 23
-    .line 24
-    .line 25
-    iput-object v4, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 26
-    .line 27
-    if-eqz p1, :cond_1
-
-    .line 28
-    .line 29
-    sget-object v4, Landroid/widget/LinearLayout;->SCALE_X:Landroid/util/Property;
-
-    .line 30
-    .line 31
-    new-array v5, v3, [F
-
-    .line 32
-    .line 33
-    fill-array-data v5, :array_0
-
-    .line 34
-    .line 35
-    .line 36
-    invoke-static {p0, v4, v5}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 37
-    .line 38
-    .line 39
-    move-result-object v4
-
-    .line 40
-    sget-object v5, Lcom/android/launcher3/anim/L;->P:Landroid/view/animation/Interpolator;
-
-    .line 41
-    .line 42
-    invoke-virtual {v4, v5}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 43
-    .line 44
-    .line 45
-    const-wide/16 v6, 0x1c2
-
-    .line 46
-    .line 47
-    invoke-virtual {v4, v6, v7}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 48
-    .line 49
-    .line 50
-    sget-object v8, Landroid/widget/LinearLayout;->SCALE_Y:Landroid/util/Property;
-
-    .line 51
-    .line 52
-    new-array v9, v3, [F
-
-    .line 53
-    .line 54
-    fill-array-data v9, :array_1
-
     .line 55
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->setClipToOutline(Z)V
+
     .line 56
-    .line 57
-    invoke-static {p0, v8, v9}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    new-instance p1, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$1;
 
-    .line 58
-    .line 59
-    .line 60
-    move-result-object v8
+    invoke-direct {p1, p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$1;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
 
-    .line 61
-    invoke-virtual {v8, v5}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
 
-    .line 62
-    .line 63
-    .line 64
-    invoke-virtual {v8, v6, v7}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 65
-    .line 66
-    .line 67
-    sget-object v5, Landroid/widget/LinearLayout;->ALPHA:Landroid/util/Property;
-
-    .line 68
-    .line 69
-    new-array v6, v3, [F
-
-    .line 70
-    .line 71
-    fill-array-data v6, :array_2
-
-    .line 72
-    .line 73
-    .line 74
-    invoke-static {p0, v5, v6}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 75
-    .line 76
-    .line 77
-    move-result-object v5
-
-    .line 78
-    const-wide/16 v6, 0xc8
-
-    .line 79
-    .line 80
-    invoke-virtual {v5, v6, v7}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 81
-    .line 82
-    .line 83
-    iget-object v6, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 84
-    .line 85
-    new-array v2, v2, [Landroid/animation/Animator;
-
-    .line 86
-    .line 87
-    aput-object v4, v2, v1
-
-    .line 88
-    .line 89
-    aput-object v8, v2, v0
-
-    .line 90
-    .line 91
-    aput-object v5, v2, v3
-
-    .line 92
-    .line 93
-    invoke-virtual {v6, v2}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
-
-    .line 94
-    .line 95
-    .line 96
-    goto :goto_0
-
-    .line 97
-    :cond_1
-    sget-object v4, Landroid/widget/LinearLayout;->SCALE_X:Landroid/util/Property;
-
-    .line 98
-    .line 99
-    new-array v5, v3, [F
-
-    .line 100
-    .line 101
-    fill-array-data v5, :array_3
-
-    .line 102
-    .line 103
-    .line 104
-    invoke-static {p0, v4, v5}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 105
-    .line 106
-    .line 107
-    move-result-object v4
-
-    .line 108
-    sget-object v5, Lcom/android/launcher3/anim/L;->Q:Landroid/view/animation/Interpolator;
-
-    .line 109
-    .line 110
-    invoke-virtual {v4, v5}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 111
-    .line 112
-    .line 113
-    const-wide/16 v6, 0xfa
-
-    .line 114
-    .line 115
-    invoke-virtual {v4, v6, v7}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 116
-    .line 117
-    .line 118
-    sget-object v8, Landroid/widget/LinearLayout;->SCALE_Y:Landroid/util/Property;
-
-    .line 119
-    .line 120
-    new-array v9, v3, [F
-
-    .line 121
-    .line 122
-    fill-array-data v9, :array_4
-
-    .line 123
-    .line 124
-    .line 125
-    invoke-static {p0, v8, v9}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 126
-    .line 127
-    .line 128
-    move-result-object v8
-
-    .line 129
-    invoke-virtual {v8, v5}, Landroid/animation/ObjectAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 130
-    .line 131
-    .line 132
-    invoke-virtual {v8, v6, v7}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 133
-    .line 134
-    .line 135
-    sget-object v5, Landroid/widget/LinearLayout;->ALPHA:Landroid/util/Property;
-
-    .line 136
-    .line 137
-    new-array v9, v3, [F
-
-    .line 138
-    .line 139
-    fill-array-data v9, :array_5
-
-    .line 140
-    .line 141
-    .line 142
-    invoke-static {p0, v5, v9}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
-
-    .line 143
-    .line 144
-    .line 145
-    move-result-object v5
-
-    .line 146
-    invoke-virtual {v5, v6, v7}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 147
-    .line 148
-    .line 149
-    iget-object v6, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 150
-    .line 151
-    new-array v2, v2, [Landroid/animation/Animator;
-
-    .line 152
-    .line 153
-    aput-object v4, v2, v1
-
-    .line 154
-    .line 155
-    aput-object v8, v2, v0
-
-    .line 156
-    .line 157
-    aput-object v5, v2, v3
-
-    .line 158
-    .line 159
-    invoke-virtual {v6, v2}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
-
-    .line 160
-    .line 161
-    .line 162
-    :goto_0
-    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 163
-    .line 164
-    new-instance v1, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$b;
-
-    .line 165
-    .line 166
-    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$b;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;Z)V
-
-    .line 167
-    .line 168
-    .line 169
-    invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 170
-    .line 171
-    .line 172
-    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->h:Landroid/animation/AnimatorSet;
-
-    .line 173
-    .line 174
-    invoke-virtual {p0}, Landroid/animation/AnimatorSet;->start()V
-
-    .line 175
-    .line 176
-    .line 177
-    return-void
-
-    .line 178
-    nop
-
-    .line 179
-    :array_0
-    .array-data 4
-        0x3f800000    # 1.0f
-        0x3e800000    # 0.25f
-    .end array-data
-
-    .line 180
-    .line 181
-    .line 182
-    .line 183
-    .line 184
-    .line 185
-    .line 186
-    .line 187
-    :array_1
-    .array-data 4
-        0x3f800000    # 1.0f
-        0x3e800000    # 0.25f
-    .end array-data
-
-    .line 188
-    .line 189
-    .line 190
-    .line 191
-    .line 192
-    .line 193
-    .line 194
-    .line 195
-    :array_2
-    .array-data 4
-        0x3f800000    # 1.0f
-        0x0
-    .end array-data
-
-    .line 196
-    .line 197
-    .line 198
-    .line 199
-    .line 200
-    .line 201
-    .line 202
-    .line 203
-    :array_3
-    .array-data 4
-        0x3e800000    # 0.25f
-        0x3f800000    # 1.0f
-    .end array-data
-
-    .line 204
-    .line 205
-    .line 206
-    .line 207
-    .line 208
-    .line 209
-    .line 210
-    .line 211
-    :array_4
-    .array-data 4
-        0x3e800000    # 0.25f
-        0x3f800000    # 1.0f
-    .end array-data
-
-    .line 212
-    .line 213
-    .line 214
-    .line 215
-    .line 216
-    .line 217
-    .line 218
-    .line 219
-    :array_5
-    .array-data 4
-        0x0
-        0x3f800000    # 1.0f
-    .end array-data
-.end method
-
-.method private R()V
-    .locals 4
-
-    .line 1
-    invoke-static {}, LR0/m;->a()LR0/m;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    const v1, 0x7f0b0567
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {p0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object v1
-
-    .line 12
-    check-cast v1, Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 13
-    .line 14
-    iput-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->i:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 15
-    .line 16
-    const v1, 0x7f0b0569
-
-    .line 17
-    .line 18
-    .line 19
-    invoke-virtual {p0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
-
-    .line 20
-    .line 21
-    .line 22
-    move-result-object v1
-
-    .line 23
-    check-cast v1, Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 24
-    .line 25
-    iput-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->j:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 26
-    .line 27
-    const v1, 0x7f0b0568
-
-    .line 28
-    .line 29
-    .line 30
-    invoke-virtual {p0, v1}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
-
-    .line 31
-    .line 32
-    .line 33
-    move-result-object v1
-
-    .line 34
-    check-cast v1, Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 35
-    .line 36
-    iput-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->k:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 37
-    .line 38
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    .line 39
-    .line 40
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 41
-    .line 42
-    .line 43
-    iget-object v2, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->i:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 44
-    .line 45
-    invoke-virtual {v2}, Landroid/widget/CheckedTextView;->getText()Ljava/lang/CharSequence;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object v2
-
-    .line 49
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 50
-    .line 51
-    .line 52
-    const-string v2, "    "
-
-    .line 53
-    .line 54
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 55
-    .line 56
-    .line 57
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 58
-    .line 59
-    .line 60
-    move-result-object v1
-
-    .line 61
-    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->i:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 62
-    .line 63
-    invoke-virtual {v3, v1}, Landroid/widget/CheckedTextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 64
-    .line 65
-    .line 66
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    .line 67
-    .line 68
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 69
-    .line 70
-    .line 71
-    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->j:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 72
-    .line 73
-    invoke-virtual {v3}, Landroid/widget/CheckedTextView;->getText()Ljava/lang/CharSequence;
-
-    .line 74
-    .line 75
-    .line 76
-    move-result-object v3
-
-    .line 77
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 78
-    .line 79
-    .line 80
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 81
-    .line 82
-    .line 83
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 84
-    .line 85
-    .line 86
-    move-result-object v1
-
-    .line 87
-    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->j:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 88
-    .line 89
-    invoke-virtual {v3, v1}, Landroid/widget/CheckedTextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 90
-    .line 91
-    .line 92
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    .line 93
-    .line 94
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 95
-    .line 96
-    .line 97
-    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->k:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 98
-    .line 99
-    invoke-virtual {v3}, Landroid/widget/CheckedTextView;->getText()Ljava/lang/CharSequence;
-
-    .line 100
-    .line 101
-    .line 102
-    move-result-object v3
-
-    .line 103
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 104
-    .line 105
-    .line 106
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 107
-    .line 108
-    .line 109
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 110
-    .line 111
-    .line 112
-    move-result-object v1
-
-    .line 113
-    iget-object v2, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->k:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 114
-    .line 115
-    invoke-virtual {v2, v1}, Landroid/widget/CheckedTextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 116
-    .line 117
-    .line 118
-    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->i:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 119
-    .line 120
-    invoke-virtual {v1, p0}, Landroid/widget/CheckedTextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 121
-    .line 122
-    .line 123
-    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->j:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 124
-    .line 125
-    invoke-virtual {v1, p0}, Landroid/widget/CheckedTextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 126
-    .line 127
-    .line 128
-    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->k:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 129
-    .line 130
-    invoke-virtual {v1, p0}, Landroid/widget/CheckedTextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 131
-    .line 132
-    .line 133
-    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
-
-    .line 134
-    .line 135
-    invoke-virtual {v0, v1}, LR0/m;->b(Landroid/content/Context;)I
-
-    .line 136
-    .line 137
-    .line 138
-    move-result v0
-
-    .line 139
-    invoke-direct {p0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->U(I)V
-
-    .line 140
-    .line 141
-    .line 142
-    return-void
-.end method
-
-.method private S(Landroid/view/View;)Z
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/LinearLayout;->isAttachedToWindow()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    const/4 p0, 0x0
-
-    .line 8
-    return p0
-
-    .line 9
-    :cond_0
-    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
-
-    .line 10
-    .line 11
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v0
-
-    .line 15
-    invoke-virtual {v0, p0}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;)V
-
-    .line 16
-    .line 17
-    .line 18
-    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->R()V
-
-    .line 19
-    .line 20
-    .line 21
-    invoke-direct {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->setSortMenuViewPosition(Landroid/view/View;)V
-
-    .line 22
-    .line 23
-    .line 24
-    new-instance p1, LR0/l;
-
-    .line 25
-    .line 26
-    invoke-direct {p1, p0}, LR0/l;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
-
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->post(Ljava/lang/Runnable;)Z
-
-    .line 30
-    .line 31
-    .line 32
-    const/4 p0, 0x1
-
-    .line 33
-    return p0
-.end method
-
-.method public static T(Landroid/view/View;)Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;
-    .locals 4
-
-    .line 1
-    invoke-virtual {p0}, Landroid/view/View;->getContext()Landroid/content/Context;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-static {v0}, Lcom/android/launcher3/v;->fromContext(Landroid/content/Context;)Lcom/android/launcher3/v;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v0
-
-    .line 9
-    invoke-virtual {v0}, Landroid/app/Activity;->getLayoutInflater()Landroid/view/LayoutInflater;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object v1
-
-    .line 13
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v0
-
-    .line 17
-    const/4 v2, 0x0
-
-    .line 18
-    const v3, 0x7f0e006a
-
-    .line 19
-    .line 20
-    .line 21
-    invoke-virtual {v1, v3, v0, v2}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object v0
-
-    .line 25
-    check-cast v0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;
-
-    .line 26
-    .line 27
-    invoke-direct {v0, p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->S(Landroid/view/View;)Z
-
-    .line 28
-    .line 29
-    .line 30
-    move-result p0
-
-    .line 31
-    if-eqz p0, :cond_0
-
-    .line 32
-    .line 33
-    return-object v0
-
-    .line 34
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 35
-    return-object p0
-.end method
-
-.method private U(I)V
-    .locals 2
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    if-eqz p1, :cond_2
-
-    .line 3
-    .line 4
-    if-eq p1, v0, :cond_1
-
-    .line 5
-    .line 6
-    const/4 v1, 0x2
-
-    .line 7
-    if-eq p1, v1, :cond_0
-
-    .line 8
-    .line 9
-    goto :goto_0
-
-    .line 10
-    :cond_0
-    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->k:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 11
-    .line 12
-    if-eqz p0, :cond_3
-
-    .line 13
-    .line 14
-    invoke-virtual {p0, v0}, Landroid/widget/CheckedTextView;->setChecked(Z)V
-
-    .line 15
-    .line 16
-    .line 17
-    return-void
-
-    .line 18
-    :cond_1
-    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->j:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 19
-    .line 20
-    if-eqz p0, :cond_3
-
-    .line 21
-    .line 22
-    invoke-virtual {p0, v0}, Landroid/widget/CheckedTextView;->setChecked(Z)V
-
-    .line 23
-    .line 24
-    .line 25
-    return-void
-
-    .line 26
-    :cond_2
-    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->i:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
-
-    .line 27
-    .line 28
-    if-eqz p0, :cond_3
-
-    .line 29
-    .line 30
-    invoke-virtual {p0, v0}, Landroid/widget/CheckedTextView;->setChecked(Z)V
-
-    .line 31
-    .line 32
-    .line 33
-    :cond_3
-    :goto_0
     return-void
 .end method
 
 .method private animateClose()V
     .locals 1
 
-    .line 1
     const/4 v0, 0x1
 
-    .line 2
-    invoke-direct {p0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->Q(Z)V
+    .line 152
+    invoke-direct {p0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->animateOpenOrClosed(Z)V
 
-    .line 3
-    .line 4
-    .line 5
     return-void
 .end method
 
 .method private animateOpen()V
     .locals 1
 
-    .line 1
     const/4 v0, 0x0
 
-    .line 2
-    invoke-direct {p0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->Q(Z)V
+    .line 147
+    invoke-direct {p0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->animateOpenOrClosed(Z)V
 
-    .line 3
-    .line 4
-    .line 5
     const/4 v0, 0x1
 
-    .line 6
-    iput-boolean v0, p0, Lcom/android/launcher3/a;->mIsOpen:Z
+    .line 148
+    iput-boolean v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mIsOpen:Z
 
-    .line 7
-    .line 8
+    return-void
+.end method
+
+.method private animateOpenOrClosed(Z)V
+    .locals 5
+
+    .line 156
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->isRunning()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 157
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->end()V
+
+    .line 159
+    :cond_0
+    new-instance v0, Landroid/animation/AnimatorSet;
+
+    invoke-direct {v0}, Landroid/animation/AnimatorSet;-><init>()V
+
+    iput-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    .line 161
+    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->createOpenCloseOutlineProvider()Lcom/android/launcher3/anim/RoundedRectRevealOutlineProvider;
+
+    move-result-object v0
+
+    .line 162
+    invoke-virtual {v0, p0, p1}, Lcom/android/launcher3/anim/RoundedRectRevealOutlineProvider;->createRevealAnimator(Landroid/view/View;Z)Landroid/animation/ValueAnimator;
+
+    move-result-object v0
+
+    .line 163
+    sget-object v1, Lcom/android/launcher3/anim/InterpolatorsMFV;->DEACCEL:Landroid/view/animation/Interpolator;
+
+    invoke-virtual {v0, v1}, Landroid/animation/Animator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 164
+    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {v1, v0}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
+
+    .line 165
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    new-instance v1, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$2;
+
+    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$2;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;Z)V
+
+    invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+
+    .line 178
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    sget-object v1, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->ALPHA:Landroid/util/Property;
+
+    if-eqz p1, :cond_1
+
+    const/4 v2, 0x0
+
+    goto :goto_0
+
+    :cond_1
+    const/high16 v2, 0x3f800000    # 1.0f
+
+    :goto_0
+    const/4 v3, 0x1
+
+    new-array v3, v3, [F
+
+    const/4 v4, 0x0
+
+    aput v2, v3, v4
+
+    invoke-static {p0, v1, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->play(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;
+
+    .line 179
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    if-eqz p1, :cond_2
+
+    const-wide/16 v1, 0x64
+
+    goto :goto_1
+
+    :cond_2
+    const-wide/16 v1, 0x96
+
+    :goto_1
+    invoke-virtual {v0, v1, v2}, Landroid/animation/AnimatorSet;->setDuration(J)Landroid/animation/AnimatorSet;
+
+    .line 180
+    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mOpenCloseAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {p0}, Landroid/animation/AnimatorSet;->start()V
+
     return-void
 .end method
 
 .method private closeComplete()V
     .locals 1
 
-    .line 1
     const/4 v0, 0x0
 
-    .line 2
-    iput-boolean v0, p0, Lcom/android/launcher3/a;->mIsOpen:Z
+    .line 184
+    iput-boolean v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mIsOpen:Z
 
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    .line 185
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
 
-    .line 5
-    .line 6
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+    invoke-virtual {v0}, Lcom/android/launcher3/BaseDraggingActivity;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
 
-    .line 7
-    .line 8
-    .line 9
     move-result-object v0
 
-    .line 10
-    invoke-virtual {v0, p0}, Landroid/widget/FrameLayout;->removeView(Landroid/view/View;)V
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/views/BaseDragLayer;->removeView(Landroid/view/View;)V
 
-    .line 11
-    .line 12
-    .line 13
     return-void
 .end method
 
-.method private setSortMenuViewPosition(Landroid/view/View;)V
-    .locals 5
+.method private createOpenCloseOutlineProvider()Lcom/android/launcher3/anim/RoundedRectRevealOutlineProvider;
+    .locals 8
 
-    .line 1
-    const/4 v0, 0x0
+    .line 189
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getResources()Landroid/content/res/Resources;
 
-    .line 2
-    invoke-virtual {p0, v0, v0}, Landroid/widget/LinearLayout;->measure(II)V
+    move-result-object v0
 
-    .line 3
-    .line 4
-    .line 5
-    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    const v1, 0x7f0709c7
 
-    .line 6
-    .line 7
-    invoke-interface {v1}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 8
-    .line 9
-    .line 10
+    move-result v0
+
+    .line 190
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getContext()Landroid/content/Context;
+
     move-result-object v1
 
-    .line 11
-    sget-object v2, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->l:Landroid/graphics/Rect;
+    invoke-static {v1}, Lcom/android/launcher3/util/Themes;->getDialogCornerRadius(Landroid/content/Context;)F
 
-    .line 12
-    .line 13
-    invoke-virtual {v1, p1, v2}, Lcom/android/launcher3/views/BaseDragLayer;->getDescendantRectRelativeToSelf(Landroid/view/View;Landroid/graphics/Rect;)F
+    move-result v5
 
-    .line 14
-    .line 15
-    .line 16
-    iget-object p1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    .line 191
+    new-instance v1, Landroid/graphics/Point;
 
-    .line 17
-    .line 18
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getWidth()I
 
-    .line 19
-    .line 20
-    .line 21
-    move-result-object p1
+    move-result v2
 
-    .line 22
-    invoke-virtual {p1}, Lcom/android/launcher3/h1;->getInsets()Landroid/graphics/Rect;
+    div-int/lit8 v0, v0, 0x2
 
-    .line 23
-    .line 24
-    .line 25
-    move-result-object p1
+    invoke-direct {v1, v2, v0}, Landroid/graphics/Point;-><init>(II)V
 
-    .line 26
-    invoke-virtual {p0}, Landroid/widget/LinearLayout;->getMeasuredWidth()I
+    .line 192
+    new-instance v6, Landroid/graphics/Rect;
 
-    .line 27
-    .line 28
-    .line 29
+    iget v0, v1, Landroid/graphics/Point;->x:I
+
+    iget v2, v1, Landroid/graphics/Point;->y:I
+
+    iget v3, v1, Landroid/graphics/Point;->x:I
+
+    iget v1, v1, Landroid/graphics/Point;->y:I
+
+    invoke-direct {v6, v0, v2, v3, v1}, Landroid/graphics/Rect;-><init>(IIII)V
+
+    .line 193
+    new-instance v7, Landroid/graphics/Rect;
+
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getWidth()I
+
+    move-result v0
+
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getHeight()I
+
     move-result v1
 
-    .line 30
-    iget v3, v2, Landroid/graphics/Rect;->right:I
+    const/4 v2, 0x0
 
-    .line 31
-    .line 32
-    iget v4, p1, Landroid/graphics/Rect;->left:I
+    invoke-direct {v7, v2, v2, v0, v1}, Landroid/graphics/Rect;-><init>(IIII)V
 
-    .line 33
-    .line 34
-    sub-int/2addr v3, v4
+    .line 194
+    new-instance v0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$3;
 
-    .line 35
-    sub-int/2addr v3, v1
+    move-object v2, v0
 
-    .line 36
-    if-gez v3, :cond_0
+    move-object v3, p0
 
-    .line 37
-    .line 38
-    goto :goto_0
+    move v4, v5
 
-    .line 39
-    :cond_0
-    move v0, v3
+    invoke-direct/range {v2 .. v7}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$3;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;FFLandroid/graphics/Rect;Landroid/graphics/Rect;)V
 
-    .line 40
-    :goto_0
-    iget v3, v2, Landroid/graphics/Rect;->bottom:I
+    return-object v0
+.end method
 
-    .line 41
-    .line 42
-    iget p1, p1, Landroid/graphics/Rect;->top:I
-
-    .line 43
-    .line 44
-    sub-int/2addr v3, p1
-
-    .line 45
-    invoke-virtual {p0}, Landroid/widget/LinearLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object p1
-
-    .line 49
-    const v4, 0x7f0707c4
-
-    .line 50
-    .line 51
-    .line 52
-    invoke-virtual {p1, v4}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 53
-    .line 54
-    .line 55
-    move-result p1
-
-    .line 56
-    add-int/2addr v3, p1
-
-    .line 57
-    invoke-static {}, Lcom/android/launcher3/N5;->F()Z
-
-    .line 58
-    .line 59
-    .line 60
-    move-result p1
-
-    .line 61
-    if-eqz p1, :cond_2
-
-    .line 62
-    .line 63
-    invoke-virtual {p0}, Landroid/widget/LinearLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 64
-    .line 65
-    .line 66
-    move-result-object p1
-
-    .line 67
-    invoke-static {p1}, Lcom/android/launcher3/N5;->D(Landroid/content/res/Resources;)Z
-
-    .line 68
-    .line 69
-    .line 70
-    move-result p1
-
-    .line 71
-    if-nez p1, :cond_2
-
-    .line 72
-    .line 73
-    invoke-virtual {p0}, Landroid/widget/LinearLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 74
-    .line 75
-    .line 76
-    move-result-object p1
-
-    .line 77
-    iget-object v4, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
-
-    .line 78
-    .line 79
-    invoke-virtual {v4}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 80
-    .line 81
-    .line 82
-    move-result-object v4
-
-    .line 83
-    iget-boolean v4, v4, Lcom/android/launcher3/h0;->N0:Z
-
-    .line 84
-    .line 85
-    if-eqz v4, :cond_1
-
-    .line 86
-    .line 87
-    const v4, 0x7f0c0018
-
-    .line 88
-    .line 89
-    .line 90
-    goto :goto_1
-
-    .line 91
-    :cond_1
-    const v4, 0x7f0c0017
-
-    .line 92
-    .line 93
-    .line 94
-    :goto_1
-    invoke-virtual {p1, v4}, Landroid/content/res/Resources;->getInteger(I)I
-
-    .line 95
-    .line 96
-    .line 97
-    move-result p1
-
-    .line 98
-    int-to-float p1, p1
-
-    .line 99
-    invoke-static {p1}, Lcom/android/launcher3/N5;->T(F)I
-
-    .line 100
-    .line 101
-    .line 102
-    move-result p1
-
-    .line 103
-    add-int/2addr v0, p1
-
-    .line 104
-    :cond_2
-    invoke-virtual {p0}, Landroid/widget/LinearLayout;->getResources()Landroid/content/res/Resources;
-
-    .line 105
-    .line 106
-    .line 107
-    move-result-object p1
-
-    .line 108
-    invoke-static {p1}, Lcom/android/launcher3/N5;->D(Landroid/content/res/Resources;)Z
-
-    .line 109
-    .line 110
-    .line 111
-    move-result p1
+.method private initSortMenu()V
+    .locals 4
 
     .line 112
-    if-eqz p1, :cond_3
+    invoke-static {}, Lcom/android/launcher3/allappsmenu/AllAppsSortMode;->getInstance()Lcom/android/launcher3/allappsmenu/AllAppsSortMode;
+
+    move-result-object v0
+
+    const v1, 0x7f0b04dd
 
     .line 113
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->findViewById(I)Landroid/view/View;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    iput-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mAlphabeticalSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    const v1, 0x7f0b04df
+
     .line 114
-    neg-int p1, v0
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->findViewById(I)Landroid/view/View;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    iput-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mInstallTimeSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    const v1, 0x7f0b04de
 
     .line 115
-    int-to-float p1, p1
+    invoke-virtual {p0, v1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->findViewById(I)Landroid/view/View;
 
-    .line 116
-    goto :goto_2
+    move-result-object v1
+
+    check-cast v1, Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    iput-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mFrequencySortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
 
     .line 117
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    iget-object v2, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mAlphabeticalSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v2}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, "    "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 118
+    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mAlphabeticalSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v3, v1}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setText(Ljava/lang/CharSequence;)V
+
+    .line 119
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mInstallTimeSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v3}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v3
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 120
+    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mInstallTimeSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v3, v1}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setText(Ljava/lang/CharSequence;)V
+
+    .line 121
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mFrequencySortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v3}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v3
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 122
+    iget-object v2, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mFrequencySortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v2, v1}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setText(Ljava/lang/CharSequence;)V
+
+    .line 123
+    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mAlphabeticalSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v1, p0}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    .line 124
+    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mInstallTimeSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v1, p0}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    .line 125
+    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mFrequencySortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    invoke-virtual {v1, p0}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    .line 127
+    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMode;->getSortMode(Landroid/content/Context;)I
+
+    move-result v0
+
+    invoke-direct {p0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->updateUI(I)V
+
+    return-void
+.end method
+
+.method private populateAndShowSortMenu(Landroid/view/View;)Z
+    .locals 1
+
+    .line 101
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->isAttachedToWindow()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/4 p0, 0x0
+
+    return p0
+
+    .line 104
+    :cond_0
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/BaseDraggingActivity;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/views/BaseDragLayer;->addView(Landroid/view/View;)V
+
+    .line 105
+    invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->initSortMenu()V
+
+    .line 106
+    invoke-direct {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->setSortMenuViewPosition(Landroid/view/View;)V
+
+    .line 107
+    new-instance p1, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$$ExternalSyntheticLambda0;
+
+    invoke-direct {p1, p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView$$ExternalSyntheticLambda0;-><init>(Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;)V
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->post(Ljava/lang/Runnable;)Z
+
+    const/4 p0, 0x1
+
+    return p0
+.end method
+
+.method private setSortMenuViewPosition(Landroid/view/View;)V
+    .locals 4
+
+    const/4 v0, 0x0
+
+    .line 131
+    invoke-virtual {p0, v0, v0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->measure(II)V
+
+    .line 132
+    iget-object v1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
+
+    invoke-virtual {v1}, Lcom/android/launcher3/BaseDraggingActivity;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+
+    move-result-object v1
+
+    sget-object v2, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->S_TEMP_RECT:Landroid/graphics/Rect;
+
+    invoke-virtual {v1, p1, v2}, Lcom/android/launcher3/views/BaseDragLayer;->getDescendantRectRelativeToSelf(Landroid/view/View;Landroid/graphics/Rect;)F
+
+    .line 133
+    iget-object p1, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
+
+    invoke-virtual {p1}, Lcom/android/launcher3/BaseDraggingActivity;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/views/BaseDragLayer;->getInsets()Landroid/graphics/Rect;
+
+    move-result-object p1
+
+    .line 134
+    iget v1, v2, Landroid/graphics/Rect;->right:I
+
+    iget v3, p1, Landroid/graphics/Rect;->left:I
+
+    sub-int/2addr v1, v3
+
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getMeasuredWidth()I
+
+    move-result v3
+
+    sub-int/2addr v1, v3
+
+    if-gez v1, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    move v0, v1
+
+    .line 138
+    :goto_0
+    iget v1, v2, Landroid/graphics/Rect;->top:I
+
+    iget p1, p1, Landroid/graphics/Rect;->top:I
+
+    sub-int/2addr v1, p1
+
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    const v2, 0x7f0709c8
+
+    invoke-virtual {p1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p1
+
+    add-int/2addr v1, p1
+
+    .line 139
+    invoke-static {}, Lcom/android/launcher3/Utilities;->isTableDevice()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2
+
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    invoke-static {p1}, Lcom/android/launcher3/Utilities;->isRtl(Landroid/content/res/Resources;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_2
+
+    .line 140
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    iget-object v2, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
+
+    invoke-virtual {v2}, Lcom/android/launcher3/BaseDraggingActivity;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
+
+    move-result-object v2
+
+    iget-boolean v2, v2, Lcom/android/launcher3/DeviceProfile;->isLandscape:Z
+
+    if-eqz v2, :cond_1
+
+    const v2, 0x7f0c0018
+
+    goto :goto_1
+
+    :cond_1
+    const v2, 0x7f0c0017
+
+    :goto_1
+    invoke-virtual {p1, v2}, Landroid/content/res/Resources;->getInteger(I)I
+
+    move-result p1
+
+    int-to-float p1, p1
+
+    invoke-static {p1}, Lcom/android/launcher3/Utilities;->pxFromDpIgnoreDisplaySize(F)I
+
+    move-result p1
+
+    add-int/2addr v0, p1
+
+    .line 142
+    :cond_2
+    invoke-virtual {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    invoke-static {p1}, Lcom/android/launcher3/Utilities;->isRtl(Landroid/content/res/Resources;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_3
+
+    neg-int p1, v0
+
+    int-to-float p1, p1
+
+    goto :goto_2
+
     :cond_3
     int-to-float p1, v0
 
-    .line 118
     :goto_2
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setX(F)V
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->setX(F)V
 
-    .line 119
-    .line 120
-    .line 121
-    int-to-float p1, v3
-
-    .line 122
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setY(F)V
-
-    .line 123
-    .line 124
-    .line 125
-    invoke-virtual {v2}, Landroid/graphics/Rect;->width()I
-
-    .line 126
-    .line 127
-    .line 128
-    move-result p1
-
-    .line 129
-    div-int/lit8 p1, p1, 0x2
-
-    .line 130
-    .line 131
-    sub-int/2addr v1, p1
-
-    .line 132
     int-to-float p1, v1
 
-    .line 133
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setPivotX(F)V
+    .line 143
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->setY(F)V
 
-    .line 134
-    .line 135
-    .line 136
-    const/4 p1, 0x0
+    return-void
+.end method
 
-    .line 137
-    invoke-virtual {p0, p1}, Landroid/widget/LinearLayout;->setPivotY(F)V
+.method public static showSortMenu(Landroid/view/View;)Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;
+    .locals 4
 
-    .line 138
-    .line 139
-    .line 140
+    .line 94
+    invoke-virtual {p0}, Landroid/view/View;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/android/launcher3/BaseDraggingActivity;->fromContext(Landroid/content/Context;)Lcom/android/launcher3/BaseActivity;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/BaseDraggingActivity;
+
+    .line 95
+    invoke-virtual {v0}, Lcom/android/launcher3/BaseDraggingActivity;->getLayoutInflater()Landroid/view/LayoutInflater;
+
+    move-result-object v1
+
+    .line 96
+    invoke-virtual {v0}, Lcom/android/launcher3/BaseDraggingActivity;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+
+    move-result-object v0
+
+    const/4 v2, 0x0
+
+    const v3, 0x7f0e0064
+
+    .line 95
+    invoke-virtual {v1, v3, v0, v2}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;
+
+    .line 97
+    invoke-direct {v0, p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->populateAndShowSortMenu(Landroid/view/View;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
+    return-object v0
+.end method
+
+.method private updateUI(I)V
+    .locals 2
+
+    const/4 v0, 0x1
+
+    if-eqz p1, :cond_2
+
+    if-eq p1, v0, :cond_1
+
+    const/4 v1, 0x2
+
+    if-eq p1, v1, :cond_0
+
+    goto :goto_0
+
+    .line 245
+    :cond_0
+    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mFrequencySortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    if-eqz p0, :cond_3
+
+    .line 246
+    invoke-virtual {p0, v0}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setChecked(Z)V
+
+    goto :goto_0
+
+    .line 240
+    :cond_1
+    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mInstallTimeSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    if-eqz p0, :cond_3
+
+    .line 241
+    invoke-virtual {p0, v0}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setChecked(Z)V
+
+    goto :goto_0
+
+    .line 235
+    :cond_2
+    iget-object p0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mAlphabeticalSortMode:Lcom/zte/mifavor/widget/CheckedTextViewZTE;
+
+    if-eqz p0, :cond_3
+
+    .line 236
+    invoke-virtual {p0, v0}, Lcom/zte/mifavor/widget/CheckedTextViewZTE;->setChecked(Z)V
+
+    :cond_3
+    :goto_0
     return-void
 .end method
 
@@ -1400,223 +789,138 @@
 .method protected handleClose(Z)V
     .locals 0
 
-    .line 1
     if-eqz p1, :cond_0
 
-    .line 2
-    .line 3
+    .line 68
     invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->animateClose()V
 
-    .line 4
-    .line 5
-    .line 6
-    return-void
+    goto :goto_0
 
-    .line 7
+    .line 70
     :cond_0
     invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->closeComplete()V
 
-    .line 8
-    .line 9
-    .line 10
+    :goto_0
     return-void
 .end method
 
 .method protected isOfType(I)Z
     .locals 0
 
-    .line 1
-    const/high16 p0, 0x4000000
+    const/high16 p0, 0x2000000
 
-    .line 2
-    .line 3
     and-int/2addr p0, p1
 
-    .line 4
     if-eqz p0, :cond_0
 
-    .line 5
-    .line 6
     const/4 p0, 0x1
 
-    .line 7
-    return p0
+    goto :goto_0
 
-    .line 8
     :cond_0
     const/4 p0, 0x0
 
-    .line 9
+    :goto_0
     return p0
 .end method
 
 .method public onClick(Landroid/view/View;)V
     .locals 4
 
-    .line 1
+    .line 205
     invoke-virtual {p1}, Landroid/view/View;->getId()I
 
-    .line 2
-    .line 3
-    .line 4
     move-result p1
 
-    .line 5
     const-string v0, "AllAppsSortMenuView"
 
-    .line 6
-    .line 7
     const/4 v1, -0x1
 
-    .line 8
     packed-switch p1, :pswitch_data_0
 
-    .line 9
-    .line 10
-    .line 11
-    const-string p1, "onCheckedChanged: error."
+    .line 216
+    const-string/jumbo p1, "onCheckedChanged: error."
 
-    .line 12
-    .line 13
     invoke-static {v0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 14
-    .line 15
-    .line 16
     move p1, v1
 
-    .line 17
     goto :goto_0
 
-    .line 18
     :pswitch_0
     const/4 p1, 0x1
 
-    .line 19
     goto :goto_0
 
-    .line 20
     :pswitch_1
     const/4 p1, 0x2
 
-    .line 21
     goto :goto_0
 
-    .line 22
     :pswitch_2
     const/4 p1, 0x0
 
-    .line 23
+    .line 220
     :goto_0
-    invoke-static {}, LR0/m;->a()LR0/m;
+    invoke-static {}, Lcom/android/launcher3/allappsmenu/AllAppsSortMode;->getInstance()Lcom/android/launcher3/allappsmenu/AllAppsSortMode;
 
-    .line 24
-    .line 25
-    .line 26
     move-result-object v2
 
-    .line 27
-    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    .line 221
+    iget-object v3, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
 
-    .line 28
-    .line 29
-    invoke-virtual {v2, v3}, LR0/m;->b(Landroid/content/Context;)I
+    invoke-virtual {v2, v3}, Lcom/android/launcher3/allappsmenu/AllAppsSortMode;->getSortMode(Landroid/content/Context;)I
 
-    .line 30
-    .line 31
-    .line 32
     move-result v3
 
-    .line 33
     if-eq p1, v3, :cond_0
 
-    .line 34
-    .line 35
     if-eq p1, v1, :cond_0
 
-    .line 36
-    .line 37
+    .line 222
     new-instance v1, Ljava/lang/StringBuilder;
 
-    .line 38
-    .line 39
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    const-string/jumbo v3, "sort mode changed, new sort mode: "
 
-    .line 40
-    .line 41
-    .line 42
-    const-string v3, "sort mode changed, new sort mode: "
+    invoke-direct {v1, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 43
-    .line 44
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 45
-    .line 46
-    .line 47
     invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    .line 48
-    .line 49
-    .line 50
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 51
-    .line 52
-    .line 53
     move-result-object v1
 
-    .line 54
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 55
-    .line 56
-    .line 57
-    invoke-direct {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->U(I)V
+    .line 223
+    invoke-direct {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->updateUI(I)V
 
-    .line 58
-    .line 59
-    .line 60
-    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    .line 224
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
 
-    .line 61
-    .line 62
-    invoke-virtual {v2, v0, p1}, LR0/m;->e(Landroid/content/Context;I)V
+    invoke-virtual {v2, v0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMode;->setSortMode(Landroid/content/Context;I)V
 
-    .line 63
-    .line 64
-    .line 65
     if-eqz p1, :cond_0
 
-    .line 66
-    .line 67
-    invoke-static {}, Lcom/android/launcher3/resource/g;->l()Lcom/android/launcher3/resource/g;
+    .line 226
+    invoke-static {}, Lcom/android/launcher3/resource/AppsSortInfoManager;->getInstance()Lcom/android/launcher3/resource/AppsSortInfoManager;
 
-    .line 68
-    .line 69
-    .line 70
     move-result-object p1
 
-    .line 71
-    invoke-virtual {p1}, Lcom/android/launcher3/resource/g;->i()V
+    invoke-virtual {p1}, Lcom/android/launcher3/resource/AppsSortInfoManager;->dumpSortInfo()V
 
-    .line 72
-    .line 73
-    .line 74
+    .line 229
     :cond_0
     invoke-direct {p0}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->animateClose()V
 
-    .line 75
-    .line 76
-    .line 77
     return-void
 
-    .line 78
     nop
 
-    .line 79
     :pswitch_data_0
-    .packed-switch 0x7f0b0567
+    .packed-switch 0x7f0b04dd
         :pswitch_2
         :pswitch_1
         :pswitch_0
@@ -1626,57 +930,36 @@
 .method public onControllerInterceptTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 1
 
-    .line 1
+    .line 81
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
-    .line 2
-    .line 3
-    .line 4
     move-result v0
 
-    .line 5
     if-nez v0, :cond_0
 
-    .line 6
-    .line 7
-    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->g:Lcom/android/launcher3/v;
+    .line 82
+    iget-object v0, p0, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->mActivity:Lcom/android/launcher3/BaseDraggingActivity;
 
-    .line 8
-    .line 9
-    invoke-interface {v0}, Lcom/android/launcher3/views/k;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+    invoke-virtual {v0}, Lcom/android/launcher3/BaseDraggingActivity;->getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
 
-    .line 10
-    .line 11
-    .line 12
     move-result-object v0
 
-    .line 13
+    .line 83
     invoke-virtual {v0, p0, p1}, Lcom/android/launcher3/views/BaseDragLayer;->isEventOverView(Landroid/view/View;Landroid/view/MotionEvent;)Z
 
-    .line 14
-    .line 15
-    .line 16
     move-result p1
 
-    .line 17
     if-nez p1, :cond_0
 
-    .line 18
-    .line 19
     const/4 p1, 0x1
 
-    .line 20
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/a;->close(Z)V
+    .line 85
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/allappsmenu/AllAppsSortMenuView;->close(Z)V
 
-    .line 21
-    .line 22
-    .line 23
     return p1
 
-    .line 24
     :cond_0
     const/4 p0, 0x0
 
-    .line 25
     return p0
 .end method

@@ -4,9 +4,6 @@
     <item android:state_pressed="true">
         <color android:color="@color/mfv_common_list_press" />
     </item>
-    <item android:state_activated="true">
-        <color android:color="@color/mfv_common_list_press" />
-    </item>
     <item android:state_focused="true">
         <color android:color="@color/mfv_common_list_press" />
     </item>

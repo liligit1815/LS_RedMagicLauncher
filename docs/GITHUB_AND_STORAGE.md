@@ -1,6 +1,8 @@
 # GitHub、存储与换电脑
 
-当前维护版本为 `260029`，下一轮独立功能版本为 `260030`。源码、发行与私有签名分别管理，构建流程见 [构建说明](BUILDING.md)，当前功能和实际检查范围见 [开发状态](DEVELOPMENT_STATUS.md)。
+本分支为红魔10独立工程；实际接口、固定输入及当前验收状态见 [移植说明](REDMAGIC10_PORT.md) 和 [开发状态](DEVELOPMENT_STATUS.md)。
+
+红魔10当前维护版本为 `250001 / 25.5.000.000.2505121541`，下一轮独立功能版本为 `250002`；红魔11仍由其分支维护 `260029`。源码、发行与私有签名分别管理，构建流程见 [构建说明](BUILDING.md)，当前功能和实际检查范围见 [开发状态](DEVELOPMENT_STATUS.md)。
 
 | 仓库 | 地址 | 保存内容 |
 | --- | --- | --- |
@@ -15,7 +17,7 @@ APK 签名材料只恢复到本工程 `.signing/`，不混入 GitHub SSH 私钥�
 - `src/` 中的 Smali、资源、原生库、Manifest 和 `apktool.yml`。`src/original/`、`src/unknown/` 是打包输入。
 - `helper-src/main/`、`helper-src/stubs/`、`tools/` 与 `tooling/apktool_3.0.3.jar`。
 - 实际框架输入 `framework/cache/1.apk`，以及参考框架 `tooling/framework-res-NX809J.apk`、原厂底包 `original.apk`。
-- 固定回归基线 `baselines/launcher-260005.apk` 及其校验说明。固定框架不能当缓存删除，基线不能因为是 APK 就删除或改回旧 `out/`。
+- 固定红魔10原厂对照 `original.apk` 及 `baselines/redmagic10-oem.json`；11历史验收输入 `baselines/launcher-260005.apk` 及其身份保留，但不能用于10载荷对照。固定框架和基线不能因为是APK就删除或改回旧 `out/`。
 - `README.md`、`AGENTS.md`、当前 `docs/`、`.gitignore` 与 `.gitattributes`。
 
 这些输入须是实际文件，不是网页占位或空文件。换行与二进制规则由 `.gitattributes` 保持，干净克隆不依赖历史工作目录。源码大小以导出报告为准，不用整个本地目录大小判断上传体积。
@@ -46,7 +48,7 @@ APK 签名材料只恢复到本工程 `.signing/`，不混入 GitHub SSH 私钥�
 
 `python tools/export-source.py` 将当前可公开输入导出为 `out/source-export-时间戳/LS_RedMagicLauncher-github-source.zip` 并生成文件清单和体积报告；ZIP 不含 Git 历史，不进入源码 Git。固定输入通过 Git 保存；上传方式和单文件约束见 [GitHub 文件上传说明](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) 与 [大文件说明](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)。
 
-对外 APK 统一发布到 [lispacerelease Releases](https://github.com/liligit1815/lispacerelease/releases)，按 [README 发布流程](../README.md#后续版本如何发布并提供在线更新) 更新桌面独立清单。源码仓库不创建发行 Release，不保存每轮 APK 或设备资料。原厂输入与固定基线只在确有必要并完成回归审查时调整。
+对外APK统一发布到 [lispacerelease Releases](https://github.com/liligit1815/lispacerelease/releases)，按 [同批次发行流程](../README.md#两个系列同批次发行) 同步两个系列各自清单。源码仓库不创建发行Release，不保存每轮APK、过程报告或设备资料。原厂输入与固定基线只在确有必要并完成回归审查时调整。
 
 ## 安装与恢复边界
 

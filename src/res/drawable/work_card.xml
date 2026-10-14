@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape android:shape="rectangle"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/materialColorSurfaceContainerHighest" />
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:androidprv="http://schemas.android.com/apk/prv/res/android">
+    <solid android:color="@color/work_card_bg_color" />
     <stroke android:width="0.5dp" android:color="#33ffffff" />
     <corners android:radius="@dimen/work_edu_card_radius" />
 </shape>

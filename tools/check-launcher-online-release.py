@@ -11,6 +11,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import http.client
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -20,11 +21,14 @@ import ssl
 import subprocess
 import sys
 import time
+import zipfile
 from urllib.parse import quote, unquote, urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST_URL = "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json"
-APP_ID = "stacked-desktop"
+MANIFEST_URL = "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic10.json"
+APP_ID = "stacked-desktop-redmagic10"
+SERIES = "redmagic10"
+SERIES_METADATA = "com.lizhou.launcher.series"
 PACKAGE = "com.zte.mifavor.launcher"
 CERTIFICATE = "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb"
 MANIFEST_LIMIT = 64 * 1024
@@ -116,6 +120,7 @@ def apk_url(value):
             and path.startswith(prefix), "APK URL must be a public lispacerelease Release asset URL")
     pieces = path[len(prefix):].split("/")
     require(len(pieces) == 2 and all(pieces) and pieces[0] not in (".", "..")
+            and pieces[0].startswith(APP_ID + "-") and pieces[1].startswith(APP_ID + "-")
             and "\\" not in pieces[0] and "\\" not in pieces[1]
             and pieces[1].endswith(".apk") and "\0" not in path, "Invalid APK asset path")
     return value
@@ -297,6 +302,17 @@ def verify_apk(apk, release, aapt2, signer, java, output, report):
     require(len(certificates) == 1 and certificates[0].lower() == CERTIFICATE,
             "Actual APK must have exactly one signer with the fixed launcher certificate")
     report["apk_identity"]["certificateSha256"] = certificates[0].lower()
+    spec = importlib.util.spec_from_file_location("online_release_manifest",
+        ROOT / "tools/check-launcher-stack-only-apk.py")
+    gate = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gate)
+    with zipfile.ZipFile(apk) as archive:
+        events, _ = gate.manifest_semantics(archive.read("AndroidManifest.xml"))
+    metadata = [event for event in events if event["event"] == "start" and event["name"] == "meta-data"
+        and any(attr["name"] == "name" and attr["value"] == SERIES_METADATA for attr in event["attributes"])]
+    require(len(metadata) == 1 and any(attr["name"] == "value" and attr["value"] == SERIES
+        for attr in metadata[0]["attributes"]), "APK does not belong to the RedMagic 10 update channel")
+    report["apk_identity"]["deviceSeries"] = SERIES
 
 
 def positive_code(value):

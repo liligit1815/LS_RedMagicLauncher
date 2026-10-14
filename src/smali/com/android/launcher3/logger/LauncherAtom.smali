@@ -22,8 +22,6 @@
         Lcom/android/launcher3/logger/LauncherAtom$SliceOrBuilder;,
         Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;,
         Lcom/android/launcher3/logger/LauncherAtom$FolderIconOrBuilder;,
-        Lcom/android/launcher3/logger/LauncherAtom$TaskView;,
-        Lcom/android/launcher3/logger/LauncherAtom$TaskViewOrBuilder;,
         Lcom/android/launcher3/logger/LauncherAtom$Task;,
         Lcom/android/launcher3/logger/LauncherAtom$TaskOrBuilder;,
         Lcom/android/launcher3/logger/LauncherAtom$Widget;,
@@ -65,25 +63,20 @@
 .method static constructor <clinit>()V
     .locals 0
 
-    .line 1
     return-void
 .end method
 
 .method private constructor <init>()V
     .locals 0
 
-    .line 1
+    .line 7
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
     return-void
 .end method
 
-.method public static registerAllExtensions(Lcom/google/protobuf/p;)V
+.method public static registerAllExtensions(Lcom/google/protobuf/ExtensionRegistryLite;)V
     .locals 0
 
-    .line 1
     return-void
 .end method

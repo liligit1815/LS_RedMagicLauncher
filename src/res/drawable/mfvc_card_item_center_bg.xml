@@ -6,8 +6,6 @@
         <item>
             <selector android:enterFadeDuration="8" android:exitFadeDuration="400">
                 <item android:state_pressed="true" android:drawable="@drawable/card_item_bg_pressed_foreground_edge_center" />
-                <item android:state_selected="true" android:drawable="@drawable/card_item_bg_pressed_foreground_edge_center" />
-                <item android:state_checked="true" android:drawable="@drawable/card_item_bg_pressed_foreground_edge_center" />
             </selector>
         </item>
     </layer-list>

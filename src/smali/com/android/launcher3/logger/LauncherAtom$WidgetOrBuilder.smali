@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -24,16 +24,13 @@
 .method public abstract getComponentName()Ljava/lang/String;
 .end method
 
-.method public abstract getComponentNameBytes()Lcom/google/protobuf/h;
-.end method
-
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
+.method public abstract getComponentNameBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract getPackageName()Ljava/lang/String;
 .end method
 
-.method public abstract getPackageNameBytes()Lcom/google/protobuf/h;
+.method public abstract getPackageNameBytes()Lcom/google/protobuf/ByteString;
 .end method
 
 .method public abstract getSpanX()I
@@ -61,7 +58,4 @@
 .end method
 
 .method public abstract hasWidgetFeatures()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

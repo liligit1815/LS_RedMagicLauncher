@@ -3,9 +3,6 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <com.android.launcher3.taskbar.TaskbarView android:gravity="center" android:layout_gravity="bottom" android:id="@id/taskbar_view" android:clipChildren="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:forceHasOverlappingRendering="false" />
     <com.android.launcher3.taskbar.TaskbarScrimView android:id="@id/taskbar_scrim" android:layout_width="match_parent" android:layout_height="match_parent" />
-    <FrameLayout android:id="@id/taskbar_bubbles_container" android:clipChildren="false" android:layout_width="match_parent" android:layout_height="match_parent">
-        <com.android.launcher3.taskbar.bubbles.BubbleBarView android:gravity="center" android:layout_gravity="bottom" android:id="@id/taskbar_bubbles" android:paddingTop="@dimen/bubblebar_pointer_visible_size" android:visibility="gone" android:clipChildren="false" android:layout_width="wrap_content" android:layout_height="@dimen/bubblebar_size_with_pointer" android:elevation="@dimen/bubblebar_elevation" android:layout_marginHorizontal="@dimen/transient_taskbar_bottom_margin" />
-    </FrameLayout>
     <com.android.launcher3.taskbar.navbutton.NearestTouchFrame android:layout_gravity="bottom" android:id="@id/navbuttons_view" android:layout_width="match_parent" android:layout_height="wrap_content">
         <FrameLayout android:gravity="center_vertical" android:layout_gravity="start" android:id="@id/start_contextual_buttons" android:layout_width="wrap_content" android:layout_height="match_parent" />
         <LinearLayout android:gravity="center_vertical" android:layout_gravity="end" android:orientation="horizontal" android:id="@id/end_nav_buttons" android:layout_width="wrap_content" android:layout_height="match_parent" />

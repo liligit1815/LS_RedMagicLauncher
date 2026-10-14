@@ -155,6 +155,7 @@ public final class RecentsPagedOrientationHandler {
 package com.android.quickstep.views;
 import android.view.View;
 public final class TaskView extends View {
+    public static final class TaskContainer {public boolean locked;public Boolean isLocked(){return locked;}}
     public int[] ids;public float nativeDismiss;
     public android.util.FloatProperty<TaskView> getPrimaryDismissTranslationProperty(){
         return new android.util.FloatProperty<TaskView>() {
@@ -162,7 +163,7 @@ public final class TaskView extends View {
         };
     }
     public final TaskContainer container=new TaskContainer();
-    public TaskContainer[] getTaskContainers(){return new TaskContainer[]{container};}
+    public java.util.List<TaskContainer> getTaskContainers(){return java.util.Collections.singletonList(container);}
     public TaskView(int id){ids=new int[]{id};}
     public int[] getTaskIds(){return ids;}
 }
@@ -225,10 +226,6 @@ public final class ViewParent {
     public boolean disallowed;public int requests;
     public void requestDisallowInterceptTouchEvent(boolean value){disallowed=value;requests++;}
 }
-''',
-    PACKAGE + "/TaskContainer.java": r'''
-package com.android.quickstep.views;
-public final class TaskContainer {public boolean locked;public Boolean isLocked(){return locked;}}
 ''',
 }
 

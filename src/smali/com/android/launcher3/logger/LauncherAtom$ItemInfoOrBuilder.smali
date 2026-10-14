@@ -3,7 +3,7 @@
 .source "LauncherAtom.java"
 
 # interfaces
-.implements Lcom/google/protobuf/U;
+.implements Lcom/google/protobuf/MessageLiteOrBuilder;
 
 
 # annotations
@@ -22,9 +22,6 @@
 .end method
 
 .method public abstract getContainerInfo()Lcom/android/launcher3/logger/LauncherAtom$ContainerInfo;
-.end method
-
-.method public abstract synthetic getDefaultInstanceForType()Lcom/google/protobuf/T;
 .end method
 
 .method public abstract getFolderIcon()Lcom/android/launcher3/logger/LauncherAtom$FolderIcon;
@@ -73,9 +70,6 @@
 .method public abstract getTask()Lcom/android/launcher3/logger/LauncherAtom$Task;
 .end method
 
-.method public abstract getTaskView()Lcom/android/launcher3/logger/LauncherAtom$TaskView;
-.end method
-
 .method public abstract getUserType()I
 .end method
 
@@ -114,14 +108,8 @@
 .method public abstract hasTask()Z
 .end method
 
-.method public abstract hasTaskView()Z
-.end method
-
 .method public abstract hasUserType()Z
 .end method
 
 .method public abstract hasWidget()Z
-.end method
-
-.method public abstract synthetic isInitialized()Z
 .end method

@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parents[1]
 source = (root / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').read_text(encoding='utf-8')
 selector = re.search(r'    private static TaskView getPreferredEntryTask\(.*?\n    }', source, re.S)
 assert selector
-smali = (root / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+smali = (root / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
 for signature in ('reloadIfNeeded()V', 'reloadIfNeeded(Z)V'):
     method = re.search(r'\.method public ' + re.escape(signature) + r'.*?\.end method', smali, re.S).group()
     assert method.index('->markNativeStackTaskListLoading()V') < method.index('RecentsModel;->getTasks(')

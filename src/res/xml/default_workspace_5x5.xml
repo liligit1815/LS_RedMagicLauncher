@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <favorites
   xmlns:launcher="http://schemas.android.com/apk/res-auto/com.android.launcher3">
-    <resolve launcher:container="-101" launcher:screen="0" launcher:x="0" launcher:y="0">
-        <favorite launcher:uri="#Intent;action=android.intent.action.DIAL;end" />
-        <favorite launcher:uri="tel:123" />
-        <favorite launcher:uri="#Intent;action=android.intent.action.CALL_BUTTON;end" />
-    </resolve>
-    <resolve launcher:container="-101" launcher:screen="1" launcher:x="1" launcher:y="0">
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_MESSAGING;end" />
-        <favorite launcher:uri="sms:" />
-        <favorite launcher:uri="smsto:" />
-        <favorite launcher:uri="mms:" />
-        <favorite launcher:uri="mmsto:" />
-    </resolve>
-    <resolve launcher:container="-101" launcher:screen="2" launcher:x="2" launcher:y="0">
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_MAPS;end" />
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_MUSIC;end" />
-    </resolve>
-    <resolve launcher:container="-101" launcher:screen="3" launcher:x="3" launcher:y="0">
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_BROWSER;end" />
-        <favorite launcher:uri="http://www.example.com/" />
-    </resolve>
-    <resolve launcher:container="-101" launcher:screen="4" launcher:x="4" launcher:y="0">
-        <favorite launcher:uri="#Intent;action=android.media.action.STILL_IMAGE_CAMERA;end" />
-        <favorite launcher:uri="#Intent;action=android.intent.action.CAMERA_BUTTON;end" />
-    </resolve>
-    <resolve launcher:screen="0" launcher:x="0" launcher:y="-1">
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_EMAIL;end" />
-        <favorite launcher:uri="mailto:" />
-    </resolve>
-    <resolve launcher:screen="0" launcher:x="1" launcher:y="-1">
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_GALLERY;end" />
-        <favorite launcher:uri="#Intent;type=images/*;end" />
-    </resolve>
-    <resolve launcher:screen="0" launcher:x="4" launcher:y="-1">
-        <favorite launcher:uri="#Intent;action=android.intent.action.MAIN;category=android.intent.category.APP_MARKET;end" />
-        <favorite launcher:uri="market://details?id=com.android.launcher" />
-    </resolve>
+    <appwidget launcher:className="com.zte.mifavor.weather.widget.launcher.DefaultWeatherAppWidgetProvider" launcher:packageName="com.zte.mifavor.weather" launcher:screen="0" launcher:spanX="5" launcher:spanY="2" launcher:x="0" launcher:y="0" />
+    <favorite launcher:className="com.android.settings.Settings" launcher:container="-100" launcher:packageName="com.android.settings" launcher:screen="0" launcher:spanX="1" launcher:spanY="1" launcher:x="0" launcher:y="4" />
+    <favorite launcher:className="zte.com.market.LoginActivity" launcher:container="-100" launcher:packageName="zte.com.market" launcher:screen="0" launcher:spanX="1" launcher:spanY="1" launcher:x="1" launcher:y="4" />
+    <favorite launcher:className="com.zte.halo.app.help.VoiceSettings" launcher:container="-100" launcher:packageName="com.zte.halo.app" launcher:screen="0" launcher:spanX="1" launcher:spanY="1" launcher:x="2" launcher:y="4" />
+    <favorite launcher:className="com.android.calendar.AllInOneActivity" launcher:container="-100" launcher:packageName="com.android.calendar" launcher:screen="0" launcher:spanX="1" launcher:spanY="1" launcher:x="3" launcher:y="4" />
+    <favorite launcher:className="com.zte.gallery3d.activity.launcher.MainGallery" launcher:container="-100" launcher:packageName="com.android.gallery3d" launcher:screen="0" launcher:spanX="1" launcher:spanY="1" launcher:x="4" launcher:y="4" />
+    <favorite launcher:className="zte.com.cn.filer.FileMgrActivity" launcher:container="-100" launcher:packageName="zte.com.cn.filer" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="0" launcher:y="0" />
+    <favorite launcher:className="zte.com.cn.alarmclock.activity.AlarmClockActivity" launcher:container="-100" launcher:packageName="zte.com.cn.alarmclock" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="1" launcher:y="0" />
+    <favorite launcher:className="cn.zte.bbs.activity.SplashActivity" launcher:container="-100" launcher:packageName="cn.zte.bbs" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="3" launcher:y="0" />
+    <favorite launcher:className="com.zte.zmall.ui.activity.SplashActivity" launcher:container="-100" launcher:packageName="com.zte.zmall" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="4" launcher:y="0" />
+    <favorite launcher:className="com.zte.quickgame.ZteMainActivity" launcher:container="-100" launcher:packageName="com.zte.quickgame" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="1" launcher:y="1" />
+    <favorite launcher:className="ctrip.business.splash.CtripSplashActivity" launcher:container="-100" launcher:packageName="ctrip.android.view" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="2" launcher:y="1" />
+    <favorite launcher:className="com.UCMobile.main.UCMobile" launcher:container="-100" launcher:packageName="com.UCMobile" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="3" launcher:y="1" />
+    <favorite launcher:className="com.autonavi.map.activity.SplashActivity" launcher:container="-100" launcher:packageName="com.autonavi.minimap" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="0" launcher:y="2" />
+    <favorite launcher:className="tv.danmaku.bili.MainActivityV2" launcher:container="-100" launcher:packageName="tv.danmaku.bili" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="1" launcher:y="2" />
+    <favorite launcher:className="com.baidu.searchbox.SplashActivity" launcher:container="-100" launcher:packageName="com.baidu.searchbox" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="2" launcher:y="2" />
+    <favorite launcher:className="com.redteamobile.roaming.activity.MainActivity" launcher:container="-100" launcher:packageName="com.redteamobile.roaming" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="3" launcher:y="2" />
+    <favorite launcher:className="com.zte.mifavor.desktoplayouttool.MainActivity" launcher:container="-100" launcher:packageName="com.zte.mifavor.desktoplayouttool" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="0" launcher:y="3" />
+    <favorite launcher:className="com.chaozh.iReader.ui.activity.WelcomeActivity" launcher:container="-100" launcher:packageName="com.chaozh.iReaderNubia" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="0" launcher:y="1" />
+    <favorite launcher:className="com.duowan.kiwi.simpleactivity.SplashActivity" launcher:container="-100" launcher:packageName="com.duowan.kiwi" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="4" launcher:y="1" />
+    <favorite launcher:className="com.android.calculator2.Calculator" launcher:container="-100" launcher:packageName="com.android.calculator2" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="2" launcher:y="0" />
+    <favorite launcher:className="com.android.contacts.activities.DialtactsActivity" launcher:container="-101" launcher:packageName="com.android.contacts" launcher:screen="0" launcher:spanX="1" launcher:spanY="1" launcher:x="0" launcher:y="0" />
+    <favorite launcher:className="com.android.messaging.ui.conversationlist.ConversationListActivity" launcher:container="-101" launcher:packageName="com.android.messaging" launcher:screen="1" launcher:spanX="1" launcher:spanY="1" launcher:x="1" launcher:y="0" />
+    <favorite launcher:className="com.android.contacts.activities.PeopleActivity" launcher:container="-101" launcher:packageName="com.android.contacts" launcher:screen="2" launcher:spanX="1" launcher:spanY="1" launcher:x="2" launcher:y="0" />
+    <favorite launcher:className="com.ume.browser.MainActivity" launcher:container="-101" launcher:packageName="com.ume.browser" launcher:screen="3" launcher:spanX="1" launcher:spanY="1" launcher:x="3" launcher:y="0" />
+    <favorite launcher:className="com.android.camera.CameraLauncher" launcher:container="-101" launcher:packageName="com.android.camera" launcher:screen="4" launcher:spanX="1" launcher:spanY="1" launcher:x="4" launcher:y="0" />
 </favorites>

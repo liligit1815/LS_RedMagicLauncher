@@ -1,1 +1,1 @@
-2.8.7
+task ':lifecycle:lifecycle-livedata:writeVersionFile' property 'version'

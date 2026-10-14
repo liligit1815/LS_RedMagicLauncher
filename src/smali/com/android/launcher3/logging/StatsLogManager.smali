@@ -3,18 +3,19 @@
 .source "StatsLogManager.java"
 
 # interfaces
-.implements Lcom/android/launcher3/util/V1;
+.implements Lcom/android/launcher3/util/ResourceBasedOverride;
 
 
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/launcher3/logging/StatsLogManager$e;,
-        Lcom/android/launcher3/logging/StatsLogManager$i;,
-        Lcom/android/launcher3/logging/StatsLogManager$h;,
-        Lcom/android/launcher3/logging/StatsLogManager$g;,
-        Lcom/android/launcher3/logging/StatsLogManager$f;,
-        Lcom/android/launcher3/logging/StatsLogManager$d;
+        Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;,
+        Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;,
+        Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;,
+        Lcom/android/launcher3/logging/StatsLogManager$StatsImpressionLogger;,
+        Lcom/android/launcher3/logging/StatsLogManager$LauncherRankingEvent;,
+        Lcom/android/launcher3/logging/StatsLogManager$LauncherLatencyEvent;,
+        Lcom/android/launcher3/logging/StatsLogManager$EventEnum;
     }
 .end annotation
 
@@ -38,124 +39,85 @@
 
 
 # instance fields
-.field protected final mActivityContext:Lcom/android/launcher3/views/k;
+.field protected final mActivityContext:Lcom/android/launcher3/views/ActivityContext;
 
 .field protected final mContext:Landroid/content/Context;
 
-.field private mInstanceId:Lcom/android/launcher3/logging/d;
+.field private mInstanceId:Lcom/android/launcher3/logging/InstanceId;
 
-.field private mKeyboardStateManager:Lcom/android/launcher3/logging/g;
+.field private mKeyboardStateManager:Lcom/android/launcher3/logging/KeyboardStateManager;
 
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
     .locals 0
 
-    .line 1
+    .line 67
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
+    .line 68
     iput-object p1, p0, Lcom/android/launcher3/logging/StatsLogManager;->mContext:Landroid/content/Context;
 
-    .line 5
-    .line 6
-    invoke-static {p1}, Lcom/android/launcher3/views/k;->Q(Landroid/content/Context;)Landroid/content/Context;
+    .line 69
+    invoke-static {p1}, Lcom/android/launcher3/views/ActivityContext;->lookupContextNoThrow(Landroid/content/Context;)Landroid/content/Context;
 
-    .line 7
-    .line 8
-    .line 9
     move-result-object p1
 
-    .line 10
-    check-cast p1, Lcom/android/launcher3/views/k;
+    check-cast p1, Lcom/android/launcher3/views/ActivityContext;
 
-    .line 11
-    .line 12
-    iput-object p1, p0, Lcom/android/launcher3/logging/StatsLogManager;->mActivityContext:Lcom/android/launcher3/views/k;
+    iput-object p1, p0, Lcom/android/launcher3/logging/StatsLogManager;->mActivityContext:Lcom/android/launcher3/views/ActivityContext;
 
-    .line 13
-    .line 14
     return-void
 .end method
 
-.method public static getLauncherAtomEvent(IILcom/android/launcher3/logging/StatsLogManager$d;)Lcom/android/launcher3/logging/StatsLogManager$d;
+.method public static getLauncherAtomEvent(IILcom/android/launcher3/logging/StatsLogManager$EventEnum;)Lcom/android/launcher3/logging/StatsLogManager$EventEnum;
     .locals 1
 
-    .line 1
     const/4 v0, 0x2
 
-    .line 2
     if-ne p0, v0, :cond_0
 
-    .line 3
-    .line 4
     if-ne p1, v0, :cond_0
 
-    .line 5
-    .line 6
-    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$e;->w0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    .line 80
+    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_HOME_GESTURE:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
-    .line 7
-    .line 8
     return-object p0
 
-    .line 9
     :cond_0
     const/4 v0, 0x3
 
-    .line 10
     if-eq p0, v0, :cond_1
 
-    .line 11
-    .line 12
     if-ne p1, v0, :cond_1
 
-    .line 13
-    .line 14
-    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$e;->m0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    .line 83
+    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_OVERVIEW_GESTURE:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
-    .line 15
-    .line 16
     return-object p0
 
-    .line 17
     :cond_1
     const/4 v0, 0x4
 
-    .line 18
     if-eq p0, v0, :cond_2
 
-    .line 19
-    .line 20
     if-ne p1, v0, :cond_2
 
-    .line 21
-    .line 22
-    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$e;->j0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    .line 86
+    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_ALLAPPS_OPEN_UP:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
-    .line 23
-    .line 24
     return-object p0
 
-    .line 25
     :cond_2
     if-ne p0, v0, :cond_3
 
-    .line 26
-    .line 27
     if-eq p1, v0, :cond_3
 
-    .line 28
-    .line 29
-    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$e;->k0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    .line 89
+    sget-object p0, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_ALLAPPS_CLOSE_DOWN:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
-    .line 30
-    .line 31
     return-object p0
 
-    .line 32
     :cond_3
     return-object p2
 .end method
@@ -163,245 +125,164 @@
 .method public static newInstance(Landroid/content/Context;)Lcom/android/launcher3/logging/StatsLogManager;
     .locals 2
 
-    .line 1
+    .line 1234
     const-class v0, Lcom/android/launcher3/logging/StatsLogManager;
 
-    .line 2
-    .line 3
-    const v1, 0x7f14040a
+    const v1, 0x7f1403a1
 
-    .line 4
-    .line 5
-    .line 6
-    invoke-static {v0, p0, v1}, Lcom/android/launcher3/util/V1$a;->a(Ljava/lang/Class;Landroid/content/Context;I)Lcom/android/launcher3/util/V1;
+    invoke-static {v0, p0, v1}, Lcom/android/launcher3/util/ResourceBasedOverride$Overrides;->getObject(Ljava/lang/Class;Landroid/content/Context;I)Lcom/android/launcher3/util/ResourceBasedOverride;
 
-    .line 7
-    .line 8
-    .line 9
     move-result-object p0
 
-    .line 10
     check-cast p0, Lcom/android/launcher3/logging/StatsLogManager;
 
-    .line 11
-    .line 12
     return-object p0
 .end method
 
 
 # virtual methods
-.method protected createImpressionLogger()Lcom/android/launcher3/logging/StatsLogManager$g;
+.method protected createImpressionLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsImpressionLogger;
     .locals 1
 
-    .line 1
-    new-instance v0, Lcom/android/launcher3/logging/StatsLogManager$c;
+    .line 1217
+    new-instance v0, Lcom/android/launcher3/logging/StatsLogManager$3;
 
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$c;-><init>(Lcom/android/launcher3/logging/StatsLogManager;)V
+    invoke-direct {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$3;-><init>(Lcom/android/launcher3/logging/StatsLogManager;)V
 
-    .line 4
-    .line 5
-    .line 6
     return-object v0
 .end method
 
-.method protected createLatencyLogger()Lcom/android/launcher3/logging/StatsLogManager$h;
+.method protected createLatencyLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
     .locals 1
 
-    .line 1
-    new-instance v0, Lcom/android/launcher3/logging/StatsLogManager$b;
+    .line 1212
+    new-instance v0, Lcom/android/launcher3/logging/StatsLogManager$2;
 
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$b;-><init>(Lcom/android/launcher3/logging/StatsLogManager;)V
+    invoke-direct {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$2;-><init>(Lcom/android/launcher3/logging/StatsLogManager;)V
 
-    .line 4
-    .line 5
-    .line 6
     return-object v0
 .end method
 
-.method protected createLogger()Lcom/android/launcher3/logging/StatsLogManager$i;
+.method protected createLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
     .locals 1
 
-    .line 1
-    new-instance v0, Lcom/android/launcher3/logging/StatsLogManager$a;
+    .line 1207
+    new-instance v0, Lcom/android/launcher3/logging/StatsLogManager$1;
 
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$a;-><init>(Lcom/android/launcher3/logging/StatsLogManager;)V
+    invoke-direct {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$1;-><init>(Lcom/android/launcher3/logging/StatsLogManager;)V
 
-    .line 4
-    .line 5
-    .line 6
     return-object v0
 .end method
 
-.method public impressionLogger()Lcom/android/launcher3/logging/StatsLogManager$g;
+.method public impressionLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsImpressionLogger;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/logging/StatsLogManager;->createImpressionLogger()Lcom/android/launcher3/logging/StatsLogManager$g;
+    .line 1187
+    invoke-virtual {p0}, Lcom/android/launcher3/logging/StatsLogManager;->createImpressionLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsImpressionLogger;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/d;
+    .line 1188
+    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/InstanceId;
 
-    .line 6
-    .line 7
     if-eqz p0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-interface {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$g;->withInstanceId(Lcom/android/launcher3/logging/d;)Lcom/android/launcher3/logging/StatsLogManager$g;
+    .line 1189
+    invoke-interface {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$StatsImpressionLogger;->withInstanceId(Lcom/android/launcher3/logging/InstanceId;)Lcom/android/launcher3/logging/StatsLogManager$StatsImpressionLogger;
 
-    .line 10
-    .line 11
-    .line 12
     :cond_0
     return-object v0
 .end method
 
-.method public keyboardStateManager()Lcom/android/launcher3/logging/g;
+.method public keyboardStateManager()Lcom/android/launcher3/logging/KeyboardStateManager;
     .locals 3
 
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mKeyboardStateManager:Lcom/android/launcher3/logging/g;
+    .line 1198
+    iget-object v0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mKeyboardStateManager:Lcom/android/launcher3/logging/KeyboardStateManager;
 
-    .line 2
-    .line 3
     if-nez v0, :cond_1
 
-    .line 4
-    .line 5
-    new-instance v0, Lcom/android/launcher3/logging/g;
+    .line 1199
+    new-instance v0, Lcom/android/launcher3/logging/KeyboardStateManager;
 
-    .line 6
-    .line 7
+    .line 1200
     iget-object v1, p0, Lcom/android/launcher3/logging/StatsLogManager;->mContext:Landroid/content/Context;
 
-    .line 8
-    .line 9
     if-eqz v1, :cond_0
 
-    .line 10
-    .line 11
     invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 12
-    .line 13
-    .line 14
     move-result-object v1
 
-    .line 15
-    const v2, 0x7f070271
+    const v2, 0x7f070231
 
-    .line 16
-    .line 17
-    .line 18
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    .line 19
-    .line 20
-    .line 21
     move-result v1
 
-    .line 22
     goto :goto_0
 
-    .line 23
     :cond_0
     const/4 v1, 0x0
 
-    .line 24
+    .line 1201
     :goto_0
-    invoke-direct {v0, v1}, Lcom/android/launcher3/logging/g;-><init>(I)V
+    invoke-direct {v0, v1}, Lcom/android/launcher3/logging/KeyboardStateManager;-><init>(I)V
 
-    .line 25
-    .line 26
-    .line 27
-    iput-object v0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mKeyboardStateManager:Lcom/android/launcher3/logging/g;
+    iput-object v0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mKeyboardStateManager:Lcom/android/launcher3/logging/KeyboardStateManager;
 
-    .line 28
-    .line 29
+    .line 1203
     :cond_1
-    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mKeyboardStateManager:Lcom/android/launcher3/logging/g;
+    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mKeyboardStateManager:Lcom/android/launcher3/logging/KeyboardStateManager;
 
-    .line 30
-    .line 31
     return-object p0
 .end method
 
-.method public latencyLogger()Lcom/android/launcher3/logging/StatsLogManager$h;
+.method public latencyLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/logging/StatsLogManager;->createLatencyLogger()Lcom/android/launcher3/logging/StatsLogManager$h;
+    .line 1176
+    invoke-virtual {p0}, Lcom/android/launcher3/logging/StatsLogManager;->createLatencyLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/d;
+    .line 1177
+    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/InstanceId;
 
-    .line 6
-    .line 7
     if-eqz p0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-interface {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$h;->withInstanceId(Lcom/android/launcher3/logging/d;)Lcom/android/launcher3/logging/StatsLogManager$h;
+    .line 1178
+    invoke-interface {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;->withInstanceId(Lcom/android/launcher3/logging/InstanceId;)Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
 
-    .line 10
-    .line 11
-    .line 12
     :cond_0
     return-object v0
 .end method
 
-.method public logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+.method public logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/logging/StatsLogManager;->createLogger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    .line 1165
+    invoke-virtual {p0}, Lcom/android/launcher3/logging/StatsLogManager;->createLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/d;
+    .line 1166
+    iget-object p0, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/InstanceId;
 
-    .line 6
-    .line 7
     if-eqz p0, :cond_0
 
-    .line 8
-    .line 9
-    invoke-interface {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$i;->withInstanceId(Lcom/android/launcher3/logging/d;)Lcom/android/launcher3/logging/StatsLogManager$i;
+    .line 1167
+    invoke-interface {v0, p0}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->withInstanceId(Lcom/android/launcher3/logging/InstanceId;)Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
-    .line 10
-    .line 11
-    .line 12
     :cond_0
     return-object v0
 .end method
 
-.method public withDefaultInstanceId(Lcom/android/launcher3/logging/d;)Lcom/android/launcher3/logging/StatsLogManager;
+.method public withDefaultInstanceId(Lcom/android/launcher3/logging/InstanceId;)Lcom/android/launcher3/logging/StatsLogManager;
     .locals 0
 
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/d;
+    .line 1226
+    iput-object p1, p0, Lcom/android/launcher3/logging/StatsLogManager;->mInstanceId:Lcom/android/launcher3/logging/InstanceId;
 
-    .line 2
-    .line 3
     return-object p0
 .end method

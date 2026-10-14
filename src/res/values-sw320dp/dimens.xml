@@ -14,7 +14,7 @@
     <dimen name="mfvc_alert_dialog_message_text_size">@dimen/mfvc_primary_font02_size</dimen>
     <dimen name="mfvc_alert_dialog_title_padding_horizontal">@dimen/mfvc_xlarge_padding</dimen>
     <dimen name="mfvc_alert_dialog_title_text_size">@dimen/mfvc_pop_title_font_size</dimen>
-    <dimen name="mfvc_appbar_primary_title_width">260.0dp</dimen>
+    <dimen name="mfvc_appbar_primary_title_width">240.0dp</dimen>
     <dimen name="mfvc_appbar_primary_title_width_landscape">524.0dp</dimen>
     <dimen name="mfvc_appbar_sink_expanded_height">276.0dp</dimen>
     <dimen name="mfvc_bottomLeftRadius_color_button">20.0dp</dimen>
@@ -39,7 +39,7 @@
     <dimen name="mfvc_fbtn_ic_width">@dimen/mfvc_ic_medium_height02</dimen>
     <dimen name="mfvc_fbtn_width">48.0dp</dimen>
     <dimen name="mfvc_floating_button_size">64.0dp</dimen>
-    <dimen name="mfvc_pop_title_font_size">18.0sp</dimen>
+    <dimen name="mfvc_pop_title_font_size">17.0sp</dimen>
     <dimen name="mfvc_primary_font00_size">16.666992sp</dimen>
     <dimen name="mfvc_primary_font_size">16.0sp</dimen>
     <dimen name="mfvc_secondary_font02_size">13.0sp</dimen>

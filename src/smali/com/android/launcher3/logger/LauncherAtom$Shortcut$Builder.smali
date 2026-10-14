@@ -1,5 +1,5 @@
 .class public final Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
-.super Lcom/google/protobuf/y$a;
+.super Lcom/google/protobuf/GeneratedMessageLite$Builder;
 .source "LauncherAtom.java"
 
 # interfaces
@@ -18,7 +18,7 @@
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
-        "Lcom/google/protobuf/y$a<",
+        "Lcom/google/protobuf/GeneratedMessageLite$Builder<",
         "Lcom/android/launcher3/logger/LauncherAtom$Shortcut;",
         "Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;",
         ">;",
@@ -31,20 +31,19 @@
 .method private constructor <init>()V
     .locals 1
 
-    .line 2
-    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->g()Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
+    .line 9002
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$sfgetDEFAULT_INSTANCE()Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/google/protobuf/y$a;-><init>(Lcom/google/protobuf/y;)V
+    invoke-direct {p0, v0}, Lcom/google/protobuf/GeneratedMessageLite$Builder;-><init>(Lcom/google/protobuf/GeneratedMessageLite;)V
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/launcher3/logger/a;)V
+.method synthetic constructor <init>(Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder-IA;)V
     .locals 0
 
-    .line 1
     invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;-><init>()V
 
     return-void
@@ -55,287 +54,185 @@
 .method public clearShortcutId()Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9104
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9105
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->a(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$mclearShortcutId(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public clearShortcutName()Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9047
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9048
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 7
-    .line 8
-    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->b(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;)V
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$mclearShortcutName(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public getShortcutId()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9077
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->getShortcutId()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getShortcutIdBytes()Lcom/google/protobuf/h;
+.method public getShortcutIdBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9086
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->getShortcutIdBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->getShortcutIdBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public getShortcutName()Ljava/lang/String;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9020
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->getShortcutName()Ljava/lang/String;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
-.method public getShortcutNameBytes()Lcom/google/protobuf/h;
+.method public getShortcutNameBytes()Lcom/google/protobuf/ByteString;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9029
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->getShortcutNameBytes()Lcom/google/protobuf/h;
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->getShortcutNameBytes()Lcom/google/protobuf/ByteString;
 
-    .line 6
-    .line 7
-    .line 8
     move-result-object p0
 
-    .line 9
     return-object p0
 .end method
 
 .method public hasShortcutId()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9069
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->hasShortcutId()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public hasShortcutName()Z
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9012
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 2
-    .line 3
     check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 4
-    .line 5
     invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->hasShortcutName()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result p0
 
-    .line 9
     return p0
 .end method
 
 .method public setShortcutId(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9095
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9096
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->c(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$msetShortcutId(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setShortcutIdBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
+.method public setShortcutIdBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9115
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9116
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->d(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$msetShortcutIdBytes(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
 .method public setShortcutName(Ljava/lang/String;)Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9038
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9039
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->e(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$msetShortcutName(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Ljava/lang/String;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method
 
-.method public setShortcutNameBytes(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
+.method public setShortcutNameBytes(Lcom/google/protobuf/ByteString;)Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;
     .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/google/protobuf/y$a;->copyOnWrite()V
+    .line 9058
+    invoke-virtual {p0}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->copyOnWrite()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/google/protobuf/y$a;->instance:Lcom/google/protobuf/y;
+    .line 9059
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut$Builder;->instance:Lcom/google/protobuf/GeneratedMessageLite;
 
-    .line 5
-    .line 6
     check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;
 
-    .line 7
-    .line 8
-    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->f(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Lcom/google/protobuf/h;)V
+    invoke-static {v0, p1}, Lcom/android/launcher3/logger/LauncherAtom$Shortcut;->-$$Nest$msetShortcutNameBytes(Lcom/android/launcher3/logger/LauncherAtom$Shortcut;Lcom/google/protobuf/ByteString;)V
 
-    .line 9
-    .line 10
-    .line 11
     return-object p0
 .end method

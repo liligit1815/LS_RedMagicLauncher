@@ -2,14 +2,17 @@
 <resources>
     <plurals name="abc_slice_duration_days">
         <item quantity="one">Il y a %d jour</item>
+        <item quantity="many">%d days ago</item>
         <item quantity="other">Il y a %d jours</item>
     </plurals>
     <plurals name="abc_slice_duration_min">
         <item quantity="one">Il y a %d minute</item>
+        <item quantity="many">%d min ago</item>
         <item quantity="other">Il y a %d minutes</item>
     </plurals>
     <plurals name="abc_slice_duration_years">
         <item quantity="one">Il y a %d an</item>
+        <item quantity="many">%d yr ago</item>
         <item quantity="other">Il y a %d ans</item>
     </plurals>
     <plurals name="mtrl_badge_content_description">

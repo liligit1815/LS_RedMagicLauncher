@@ -17,5 +17,4 @@
         <FrameLayout android:id="@id/custom" android:layout_width="match_parent" android:layout_height="wrap_content" />
     </FrameLayout>
     <include android:layout_width="match_parent" android:layout_height="wrap_content" layout="@layout/alert_dialog_button_bar_material_mfv" />
-    <View android:id="@id/navigation_key_area" android:background="@android:color/transparent" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/mfvc_sk_height_extra" />
 </androidx.appcompat.widget.AlertDialogLayout>

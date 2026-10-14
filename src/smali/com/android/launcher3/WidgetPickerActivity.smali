@@ -1,56 +1,34 @@
 .class public Lcom/android/launcher3/WidgetPickerActivity;
-.super Lcom/android/launcher3/v;
+.super Lcom/android/launcher3/BaseActivity;
 .source "WidgetPickerActivity.java"
-
-# interfaces
-.implements Lz1/e5$a;
 
 
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/launcher3/WidgetPickerActivity$a;,
-        Lcom/android/launcher3/WidgetPickerActivity$b;
+        Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
     }
 .end annotation
 
 
 # static fields
-.field private static final y:Ljava/util/regex/Pattern;
+.field private static final EXTRA_ADDED_APP_WIDGETS:Ljava/lang/String; = "added_app_widgets"
+
+.field private static final EXTRA_DESIRED_WIDGET_HEIGHT:Ljava/lang/String; = "desired_widget_height"
+
+.field private static final EXTRA_DESIRED_WIDGET_WIDTH:Ljava/lang/String; = "desired_widget_width"
+
+.field private static final EXTRA_IS_PENDING_WIDGET_DRAG:Ljava/lang/String; = "is_pending_widget_drag"
+
+.field private static final EXTRA_UI_SURFACE:Ljava/lang/String; = "ui_surface"
+
+.field private static final TAG:Ljava/lang/String; = "WidgetPickerActivity"
+
+.field private static final UI_SURFACE_PATTERN:Ljava/util/regex/Pattern;
 
 
 # instance fields
-.field private g:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Lcom/android/launcher3/dragndrop/SimpleDragLayer<",
-            "Lcom/android/launcher3/WidgetPickerActivity;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private h:Lz1/u5;
-
-.field private i:Lcom/android/launcher3/P2;
-
-.field private j:Lz1/G4;
-
-.field private k:Lz1/e5;
-
-.field private l:Ln2/c;
-
-.field private m:I
-
-.field private n:I
-
-.field private o:Lcom/android/launcher3/widget/picker/c;
-
-.field private p:Lcom/android/launcher3/widget/picker/c;
-
-.field private q:Ljava/lang/String;
-
-.field private r:Ljava/util/List;
+.field private mAddedWidgets:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -60,2433 +38,1127 @@
     .end annotation
 .end field
 
-.field private s:Ljava/lang/String;
+.field private mApp:Lcom/android/launcher3/LauncherAppState;
 
-.field private t:Ljava/lang/String;
+.field private mDesiredWidgetHeight:I
 
-.field u:Ljava/util/Set;
+.field private mDesiredWidgetWidth:I
+
+.field private mDragLayer:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ljava/util/Set<",
-            "Ljava/lang/Integer;",
+            "Lcom/android/launcher3/dragndrop/SimpleDragLayer<",
+            "Lcom/android/launcher3/WidgetPickerActivity;",
             ">;"
         }
     .end annotation
 .end field
 
-.field private v:Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
+.field private mModel:Lcom/android/launcher3/model/WidgetsModel;
 
-.field private final w:Ljava/util/function/Predicate;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/function/Predicate<",
-            "Lz1/Z4;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private final mPopupDataProvider:Lcom/android/launcher3/popup/PopupDataProvider;
 
-.field private final x:Ljava/util/function/Predicate;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/function/Predicate<",
-            "Lz1/Z4;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private mUiSurface:Ljava/lang/String;
+
+.field private mWidgetCategoryFilter:I
+
+.field private mWidgetPredictionsRequester:Lcom/android/launcher3/model/WidgetPredictionsRequester;
 
 
 # direct methods
+.method public static synthetic $r8$lambda$073MyVun8CkcLVZ0zNRgJB8M1N8(Lcom/android/launcher3/WidgetPickerActivity;)V
+    .locals 0
+
+    invoke-virtual {p0}, Landroid/app/Activity;->finish()V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$2K-j8K-DTEu9CqW7iRLUwUrIfqM(Lcom/android/launcher3/WidgetPickerActivity;Landroid/view/View;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->lambda$getItemOnClickListener$1(Landroid/view/View;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$3hkb6wbvnYF-4eWf9fwv6mKdvPQ(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->bindRecommendedWidgets(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$8fXAe6vbD6twgXt_5rHP3yeutDA(Lcom/android/launcher3/WidgetPickerActivity;Lcom/android/launcher3/model/WidgetItem;)Z
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->lambda$refreshAndBindWidgets$3(Lcom/android/launcher3/model/WidgetItem;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method public static synthetic $r8$lambda$IhdpfiFaoNL0KvlQEo-dxG2NjOQ(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->lambda$bindRecommendedWidgets$8(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$Qjbm49wasxiG2NkH4i9ECLYUHXw(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->lambda$bindWidgets$7(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$iqagOg7xEe7ZJOV0BhAGCq_Pm9s(Lcom/android/launcher3/WidgetPickerActivity;)V
+    .locals 0
+
+    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->lambda$refreshAndBindWidgets$6()V
+
+    return-void
+.end method
+
+.method public static synthetic $r8$lambda$mF-ZP3RvsGWGeJIUjZNRI2whLSM(Lcom/android/launcher3/WidgetPickerActivity;Landroid/view/View;)Z
+    .locals 0
+
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->lambda$getAllAppsItemLongClickListener$2(Landroid/view/View;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method public static synthetic $r8$lambda$r5rw-SF3pFkg6i5SbDjCXT-8XcI(Ljava/lang/Class;Ljava/lang/Object;)Z
+    .locals 0
+
+    invoke-virtual {p0, p1}, Ljava/lang/Class;->isInstance(Ljava/lang/Object;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 1
+    .line 86
     const-string v0, "^(widgets|widgets_hub)$"
 
-    .line 2
-    .line 3
+    .line 87
     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
-    sput-object v0, Lcom/android/launcher3/WidgetPickerActivity;->y:Ljava/util/regex/Pattern;
+    sput-object v0, Lcom/android/launcher3/WidgetPickerActivity;->UI_SURFACE_PATTERN:Ljava/util/regex/Pattern;
 
-    .line 8
-    .line 9
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .locals 3
 
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/v;-><init>()V
+    .line 61
+    invoke-direct {p0}, Lcom/android/launcher3/BaseActivity;-><init>()V
 
-    .line 2
-    .line 3
-    .line 4
+    .line 92
+    new-instance v0, Lcom/android/launcher3/popup/PopupDataProvider;
+
+    new-instance v1, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda10;
+
+    invoke-direct {v1}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda10;-><init>()V
+
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/popup/PopupDataProvider;-><init>(Ljava/util/function/Consumer;Landroid/content/Context;)V
+
+    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mPopupDataProvider:Lcom/android/launcher3/popup/PopupDataProvider;
+
+    .line 100
     new-instance v0, Ljava/util/ArrayList;
 
-    .line 5
-    .line 6
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 7
-    .line 8
-    .line 9
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->r:Ljava/util/List;
+    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mAddedWidgets:Ljava/util/List;
 
-    .line 10
-    .line 11
-    new-instance v0, Ljava/util/HashSet;
-
-    .line 12
-    .line 13
-    invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
-
-    .line 14
-    .line 15
-    .line 16
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->u:Ljava/util/Set;
-
-    .line 17
-    .line 18
-    new-instance v0, Lcom/android/launcher3/Q5;
-
-    .line 19
-    .line 20
-    invoke-direct {v0, p0}, Lcom/android/launcher3/Q5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
-
-    .line 21
-    .line 22
-    .line 23
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->w:Ljava/util/function/Predicate;
-
-    .line 24
-    .line 25
-    new-instance v0, Lcom/android/launcher3/R5;
-
-    .line 26
-    .line 27
-    invoke-direct {v0, p0}, Lcom/android/launcher3/R5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
-
-    .line 28
-    .line 29
-    .line 30
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->x:Ljava/util/function/Predicate;
-
-    .line 31
-    .line 32
     return-void
 .end method
 
-.method private A0()V
-    .locals 5
-
-    .line 1
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    const-string v1, "picker_title"
-
-    .line 6
-    .line 7
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object v0
-
-    .line 11
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->s:Ljava/lang/String;
-
-    .line 12
-    .line 13
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v0
-
-    .line 17
-    const-string v1, "picker_description"
-
-    .line 18
-    .line 19
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
-
-    .line 20
-    .line 21
-    .line 22
-    move-result-object v0
-
-    .line 23
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->t:Ljava/lang/String;
-
-    .line 24
-    .line 25
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object v0
-
-    .line 29
-    const-string v1, "desired_widget_width"
-
-    .line 30
-    .line 31
-    const/4 v2, 0x0
-
-    .line 32
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
-
-    .line 33
-    .line 34
-    .line 35
-    move-result v0
-
-    .line 36
-    iput v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->m:I
-
-    .line 37
-    .line 38
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object v0
-
-    .line 42
-    const-string v1, "desired_widget_height"
-
-    .line 43
-    .line 44
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
-
-    .line 45
-    .line 46
-    .line 47
-    move-result v0
-
-    .line 48
-    iput v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 49
-    .line 50
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 51
-    .line 52
-    .line 53
-    move-result-object v0
-
-    .line 54
-    const-string v1, "categoryFilter"
-
-    .line 55
-    .line 56
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
-
-    .line 57
-    .line 58
-    .line 59
-    move-result v0
-
-    .line 60
-    const-string v1, "WidgetPickerActivity"
-
-    .line 61
-    .line 62
-    if-gez v0, :cond_0
-
-    .line 63
-    .line 64
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    .line 65
-    .line 66
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 67
-    .line 68
-    .line 69
-    const-string v4, "Invalid EXTRA_CATEGORY_FILTER: "
-
-    .line 70
-    .line 71
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 72
-    .line 73
-    .line 74
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 75
-    .line 76
-    .line 77
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 78
-    .line 79
-    .line 80
-    move-result-object v3
-
-    .line 81
-    invoke-static {v1, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 82
-    .line 83
-    .line 84
-    :cond_0
-    new-instance v3, Lcom/android/launcher3/widget/picker/c;
-
-    .line 85
-    .line 86
-    invoke-static {v2, v0}, Ljava/lang/Math;->max(II)I
-
-    .line 87
-    .line 88
-    .line 89
-    move-result v0
-
-    .line 90
-    invoke-direct {v3, v0}, Lcom/android/launcher3/widget/picker/c;-><init>(I)V
-
-    .line 91
-    .line 92
-    .line 93
-    iput-object v3, p0, Lcom/android/launcher3/WidgetPickerActivity;->o:Lcom/android/launcher3/widget/picker/c;
-
-    .line 94
-    .line 95
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 96
-    .line 97
-    .line 98
-    move-result-object v0
-
-    .line 99
-    const-string v3, "category_exclusion_filter"
-
-    .line 100
-    .line 101
-    invoke-virtual {v0, v3, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
-
-    .line 102
-    .line 103
-    .line 104
-    move-result v0
-
-    .line 105
-    if-lez v0, :cond_1
-
-    .line 106
-    .line 107
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    .line 108
-    .line 109
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 110
-    .line 111
-    .line 112
-    const-string v4, "Invalid EXTRA_CATEGORY_EXCLUSION_FILTER: "
-
-    .line 113
-    .line 114
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 115
-    .line 116
-    .line 117
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    .line 118
-    .line 119
-    .line 120
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 121
-    .line 122
-    .line 123
-    move-result-object v3
-
-    .line 124
-    invoke-static {v1, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 125
-    .line 126
-    .line 127
-    :cond_1
-    new-instance v1, Lcom/android/launcher3/widget/picker/c;
-
-    .line 128
-    .line 129
-    invoke-static {v2, v0}, Ljava/lang/Math;->min(II)I
-
-    .line 130
-    .line 131
-    .line 132
-    move-result v0
-
-    .line 133
-    invoke-direct {v1, v0}, Lcom/android/launcher3/widget/picker/c;-><init>(I)V
-
-    .line 134
-    .line 135
-    .line 136
-    iput-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->p:Lcom/android/launcher3/widget/picker/c;
-
-    .line 137
-    .line 138
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 139
-    .line 140
-    .line 141
-    move-result-object v0
-
-    .line 142
-    const-string v1, "ui_surface"
-
-    .line 143
-    .line 144
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
-
-    .line 145
-    .line 146
-    .line 147
-    move-result-object v0
-
-    .line 148
-    if-eqz v0, :cond_2
-
-    .line 149
-    .line 150
-    sget-object v1, Lcom/android/launcher3/WidgetPickerActivity;->y:Ljava/util/regex/Pattern;
-
-    .line 151
-    .line 152
-    invoke-virtual {v1, v0}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
-
-    .line 153
-    .line 154
-    .line 155
-    move-result-object v1
-
-    .line 156
-    invoke-virtual {v1}, Ljava/util/regex/Matcher;->matches()Z
-
-    .line 157
-    .line 158
-    .line 159
-    move-result v1
-
-    .line 160
-    if-eqz v1, :cond_2
-
-    .line 161
-    .line 162
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->q:Ljava/lang/String;
-
-    .line 163
-    .line 164
-    :cond_2
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 165
-    .line 166
-    .line 167
-    move-result-object v0
-
-    .line 168
-    const-string v1, "added_app_widgets"
-
-    .line 169
-    .line 170
-    const-class v2, Landroid/appwidget/AppWidgetProviderInfo;
-
-    .line 171
-    .line 172
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getParcelableArrayListExtra(Ljava/lang/String;Ljava/lang/Class;)Ljava/util/ArrayList;
-
-    .line 173
-    .line 174
-    .line 175
-    move-result-object v0
-
-    .line 176
-    if-eqz v0, :cond_3
-
-    .line 177
-    .line 178
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->r:Ljava/util/List;
-
-    .line 179
-    .line 180
-    :cond_3
-    invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
-
-    .line 181
-    .line 182
-    .line 183
-    move-result-object v0
-
-    .line 184
-    const-string v1, "filtered_user_ids"
-
-    .line 185
-    .line 186
-    invoke-virtual {v0, v1}, Landroid/content/Intent;->getIntegerArrayListExtra(Ljava/lang/String;)Ljava/util/ArrayList;
-
-    .line 187
-    .line 188
-    .line 189
-    move-result-object v0
-
-    .line 190
-    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->u:Ljava/util/Set;
-
-    .line 191
-    .line 192
-    invoke-interface {v1}, Ljava/util/Set;->clear()V
-
-    .line 193
-    .line 194
-    .line 195
-    if-eqz v0, :cond_4
-
-    .line 196
-    .line 197
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->u:Ljava/util/Set;
-
-    .line 198
-    .line 199
-    invoke-interface {p0, v0}, Ljava/util/Set;->addAll(Ljava/util/Collection;)Z
-
-    .line 200
-    .line 201
-    .line 202
-    :cond_4
-    return-void
-.end method
-
-.method private B0()V
-    .locals 2
-
-    .line 1
-    sget-object v0, Lcom/android/launcher3/util/m0;->h:Lcom/android/launcher3/util/p1;
-
-    .line 2
-    .line 3
-    new-instance v1, Lcom/android/launcher3/S5;
-
-    .line 4
-    .line 5
-    invoke-direct {v1, p0}, Lcom/android/launcher3/S5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/p1;->execute(Ljava/lang/Runnable;)V
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method private static varargs C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-    .locals 2
-
-    .line 1
-    new-instance v0, Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 2
-    .line 3
-    iget-object v1, p0, Lz1/Z4;->d:Lcom/android/launcher3/widget/U;
-
-    .line 4
-    .line 5
-    if-eqz v1, :cond_0
-
-    .line 6
-    .line 7
-    iget-object p0, v1, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
-
-    .line 8
-    .line 9
-    invoke-virtual {p0}, Landroid/content/ComponentName;->flattenToShortString()Ljava/lang/String;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object p0
-
-    .line 13
-    goto :goto_0
-
-    .line 14
-    :cond_0
-    iget-object p0, p0, Lz1/Z4;->g:Ljava/lang/String;
-
-    .line 15
-    .line 16
-    :goto_0
-    sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
-
-    .line 17
-    .line 18
-    invoke-static {v1, p1, p2}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 19
-    .line 20
-    .line 21
-    move-result-object p1
-
-    .line 22
-    const/4 p2, 0x0
-
-    .line 23
-    const/4 v1, 0x0
-
-    .line 24
-    invoke-direct {v0, v1, p0, p1, p2}, Lcom/android/launcher3/WidgetPickerActivity$b;-><init>(ZLjava/lang/String;Ljava/lang/String;Lcom/android/launcher3/b6;)V
-
-    .line 25
-    .line 26
-    .line 27
-    return-object v0
-.end method
-
-.method private X(Lz1/G4;)V
-    .locals 2
-
-    .line 1
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
-
-    .line 2
-    .line 3
-    new-instance v1, Lcom/android/launcher3/V5;
-
-    .line 4
-    .line 5
-    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/V5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;Lz1/G4;)V
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/p1;->execute(Ljava/lang/Runnable;)V
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method public static synthetic b0(Lcom/android/launcher3/WidgetPickerActivity;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->x0()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic c0(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->w0(Ljava/util/List;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic d0(Lcom/android/launcher3/WidgetPickerActivity;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->y0()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic e0(Lcom/android/launcher3/WidgetPickerActivity;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->t0(Landroid/view/View;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic f0(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/function/Predicate;Ljava/util/List;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1, p2}, Lcom/android/launcher3/WidgetPickerActivity;->r0(Ljava/util/function/Predicate;Ljava/util/List;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic g0(Lcom/android/launcher3/WidgetPickerActivity;Lz1/G4;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->q0(Lz1/G4;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic h0(Lcom/android/launcher3/WidgetPickerActivity;Lz1/Z4;)Z
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->u0(Lz1/Z4;)Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method public static synthetic i0(Lcom/android/launcher3/WidgetPickerActivity;Lz1/Z4;)Z
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->v0(Lz1/Z4;)Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method public static synthetic j0(Lcom/android/launcher3/WidgetPickerActivity;Landroid/view/View;)Z
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->s0(Landroid/view/View;)Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method static bridge synthetic k0(Lcom/android/launcher3/WidgetPickerActivity;)Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->v:Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method private static l0(Lz1/Z4;)Lcom/android/launcher3/WidgetPickerActivity$b;
+.method private static acceptWidget(Lcom/android/launcher3/model/WidgetItem;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
     .locals 4
 
-    .line 1
-    new-instance v0, Lcom/android/launcher3/WidgetPickerActivity$b;
+    .line 357
+    new-instance v0, Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
 
-    .line 2
-    .line 3
-    iget-object p0, p0, Lz1/Z4;->d:Lcom/android/launcher3/widget/U;
+    iget-object p0, p0, Lcom/android/launcher3/model/WidgetItem;->widgetInfo:Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;
 
-    .line 4
-    .line 5
-    iget-object p0, p0, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
+    iget-object p0, p0, Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
 
-    .line 6
-    .line 7
+    .line 358
     invoke-virtual {p0}, Landroid/content/ComponentName;->flattenToShortString()Ljava/lang/String;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object p0
 
-    .line 11
     const-string v1, ""
 
-    .line 12
-    .line 13
     const/4 v2, 0x0
 
-    .line 14
     const/4 v3, 0x1
 
-    .line 15
-    invoke-direct {v0, v3, p0, v1, v2}, Lcom/android/launcher3/WidgetPickerActivity$b;-><init>(ZLjava/lang/String;Ljava/lang/String;Lcom/android/launcher3/b6;)V
+    invoke-direct {v0, v3, p0, v1, v2}, Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;-><init>(ZLjava/lang/String;Ljava/lang/String;Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict-IA;)V
 
-    .line 16
-    .line 17
-    .line 18
     return-object v0
 .end method
 
-.method private m0(Ljava/util/Map;)V
-    .locals 3
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/Map<",
-            "Lcom/android/launcher3/model/data/B;",
-            "Ljava/util/List<",
-            "Lz1/Z4;",
-            ">;>;)V"
-        }
-    .end annotation
-
-    .line 1
-    new-instance v0, Lm2/c;
-
-    .line 2
-    .line 3
-    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->i:Lcom/android/launcher3/P2;
-
-    .line 4
-    .line 5
-    invoke-virtual {v1}, Lcom/android/launcher3/P2;->d()Landroid/content/Context;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v1
-
-    .line 9
-    invoke-direct {v0, v1}, Lm2/c;-><init>(Landroid/content/Context;)V
-
-    .line 10
-    .line 11
-    .line 12
-    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->w:Ljava/util/function/Predicate;
-
-    .line 13
-    .line 14
-    invoke-virtual {v0, p1, v1}, Lm2/c;->c(Ljava/util/Map;Ljava/util/function/Predicate;)Ljava/util/List;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object p1
-
-    .line 18
-    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->o0()Z
-
-    .line 19
-    .line 20
-    .line 21
-    move-result v0
-
-    .line 22
-    if-eqz v0, :cond_0
-
-    .line 23
-    .line 24
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->x:Ljava/util/function/Predicate;
-
-    .line 25
-    .line 26
-    goto :goto_0
-
-    .line 27
-    :cond_0
-    const/4 v0, 0x0
-
-    .line 28
-    :goto_0
-    sget-object v1, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
-
-    .line 29
-    .line 30
-    new-instance v2, Lcom/android/launcher3/U5;
-
-    .line 31
-    .line 32
-    invoke-direct {v2, p0, v0, p1}, Lcom/android/launcher3/U5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/function/Predicate;Ljava/util/List;)V
-
-    .line 33
-    .line 34
-    .line 35
-    invoke-virtual {v1, v2}, Lcom/android/launcher3/util/p1;->execute(Ljava/lang/Runnable;)V
-
-    .line 36
-    .line 37
-    .line 38
-    return-void
-.end method
-
-.method private o0()Z
-    .locals 1
-
-    .line 1
-    iget v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->m:I
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_1
-
-    .line 4
-    .line 5
-    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 6
-    .line 7
-    if-eqz p0, :cond_0
-
-    .line 8
-    .line 9
-    goto :goto_0
-
-    .line 10
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 11
-    return p0
-
-    .line 12
-    :cond_1
-    :goto_0
-    const/4 p0, 0x1
-
-    .line 13
-    return p0
-.end method
-
-.method private p0(Lz1/Z4;Z)Lcom/android/launcher3/WidgetPickerActivity$b;
-    .locals 6
-
-    .line 1
-    iget-object v0, p1, Lz1/Z4;->d:Lcom/android/launcher3/widget/U;
-
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    if-nez v0, :cond_0
-
-    .line 5
-    .line 6
-    const-string p0, "shortcut"
-
-    .line 7
-    .line 8
-    new-array p2, v1, [Ljava/lang/Object;
-
-    .line 9
-    .line 10
-    invoke-static {p1, p0, p2}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object p0
-
-    .line 14
-    return-object p0
-
-    .line 15
-    :cond_0
-    iget-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->u:Ljava/util/Set;
-
-    .line 16
-    .line 17
-    iget-object v3, p1, Lcom/android/launcher3/util/E;->b:Landroid/os/UserHandle;
-
-    .line 18
-    .line 19
-    invoke-virtual {v3}, Landroid/os/UserHandle;->getIdentifier()I
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v3
-
-    .line 23
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 24
-    .line 25
-    .line 26
-    move-result-object v3
-
-    .line 27
-    invoke-interface {v2, v3}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
-
-    .line 28
-    .line 29
-    .line 30
-    move-result v2
-
-    .line 31
-    if-eqz v2, :cond_1
-
-    .line 32
-    .line 33
-    iget-object p0, p1, Lcom/android/launcher3/util/E;->b:Landroid/os/UserHandle;
-
-    .line 34
-    .line 35
-    invoke-virtual {p0}, Landroid/os/UserHandle;->getIdentifier()I
-
-    .line 36
-    .line 37
-    .line 38
-    move-result p0
-
-    .line 39
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 40
-    .line 41
-    .line 42
-    move-result-object p0
-
-    .line 43
-    filled-new-array {p0}, [Ljava/lang/Object;
-
-    .line 44
-    .line 45
-    .line 46
-    move-result-object p0
-
-    .line 47
-    const-string p2, "widget user: %d is being filtered"
-
-    .line 48
-    .line 49
-    invoke-static {p1, p2, p0}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object p0
-
-    .line 53
-    return-object p0
-
-    .line 54
-    :cond_1
-    iget-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->o:Lcom/android/launcher3/widget/picker/c;
-
-    .line 55
-    .line 56
-    iget v3, v0, Landroid/appwidget/AppWidgetProviderInfo;->widgetCategory:I
-
-    .line 57
-    .line 58
-    invoke-virtual {v2, v3}, Lcom/android/launcher3/widget/picker/c;->b(I)Z
-
-    .line 59
-    .line 60
-    .line 61
-    move-result v2
-
-    .line 62
-    if-eqz v2, :cond_c
-
-    .line 63
-    .line 64
-    iget-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->p:Lcom/android/launcher3/widget/picker/c;
-
-    .line 65
-    .line 66
-    iget v3, v0, Landroid/appwidget/AppWidgetProviderInfo;->widgetCategory:I
-
-    .line 67
-    .line 68
-    invoke-virtual {v2, v3}, Lcom/android/launcher3/widget/picker/c;->b(I)Z
-
-    .line 69
-    .line 70
-    .line 71
-    move-result v2
-
-    .line 72
-    if-nez v2, :cond_2
-
-    .line 73
-    .line 74
-    goto/16 :goto_2
-
-    .line 75
-    .line 76
-    :cond_2
-    if-eqz p2, :cond_b
-
-    .line 77
-    .line 78
-    iget p2, p0, Lcom/android/launcher3/WidgetPickerActivity;->m:I
-
-    .line 79
-    .line 80
-    if-nez p2, :cond_3
-
-    .line 81
-    .line 82
-    iget v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 83
-    .line 84
-    if-nez v2, :cond_3
-
-    .line 85
-    .line 86
-    invoke-static {p1}, Lcom/android/launcher3/WidgetPickerActivity;->l0(Lz1/Z4;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 87
-    .line 88
-    .line 89
-    move-result-object p0
-
-    .line 90
-    return-object p0
-
-    .line 91
-    :cond_3
-    iget v2, v0, Landroid/appwidget/AppWidgetProviderInfo;->resizeMode:I
-
-    .line 92
-    .line 93
-    const/4 v3, 0x1
-
-    .line 94
-    and-int/2addr v2, v3
-
-    .line 95
-    if-eqz v2, :cond_4
-
-    .line 96
-    .line 97
-    move v2, v3
-
-    .line 98
-    goto :goto_0
-
-    .line 99
-    :cond_4
-    move v2, v1
-
-    .line 100
-    :goto_0
-    if-lez p2, :cond_6
-
-    .line 101
-    .line 102
-    if-eqz v2, :cond_6
-
-    .line 103
-    .line 104
-    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeWidth:I
-
-    .line 105
-    .line 106
-    if-lez v4, :cond_5
-
-    .line 107
-    .line 108
-    iget v5, v0, Landroid/appwidget/AppWidgetProviderInfo;->minWidth:I
-
-    .line 109
-    .line 110
-    if-lt v4, v5, :cond_5
-
-    .line 111
-    .line 112
-    if-ge v4, p2, :cond_5
-
-    .line 113
-    .line 114
-    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 115
-    .line 116
-    .line 117
-    move-result-object p2
-
-    .line 118
-    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->m:I
-
-    .line 119
-    .line 120
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 121
-    .line 122
-    .line 123
-    move-result-object p0
-
-    .line 124
-    filled-new-array {p2, p0}, [Ljava/lang/Object;
-
-    .line 125
-    .line 126
-    .line 127
-    move-result-object p0
-
-    .line 128
-    const-string p2, "maxResizeWidth[%d] < mDesiredWidgetWidth[%d]"
-
-    .line 129
-    .line 130
-    invoke-static {p1, p2, p0}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 131
-    .line 132
-    .line 133
-    move-result-object p0
-
-    .line 134
-    return-object p0
-
-    .line 135
-    :cond_5
-    iget p2, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeWidth:I
-
-    .line 136
-    .line 137
-    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->minWidth:I
-
-    .line 138
-    .line 139
-    invoke-static {p2, v4}, Ljava/lang/Math;->min(II)I
-
-    .line 140
-    .line 141
-    .line 142
-    move-result p2
-
-    .line 143
-    iget v4, p0, Lcom/android/launcher3/WidgetPickerActivity;->m:I
-
-    .line 144
-    .line 145
-    if-le p2, v4, :cond_6
-
-    .line 146
-    .line 147
-    iget p2, v0, Landroid/appwidget/AppWidgetProviderInfo;->minWidth:I
-
-    .line 148
-    .line 149
-    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 150
-    .line 151
-    .line 152
-    move-result-object p2
-
-    .line 153
-    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeWidth:I
-
-    .line 154
-    .line 155
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 156
-    .line 157
-    .line 158
-    move-result-object v0
-
-    .line 159
-    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->m:I
-
-    .line 160
-    .line 161
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 162
-    .line 163
-    .line 164
-    move-result-object p0
-
-    .line 165
-    filled-new-array {p2, v0, p0}, [Ljava/lang/Object;
-
-    .line 166
-    .line 167
-    .line 168
-    move-result-object p0
-
-    .line 169
-    const-string p2, "min(minWidth[%d], minResizeWidth[%d]) > mDesiredWidgetWidth[%d]"
-
-    .line 170
-    .line 171
-    invoke-static {p1, p2, p0}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 172
-    .line 173
-    .line 174
-    move-result-object p0
-
-    .line 175
-    return-object p0
-
-    .line 176
-    :cond_6
-    iget p2, v0, Landroid/appwidget/AppWidgetProviderInfo;->resizeMode:I
-
-    .line 177
-    .line 178
-    and-int/lit8 p2, p2, 0x2
-
-    .line 179
-    .line 180
-    if-eqz p2, :cond_7
-
-    .line 181
-    .line 182
-    goto :goto_1
-
-    .line 183
-    :cond_7
-    move v3, v1
-
-    .line 184
-    :goto_1
-    iget p2, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 185
-    .line 186
-    if-lez p2, :cond_9
-
-    .line 187
-    .line 188
-    if-eqz v3, :cond_9
-
-    .line 189
-    .line 190
-    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeHeight:I
-
-    .line 191
-    .line 192
-    if-lez v4, :cond_8
-
-    .line 193
-    .line 194
-    iget v5, v0, Landroid/appwidget/AppWidgetProviderInfo;->minHeight:I
-
-    .line 195
-    .line 196
-    if-lt v4, v5, :cond_8
-
-    .line 197
-    .line 198
-    if-ge v4, p2, :cond_8
-
-    .line 199
-    .line 200
-    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 201
-    .line 202
-    .line 203
-    move-result-object p2
-
-    .line 204
-    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 205
-    .line 206
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 207
-    .line 208
-    .line 209
-    move-result-object p0
-
-    .line 210
-    filled-new-array {p2, p0}, [Ljava/lang/Object;
-
-    .line 211
-    .line 212
-    .line 213
-    move-result-object p0
-
-    .line 214
-    const-string p2, "maxResizeHeight[%d] < mDesiredWidgetHeight[%d]"
-
-    .line 215
-    .line 216
-    invoke-static {p1, p2, p0}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 217
-    .line 218
-    .line 219
-    move-result-object p0
-
-    .line 220
-    return-object p0
-
-    .line 221
-    :cond_8
-    iget p2, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeHeight:I
-
-    .line 222
-    .line 223
-    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->minHeight:I
-
-    .line 224
-    .line 225
-    invoke-static {p2, v4}, Ljava/lang/Math;->min(II)I
-
-    .line 226
-    .line 227
-    .line 228
-    move-result p2
-
-    .line 229
-    iget v4, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 230
-    .line 231
-    if-le p2, v4, :cond_9
-
-    .line 232
-    .line 233
-    iget p2, v0, Landroid/appwidget/AppWidgetProviderInfo;->minHeight:I
-
-    .line 234
-    .line 235
-    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 236
-    .line 237
-    .line 238
-    move-result-object p2
-
-    .line 239
-    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeHeight:I
-
-    .line 240
-    .line 241
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 242
-    .line 243
-    .line 244
-    move-result-object v0
-
-    .line 245
-    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->n:I
-
-    .line 246
-    .line 247
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 248
-    .line 249
-    .line 250
-    move-result-object p0
-
-    .line 251
-    filled-new-array {p2, v0, p0}, [Ljava/lang/Object;
-
-    .line 252
-    .line 253
-    .line 254
-    move-result-object p0
-
-    .line 255
-    const-string p2, "min(minHeight[%d], minResizeHeight[%d]) > mDesiredWidgetHeight[%d]"
-
-    .line 256
-    .line 257
-    invoke-static {p1, p2, p0}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 258
-    .line 259
-    .line 260
-    move-result-object p0
-
-    .line 261
-    return-object p0
-
-    .line 262
-    :cond_9
-    if-eqz v2, :cond_a
-
-    .line 263
-    .line 264
-    if-nez v3, :cond_b
-
-    .line 265
-    .line 266
-    :cond_a
-    const-string p0, "not resizeable"
-
-    .line 267
-    .line 268
-    new-array p2, v1, [Ljava/lang/Object;
-
-    .line 269
-    .line 270
-    invoke-static {p1, p0, p2}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 271
-    .line 272
-    .line 273
-    move-result-object p0
-
-    .line 274
-    return-object p0
-
-    .line 275
-    :cond_b
-    invoke-static {p1}, Lcom/android/launcher3/WidgetPickerActivity;->l0(Lz1/Z4;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 276
-    .line 277
-    .line 278
-    move-result-object p0
-
-    .line 279
-    return-object p0
-
-    .line 280
-    :cond_c
-    :goto_2
-    iget-object p2, p0, Lcom/android/launcher3/WidgetPickerActivity;->o:Lcom/android/launcher3/widget/picker/c;
-
-    .line 281
-    .line 282
-    invoke-virtual {p2}, Lcom/android/launcher3/widget/picker/c;->a()I
-
-    .line 283
-    .line 284
-    .line 285
-    move-result p2
-
-    .line 286
-    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 287
-    .line 288
-    .line 289
-    move-result-object p2
-
-    .line 290
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->p:Lcom/android/launcher3/widget/picker/c;
-
-    .line 291
-    .line 292
-    invoke-virtual {p0}, Lcom/android/launcher3/widget/picker/c;->a()I
-
-    .line 293
-    .line 294
-    .line 295
-    move-result p0
-
-    .line 296
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 297
-    .line 298
-    .line 299
-    move-result-object p0
-
-    .line 300
-    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->widgetCategory:I
-
-    .line 301
-    .line 302
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 303
-    .line 304
-    .line 305
-    move-result-object v0
-
-    .line 306
-    filled-new-array {p2, p0, v0}, [Ljava/lang/Object;
-
-    .line 307
-    .line 308
-    .line 309
-    move-result-object p0
-
-    .line 310
-    const-string p2, "doesn\'t match category filter [inclusion=%d, exclusion=%d, widget=%d]"
-
-    .line 311
-    .line 312
-    invoke-static {p1, p2, p0}, Lcom/android/launcher3/WidgetPickerActivity;->C0(Lz1/Z4;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 313
-    .line 314
-    .line 315
-    move-result-object p0
-
-    .line 316
-    return-object p0
-.end method
-
-.method private synthetic q0(Lz1/G4;)V
-    .locals 0
-
-    .line 1
-    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->j:Lz1/G4;
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method private synthetic r0(Ljava/util/function/Predicate;Ljava/util/List;)V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->l:Ln2/c;
-
-    .line 2
-    .line 3
-    invoke-virtual {v0, p1}, Ln2/c;->m(Ljava/util/function/Predicate;)V
-
-    .line 4
-    .line 5
-    .line 6
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->l:Ln2/c;
-
-    .line 7
-    .line 8
-    invoke-virtual {p0, p2}, Ln2/c;->o(Ljava/util/List;)V
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method private synthetic s0(Landroid/view/View;)Z
-    .locals 7
-
-    .line 1
-    instance-of v0, p1, Lcom/android/launcher3/widget/WidgetCell;
-
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    if-eqz v0, :cond_3
-
-    .line 5
-    .line 6
-    check-cast p1, Lcom/android/launcher3/widget/WidgetCell;
-
-    .line 7
-    .line 8
-    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getWidgetView()Lcom/android/launcher3/widget/WidgetImageView;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object v0
-
-    .line 12
-    invoke-virtual {v0}, Lcom/android/launcher3/widget/WidgetImageView;->getDrawable()Landroid/graphics/drawable/Drawable;
-
-    .line 13
-    .line 14
-    .line 15
-    move-result-object v0
-
-    .line 16
-    if-nez v0, :cond_0
-
-    .line 17
-    .line 18
-    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getAppWidgetHostViewPreview()Lcom/android/launcher3/widget/x0;
-
-    .line 19
-    .line 20
-    .line 21
-    move-result-object v0
-
-    .line 22
-    if-nez v0, :cond_0
-
-    .line 23
-    .line 24
-    return v1
-
-    .line 25
-    :cond_0
-    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getWidgetItem()Lz1/Z4;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object v0
-
-    .line 29
-    iget-object v0, v0, Lz1/Z4;->d:Lcom/android/launcher3/widget/U;
-
-    .line 30
-    .line 31
-    if-eqz v0, :cond_3
-
-    .line 32
-    .line 33
-    iget-object v2, v0, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
-
-    .line 34
-    .line 35
-    if-nez v2, :cond_1
-
-    .line 36
-    .line 37
-    goto :goto_0
-
-    .line 38
-    :cond_1
-    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getDragAndDropView()Landroid/view/View;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object p1
-
-    .line 42
-    if-nez p1, :cond_2
-
-    .line 43
-    .line 44
-    return v1
-
-    .line 45
-    :cond_2
-    new-instance v1, Landroid/content/ClipData;
-
-    .line 46
-    .line 47
-    new-instance v2, Landroid/content/ClipDescription;
-
-    .line 48
-    .line 49
-    const-string v3, "text/vnd.android.intent"
-
-    .line 50
-    .line 51
-    filled-new-array {v3}, [Ljava/lang/String;
-
-    .line 52
-    .line 53
-    .line 54
-    move-result-object v3
-
-    .line 55
-    const-string v4, ""
-
-    .line 56
-    .line 57
-    invoke-direct {v2, v4, v3}, Landroid/content/ClipDescription;-><init>(Ljava/lang/CharSequence;[Ljava/lang/String;)V
-
-    .line 58
-    .line 59
-    .line 60
-    new-instance v3, Landroid/content/ClipData$Item;
-
-    .line 61
-    .line 62
-    new-instance v4, Landroid/content/Intent;
-
-    .line 63
-    .line 64
-    invoke-direct {v4}, Landroid/content/Intent;-><init>()V
-
-    .line 65
-    .line 66
-    .line 67
-    const-string v5, "android.intent.extra.USER"
-
-    .line 68
-    .line 69
-    invoke-virtual {v0}, Landroid/appwidget/AppWidgetProviderInfo;->getProfile()Landroid/os/UserHandle;
-
-    .line 70
-    .line 71
-    .line 72
-    move-result-object v6
-
-    .line 73
-    invoke-virtual {v4, v5, v6}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
-
-    .line 74
-    .line 75
-    .line 76
-    move-result-object v4
-
-    .line 77
-    const-string v5, "android.intent.extra.COMPONENT_NAME"
-
-    .line 78
-    .line 79
-    iget-object v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
-
-    .line 80
-    .line 81
-    invoke-virtual {v4, v5, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
-
-    .line 82
-    .line 83
-    .line 84
-    move-result-object v0
-
-    .line 85
-    invoke-direct {v3, v0}, Landroid/content/ClipData$Item;-><init>(Landroid/content/Intent;)V
-
-    .line 86
-    .line 87
-    .line 88
-    invoke-direct {v1, v2, v3}, Landroid/content/ClipData;-><init>(Landroid/content/ClipDescription;Landroid/content/ClipData$Item;)V
-
-    .line 89
-    .line 90
-    .line 91
-    new-instance v0, Landroid/content/Intent;
-
-    .line 92
-    .line 93
-    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
-
-    .line 94
-    .line 95
-    .line 96
-    const-string v2, "is_pending_widget_drag"
-
-    .line 97
-    .line 98
-    const/4 v3, 0x1
-
-    .line 99
-    invoke-virtual {v0, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
-
-    .line 100
-    .line 101
-    .line 102
-    move-result-object v0
-
-    .line 103
-    const/4 v2, -0x1
-
-    .line 104
-    invoke-virtual {p0, v2, v0}, Landroid/app/Activity;->setResult(ILandroid/content/Intent;)V
-
-    .line 105
-    .line 106
-    .line 107
-    new-instance p0, Landroid/view/View$DragShadowBuilder;
-
-    .line 108
-    .line 109
-    invoke-direct {p0, p1}, Landroid/view/View$DragShadowBuilder;-><init>(Landroid/view/View;)V
-
-    .line 110
-    .line 111
-    .line 112
-    const/4 v0, 0x0
-
-    .line 113
-    const/16 v2, 0x100
-
-    .line 114
-    .line 115
-    invoke-virtual {p1, v1, p0, v0, v2}, Landroid/view/View;->startDragAndDrop(Landroid/content/ClipData;Landroid/view/View$DragShadowBuilder;Ljava/lang/Object;I)Z
-
-    .line 116
-    .line 117
-    .line 118
-    move-result p0
-
-    .line 119
-    return p0
-
-    .line 120
-    :cond_3
-    :goto_0
-    return v1
-.end method
-
-.method private synthetic t0(Landroid/view/View;)V
-    .locals 3
-
-    .line 1
-    instance-of v0, p1, Lcom/android/launcher3/widget/WidgetCell;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    check-cast p1, Lcom/android/launcher3/widget/WidgetCell;
-
-    .line 6
-    .line 7
-    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getWidgetItem()Lz1/Z4;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object p1
-
-    .line 11
-    iget-object p1, p1, Lz1/Z4;->d:Lcom/android/launcher3/widget/U;
-
-    .line 12
-    .line 13
-    goto :goto_0
-
-    .line 14
-    :cond_0
-    const/4 p1, 0x0
-
-    .line 15
-    :goto_0
-    if-eqz p1, :cond_2
-
-    .line 16
-    .line 17
-    iget-object v0, p1, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
-
-    .line 18
-    .line 19
-    if-nez v0, :cond_1
-
-    .line 20
-    .line 21
-    goto :goto_1
-
-    .line 22
-    :cond_1
-    new-instance v0, Landroid/content/Intent;
-
-    .line 23
-    .line 24
-    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
-
-    .line 25
-    .line 26
-    .line 27
-    const-string v1, "android.intent.extra.COMPONENT_NAME"
-
-    .line 28
-    .line 29
-    iget-object v2, p1, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
-
-    .line 30
-    .line 31
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
-
-    .line 32
-    .line 33
-    .line 34
-    move-result-object v0
-
-    .line 35
-    const-string v1, "android.intent.extra.USER"
-
-    .line 36
-    .line 37
-    invoke-virtual {p1}, Landroid/appwidget/AppWidgetProviderInfo;->getProfile()Landroid/os/UserHandle;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object p1
-
-    .line 41
-    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object p1
-
-    .line 45
-    const/4 v0, -0x1
-
-    .line 46
-    invoke-virtual {p0, v0, p1}, Landroid/app/Activity;->setResult(ILandroid/content/Intent;)V
-
-    .line 47
-    .line 48
-    .line 49
-    invoke-virtual {p0}, Landroid/app/Activity;->finish()V
-
-    .line 50
-    .line 51
-    .line 52
-    :cond_2
-    :goto_1
-    return-void
-.end method
-
-.method private synthetic u0(Lz1/Z4;)Z
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/WidgetPickerActivity;->p0(Lz1/Z4;Z)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object p0
-
-    .line 6
-    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity$b;->d()V
-
-    .line 7
-    .line 8
-    .line 9
-    invoke-static {p0}, Lcom/android/launcher3/WidgetPickerActivity$b;->c(Lcom/android/launcher3/WidgetPickerActivity$b;)Z
-
-    .line 10
-    .line 11
-    .line 12
-    move-result p0
-
-    .line 13
-    return p0
-.end method
-
-.method private synthetic v0(Lz1/Z4;)Z
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    invoke-direct {p0, p1, v0}, Lcom/android/launcher3/WidgetPickerActivity;->p0(Lz1/Z4;Z)Lcom/android/launcher3/WidgetPickerActivity$b;
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object p0
-
-    .line 6
-    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity$b;->d()V
-
-    .line 7
-    .line 8
-    .line 9
-    invoke-static {p0}, Lcom/android/launcher3/WidgetPickerActivity$b;->c(Lcom/android/launcher3/WidgetPickerActivity$b;)Z
-
-    .line 10
-    .line 11
-    .line 12
-    move-result p0
-
-    .line 13
-    return p0
-.end method
-
-.method private synthetic w0(Ljava/util/List;)V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->l:Ln2/c;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Ln2/c;->n(Ljava/util/List;)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method private synthetic x0()V
-    .locals 4
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    invoke-static {p0, v0}, Lcom/android/launcher3/widget/picker/WidgetsFullSheet;->V1(Lcom/android/launcher3/v;Z)Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object v1
-
-    .line 6
-    iput-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->v:Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
-
-    .line 7
-    .line 8
-    iget-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->s:Ljava/lang/String;
-
-    .line 9
-    .line 10
-    iget-object v3, p0, Lcom/android/launcher3/WidgetPickerActivity;->t:Ljava/lang/String;
-
-    .line 11
-    .line 12
-    invoke-virtual {v1, v2, v3}, Lcom/android/launcher3/widget/picker/WidgetsFullSheet;->E1(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 13
-    .line 14
-    .line 15
-    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->v:Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
-
-    .line 16
-    .line 17
-    invoke-virtual {v1, v0}, Lcom/android/launcher3/widget/o;->C0(Z)V
-
-    .line 18
-    .line 19
-    .line 20
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->v:Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
-
-    .line 21
-    .line 22
-    new-instance v1, Lcom/android/launcher3/X5;
-
-    .line 23
-    .line 24
-    invoke-direct {v1, p0}, Lcom/android/launcher3/X5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
-
-    .line 25
-    .line 26
-    .line 27
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/views/f;->R(Lcom/android/launcher3/views/f$e;)V
-
-    .line 28
-    .line 29
-    .line 30
-    return-void
-.end method
-
-.method private synthetic y0()V
-    .locals 4
-
-    .line 1
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->h:Lz1/u5;
-
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    invoke-virtual {v0, v1}, Lz1/u5;->v(Lcom/android/launcher3/util/L1;)Ljava/util/List;
-
-    .line 5
-    .line 6
-    .line 7
-    new-instance v0, Lz1/G4;
-
-    .line 8
-    .line 9
-    invoke-direct {v0}, Lz1/G4;-><init>()V
-
-    .line 10
-    .line 11
-    .line 12
-    invoke-virtual {v0, p0}, Lz1/G4;->i(Landroid/content/Context;)V
-
-    .line 13
-    .line 14
-    .line 15
-    invoke-direct {p0, v0}, Lcom/android/launcher3/WidgetPickerActivity;->X(Lz1/G4;)V
-
-    .line 16
-    .line 17
-    .line 18
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->h:Lz1/u5;
-
-    .line 19
-    .line 20
-    invoke-virtual {v0}, Lz1/u5;->m()Ljava/util/Map;
-
-    .line 21
-    .line 22
-    .line 23
-    move-result-object v0
-
-    .line 24
-    invoke-direct {p0, v0}, Lcom/android/launcher3/WidgetPickerActivity;->m0(Ljava/util/Map;)V
-
-    .line 25
-    .line 26
-    .line 27
-    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->z0()V
-
-    .line 28
-    .line 29
-    .line 30
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->q:Ljava/lang/String;
-
-    .line 31
-    .line 32
-    if-eqz v0, :cond_0
-
-    .line 33
-    .line 34
-    new-instance v0, Lz1/e5;
-
-    .line 35
-    .line 36
-    invoke-virtual {p0}, Landroid/app/Activity;->getApplicationContext()Landroid/content/Context;
-
-    .line 37
-    .line 38
-    .line 39
-    move-result-object v1
-
-    .line 40
-    iget-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->q:Ljava/lang/String;
-
-    .line 41
-    .line 42
-    iget-object v3, p0, Lcom/android/launcher3/WidgetPickerActivity;->h:Lz1/u5;
-
-    .line 43
-    .line 44
-    invoke-virtual {v3}, Lz1/u5;->l()Ljava/util/Map;
-
-    .line 45
-    .line 46
-    .line 47
-    move-result-object v3
-
-    .line 48
-    invoke-direct {v0, v1, v2, v3}, Lz1/e5;-><init>(Landroid/content/Context;Ljava/lang/String;Ljava/util/Map;)V
-
-    .line 49
-    .line 50
-    .line 51
-    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->k:Lz1/e5;
-
-    .line 52
-    .line 53
-    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->r:Ljava/util/List;
-
-    .line 54
-    .line 55
-    invoke-virtual {v0, v1, p0}, Lz1/e5;->m(Ljava/util/List;Lz1/e5$a;)V
-
-    .line 56
-    .line 57
-    .line 58
-    :cond_0
-    return-void
-.end method
-
-.method private z0()V
-    .locals 2
-
-    .line 1
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
-
-    .line 2
-    .line 3
-    new-instance v1, Lcom/android/launcher3/W5;
-
-    .line 4
-    .line 5
-    invoke-direct {v1, p0}, Lcom/android/launcher3/W5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/p1;->execute(Ljava/lang/Runnable;)V
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-
-# virtual methods
-.method public U(Ljava/util/List;)V
+.method private bindRecommendedWidgets(Ljava/util/List;)V
     .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
             "Ljava/util/List<",
-            "Lcom/android/launcher3/model/data/y;",
+            "Lcom/android/launcher3/model/data/ItemInfo;",
             ">;)V"
         }
     .end annotation
 
-    .line 1
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    .line 261
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
-    .line 2
-    .line 3
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    new-instance v1, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda0;
 
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
+    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda0;-><init>(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
 
-    .line 7
-    new-instance v1, Lcom/android/launcher3/Y5;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/LooperExecutor;->execute(Ljava/lang/Runnable;)V
 
-    .line 8
-    .line 9
-    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/Y5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
-
-    .line 10
-    .line 11
-    .line 12
-    iget-object p0, p0, Lcom/android/launcher3/v;->mDeviceProfile:Lcom/android/launcher3/h0;
-
-    .line 13
-    .line 14
-    iget p0, p0, Lcom/android/launcher3/h0;->y2:I
-
-    .line 15
-    .line 16
-    int-to-long p0, p0
-
-    .line 17
-    invoke-virtual {v0, v1, p0, p1}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
-
-    .line 18
-    .line 19
-    .line 20
     return-void
 .end method
 
-.method public getAllAppsItemLongClickListener()Landroid/view/View$OnLongClickListener;
-    .locals 1
+.method private bindWidgets(Ljava/util/List;)V
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;",
+            ">;)V"
+        }
+    .end annotation
 
-    .line 1
-    new-instance v0, Lcom/android/launcher3/T5;
+    .line 257
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lcom/android/launcher3/T5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+    new-instance v1, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda9;
 
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
+    invoke-direct {v1, p0, p1}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda9;-><init>(Lcom/android/launcher3/WidgetPickerActivity;Ljava/util/List;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/LooperExecutor;->execute(Ljava/lang/Runnable;)V
+
+    return-void
 .end method
 
-.method public bridge synthetic getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
-    .locals 0
+.method private isWidgetAcceptable(Lcom/android/launcher3/model/WidgetItem;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+    .locals 6
 
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->n0()Lcom/android/launcher3/dragndrop/SimpleDragLayer;
+    .line 273
+    iget-object v0, p1, Lcom/android/launcher3/model/WidgetItem;->widgetInfo:Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;
 
-    .line 2
-    .line 3
-    .line 4
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_0
+
+    .line 275
+    const-string/jumbo p0, "shortcut"
+
+    new-array v0, v1, [Ljava/lang/Object;
+
+    invoke-static {p1, p0, v0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
     move-result-object p0
 
-    .line 5
+    return-object p0
+
+    .line 278
+    :cond_0
+    iget v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->mWidgetCategoryFilter:I
+
+    if-lez v2, :cond_1
+
+    iget v2, v0, Landroid/appwidget/AppWidgetProviderInfo;->widgetCategory:I
+
+    iget v3, p0, Lcom/android/launcher3/WidgetPickerActivity;->mWidgetCategoryFilter:I
+
+    and-int/2addr v2, v3
+
+    if-nez v2, :cond_1
+
+    .line 282
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->widgetCategory:I
+
+    .line 283
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    filled-new-array {p0, v0}, [Ljava/lang/Object;
+
+    move-result-object p0
+
+    .line 279
+    const-string v0, "doesn\'t match category filter [filter=%d, widget=%d]"
+
+    invoke-static {p1, v0, p0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 286
+    :cond_1
+    iget v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    if-nez v2, :cond_2
+
+    iget v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    if-nez v2, :cond_2
+
+    .line 288
+    invoke-static {p1}, Lcom/android/launcher3/WidgetPickerActivity;->acceptWidget(Lcom/android/launcher3/model/WidgetItem;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 291
+    :cond_2
+    iget v2, v0, Landroid/appwidget/AppWidgetProviderInfo;->resizeMode:I
+
+    const/4 v3, 0x1
+
+    and-int/2addr v2, v3
+
+    if-eqz v2, :cond_3
+
+    move v2, v3
+
+    goto :goto_0
+
+    :cond_3
+    move v2, v1
+
+    .line 293
+    :goto_0
+    iget v4, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    if-lez v4, :cond_5
+
+    if-eqz v2, :cond_5
+
+    .line 294
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeWidth:I
+
+    if-lez v4, :cond_4
+
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeWidth:I
+
+    iget v5, v0, Landroid/appwidget/AppWidgetProviderInfo;->minWidth:I
+
+    if-lt v4, v5, :cond_4
+
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeWidth:I
+
+    iget v5, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    if-ge v4, v5, :cond_4
+
+    .line 297
+    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeWidth:I
+
+    .line 300
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    .line 301
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    filled-new-array {v0, p0}, [Ljava/lang/Object;
+
+    move-result-object p0
+
+    .line 297
+    const-string v0, "maxResizeWidth[%d] < mDesiredWidgetWidth[%d]"
+
+    invoke-static {p1, v0, p0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 304
+    :cond_4
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeWidth:I
+
+    iget v5, v0, Landroid/appwidget/AppWidgetProviderInfo;->minWidth:I
+
+    invoke-static {v4, v5}, Ljava/lang/Math;->min(II)I
+
+    move-result v4
+
+    .line 305
+    iget v5, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    if-le v4, v5, :cond_5
+
+    .line 306
+    iget v1, v0, Landroid/appwidget/AppWidgetProviderInfo;->minWidth:I
+
+    .line 309
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeWidth:I
+
+    .line 310
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    .line 311
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    filled-new-array {v1, v0, p0}, [Ljava/lang/Object;
+
+    move-result-object p0
+
+    .line 306
+    const-string v0, "min(minWidth[%d], minResizeWidth[%d]) > mDesiredWidgetWidth[%d]"
+
+    invoke-static {p1, v0, p0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 315
+    :cond_5
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->resizeMode:I
+
+    and-int/lit8 v4, v4, 0x2
+
+    if-eqz v4, :cond_6
+
+    goto :goto_1
+
+    :cond_6
+    move v3, v1
+
+    .line 317
+    :goto_1
+    iget v4, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    if-lez v4, :cond_8
+
+    if-eqz v3, :cond_8
+
+    .line 318
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeHeight:I
+
+    if-lez v4, :cond_7
+
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeHeight:I
+
+    iget v5, v0, Landroid/appwidget/AppWidgetProviderInfo;->minHeight:I
+
+    if-lt v4, v5, :cond_7
+
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeHeight:I
+
+    iget v5, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    if-ge v4, v5, :cond_7
+
+    .line 321
+    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->maxResizeHeight:I
+
+    .line 324
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    .line 325
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    filled-new-array {v0, p0}, [Ljava/lang/Object;
+
+    move-result-object p0
+
+    .line 321
+    const-string v0, "maxResizeHeight[%d] < mDesiredWidgetHeight[%d]"
+
+    invoke-static {p1, v0, p0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 328
+    :cond_7
+    iget v4, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeHeight:I
+
+    iget v5, v0, Landroid/appwidget/AppWidgetProviderInfo;->minHeight:I
+
+    invoke-static {v4, v5}, Ljava/lang/Math;->min(II)I
+
+    move-result v4
+
+    .line 329
+    iget v5, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    if-le v4, v5, :cond_8
+
+    .line 330
+    iget v1, v0, Landroid/appwidget/AppWidgetProviderInfo;->minHeight:I
+
+    .line 333
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    iget v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->minResizeHeight:I
+
+    .line 334
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    iget p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    .line 335
+    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p0
+
+    filled-new-array {v1, v0, p0}, [Ljava/lang/Object;
+
+    move-result-object p0
+
+    .line 330
+    const-string v0, "min(minHeight[%d], minResizeHeight[%d]) > mDesiredWidgetHeight[%d]"
+
+    invoke-static {p1, v0, p0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_8
+    if-eqz v2, :cond_a
+
+    if-nez v3, :cond_9
+
+    goto :goto_2
+
+    .line 343
+    :cond_9
+    invoke-static {p1}, Lcom/android/launcher3/WidgetPickerActivity;->acceptWidget(Lcom/android/launcher3/model/WidgetItem;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 340
+    :cond_a
+    :goto_2
+    const-string/jumbo p0, "not resizeable"
+
+    new-array v0, v1, [Ljava/lang/Object;
+
+    invoke-static {p1, p0, v0}, Lcom/android/launcher3/WidgetPickerActivity;->rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
     return-object p0
 .end method
 
-.method public getForeColor()I
+.method private synthetic lambda$bindRecommendedWidgets$8(Ljava/util/List;)V
     .locals 0
 
-    .line 1
-    const/4 p0, 0x0
+    .line 261
+    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mPopupDataProvider:Lcom/android/launcher3/popup/PopupDataProvider;
 
-    .line 2
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/popup/PopupDataProvider;->setRecommendedWidgets(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method private synthetic lambda$bindWidgets$7(Ljava/util/List;)V
+    .locals 0
+
+    .line 257
+    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mPopupDataProvider:Lcom/android/launcher3/popup/PopupDataProvider;
+
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/popup/PopupDataProvider;->setAllWidgets(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method private synthetic lambda$getAllAppsItemLongClickListener$2(Landroid/view/View;)Z
+    .locals 8
+
+    .line 184
+    instance-of v0, p1, Lcom/android/launcher3/widget/WidgetCell;
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_3
+
+    check-cast p1, Lcom/android/launcher3/widget/WidgetCell;
+
+    .line 186
+    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getWidgetView()Lcom/android/launcher3/widget/WidgetImageView;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/launcher3/widget/WidgetImageView;->getDrawable()Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    if-nez v0, :cond_0
+
+    .line 187
+    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getAppWidgetHostViewPreview()Lcom/android/launcher3/widget/NavigableAppWidgetHostView;
+
+    move-result-object v0
+
+    if-nez v0, :cond_0
+
+    return v1
+
+    .line 192
+    :cond_0
+    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getWidgetItem()Lcom/android/launcher3/model/WidgetItem;
+
+    move-result-object v0
+
+    iget-object v0, v0, Lcom/android/launcher3/model/WidgetItem;->widgetInfo:Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;
+
+    if-eqz v0, :cond_3
+
+    .line 193
+    iget-object v2, v0, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
+
+    if-nez v2, :cond_1
+
+    goto :goto_0
+
+    .line 197
+    :cond_1
+    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getDragAndDropView()Landroid/view/View;
+
+    move-result-object p1
+
+    if-nez p1, :cond_2
+
+    return v1
+
+    .line 202
+    :cond_2
+    new-instance v2, Landroid/content/ClipData;
+
+    new-instance v3, Landroid/content/ClipDescription;
+
+    const/4 v4, 0x1
+
+    new-array v5, v4, [Ljava/lang/String;
+
+    const-string/jumbo v6, "text/vnd.android.intent"
+
+    aput-object v6, v5, v1
+
+    const-string v1, ""
+
+    invoke-direct {v3, v1, v5}, Landroid/content/ClipDescription;-><init>(Ljava/lang/CharSequence;[Ljava/lang/String;)V
+
+    new-instance v1, Landroid/content/ClipData$Item;
+
+    new-instance v5, Landroid/content/Intent;
+
+    invoke-direct {v5}, Landroid/content/Intent;-><init>()V
+
+    const-string v6, "android.intent.extra.USER"
+
+    .line 208
+    invoke-virtual {v0}, Landroid/appwidget/AppWidgetProviderInfo;->getProfile()Landroid/os/UserHandle;
+
+    move-result-object v7
+
+    invoke-virtual {v5, v6, v7}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
+
+    move-result-object v5
+
+    const-string v6, "android.intent.extra.COMPONENT_NAME"
+
+    iget-object v0, v0, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
+
+    .line 209
+    invoke-virtual {v5, v6, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
+
+    move-result-object v0
+
+    invoke-direct {v1, v0}, Landroid/content/ClipData$Item;-><init>(Landroid/content/Intent;)V
+
+    invoke-direct {v2, v3, v1}, Landroid/content/ClipData;-><init>(Landroid/content/ClipDescription;Landroid/content/ClipData$Item;)V
+
+    .line 213
+    new-instance v0, Landroid/content/Intent;
+
+    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
+
+    const-string v1, "is_pending_widget_drag"
+
+    .line 214
+    invoke-virtual {v0, v1, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+
+    move-result-object v0
+
+    const/4 v1, -0x1
+
+    .line 213
+    invoke-virtual {p0, v1, v0}, Lcom/android/launcher3/WidgetPickerActivity;->setResult(ILandroid/content/Intent;)V
+
+    .line 217
+    new-instance p0, Landroid/view/View$DragShadowBuilder;
+
+    invoke-direct {p0, p1}, Landroid/view/View$DragShadowBuilder;-><init>(Landroid/view/View;)V
+
+    const/4 v0, 0x0
+
+    const/16 v1, 0x100
+
+    invoke-virtual {p1, v2, p0, v0, v1}, Landroid/view/View;->startDragAndDrop(Landroid/content/ClipData;Landroid/view/View$DragShadowBuilder;Ljava/lang/Object;I)Z
+
+    move-result p0
+
+    return p0
+
+    :cond_3
+    :goto_0
+    return v1
+.end method
+
+.method private synthetic lambda$getItemOnClickListener$1(Landroid/view/View;)V
+    .locals 3
+
+    .line 168
+    instance-of v0, p1, Lcom/android/launcher3/widget/WidgetCell;
+
+    if-eqz v0, :cond_0
+
+    check-cast p1, Lcom/android/launcher3/widget/WidgetCell;
+
+    invoke-virtual {p1}, Lcom/android/launcher3/widget/WidgetCell;->getWidgetItem()Lcom/android/launcher3/model/WidgetItem;
+
+    move-result-object p1
+
+    iget-object p1, p1, Lcom/android/launcher3/model/WidgetItem;->widgetInfo:Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p1, 0x0
+
+    :goto_0
+    if-eqz p1, :cond_2
+
+    .line 169
+    iget-object v0, p1, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
+
+    if-nez v0, :cond_1
+
+    goto :goto_1
+
+    .line 173
+    :cond_1
+    new-instance v0, Landroid/content/Intent;
+
+    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
+
+    const-string v1, "android.intent.extra.COMPONENT_NAME"
+
+    iget-object v2, p1, Landroid/appwidget/AppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
+
+    .line 174
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string v1, "android.intent.extra.USER"
+
+    .line 175
+    invoke-virtual {p1}, Landroid/appwidget/AppWidgetProviderInfo;->getProfile()Landroid/os/UserHandle;
+
+    move-result-object p1
+
+    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
+
+    move-result-object p1
+
+    const/4 v0, -0x1
+
+    .line 173
+    invoke-virtual {p0, v0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->setResult(ILandroid/content/Intent;)V
+
+    .line 177
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->finish()V
+
+    :cond_2
+    :goto_1
+    return-void
+.end method
+
+.method static synthetic lambda$new$0(Ljava/util/function/Predicate;)V
+    .locals 0
+
+    return-void
+.end method
+
+.method private synthetic lambda$refreshAndBindWidgets$3(Lcom/android/launcher3/model/WidgetItem;)Z
+    .locals 0
+
+    .line 236
+    invoke-direct {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->isWidgetAcceptable(Lcom/android/launcher3/model/WidgetItem;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    move-result-object p0
+
+    .line 237
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;->maybeLogVerdict()V
+
+    .line 238
+    invoke-static {p0}, Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;->-$$Nest$fgetisAcceptable(Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;)Z
+
+    move-result p0
+
     return p0
 .end method
 
-.method public getItemOnClickListener()Landroid/view/View$OnClickListener;
-    .locals 1
+.method static synthetic lambda$refreshAndBindWidgets$4(Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;)Lcom/android/launcher3/util/PackageUserKey;
+    .locals 0
 
-    .line 1
-    new-instance v0, Lcom/android/launcher3/P5;
+    .line 246
+    iget-object p0, p0, Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;->mPkgItem:Lcom/android/launcher3/model/data/PackageItemInfo;
 
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lcom/android/launcher3/P5;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+    invoke-static {p0}, Lcom/android/launcher3/util/PackageUserKey;->fromPackageItemInfo(Lcom/android/launcher3/model/data/PackageItemInfo;)Lcom/android/launcher3/util/PackageUserKey;
 
-    .line 4
-    .line 5
-    .line 6
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method static synthetic lambda$refreshAndBindWidgets$5(Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;)Ljava/util/List;
+    .locals 0
+
+    .line 247
+    iget-object p0, p0, Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;->mWidgets:Ljava/util/List;
+
+    return-object p0
+.end method
+
+.method private synthetic lambda$refreshAndBindWidgets$6()V
+    .locals 4
+
+    .line 229
+    invoke-static {p0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
+    move-result-object v0
+
+    .line 230
+    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mModel:Lcom/android/launcher3/model/WidgetsModel;
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v1, v0, v2}, Lcom/android/launcher3/model/WidgetsModel;->update(Lcom/android/launcher3/LauncherAppState;Lcom/android/launcher3/util/PackageUserKey;)Ljava/util/List;
+
+    .line 231
+    iget-object v1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mModel:Lcom/android/launcher3/model/WidgetsModel;
+
+    .line 233
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    new-instance v3, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda4;
+
+    invoke-direct {v3, p0}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda4;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+
+    .line 232
+    invoke-virtual {v1, v2, v3}, Lcom/android/launcher3/model/WidgetsModel;->getFilteredWidgetsListForPicker(Landroid/content/Context;Ljava/util/function/Predicate;)Ljava/util/ArrayList;
+
+    move-result-object v1
+
+    .line 241
+    invoke-direct {p0, v1}, Lcom/android/launcher3/WidgetPickerActivity;->bindWidgets(Ljava/util/List;)V
+
+    .line 242
+    iget-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->mUiSurface:Ljava/lang/String;
+
+    if-eqz v2, :cond_0
+
+    .line 243
+    invoke-interface {v1}, Ljava/util/List;->stream()Ljava/util/stream/Stream;
+
+    move-result-object v1
+
+    const-class v2, Lcom/android/launcher3/widget/model/WidgetsListHeaderEntry;
+
+    .line 244
+    invoke-static {v2}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
+
+    new-instance v3, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda5;
+
+    invoke-direct {v3, v2}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda5;-><init>(Ljava/lang/Class;)V
+
+    invoke-interface {v1, v3}, Ljava/util/stream/Stream;->filter(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+
+    move-result-object v1
+
+    new-instance v2, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda6;
+
+    invoke-direct {v2}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda6;-><init>()V
+
+    new-instance v3, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda7;
+
+    invoke-direct {v3}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda7;-><init>()V
+
+    .line 245
+    invoke-static {v2, v3}, Ljava/util/stream/Collectors;->toMap(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;
+
+    move-result-object v2
+
+    invoke-interface {v1, v2}, Ljava/util/stream/Stream;->collect(Ljava/util/stream/Collector;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/util/Map;
+
+    .line 249
+    new-instance v2, Lcom/android/launcher3/model/WidgetPredictionsRequester;
+
+    invoke-virtual {v0}, Lcom/android/launcher3/LauncherAppState;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    iget-object v3, p0, Lcom/android/launcher3/WidgetPickerActivity;->mUiSurface:Ljava/lang/String;
+
+    invoke-direct {v2, v0, v3, v1}, Lcom/android/launcher3/model/WidgetPredictionsRequester;-><init>(Landroid/content/Context;Ljava/lang/String;Ljava/util/Map;)V
+
+    iput-object v2, p0, Lcom/android/launcher3/WidgetPickerActivity;->mWidgetPredictionsRequester:Lcom/android/launcher3/model/WidgetPredictionsRequester;
+
+    .line 251
+    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mAddedWidgets:Ljava/util/List;
+
+    new-instance v1, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda8;
+
+    invoke-direct {v1, p0}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda8;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+
+    invoke-virtual {v2, v0, v1}, Lcom/android/launcher3/model/WidgetPredictionsRequester;->request(Ljava/util/List;Ljava/util/function/Consumer;)V
+
+    :cond_0
+    return-void
+.end method
+
+.method private parseIntentExtras()V
+    .locals 3
+
+    .line 134
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string v1, "desired_widget_width"
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetWidth:I
+
+    .line 136
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string v1, "desired_widget_height"
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDesiredWidgetHeight:I
+
+    .line 140
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string v1, "categoryFilter"
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mWidgetCategoryFilter:I
+
+    .line 142
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string/jumbo v1, "ui_surface"
+
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_0
+
+    .line 143
+    sget-object v1, Lcom/android/launcher3/WidgetPickerActivity;->UI_SURFACE_PATTERN:Ljava/util/regex/Pattern;
+
+    invoke-virtual {v1, v0}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/util/regex/Matcher;->matches()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 144
+    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mUiSurface:Ljava/lang/String;
+
+    .line 146
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string v1, "added_app_widgets"
+
+    const-class v2, Landroid/appwidget/AppWidgetProviderInfo;
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->getParcelableArrayListExtra(Ljava/lang/String;Ljava/lang/Class;)Ljava/util/ArrayList;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_1
+
+    .line 149
+    iput-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mAddedWidgets:Ljava/util/List;
+
+    :cond_1
+    return-void
+.end method
+
+.method private refreshAndBindWidgets()V
+    .locals 2
+
+    .line 228
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MODEL_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
+
+    new-instance v1, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda11;
+
+    invoke-direct {v1, p0}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda11;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/LooperExecutor;->execute(Ljava/lang/Runnable;)V
+
+    return-void
+.end method
+
+.method private static varargs rejectWidget(Lcom/android/launcher3/model/WidgetItem;Ljava/lang/String;[Ljava/lang/Object;)Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+    .locals 2
+
+    .line 348
+    new-instance v0, Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;
+
+    .line 350
+    iget-object v1, p0, Lcom/android/launcher3/model/WidgetItem;->widgetInfo:Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;
+
+    if-eqz v1, :cond_0
+
+    .line 351
+    iget-object p0, p0, Lcom/android/launcher3/model/WidgetItem;->widgetInfo:Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;
+
+    iget-object p0, p0, Lcom/android/launcher3/widget/LauncherAppWidgetProviderInfo;->provider:Landroid/content/ComponentName;
+
+    invoke-virtual {p0}, Landroid/content/ComponentName;->flattenToShortString()Ljava/lang/String;
+
+    move-result-object p0
+
+    goto :goto_0
+
+    .line 352
+    :cond_0
+    iget-object p0, p0, Lcom/android/launcher3/model/WidgetItem;->label:Ljava/lang/String;
+
+    :goto_0
+    sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+
+    .line 353
+    invoke-static {v1, p1, p2}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p1
+
+    const/4 p2, 0x0
+
+    const/4 v1, 0x0
+
+    invoke-direct {v0, v1, p0, p1, p2}, Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict;-><init>(ZLjava/lang/String;Ljava/lang/String;Lcom/android/launcher3/WidgetPickerActivity$WidgetAcceptabilityVerdict-IA;)V
+
     return-object v0
 .end method
 
-.method public getStringCache()Lz1/G4;
-    .locals 0
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->j:Lz1/G4;
+# virtual methods
+.method public getAllAppsItemLongClickListener()Landroid/view/View$OnLongClickListener;
+    .locals 1
 
-    .line 2
-    .line 3
-    return-object p0
+    .line 183
+    new-instance v0, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda1;
+
+    invoke-direct {v0, p0}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda1;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+
+    return-object v0
 .end method
 
-.method public getWidgetPickerDataProvider()Ln2/c;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->l:Ln2/c;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method public n0()Lcom/android/launcher3/dragndrop/SimpleDragLayer;
+.method public getDragLayer()Lcom/android/launcher3/dragndrop/SimpleDragLayer;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2497,278 +1169,180 @@
         }
     .end annotation
 
-    .line 1
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->g:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
+    .line 161
+    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDragLayer:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
 
-    .line 2
-    .line 3
+    return-object p0
+.end method
+
+.method public bridge synthetic getDragLayer()Lcom/android/launcher3/views/BaseDragLayer;
+    .locals 0
+
+    .line 61
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getDragLayer()Lcom/android/launcher3/dragndrop/SimpleDragLayer;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public getForeColor()I
+    .locals 0
+
+    const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public getItemOnClickListener()Landroid/view/View$OnClickListener;
+    .locals 1
+
+    .line 166
+    new-instance v0, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda3;
+
+    invoke-direct {v0, p0}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda3;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+
+    return-object v0
+.end method
+
+.method public getPopupDataProvider()Lcom/android/launcher3/popup/PopupDataProvider;
+    .locals 0
+
+    .line 156
+    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mPopupDataProvider:Lcom/android/launcher3/popup/PopupDataProvider;
+
     return-object p0
 .end method
 
 .method protected onCreate(Landroid/os/Bundle;)V
     .locals 2
 
-    .line 1
-    invoke-super {p0, p1}, Lcom/android/launcher3/v;->onCreate(Landroid/os/Bundle;)V
+    .line 105
+    invoke-super {p0, p1}, Lcom/android/launcher3/BaseActivity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0}, Landroid/app/Activity;->getWindow()Landroid/view/Window;
+    .line 107
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getWindow()Landroid/view/Window;
 
-    .line 5
-    .line 6
-    .line 7
     move-result-object p1
 
-    .line 8
     const/high16 v0, 0x80000
 
-    .line 9
-    .line 10
     invoke-virtual {p1, v0}, Landroid/view/Window;->addFlags(I)V
 
-    .line 11
-    .line 12
-    .line 13
-    invoke-virtual {p0}, Landroid/app/Activity;->getWindow()Landroid/view/Window;
+    .line 108
+    invoke-virtual {p0}, Lcom/android/launcher3/WidgetPickerActivity;->getWindow()Landroid/view/Window;
 
-    .line 14
-    .line 15
-    .line 16
     move-result-object p1
 
-    .line 17
     const/high16 v0, 0x100000
 
-    .line 18
-    .line 19
     invoke-virtual {p1, v0}, Landroid/view/Window;->clearFlags(I)V
 
-    .line 20
-    .line 21
-    .line 22
-    invoke-static {p0}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
+    .line 110
+    invoke-static {p0}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
 
-    .line 23
-    .line 24
-    .line 25
     move-result-object p1
 
-    .line 26
-    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->i:Lcom/android/launcher3/P2;
+    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mApp:Lcom/android/launcher3/LauncherAppState;
 
-    .line 27
-    .line 28
-    invoke-virtual {p1}, Lcom/android/launcher3/P2;->i()Lcom/android/launcher3/F1;
+    .line 111
+    invoke-virtual {p1}, Lcom/android/launcher3/LauncherAppState;->getInvariantDeviceProfile()Lcom/android/launcher3/InvariantDeviceProfile;
 
-    .line 29
-    .line 30
-    .line 31
     move-result-object p1
 
-    .line 32
-    invoke-virtual {p1, p0}, Lcom/android/launcher3/F1;->t0(Landroid/content/Context;)Lcom/android/launcher3/h0;
+    .line 112
+    invoke-virtual {p1, p0}, Lcom/android/launcher3/InvariantDeviceProfile;->getDeviceProfile(Landroid/content/Context;)Lcom/android/launcher3/DeviceProfile;
 
-    .line 33
-    .line 34
-    .line 35
     move-result-object p1
 
-    .line 36
-    iput-object p1, p0, Lcom/android/launcher3/v;->mDeviceProfile:Lcom/android/launcher3/h0;
+    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
-    .line 37
-    .line 38
-    new-instance p1, Lz1/u5;
+    .line 113
+    new-instance p1, Lcom/android/launcher3/model/WidgetsModel;
 
-    .line 39
-    .line 40
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->i:Lcom/android/launcher3/P2;
+    invoke-direct {p1}, Lcom/android/launcher3/model/WidgetsModel;-><init>()V
 
-    .line 41
-    .line 42
-    invoke-virtual {v0}, Lcom/android/launcher3/P2;->d()Landroid/content/Context;
+    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mModel:Lcom/android/launcher3/model/WidgetsModel;
 
-    .line 43
-    .line 44
-    .line 45
-    move-result-object v0
+    const p1, 0x7f0e022b
 
-    .line 46
-    invoke-direct {p1, v0}, Lz1/u5;-><init>(Landroid/content/Context;)V
+    .line 115
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->setContentView(I)V
 
-    .line 47
-    .line 48
-    .line 49
-    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->h:Lz1/u5;
+    const p1, 0x7f0b01f6
 
-    .line 50
-    .line 51
-    new-instance p1, Ln2/c;
+    .line 116
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/WidgetPickerActivity;->findViewById(I)Landroid/view/View;
 
-    .line 52
-    .line 53
-    invoke-direct {p1, p0}, Ln2/c;-><init>(Landroid/content/Context;)V
-
-    .line 54
-    .line 55
-    .line 56
-    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->l:Ln2/c;
-
-    .line 57
-    .line 58
-    const p1, 0x7f0e025f
-
-    .line 59
-    .line 60
-    .line 61
-    invoke-virtual {p0, p1}, Landroid/app/Activity;->setContentView(I)V
-
-    .line 62
-    .line 63
-    .line 64
-    const p1, 0x7f0b022d
-
-    .line 65
-    .line 66
-    .line 67
-    invoke-virtual {p0, p1}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
-
-    .line 68
-    .line 69
-    .line 70
     move-result-object p1
 
-    .line 71
     check-cast p1, Lcom/android/launcher3/dragndrop/SimpleDragLayer;
 
-    .line 72
-    .line 73
-    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->g:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
+    iput-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDragLayer:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
 
-    .line 74
-    .line 75
+    .line 117
     invoke-virtual {p1}, Lcom/android/launcher3/dragndrop/SimpleDragLayer;->recreateControllers()V
 
-    .line 76
-    .line 77
-    .line 78
-    iget-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->g:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
+    .line 119
+    iget-object p1, p0, Lcom/android/launcher3/WidgetPickerActivity;->mDragLayer:Lcom/android/launcher3/dragndrop/SimpleDragLayer;
 
-    .line 79
-    .line 80
-    invoke-virtual {p1}, Landroid/widget/FrameLayout;->getWindowInsetsController()Landroid/view/WindowInsetsController;
+    invoke-virtual {p1}, Lcom/android/launcher3/dragndrop/SimpleDragLayer;->getWindowInsetsController()Landroid/view/WindowInsetsController;
 
-    .line 81
-    .line 82
-    .line 83
     move-result-object p1
 
-    .line 84
+    .line 120
     invoke-static {}, Landroid/view/WindowInsets$Type;->navigationBars()I
 
-    .line 85
-    .line 86
-    .line 87
     move-result v0
 
-    .line 88
     invoke-static {}, Landroid/view/WindowInsets$Type;->statusBars()I
 
-    .line 89
-    .line 90
-    .line 91
     move-result v1
 
-    .line 92
     add-int/2addr v0, v1
 
-    .line 93
     invoke-interface {p1, v0}, Landroid/view/WindowInsetsController;->hide(I)V
 
-    .line 94
-    .line 95
-    .line 96
-    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->A0()V
+    const/4 p1, 0x1
 
-    .line 97
-    .line 98
-    .line 99
-    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->B0()V
+    .line 122
+    invoke-static {p0, p1}, Lcom/android/launcher3/widget/picker/WidgetsFullSheet;->show(Lcom/android/launcher3/BaseActivity;Z)Lcom/android/launcher3/widget/picker/WidgetsFullSheet;
 
-    .line 100
-    .line 101
-    .line 102
+    move-result-object v0
+
+    .line 123
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/widget/BaseWidgetSheet;->disableNavBarScrim(Z)V
+
+    .line 124
+    new-instance p1, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda2;
+
+    invoke-direct {p1, p0}, Lcom/android/launcher3/WidgetPickerActivity$$ExternalSyntheticLambda2;-><init>(Lcom/android/launcher3/WidgetPickerActivity;)V
+
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/widget/BaseWidgetSheet;->addOnCloseListener(Lcom/android/launcher3/views/AbstractSlideInView$OnCloseListener;)V
+
+    .line 126
+    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->parseIntentExtras()V
+
+    .line 127
+    invoke-direct {p0}, Lcom/android/launcher3/WidgetPickerActivity;->refreshAndBindWidgets()V
+
     return-void
 .end method
 
 .method protected onDestroy()V
-    .locals 1
+    .locals 0
 
-    .line 1
-    invoke-super {p0}, Lcom/android/launcher3/v;->onDestroy()V
+    .line 266
+    invoke-super {p0}, Lcom/android/launcher3/BaseActivity;->onDestroy()V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Lcom/android/launcher3/WidgetPickerActivity;->l:Ln2/c;
+    .line 267
+    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->mWidgetPredictionsRequester:Lcom/android/launcher3/model/WidgetPredictionsRequester;
 
-    .line 5
-    .line 6
-    invoke-virtual {v0}, Ln2/c;->c()V
-
-    .line 7
-    .line 8
-    .line 9
-    iget-object p0, p0, Lcom/android/launcher3/WidgetPickerActivity;->k:Lz1/e5;
-
-    .line 10
-    .line 11
     if-eqz p0, :cond_0
 
-    .line 12
-    .line 13
-    invoke-virtual {p0}, Lz1/e5;->g()V
+    .line 268
+    invoke-virtual {p0}, Lcom/android/launcher3/model/WidgetPredictionsRequester;->clear()V
 
-    .line 14
-    .line 15
-    .line 16
     :cond_0
-    return-void
-.end method
-
-.method protected registerBackDispatcher()V
-    .locals 3
-
-    .line 1
-    invoke-virtual {p0}, Landroid/app/Activity;->getOnBackInvokedDispatcher()Landroid/window/OnBackInvokedDispatcher;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    new-instance v1, Lcom/android/launcher3/WidgetPickerActivity$a;
-
-    .line 6
-    .line 7
-    const/4 v2, 0x0
-
-    .line 8
-    invoke-direct {v1, p0, v2}, Lcom/android/launcher3/WidgetPickerActivity$a;-><init>(Lcom/android/launcher3/WidgetPickerActivity;Lcom/android/launcher3/b6;)V
-
-    .line 9
-    .line 10
-    .line 11
-    const/4 p0, 0x0
-
-    .line 12
-    invoke-interface {v0, p0, v1}, Landroid/window/OnBackInvokedDispatcher;->registerOnBackInvokedCallback(ILandroid/window/OnBackInvokedCallback;)V
-
-    .line 13
-    .line 14
-    .line 15
     return-void
 .end method

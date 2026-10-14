@@ -55,7 +55,6 @@
     <integer name="config_icon_size">52</integer>
     <integer name="config_icon_text_size">12</integer>
     <integer name="config_icon_text_size_ease">12</integer>
-    <integer name="config_icon_text_size_ease_big_font">18</integer>
     <integer name="config_icon_text_size_single_line">12</integer>
     <integer name="config_icon_text_size_two_line">12</integer>
     <integer name="config_itemMoveAwayShakeTime">500</integer>
@@ -84,7 +83,6 @@
     <integer name="config_old_top_bar_view_transition_time">300</integer>
     <integer name="config_pageIndicatorFromIconArrange">2</integer>
     <integer name="config_pageSnapAnimationDuration">750</integer>
-    <integer name="config_pageSnapAnimationDuration_nebula_os2">400</integer>
     <integer name="config_pageSnapAnimationDuration_quick">200</integer>
     <integer name="config_popupArrowOpenCloseDuration">30</integer>
     <integer name="config_popupOpenCloseDuration">100</integer>
@@ -146,7 +144,6 @@
     <integer name="icon_arrange_topbar_margin_scaled_celllayout_land">22</integer>
     <integer name="icon_arrange_topbar_margin_status_bar">0</integer>
     <integer name="icon_arrange_topbar_margin_status_bar_land">0</integer>
-    <integer name="m3_badge_max_number">999</integer>
     <integer name="m3_btn_anim_delay_ms">100</integer>
     <integer name="m3_btn_anim_duration_ms">100</integer>
     <integer name="m3_card_anim_delay_ms">75</integer>
@@ -208,10 +205,10 @@
     <integer name="mtrl_card_anim_delay_ms">75</integer>
     <integer name="mtrl_card_anim_duration_ms">120</integer>
     <integer name="mtrl_chip_anim_duration">100</integer>
-    <integer name="mtrl_switch_thumb_motion_duration">@integer/m3_sys_motion_duration_medium1</integer>
-    <integer name="mtrl_switch_thumb_post_morphing_duration">@integer/m3_sys_motion_duration_short3</integer>
-    <integer name="mtrl_switch_thumb_pre_morphing_duration">@integer/m3_sys_motion_duration_short2</integer>
-    <integer name="mtrl_switch_thumb_pressed_duration">@integer/m3_sys_motion_duration_short2</integer>
+    <integer name="mtrl_switch_thumb_motion_duration">@integer/m3_sys_motion_duration_medium4</integer>
+    <integer name="mtrl_switch_thumb_post_morphing_duration">@integer/m3_sys_motion_duration_medium1</integer>
+    <integer name="mtrl_switch_thumb_pre_morphing_duration">@integer/m3_sys_motion_duration_short3</integer>
+    <integer name="mtrl_switch_thumb_pressed_duration">@integer/m3_sys_motion_duration_short3</integer>
     <integer name="mtrl_switch_thumb_viewport_center_coordinate">16</integer>
     <integer name="mtrl_switch_thumb_viewport_size">32</integer>
     <integer name="mtrl_switch_track_viewport_height">32</integer>
@@ -230,7 +227,7 @@
     <integer name="recentsIconCacheSize">12</integer>
     <integer name="recentsIconCacheSize_low">1</integer>
     <integer name="recentsScrollHapticMinGapMillis">20</integer>
-    <integer name="recentsTaskViewPoolSize_low">3</integer>
+    <integer name="recentsTaskViewPoolSize_low">0</integer>
     <integer name="recentsThumbnailCacheSize">3</integer>
     <integer name="recentsThumbnailCacheSize_low">1</integer>
     <integer name="show_password_duration">200</integer>
@@ -255,7 +252,4 @@
     <integer name="widget_cell_title_font_weight">500</integer>
     <integer name="widget_picker_header_app_subtitle_font_weight">400</integer>
     <integer name="widget_picker_header_app_title_font_weight">500</integer>
-    <integer name="widget_picker_header_selected_app_subtitle_font_weight">600</integer>
-    <integer name="widget_picker_header_selected_app_title_font_weight">600</integer>
-    <integer name="widget_predictions_min_count">6</integer>
 </resources>

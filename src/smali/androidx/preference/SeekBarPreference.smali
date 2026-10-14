@@ -6,43 +6,58 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroidx/preference/SeekBarPreference$c;
+        Landroidx/preference/SeekBarPreference$SavedState;
     }
 .end annotation
 
 
+# static fields
+.field private static final TAG:Ljava/lang/String; = "SeekBarPreference"
+
+
 # instance fields
-.field W:I
+.field mAdjustable:Z
 
-.field X:I
+.field private mMax:I
 
-.field private Y:I
+.field mMin:I
 
-.field private Z:I
+.field mSeekBar:Landroid/widget/SeekBar;
 
-.field a0:Z
+.field private mSeekBarChangeListener:Landroid/widget/SeekBar$OnSeekBarChangeListener;
 
-.field b0:Landroid/widget/SeekBar;
+.field private mSeekBarIncrement:I
 
-.field private c0:Landroid/widget/TextView;
+.field private mSeekBarKeyListener:Landroid/view/View$OnKeyListener;
 
-.field d0:Z
+.field mSeekBarValue:I
 
-.field private e0:Z
+.field private mSeekBarValueTextView:Landroid/widget/TextView;
 
-.field f0:Z
+.field private mShowSeekBarValue:Z
 
-.field private final g0:Landroid/widget/SeekBar$OnSeekBarChangeListener;
+.field mTrackingTouch:Z
 
-.field private final h0:Landroid/view/View$OnKeyListener;
+.field mUpdatesContinuously:Z
 
 
 # direct methods
+.method public constructor <init>(Landroid/content/Context;)V
+    .locals 1
+
+    const/4 v0, 0x0
+
+    .line 160
+    invoke-direct {p0, p1, v0}, Landroidx/preference/SeekBarPreference;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+
+    return-void
+.end method
+
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 1
 
-    .line 13
-    sget v0, Landroidx/preference/i;->k:I
+    .line 156
+    sget v0, Landroidx/preference/R$attr;->seekBarPreferenceStyle:I
 
     invoke-direct {p0, p1, p2, v0}, Landroidx/preference/SeekBarPreference;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
@@ -54,7 +69,7 @@
 
     const/4 v0, 0x0
 
-    .line 12
+    .line 152
     invoke-direct {p0, p1, p2, p3, v0}, Landroidx/preference/SeekBarPreference;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
 
     return-void
@@ -63,32 +78,32 @@
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
     .locals 1
 
-    .line 1
+    .line 133
     invoke-direct {p0, p1, p2, p3, p4}, Landroidx/preference/Preference;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
 
-    .line 2
-    new-instance v0, Landroidx/preference/SeekBarPreference$a;
+    .line 74
+    new-instance v0, Landroidx/preference/SeekBarPreference$1;
 
-    invoke-direct {v0, p0}, Landroidx/preference/SeekBarPreference$a;-><init>(Landroidx/preference/SeekBarPreference;)V
+    invoke-direct {v0, p0}, Landroidx/preference/SeekBarPreference$1;-><init>(Landroidx/preference/SeekBarPreference;)V
 
-    iput-object v0, p0, Landroidx/preference/SeekBarPreference;->g0:Landroid/widget/SeekBar$OnSeekBarChangeListener;
+    iput-object v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarChangeListener:Landroid/widget/SeekBar$OnSeekBarChangeListener;
 
-    .line 3
-    new-instance v0, Landroidx/preference/SeekBarPreference$b;
+    .line 104
+    new-instance v0, Landroidx/preference/SeekBarPreference$2;
 
-    invoke-direct {v0, p0}, Landroidx/preference/SeekBarPreference$b;-><init>(Landroidx/preference/SeekBarPreference;)V
+    invoke-direct {v0, p0}, Landroidx/preference/SeekBarPreference$2;-><init>(Landroidx/preference/SeekBarPreference;)V
 
-    iput-object v0, p0, Landroidx/preference/SeekBarPreference;->h0:Landroid/view/View$OnKeyListener;
+    iput-object v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarKeyListener:Landroid/view/View$OnKeyListener;
 
-    .line 4
-    sget-object v0, Landroidx/preference/q;->L0:[I
+    .line 135
+    sget-object v0, Landroidx/preference/R$styleable;->SeekBarPreference:[I
 
     invoke-virtual {p1, p2, v0, p3, p4}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
     move-result-object p1
 
-    .line 5
-    sget p2, Landroidx/preference/q;->O0:I
+    .line 141
+    sget p2, Landroidx/preference/R$styleable;->SeekBarPreference_min:I
 
     const/4 p3, 0x0
 
@@ -96,10 +111,10 @@
 
     move-result p2
 
-    iput p2, p0, Landroidx/preference/SeekBarPreference;->X:I
+    iput p2, p0, Landroidx/preference/SeekBarPreference;->mMin:I
 
-    .line 6
-    sget p2, Landroidx/preference/q;->M0:I
+    .line 142
+    sget p2, Landroidx/preference/R$styleable;->SeekBarPreference_android_max:I
 
     const/16 p4, 0x64
 
@@ -107,19 +122,19 @@
 
     move-result p2
 
-    invoke-virtual {p0, p2}, Landroidx/preference/SeekBarPreference;->U0(I)V
+    invoke-virtual {p0, p2}, Landroidx/preference/SeekBarPreference;->setMax(I)V
 
-    .line 7
-    sget p2, Landroidx/preference/q;->P0:I
+    .line 143
+    sget p2, Landroidx/preference/R$styleable;->SeekBarPreference_seekBarIncrement:I
 
     invoke-virtual {p1, p2, p3}, Landroid/content/res/TypedArray;->getInt(II)I
 
     move-result p2
 
-    invoke-virtual {p0, p2}, Landroidx/preference/SeekBarPreference;->V0(I)V
+    invoke-virtual {p0, p2}, Landroidx/preference/SeekBarPreference;->setSeekBarIncrement(I)V
 
-    .line 8
-    sget p2, Landroidx/preference/q;->N0:I
+    .line 144
+    sget p2, Landroidx/preference/R$styleable;->SeekBarPreference_adjustable:I
 
     const/4 p4, 0x1
 
@@ -127,787 +142,615 @@
 
     move-result p2
 
-    iput-boolean p2, p0, Landroidx/preference/SeekBarPreference;->d0:Z
+    iput-boolean p2, p0, Landroidx/preference/SeekBarPreference;->mAdjustable:Z
 
-    .line 9
-    sget p2, Landroidx/preference/q;->Q0:I
-
-    invoke-virtual {p1, p2, p3}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
-
-    move-result p2
-
-    iput-boolean p2, p0, Landroidx/preference/SeekBarPreference;->e0:Z
-
-    .line 10
-    sget p2, Landroidx/preference/q;->R0:I
+    .line 145
+    sget p2, Landroidx/preference/R$styleable;->SeekBarPreference_showSeekBarValue:I
 
     invoke-virtual {p1, p2, p3}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
 
     move-result p2
 
-    iput-boolean p2, p0, Landroidx/preference/SeekBarPreference;->f0:Z
+    iput-boolean p2, p0, Landroidx/preference/SeekBarPreference;->mShowSeekBarValue:Z
 
-    .line 11
+    .line 146
+    sget p2, Landroidx/preference/R$styleable;->SeekBarPreference_updatesContinuously:I
+
+    invoke-virtual {p1, p2, p3}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
+
+    move-result p2
+
+    iput-boolean p2, p0, Landroidx/preference/SeekBarPreference;->mUpdatesContinuously:Z
+
+    .line 148
     invoke-virtual {p1}, Landroid/content/res/TypedArray;->recycle()V
 
     return-void
 .end method
 
-.method private X0(IZ)V
+.method private setValueInternal(IZ)V
     .locals 1
 
-    .line 1
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->X:I
+    .line 348
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
 
-    .line 2
-    .line 3
     if-ge p1, v0, :cond_0
 
-    .line 4
-    .line 5
     move p1, v0
 
-    .line 6
+    .line 351
     :cond_0
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->Y:I
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
 
-    .line 7
-    .line 8
     if-le p1, v0, :cond_1
 
-    .line 9
-    .line 10
     move p1, v0
 
-    .line 11
+    .line 355
     :cond_1
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->W:I
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
 
-    .line 12
-    .line 13
     if-eq p1, v0, :cond_2
 
-    .line 14
-    .line 15
-    iput p1, p0, Landroidx/preference/SeekBarPreference;->W:I
+    .line 356
+    iput p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
 
-    .line 16
-    .line 17
-    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->Z0(I)V
+    .line 357
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->updateLabelValue(I)V
 
-    .line 18
-    .line 19
-    .line 20
-    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->l0(I)Z
+    .line 358
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->persistInt(I)Z
 
-    .line 21
-    .line 22
-    .line 23
     if-eqz p2, :cond_2
 
-    .line 24
-    .line 25
-    invoke-virtual {p0}, Landroidx/preference/Preference;->Q()V
+    .line 360
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->notifyChanged()V
 
-    .line 26
-    .line 27
-    .line 28
     :cond_2
     return-void
 .end method
 
 
 # virtual methods
-.method public final U0(I)V
-    .locals 1
+.method public getMax()I
+    .locals 0
 
-    .line 1
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->X:I
+    .line 265
+    iget p0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
 
-    .line 2
-    .line 3
-    if-ge p1, v0, :cond_0
-
-    .line 4
-    .line 5
-    move p1, v0
-
-    .line 6
-    :cond_0
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->Y:I
-
-    .line 7
-    .line 8
-    if-eq p1, v0, :cond_1
-
-    .line 9
-    .line 10
-    iput p1, p0, Landroidx/preference/SeekBarPreference;->Y:I
-
-    .line 11
-    .line 12
-    invoke-virtual {p0}, Landroidx/preference/Preference;->Q()V
-
-    .line 13
-    .line 14
-    .line 15
-    :cond_1
-    return-void
+    return p0
 .end method
 
-.method public final V0(I)V
-    .locals 2
+.method public getMin()I
+    .locals 0
 
-    .line 1
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->Z:I
+    .line 216
+    iget p0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
 
-    .line 2
-    .line 3
-    if-eq p1, v0, :cond_0
-
-    .line 4
-    .line 5
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->Y:I
-
-    .line 6
-    .line 7
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->X:I
-
-    .line 8
-    .line 9
-    sub-int/2addr v0, v1
-
-    .line 10
-    invoke-static {p1}, Ljava/lang/Math;->abs(I)I
-
-    .line 11
-    .line 12
-    .line 13
-    move-result p1
-
-    .line 14
-    invoke-static {v0, p1}, Ljava/lang/Math;->min(II)I
-
-    .line 15
-    .line 16
-    .line 17
-    move-result p1
-
-    .line 18
-    iput p1, p0, Landroidx/preference/SeekBarPreference;->Z:I
-
-    .line 19
-    .line 20
-    invoke-virtual {p0}, Landroidx/preference/Preference;->Q()V
-
-    .line 21
-    .line 22
-    .line 23
-    :cond_0
-    return-void
+    return p0
 .end method
 
-.method public W(Landroidx/preference/h;)V
+.method public final getSeekBarIncrement()I
+    .locals 0
+
+    .line 243
+    iget p0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarIncrement:I
+
+    return p0
+.end method
+
+.method public getShowSeekBarValue()Z
+    .locals 0
+
+    .line 333
+    iget-boolean p0, p0, Landroidx/preference/SeekBarPreference;->mShowSeekBarValue:Z
+
+    return p0
+.end method
+
+.method public getUpdatesContinuously()Z
+    .locals 0
+
+    .line 311
+    iget-boolean p0, p0, Landroidx/preference/SeekBarPreference;->mUpdatesContinuously:Z
+
+    return p0
+.end method
+
+.method public getValue()I
+    .locals 0
+
+    .line 371
+    iget p0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
+
+    return p0
+.end method
+
+.method public isAdjustable()Z
+    .locals 0
+
+    .line 289
+    iget-boolean p0, p0, Landroidx/preference/SeekBarPreference;->mAdjustable:Z
+
+    return p0
+.end method
+
+.method public onBindViewHolder(Landroidx/preference/PreferenceViewHolder;)V
     .locals 2
 
-    .line 1
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->W(Landroidx/preference/h;)V
+    .line 165
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->onBindViewHolder(Landroidx/preference/PreferenceViewHolder;)V
 
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p1, Landroidx/recyclerview/widget/RecyclerView$ViewHolder;->itemView:Landroid/view/View;
+    .line 166
+    iget-object v0, p1, Landroidx/preference/PreferenceViewHolder;->itemView:Landroid/view/View;
 
-    .line 5
-    .line 6
-    iget-object v1, p0, Landroidx/preference/SeekBarPreference;->h0:Landroid/view/View$OnKeyListener;
+    iget-object v1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarKeyListener:Landroid/view/View$OnKeyListener;
 
-    .line 7
-    .line 8
     invoke-virtual {v0, v1}, Landroid/view/View;->setOnKeyListener(Landroid/view/View$OnKeyListener;)V
 
-    .line 9
-    .line 10
-    .line 11
-    sget v0, Landroidx/preference/l;->f:I
+    .line 167
+    sget v0, Landroidx/preference/R$id;->seekbar:I
 
-    .line 12
-    .line 13
-    invoke-virtual {p1, v0}, Landroidx/preference/h;->a(I)Landroid/view/View;
+    invoke-virtual {p1, v0}, Landroidx/preference/PreferenceViewHolder;->findViewById(I)Landroid/view/View;
 
-    .line 14
-    .line 15
-    .line 16
     move-result-object v0
 
-    .line 17
     check-cast v0, Landroid/widget/SeekBar;
 
-    .line 18
-    .line 19
-    iput-object v0, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    iput-object v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 20
-    .line 21
-    sget v0, Landroidx/preference/l;->seekbar_value:I
+    .line 168
+    sget v0, Landroidx/preference/R$id;->seekbar_value:I
 
-    .line 22
-    .line 23
-    invoke-virtual {p1, v0}, Landroidx/preference/h;->a(I)Landroid/view/View;
+    invoke-virtual {p1, v0}, Landroidx/preference/PreferenceViewHolder;->findViewById(I)Landroid/view/View;
 
-    .line 24
-    .line 25
-    .line 26
     move-result-object p1
 
-    .line 27
     check-cast p1, Landroid/widget/TextView;
 
-    .line 28
-    .line 29
-    iput-object p1, p0, Landroidx/preference/SeekBarPreference;->c0:Landroid/widget/TextView;
+    iput-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValueTextView:Landroid/widget/TextView;
 
-    .line 30
-    .line 31
-    iget-boolean v0, p0, Landroidx/preference/SeekBarPreference;->e0:Z
+    .line 169
+    iget-boolean v0, p0, Landroidx/preference/SeekBarPreference;->mShowSeekBarValue:Z
 
-    .line 32
-    .line 33
     if-eqz v0, :cond_0
 
-    .line 34
-    .line 35
     const/4 v0, 0x0
 
-    .line 36
+    .line 170
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 37
-    .line 38
-    .line 39
     goto :goto_0
 
-    .line 40
     :cond_0
     const/16 v0, 0x8
 
-    .line 41
-    .line 42
+    .line 172
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 43
-    .line 44
-    .line 45
     const/4 p1, 0x0
 
-    .line 46
-    iput-object p1, p0, Landroidx/preference/SeekBarPreference;->c0:Landroid/widget/TextView;
+    .line 173
+    iput-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValueTextView:Landroid/widget/TextView;
 
-    .line 47
-    .line 48
+    .line 176
     :goto_0
-    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 49
-    .line 50
     if-nez p1, :cond_1
 
-    .line 51
-    .line 52
+    .line 177
     const-string p0, "SeekBarPreference"
 
-    .line 53
-    .line 54
     const-string p1, "SeekBar view is null in onBindViewHolder."
 
-    .line 55
-    .line 56
     invoke-static {p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 57
-    .line 58
-    .line 59
     return-void
 
-    .line 60
+    .line 180
     :cond_1
-    iget-object v0, p0, Landroidx/preference/SeekBarPreference;->g0:Landroid/widget/SeekBar$OnSeekBarChangeListener;
+    iget-object v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarChangeListener:Landroid/widget/SeekBar$OnSeekBarChangeListener;
 
-    .line 61
-    .line 62
     invoke-virtual {p1, v0}, Landroid/widget/SeekBar;->setOnSeekBarChangeListener(Landroid/widget/SeekBar$OnSeekBarChangeListener;)V
 
-    .line 63
-    .line 64
-    .line 65
-    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    .line 181
+    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 66
-    .line 67
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->Y:I
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
 
-    .line 68
-    .line 69
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->X:I
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->mMin:I
 
-    .line 70
-    .line 71
     sub-int/2addr v0, v1
 
-    .line 72
     invoke-virtual {p1, v0}, Landroid/widget/SeekBar;->setMax(I)V
 
-    .line 73
-    .line 74
-    .line 75
-    iget p1, p0, Landroidx/preference/SeekBarPreference;->Z:I
+    .line 186
+    iget p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarIncrement:I
 
-    .line 76
-    .line 77
     if-eqz p1, :cond_2
 
-    .line 78
-    .line 79
-    iget-object v0, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    .line 187
+    iget-object v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 80
-    .line 81
     invoke-virtual {v0, p1}, Landroid/widget/SeekBar;->setKeyProgressIncrement(I)V
 
-    .line 82
-    .line 83
-    .line 84
     goto :goto_1
 
-    .line 85
+    .line 189
     :cond_2
-    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 86
-    .line 87
     invoke-virtual {p1}, Landroid/widget/SeekBar;->getKeyProgressIncrement()I
 
-    .line 88
-    .line 89
-    .line 90
     move-result p1
 
-    .line 91
-    iput p1, p0, Landroidx/preference/SeekBarPreference;->Z:I
+    iput p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarIncrement:I
 
-    .line 92
-    .line 93
+    .line 192
     :goto_1
-    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 94
-    .line 95
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->W:I
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
 
-    .line 96
-    .line 97
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->X:I
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->mMin:I
 
-    .line 98
-    .line 99
     sub-int/2addr v0, v1
 
-    .line 100
     invoke-virtual {p1, v0}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 101
-    .line 102
-    .line 103
-    iget p1, p0, Landroidx/preference/SeekBarPreference;->W:I
+    .line 193
+    iget p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
 
-    .line 104
-    .line 105
-    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->Z0(I)V
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->updateLabelValue(I)V
 
-    .line 106
-    .line 107
-    .line 108
-    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    .line 194
+    iget-object p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBar:Landroid/widget/SeekBar;
 
-    .line 109
-    .line 110
-    invoke-virtual {p0}, Landroidx/preference/Preference;->M()Z
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->isEnabled()Z
 
-    .line 111
-    .line 112
-    .line 113
     move-result p0
 
-    .line 114
     invoke-virtual {p1, p0}, Landroid/widget/SeekBar;->setEnabled(Z)V
 
-    .line 115
-    .line 116
-    .line 117
     return-void
 .end method
 
-.method public W0(I)V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    invoke-direct {p0, p1, v0}, Landroidx/preference/SeekBarPreference;->X0(IZ)V
-
-    .line 3
-    .line 4
-    .line 5
-    return-void
-.end method
-
-.method Y0(Landroid/widget/SeekBar;)V
-    .locals 2
-
-    .line 1
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->X:I
-
-    .line 2
-    .line 3
-    invoke-virtual {p1}, Landroid/widget/SeekBar;->getProgress()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v1
-
-    .line 7
-    add-int/2addr v0, v1
-
-    .line 8
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->W:I
-
-    .line 9
-    .line 10
-    if-eq v0, v1, :cond_1
-
-    .line 11
-    .line 12
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 13
-    .line 14
-    .line 15
-    move-result-object v1
-
-    .line 16
-    invoke-virtual {p0, v1}, Landroidx/preference/Preference;->c(Ljava/lang/Object;)Z
-
-    .line 17
-    .line 18
-    .line 19
-    move-result v1
-
-    .line 20
-    if-eqz v1, :cond_0
-
-    .line 21
-    .line 22
-    const/4 p1, 0x0
-
-    .line 23
-    invoke-direct {p0, v0, p1}, Landroidx/preference/SeekBarPreference;->X0(IZ)V
-
-    .line 24
-    .line 25
-    .line 26
-    return-void
-
-    .line 27
-    :cond_0
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->W:I
-
-    .line 28
-    .line 29
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->X:I
-
-    .line 30
-    .line 31
-    sub-int/2addr v0, v1
-
-    .line 32
-    invoke-virtual {p1, v0}, Landroid/widget/SeekBar;->setProgress(I)V
-
-    .line 33
-    .line 34
-    .line 35
-    iget p1, p0, Landroidx/preference/SeekBarPreference;->W:I
-
-    .line 36
-    .line 37
-    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->Z0(I)V
-
-    .line 38
-    .line 39
-    .line 40
-    :cond_1
-    return-void
-.end method
-
-.method Z0(I)V
+.method protected onGetDefaultValue(Landroid/content/res/TypedArray;I)Ljava/lang/Object;
     .locals 0
 
-    .line 1
-    iget-object p0, p0, Landroidx/preference/SeekBarPreference;->c0:Landroid/widget/TextView;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-static {p1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p1
-
-    .line 9
-    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 10
-    .line 11
-    .line 12
-    :cond_0
-    return-void
-.end method
-
-.method protected a0(Landroid/content/res/TypedArray;I)Ljava/lang/Object;
-    .locals 0
-
-    .line 1
     const/4 p0, 0x0
 
-    .line 2
+    .line 207
     invoke-virtual {p1, p2, p0}, Landroid/content/res/TypedArray;->getInt(II)I
 
-    .line 3
-    .line 4
-    .line 5
     move-result p0
 
-    .line 6
     invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 7
-    .line 8
-    .line 9
     move-result-object p0
 
-    .line 10
     return-object p0
 .end method
 
-.method protected e0(Landroid/os/Parcelable;)V
+.method protected onRestoreInstanceState(Landroid/os/Parcelable;)V
     .locals 2
 
-    .line 1
-    if-eqz p1, :cond_1
-
-    .line 2
-    .line 3
+    .line 430
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v0
 
-    .line 7
-    const-class v1, Landroidx/preference/SeekBarPreference$c;
+    const-class v1, Landroidx/preference/SeekBarPreference$SavedState;
 
-    .line 8
-    .line 9
     invoke-virtual {v0, v1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
-    .line 10
-    .line 11
-    .line 12
     move-result v0
 
-    .line 13
     if-nez v0, :cond_0
 
-    .line 14
-    .line 15
-    goto :goto_0
+    .line 432
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->onRestoreInstanceState(Landroid/os/Parcelable;)V
 
-    .line 16
-    :cond_0
-    check-cast p1, Landroidx/preference/SeekBarPreference$c;
-
-    .line 17
-    .line 18
-    invoke-virtual {p1}, Landroid/view/AbsSavedState;->getSuperState()Landroid/os/Parcelable;
-
-    .line 19
-    .line 20
-    .line 21
-    move-result-object v0
-
-    .line 22
-    invoke-super {p0, v0}, Landroidx/preference/Preference;->e0(Landroid/os/Parcelable;)V
-
-    .line 23
-    .line 24
-    .line 25
-    iget v0, p1, Landroidx/preference/SeekBarPreference$c;->g:I
-
-    .line 26
-    .line 27
-    iput v0, p0, Landroidx/preference/SeekBarPreference;->W:I
-
-    .line 28
-    .line 29
-    iget v0, p1, Landroidx/preference/SeekBarPreference$c;->h:I
-
-    .line 30
-    .line 31
-    iput v0, p0, Landroidx/preference/SeekBarPreference;->X:I
-
-    .line 32
-    .line 33
-    iget p1, p1, Landroidx/preference/SeekBarPreference$c;->i:I
-
-    .line 34
-    .line 35
-    iput p1, p0, Landroidx/preference/SeekBarPreference;->Y:I
-
-    .line 36
-    .line 37
-    invoke-virtual {p0}, Landroidx/preference/Preference;->Q()V
-
-    .line 38
-    .line 39
-    .line 40
     return-void
 
-    .line 41
-    :cond_1
-    :goto_0
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->e0(Landroid/os/Parcelable;)V
+    .line 437
+    :cond_0
+    check-cast p1, Landroidx/preference/SeekBarPreference$SavedState;
 
-    .line 42
-    .line 43
-    .line 44
+    .line 438
+    invoke-virtual {p1}, Landroidx/preference/SeekBarPreference$SavedState;->getSuperState()Landroid/os/Parcelable;
+
+    move-result-object v0
+
+    invoke-super {p0, v0}, Landroidx/preference/Preference;->onRestoreInstanceState(Landroid/os/Parcelable;)V
+
+    .line 439
+    iget v0, p1, Landroidx/preference/SeekBarPreference$SavedState;->mSeekBarValue:I
+
+    iput v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
+
+    .line 440
+    iget v0, p1, Landroidx/preference/SeekBarPreference$SavedState;->mMin:I
+
+    iput v0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    .line 441
+    iget p1, p1, Landroidx/preference/SeekBarPreference$SavedState;->mMax:I
+
+    iput p1, p0, Landroidx/preference/SeekBarPreference;->mMax:I
+
+    .line 442
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->notifyChanged()V
+
     return-void
 .end method
 
-.method protected f0()Landroid/os/Parcelable;
+.method protected onSaveInstanceState()Landroid/os/Parcelable;
     .locals 2
 
-    .line 1
-    invoke-super {p0}, Landroidx/preference/Preference;->f0()Landroid/os/Parcelable;
+    .line 414
+    invoke-super {p0}, Landroidx/preference/Preference;->onSaveInstanceState()Landroid/os/Parcelable;
 
-    .line 2
-    .line 3
-    .line 4
     move-result-object v0
 
-    .line 5
-    invoke-virtual {p0}, Landroidx/preference/Preference;->N()Z
+    .line 415
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->isPersistent()Z
 
-    .line 6
-    .line 7
-    .line 8
     move-result v1
 
-    .line 9
     if-eqz v1, :cond_0
 
-    .line 10
-    .line 11
     return-object v0
 
-    .line 12
+    .line 421
     :cond_0
-    new-instance v1, Landroidx/preference/SeekBarPreference$c;
+    new-instance v1, Landroidx/preference/SeekBarPreference$SavedState;
 
-    .line 13
-    .line 14
-    invoke-direct {v1, v0}, Landroidx/preference/SeekBarPreference$c;-><init>(Landroid/os/Parcelable;)V
+    invoke-direct {v1, v0}, Landroidx/preference/SeekBarPreference$SavedState;-><init>(Landroid/os/Parcelable;)V
 
-    .line 15
-    .line 16
-    .line 17
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->W:I
+    .line 422
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
 
-    .line 18
-    .line 19
-    iput v0, v1, Landroidx/preference/SeekBarPreference$c;->g:I
+    iput v0, v1, Landroidx/preference/SeekBarPreference$SavedState;->mSeekBarValue:I
 
-    .line 20
-    .line 21
-    iget v0, p0, Landroidx/preference/SeekBarPreference;->X:I
+    .line 423
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
 
-    .line 22
-    .line 23
-    iput v0, v1, Landroidx/preference/SeekBarPreference$c;->h:I
+    iput v0, v1, Landroidx/preference/SeekBarPreference$SavedState;->mMin:I
 
-    .line 24
-    .line 25
-    iget p0, p0, Landroidx/preference/SeekBarPreference;->Y:I
+    .line 424
+    iget p0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
 
-    .line 26
-    .line 27
-    iput p0, v1, Landroidx/preference/SeekBarPreference$c;->i:I
+    iput p0, v1, Landroidx/preference/SeekBarPreference$SavedState;->mMax:I
 
-    .line 28
-    .line 29
     return-object v1
 .end method
 
-.method protected g0(Ljava/lang/Object;)V
+.method protected onSetInitialValue(Ljava/lang/Object;)V
     .locals 0
 
-    .line 1
     if-nez p1, :cond_0
 
-    .line 2
-    .line 3
     const/4 p1, 0x0
 
-    .line 4
+    .line 200
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 5
-    .line 6
-    .line 7
     move-result-object p1
 
-    .line 8
+    .line 202
     :cond_0
     check-cast p1, Ljava/lang/Integer;
 
-    .line 9
-    .line 10
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
-    .line 11
-    .line 12
-    .line 13
     move-result p1
 
-    .line 14
-    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->A(I)I
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->getPersistedInt(I)I
 
-    .line 15
-    .line 16
-    .line 17
     move-result p1
 
-    .line 18
-    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->W0(I)V
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->setValue(I)V
 
-    .line 19
-    .line 20
-    .line 21
+    return-void
+.end method
+
+.method public setAdjustable(Z)V
+    .locals 0
+
+    .line 298
+    iput-boolean p1, p0, Landroidx/preference/SeekBarPreference;->mAdjustable:Z
+
+    return-void
+.end method
+
+.method public final setMax(I)V
+    .locals 1
+
+    .line 274
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    if-ge p1, v0, :cond_0
+
+    move p1, v0
+
+    .line 277
+    :cond_0
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
+
+    if-eq p1, v0, :cond_1
+
+    .line 278
+    iput p1, p0, Landroidx/preference/SeekBarPreference;->mMax:I
+
+    .line 279
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->notifyChanged()V
+
+    :cond_1
+    return-void
+.end method
+
+.method public setMin(I)V
+    .locals 1
+
+    .line 225
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
+
+    if-le p1, v0, :cond_0
+
+    move p1, v0
+
+    .line 228
+    :cond_0
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    if-eq p1, v0, :cond_1
+
+    .line 229
+    iput p1, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    .line 230
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->notifyChanged()V
+
+    :cond_1
+    return-void
+.end method
+
+.method public final setSeekBarIncrement(I)V
+    .locals 2
+
+    .line 253
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarIncrement:I
+
+    if-eq p1, v0, :cond_0
+
+    .line 254
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMax:I
+
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    sub-int/2addr v0, v1
+
+    invoke-static {p1}, Ljava/lang/Math;->abs(I)I
+
+    move-result p1
+
+    invoke-static {v0, p1}, Ljava/lang/Math;->min(II)I
+
+    move-result p1
+
+    iput p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarIncrement:I
+
+    .line 255
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->notifyChanged()V
+
+    :cond_0
+    return-void
+.end method
+
+.method public setShowSeekBarValue(Z)V
+    .locals 0
+
+    .line 343
+    iput-boolean p1, p0, Landroidx/preference/SeekBarPreference;->mShowSeekBarValue:Z
+
+    .line 344
+    invoke-virtual {p0}, Landroidx/preference/SeekBarPreference;->notifyChanged()V
+
+    return-void
+.end method
+
+.method public setUpdatesContinuously(Z)V
+    .locals 0
+
+    .line 323
+    iput-boolean p1, p0, Landroidx/preference/SeekBarPreference;->mUpdatesContinuously:Z
+
+    return-void
+.end method
+
+.method public setValue(I)V
+    .locals 1
+
+    const/4 v0, 0x1
+
+    .line 380
+    invoke-direct {p0, p1, v0}, Landroidx/preference/SeekBarPreference;->setValueInternal(IZ)V
+
+    return-void
+.end method
+
+.method syncValueInternal(Landroid/widget/SeekBar;)V
+    .locals 2
+
+    .line 389
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    invoke-virtual {p1}, Landroid/widget/SeekBar;->getProgress()I
+
+    move-result v1
+
+    add-int/2addr v0, v1
+
+    .line 390
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
+
+    if-eq v0, v1, :cond_1
+
+    .line 391
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    invoke-virtual {p0, v1}, Landroidx/preference/SeekBarPreference;->callChangeListener(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const/4 p1, 0x0
+
+    .line 392
+    invoke-direct {p0, v0, p1}, Landroidx/preference/SeekBarPreference;->setValueInternal(IZ)V
+
+    goto :goto_0
+
+    .line 394
+    :cond_0
+    iget v0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
+
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->mMin:I
+
+    sub-int/2addr v0, v1
+
+    invoke-virtual {p1, v0}, Landroid/widget/SeekBar;->setProgress(I)V
+
+    .line 395
+    iget p1, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValue:I
+
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->updateLabelValue(I)V
+
+    :cond_1
+    :goto_0
+    return-void
+.end method
+
+.method updateLabelValue(I)V
+    .locals 0
+
+    .line 407
+    iget-object p0, p0, Landroidx/preference/SeekBarPreference;->mSeekBarValueTextView:Landroid/widget/TextView;
+
+    if-eqz p0, :cond_0
+
+    .line 408
+    invoke-static {p1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    :cond_0
     return-void
 .end method
