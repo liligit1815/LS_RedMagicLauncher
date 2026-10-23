@@ -100,6 +100,15 @@ public final class LsFanReflow {
         return current;
     }
 
+    /** Use the OEM12 spring's actual displacement, including cancellation. */
+    public static void springFrame(RecentsView recents, TaskView task, float progress) {
+        Transaction current = transactions.get(recents);
+        if (current == null || task == null || !current.dismissed.matches(task)) return;
+        current.armed = true;
+        current.progress = Math.max(0f, Math.min(1f, progress));
+        recents.invalidate();
+    }
+
     /** Supplies primary center, secondary center, scale ratio, alpha and Z. */
     public static boolean sample(RecentsView recents, TaskView task,
             float primarySize, float secondarySize, float[] out) {

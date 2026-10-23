@@ -1,123 +1,68 @@
-.class public final LD1/c;
+.class public final Ld1/c;
 .super Ljava/lang/Object;
-.source "InstallSessionHelper_Factory.java"
-
-# interfaces
-.implements Lf4/c;
+.source "SelectableGroup.kt"
 
 
 # annotations
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "Ljava/lang/Object;",
-        "Lf4/c<",
-        "LD1/b;",
-        ">;"
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0008\n\u0002\u0018\u0002\n\u0002\u0008\u0003\u001a\u0013\u0010\u0001\u001a\u00020\u0000*\u00020\u0000H\u0007\u00a2\u0006\u0004\u0008\u0001\u0010\u0002\u00a8\u0006\u0003"
     }
+    d2 = {
+        "Lx2/m;",
+        "b",
+        "(Lx2/m;)Lx2/m;",
+        "foundation"
+    }
+    k = 0x2
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
 .end annotation
 
 
-# instance fields
-.field private final a:Lg4/a;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Lg4/a<",
-            "Landroid/content/Context;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # direct methods
-.method public constructor <init>(Lg4/a;)V
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Lg4/a<",
-            "Landroid/content/Context;",
-            ">;)V"
-        }
-    .end annotation
-
-    .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 2
-    .line 3
-    .line 4
-    iput-object p1, p0, LD1/c;->a:Lg4/a;
-
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public static a(Lg4/a;)LD1/c;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Lg4/a<",
-            "Landroid/content/Context;",
-            ">;)",
-            "LD1/c;"
-        }
-    .end annotation
-
-    .line 1
-    new-instance v0, LD1/c;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, LD1/c;-><init>(Lg4/a;)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
-.end method
-
-.method public static c(Landroid/content/Context;)LD1/b;
-    .locals 1
-
-    .line 1
-    new-instance v0, LD1/b;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, LD1/b;-><init>(Landroid/content/Context;)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
-.end method
-
-
-# virtual methods
-.method public b()LD1/b;
+.method public static synthetic a(Lg4/j0;)Lkotlin/Unit;
     .locals 0
 
     .line 1
-    iget-object p0, p0, LD1/c;->a:Lg4/a;
+    invoke-static {p0}, Ld1/c;->c(Lg4/j0;)Lkotlin/Unit;
 
     .line 2
     .line 3
-    invoke-interface {p0}, Lg4/a;->get()Ljava/lang/Object;
-
     .line 4
-    .line 5
-    .line 6
     move-result-object p0
 
+    .line 5
+    return-object p0
+.end method
+
+.method public static final b(Lx2/m;)Lx2/m;
+    .locals 4
+
+    .line 1
+    new-instance v0, Ld1/b;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Ld1/b;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    const/4 v1, 0x1
+
     .line 7
-    check-cast p0, Landroid/content/Context;
+    const/4 v2, 0x0
 
     .line 8
+    const/4 v3, 0x0
+
     .line 9
-    invoke-static {p0}, LD1/c;->c(Landroid/content/Context;)LD1/b;
+    invoke-static {p0, v3, v0, v1, v2}, Lg4/w;->d(Lx2/m;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lx2/m;
 
     .line 10
     .line 11
@@ -128,17 +73,18 @@
     return-object p0
 .end method
 
-.method public bridge synthetic get()Ljava/lang/Object;
+.method public static final c(Lg4/j0;)Lkotlin/Unit;
     .locals 0
 
     .line 1
-    invoke-virtual {p0}, LD1/c;->b()LD1/b;
+    invoke-static {p0}, Lg4/g0;->X(Lg4/j0;)V
 
     .line 2
     .line 3
     .line 4
-    move-result-object p0
+    sget-object p0, Lkotlin/Unit;->INSTANCE:Lkotlin/Unit;
 
     .line 5
+    .line 6
     return-object p0
 .end method

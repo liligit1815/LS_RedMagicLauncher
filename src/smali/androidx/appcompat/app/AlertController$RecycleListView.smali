@@ -15,9 +15,9 @@
 
 
 # instance fields
-.field private final g:I
+.field public final c:I
 
-.field private final h:I
+.field public final m:I
 
 
 # direct methods
@@ -30,7 +30,7 @@
     .line 2
     .line 3
     .line 4
-    sget-object v0, Lf/j;->c2:[I
+    sget-object v0, Lk/j;->c2:[I
 
     .line 5
     .line 6
@@ -42,7 +42,7 @@
     move-result-object p1
 
     .line 10
-    sget p2, Lf/j;->d2:I
+    sget p2, Lk/j;->d2:I
 
     .line 11
     .line 12
@@ -57,11 +57,11 @@
     move-result p2
 
     .line 17
-    iput p2, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->h:I
+    iput p2, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->m:I
 
     .line 18
     .line 19
-    sget p2, Lf/j;->e2:I
+    sget p2, Lk/j;->e2:I
 
     .line 20
     .line 21
@@ -73,7 +73,7 @@
     move-result p1
 
     .line 25
-    iput p1, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->g:I
+    iput p1, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->c:I
 
     .line 26
     .line 27
@@ -127,7 +127,7 @@
 
     .line 18
     :cond_2
-    iget p1, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->g:I
+    iget p1, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->c:I
 
     .line 19
     .line 20
@@ -156,7 +156,7 @@
 
     .line 31
     :cond_3
-    iget p2, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->h:I
+    iget p2, p0, Landroidx/appcompat/app/AlertController$RecycleListView;->m:I
 
     .line 32
     .line 33

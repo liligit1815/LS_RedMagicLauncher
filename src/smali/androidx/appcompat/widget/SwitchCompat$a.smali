@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SwitchCompat$a;
+.class public Landroidx/appcompat/widget/SwitchCompat$a;
 .super Landroid/util/Property;
 .source "SwitchCompat.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -24,7 +24,7 @@
 
 
 # direct methods
-.method constructor <init>(Ljava/lang/Class;Ljava/lang/String;)V
+.method public constructor <init>(Ljava/lang/Class;Ljava/lang/String;)V
     .locals 0
 
     .line 1
@@ -42,7 +42,7 @@
     .locals 0
 
     .line 1
-    iget p0, p1, Landroidx/appcompat/widget/SwitchCompat;->F:F
+    iget p0, p1, Landroidx/appcompat/widget/SwitchCompat;->K:F
 
     .line 2
     .line 3

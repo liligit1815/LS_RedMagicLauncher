@@ -1,0 +1,168 @@
+.class public Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils$Unlock;
+.super Lcom/android/launcher3/popup/SystemShortcut;
+.source "SuggestWidgetUtils.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "Unlock"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>(Lcom/android/launcher3/BaseActivity;Lcom/android/launcher3/model/data/ItemInfo;Landroid/view/View;)V
+    .locals 9
+
+    .line 1
+    const v4, 0x7f1404e3
+
+    .line 2
+    .line 3
+    .line 4
+    const/4 v8, 0x1
+
+    .line 5
+    const v1, 0x7f081a26
+
+    .line 6
+    .line 7
+    .line 8
+    const-string v2, "pin_off"
+
+    .line 9
+    .line 10
+    const-string/jumbo v3, "shortcut_common_bg"
+
+    .line 11
+    .line 12
+    .line 13
+    move-object v0, p0
+
+    .line 14
+    move-object v5, p1
+
+    .line 15
+    move-object v6, p2
+
+    .line 16
+    move-object v7, p3
+
+    .line 17
+    invoke-direct/range {v0 .. v8}, Lcom/android/launcher3/popup/SystemShortcut;-><init>(ILjava/lang/String;Ljava/lang/String;ILcom/android/launcher3/views/ActivityContext;Lcom/android/launcher3/model/data/ItemInfo;Landroid/view/View;Z)V
+
+    .line 18
+    .line 19
+    .line 20
+    return-void
+.end method
+
+
+# virtual methods
+.method public onClick(Landroid/view/View;)V
+    .locals 2
+
+    .line 1
+    new-instance p1, Ljava/lang/StringBuilder;
+
+    .line 2
+    .line 3
+    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    const-string v0, "Unlock SystemShortcut onClick, getTargetComponent="
+
+    .line 7
+    .line 8
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 9
+    .line 10
+    .line 11
+    iget-object v0, p0, Lcom/android/launcher3/popup/SystemShortcut;->mItemInfo:Lcom/android/launcher3/model/data/ItemInfo;
+
+    .line 12
+    .line 13
+    if-eqz v0, :cond_0
+
+    .line 14
+    .line 15
+    invoke-virtual {v0}, Lcom/android/launcher3/model/data/ItemInfo;->getTargetComponent()Landroid/content/ComponentName;
+
+    .line 16
+    .line 17
+    .line 18
+    move-result-object v0
+
+    .line 19
+    goto :goto_0
+
+    .line 20
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 21
+    :goto_0
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    .line 22
+    .line 23
+    .line 24
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 25
+    .line 26
+    .line 27
+    move-result-object p1
+
+    .line 28
+    const-string v0, "SuggestWidgetUtils"
+
+    .line 29
+    .line 30
+    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 31
+    .line 32
+    .line 33
+    iget-object p1, p0, Lcom/android/launcher3/popup/SystemShortcut;->mTarget:Lcom/android/launcher3/views/ActivityContext;
+
+    .line 34
+    .line 35
+    check-cast p1, Lcom/android/launcher3/Launcher;
+
+    .line 36
+    .line 37
+    const/4 v0, 0x1
+
+    .line 38
+    const/4 v1, 0x2
+
+    .line 39
+    invoke-static {p1, v0, v1}, Lcom/android/launcher3/AbstractFloatingView;->closeOpenViews(Lcom/android/launcher3/views/ActivityContext;ZI)V
+
+    .line 40
+    .line 41
+    .line 42
+    const-string/jumbo v0, "unlock_app"
+
+    .line 43
+    .line 44
+    .line 45
+    iget-object p0, p0, Lcom/android/launcher3/popup/SystemShortcut;->mOriginalView:Landroid/view/View;
+
+    .line 46
+    .line 47
+    invoke-static {p1, v0, p0}, Lcom/android/launcher3/widget/suggest/SuggestWidgetUtils;->j(Lcom/android/launcher3/Launcher;Ljava/lang/String;Landroid/view/View;)V
+
+    .line 48
+    .line 49
+    .line 50
+    return-void
+.end method

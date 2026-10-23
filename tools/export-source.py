@@ -13,7 +13,7 @@ PRIVATE_SUFFIXES = {'.keystore', '.jks', '.p12', '.pfx', '.key'}
 REQUIRED = {
     'src/apktool.yml', 'src/AndroidManifest.xml', 'original.apk',
     'framework/cache/1.apk', 'tooling/apktool_3.0.3.jar',
-    'baselines/launcher-260005.apk', 'baselines/manifest.json',
+    'baselines/manifest.json',
     'tools/build-launcher.py', 'tools/build-launcher-helper.py',
     '.gitignore', '.gitattributes', 'README.md', 'AGENTS.md',
 }

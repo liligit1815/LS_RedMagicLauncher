@@ -3,15 +3,11 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Consumer;
-
-
-# instance fields
-.field public final synthetic a:La2/e;
+.implements Lkotlin/jvm/functions/Function1;
 
 
 # direct methods
-.method public synthetic constructor <init>(La2/e;)V
+.method public synthetic constructor <init>()V
     .locals 0
 
     .line 1
@@ -20,31 +16,26 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, La2/c;->a:La2/e;
-
-    .line 5
-    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
+.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
     .line 1
-    iget-object p0, p0, La2/c;->a:La2/e;
+    check-cast p1, Lg4/j0;
 
     .line 2
     .line 3
-    check-cast p1, La2/a;
+    invoke-static {p1}, La2/k;->g(Lg4/j0;)Lkotlin/Unit;
 
     .line 4
     .line 5
-    invoke-static {p0, p1}, La2/e;->b(La2/e;La2/a;)V
-
     .line 6
+    move-result-object p0
+
     .line 7
-    .line 8
-    return-void
+    return-object p0
 .end method

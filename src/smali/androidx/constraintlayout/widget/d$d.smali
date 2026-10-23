@@ -119,7 +119,7 @@
     return-void
 .end method
 
-.method b(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.method public b(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 3
 
     .line 1

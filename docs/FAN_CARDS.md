@@ -33,6 +33,7 @@
 | [LsFanStyleSettings.java](../helper-src/main/com/android/quickstep/views/LsFanStyleSettings.java) | 设置项、选中状态及透明底预览 |
 | [LsNativeStack.java](../helper-src/main/com/android/quickstep/views/LsNativeStack.java) | 入口、视觉方向、实际布局、独立缩放及圆角限制 |
 | [LsStackTransition.java](../helper-src/main/com/android/quickstep/views/LsStackTransition.java) | 截图与实时窗口的打开、退出和取消交接 |
-| [RecentsView.smali](../src/smali_classes2/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务及手势路由 |
+| [RecentsView.smali](../src/smali_classes3/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务及手势路由 |
+| [LsPlatform12.java](../helper-src/main/com/android/quickstep/views/LsPlatform12.java) | 红魔12原生弹簧删除、新截图容器与可见任务接口 |
 
-窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [开发状态](DEVELOPMENT_STATUS.md)。
+窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [270001说明](RELEASE_270001.md)。

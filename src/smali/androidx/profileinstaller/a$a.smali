@@ -1,4 +1,4 @@
-.class Landroidx/profileinstaller/a$a;
+.class public Landroidx/profileinstaller/a$a;
 .super Ljava/lang/Object;
 .source "BenchmarkOperation.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/content/Context;)Ljava/io/File;
+.method public static a(Landroid/content/Context;)Ljava/io/File;
     .locals 0
 
     .line 1

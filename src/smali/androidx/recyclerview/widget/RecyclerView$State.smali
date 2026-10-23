@@ -134,7 +134,7 @@
 
 
 # virtual methods
-.method assertLayoutStep(I)V
+.method public assertLayoutStep(I)V
     .locals 3
 
     .line 1
@@ -395,7 +395,7 @@
     return p0
 .end method
 
-.method prepareForNestedPrefetch(Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
+.method public prepareForNestedPrefetch(Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
     .locals 1
 
     .line 1

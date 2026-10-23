@@ -3,7 +3,7 @@
 .source "RecyclerView.java"
 
 # interfaces
-.implements LJ/f;
+.implements Lz5/f;
 
 
 # annotations
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -22,7 +22,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/RecyclerView;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/RecyclerView;)V
     .locals 0
 
     .line 1

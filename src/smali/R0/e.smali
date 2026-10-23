@@ -1,17 +1,19 @@
-.class public final synthetic LR0/e;
+.class public final synthetic Lr0/e;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Consumer;
+.implements Lkotlin/jvm/functions/Function1;
 
 
 # instance fields
-.field public final synthetic a:Lu4/l;
+.field public final synthetic c:Lkotlin/jvm/functions/Function0;
+
+.field public final synthetic m:Lr0/t;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lu4/l;)V
+.method public synthetic constructor <init>(Lkotlin/jvm/functions/Function0;Lr0/t;)V
     .locals 0
 
     .line 1
@@ -20,27 +22,42 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, LR0/e;->a:Lu4/l;
+    iput-object p1, p0, Lr0/e;->c:Lkotlin/jvm/functions/Function0;
 
     .line 5
     .line 6
+    iput-object p2, p0, Lr0/e;->m:Lr0/t;
+
+    .line 7
+    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
-    .locals 0
+.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
 
     .line 1
-    iget-object p0, p0, LR0/e;->a:Lu4/l;
+    iget-object v0, p0, Lr0/e;->c:Lkotlin/jvm/functions/Function0;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, LR0/k;->c(Lu4/l;Ljava/lang/Object;)V
+    iget-object p0, p0, Lr0/e;->m:Lr0/t;
 
     .line 4
     .line 5
+    check-cast p1, Le3/e;
+
     .line 6
-    return-void
+    .line 7
+    invoke-static {v0, p0, p1}, Lr0/i;->c(Lkotlin/jvm/functions/Function0;Lr0/t;Le3/e;)Lkotlin/Unit;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p0
+
+    .line 11
+    return-object p0
 .end method

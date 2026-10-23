@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SearchView$o;
+.class public Landroidx/appcompat/widget/SearchView$o;
 .super Ljava/lang/Object;
 .source "SearchView.java"
 
@@ -9,6 +9,6 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "o"
 .end annotation

@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceGroup$a;
+.class public Landroidx/preference/PreferenceGroup$a;
 .super Ljava/lang/Object;
 .source "PreferenceGroup.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/preference/PreferenceGroup;
+.field public final synthetic c:Landroidx/preference/PreferenceGroup;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/PreferenceGroup;)V
+.method public constructor <init>(Landroidx/preference/PreferenceGroup;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/PreferenceGroup$a;->g:Landroidx/preference/PreferenceGroup;
+    iput-object p1, p0, Landroidx/preference/PreferenceGroup$a;->c:Landroidx/preference/PreferenceGroup;
 
     .line 2
     .line 3
@@ -48,15 +48,15 @@
 
     .line 2
     :try_start_0
-    iget-object v0, p0, Landroidx/preference/PreferenceGroup$a;->g:Landroidx/preference/PreferenceGroup;
+    iget-object v0, p0, Landroidx/preference/PreferenceGroup$a;->c:Landroidx/preference/PreferenceGroup;
 
     .line 3
     .line 4
-    iget-object v0, v0, Landroidx/preference/PreferenceGroup;->W:Lo/r;
+    iget-object v0, v0, Landroidx/preference/PreferenceGroup;->mIdRecycleCache:Ll0/k1;
 
     .line 5
     .line 6
-    invoke-virtual {v0}, Lo/r;->clear()V
+    invoke-virtual {v0}, Ll0/k1;->clear()V
 
     .line 7
     .line 8

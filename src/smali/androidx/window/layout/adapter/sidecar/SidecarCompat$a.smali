@@ -13,9 +13,46 @@
     name = "a"
 .end annotation
 
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u00008\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0010\u000e\n\u0002\u0008\u0003\u0008\u0086\u0003\u0018\u00002\u00020\u0001B\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003J\u0019\u0010\u0007\u001a\u0004\u0018\u00010\u00062\u0006\u0010\u0005\u001a\u00020\u0004H\u0000\u00a2\u0006\u0004\u0008\u0007\u0010\u0008J\u001b\u0010\u000c\u001a\u0004\u0018\u00010\u000b2\u0008\u0010\n\u001a\u0004\u0018\u00010\tH\u0000\u00a2\u0006\u0004\u0008\u000c\u0010\rR\u0013\u0010\u0011\u001a\u0004\u0018\u00010\u000e8F\u00a2\u0006\u0006\u001a\u0004\u0008\u000f\u0010\u0010R\u0014\u0010\u0013\u001a\u00020\u00128\u0002X\u0082T\u00a2\u0006\u0006\n\u0004\u0008\u0013\u0010\u0014\u00a8\u0006\u0015"
+    }
+    d2 = {
+        "Landroidx/window/layout/adapter/sidecar/SidecarCompat$a;",
+        "",
+        "<init>",
+        "()V",
+        "Landroid/content/Context;",
+        "context",
+        "Landroidx/window/sidecar/SidecarInterface;",
+        "b",
+        "(Landroid/content/Context;)Landroidx/window/sidecar/SidecarInterface;",
+        "Landroid/app/Activity;",
+        "activity",
+        "Landroid/os/IBinder;",
+        "a",
+        "(Landroid/app/Activity;)Landroid/os/IBinder;",
+        "Lw7/n;",
+        "c",
+        "()Lw7/n;",
+        "sidecarVersion",
+        "",
+        "TAG",
+        "Ljava/lang/String;",
+        "window"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
 
 # direct methods
-.method private constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 2
@@ -24,7 +61,7 @@
     return-void
 .end method
 
-.method public synthetic constructor <init>(Lkotlin/jvm/internal/j;)V
+.method public synthetic constructor <init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
     .locals 0
 
     .line 1
@@ -89,7 +126,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -113,7 +150,7 @@
     return-object p0
 .end method
 
-.method public final c()Ln0/m;
+.method public final c()Lw7/n;
     .locals 2
 
     .line 1
@@ -141,11 +178,11 @@
 
     .line 11
     .line 12
-    sget-object v1, Ln0/m;->l:Ln0/m$a;
+    sget-object v1, Lw7/n;->q:Lw7/n$a;
 
     .line 13
     .line 14
-    invoke-virtual {v1, v0}, Ln0/m$a;->b(Ljava/lang/String;)Ln0/m;
+    invoke-virtual {v1, v0}, Lw7/n$a;->b(Ljava/lang/String;)Lw7/n;
 
     .line 15
     .line 16

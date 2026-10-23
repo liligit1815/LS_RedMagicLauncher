@@ -1,4 +1,4 @@
-.class final Landroidx/dynamicanimation/animation/f$a;
+.class public final Landroidx/dynamicanimation/animation/f$a;
 .super Ljava/lang/Object;
 .source "FlingAnimation.java"
 
@@ -9,21 +9,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x18
+    accessFlags = 0x19
     name = "a"
 .end annotation
 
 
 # instance fields
-.field private a:F
+.field public a:F
 
-.field private b:F
+.field public b:F
 
-.field private final c:Landroidx/dynamicanimation/animation/e$p;
+.field public final c:Landroidx/dynamicanimation/animation/e$p;
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 1
 
     .line 1
@@ -96,7 +96,7 @@
     return p0
 .end method
 
-.method b(F)V
+.method public b(F)V
     .locals 1
 
     .line 1
@@ -115,7 +115,7 @@
     return-void
 .end method
 
-.method c(F)V
+.method public c(F)V
     .locals 1
 
     .line 1
@@ -133,7 +133,7 @@
     return-void
 .end method
 
-.method d(FFJ)Landroidx/dynamicanimation/animation/e$p;
+.method public d(FFJ)Landroidx/dynamicanimation/animation/e$p;
     .locals 3
 
     .line 1

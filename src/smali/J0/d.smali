@@ -1,49 +1,76 @@
-.class public final synthetic LJ0/d;
+.class public final Lj0/d;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Landroid/view/animation/Interpolator;
 
 
-# instance fields
-.field public final synthetic a:Landroid/view/animation/Interpolator;
+# static fields
+.field public static final a:[I
+
+.field public static final b:I = 0x0
+
+.field public static final c:I = 0x1
+
+.field public static final d:I = 0x2
+
+.field public static final e:I = 0x3
+
+.field public static final f:I = 0x4
+
+.field public static final g:I = 0x5
+
+.field public static final h:I = 0x6
+
+.field public static final i:I = 0x7
+
+.field public static final j:I = 0x8
+
+.field public static final k:I = 0x9
+
+.field public static final l:I = 0xa
+
+.field public static final m:I = 0xb
+
+.field public static final n:I = 0xc
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroid/view/animation/Interpolator;)V
-    .locals 0
+.method public static constructor <clinit>()V
+    .locals 1
 
     .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    const/16 v0, 0xd
 
     .line 2
     .line 3
-    .line 4
-    iput-object p1, p0, LJ0/d;->a:Landroid/view/animation/Interpolator;
-
-    .line 5
-    .line 6
-    return-void
-.end method
-
-
-# virtual methods
-.method public final getInterpolation(F)F
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LJ0/d;->a:Landroid/view/animation/Interpolator;
-
-    .line 2
-    .line 3
-    invoke-static {p0, p1}, LJ0/h;->c(Landroid/view/animation/Interpolator;F)F
+    new-array v0, v0, [I
 
     .line 4
     .line 5
-    .line 6
-    move-result p0
+    fill-array-data v0, :array_0
 
+    .line 6
     .line 7
-    return p0
+    .line 8
+    sput-object v0, Lj0/d;->a:[I
+
+    .line 9
+    .line 10
+    return-void
+
+    .line 11
+    :array_0
+    .array-data 4
+        0x101013f
+        0x1010140
+        0x7f040110
+        0x7f040111
+        0x7f040112
+        0x7f040114
+        0x7f040115
+        0x7f040116
+        0x7f0401d0
+        0x7f0401d1
+        0x7f0401d3
+        0x7f0401d4
+        0x7f0401d6
+    .end array-data
 .end method

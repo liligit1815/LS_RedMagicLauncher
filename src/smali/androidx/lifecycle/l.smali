@@ -22,5 +22,5 @@
 
 
 # virtual methods
-.method public abstract value()Landroidx/lifecycle/g$a;
+.method public abstract value()Landroidx/lifecycle/h$a;
 .end method

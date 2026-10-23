@@ -4,31 +4,31 @@
 
 
 # instance fields
-.field private final a:Landroid/content/res/AssetManager;
+.field public final a:Landroid/content/res/AssetManager;
 
-.field private final b:Ljava/util/concurrent/Executor;
+.field public final b:Ljava/util/concurrent/Executor;
 
-.field private final c:Landroidx/profileinstaller/f$c;
+.field public final c:Landroidx/profileinstaller/c$c;
 
-.field private final d:[B
+.field public final d:[B
 
-.field private final e:Ljava/io/File;
+.field public final e:Ljava/io/File;
 
-.field private final f:Ljava/lang/String;
+.field public final f:Ljava/lang/String;
 
-.field private final g:Ljava/lang/String;
+.field public final g:Ljava/lang/String;
 
-.field private final h:Ljava/lang/String;
+.field public final h:Ljava/lang/String;
 
-.field private i:Z
+.field public i:Z
 
-.field private j:[Landroidx/profileinstaller/c;
+.field public j:[Lf7/b;
 
-.field private k:[B
+.field public k:[B
 
 
 # direct methods
-.method public constructor <init>(Landroid/content/res/AssetManager;Ljava/util/concurrent/Executor;Landroidx/profileinstaller/f$c;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)V
+.method public constructor <init>(Landroid/content/res/AssetManager;Ljava/util/concurrent/Executor;Landroidx/profileinstaller/c$c;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)V
     .locals 1
 
     .line 1
@@ -52,7 +52,7 @@
 
     .line 10
     .line 11
-    iput-object p3, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iput-object p3, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 12
     .line 13
@@ -91,11 +91,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 2
     .line 3
-    invoke-interface {p0, p1, p2}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {p0, p1, p2}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 4
     .line 5
@@ -103,7 +103,30 @@
     return-void
 .end method
 
-.method private b([Landroidx/profileinstaller/c;[B)Landroidx/profileinstaller/b;
+.method public static d()[B
+    .locals 1
+
+    .line 1
+    sget-object v0, Lf7/g;->a:[B
+
+    .line 2
+    .line 3
+    return-object v0
+.end method
+
+.method public static j()Z
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x1
+
+    .line 2
+    return v0
+.end method
+
+
+# virtual methods
+.method public final b([Lf7/b;[B)Landroidx/profileinstaller/b;
     .locals 3
 
     .line 1
@@ -119,7 +142,7 @@
 
     .line 5
     .line 6
-    invoke-direct {p0, v1, v2}, Landroidx/profileinstaller/b;->g(Landroid/content/res/AssetManager;Ljava/lang/String;)Ljava/io/InputStream;
+    invoke-virtual {p0, v1, v2}, Landroidx/profileinstaller/b;->g(Landroid/content/res/AssetManager;Ljava/lang/String;)Ljava/io/InputStream;
 
     .line 7
     .line 8
@@ -136,11 +159,11 @@
     .line 11
     .line 12
     :try_start_1
-    sget-object v2, Landroidx/profileinstaller/g;->b:[B
+    sget-object v2, Lf7/f;->b:[B
 
     .line 13
     .line 14
-    invoke-static {v1, v2}, Landroidx/profileinstaller/g;->p(Ljava/io/InputStream;[B)[B
+    invoke-static {v1, v2}, Lf7/f;->p(Ljava/io/InputStream;[B)[B
 
     .line 15
     .line 16
@@ -148,7 +171,7 @@
     move-result-object v2
 
     .line 18
-    invoke-static {v1, v2, p2, p1}, Landroidx/profileinstaller/g;->r(Ljava/io/InputStream;[B[B[Landroidx/profileinstaller/c;)[Landroidx/profileinstaller/c;
+    invoke-static {v1, v2, p2, p1}, Lf7/f;->r(Ljava/io/InputStream;[B[B[Lf7/b;)[Lf7/b;
 
     .line 19
     .line 20
@@ -156,7 +179,7 @@
     move-result-object p1
 
     .line 22
-    iput-object p1, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object p1, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
@@ -243,11 +266,11 @@
 
     .line 50
     :goto_1
-    iput-object v0, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v0, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 51
     .line 52
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 53
     .line 54
@@ -255,7 +278,7 @@
 
     .line 55
     .line 56
-    invoke-interface {p0, p2, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {p0, p2, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 57
     .line 58
@@ -264,14 +287,14 @@
 
     .line 60
     :goto_2
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 61
     .line 62
     const/4 p2, 0x7
 
     .line 63
-    invoke-interface {p0, p2, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {p0, p2, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 64
     .line 65
@@ -280,7 +303,7 @@
 
     .line 67
     :goto_3
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 68
     .line 69
@@ -288,7 +311,7 @@
 
     .line 70
     .line 71
-    invoke-interface {p0, p2, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {p0, p2, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 72
     .line 73
@@ -298,7 +321,7 @@
     return-object v0
 .end method
 
-.method private c()V
+.method public final c()V
     .locals 1
 
     .line 1
@@ -330,18 +353,140 @@
     throw p0
 .end method
 
-.method private static d()[B
-    .locals 1
+.method public e()Z
+    .locals 4
 
     .line 1
-    sget-object v0, Landroidx/profileinstaller/i;->a:[B
+    iget-object v0, p0, Landroidx/profileinstaller/b;->d:[B
 
     .line 2
     .line 3
-    return-object v0
+    const/4 v1, 0x0
+
+    .line 4
+    if-nez v0, :cond_0
+
+    .line 5
+    .line 6
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    .line 7
+    .line 8
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    .line 9
+    .line 10
+    .line 11
+    move-result-object v0
+
+    .line 12
+    const/4 v2, 0x3
+
+    .line 13
+    invoke-virtual {p0, v2, v0}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+
+    .line 14
+    .line 15
+    .line 16
+    return v1
+
+    .line 17
+    :cond_0
+    iget-object v0, p0, Landroidx/profileinstaller/b;->e:Ljava/io/File;
+
+    .line 18
+    .line 19
+    invoke-virtual {v0}, Ljava/io/File;->exists()Z
+
+    .line 20
+    .line 21
+    .line 22
+    move-result v0
+
+    .line 23
+    const/4 v2, 0x0
+
+    .line 24
+    const/4 v3, 0x4
+
+    .line 25
+    if-eqz v0, :cond_1
+
+    .line 26
+    .line 27
+    iget-object v0, p0, Landroidx/profileinstaller/b;->e:Ljava/io/File;
+
+    .line 28
+    .line 29
+    invoke-virtual {v0}, Ljava/io/File;->canWrite()Z
+
+    .line 30
+    .line 31
+    .line 32
+    move-result v0
+
+    .line 33
+    if-nez v0, :cond_2
+
+    .line 34
+    .line 35
+    invoke-virtual {p0, v3, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+
+    .line 36
+    .line 37
+    .line 38
+    return v1
+
+    .line 39
+    :cond_1
+    :try_start_0
+    iget-object v0, p0, Landroidx/profileinstaller/b;->e:Ljava/io/File;
+
+    .line 40
+    .line 41
+    invoke-virtual {v0}, Ljava/io/File;->createNewFile()Z
+
+    .line 42
+    .line 43
+    .line 44
+    move-result v0
+
+    .line 45
+    if-nez v0, :cond_2
+
+    .line 46
+    .line 47
+    invoke-virtual {p0, v3, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 48
+    .line 49
+    .line 50
+    return v1
+
+    .line 51
+    :cond_2
+    const/4 v0, 0x1
+
+    .line 52
+    iput-boolean v0, p0, Landroidx/profileinstaller/b;->i:Z
+
+    .line 53
+    .line 54
+    return v0
+
+    .line 55
+    :catch_0
+    invoke-virtual {p0, v3, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+
+    .line 56
+    .line 57
+    .line 58
+    return v1
 .end method
 
-.method private f(Landroid/content/res/AssetManager;)Ljava/io/InputStream;
+.method public final f(Landroid/content/res/AssetManager;)Ljava/io/InputStream;
     .locals 1
 
     .line 1
@@ -350,7 +495,7 @@
 
     .line 2
     .line 3
-    invoke-direct {p0, p1, v0}, Landroidx/profileinstaller/b;->g(Landroid/content/res/AssetManager;Ljava/lang/String;)Ljava/io/InputStream;
+    invoke-virtual {p0, p1, v0}, Landroidx/profileinstaller/b;->g(Landroid/content/res/AssetManager;Ljava/lang/String;)Ljava/io/InputStream;
 
     .line 4
     .line 5
@@ -379,14 +524,14 @@
 
     .line 12
     :goto_0
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 13
     .line 14
     const/4 v0, 0x7
 
     .line 15
-    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 16
     .line 17
@@ -395,14 +540,14 @@
 
     .line 19
     :goto_1
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 20
     .line 21
     const/4 v0, 0x6
 
     .line 22
-    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 23
     .line 24
@@ -414,7 +559,7 @@
     return-object p0
 .end method
 
-.method private g(Landroid/content/res/AssetManager;Ljava/lang/String;)Ljava/io/InputStream;
+.method public final g(Landroid/content/res/AssetManager;Ljava/lang/String;)Ljava/io/InputStream;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -477,14 +622,14 @@
 
     .line 25
     .line 26
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 27
     .line 28
     const/4 p1, 0x5
 
     .line 29
-    invoke-interface {p0, p1, p2}, Landroidx/profileinstaller/f$c;->b(ILjava/lang/Object;)V
+    invoke-interface {p0, p1, p2}, Landroidx/profileinstaller/c$c;->b(ILjava/lang/Object;)V
 
     .line 30
     .line 31
@@ -493,367 +638,11 @@
     return-object p2
 .end method
 
-.method private i(Ljava/io/InputStream;)[Landroidx/profileinstaller/c;
-    .locals 4
-
-    .line 1
-    const/4 v0, 0x7
-
-    .line 2
-    :try_start_0
-    sget-object v1, Landroidx/profileinstaller/g;->a:[B
-
-    .line 3
-    .line 4
-    invoke-static {p1, v1}, Landroidx/profileinstaller/g;->p(Ljava/io/InputStream;[B)[B
-
-    .line 5
-    .line 6
-    .line 7
-    move-result-object v1
-
-    .line 8
-    iget-object v2, p0, Landroidx/profileinstaller/b;->f:Ljava/lang/String;
-
-    .line 9
-    .line 10
-    invoke-static {p1, v1, v2}, Landroidx/profileinstaller/g;->x(Ljava/io/InputStream;[BLjava/lang/String;)[Landroidx/profileinstaller/c;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object v1
-    :try_end_0
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalStateException; {:try_start_0 .. :try_end_0} :catch_1
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 14
-    :try_start_1
-    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
-    :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
-
-    .line 15
-    .line 16
-    .line 17
-    goto :goto_3
-
-    .line 18
-    :catch_0
-    move-exception p1
-
-    .line 19
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
-
-    .line 20
-    .line 21
-    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
-
-    .line 22
-    .line 23
-    .line 24
-    goto :goto_3
-
-    .line 25
-    :catchall_0
-    move-exception v1
-
-    .line 26
-    goto :goto_4
-
-    .line 27
-    :catch_1
-    move-exception v1
-
-    .line 28
-    goto :goto_0
-
-    .line 29
-    :catch_2
-    move-exception v1
-
-    .line 30
-    goto :goto_1
-
-    .line 31
-    :goto_0
-    :try_start_2
-    iget-object v2, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
-
-    .line 32
-    .line 33
-    const/16 v3, 0x8
-
-    .line 34
-    .line 35
-    invoke-interface {v2, v3, v1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
-
-    .line 36
-    .line 37
-    .line 38
-    :try_start_3
-    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
-    :try_end_3
-    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_3
-
-    .line 39
-    .line 40
-    .line 41
-    goto :goto_2
-
-    .line 42
-    :catch_3
-    move-exception p1
-
-    .line 43
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
-
-    .line 44
-    .line 45
-    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
-
-    .line 46
-    .line 47
-    .line 48
-    goto :goto_2
-
-    .line 49
-    :goto_1
-    :try_start_4
-    iget-object v2, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
-
-    .line 50
-    .line 51
-    invoke-interface {v2, v0, v1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_0
-
-    .line 52
-    .line 53
-    .line 54
-    :try_start_5
-    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
-    :try_end_5
-    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_3
-
-    .line 55
-    .line 56
-    .line 57
-    :goto_2
-    const/4 v1, 0x0
-
-    .line 58
-    :goto_3
-    return-object v1
-
-    .line 59
-    :goto_4
-    :try_start_6
-    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
-    :try_end_6
-    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_4
-
-    .line 60
-    .line 61
-    .line 62
-    goto :goto_5
-
-    .line 63
-    :catch_4
-    move-exception p1
-
-    .line 64
-    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
-
-    .line 65
-    .line 66
-    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
-
-    .line 67
-    .line 68
-    .line 69
-    :goto_5
-    throw v1
-.end method
-
-.method private static j()Z
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    return v0
-.end method
-
-.method private k(ILjava/lang/Object;)V
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Landroidx/profileinstaller/b;->b:Ljava/util/concurrent/Executor;
-
-    .line 2
-    .line 3
-    new-instance v1, Lc0/a;
-
-    .line 4
-    .line 5
-    invoke-direct {v1, p0, p1, p2}, Lc0/a;-><init>(Landroidx/profileinstaller/b;ILjava/lang/Object;)V
-
-    .line 6
-    .line 7
-    .line 8
-    invoke-interface {v0, v1}, Ljava/util/concurrent/Executor;->execute(Ljava/lang/Runnable;)V
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-
-# virtual methods
-.method public e()Z
-    .locals 4
-
-    .line 1
-    iget-object v0, p0, Landroidx/profileinstaller/b;->d:[B
-
-    .line 2
-    .line 3
-    const/4 v1, 0x0
-
-    .line 4
-    if-nez v0, :cond_0
-
-    .line 5
-    .line 6
-    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
-
-    .line 7
-    .line 8
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 9
-    .line 10
-    .line 11
-    move-result-object v0
-
-    .line 12
-    const/4 v2, 0x3
-
-    .line 13
-    invoke-direct {p0, v2, v0}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
-
-    .line 14
-    .line 15
-    .line 16
-    return v1
-
-    .line 17
-    :cond_0
-    iget-object v0, p0, Landroidx/profileinstaller/b;->e:Ljava/io/File;
-
-    .line 18
-    .line 19
-    invoke-virtual {v0}, Ljava/io/File;->exists()Z
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v0
-
-    .line 23
-    const/4 v2, 0x0
-
-    .line 24
-    const/4 v3, 0x4
-
-    .line 25
-    if-eqz v0, :cond_1
-
-    .line 26
-    .line 27
-    iget-object v0, p0, Landroidx/profileinstaller/b;->e:Ljava/io/File;
-
-    .line 28
-    .line 29
-    invoke-virtual {v0}, Ljava/io/File;->canWrite()Z
-
-    .line 30
-    .line 31
-    .line 32
-    move-result v0
-
-    .line 33
-    if-nez v0, :cond_2
-
-    .line 34
-    .line 35
-    invoke-direct {p0, v3, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
-
-    .line 36
-    .line 37
-    .line 38
-    return v1
-
-    .line 39
-    :cond_1
-    :try_start_0
-    iget-object v0, p0, Landroidx/profileinstaller/b;->e:Ljava/io/File;
-
-    .line 40
-    .line 41
-    invoke-virtual {v0}, Ljava/io/File;->createNewFile()Z
-
-    .line 42
-    .line 43
-    .line 44
-    move-result v0
-
-    .line 45
-    if-nez v0, :cond_2
-
-    .line 46
-    .line 47
-    invoke-direct {p0, v3, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 48
-    .line 49
-    .line 50
-    return v1
-
-    .line 51
-    :cond_2
-    const/4 v0, 0x1
-
-    .line 52
-    iput-boolean v0, p0, Landroidx/profileinstaller/b;->i:Z
-
-    .line 53
-    .line 54
-    return v0
-
-    .line 55
-    :catch_0
-    invoke-direct {p0, v3, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
-
-    .line 56
-    .line 57
-    .line 58
-    return v1
-.end method
-
 .method public h()Landroidx/profileinstaller/b;
     .locals 2
 
     .line 1
-    invoke-direct {p0}, Landroidx/profileinstaller/b;->c()V
+    invoke-virtual {p0}, Landroidx/profileinstaller/b;->c()V
 
     .line 2
     .line 3
@@ -874,7 +663,7 @@
 
     .line 10
     .line 11
-    invoke-direct {p0, v0}, Landroidx/profileinstaller/b;->f(Landroid/content/res/AssetManager;)Ljava/io/InputStream;
+    invoke-virtual {p0, v0}, Landroidx/profileinstaller/b;->f(Landroid/content/res/AssetManager;)Ljava/io/InputStream;
 
     .line 12
     .line 13
@@ -886,7 +675,7 @@
 
     .line 16
     .line 17
-    invoke-direct {p0, v0}, Landroidx/profileinstaller/b;->i(Ljava/io/InputStream;)[Landroidx/profileinstaller/c;
+    invoke-virtual {p0, v0}, Landroidx/profileinstaller/b;->i(Ljava/io/InputStream;)[Lf7/b;
 
     .line 18
     .line 19
@@ -894,12 +683,12 @@
     move-result-object v0
 
     .line 21
-    iput-object v0, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v0, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 22
     .line 23
     :cond_1
-    iget-object v0, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iget-object v0, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 24
     .line 25
@@ -923,7 +712,7 @@
 
     .line 34
     .line 35
-    invoke-direct {p0, v0, v1}, Landroidx/profileinstaller/b;->b([Landroidx/profileinstaller/c;[B)Landroidx/profileinstaller/b;
+    invoke-virtual {p0, v0, v1}, Landroidx/profileinstaller/b;->b([Lf7/b;[B)Landroidx/profileinstaller/b;
 
     .line 36
     .line 37
@@ -943,11 +732,218 @@
     return-object p0
 .end method
 
+.method public final i(Ljava/io/InputStream;)[Lf7/b;
+    .locals 4
+
+    .line 1
+    const/4 v0, 0x7
+
+    .line 2
+    :try_start_0
+    sget-object v1, Lf7/f;->a:[B
+
+    .line 3
+    .line 4
+    invoke-static {p1, v1}, Lf7/f;->p(Ljava/io/InputStream;[B)[B
+
+    .line 5
+    .line 6
+    .line 7
+    move-result-object v1
+
+    .line 8
+    iget-object v2, p0, Landroidx/profileinstaller/b;->f:Ljava/lang/String;
+
+    .line 9
+    .line 10
+    invoke-static {p1, v1, v2}, Lf7/f;->x(Ljava/io/InputStream;[BLjava/lang/String;)[Lf7/b;
+
+    .line 11
+    .line 12
+    .line 13
+    move-result-object v1
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_2
+    .catch Ljava/lang/IllegalStateException; {:try_start_0 .. :try_end_0} :catch_1
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 14
+    :try_start_1
+    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+
+    .line 15
+    .line 16
+    .line 17
+    goto :goto_4
+
+    .line 18
+    :catch_0
+    move-exception p1
+
+    .line 19
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
+
+    .line 20
+    .line 21
+    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
+
+    .line 22
+    .line 23
+    .line 24
+    goto :goto_4
+
+    .line 25
+    :catchall_0
+    move-exception v1
+
+    .line 26
+    goto :goto_5
+
+    .line 27
+    :catch_1
+    move-exception v1
+
+    .line 28
+    goto :goto_0
+
+    .line 29
+    :catch_2
+    move-exception v1
+
+    .line 30
+    goto :goto_2
+
+    .line 31
+    :goto_0
+    :try_start_2
+    iget-object v2, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
+
+    .line 32
+    .line 33
+    const/16 v3, 0x8
+
+    .line 34
+    .line 35
+    invoke-interface {v2, v3, v1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    .line 36
+    .line 37
+    .line 38
+    :goto_1
+    :try_start_3
+    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
+    :try_end_3
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_3
+
+    .line 39
+    .line 40
+    .line 41
+    goto :goto_3
+
+    .line 42
+    :catch_3
+    move-exception p1
+
+    .line 43
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
+
+    .line 44
+    .line 45
+    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
+
+    .line 46
+    .line 47
+    .line 48
+    goto :goto_3
+
+    .line 49
+    :goto_2
+    :try_start_4
+    iget-object v2, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
+
+    .line 50
+    .line 51
+    invoke-interface {v2, v0, v1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_0
+
+    .line 52
+    .line 53
+    .line 54
+    goto :goto_1
+
+    .line 55
+    :goto_3
+    const/4 v1, 0x0
+
+    .line 56
+    :goto_4
+    return-object v1
+
+    .line 57
+    :goto_5
+    :try_start_5
+    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
+    :try_end_5
+    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_4
+
+    .line 58
+    .line 59
+    .line 60
+    goto :goto_6
+
+    .line 61
+    :catch_4
+    move-exception p1
+
+    .line 62
+    iget-object p0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
+
+    .line 63
+    .line 64
+    invoke-interface {p0, v0, p1}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
+
+    .line 65
+    .line 66
+    .line 67
+    :goto_6
+    throw v1
+.end method
+
+.method public final k(ILjava/lang/Object;)V
+    .locals 2
+
+    .line 1
+    iget-object v0, p0, Landroidx/profileinstaller/b;->b:Ljava/util/concurrent/Executor;
+
+    .line 2
+    .line 3
+    new-instance v1, Lf7/a;
+
+    .line 4
+    .line 5
+    invoke-direct {v1, p0, p1, p2}, Lf7/a;-><init>(Landroidx/profileinstaller/b;ILjava/lang/Object;)V
+
+    .line 6
+    .line 7
+    .line 8
+    invoke-interface {v0, v1}, Ljava/util/concurrent/Executor;->execute(Ljava/lang/Runnable;)V
+
+    .line 9
+    .line 10
+    .line 11
+    return-void
+.end method
+
 .method public l()Landroidx/profileinstaller/b;
     .locals 4
 
     .line 1
-    iget-object v0, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iget-object v0, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 2
     .line 3
@@ -967,7 +963,7 @@
 
     .line 10
     :cond_0
-    invoke-direct {p0}, Landroidx/profileinstaller/b;->c()V
+    invoke-virtual {p0}, Landroidx/profileinstaller/b;->c()V
 
     .line 11
     .line 12
@@ -989,12 +985,12 @@
     .line 18
     .line 19
     :try_start_1
-    invoke-static {v3, v1}, Landroidx/profileinstaller/g;->F(Ljava/io/OutputStream;[B)V
+    invoke-static {v3, v1}, Lf7/f;->F(Ljava/io/OutputStream;[B)V
 
     .line 20
     .line 21
     .line 22
-    invoke-static {v3, v1, v0}, Landroidx/profileinstaller/g;->C(Ljava/io/OutputStream;[B[Landroidx/profileinstaller/c;)Z
+    invoke-static {v3, v1, v0}, Lf7/f;->C(Ljava/io/OutputStream;[B[Lf7/b;)Z
 
     .line 23
     .line 24
@@ -1006,19 +1002,19 @@
 
     .line 27
     .line 28
-    iget-object v0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object v0, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 29
     .line 30
     const/4 v1, 0x5
 
     .line 31
-    invoke-interface {v0, v1, v2}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {v0, v1, v2}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 32
     .line 33
     .line 34
-    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
@@ -1115,7 +1111,7 @@
 
     .line 65
     :goto_2
-    iget-object v1, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object v1, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 66
     .line 67
@@ -1123,7 +1119,7 @@
 
     .line 68
     .line 69
-    invoke-interface {v1, v3, v0}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {v1, v3, v0}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 70
     .line 71
@@ -1132,20 +1128,20 @@
 
     .line 73
     :goto_3
-    iget-object v1, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/f$c;
+    iget-object v1, p0, Landroidx/profileinstaller/b;->c:Landroidx/profileinstaller/c$c;
 
     .line 74
     .line 75
     const/4 v3, 0x7
 
     .line 76
-    invoke-interface {v1, v3, v0}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {v1, v3, v0}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 77
     .line 78
     .line 79
     :goto_4
-    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 80
     .line 81
@@ -1173,7 +1169,7 @@
 
     .line 7
     :cond_0
-    invoke-direct {p0}, Landroidx/profileinstaller/b;->c()V
+    invoke-virtual {p0}, Landroidx/profileinstaller/b;->c()V
 
     .line 8
     .line 9
@@ -1234,7 +1230,7 @@
 
     .line 31
     :try_start_4
-    invoke-static {v3, v0, v5}, Landroidx/profileinstaller/d;->l(Ljava/io/InputStream;Ljava/io/OutputStream;Ljava/nio/channels/FileLock;)V
+    invoke-static {v3, v0, v5}, Lf7/c;->l(Ljava/io/InputStream;Ljava/io/OutputStream;Ljava/nio/channels/FileLock;)V
 
     .line 32
     .line 33
@@ -1242,7 +1238,7 @@
     const/4 v6, 0x1
 
     .line 35
-    invoke-direct {p0, v6, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+    invoke-virtual {p0, v6, v2}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_4
 
@@ -1303,7 +1299,7 @@
 
     .line 56
     .line 57
-    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 58
     .line 59
@@ -1477,7 +1473,7 @@
 
     .line 112
     :try_start_11
-    invoke-direct {p0, v3, v0}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+    invoke-virtual {p0, v3, v0}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
     :try_end_11
     .catchall {:try_start_11 .. :try_end_11} :catchall_1
 
@@ -1489,7 +1485,7 @@
 
     .line 116
     .line 117
-    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 118
     .line 119
@@ -1501,7 +1497,7 @@
 
     .line 121
     :try_start_12
-    invoke-direct {p0, v3, v0}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
+    invoke-virtual {p0, v3, v0}, Landroidx/profileinstaller/b;->k(ILjava/lang/Object;)V
     :try_end_12
     .catchall {:try_start_12 .. :try_end_12} :catchall_1
 
@@ -1520,7 +1516,7 @@
 
     .line 127
     .line 128
-    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Landroidx/profileinstaller/c;
+    iput-object v2, p0, Landroidx/profileinstaller/b;->j:[Lf7/b;
 
     .line 129
     .line 130

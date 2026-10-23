@@ -1,27 +1,37 @@
-.class public final LU/p;
+.class public final synthetic Lu/p;
 .super Ljava/lang/Object;
-.source "Morph.kt"
+.source "R8$$SyntheticClass"
 
-
-# static fields
-.field private static final a:Ljava/lang/String; = "Morph"
+# interfaces
+.implements Lkotlin/jvm/functions/Function0;
 
 
 # direct methods
-.method static constructor <clinit>()V
+.method public synthetic constructor <init>()V
     .locals 0
 
     .line 1
-    return-void
-.end method
-
-.method public static final synthetic a()Ljava/lang/String;
-    .locals 1
-
-    .line 1
-    sget-object v0, LU/p;->a:Ljava/lang/String;
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 2
     .line 3
-    return-object v0
+    .line 4
+    return-void
+.end method
+
+
+# virtual methods
+.method public final invoke()Ljava/lang/Object;
+    .locals 0
+
+    .line 1
+    invoke-static {}, Lu/r;->a()Lei/g;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p0
+
+    .line 5
+    return-object p0
 .end method

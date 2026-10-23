@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/u;
+.class public Landroidx/recyclerview/widget/u;
 .super Ljava/lang/Object;
 .source "ViewBoundsCheck.java"
 
@@ -13,13 +13,13 @@
 
 
 # instance fields
-.field final a:Landroidx/recyclerview/widget/u$b;
+.field public final a:Landroidx/recyclerview/widget/u$b;
 
-.field b:Landroidx/recyclerview/widget/u$a;
+.field public b:Landroidx/recyclerview/widget/u$a;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/u$b;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/u$b;)V
     .locals 0
 
     .line 1
@@ -50,7 +50,7 @@
 
 
 # virtual methods
-.method a(IIII)Landroid/view/View;
+.method public a(IIII)Landroid/view/View;
     .locals 8
 
     .line 1
@@ -240,7 +240,7 @@
     return-object v3
 .end method
 
-.method b(Landroid/view/View;I)Z
+.method public b(Landroid/view/View;I)Z
     .locals 5
 
     .line 1

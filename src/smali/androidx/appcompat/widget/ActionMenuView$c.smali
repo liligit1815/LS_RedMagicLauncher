@@ -1,5 +1,5 @@
 .class public Landroidx/appcompat/widget/ActionMenuView$c;
-.super Landroidx/appcompat/widget/L$a;
+.super Landroidx/appcompat/widget/b$a;
 .source "ActionMenuView.java"
 
 
@@ -40,7 +40,7 @@
     .end annotation
 .end field
 
-.field f:Z
+.field public f:Z
 
 
 # direct methods
@@ -48,7 +48,7 @@
     .locals 0
 
     .line 5
-    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/L$a;-><init>(II)V
+    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/b$a;-><init>(II)V
 
     const/4 p1, 0x0
 
@@ -62,7 +62,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/L$a;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/b$a;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
     return-void
 .end method
@@ -71,7 +71,7 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0, p1}, Landroidx/appcompat/widget/L$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-direct {p0, p1}, Landroidx/appcompat/widget/b$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
 
     return-void
 .end method
@@ -80,7 +80,7 @@
     .locals 0
 
     .line 3
-    invoke-direct {p0, p1}, Landroidx/appcompat/widget/L$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-direct {p0, p1}, Landroidx/appcompat/widget/b$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 4
     iget-boolean p1, p1, Landroidx/appcompat/widget/ActionMenuView$c;->a:Z

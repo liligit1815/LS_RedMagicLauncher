@@ -1,9 +1,9 @@
-.class Landroidx/lifecycle/m;
+.class public Landroidx/lifecycle/m;
 .super Ljava/lang/Object;
 .source "ReflectiveGenericLifecycleObserver.java"
 
 # interfaces
-.implements Landroidx/lifecycle/h;
+.implements Landroidx/lifecycle/i;
 
 
 # annotations
@@ -12,13 +12,13 @@
 
 
 # instance fields
-.field private final g:Ljava/lang/Object;
+.field public final c:Ljava/lang/Object;
 
-.field private final h:Landroidx/lifecycle/a$a;
+.field public final m:Landroidx/lifecycle/b$a;
 
 
 # direct methods
-.method constructor <init>(Ljava/lang/Object;)V
+.method public constructor <init>(Ljava/lang/Object;)V
     .locals 1
 
     .line 1
@@ -27,11 +27,11 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/lifecycle/m;->g:Ljava/lang/Object;
+    iput-object p1, p0, Landroidx/lifecycle/m;->c:Ljava/lang/Object;
 
     .line 5
     .line 6
-    sget-object v0, Landroidx/lifecycle/a;->c:Landroidx/lifecycle/a;
+    sget-object v0, Landroidx/lifecycle/b;->c:Landroidx/lifecycle/b;
 
     .line 7
     .line 8
@@ -43,7 +43,7 @@
     move-result-object p1
 
     .line 12
-    invoke-virtual {v0, p1}, Landroidx/lifecycle/a;->c(Ljava/lang/Class;)Landroidx/lifecycle/a$a;
+    invoke-virtual {v0, p1}, Landroidx/lifecycle/b;->c(Ljava/lang/Class;)Landroidx/lifecycle/b$a;
 
     .line 13
     .line 14
@@ -51,7 +51,7 @@
     move-result-object p1
 
     .line 16
-    iput-object p1, p0, Landroidx/lifecycle/m;->h:Landroidx/lifecycle/a$a;
+    iput-object p1, p0, Landroidx/lifecycle/m;->m:Landroidx/lifecycle/b$a;
 
     .line 17
     .line 18
@@ -60,19 +60,19 @@
 
 
 # virtual methods
-.method public b(LW/d;Landroidx/lifecycle/g$a;)V
+.method public C(Lq6/f;Landroidx/lifecycle/h$a;)V
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/lifecycle/m;->h:Landroidx/lifecycle/a$a;
+    iget-object v0, p0, Landroidx/lifecycle/m;->m:Landroidx/lifecycle/b$a;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/lifecycle/m;->g:Ljava/lang/Object;
+    iget-object p0, p0, Landroidx/lifecycle/m;->c:Ljava/lang/Object;
 
     .line 4
     .line 5
-    invoke-virtual {v0, p1, p2, p0}, Landroidx/lifecycle/a$a;->a(LW/d;Landroidx/lifecycle/g$a;Ljava/lang/Object;)V
+    invoke-virtual {v0, p1, p2, p0}, Landroidx/lifecycle/b$a;->a(Lq6/f;Landroidx/lifecycle/h$a;Ljava/lang/Object;)V
 
     .line 6
     .line 7

@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final g:[I
+.field public static final c:[I
 
 
 # direct methods
@@ -25,7 +25,7 @@
     move-result-object v0
 
     .line 8
-    sput-object v0, Landroidx/appcompat/widget/ActivityChooserView$InnerLayout;->g:[I
+    sput-object v0, Landroidx/appcompat/widget/ActivityChooserView$InnerLayout;->c:[I
 
     .line 9
     .line 10
@@ -41,11 +41,11 @@
     .line 2
     .line 3
     .line 4
-    sget-object v0, Landroidx/appcompat/widget/ActivityChooserView$InnerLayout;->g:[I
+    sget-object v0, Landroidx/appcompat/widget/ActivityChooserView$InnerLayout;->c:[I
 
     .line 5
     .line 6
-    invoke-static {p1, p2, v0}, Landroidx/appcompat/widget/a0;->u(Landroid/content/Context;Landroid/util/AttributeSet;[I)Landroidx/appcompat/widget/a0;
+    invoke-static {p1, p2, v0}, Ls/w0;->u(Landroid/content/Context;Landroid/util/AttributeSet;[I)Ls/w0;
 
     .line 7
     .line 8
@@ -56,7 +56,7 @@
     const/4 p2, 0x0
 
     .line 11
-    invoke-virtual {p1, p2}, Landroidx/appcompat/widget/a0;->g(I)Landroid/graphics/drawable/Drawable;
+    invoke-virtual {p1, p2}, Ls/w0;->g(I)Landroid/graphics/drawable/Drawable;
 
     .line 12
     .line 13
@@ -69,7 +69,7 @@
     .line 16
     .line 17
     .line 18
-    invoke-virtual {p1}, Landroidx/appcompat/widget/a0;->w()V
+    invoke-virtual {p1}, Ls/w0;->w()V
 
     .line 19
     .line 20

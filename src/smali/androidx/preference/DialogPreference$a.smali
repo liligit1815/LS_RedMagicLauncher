@@ -15,7 +15,7 @@
 
 
 # virtual methods
-.method public abstract c(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+.method public abstract findPreference(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",

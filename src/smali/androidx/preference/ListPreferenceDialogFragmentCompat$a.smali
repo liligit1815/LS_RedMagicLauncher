@@ -1,4 +1,4 @@
-.class Landroidx/preference/ListPreferenceDialogFragmentCompat$a;
+.class public Landroidx/preference/ListPreferenceDialogFragmentCompat$a;
 .super Ljava/lang/Object;
 .source "ListPreferenceDialogFragmentCompat.java"
 
@@ -8,25 +8,25 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Landroidx/preference/ListPreferenceDialogFragmentCompat;->H(Landroidx/appcompat/app/b$a;)V
+    value = Landroidx/preference/ListPreferenceDialogFragmentCompat;->m(Landroidx/appcompat/app/a$a;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/preference/ListPreferenceDialogFragmentCompat;
+.field public final synthetic c:Landroidx/preference/ListPreferenceDialogFragmentCompat;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/ListPreferenceDialogFragmentCompat;)V
+.method public constructor <init>(Landroidx/preference/ListPreferenceDialogFragmentCompat;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/ListPreferenceDialogFragmentCompat$a;->g:Landroidx/preference/ListPreferenceDialogFragmentCompat;
+    iput-object p1, p0, Landroidx/preference/ListPreferenceDialogFragmentCompat$a;->c:Landroidx/preference/ListPreferenceDialogFragmentCompat;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/preference/ListPreferenceDialogFragmentCompat$a;->g:Landroidx/preference/ListPreferenceDialogFragmentCompat;
+    iget-object p0, p0, Landroidx/preference/ListPreferenceDialogFragmentCompat$a;->c:Landroidx/preference/ListPreferenceDialogFragmentCompat;
 
     .line 2
     .line 3
-    iput p2, p0, Landroidx/preference/ListPreferenceDialogFragmentCompat;->E:I
+    iput p2, p0, Landroidx/preference/ListPreferenceDialogFragmentCompat;->t:I
 
     .line 4
     .line 5

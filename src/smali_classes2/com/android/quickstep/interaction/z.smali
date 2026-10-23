@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;
+.field public final synthetic c:Lcom/android/quickstep/interaction/OverviewGestureTutorialController;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/z;->g:Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/z;->c:Lcom/android/quickstep/interaction/OverviewGestureTutorialController;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/z;->g:Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/z;->c:Lcom/android/quickstep/interaction/OverviewGestureTutorialController;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;->a(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
+    invoke-static {p0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController;->n(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)V
 
     .line 4
     .line 5

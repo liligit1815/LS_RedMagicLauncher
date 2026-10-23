@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract f(Landroidx/preference/Preference;)Z
+.method public abstract onPreferenceClick(Landroidx/preference/Preference;)Z
 .end method

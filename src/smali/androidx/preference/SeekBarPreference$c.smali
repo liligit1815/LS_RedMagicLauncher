@@ -1,4 +1,4 @@
-.class Landroidx/preference/SeekBarPreference$c;
+.class public Landroidx/preference/SeekBarPreference$c;
 .super Landroidx/preference/Preference$b;
 .source "SeekBarPreference.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "c"
 .end annotation
 
@@ -27,11 +27,11 @@
 
 
 # instance fields
-.field g:I
+.field public c:I
 
-.field h:I
+.field public m:I
 
-.field i:I
+.field public n:I
 
 
 # direct methods
@@ -55,7 +55,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 1
 
     .line 1
@@ -66,26 +66,26 @@
 
     move-result v0
 
-    iput v0, p0, Landroidx/preference/SeekBarPreference$c;->g:I
+    iput v0, p0, Landroidx/preference/SeekBarPreference$c;->c:I
 
     .line 3
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
-    iput v0, p0, Landroidx/preference/SeekBarPreference$c;->h:I
+    iput v0, p0, Landroidx/preference/SeekBarPreference$c;->m:I
 
     .line 4
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
 
-    iput p1, p0, Landroidx/preference/SeekBarPreference$c;->i:I
+    iput p1, p0, Landroidx/preference/SeekBarPreference$c;->n:I
 
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 5
@@ -105,7 +105,7 @@
     .line 2
     .line 3
     .line 4
-    iget p2, p0, Landroidx/preference/SeekBarPreference$c;->g:I
+    iget p2, p0, Landroidx/preference/SeekBarPreference$c;->c:I
 
     .line 5
     .line 6
@@ -114,7 +114,7 @@
     .line 7
     .line 8
     .line 9
-    iget p2, p0, Landroidx/preference/SeekBarPreference$c;->h:I
+    iget p2, p0, Landroidx/preference/SeekBarPreference$c;->m:I
 
     .line 10
     .line 11
@@ -123,7 +123,7 @@
     .line 12
     .line 13
     .line 14
-    iget p0, p0, Landroidx/preference/SeekBarPreference$c;->i:I
+    iget p0, p0, Landroidx/preference/SeekBarPreference$c;->n:I
 
     .line 15
     .line 16

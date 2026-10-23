@@ -1,4 +1,4 @@
-.class Landroidx/slice/widget/GridRowView$a;
+.class public Landroidx/slice/widget/GridRowView$a;
 .super Ljava/lang/Object;
 .source "GridRowView.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/slice/widget/GridRowView;
+.field public final synthetic c:Landroidx/slice/widget/GridRowView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/slice/widget/GridRowView;)V
+.method public constructor <init>(Landroidx/slice/widget/GridRowView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/slice/widget/GridRowView$a;->g:Landroidx/slice/widget/GridRowView;
+    iput-object p1, p0, Landroidx/slice/widget/GridRowView$a;->c:Landroidx/slice/widget/GridRowView;
 
     .line 2
     .line 3
@@ -44,7 +44,7 @@
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView$a;->g:Landroidx/slice/widget/GridRowView;
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView$a;->c:Landroidx/slice/widget/GridRowView;
 
     .line 2
     .line 3
@@ -56,11 +56,11 @@
     move-result v1
 
     .line 7
-    iput v1, v0, Landroidx/slice/widget/GridRowView;->z:I
+    iput v1, v0, Landroidx/slice/widget/GridRowView;->E:I
 
     .line 8
     .line 9
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView$a;->g:Landroidx/slice/widget/GridRowView;
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView$a;->c:Landroidx/slice/widget/GridRowView;
 
     .line 10
     .line 11
@@ -69,7 +69,7 @@
     .line 12
     .line 13
     .line 14
-    iget-object v0, p0, Landroidx/slice/widget/GridRowView$a;->g:Landroidx/slice/widget/GridRowView;
+    iget-object v0, p0, Landroidx/slice/widget/GridRowView$a;->c:Landroidx/slice/widget/GridRowView;
 
     .line 15
     .line 16
@@ -86,14 +86,14 @@
     .line 21
     .line 22
     .line 23
-    iget-object p0, p0, Landroidx/slice/widget/GridRowView$a;->g:Landroidx/slice/widget/GridRowView;
+    iget-object p0, p0, Landroidx/slice/widget/GridRowView$a;->c:Landroidx/slice/widget/GridRowView;
 
     .line 24
     .line 25
     const/4 v0, 0x0
 
     .line 26
-    iput-boolean v0, p0, Landroidx/slice/widget/GridRowView;->B:Z
+    iput-boolean v0, p0, Landroidx/slice/widget/GridRowView;->G:Z
 
     .line 27
     .line 28

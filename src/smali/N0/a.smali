@@ -1,32 +1,59 @@
-.class public final enum LN0/a;
-.super Ljava/lang/Enum;
-.source "FancyIconKey.java"
+.class public final Ln0/a;
+.super Ljava/lang/Object;
+.source "SplineBasedDecay.kt"
 
 
 # annotations
-.annotation system Ldalvik/annotation/Signature;
+.annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        "Ljava/lang/Enum<",
-        "LN0/a;",
-        ">;"
+        Ln0/a$a;
     }
+.end annotation
+
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000*\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0010\u0007\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0004\n\u0002\u0010\u0006\n\u0002\u0008\u0002\n\u0002\u0010\u0014\n\u0002\u0008\u0005\u0008\u00c1\u0002\u0018\u00002\u00020\u0001:\u0001\u000cB\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003J\u0015\u0010\u0007\u001a\u00020\u00062\u0006\u0010\u0005\u001a\u00020\u0004\u00a2\u0006\u0004\u0008\u0007\u0010\u0008J\u001d\u0010\u000c\u001a\u00020\u000b2\u0006\u0010\t\u001a\u00020\u00042\u0006\u0010\n\u001a\u00020\u0004\u00a2\u0006\u0004\u0008\u000c\u0010\rR\u0014\u0010\u0010\u001a\u00020\u000e8\u0002X\u0082\u0004\u00a2\u0006\u0006\n\u0004\u0008\u0007\u0010\u000fR\u0014\u0010\u0012\u001a\u00020\u000e8\u0002X\u0082\u0004\u00a2\u0006\u0006\n\u0004\u0008\u0011\u0010\u000f\u00a8\u0006\u0013"
+    }
+    d2 = {
+        "Ln0/a;",
+        "",
+        "<init>",
+        "()V",
+        "",
+        "time",
+        "Ln0/a$a;",
+        "b",
+        "(F)Ln0/a$a;",
+        "velocity",
+        "friction",
+        "",
+        "a",
+        "(FF)D",
+        "",
+        "[F",
+        "SplinePositions",
+        "c",
+        "SplineTimes",
+        "animation"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
 .end annotation
 
 
 # static fields
-.field public static final enum g:LN0/a;
+.field public static final a:Ln0/a;
 
-.field public static final enum h:LN0/a;
+.field public static final b:[F
 
-.field public static final enum i:LN0/a;
+.field public static final c:[F
 
-.field public static final enum j:LN0/a;
-
-.field public static final enum k:LN0/a;
-
-.field public static final enum l:LN0/a;
-
-.field private static final synthetic m:[LN0/a;
+.field public static final d:I
 
 
 # direct methods
@@ -34,151 +61,64 @@
     .locals 3
 
     .line 1
-    new-instance v0, LN0/a;
+    new-instance v0, Ln0/a;
 
     .line 2
     .line 3
-    const-string v1, "WORKSPACE"
+    invoke-direct {v0}, Ln0/a;-><init>()V
 
     .line 4
     .line 5
-    const/4 v2, 0x0
-
     .line 6
-    invoke-direct {v0, v1, v2}, LN0/a;-><init>(Ljava/lang/String;I)V
+    sput-object v0, Ln0/a;->a:Ln0/a;
 
     .line 7
     .line 8
+    const/16 v0, 0x65
+
     .line 9
-    sput-object v0, LN0/a;->g:LN0/a;
-
     .line 10
+    new-array v1, v0, [F
+
     .line 11
-    new-instance v0, LN0/a;
-
     .line 12
+    sput-object v1, Ln0/a;->b:[F
+
     .line 13
-    const-string v1, "DRAWER"
-
     .line 14
-    .line 15
-    const/4 v2, 0x1
+    new-array v0, v0, [F
 
+    .line 15
     .line 16
-    invoke-direct {v0, v1, v2}, LN0/a;-><init>(Ljava/lang/String;I)V
+    sput-object v0, Ln0/a;->c:[F
 
     .line 17
     .line 18
+    const/16 v2, 0x64
+
     .line 19
-    sput-object v0, LN0/a;->h:LN0/a;
-
     .line 20
-    .line 21
-    new-instance v0, LN0/a;
+    invoke-static {v1, v0, v2}, Ln0/j0;->a([F[FI)V
 
+    .line 21
     .line 22
     .line 23
-    const-string v1, "DRAWER_PREDICTION"
+    const/16 v0, 0x8
 
     .line 24
     .line 25
-    const/4 v2, 0x2
+    sput v0, Ln0/a;->d:I
 
     .line 26
-    invoke-direct {v0, v1, v2}, LN0/a;-><init>(Ljava/lang/String;I)V
-
     .line 27
-    .line 28
-    .line 29
-    sput-object v0, LN0/a;->i:LN0/a;
-
-    .line 30
-    .line 31
-    new-instance v0, LN0/a;
-
-    .line 32
-    .line 33
-    const-string v1, "DRAWER_SEARCH"
-
-    .line 34
-    .line 35
-    const/4 v2, 0x3
-
-    .line 36
-    invoke-direct {v0, v1, v2}, LN0/a;-><init>(Ljava/lang/String;I)V
-
-    .line 37
-    .line 38
-    .line 39
-    sput-object v0, LN0/a;->j:LN0/a;
-
-    .line 40
-    .line 41
-    new-instance v0, LN0/a;
-
-    .line 42
-    .line 43
-    const-string v1, "TASKBAR"
-
-    .line 44
-    .line 45
-    const/4 v2, 0x4
-
-    .line 46
-    invoke-direct {v0, v1, v2}, LN0/a;-><init>(Ljava/lang/String;I)V
-
-    .line 47
-    .line 48
-    .line 49
-    sput-object v0, LN0/a;->k:LN0/a;
-
-    .line 50
-    .line 51
-    new-instance v0, LN0/a;
-
-    .line 52
-    .line 53
-    const-string v1, "TASKBAR_FOLDER"
-
-    .line 54
-    .line 55
-    const/4 v2, 0x5
-
-    .line 56
-    invoke-direct {v0, v1, v2}, LN0/a;-><init>(Ljava/lang/String;I)V
-
-    .line 57
-    .line 58
-    .line 59
-    sput-object v0, LN0/a;->l:LN0/a;
-
-    .line 60
-    .line 61
-    invoke-static {}, LN0/a;->a()[LN0/a;
-
-    .line 62
-    .line 63
-    .line 64
-    move-result-object v0
-
-    .line 65
-    sput-object v0, LN0/a;->m:[LN0/a;
-
-    .line 66
-    .line 67
     return-void
 .end method
 
-.method private constructor <init>(Ljava/lang/String;I)V
+.method public constructor <init>()V
     .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()V"
-        }
-    .end annotation
 
     .line 1
-    invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 2
     .line 3
@@ -186,87 +126,150 @@
     return-void
 .end method
 
-.method private static synthetic a()[LN0/a;
-    .locals 6
+
+# virtual methods
+.method public final a(FF)D
+    .locals 2
 
     .line 1
-    sget-object v0, LN0/a;->g:LN0/a;
+    const p0, 0x3eb33333    # 0.35f
 
     .line 2
     .line 3
-    sget-object v1, LN0/a;->h:LN0/a;
-
     .line 4
-    .line 5
-    sget-object v2, LN0/a;->i:LN0/a;
+    invoke-static {p1}, Ljava/lang/Math;->abs(F)F
 
+    .line 5
     .line 6
     .line 7
-    sget-object v3, LN0/a;->j:LN0/a;
+    move-result p1
 
     .line 8
+    mul-float/2addr p1, p0
+
     .line 9
-    sget-object v4, LN0/a;->k:LN0/a;
+    float-to-double p0, p1
 
     .line 10
+    float-to-double v0, p2
+
     .line 11
-    sget-object v5, LN0/a;->l:LN0/a;
+    div-double/2addr p0, v0
+
+    .line 12
+    invoke-static {p0, p1}, Ljava/lang/Math;->log(D)D
+
+    .line 13
+    .line 14
+    .line 15
+    move-result-wide p0
+
+    .line 16
+    return-wide p0
+.end method
+
+.method public final b(F)Ln0/a$a;
+    .locals 5
+
+    .line 1
+    const/4 p0, 0x0
+
+    .line 2
+    const/high16 v0, 0x3f800000    # 1.0f
+
+    .line 3
+    .line 4
+    invoke-static {p1, p0, v0}, Lkotlin/ranges/RangesKt;->coerceIn(FFF)F
+
+    .line 5
+    .line 6
+    .line 7
+    move-result p1
+
+    .line 8
+    const/16 v1, 0x64
+
+    .line 9
+    .line 10
+    int-to-float v2, v1
+
+    .line 11
+    mul-float v3, v2, p1
 
     .line 12
     .line 13
-    filled-new-array/range {v0 .. v5}, [LN0/a;
+    float-to-int v3, v3
 
     .line 14
+    if-ge v3, v1, :cond_0
+
     .line 15
     .line 16
-    move-result-object v0
+    int-to-float p0, v3
 
     .line 17
-    return-object v0
-.end method
+    div-float/2addr p0, v2
 
-.method public static valueOf(Ljava/lang/String;)LN0/a;
-    .locals 1
+    .line 18
+    add-int/lit8 v0, v3, 0x1
 
-    .line 1
-    const-class v0, LN0/a;
+    .line 19
+    .line 20
+    int-to-float v1, v0
 
-    .line 2
-    .line 3
-    invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+    .line 21
+    div-float/2addr v1, v2
 
-    .line 4
-    .line 5
-    .line 6
-    move-result-object p0
+    .line 22
+    sget-object v2, Ln0/a;->b:[F
 
-    .line 7
-    check-cast p0, LN0/a;
+    .line 23
+    .line 24
+    aget v3, v2, v3
 
-    .line 8
-    .line 9
-    return-object p0
-.end method
+    .line 25
+    .line 26
+    aget v0, v2, v0
 
-.method public static values()[LN0/a;
-    .locals 1
+    .line 27
+    .line 28
+    sub-float/2addr v0, v3
 
-    .line 1
-    sget-object v0, LN0/a;->m:[LN0/a;
+    .line 29
+    sub-float/2addr v1, p0
 
-    .line 2
-    .line 3
-    invoke-virtual {v0}, [LN0/a;->clone()Ljava/lang/Object;
+    .line 30
+    div-float/2addr v0, v1
 
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
+    .line 31
+    sub-float/2addr p1, p0
 
-    .line 7
-    check-cast v0, [LN0/a;
+    .line 32
+    mul-float/2addr p1, v0
 
-    .line 8
-    .line 9
-    return-object v0
+    .line 33
+    add-float p0, v3, p1
+
+    .line 34
+    .line 35
+    move v4, v0
+
+    .line 36
+    move v0, p0
+
+    .line 37
+    move p0, v4
+
+    .line 38
+    :cond_0
+    new-instance p1, Ln0/a$a;
+
+    .line 39
+    .line 40
+    invoke-direct {p1, v0, p0}, Ln0/a$a;-><init>(FF)V
+
+    .line 41
+    .line 42
+    .line 43
+    return-object p1
 .end method

@@ -1,19 +1,10 @@
-.class public final synthetic Landroidx/fragment/app/U;
+.class public abstract Landroidx/fragment/app/u;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Ljava/lang/Runnable;
-
-
-# instance fields
-.field public final synthetic g:Landroidx/fragment/app/W;
-
-.field public final synthetic h:Landroidx/fragment/app/W$b;
+.source "FragmentContainer.java"
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroidx/fragment/app/W;Landroidx/fragment/app/W$b;)V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -22,35 +13,30 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/fragment/app/U;->g:Landroidx/fragment/app/W;
-
-    .line 5
-    .line 6
-    iput-object p2, p0, Landroidx/fragment/app/U;->h:Landroidx/fragment/app/W$b;
-
-    .line 7
-    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
-    .locals 1
+.method public c(Landroid/content/Context;Ljava/lang/String;Landroid/os/Bundle;)Landroidx/fragment/app/n;
+    .locals 0
+    .annotation runtime Ljava/lang/Deprecated;
+    .end annotation
 
     .line 1
-    iget-object v0, p0, Landroidx/fragment/app/U;->g:Landroidx/fragment/app/W;
+    invoke-static {p1, p2, p3}, Landroidx/fragment/app/n;->instantiate(Landroid/content/Context;Ljava/lang/String;Landroid/os/Bundle;)Landroidx/fragment/app/n;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/fragment/app/U;->h:Landroidx/fragment/app/W$b;
-
     .line 4
-    .line 5
-    invoke-static {v0, p0}, Landroidx/fragment/app/W;->a(Landroidx/fragment/app/W;Landroidx/fragment/app/W$b;)V
+    move-result-object p0
 
-    .line 6
-    .line 7
-    .line 8
-    return-void
+    .line 5
+    return-object p0
+.end method
+
+.method public abstract f(I)Landroid/view/View;
+.end method
+
+.method public abstract g()Z
 .end method

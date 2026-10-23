@@ -127,10 +127,9 @@ with tempfile.TemporaryDirectory(prefix='launcher-touch-') as temp:
 
 # The controller must forward even a null result, without falling back to OEM
 # adapter order when the visible region contains no card.
-controller = (ROOT / 'src/smali/com/android/launcher3/uioverrides/touchcontrollers/K.smali').read_text(encoding='utf-8')
-call = controller.split('->findTouchedTask(', 1)[1].split(':ls_stack_candidate_done', 1)[0]
-assert 'move-result-object v7' in call and 'if-' not in call
-binding = controller.split('\n    :ls_stack_candidate_done\n', 1)[1].split('\n    :ls_native_task_scan\n', 1)[0]
-assert 'if-eqz v7, :cond_b' in binding
-assert 'iput-object v7, p0, Lcom/android/launcher3/uioverrides/touchcontrollers/K;->x:' in binding
-print('PASS controller uses selected task and preserves empty-region result')
+controller = (ROOT / 'src/smali_classes2/com/android/launcher3/uioverrides/touchcontrollers/TaskViewDismissTouchController.smali').read_text(encoding='utf-8')
+body = controller.split('.method public final onActionDown(', 1)[1].split('.end method', 1)[0]
+call = body.split('LsNativeStack;->findTouchedTask(', 1)[1]
+assert call.index('move-result-object v3') < call.index('->taskBeingDragged:'), 'topmost hit result must own the native drag'
+assert body.index('->isNativeStackStyle()Z') < body.index('->findTouchedTask('), 'standard/grid must retain the native hit test'
+print('PASS OEM12 task-drag hit test uses the visual owner')

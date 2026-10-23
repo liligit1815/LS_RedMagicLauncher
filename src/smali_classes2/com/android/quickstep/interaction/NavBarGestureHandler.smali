@@ -42,7 +42,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroid/content/Context;Lcom/android/launcher3/h0;)V
+.method public constructor <init>(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;)V
     .locals 3
 
     .line 1
@@ -94,118 +94,142 @@
 
     .line 26
     .line 27
-    iget v1, p2, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 28
     .line 29
-    iget p2, p2, Lcom/android/launcher3/h0;->U0:I
-
     .line 30
+    move-result-object v1
+
     .line 31
-    invoke-virtual {v0, v1, p2}, Landroid/graphics/Point;->set(II)V
+    invoke-virtual {v1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 32
     .line 33
     .line 34
-    new-instance p2, Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker;
+    move-result v1
 
     .line 35
-    .line 36
-    new-instance v0, Lcom/android/quickstep/util/NavBarPosition;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
+    .line 36
     .line 37
     .line 38
-    sget-object v1, Lcom/android/launcher3/util/C1;->l:Lcom/android/launcher3/util/C1;
+    move-result-object p2
 
     .line 39
-    .line 40
-    sget-object v2, Lcom/android/launcher3/util/Z;->r:Lcom/android/launcher3/util/I;
+    invoke-virtual {p2}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
+    .line 40
     .line 41
     .line 42
-    invoke-virtual {v2, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    move-result p2
 
     .line 43
+    invoke-virtual {v0, v1, p2}, Landroid/graphics/Point;->set(II)V
+
     .line 44
     .line 45
-    move-result-object v2
-
     .line 46
-    check-cast v2, Lcom/android/launcher3/util/Z;
+    new-instance p2, Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker;
 
     .line 47
     .line 48
-    invoke-virtual {v2}, Lcom/android/launcher3/util/Z;->w()Lcom/android/launcher3/util/Z$c;
+    new-instance v0, Lcom/android/quickstep/util/NavBarPosition;
 
     .line 49
     .line 50
-    .line 51
-    move-result-object v2
+    sget-object v1, Lcom/android/launcher3/util/NavigationMode;->NO_BUTTON:Lcom/android/launcher3/util/NavigationMode;
 
+    .line 51
     .line 52
-    invoke-direct {v0, v1, v2}, Lcom/android/quickstep/util/NavBarPosition;-><init>(Lcom/android/launcher3/util/C1;Lcom/android/launcher3/util/Z$c;)V
+    sget-object v2, Lcom/android/launcher3/display/DisplayController;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 53
     .line 54
+    invoke-virtual {v2, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
+
     .line 55
-    const/4 v1, 0x1
-
     .line 56
-    invoke-direct {p2, p1, v1, v0, p0}, Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker;-><init>(Landroid/content/Context;ZLcom/android/quickstep/util/NavBarPosition;Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker$OnSwipeUpListener;)V
-
     .line 57
+    move-result-object v2
+
     .line 58
+    check-cast v2, Lcom/android/launcher3/display/DisplayController;
+
     .line 59
-    iput-object p2, p0, Lcom/android/quickstep/interaction/NavBarGestureHandler;->mSwipeUpTouchTracker:Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker;
-
     .line 60
-    .line 61
-    new-instance p2, Lcom/android/quickstep/util/MotionPauseDetector;
+    invoke-interface {v2}, Lcom/android/launcher3/display/DisplayController;->getInfo()Lcom/android/launcher3/display/LauncherDisplayInfo;
 
+    .line 61
     .line 62
     .line 63
-    const/4 v0, 0x0
+    move-result-object v2
 
     .line 64
-    invoke-direct {p2, p1, v0}, Lcom/android/quickstep/util/MotionPauseDetector;-><init>(Landroid/content/Context;Z)V
+    invoke-direct {v0, v1, v2}, Lcom/android/quickstep/util/NavBarPosition;-><init>(Lcom/android/launcher3/util/NavigationMode;Lcom/android/launcher3/display/LauncherDisplayInfo;)V
 
     .line 65
     .line 66
     .line 67
-    iput-object p2, p0, Lcom/android/quickstep/interaction/NavBarGestureHandler;->mMotionPauseDetector:Lcom/android/quickstep/util/MotionPauseDetector;
+    const/4 v1, 0x1
 
     .line 68
-    .line 69
-    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    invoke-direct {p2, p1, v1, v0, p0}, Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker;-><init>(Landroid/content/Context;ZLcom/android/quickstep/util/NavBarPosition;Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker$OnSwipeUpListener;)V
 
+    .line 69
     .line 70
     .line 71
-    .line 72
-    move-result-object p1
+    iput-object p2, p0, Lcom/android/quickstep/interaction/NavBarGestureHandler;->mSwipeUpTouchTracker:Lcom/android/quickstep/util/TriggerSwipeUpTouchTracker;
 
+    .line 72
     .line 73
-    const-string p2, "navigation_bar_gesture_height"
+    new-instance p2, Lcom/android/quickstep/util/MotionPauseDetector;
 
     .line 74
     .line 75
-    invoke-static {p2, p1}, Lc2/a;->d(Ljava/lang/String;Landroid/content/res/Resources;)I
+    const/4 v0, 0x0
 
     .line 76
+    invoke-direct {p2, p1, v0}, Lcom/android/quickstep/util/MotionPauseDetector;-><init>(Landroid/content/Context;Z)V
+
     .line 77
     .line 78
-    move-result p1
-
     .line 79
-    iput p1, p0, Lcom/android/quickstep/interaction/NavBarGestureHandler;->mBottomGestureHeight:I
+    iput-object p2, p0, Lcom/android/quickstep/interaction/NavBarGestureHandler;->mMotionPauseDetector:Lcom/android/quickstep/util/MotionPauseDetector;
 
     .line 80
     .line 81
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    .line 82
+    .line 83
+    .line 84
+    move-result-object p1
+
+    .line 85
+    const-string p2, "navigation_bar_gesture_height"
+
+    .line 86
+    .line 87
+    invoke-static {p2, p1}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getNavbarSize(Ljava/lang/String;Landroid/content/res/Resources;)I
+
+    .line 88
+    .line 89
+    .line 90
+    move-result p1
+
+    .line 91
+    iput p1, p0, Lcom/android/quickstep/interaction/NavBarGestureHandler;->mBottomGestureHeight:I
+
+    .line 92
+    .line 93
     return-void
 .end method
 
 
 # virtual methods
-.method onInterceptTouch(Landroid/view/MotionEvent;)Z
+.method public onInterceptTouch(Landroid/view/MotionEvent;)Z
     .locals 1
 
     .line 1
@@ -276,7 +300,7 @@
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/android/launcher3/util/V2;->e:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/launcher3/util/VibratorWrapper;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 2
     .line 3
@@ -284,7 +308,7 @@
 
     .line 4
     .line 5
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 6
     .line 7
@@ -292,15 +316,15 @@
     move-result-object p0
 
     .line 9
-    check-cast p0, Lcom/android/launcher3/util/V2;
+    check-cast p0, Lcom/android/launcher3/util/VibratorWrapper;
 
     .line 10
     .line 11
-    sget-object v0, Lcom/android/launcher3/util/V2;->i:Landroid/os/VibrationEffect;
+    sget-object v0, Lcom/android/launcher3/util/VibratorWrapper;->OVERVIEW_HAPTIC:Landroid/os/VibrationEffect;
 
     .line 12
     .line 13
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/util/V2;->n(Landroid/os/VibrationEffect;)V
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/util/VibratorWrapper;->vibrate(Landroid/os/VibrationEffect;)V
 
     .line 14
     .line 15
@@ -811,7 +835,7 @@
     return v0
 .end method
 
-.method registerNavBarGestureAttemptCallback(Lcom/android/quickstep/interaction/NavBarGestureHandler$NavBarGestureAttemptCallback;)V
+.method public registerNavBarGestureAttemptCallback(Lcom/android/quickstep/interaction/NavBarGestureHandler$NavBarGestureAttemptCallback;)V
     .locals 0
 
     .line 1
@@ -822,7 +846,7 @@
     return-void
 .end method
 
-.method unregisterNavBarGestureAttemptCallback()V
+.method public unregisterNavBarGestureAttemptCallback()V
     .locals 1
 
     .line 1

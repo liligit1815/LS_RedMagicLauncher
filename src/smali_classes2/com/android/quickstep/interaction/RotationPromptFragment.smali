@@ -22,7 +22,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f0e00ea
+    const p0, 0x7f0e00f4
 
     .line 2
     .line 3

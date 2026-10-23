@@ -3,15 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lu4/a;
+.implements Lkotlin/jvm/functions/Function0;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;
+.field public final synthetic c:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;
 
-.field public final synthetic h:Lcom/android/systemui/shared/recents/model/Task$TaskKey;
+.field public final synthetic m:Lcom/android/systemui/shared/recents/model/Task$TaskKey;
 
-.field public final synthetic i:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;
+.field public final synthetic n:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;
 
 
 # direct methods
@@ -24,15 +24,15 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/recents/data/b;->g:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;
+    iput-object p1, p0, Lcom/android/quickstep/recents/data/b;->c:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;
 
     .line 5
     .line 6
-    iput-object p2, p0, Lcom/android/quickstep/recents/data/b;->h:Lcom/android/systemui/shared/recents/model/Task$TaskKey;
+    iput-object p2, p0, Lcom/android/quickstep/recents/data/b;->m:Lcom/android/systemui/shared/recents/model/Task$TaskKey;
 
     .line 7
     .line 8
-    iput-object p3, p0, Lcom/android/quickstep/recents/data/b;->i:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;
+    iput-object p3, p0, Lcom/android/quickstep/recents/data/b;->n:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;
 
     .line 9
     .line 10
@@ -45,19 +45,19 @@
     .locals 2
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/recents/data/b;->g:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;
+    iget-object v0, p0, Lcom/android/quickstep/recents/data/b;->c:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;
 
     .line 2
     .line 3
-    iget-object v1, p0, Lcom/android/quickstep/recents/data/b;->h:Lcom/android/systemui/shared/recents/model/Task$TaskKey;
+    iget-object v1, p0, Lcom/android/quickstep/recents/data/b;->m:Lcom/android/systemui/shared/recents/model/Task$TaskKey;
 
     .line 4
     .line 5
-    iget-object p0, p0, Lcom/android/quickstep/recents/data/b;->i:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;
+    iget-object p0, p0, Lcom/android/quickstep/recents/data/b;->n:Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;
 
     .line 6
     .line 7
-    invoke-static {v0, v1, p0}, Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;->c(Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;Lcom/android/systemui/shared/recents/model/Task$TaskKey;Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;)Lh4/t;
+    invoke-static {v0, v1, p0}, Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;->c(Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegateImpl;Lcom/android/systemui/shared/recents/model/Task$TaskKey;Lcom/android/quickstep/recents/data/TaskVisualsChangedDelegate$TaskThumbnailChangedCallback;)Lkotlin/Unit;
 
     .line 8
     .line 9

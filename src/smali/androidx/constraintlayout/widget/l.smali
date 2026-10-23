@@ -4,9 +4,9 @@
 
 
 # instance fields
-.field private p:Z
+.field public u:Z
 
-.field private q:Z
+.field public v:Z
 
 
 # direct methods
@@ -24,7 +24,7 @@
 
 
 # virtual methods
-.method protected j(Landroidx/constraintlayout/widget/ConstraintLayout;)V
+.method public j(Landroidx/constraintlayout/widget/ConstraintLayout;)V
     .locals 0
 
     .line 1
@@ -36,7 +36,7 @@
     return-void
 .end method
 
-.method protected n(Landroid/util/AttributeSet;)V
+.method public n(Landroid/util/AttributeSet;)V
     .locals 5
 
     .line 1
@@ -104,7 +104,7 @@
 
     .line 31
     .line 32
-    iput-boolean v4, p0, Landroidx/constraintlayout/widget/l;->p:Z
+    iput-boolean v4, p0, Landroidx/constraintlayout/widget/l;->u:Z
 
     .line 33
     .line 34
@@ -120,7 +120,7 @@
 
     .line 38
     .line 39
-    iput-boolean v4, p0, Landroidx/constraintlayout/widget/l;->q:Z
+    iput-boolean v4, p0, Landroidx/constraintlayout/widget/l;->v:Z
 
     .line 40
     .line 41
@@ -152,7 +152,7 @@
     .line 2
     .line 3
     .line 4
-    iget-boolean v0, p0, Landroidx/constraintlayout/widget/l;->p:Z
+    iget-boolean v0, p0, Landroidx/constraintlayout/widget/l;->u:Z
 
     .line 5
     .line 6
@@ -160,7 +160,7 @@
 
     .line 7
     .line 8
-    iget-boolean v0, p0, Landroidx/constraintlayout/widget/l;->q:Z
+    iget-boolean v0, p0, Landroidx/constraintlayout/widget/l;->v:Z
 
     .line 9
     .line 10
@@ -209,7 +209,7 @@
 
     .line 31
     :goto_0
-    iget v4, p0, Landroidx/constraintlayout/widget/b;->h:I
+    iget v4, p0, Landroidx/constraintlayout/widget/b;->m:I
 
     .line 32
     .line 33
@@ -217,7 +217,7 @@
 
     .line 34
     .line 35
-    iget-object v4, p0, Landroidx/constraintlayout/widget/b;->g:[I
+    iget-object v4, p0, Landroidx/constraintlayout/widget/b;->c:[I
 
     .line 36
     .line 37
@@ -237,7 +237,7 @@
 
     .line 44
     .line 45
-    iget-boolean v5, p0, Landroidx/constraintlayout/widget/l;->p:Z
+    iget-boolean v5, p0, Landroidx/constraintlayout/widget/l;->u:Z
 
     .line 46
     .line 47
@@ -251,7 +251,7 @@
     .line 51
     .line 52
     :cond_1
-    iget-boolean v5, p0, Landroidx/constraintlayout/widget/l;->q:Z
+    iget-boolean v5, p0, Landroidx/constraintlayout/widget/l;->v:Z
 
     .line 53
     .line 54
@@ -332,7 +332,7 @@
     return-void
 .end method
 
-.method public u(Lt/l;II)V
+.method public u(Lg5/l;II)V
     .locals 0
 
     .line 1

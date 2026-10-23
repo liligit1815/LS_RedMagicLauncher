@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/ActionBarOverlayLayout$c;
+.class public Landroidx/appcompat/widget/ActionBarOverlayLayout$c;
 .super Ljava/lang/Object;
 .source "ActionBarOverlayLayout.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/widget/ActionBarOverlayLayout;
+.field public final synthetic c:Landroidx/appcompat/widget/ActionBarOverlayLayout;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/ActionBarOverlayLayout;)V
+.method public constructor <init>(Landroidx/appcompat/widget/ActionBarOverlayLayout;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->g:Landroidx/appcompat/widget/ActionBarOverlayLayout;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->c:Landroidx/appcompat/widget/ActionBarOverlayLayout;
 
     .line 2
     .line 3
@@ -44,7 +44,7 @@
     .locals 3
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->g:Landroidx/appcompat/widget/ActionBarOverlayLayout;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->c:Landroidx/appcompat/widget/ActionBarOverlayLayout;
 
     .line 2
     .line 3
@@ -53,11 +53,11 @@
     .line 4
     .line 5
     .line 6
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->g:Landroidx/appcompat/widget/ActionBarOverlayLayout;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->c:Landroidx/appcompat/widget/ActionBarOverlayLayout;
 
     .line 7
     .line 8
-    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 9
     .line 10
@@ -69,11 +69,11 @@
     move-result-object v1
 
     .line 14
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->g:Landroidx/appcompat/widget/ActionBarOverlayLayout;
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->c:Landroidx/appcompat/widget/ActionBarOverlayLayout;
 
     .line 15
     .line 16
-    iget-object v2, v2, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v2, v2, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 17
     .line 18
@@ -99,11 +99,11 @@
     move-result-object v1
 
     .line 28
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->g:Landroidx/appcompat/widget/ActionBarOverlayLayout;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$c;->c:Landroidx/appcompat/widget/ActionBarOverlayLayout;
 
     .line 29
     .line 30
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Landroid/animation/AnimatorListenerAdapter;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->M:Landroid/animation/AnimatorListenerAdapter;
 
     .line 31
     .line 32
@@ -115,7 +115,7 @@
     move-result-object p0
 
     .line 36
-    iput-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->G:Landroid/view/ViewPropertyAnimator;
+    iput-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->L:Landroid/view/ViewPropertyAnimator;
 
     .line 37
     .line 38

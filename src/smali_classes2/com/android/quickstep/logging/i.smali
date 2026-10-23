@@ -3,17 +3,17 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lcom/android/launcher3/util/a2;
+.implements Lcom/android/launcher3/util/SafeCloseable;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/logging/SettingsChangeLogger;
+.field public final synthetic c:Lcom/android/launcher3/graphics/ThemeManager;
 
-.field public final synthetic h:Lcom/android/launcher3/util/p2;
+.field public final synthetic m:Lcom/android/launcher3/graphics/ThemeManager$ThemeChangeListener;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/logging/SettingsChangeLogger;Lcom/android/launcher3/util/p2;)V
+.method public synthetic constructor <init>(Lcom/android/launcher3/graphics/ThemeManager;Lcom/android/launcher3/graphics/ThemeManager$ThemeChangeListener;)V
     .locals 0
 
     .line 1
@@ -22,11 +22,11 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/logging/i;->g:Lcom/android/quickstep/logging/SettingsChangeLogger;
+    iput-object p1, p0, Lcom/android/quickstep/logging/i;->c:Lcom/android/launcher3/graphics/ThemeManager;
 
     .line 5
     .line 6
-    iput-object p2, p0, Lcom/android/quickstep/logging/i;->h:Lcom/android/launcher3/util/p2;
+    iput-object p2, p0, Lcom/android/quickstep/logging/i;->m:Lcom/android/launcher3/graphics/ThemeManager$ThemeChangeListener;
 
     .line 7
     .line 8
@@ -39,15 +39,15 @@
     .locals 1
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/logging/i;->g:Lcom/android/quickstep/logging/SettingsChangeLogger;
+    iget-object v0, p0, Lcom/android/quickstep/logging/i;->c:Lcom/android/launcher3/graphics/ThemeManager;
 
     .line 2
     .line 3
-    iget-object p0, p0, Lcom/android/quickstep/logging/i;->h:Lcom/android/launcher3/util/p2;
+    iget-object p0, p0, Lcom/android/quickstep/logging/i;->m:Lcom/android/launcher3/graphics/ThemeManager$ThemeChangeListener;
 
     .line 4
     .line 5
-    invoke-static {v0, p0}, Lcom/android/quickstep/logging/SettingsChangeLogger;->e(Lcom/android/quickstep/logging/SettingsChangeLogger;Lcom/android/launcher3/util/p2;)V
+    invoke-static {v0, p0}, Lcom/android/quickstep/logging/SettingsChangeLogger;->f(Lcom/android/launcher3/graphics/ThemeManager;Lcom/android/launcher3/graphics/ThemeManager$ThemeChangeListener;)V
 
     .line 6
     .line 7

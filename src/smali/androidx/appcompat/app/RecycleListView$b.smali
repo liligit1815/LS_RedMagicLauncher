@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/RecycleListView$b;
+.class public Landroidx/appcompat/app/RecycleListView$b;
 .super Landroid/view/GestureDetector$SimpleOnGestureListener;
 .source "RecycleListView.java"
 
@@ -9,28 +9,28 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "b"
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/app/RecycleListView;
+.field public final synthetic c:Landroidx/appcompat/app/RecycleListView;
 
 
 # direct methods
-.method private constructor <init>(Landroidx/appcompat/app/RecycleListView;)V
+.method public constructor <init>(Landroidx/appcompat/app/RecycleListView;)V
     .locals 0
 
     .line 2
-    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     invoke-direct {p0}, Landroid/view/GestureDetector$SimpleOnGestureListener;-><init>()V
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Landroidx/appcompat/app/RecycleListView;Landroidx/appcompat/app/q;)V
+.method public synthetic constructor <init>(Landroidx/appcompat/app/RecycleListView;Ll/p;)V
     .locals 0
 
     .line 1
@@ -45,7 +45,7 @@
     .locals 3
 
     .line 1
-    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 2
     .line 3
@@ -60,7 +60,7 @@
     move-result p1
 
     .line 8
-    iget-object p2, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p2, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 9
     .line 10
@@ -149,7 +149,7 @@
     .line 55
     .line 56
     .line 57
-    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 58
     .line 59
@@ -183,7 +183,7 @@
     .line 73
     .line 74
     .line 75
-    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 76
     .line 77
@@ -199,7 +199,7 @@
 
     .line 82
     .line 83
-    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 84
     .line 85
@@ -215,11 +215,11 @@
 
     .line 90
     .line 91
-    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 92
     .line 93
-    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
 
     .line 94
     .line 95
@@ -231,11 +231,11 @@
 
     .line 98
     .line 99
-    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView$b;->g:Landroidx/appcompat/app/RecycleListView;
+    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView$b;->c:Landroidx/appcompat/app/RecycleListView;
 
     .line 100
     .line 101
-    invoke-static {p0}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+    invoke-static {p0}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
 
     .line 102
     .line 103
@@ -249,7 +249,7 @@
     float-to-int p1, p1
 
     .line 107
-    invoke-virtual {p0, p1}, Lb4/e;->h(I)V
+    invoke-virtual {p0, p1}, Lwh/e;->h(I)V
 
     .line 108
     .line 109

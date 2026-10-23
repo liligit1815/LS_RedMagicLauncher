@@ -4,27 +4,27 @@
 
 
 # instance fields
-.field protected final a:Landroid/view/animation/LinearInterpolator;
+.field public final mDecelerateInterpolator:Landroid/view/animation/DecelerateInterpolator;
 
-.field protected final b:Landroid/view/animation/DecelerateInterpolator;
+.field public final mDisplayMetrics:Landroid/util/DisplayMetrics;
 
-.field protected c:Landroid/graphics/PointF;
+.field public mHasCalculatedMillisPerPixel:Z
+
+.field public mInterimTargetDx:I
+
+.field public mInterimTargetDy:I
+
+.field public final mLinearInterpolator:Landroid/view/animation/LinearInterpolator;
+
+.field public mMillisPerPixel:F
+
+.field public mTargetVector:Landroid/graphics/PointF;
     .annotation build Landroid/annotation/SuppressLint;
         value = {
             "UnknownNullness"
         }
     .end annotation
 .end field
-
-.field private final d:Landroid/util/DisplayMetrics;
-
-.field private e:Z
-
-.field private f:F
-
-.field protected g:I
-
-.field protected h:I
 
 
 # direct methods
@@ -51,7 +51,7 @@
     .line 7
     .line 8
     .line 9
-    iput-object v0, p0, Landroidx/recyclerview/widget/l;->a:Landroid/view/animation/LinearInterpolator;
+    iput-object v0, p0, Landroidx/recyclerview/widget/l;->mLinearInterpolator:Landroid/view/animation/LinearInterpolator;
 
     .line 10
     .line 11
@@ -64,22 +64,22 @@
     .line 14
     .line 15
     .line 16
-    iput-object v0, p0, Landroidx/recyclerview/widget/l;->b:Landroid/view/animation/DecelerateInterpolator;
+    iput-object v0, p0, Landroidx/recyclerview/widget/l;->mDecelerateInterpolator:Landroid/view/animation/DecelerateInterpolator;
 
     .line 17
     .line 18
     const/4 v0, 0x0
 
     .line 19
-    iput-boolean v0, p0, Landroidx/recyclerview/widget/l;->e:Z
+    iput-boolean v0, p0, Landroidx/recyclerview/widget/l;->mHasCalculatedMillisPerPixel:Z
 
     .line 20
     .line 21
-    iput v0, p0, Landroidx/recyclerview/widget/l;->g:I
+    iput v0, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
 
     .line 22
     .line 23
-    iput v0, p0, Landroidx/recyclerview/widget/l;->h:I
+    iput v0, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDy:I
 
     .line 24
     .line 25
@@ -99,81 +99,16 @@
     move-result-object p1
 
     .line 33
-    iput-object p1, p0, Landroidx/recyclerview/widget/l;->d:Landroid/util/DisplayMetrics;
+    iput-object p1, p0, Landroidx/recyclerview/widget/l;->mDisplayMetrics:Landroid/util/DisplayMetrics;
 
     .line 34
     .line 35
     return-void
 .end method
 
-.method private g(II)I
-    .locals 0
-
-    .line 1
-    sub-int p0, p1, p2
-
-    .line 2
-    .line 3
-    mul-int/2addr p1, p0
-
-    .line 4
-    if-gtz p1, :cond_0
-
-    .line 5
-    .line 6
-    const/4 p0, 0x0
-
-    .line 7
-    :cond_0
-    return p0
-.end method
-
-.method private i()F
-    .locals 1
-
-    .line 1
-    iget-boolean v0, p0, Landroidx/recyclerview/widget/l;->e:Z
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    iget-object v0, p0, Landroidx/recyclerview/widget/l;->d:Landroid/util/DisplayMetrics;
-
-    .line 6
-    .line 7
-    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->d(Landroid/util/DisplayMetrics;)F
-
-    .line 8
-    .line 9
-    .line 10
-    move-result v0
-
-    .line 11
-    iput v0, p0, Landroidx/recyclerview/widget/l;->f:F
-
-    .line 12
-    .line 13
-    const/4 v0, 0x1
-
-    .line 14
-    iput-boolean v0, p0, Landroidx/recyclerview/widget/l;->e:Z
-
-    .line 15
-    .line 16
-    :cond_0
-    iget p0, p0, Landroidx/recyclerview/widget/l;->f:F
-
-    .line 17
-    .line 18
-    return p0
-.end method
-
 
 # virtual methods
-.method public a(IIIII)I
+.method public calculateDtToFit(IIIII)I
     .locals 0
 
     .line 1
@@ -254,7 +189,7 @@
     return p3
 .end method
 
-.method public b(Landroid/view/View;I)I
+.method public calculateDxToMakeVisible(Landroid/view/View;I)I
     .locals 10
     .annotation build Landroid/annotation/SuppressLint;
         value = {
@@ -369,7 +304,7 @@
     move v9, p2
 
     .line 52
-    invoke-virtual/range {v4 .. v9}, Landroidx/recyclerview/widget/l;->a(IIIII)I
+    invoke-virtual/range {v4 .. v9}, Landroidx/recyclerview/widget/l;->calculateDtToFit(IIIII)I
 
     .line 53
     .line 54
@@ -388,7 +323,7 @@
     return p0
 .end method
 
-.method public c(Landroid/view/View;I)I
+.method public calculateDyToMakeVisible(Landroid/view/View;I)I
     .locals 10
     .annotation build Landroid/annotation/SuppressLint;
         value = {
@@ -503,7 +438,7 @@
     move v9, p2
 
     .line 52
-    invoke-virtual/range {v4 .. v9}, Landroidx/recyclerview/widget/l;->a(IIIII)I
+    invoke-virtual/range {v4 .. v9}, Landroidx/recyclerview/widget/l;->calculateDtToFit(IIIII)I
 
     .line 53
     .line 54
@@ -522,7 +457,7 @@
     return p0
 .end method
 
-.method protected d(Landroid/util/DisplayMetrics;)F
+.method public calculateSpeedPerPixel(Landroid/util/DisplayMetrics;)F
     .locals 0
     .annotation build Landroid/annotation/SuppressLint;
         value = {
@@ -548,11 +483,11 @@
     return p1
 .end method
 
-.method protected e(I)I
+.method public calculateTimeForDeceleration(I)I
     .locals 2
 
     .line 1
-    invoke-virtual {p0, p1}, Landroidx/recyclerview/widget/l;->f(I)I
+    invoke-virtual {p0, p1}, Landroidx/recyclerview/widget/l;->calculateTimeForScrolling(I)I
 
     .line 2
     .line 3
@@ -587,7 +522,7 @@
     return p0
 .end method
 
-.method protected f(I)I
+.method public calculateTimeForScrolling(I)I
     .locals 0
 
     .line 1
@@ -602,7 +537,7 @@
     int-to-float p1, p1
 
     .line 6
-    invoke-direct {p0}, Landroidx/recyclerview/widget/l;->i()F
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/l;->getSpeedPerPixel()F
 
     .line 7
     .line 8
@@ -630,11 +565,33 @@
     return p0
 .end method
 
-.method protected h()I
+.method public final clampApplyScroll(II)I
+    .locals 0
+
+    .line 1
+    sub-int p0, p1, p2
+
+    .line 2
+    .line 3
+    mul-int/2addr p1, p0
+
+    .line 4
+    if-gtz p1, :cond_0
+
+    .line 5
+    .line 6
+    const/4 p0, 0x0
+
+    .line 7
+    :cond_0
+    return p0
+.end method
+
+.method public getHorizontalSnapPreference()I
     .locals 2
 
     .line 1
-    iget-object p0, p0, Landroidx/recyclerview/widget/l;->c:Landroid/graphics/PointF;
+    iget-object p0, p0, Landroidx/recyclerview/widget/l;->mTargetVector:Landroid/graphics/PointF;
 
     .line 2
     .line 3
@@ -690,11 +647,54 @@
     return p0
 .end method
 
-.method protected j()I
+.method public final getSpeedPerPixel()F
+    .locals 1
+
+    .line 1
+    iget-boolean v0, p0, Landroidx/recyclerview/widget/l;->mHasCalculatedMillisPerPixel:Z
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_0
+
+    .line 4
+    .line 5
+    iget-object v0, p0, Landroidx/recyclerview/widget/l;->mDisplayMetrics:Landroid/util/DisplayMetrics;
+
+    .line 6
+    .line 7
+    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->calculateSpeedPerPixel(Landroid/util/DisplayMetrics;)F
+
+    .line 8
+    .line 9
+    .line 10
+    move-result v0
+
+    .line 11
+    iput v0, p0, Landroidx/recyclerview/widget/l;->mMillisPerPixel:F
+
+    .line 12
+    .line 13
+    const/4 v0, 0x1
+
+    .line 14
+    iput-boolean v0, p0, Landroidx/recyclerview/widget/l;->mHasCalculatedMillisPerPixel:Z
+
+    .line 15
+    .line 16
+    :cond_0
+    iget p0, p0, Landroidx/recyclerview/widget/l;->mMillisPerPixel:F
+
+    .line 17
+    .line 18
+    return p0
+.end method
+
+.method public getVerticalSnapPreference()I
     .locals 2
 
     .line 1
-    iget-object p0, p0, Landroidx/recyclerview/widget/l;->c:Landroid/graphics/PointF;
+    iget-object p0, p0, Landroidx/recyclerview/widget/l;->mTargetVector:Landroid/graphics/PointF;
 
     .line 2
     .line 3
@@ -750,7 +750,219 @@
     return p0
 .end method
 
-.method protected k(Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+.method public onSeekTargetStep(IILandroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+    .locals 0
+    .annotation build Landroid/annotation/SuppressLint;
+        value = {
+            "UnknownNullness"
+        }
+    .end annotation
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/RecyclerView$SmoothScroller;->getChildCount()I
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p3
+
+    .line 5
+    if-nez p3, :cond_0
+
+    .line 6
+    .line 7
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/RecyclerView$SmoothScroller;->stop()V
+
+    .line 8
+    .line 9
+    .line 10
+    return-void
+
+    .line 11
+    :cond_0
+    iget p3, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
+
+    .line 12
+    .line 13
+    invoke-virtual {p0, p3, p1}, Landroidx/recyclerview/widget/l;->clampApplyScroll(II)I
+
+    .line 14
+    .line 15
+    .line 16
+    move-result p1
+
+    .line 17
+    iput p1, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
+
+    .line 18
+    .line 19
+    iget p1, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDy:I
+
+    .line 20
+    .line 21
+    invoke-virtual {p0, p1, p2}, Landroidx/recyclerview/widget/l;->clampApplyScroll(II)I
+
+    .line 22
+    .line 23
+    .line 24
+    move-result p1
+
+    .line 25
+    iput p1, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDy:I
+
+    .line 26
+    .line 27
+    iget p2, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
+
+    .line 28
+    .line 29
+    if-nez p2, :cond_1
+
+    .line 30
+    .line 31
+    if-nez p1, :cond_1
+
+    .line 32
+    .line 33
+    invoke-virtual {p0, p4}, Landroidx/recyclerview/widget/l;->updateActionForInterimTarget(Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+
+    .line 34
+    .line 35
+    .line 36
+    :cond_1
+    return-void
+.end method
+
+.method public onStart()V
+    .locals 0
+
+    .line 1
+    return-void
+.end method
+
+.method public onStop()V
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    iput v0, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDy:I
+
+    .line 3
+    .line 4
+    iput v0, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
+
+    .line 5
+    .line 6
+    const/4 v0, 0x0
+
+    .line 7
+    iput-object v0, p0, Landroidx/recyclerview/widget/l;->mTargetVector:Landroid/graphics/PointF;
+
+    .line 8
+    .line 9
+    return-void
+.end method
+
+.method public onTargetFound(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+    .locals 2
+    .annotation build Landroid/annotation/SuppressLint;
+        value = {
+            "UnknownNullness"
+        }
+    .end annotation
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/l;->getHorizontalSnapPreference()I
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p2
+
+    .line 5
+    invoke-virtual {p0, p1, p2}, Landroidx/recyclerview/widget/l;->calculateDxToMakeVisible(Landroid/view/View;I)I
+
+    .line 6
+    .line 7
+    .line 8
+    move-result p2
+
+    .line 9
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/l;->getVerticalSnapPreference()I
+
+    .line 10
+    .line 11
+    .line 12
+    move-result v0
+
+    .line 13
+    invoke-virtual {p0, p1, v0}, Landroidx/recyclerview/widget/l;->calculateDyToMakeVisible(Landroid/view/View;I)I
+
+    .line 14
+    .line 15
+    .line 16
+    move-result p1
+
+    .line 17
+    mul-int v0, p2, p2
+
+    .line 18
+    .line 19
+    mul-int v1, p1, p1
+
+    .line 20
+    .line 21
+    add-int/2addr v0, v1
+
+    .line 22
+    int-to-double v0, v0
+
+    .line 23
+    invoke-static {v0, v1}, Ljava/lang/Math;->sqrt(D)D
+
+    .line 24
+    .line 25
+    .line 26
+    move-result-wide v0
+
+    .line 27
+    double-to-int v0, v0
+
+    .line 28
+    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->calculateTimeForDeceleration(I)I
+
+    .line 29
+    .line 30
+    .line 31
+    move-result v0
+
+    .line 32
+    if-lez v0, :cond_0
+
+    .line 33
+    .line 34
+    neg-int p2, p2
+
+    .line 35
+    neg-int p1, p1
+
+    .line 36
+    iget-object p0, p0, Landroidx/recyclerview/widget/l;->mDecelerateInterpolator:Landroid/view/animation/DecelerateInterpolator;
+
+    .line 37
+    .line 38
+    invoke-virtual {p3, p2, p1, v0, p0}, Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;->update(IIILandroid/view/animation/Interpolator;)V
+
+    .line 39
+    .line 40
+    .line 41
+    :cond_0
+    return-void
+.end method
+
+.method public updateActionForInterimTarget(Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
     .locals 4
     .annotation build Landroid/annotation/SuppressLint;
         value = {
@@ -815,7 +1027,7 @@
     .line 26
     .line 27
     .line 28
-    iput-object v0, p0, Landroidx/recyclerview/widget/l;->c:Landroid/graphics/PointF;
+    iput-object v0, p0, Landroidx/recyclerview/widget/l;->mTargetVector:Landroid/graphics/PointF;
 
     .line 29
     .line 30
@@ -834,7 +1046,7 @@
     float-to-int v1, v1
 
     .line 37
-    iput v1, p0, Landroidx/recyclerview/widget/l;->g:I
+    iput v1, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
 
     .line 38
     .line 39
@@ -848,7 +1060,7 @@
     float-to-int v0, v0
 
     .line 43
-    iput v0, p0, Landroidx/recyclerview/widget/l;->h:I
+    iput v0, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDy:I
 
     .line 44
     .line 45
@@ -856,7 +1068,7 @@
 
     .line 46
     .line 47
-    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->f(I)I
+    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->calculateTimeForScrolling(I)I
 
     .line 48
     .line 49
@@ -864,7 +1076,7 @@
     move-result v0
 
     .line 51
-    iget v1, p0, Landroidx/recyclerview/widget/l;->g:I
+    iget v1, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDx:I
 
     .line 52
     .line 53
@@ -882,7 +1094,7 @@
     float-to-int v1, v1
 
     .line 59
-    iget v3, p0, Landroidx/recyclerview/widget/l;->h:I
+    iget v3, p0, Landroidx/recyclerview/widget/l;->mInterimTargetDy:I
 
     .line 60
     .line 61
@@ -904,7 +1116,7 @@
     float-to-int v0, v0
 
     .line 67
-    iget-object p0, p0, Landroidx/recyclerview/widget/l;->a:Landroid/view/animation/LinearInterpolator;
+    iget-object p0, p0, Landroidx/recyclerview/widget/l;->mLinearInterpolator:Landroid/view/animation/LinearInterpolator;
 
     .line 68
     .line 69
@@ -936,217 +1148,5 @@
     .line 81
     .line 82
     .line 83
-    return-void
-.end method
-
-.method protected onSeekTargetStep(IILandroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
-    .locals 0
-    .annotation build Landroid/annotation/SuppressLint;
-        value = {
-            "UnknownNullness"
-        }
-    .end annotation
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/RecyclerView$SmoothScroller;->getChildCount()I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p3
-
-    .line 5
-    if-nez p3, :cond_0
-
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/RecyclerView$SmoothScroller;->stop()V
-
-    .line 8
-    .line 9
-    .line 10
-    return-void
-
-    .line 11
-    :cond_0
-    iget p3, p0, Landroidx/recyclerview/widget/l;->g:I
-
-    .line 12
-    .line 13
-    invoke-direct {p0, p3, p1}, Landroidx/recyclerview/widget/l;->g(II)I
-
-    .line 14
-    .line 15
-    .line 16
-    move-result p1
-
-    .line 17
-    iput p1, p0, Landroidx/recyclerview/widget/l;->g:I
-
-    .line 18
-    .line 19
-    iget p1, p0, Landroidx/recyclerview/widget/l;->h:I
-
-    .line 20
-    .line 21
-    invoke-direct {p0, p1, p2}, Landroidx/recyclerview/widget/l;->g(II)I
-
-    .line 22
-    .line 23
-    .line 24
-    move-result p1
-
-    .line 25
-    iput p1, p0, Landroidx/recyclerview/widget/l;->h:I
-
-    .line 26
-    .line 27
-    iget p2, p0, Landroidx/recyclerview/widget/l;->g:I
-
-    .line 28
-    .line 29
-    if-nez p2, :cond_1
-
-    .line 30
-    .line 31
-    if-nez p1, :cond_1
-
-    .line 32
-    .line 33
-    invoke-virtual {p0, p4}, Landroidx/recyclerview/widget/l;->k(Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
-
-    .line 34
-    .line 35
-    .line 36
-    :cond_1
-    return-void
-.end method
-
-.method protected onStart()V
-    .locals 0
-
-    .line 1
-    return-void
-.end method
-
-.method protected onStop()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    iput v0, p0, Landroidx/recyclerview/widget/l;->h:I
-
-    .line 3
-    .line 4
-    iput v0, p0, Landroidx/recyclerview/widget/l;->g:I
-
-    .line 5
-    .line 6
-    const/4 v0, 0x0
-
-    .line 7
-    iput-object v0, p0, Landroidx/recyclerview/widget/l;->c:Landroid/graphics/PointF;
-
-    .line 8
-    .line 9
-    return-void
-.end method
-
-.method protected onTargetFound(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
-    .locals 2
-    .annotation build Landroid/annotation/SuppressLint;
-        value = {
-            "UnknownNullness"
-        }
-    .end annotation
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/l;->h()I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p2
-
-    .line 5
-    invoke-virtual {p0, p1, p2}, Landroidx/recyclerview/widget/l;->b(Landroid/view/View;I)I
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p2
-
-    .line 9
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/l;->j()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v0
-
-    .line 13
-    invoke-virtual {p0, p1, v0}, Landroidx/recyclerview/widget/l;->c(Landroid/view/View;I)I
-
-    .line 14
-    .line 15
-    .line 16
-    move-result p1
-
-    .line 17
-    mul-int v0, p2, p2
-
-    .line 18
-    .line 19
-    mul-int v1, p1, p1
-
-    .line 20
-    .line 21
-    add-int/2addr v0, v1
-
-    .line 22
-    int-to-double v0, v0
-
-    .line 23
-    invoke-static {v0, v1}, Ljava/lang/Math;->sqrt(D)D
-
-    .line 24
-    .line 25
-    .line 26
-    move-result-wide v0
-
-    .line 27
-    double-to-int v0, v0
-
-    .line 28
-    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->e(I)I
-
-    .line 29
-    .line 30
-    .line 31
-    move-result v0
-
-    .line 32
-    if-lez v0, :cond_0
-
-    .line 33
-    .line 34
-    neg-int p2, p2
-
-    .line 35
-    neg-int p1, p1
-
-    .line 36
-    iget-object p0, p0, Landroidx/recyclerview/widget/l;->b:Landroid/view/animation/DecelerateInterpolator;
-
-    .line 37
-    .line 38
-    invoke-virtual {p3, p2, p1, v0, p0}, Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;->update(IIILandroid/view/animation/Interpolator;)V
-
-    .line 39
-    .line 40
-    .line 41
-    :cond_0
     return-void
 .end method

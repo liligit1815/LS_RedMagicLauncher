@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/TaskbarUnstashInputConsumer;
+.field public final synthetic c:Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/TaskbarUnstashInputConsumer;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/q;->g:Lcom/android/quickstep/inputconsumers/TaskbarUnstashInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/q;->c:Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/q;->g:Lcom/android/quickstep/inputconsumers/TaskbarUnstashInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/q;->c:Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/TaskbarUnstashInputConsumer;->a(Lcom/android/quickstep/inputconsumers/TaskbarUnstashInputConsumer;)V
+    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;->c(Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;)V
 
     .line 4
     .line 5

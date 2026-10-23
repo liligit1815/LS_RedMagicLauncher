@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.launcher3.qsb.OseWidgetView android:id="@id/search_container_hotseat" android:padding="0.0dp" android:layout_width="match_parent" android:layout_height="0.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

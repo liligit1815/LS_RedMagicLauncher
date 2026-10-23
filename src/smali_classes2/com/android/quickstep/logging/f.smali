@@ -3,11 +3,11 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lcom/android/launcher3/util/p2$a;
+.implements Lcom/android/launcher3/util/SafeCloseable;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/logging/SettingsChangeLogger;
+.field public final synthetic c:Lcom/android/quickstep/logging/SettingsChangeLogger;
 
 
 # direct methods
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/logging/f;->g:Lcom/android/quickstep/logging/SettingsChangeLogger;
+    iput-object p1, p0, Lcom/android/quickstep/logging/f;->c:Lcom/android/quickstep/logging/SettingsChangeLogger;
 
     .line 5
     .line 6
@@ -29,15 +29,15 @@
 
 
 # virtual methods
-.method public final onSettingsChanged(Z)V
+.method public final close()V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/logging/f;->g:Lcom/android/quickstep/logging/SettingsChangeLogger;
+    iget-object p0, p0, Lcom/android/quickstep/logging/f;->c:Lcom/android/quickstep/logging/SettingsChangeLogger;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Lcom/android/quickstep/logging/SettingsChangeLogger;->g(Lcom/android/quickstep/logging/SettingsChangeLogger;Z)V
+    invoke-static {p0}, Lcom/android/quickstep/logging/SettingsChangeLogger;->d(Lcom/android/quickstep/logging/SettingsChangeLogger;)V
 
     .line 4
     .line 5

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="task_cancelled_message">任务已被取消</string>
+    <string name="task_timeout_message">已经有相同任务正在运行，请稍后再尝试</string>
+</resources>

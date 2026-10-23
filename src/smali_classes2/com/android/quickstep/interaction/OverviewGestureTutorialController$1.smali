@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -19,7 +19,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)V
     .locals 0
 
     .line 1
@@ -83,7 +83,7 @@
 
     .line 4
     .line 5
-    invoke-static {v0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController;->r(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)I
+    invoke-static {v0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController;->p(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)I
 
     .line 6
     .line 7
@@ -95,7 +95,7 @@
 
     .line 10
     .line 11
-    invoke-static {p0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController;->q(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)I
+    invoke-static {p0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController;->o(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)I
 
     .line 12
     .line 13
@@ -111,7 +111,7 @@
     move-result p1
 
     .line 19
-    invoke-static {v0, p0, p1}, LB/a;->e(IIF)I
+    invoke-static {v0, p0, p1}, Lr5/a;->j(IIF)I
 
     .line 20
     .line 21
@@ -160,20 +160,20 @@
 
     .line 2
     .line 3
-    new-instance v4, Lcom/android/quickstep/interaction/y;
+    new-instance v4, Lcom/android/quickstep/interaction/a0;
 
     .line 4
     .line 5
-    invoke-direct {v4, p0}, Lcom/android/quickstep/interaction/y;-><init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
+    invoke-direct {v4, p0}, Lcom/android/quickstep/interaction/a0;-><init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
 
     .line 6
     .line 7
     .line 8
-    new-instance v5, Lcom/android/quickstep/interaction/z;
+    new-instance v5, Lcom/android/quickstep/interaction/b0;
 
     .line 9
     .line 10
-    invoke-direct {v5, p0}, Lcom/android/quickstep/interaction/z;-><init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
+    invoke-direct {v5, p0}, Lcom/android/quickstep/interaction/b0;-><init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
 
     .line 11
     .line 12
@@ -210,11 +210,11 @@
     .line 4
     .line 5
     .line 6
-    new-instance v0, Lcom/android/quickstep/interaction/A;
+    new-instance v0, Lcom/android/quickstep/interaction/c0;
 
     .line 7
     .line 8
-    invoke-direct {v0, p0}, Lcom/android/quickstep/interaction/A;-><init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
+    invoke-direct {v0, p0}, Lcom/android/quickstep/interaction/c0;-><init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController$1;)V
 
     .line 9
     .line 10

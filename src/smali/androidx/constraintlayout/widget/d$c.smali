@@ -15,7 +15,7 @@
 
 
 # static fields
-.field private static o:Landroid/util/SparseIntArray;
+.field public static o:Landroid/util/SparseIntArray;
 
 
 # instance fields
@@ -385,7 +385,7 @@
     return-void
 .end method
 
-.method b(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.method public b(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 8
 
     .line 1
@@ -737,7 +737,7 @@
 
     .line 162
     :cond_3
-    sget-object v4, Lr/c;->c:[Ljava/lang/String;
+    sget-object v4, Le5/c;->c:[Ljava/lang/String;
 
     .line 163
     .line 164

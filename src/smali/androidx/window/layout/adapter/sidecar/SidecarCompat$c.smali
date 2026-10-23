@@ -1,4 +1,4 @@
-.class final Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;
+.class public final Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;
 .super Ljava/lang/Object;
 .source "SidecarCompat.kt"
 
@@ -12,15 +12,52 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
+    accessFlags = 0x19
     name = "c"
+.end annotation
+
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000,\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u0005\n\u0002\u0018\u0002\n\u0002\u0008\u0005\u0008\u0002\u0018\u00002\u00020\u0001B\u0017\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u0012\u0006\u0010\u0005\u001a\u00020\u0004\u00a2\u0006\u0004\u0008\u0006\u0010\u0007J\u0017\u0010\u000b\u001a\u00020\n2\u0006\u0010\t\u001a\u00020\u0008H\u0016\u00a2\u0006\u0004\u0008\u000b\u0010\u000cJ\u0017\u0010\r\u001a\u00020\n2\u0006\u0010\t\u001a\u00020\u0008H\u0016\u00a2\u0006\u0004\u0008\r\u0010\u000cR\u0014\u0010\u0003\u001a\u00020\u00028\u0002X\u0082\u0004\u00a2\u0006\u0006\n\u0004\u0008\u000e\u0010\u000fR\"\u0010\u0014\u001a\u0010\u0012\u000c\u0012\n \u0011*\u0004\u0018\u00010\u00040\u00040\u00108\u0002X\u0082\u0004\u00a2\u0006\u0006\n\u0004\u0008\u0012\u0010\u0013\u00a8\u0006\u0015"
+    }
+    d2 = {
+        "Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;",
+        "Landroid/view/View$OnAttachStateChangeListener;",
+        "Landroidx/window/layout/adapter/sidecar/SidecarCompat;",
+        "sidecarCompat",
+        "Landroid/app/Activity;",
+        "activity",
+        "<init>",
+        "(Landroidx/window/layout/adapter/sidecar/SidecarCompat;Landroid/app/Activity;)V",
+        "Landroid/view/View;",
+        "view",
+        "",
+        "onViewAttachedToWindow",
+        "(Landroid/view/View;)V",
+        "onViewDetachedFromWindow",
+        "c",
+        "Landroidx/window/layout/adapter/sidecar/SidecarCompat;",
+        "Ljava/lang/ref/WeakReference;",
+        "kotlin.jvm.PlatformType",
+        "m",
+        "Ljava/lang/ref/WeakReference;",
+        "activityWeakReference",
+        "window"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
 .end annotation
 
 
 # instance fields
-.field private final g:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
+.field public final c:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
 
-.field private final h:Ljava/lang/ref/WeakReference;
+.field public final m:Ljava/lang/ref/WeakReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/ref/WeakReference<",
@@ -40,7 +77,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -49,7 +86,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -59,7 +96,7 @@
     .line 12
     .line 13
     .line 14
-    iput-object p1, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->g:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
+    iput-object p1, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->c:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
 
     .line 15
     .line 16
@@ -72,7 +109,7 @@
     .line 19
     .line 20
     .line 21
-    iput-object p1, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->h:Ljava/lang/ref/WeakReference;
+    iput-object p1, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->m:Ljava/lang/ref/WeakReference;
 
     .line 22
     .line 23
@@ -89,7 +126,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -99,7 +136,7 @@
     .line 7
     .line 8
     .line 9
-    iget-object p1, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->h:Ljava/lang/ref/WeakReference;
+    iget-object p1, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->m:Ljava/lang/ref/WeakReference;
 
     .line 10
     .line 11
@@ -144,7 +181,7 @@
 
     .line 29
     :cond_1
-    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->g:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
+    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$c;->c:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
 
     .line 30
     .line 31
@@ -164,7 +201,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5

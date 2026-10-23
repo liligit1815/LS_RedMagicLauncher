@@ -1,5 +1,5 @@
 .class public Landroidx/recyclerview/widget/RecyclerView$SavedState;
-.super Landroidx/customview/view/a;
+.super Lh6/a;
 .source "RecyclerView.java"
 
 
@@ -51,11 +51,11 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
+.method public constructor <init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/customview/view/a;-><init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
+    invoke-direct {p0, p1, p2}, Lh6/a;-><init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
 
     if-eqz p2, :cond_0
 
@@ -80,18 +80,18 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 4
-    invoke-direct {p0, p1}, Landroidx/customview/view/a;-><init>(Landroid/os/Parcelable;)V
+    invoke-direct {p0, p1}, Lh6/a;-><init>(Landroid/os/Parcelable;)V
 
     return-void
 .end method
 
 
 # virtual methods
-.method copyFrom(Landroidx/recyclerview/widget/RecyclerView$SavedState;)V
+.method public copyFrom(Landroidx/recyclerview/widget/RecyclerView$SavedState;)V
     .locals 0
 
     .line 1
@@ -110,7 +110,7 @@
     .locals 0
 
     .line 1
-    invoke-super {p0, p1, p2}, Landroidx/customview/view/a;->writeToParcel(Landroid/os/Parcel;I)V
+    invoke-super {p0, p1, p2}, Lh6/a;->writeToParcel(Landroid/os/Parcel;I)V
 
     .line 2
     .line 3

@@ -1,5 +1,5 @@
 .class public Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
-.super Landroidx/appcompat/widget/d;
+.super Ls/c;
 .source "SearchView.java"
 
 
@@ -15,13 +15,13 @@
 
 
 # instance fields
-.field private k:I
+.field public p:I
 
-.field private l:Landroidx/appcompat/widget/SearchView;
+.field public q:Landroidx/appcompat/widget/SearchView;
 
-.field private m:Z
+.field public r:Z
 
-.field final n:Ljava/lang/Runnable;
+.field public final s:Ljava/lang/Runnable;
 
 
 # direct methods
@@ -29,7 +29,7 @@
     .locals 1
 
     .line 1
-    sget v0, Lf/a;->p:I
+    sget v0, Lk/a;->p:I
 
     invoke-direct {p0, p1, p2, v0}, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
@@ -40,21 +40,21 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0, p1, p2, p3}, Landroidx/appcompat/widget/d;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+    invoke-direct {p0, p1, p2, p3}, Ls/c;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     .line 3
     new-instance p1, Landroidx/appcompat/widget/SearchView$SearchAutoComplete$a;
 
     invoke-direct {p1, p0}, Landroidx/appcompat/widget/SearchView$SearchAutoComplete$a;-><init>(Landroidx/appcompat/widget/SearchView$SearchAutoComplete;)V
 
-    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->n:Ljava/lang/Runnable;
+    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->s:Ljava/lang/Runnable;
 
     .line 4
     invoke-virtual {p0}, Landroid/widget/AutoCompleteTextView;->getThreshold()I
 
     move-result p1
 
-    iput p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->k:I
+    iput p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->p:I
 
     return-void
 .end method
@@ -168,7 +168,7 @@
 
 
 # virtual methods
-.method b()V
+.method public b()V
     .locals 1
 
     .line 1
@@ -201,7 +201,7 @@
     return-void
 .end method
 
-.method c()Z
+.method public c()Z
     .locals 0
 
     .line 1
@@ -238,11 +238,11 @@
     return p0
 .end method
 
-.method d()V
+.method public d()V
     .locals 2
 
     .line 1
-    iget-boolean v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 2
     .line 3
@@ -282,7 +282,7 @@
     .line 19
     .line 20
     .line 21
-    iput-boolean v1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iput-boolean v1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 22
     .line 23
@@ -294,7 +294,7 @@
     .locals 1
 
     .line 1
-    iget v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->k:I
+    iget v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->p:I
 
     .line 2
     .line 3
@@ -336,7 +336,7 @@
     .locals 1
 
     .line 1
-    invoke-super {p0, p1}, Landroidx/appcompat/widget/d;->onCreateInputConnection(Landroid/view/inputmethod/EditorInfo;)Landroid/view/inputmethod/InputConnection;
+    invoke-super {p0, p1}, Ls/c;->onCreateInputConnection(Landroid/view/inputmethod/EditorInfo;)Landroid/view/inputmethod/InputConnection;
 
     .line 2
     .line 3
@@ -344,7 +344,7 @@
     move-result-object p1
 
     .line 5
-    iget-boolean v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 6
     .line 7
@@ -352,7 +352,7 @@
 
     .line 8
     .line 9
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->n:Ljava/lang/Runnable;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->s:Ljava/lang/Runnable;
 
     .line 10
     .line 11
@@ -361,7 +361,7 @@
     .line 12
     .line 13
     .line 14
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->n:Ljava/lang/Runnable;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->s:Ljava/lang/Runnable;
 
     .line 15
     .line 16
@@ -374,7 +374,7 @@
     return-object p1
 .end method
 
-.method protected onFinishInflate()V
+.method public onFinishInflate()V
     .locals 3
 
     .line 1
@@ -432,7 +432,7 @@
     return-void
 .end method
 
-.method protected onFocusChanged(ZILandroid/graphics/Rect;)V
+.method public onFocusChanged(ZILandroid/graphics/Rect;)V
     .locals 0
 
     .line 1
@@ -441,7 +441,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->l:Landroidx/appcompat/widget/SearchView;
+    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->q:Landroidx/appcompat/widget/SearchView;
 
     .line 5
     .line 6
@@ -567,7 +567,7 @@
 
     .line 53
     .line 54
-    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->l:Landroidx/appcompat/widget/SearchView;
+    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->q:Landroidx/appcompat/widget/SearchView;
 
     .line 55
     .line 56
@@ -612,7 +612,7 @@
 
     .line 5
     .line 6
-    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->l:Landroidx/appcompat/widget/SearchView;
+    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->q:Landroidx/appcompat/widget/SearchView;
 
     .line 7
     .line 8
@@ -643,7 +643,7 @@
     const/4 p1, 0x1
 
     .line 21
-    iput-boolean p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 22
     .line 23
@@ -683,14 +683,14 @@
     return-void
 .end method
 
-.method protected replaceText(Ljava/lang/CharSequence;)V
+.method public replaceText(Ljava/lang/CharSequence;)V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method setImeVisibility(Z)V
+.method public setImeVisibility(Z)V
     .locals 2
 
     .line 1
@@ -725,11 +725,11 @@
 
     .line 15
     .line 16
-    iput-boolean v1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iput-boolean v1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 17
     .line 18
-    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->n:Ljava/lang/Runnable;
+    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->s:Ljava/lang/Runnable;
 
     .line 19
     .line 20
@@ -767,11 +767,11 @@
 
     .line 36
     .line 37
-    iput-boolean v1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iput-boolean v1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 38
     .line 39
-    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->n:Ljava/lang/Runnable;
+    iget-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->s:Ljava/lang/Runnable;
 
     .line 40
     .line 41
@@ -792,18 +792,18 @@
     const/4 p1, 0x1
 
     .line 49
-    iput-boolean p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->m:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->r:Z
 
     .line 50
     .line 51
     return-void
 .end method
 
-.method setSearchView(Landroidx/appcompat/widget/SearchView;)V
+.method public setSearchView(Landroidx/appcompat/widget/SearchView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->l:Landroidx/appcompat/widget/SearchView;
+    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->q:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3
@@ -819,7 +819,7 @@
     .line 2
     .line 3
     .line 4
-    iput p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->k:I
+    iput p1, p0, Landroidx/appcompat/widget/SearchView$SearchAutoComplete;->p:I
 
     .line 5
     .line 6

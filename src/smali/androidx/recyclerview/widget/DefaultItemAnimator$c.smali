@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/DefaultItemAnimator$c;
+.class public Landroidx/recyclerview/widget/DefaultItemAnimator$c;
 .super Ljava/lang/Object;
 .source "DefaultItemAnimator.java"
 
@@ -12,19 +12,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Ljava/util/ArrayList;
+.field public final synthetic c:Ljava/util/ArrayList;
 
-.field final synthetic h:Landroidx/recyclerview/widget/DefaultItemAnimator;
+.field public final synthetic m:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/DefaultItemAnimator;Ljava/util/ArrayList;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/DefaultItemAnimator;Ljava/util/ArrayList;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -33,11 +33,11 @@
     .end annotation
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->h:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iput-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->m:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->g:Ljava/util/ArrayList;
+    iput-object p2, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->c:Ljava/util/ArrayList;
 
     .line 4
     .line 5
@@ -55,7 +55,7 @@
     .locals 3
 
     .line 1
-    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->g:Ljava/util/ArrayList;
+    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->c:Ljava/util/ArrayList;
 
     .line 2
     .line 3
@@ -92,7 +92,7 @@
 
     .line 18
     .line 19
-    iget-object v2, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->h:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iget-object v2, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->m:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 20
     .line 21
@@ -105,7 +105,7 @@
 
     .line 25
     :cond_0
-    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->g:Ljava/util/ArrayList;
+    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->c:Ljava/util/ArrayList;
 
     .line 26
     .line 27
@@ -114,7 +114,7 @@
     .line 28
     .line 29
     .line 30
-    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->h:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->m:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 31
     .line 32
@@ -122,7 +122,7 @@
 
     .line 33
     .line 34
-    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->g:Ljava/util/ArrayList;
+    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$c;->c:Ljava/util/ArrayList;
 
     .line 35
     .line 36

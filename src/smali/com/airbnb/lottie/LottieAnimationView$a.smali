@@ -1,9 +1,9 @@
-.class Lcom/airbnb/lottie/LottieAnimationView$a;
+.class public Lcom/airbnb/lottie/LottieAnimationView$a;
 .super Ljava/lang/Object;
 .source "LottieAnimationView.java"
 
 # interfaces
-.implements Lv0/r;
+.implements Lf8/f0;
 
 
 # annotations
@@ -12,14 +12,14 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lv0/r<",
+        "Lf8/f0<",
         "Ljava/lang/Throwable;",
         ">;"
     }
@@ -27,11 +27,11 @@
 
 
 # instance fields
-.field final synthetic a:Lcom/airbnb/lottie/LottieAnimationView;
+.field public final synthetic a:Lcom/airbnb/lottie/LottieAnimationView;
 
 
 # direct methods
-.method constructor <init>(Lcom/airbnb/lottie/LottieAnimationView;)V
+.method public constructor <init>(Lcom/airbnb/lottie/LottieAnimationView;)V
     .locals 0
 
     .line 1
@@ -91,7 +91,7 @@
 
     .line 19
     .line 20
-    invoke-static {v0}, Lcom/airbnb/lottie/LottieAnimationView;->g(Lcom/airbnb/lottie/LottieAnimationView;)Lv0/r;
+    invoke-static {v0}, Lcom/airbnb/lottie/LottieAnimationView;->g(Lcom/airbnb/lottie/LottieAnimationView;)Lf8/f0;
 
     .line 21
     .line 22
@@ -103,7 +103,7 @@
 
     .line 25
     .line 26
-    invoke-static {}, Lcom/airbnb/lottie/LottieAnimationView;->h()Lv0/r;
+    invoke-static {}, Lcom/airbnb/lottie/LottieAnimationView;->h()Lf8/f0;
 
     .line 27
     .line 28
@@ -119,7 +119,7 @@
 
     .line 32
     .line 33
-    invoke-static {p0}, Lcom/airbnb/lottie/LottieAnimationView;->g(Lcom/airbnb/lottie/LottieAnimationView;)Lv0/r;
+    invoke-static {p0}, Lcom/airbnb/lottie/LottieAnimationView;->g(Lcom/airbnb/lottie/LottieAnimationView;)Lf8/f0;
 
     .line 34
     .line 35
@@ -128,7 +128,7 @@
 
     .line 37
     :goto_0
-    invoke-interface {p0, p1}, Lv0/r;->onResult(Ljava/lang/Object;)V
+    invoke-interface {p0, p1}, Lf8/f0;->onResult(Ljava/lang/Object;)V
 
     .line 38
     .line 39

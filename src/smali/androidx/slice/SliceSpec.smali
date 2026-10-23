@@ -3,13 +3,13 @@
 .source "SliceSpec.java"
 
 # interfaces
-.implements Ll0/a;
+.implements Lt7/c;
 
 
 # instance fields
-.field a:Ljava/lang/String;
+.field public a:Ljava/lang/String;
 
-.field b:I
+.field public b:I
 
 
 # direct methods

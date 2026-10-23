@@ -1,5 +1,5 @@
 .class public Landroidx/appcompat/widget/AlertDialogLayout;
-.super Landroidx/appcompat/widget/L;
+.super Landroidx/appcompat/widget/b;
 .source "AlertDialogLayout.java"
 
 
@@ -8,7 +8,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/L;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/b;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
     .line 2
     .line 3
@@ -16,7 +16,82 @@
     return-void
 .end method
 
-.method private A(II)Z
+.method public static z(Landroid/view/View;)I
+    .locals 3
+
+    .line 1
+    invoke-static {p0}, Lz5/o0;->x(Landroid/view/View;)I
+
+    .line 2
+    .line 3
+    .line 4
+    move-result v0
+
+    .line 5
+    if-lez v0, :cond_0
+
+    .line 6
+    .line 7
+    return v0
+
+    .line 8
+    :cond_0
+    instance-of v0, p0, Landroid/view/ViewGroup;
+
+    .line 9
+    .line 10
+    const/4 v1, 0x0
+
+    .line 11
+    if-eqz v0, :cond_1
+
+    .line 12
+    .line 13
+    check-cast p0, Landroid/view/ViewGroup;
+
+    .line 14
+    .line 15
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getChildCount()I
+
+    .line 16
+    .line 17
+    .line 18
+    move-result v0
+
+    .line 19
+    const/4 v2, 0x1
+
+    .line 20
+    if-ne v0, v2, :cond_1
+
+    .line 21
+    .line 22
+    invoke-virtual {p0, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+
+    .line 23
+    .line 24
+    .line 25
+    move-result-object p0
+
+    .line 26
+    invoke-static {p0}, Landroidx/appcompat/widget/AlertDialogLayout;->z(Landroid/view/View;)I
+
+    .line 27
+    .line 28
+    .line 29
+    move-result p0
+
+    .line 30
+    return p0
+
+    .line 31
+    :cond_1
+    return v1
+.end method
+
+
+# virtual methods
+.method public final A(II)Z
     .locals 16
 
     .line 1
@@ -96,7 +171,7 @@
     move-result v9
 
     .line 35
-    sget v11, Lf/f;->O:I
+    sget v11, Lk/f;->O:I
 
     .line 36
     .line 37
@@ -111,7 +186,7 @@
 
     .line 41
     :cond_1
-    sget v11, Lf/f;->k:I
+    sget v11, Lk/f;->k:I
 
     .line 42
     .line 43
@@ -126,7 +201,7 @@
 
     .line 47
     :cond_2
-    sget v11, Lf/f;->m:I
+    sget v11, Lk/f;->m:I
 
     .line 48
     .line 49
@@ -134,7 +209,7 @@
 
     .line 50
     .line 51
-    sget v11, Lf/f;->o:I
+    sget v11, Lk/f;->o:I
 
     .line 52
     .line 53
@@ -627,7 +702,7 @@
 
     .line 273
     .line 274
-    invoke-direct {v0, v3, v2}, Landroidx/appcompat/widget/AlertDialogLayout;->j(II)V
+    invoke-virtual {v0, v3, v2}, Landroidx/appcompat/widget/AlertDialogLayout;->j(II)V
 
     .line 275
     .line 276
@@ -639,7 +714,7 @@
     return v0
 .end method
 
-.method private j(II)V
+.method public final j(II)V
     .locals 9
 
     .line 1
@@ -703,7 +778,7 @@
     move-result-object v1
 
     .line 30
-    check-cast v1, Landroidx/appcompat/widget/L$a;
+    check-cast v1, Landroidx/appcompat/widget/b$a;
 
     .line 31
     .line 32
@@ -783,100 +858,7 @@
     return-void
 .end method
 
-.method private y(Landroid/view/View;IIII)V
-    .locals 0
-
-    .line 1
-    add-int/2addr p4, p2
-
-    .line 2
-    add-int/2addr p5, p3
-
-    .line 3
-    invoke-virtual {p1, p2, p3, p4, p5}, Landroid/view/View;->layout(IIII)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method private static z(Landroid/view/View;)I
-    .locals 3
-
-    .line 1
-    invoke-static {p0}, LJ/I;->w(Landroid/view/View;)I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    if-lez v0, :cond_0
-
-    .line 6
-    .line 7
-    return v0
-
-    .line 8
-    :cond_0
-    instance-of v0, p0, Landroid/view/ViewGroup;
-
-    .line 9
-    .line 10
-    const/4 v1, 0x0
-
-    .line 11
-    if-eqz v0, :cond_1
-
-    .line 12
-    .line 13
-    check-cast p0, Landroid/view/ViewGroup;
-
-    .line 14
-    .line 15
-    invoke-virtual {p0}, Landroid/view/ViewGroup;->getChildCount()I
-
-    .line 16
-    .line 17
-    .line 18
-    move-result v0
-
-    .line 19
-    const/4 v2, 0x1
-
-    .line 20
-    if-ne v0, v2, :cond_1
-
-    .line 21
-    .line 22
-    invoke-virtual {p0, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
-
-    .line 23
-    .line 24
-    .line 25
-    move-result-object p0
-
-    .line 26
-    invoke-static {p0}, Landroidx/appcompat/widget/AlertDialogLayout;->z(Landroid/view/View;)I
-
-    .line 27
-    .line 28
-    .line 29
-    move-result p0
-
-    .line 30
-    return p0
-
-    .line 31
-    :cond_1
-    return v1
-.end method
-
-
-# virtual methods
-.method protected onLayout(ZIIII)V
+.method public onLayout(ZIIII)V
     .locals 10
 
     .line 1
@@ -933,7 +915,7 @@
     move-result v1
 
     .line 26
-    invoke-virtual {p0}, Landroidx/appcompat/widget/L;->getGravity()I
+    invoke-virtual {p0}, Landroidx/appcompat/widget/b;->getGravity()I
 
     .line 27
     .line 28
@@ -1026,7 +1008,7 @@
     .line 67
     .line 68
     :goto_0
-    invoke-virtual {p0}, Landroidx/appcompat/widget/L;->getDividerDrawable()Landroid/graphics/drawable/Drawable;
+    invoke-virtual {p0}, Landroidx/appcompat/widget/b;->getDividerDrawable()Landroid/graphics/drawable/Drawable;
 
     .line 69
     .line 70
@@ -1116,7 +1098,7 @@
     move-object v9, v3
 
     .line 110
-    check-cast v9, Landroidx/appcompat/widget/L$a;
+    check-cast v9, Landroidx/appcompat/widget/b$a;
 
     .line 111
     .line 112
@@ -1132,7 +1114,7 @@
 
     .line 117
     :cond_3
-    invoke-static {p0}, LJ/I;->v(Landroid/view/View;)I
+    invoke-static {p0}, Lz5/o0;->w(Landroid/view/View;)I
 
     .line 118
     .line 119
@@ -1140,7 +1122,7 @@
     move-result v5
 
     .line 121
-    invoke-static {v3, v5}, LJ/h;->b(II)I
+    invoke-static {v3, v5}, Lz5/j;->b(II)I
 
     .line 122
     .line 123
@@ -1223,7 +1205,7 @@
 
     .line 155
     :goto_4
-    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/L;->r(I)Z
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/b;->r(I)Z
 
     .line 156
     .line 157
@@ -1250,7 +1232,7 @@
     move-object v3, p0
 
     .line 167
-    invoke-direct/range {v3 .. v8}, Landroidx/appcompat/widget/AlertDialogLayout;->y(Landroid/view/View;IIII)V
+    invoke-virtual/range {v3 .. v8}, Landroidx/appcompat/widget/AlertDialogLayout;->y(Landroid/view/View;IIII)V
 
     .line 168
     .line 169
@@ -1290,11 +1272,11 @@
     return-void
 .end method
 
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 1
 
     .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/appcompat/widget/AlertDialogLayout;->A(II)Z
+    invoke-virtual {p0, p1, p2}, Landroidx/appcompat/widget/AlertDialogLayout;->A(II)Z
 
     .line 2
     .line 3
@@ -1306,11 +1288,29 @@
 
     .line 6
     .line 7
-    invoke-super {p0, p1, p2}, Landroidx/appcompat/widget/L;->onMeasure(II)V
+    invoke-super {p0, p1, p2}, Landroidx/appcompat/widget/b;->onMeasure(II)V
 
     .line 8
     .line 9
     .line 10
     :cond_0
+    return-void
+.end method
+
+.method public final y(Landroid/view/View;IIII)V
+    .locals 0
+
+    .line 1
+    add-int/2addr p4, p2
+
+    .line 2
+    add-int/2addr p5, p3
+
+    .line 3
+    invoke-virtual {p1, p2, p3, p4, p5}, Landroid/view/View;->layout(IIII)V
+
+    .line 4
+    .line 5
+    .line 6
     return-void
 .end method

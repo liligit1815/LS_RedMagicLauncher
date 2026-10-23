@@ -1,56 +1,80 @@
-.class public final synthetic Lk2/i;
+.class public final Lk2/i;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Lcom/android/launcher3/util/a2;
+.source "OperationArgContainer.kt"
 
 
-# instance fields
-.field public final synthetic g:Lk2/k;
-
-.field public final synthetic h:Lcom/android/launcher3/util/T1;
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0018\n\u0002\u0018\u0002\n\u0002\u0010\u0008\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0010\t\n\u0002\u0008\u0003\u001a+\u0010\u0006\u001a\u00020\u0005*\u00020\u00002\n\u0010\u0003\u001a\u00060\u0001j\u0002`\u00022\n\u0010\u0004\u001a\u00060\u0001j\u0002`\u0002H\u0000\u00a2\u0006\u0004\u0008\u0006\u0010\u0007\u00a8\u0006\u0008"
+    }
+    d2 = {
+        "Lk2/h;",
+        "",
+        "Landroidx/compose/runtime/composer/linkbuffer/changelist/IntParameter;",
+        "highBitsParam",
+        "lowBitsParam",
+        "",
+        "a",
+        "(Lk2/h;II)J",
+        "runtime"
+    }
+    k = 0x2
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # direct methods
-.method public synthetic constructor <init>(Lk2/k;Lcom/android/launcher3/util/T1;)V
-    .locals 0
+.method public static final a(Lk2/h;II)J
+    .locals 4
 
     .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-interface {p0, p2}, Lk2/h;->getInt(I)I
 
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lk2/i;->g:Lk2/k;
+    move-result p2
 
     .line 5
-    .line 6
-    iput-object p2, p0, Lk2/i;->h:Lcom/android/launcher3/util/T1;
-
-    .line 7
-    .line 8
-    return-void
-.end method
-
-
-# virtual methods
-.method public final close()V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Lk2/i;->g:Lk2/k;
-
-    .line 2
-    .line 3
-    iget-object p0, p0, Lk2/i;->h:Lcom/android/launcher3/util/T1;
-
-    .line 4
-    .line 5
-    invoke-static {v0, p0}, Lk2/k;->d(Lk2/k;Lcom/android/launcher3/util/T1;)V
+    invoke-interface {p0, p1}, Lk2/h;->getInt(I)I
 
     .line 6
     .line 7
     .line 8
-    return-void
+    move-result p0
+
+    .line 9
+    int-to-long p0, p0
+
+    .line 10
+    const/16 v0, 0x20
+
+    .line 11
+    .line 12
+    shl-long/2addr p0, v0
+
+    .line 13
+    int-to-long v0, p2
+
+    .line 14
+    const-wide v2, 0xffffffffL
+
+    .line 15
+    .line 16
+    .line 17
+    .line 18
+    .line 19
+    and-long/2addr v0, v2
+
+    .line 20
+    or-long/2addr p0, v0
+
+    .line 21
+    return-wide p0
 .end method

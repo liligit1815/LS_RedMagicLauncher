@@ -1,167 +1,204 @@
-.class abstract LV/d;
-.super Ljava/lang/Object;
-.source "LookupTableInterpolator.java"
-
-# interfaces
-.implements Landroid/view/animation/Interpolator;
+.class public final Lv/d;
+.super Lv/f;
+.source "AppFunctionDataTypeMetadata.kt"
 
 
-# instance fields
-.field private final a:[F
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000&\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u000e\n\u0002\u0008\u0003\n\u0002\u0010\u0000\n\u0002\u0008\u0003\n\u0002\u0010\u0008\n\u0002\u0008\u0005\u0018\u00002\u00020\u0001B\u001b\u0008\u0007\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u0012\u0008\u0008\u0002\u0010\u0005\u001a\u00020\u0004\u00a2\u0006\u0004\u0008\u0006\u0010\u0007J\u001a\u0010\n\u001a\u00020\u00022\u0008\u0010\t\u001a\u0004\u0018\u00010\u0008H\u0096\u0002\u00a2\u0006\u0004\u0008\n\u0010\u000bJ\u000f\u0010\r\u001a\u00020\u000cH\u0016\u00a2\u0006\u0004\u0008\r\u0010\u000eJ\u000f\u0010\u000f\u001a\u00020\u0004H\u0016\u00a2\u0006\u0004\u0008\u000f\u0010\u0010\u00a8\u0006\u0011"
+    }
+    d2 = {
+        "Lv/d;",
+        "Lv/f;",
+        "",
+        "isNullable",
+        "",
+        "description",
+        "<init>",
+        "(ZLjava/lang/String;)V",
+        "",
+        "other",
+        "equals",
+        "(Ljava/lang/Object;)Z",
+        "",
+        "hashCode",
+        "()I",
+        "toString",
+        "()Ljava/lang/String;",
+        "appfunctions"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-.field private final b:F
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nAppFunctionDataTypeMetadata.kt\nKotlin\n*S Kotlin\n*F\n+ 1 AppFunctionDataTypeMetadata.kt\nandroidx/appfunctions/metadata/AppFunctionBytesTypeMetadata\n+ 2 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,1153:1\n1#2:1154\n*E\n"
+    }
+.end annotation
 
 
 # direct methods
-.method protected constructor <init>([F)V
+.method public constructor <init>(ZLjava/lang/String;)V
     .locals 1
+    .annotation build Lkotlin/jvm/JvmOverloads;
+    .end annotation
 
     .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    const-string v0, "description"
 
     .line 2
     .line 3
-    .line 4
-    iput-object p1, p0, LV/d;->a:[F
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 4
     .line 5
     .line 6
-    array-length p1, p1
+    invoke-direct {p0, p1, p2}, Lv/f;-><init>(ZLjava/lang/String;)V
 
     .line 7
-    add-int/lit8 p1, p1, -0x1
-
     .line 8
     .line 9
-    int-to-float p1, p1
-
-    .line 10
-    const/high16 v0, 0x3f800000    # 1.0f
-
-    .line 11
-    .line 12
-    div-float/2addr v0, p1
-
-    .line 13
-    iput v0, p0, LV/d;->b:F
-
-    .line 14
-    .line 15
     return-void
 .end method
 
 
 # virtual methods
-.method public getInterpolation(F)F
-    .locals 3
+.method public equals(Ljava/lang/Object;)Z
+    .locals 1
 
     .line 1
-    const/high16 v0, 0x3f800000    # 1.0f
+    if-ne p0, p1, :cond_0
 
     .line 2
     .line 3
-    cmpl-float v1, p1, v0
+    const/4 p0, 0x1
 
     .line 4
+    return p0
+
     .line 5
-    if-ltz v1, :cond_0
+    :cond_0
+    instance-of v0, p1, Lv/d;
 
     .line 6
     .line 7
-    return v0
+    if-nez v0, :cond_1
 
     .line 8
-    :cond_0
-    const/4 v0, 0x0
-
     .line 9
-    cmpg-float v1, p1, v0
+    const/4 p0, 0x0
 
     .line 10
+    return p0
+
     .line 11
-    if-gtz v1, :cond_1
+    :cond_1
+    invoke-super {p0, p1}, Lv/f;->equals(Ljava/lang/Object;)Z
 
     .line 12
     .line 13
-    return v0
-
     .line 14
-    :cond_1
-    iget-object v0, p0, LV/d;->a:[F
+    move-result p0
 
     .line 15
+    return p0
+.end method
+
+.method public hashCode()I
+    .locals 0
+
+    .line 1
+    invoke-super {p0}, Lv/f;->hashCode()I
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p0
+
+    .line 5
+    return p0
+.end method
+
+.method public toString()Ljava/lang/String;
+    .locals 2
+
+    .line 1
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    const-string v1, "AppFunctionBytesTypeMetadata(isNullable="
+
+    .line 7
+    .line 8
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 9
+    .line 10
+    .line 11
+    invoke-virtual {p0}, Lv/f;->b()Z
+
+    .line 12
+    .line 13
+    .line 14
+    move-result v1
+
+    .line 15
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
     .line 16
-    array-length v1, v0
-
     .line 17
-    add-int/lit8 v1, v1, -0x1
-
     .line 18
-    .line 19
-    int-to-float v1, v1
+    const-string v1, ", description="
 
+    .line 19
     .line 20
-    mul-float/2addr v1, p1
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 21
-    float-to-int v1, v1
-
     .line 22
-    array-length v0, v0
-
     .line 23
-    add-int/lit8 v0, v0, -0x2
+    invoke-virtual {p0}, Lv/f;->a()Ljava/lang/String;
 
     .line 24
     .line 25
-    invoke-static {v1, v0}, Ljava/lang/Math;->min(II)I
-
     .line 26
+    move-result-object p0
+
     .line 27
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     .line 28
-    move-result v0
-
     .line 29
-    int-to-float v1, v0
-
     .line 30
-    iget v2, p0, LV/d;->b:F
+    const/16 p0, 0x29
 
     .line 31
     .line 32
-    mul-float/2addr v1, v2
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 33
-    sub-float/2addr p1, v1
-
     .line 34
-    div-float/2addr p1, v2
-
     .line 35
-    iget-object p0, p0, LV/d;->a:[F
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     .line 36
     .line 37
-    aget v1, p0, v0
-
     .line 38
+    move-result-object p0
+
     .line 39
-    add-int/lit8 v0, v0, 0x1
-
-    .line 40
-    .line 41
-    aget p0, p0, v0
-
-    .line 42
-    .line 43
-    sub-float/2addr p0, v1
-
-    .line 44
-    mul-float/2addr p1, p0
-
-    .line 45
-    add-float/2addr v1, p1
-
-    .line 46
-    return v1
+    return-object p0
 .end method

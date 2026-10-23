@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/o$b;
+.class public Landroidx/recyclerview/widget/o$b;
 .super Landroidx/recyclerview/widget/o;
 .source "OrientationHelper.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
     .locals 1
 
     .line 1

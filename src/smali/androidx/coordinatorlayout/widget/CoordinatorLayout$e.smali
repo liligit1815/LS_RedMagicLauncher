@@ -1,4 +1,4 @@
-.class Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;
+.class public Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;
 .super Ljava/lang/Object;
 .source "CoordinatorLayout.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "e"
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+.field public final synthetic c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
 
 # direct methods
-.method constructor <init>(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
+.method public constructor <init>(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout;->x:Landroid/view/ViewGroup$OnHierarchyChangeListener;
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout;->C:Landroid/view/ViewGroup$OnHierarchyChangeListener;
 
     .line 4
     .line 5
@@ -69,7 +69,7 @@
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3
@@ -81,11 +81,11 @@
     .line 5
     .line 6
     .line 7
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$e;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 8
     .line 9
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout;->x:Landroid/view/ViewGroup$OnHierarchyChangeListener;
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout;->C:Landroid/view/ViewGroup$OnHierarchyChangeListener;
 
     .line 10
     .line 11

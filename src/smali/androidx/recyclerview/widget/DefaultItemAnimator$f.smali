@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/DefaultItemAnimator$f;
+.class public Landroidx/recyclerview/widget/DefaultItemAnimator$f;
 .super Landroid/animation/AnimatorListenerAdapter;
 .source "DefaultItemAnimator.java"
 
@@ -9,51 +9,51 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.field public final synthetic c:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
-.field final synthetic h:I
+.field public final synthetic m:I
 
-.field final synthetic i:Landroid/view/View;
+.field public final synthetic n:Landroid/view/View;
 
-.field final synthetic j:I
+.field public final synthetic o:I
 
-.field final synthetic k:Landroid/view/ViewPropertyAnimator;
+.field public final synthetic p:Landroid/view/ViewPropertyAnimator;
 
-.field final synthetic l:Landroidx/recyclerview/widget/DefaultItemAnimator;
+.field public final synthetic q:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/DefaultItemAnimator;Landroidx/recyclerview/widget/RecyclerView$ViewHolder;ILandroid/view/View;ILandroid/view/ViewPropertyAnimator;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/DefaultItemAnimator;Landroidx/recyclerview/widget/RecyclerView$ViewHolder;ILandroid/view/View;ILandroid/view/ViewPropertyAnimator;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->l:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iput-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->q:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->g:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+    iput-object p2, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->c:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
     .line 4
     .line 5
-    iput p3, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->h:I
+    iput p3, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->m:I
 
     .line 6
     .line 7
-    iput-object p4, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->i:Landroid/view/View;
+    iput-object p4, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->n:Landroid/view/View;
 
     .line 8
     .line 9
-    iput p5, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->j:I
+    iput p5, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->o:I
 
     .line 10
     .line 11
-    iput-object p6, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->k:Landroid/view/ViewPropertyAnimator;
+    iput-object p6, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->p:Landroid/view/ViewPropertyAnimator;
 
     .line 12
     .line 13
@@ -71,7 +71,7 @@
     .locals 1
 
     .line 1
-    iget p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->h:I
+    iget p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->m:I
 
     .line 2
     .line 3
@@ -82,7 +82,7 @@
 
     .line 5
     .line 6
-    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->i:Landroid/view/View;
+    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->n:Landroid/view/View;
 
     .line 7
     .line 8
@@ -92,7 +92,7 @@
     .line 10
     .line 11
     :cond_0
-    iget p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->j:I
+    iget p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->o:I
 
     .line 12
     .line 13
@@ -100,7 +100,7 @@
 
     .line 14
     .line 15
-    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->i:Landroid/view/View;
+    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->n:Landroid/view/View;
 
     .line 16
     .line 17
@@ -117,7 +117,7 @@
     .locals 1
 
     .line 1
-    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->k:Landroid/view/ViewPropertyAnimator;
+    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->p:Landroid/view/ViewPropertyAnimator;
 
     .line 2
     .line 3
@@ -129,11 +129,11 @@
     .line 5
     .line 6
     .line 7
-    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->l:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->q:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 8
     .line 9
-    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->g:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->c:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
     .line 10
     .line 11
@@ -142,7 +142,7 @@
     .line 12
     .line 13
     .line 14
-    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->l:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->q:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 15
     .line 16
@@ -150,7 +150,7 @@
 
     .line 17
     .line 18
-    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->g:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+    iget-object v0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->c:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
     .line 19
     .line 20
@@ -159,7 +159,7 @@
     .line 21
     .line 22
     .line 23
-    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->l:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->q:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 24
     .line 25
@@ -175,11 +175,11 @@
     .locals 0
 
     .line 1
-    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->l:Landroidx/recyclerview/widget/DefaultItemAnimator;
+    iget-object p1, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->q:Landroidx/recyclerview/widget/DefaultItemAnimator;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->g:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+    iget-object p0, p0, Landroidx/recyclerview/widget/DefaultItemAnimator$f;->c:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
     .line 4
     .line 5

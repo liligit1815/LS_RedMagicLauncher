@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -23,7 +23,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;F)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;F)V
     .locals 0
 
     .line 1
@@ -62,7 +62,7 @@
 
     .line 5
     .line 6
-    invoke-static {p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->i(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
+    invoke-static {p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->c(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
 
     .line 7
     .line 8
@@ -103,7 +103,7 @@
 
     .line 5
     .line 6
-    invoke-static {p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->i(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
+    invoke-static {p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->c(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
 
     .line 7
     .line 8
@@ -144,7 +144,7 @@
 
     .line 5
     .line 6
-    invoke-static {p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->i(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
+    invoke-static {p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->c(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
 
     .line 7
     .line 8

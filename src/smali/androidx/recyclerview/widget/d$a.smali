@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/d$a;
+.class public Landroidx/recyclerview/widget/d$a;
 .super Ljava/lang/Object;
 .source "ChildHelper.java"
 
@@ -9,19 +9,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # instance fields
-.field a:J
+.field public a:J
 
-.field b:Landroidx/recyclerview/widget/d$a;
+.field public b:Landroidx/recyclerview/widget/d$a;
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 2
 
     .line 1
@@ -41,38 +41,9 @@
     return-void
 .end method
 
-.method private c()V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/recyclerview/widget/d$a;->b:Landroidx/recyclerview/widget/d$a;
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    new-instance v0, Landroidx/recyclerview/widget/d$a;
-
-    .line 6
-    .line 7
-    invoke-direct {v0}, Landroidx/recyclerview/widget/d$a;-><init>()V
-
-    .line 8
-    .line 9
-    .line 10
-    iput-object v0, p0, Landroidx/recyclerview/widget/d$a;->b:Landroidx/recyclerview/widget/d$a;
-
-    .line 11
-    .line 12
-    :cond_0
-    return-void
-.end method
-
 
 # virtual methods
-.method a(I)V
+.method public a(I)V
     .locals 4
 
     .line 1
@@ -129,7 +100,7 @@
     return-void
 .end method
 
-.method b(I)I
+.method public b(I)I
     .locals 4
 
     .line 1
@@ -254,7 +225,36 @@
     return p1
 .end method
 
-.method d(I)Z
+.method public final c()V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/recyclerview/widget/d$a;->b:Landroidx/recyclerview/widget/d$a;
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_0
+
+    .line 4
+    .line 5
+    new-instance v0, Landroidx/recyclerview/widget/d$a;
+
+    .line 6
+    .line 7
+    invoke-direct {v0}, Landroidx/recyclerview/widget/d$a;-><init>()V
+
+    .line 8
+    .line 9
+    .line 10
+    iput-object v0, p0, Landroidx/recyclerview/widget/d$a;->b:Landroidx/recyclerview/widget/d$a;
+
+    .line 11
+    .line 12
+    :cond_0
+    return-void
+.end method
+
+.method public d(I)Z
     .locals 4
 
     .line 1
@@ -266,7 +266,7 @@
 
     .line 4
     .line 5
-    invoke-direct {p0}, Landroidx/recyclerview/widget/d$a;->c()V
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/d$a;->c()V
 
     .line 6
     .line 7
@@ -330,7 +330,7 @@
     return p0
 .end method
 
-.method e(IZ)V
+.method public e(IZ)V
     .locals 9
 
     .line 1
@@ -342,7 +342,7 @@
 
     .line 4
     .line 5
-    invoke-direct {p0}, Landroidx/recyclerview/widget/d$a;->c()V
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/d$a;->c()V
 
     .line 6
     .line 7
@@ -474,7 +474,7 @@
     .line 61
     :cond_4
     :goto_2
-    invoke-direct {p0}, Landroidx/recyclerview/widget/d$a;->c()V
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/d$a;->c()V
 
     .line 62
     .line 63
@@ -491,7 +491,7 @@
     return-void
 .end method
 
-.method f(I)Z
+.method public f(I)Z
     .locals 10
 
     .line 1
@@ -503,7 +503,7 @@
 
     .line 4
     .line 5
-    invoke-direct {p0}, Landroidx/recyclerview/widget/d$a;->c()V
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/d$a;->c()V
 
     .line 6
     .line 7
@@ -653,7 +653,7 @@
     return p1
 .end method
 
-.method g()V
+.method public g()V
     .locals 2
 
     .line 1
@@ -682,7 +682,7 @@
     return-void
 .end method
 
-.method h(I)V
+.method public h(I)V
     .locals 4
 
     .line 1
@@ -694,7 +694,7 @@
 
     .line 4
     .line 5
-    invoke-direct {p0}, Landroidx/recyclerview/widget/d$a;->c()V
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/d$a;->c()V
 
     .line 6
     .line 7

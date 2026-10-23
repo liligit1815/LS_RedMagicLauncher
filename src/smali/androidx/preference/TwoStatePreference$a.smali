@@ -1,4 +1,4 @@
-.class Landroidx/preference/TwoStatePreference$a;
+.class public Landroidx/preference/TwoStatePreference$a;
 .super Landroidx/preference/Preference$b;
 .source "TwoStatePreference.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field g:Z
+.field public c:Z
 
 
 # direct methods
@@ -51,7 +51,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 1
 
     .line 1
@@ -72,12 +72,12 @@
     const/4 v0, 0x0
 
     :goto_0
-    iput-boolean v0, p0, Landroidx/preference/TwoStatePreference$a;->g:Z
+    iput-boolean v0, p0, Landroidx/preference/TwoStatePreference$a;->c:Z
 
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 3
@@ -97,7 +97,7 @@
     .line 2
     .line 3
     .line 4
-    iget-boolean p0, p0, Landroidx/preference/TwoStatePreference$a;->g:Z
+    iget-boolean p0, p0, Landroidx/preference/TwoStatePreference$a;->c:Z
 
     .line 5
     .line 6

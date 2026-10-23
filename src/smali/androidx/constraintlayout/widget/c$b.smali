@@ -1,4 +1,4 @@
-.class Landroidx/constraintlayout/widget/c$b;
+.class public Landroidx/constraintlayout/widget/c$b;
 .super Ljava/lang/Object;
 .source "ConstraintLayoutStates.java"
 
@@ -9,27 +9,27 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "b"
 .end annotation
 
 
 # instance fields
-.field a:F
+.field public a:F
 
-.field b:F
+.field public b:F
 
-.field c:F
+.field public c:F
 
-.field d:F
+.field public d:F
 
-.field e:I
+.field public e:I
 
-.field f:Landroidx/constraintlayout/widget/d;
+.field public f:Landroidx/constraintlayout/widget/d;
 
 
 # direct methods
-.method constructor <init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
+.method public constructor <init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
     .locals 5
 
     .line 1
@@ -357,7 +357,7 @@
 
 
 # virtual methods
-.method a(FF)Z
+.method public a(FF)Z
     .locals 2
 
     .line 1

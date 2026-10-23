@@ -3,7 +3,7 @@
 .source "RemoteActionCompat.java"
 
 # interfaces
-.implements Ll0/a;
+.implements Lt7/c;
 
 
 # instance fields

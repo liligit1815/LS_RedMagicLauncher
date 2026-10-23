@@ -117,7 +117,7 @@ public final class LsStackOcclusion {
         // Zero is the entry/hidden sentinel, not an opaque-overlap fallback.
         if (task.getNativeStackClipRightF() <= 0f) return false;
         for (TaskContainer container : task.getTaskContainers()) {
-            if (container.getSnapshotView() == child) {
+            if (container.getTaskContentView() == child) {
                 Path path = paths.get(task);
                 if (path != null) canvas.clipOutPath(path);
                 return true;

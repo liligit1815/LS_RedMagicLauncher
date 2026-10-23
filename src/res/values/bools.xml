@@ -12,8 +12,10 @@
     <bool name="config_setup_mms_data">false</bool>
     <bool name="config_showAllAppButton">false</bool>
     <bool name="config_sms_ringtone_incall">false</bool>
+    <bool name="config_widgetPickerSupportsBlurTokens">true</bool>
     <bool name="desktop_form_factor">false</bool>
-    <bool name="enable_forced_themed_icon">false</bool>
+    <bool name="enableExtensionAppFunctionService">true</bool>
+    <bool name="enablePlatformAppFunctionService">false</bool>
     <bool name="enable_mipop_zte">true</bool>
     <bool name="enable_theme_zte">true</bool>
     <bool name="floating_rotation_button_position_left">true</bool>
@@ -22,5 +24,6 @@
     <bool name="home_settings_icon_space_reserved">false</bool>
     <bool name="isLightStatusBar">true</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
+    <bool name="reduce_workspace_blur_usage">false</bool>
     <bool name="simple_cache_enable_im_memory">false</bool>
 </resources>

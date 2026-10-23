@@ -1,19 +1,27 @@
-.class public final synthetic LR0/g;
+.class public final synthetic Lr0/g;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lu4/l;
+.implements Lkotlin/jvm/functions/Function2;
 
 
 # instance fields
-.field public final synthetic g:LR0/k;
+.field public final synthetic c:Lr0/t;
 
-.field public final synthetic h:I
+.field public final synthetic m:Lkotlin/jvm/functions/Function0;
+
+.field public final synthetic n:Lx2/m;
+
+.field public final synthetic o:Lkotlin/jvm/functions/Function1;
+
+.field public final synthetic p:I
+
+.field public final synthetic q:I
 
 
 # direct methods
-.method public synthetic constructor <init>(LR0/k;I)V
+.method public synthetic constructor <init>(Lr0/t;Lkotlin/jvm/functions/Function0;Lx2/m;Lkotlin/jvm/functions/Function1;II)V
     .locals 0
 
     .line 1
@@ -22,50 +30,89 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, LR0/g;->g:LR0/k;
+    iput-object p1, p0, Lr0/g;->c:Lr0/t;
 
     .line 5
     .line 6
-    iput p2, p0, LR0/g;->h:I
+    iput-object p2, p0, Lr0/g;->m:Lkotlin/jvm/functions/Function0;
 
     .line 7
     .line 8
+    iput-object p3, p0, Lr0/g;->n:Lx2/m;
+
+    .line 9
+    .line 10
+    iput-object p4, p0, Lr0/g;->o:Lkotlin/jvm/functions/Function1;
+
+    .line 11
+    .line 12
+    iput p5, p0, Lr0/g;->p:I
+
+    .line 13
+    .line 14
+    iput p6, p0, Lr0/g;->q:I
+
+    .line 15
+    .line 16
     return-void
 .end method
 
 
 # virtual methods
-.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+.method public final invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 8
 
     .line 1
-    iget-object v0, p0, LR0/g;->g:LR0/k;
+    iget-object v0, p0, Lr0/g;->c:Lr0/t;
 
     .line 2
     .line 3
-    iget p0, p0, LR0/g;->h:I
+    iget-object v1, p0, Lr0/g;->m:Lkotlin/jvm/functions/Function0;
 
     .line 4
     .line 5
-    check-cast p1, Lcom/android/launcher3/model/data/d;
+    iget-object v2, p0, Lr0/g;->n:Lx2/m;
 
     .line 6
     .line 7
-    invoke-static {v0, p0, p1}, LR0/k;->i(LR0/k;ILcom/android/launcher3/model/data/d;)Z
+    iget-object v3, p0, Lr0/g;->o:Lkotlin/jvm/functions/Function1;
 
     .line 8
     .line 9
-    .line 10
-    move-result p0
+    iget v4, p0, Lr0/g;->p:I
 
+    .line 10
     .line 11
-    invoke-static {p0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+    iget v5, p0, Lr0/g;->q:I
 
     .line 12
     .line 13
+    move-object v6, p1
+
     .line 14
-    move-result-object p0
+    check-cast v6, Le2/r;
 
     .line 15
+    .line 16
+    check-cast p2, Ljava/lang/Integer;
+
+    .line 17
+    .line 18
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
+
+    .line 19
+    .line 20
+    .line 21
+    move-result v7
+
+    .line 22
+    invoke-static/range {v0 .. v7}, Lr0/i;->d(Lr0/t;Lkotlin/jvm/functions/Function0;Lx2/m;Lkotlin/jvm/functions/Function1;IILe2/r;I)Lkotlin/Unit;
+
+    .line 23
+    .line 24
+    .line 25
+    move-result-object p0
+
+    .line 26
     return-object p0
 .end method

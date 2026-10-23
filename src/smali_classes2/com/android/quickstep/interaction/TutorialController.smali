@@ -18,8 +18,6 @@
 # static fields
 .field private static final ADVANCE_TUTORIAL_TIMEOUT_MS:I = 0xbb8
 
-.field private static final DEFAULT_PIXEL_TIPS_APP_NAME:Ljava/lang/CharSequence;
-
 .field private static final DONE_BUTTON_ANNOUNCE_DELAY_MS:I = 0xfa0
 
 .field private static final FEEDBACK_ANIMATION_MS:I = 0x85
@@ -37,8 +35,6 @@
 .field private static final GLIF_EXPRESSIVE_THEME:Ljava/lang/String; = "glif_expressive"
 
 .field private static final LOG_TAG:Ljava/lang/String; = "TutorialController"
-
-.field private static final PIXEL_TIPS_APP_PACKAGE_NAME:Ljava/lang/String; = "com.google.android.apps.tips"
 
 .field private static final SUBTITLE_ANNOUNCE_DELAY_MS:I = 0xbb8
 
@@ -112,32 +108,13 @@
 
 .field private final mShowFeedbackRunnable:Ljava/lang/Runnable;
 
-.field final mSkipButton:Landroid/widget/TextView;
-
-.field private final mSkipTutorialDialog:Landroidx/appcompat/app/b;
-
 .field final mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
 
 .field mTutorialType:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 1
-
-    .line 1
-    const-string v0, "Pixel Tips"
-
-    .line 2
-    .line 3
-    sput-object v0, Lcom/android/quickstep/interaction/TutorialController;->DEFAULT_PIXEL_TIPS_APP_NAME:Ljava/lang/CharSequence;
-
-    .line 4
-    .line 5
-    return-void
-.end method
-
-.method constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
     .locals 5
 
     .line 1
@@ -194,7 +171,7 @@
     move-result-object v1
 
     .line 28
-    const v2, 0x7f0b029e
+    const v2, 0x7f0b02b9
 
     .line 29
     .line 30
@@ -207,455 +184,457 @@
     move-result-object v2
 
     .line 35
-    check-cast v2, Landroid/widget/TextView;
+    check-cast v2, Landroid/view/ViewGroup;
 
     .line 36
     .line 37
-    iput-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mSkipButton:Landroid/widget/TextView;
+    iput-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackView:Landroid/view/ViewGroup;
 
     .line 38
     .line 39
-    new-instance v3, Lcom/android/quickstep/interaction/H;
+    const v3, 0x7f0b02b8
 
     .line 40
     .line 41
-    invoke-direct {v3, p0}, Lcom/android/quickstep/interaction/H;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
-
     .line 42
+    invoke-virtual {v2, v3}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
     .line 43
     .line 44
-    invoke-virtual {v2, v3}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
     .line 45
-    .line 46
-    .line 47
-    const v2, 0x7f0b02a2
+    move-result-object v3
 
+    .line 46
+    check-cast v3, Landroid/widget/TextView;
+
+    .line 47
     .line 48
+    iput-object v3, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackTitleView:Landroid/widget/TextView;
+
     .line 49
     .line 50
-    invoke-virtual {v1, v2}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02b7
 
     .line 51
     .line 52
     .line 53
-    move-result-object v2
+    invoke-virtual {v2, v4}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
     .line 54
-    check-cast v2, Landroid/view/ViewGroup;
-
     .line 55
     .line 56
-    iput-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackView:Landroid/view/ViewGroup;
+    move-result-object v2
 
     .line 57
-    .line 58
-    const v3, 0x7f0b02a1
+    check-cast v2, Landroid/widget/TextView;
 
+    .line 58
     .line 59
+    iput-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackSubtitleView:Landroid/widget/TextView;
+
     .line 60
     .line 61
-    invoke-virtual {v2, v3}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02ad
 
     .line 62
     .line 63
     .line 64
-    move-result-object v3
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 65
-    check-cast v3, Landroid/widget/TextView;
-
     .line 66
     .line 67
-    iput-object v3, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackTitleView:Landroid/widget/TextView;
+    move-result-object v4
 
     .line 68
-    .line 69
-    const v4, 0x7f0b02a0
+    check-cast v4, Landroid/widget/ImageView;
 
+    .line 69
     .line 70
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mEdgeGestureVideoView:Landroid/widget/ImageView;
+
     .line 71
     .line 72
-    invoke-virtual {v2, v4}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02b0
 
     .line 73
     .line 74
     .line 75
-    move-result-object v2
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 76
-    check-cast v2, Landroid/widget/TextView;
-
     .line 77
     .line 78
-    iput-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackSubtitleView:Landroid/widget/TextView;
+    move-result-object v4
 
     .line 79
-    .line 80
-    const v4, 0x7f0b0295
+    check-cast v4, Landroid/widget/RelativeLayout;
 
+    .line 80
     .line 81
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeLauncherView:Landroid/widget/RelativeLayout;
+
     .line 82
     .line 83
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02ae
 
     .line 84
     .line 85
     .line 86
-    move-result-object v4
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 87
-    check-cast v4, Landroid/widget/ImageView;
-
     .line 88
     .line 89
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mEdgeGestureVideoView:Landroid/widget/ImageView;
+    move-result-object v4
 
     .line 90
-    .line 91
-    const v4, 0x7f0b0298
+    check-cast v4, Landroid/widget/FrameLayout;
 
+    .line 91
     .line 92
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeHotseatView:Landroid/widget/FrameLayout;
+
     .line 93
     .line 94
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02af
 
     .line 95
     .line 96
     .line 97
-    move-result-object v4
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 98
-    check-cast v4, Landroid/widget/RelativeLayout;
-
     .line 99
     .line 100
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeLauncherView:Landroid/widget/RelativeLayout;
+    move-result-object v4
 
     .line 101
-    .line 102
-    const v4, 0x7f0b0296
+    check-cast v4, Lcom/android/launcher3/views/ClipIconView;
 
+    .line 102
     .line 103
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeIconView:Lcom/android/launcher3/views/ClipIconView;
+
     .line 104
     .line 105
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02b2
 
     .line 106
     .line 107
     .line 108
-    move-result-object v4
-
-    .line 109
-    check-cast v4, Landroid/widget/FrameLayout;
-
-    .line 110
-    .line 111
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeHotseatView:Landroid/widget/FrameLayout;
-
-    .line 112
-    .line 113
-    const v4, 0x7f0b0297
-
-    .line 114
-    .line 115
-    .line 116
     invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
-    .line 117
-    .line 118
-    .line 119
+    .line 109
+    .line 110
+    .line 111
     move-result-object v4
 
-    .line 120
-    check-cast v4, Lcom/android/launcher3/views/ClipIconView;
+    .line 112
+    check-cast v4, Landroid/widget/FrameLayout;
 
+    .line 113
+    .line 114
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
+
+    .line 115
+    .line 116
+    const/4 v4, 0x0
+
+    .line 117
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskbarView:Lcom/android/quickstep/interaction/AnimatedTaskbarView;
+
+    .line 118
+    .line 119
+    const v4, 0x7f0b02b1
+
+    .line 120
     .line 121
     .line 122
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeIconView:Lcom/android/launcher3/views/ClipIconView;
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 123
     .line 124
-    const v4, 0x7f0b029a
-
     .line 125
-    .line 126
-    .line 127
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
-
-    .line 128
-    .line 129
-    .line 130
     move-result-object v4
 
-    .line 131
-    check-cast v4, Landroid/widget/FrameLayout;
+    .line 126
+    check-cast v4, Lcom/android/quickstep/interaction/AnimatedTaskView;
 
+    .line 127
+    .line 128
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakePreviousTaskView:Lcom/android/quickstep/interaction/AnimatedTaskView;
+
+    .line 129
+    .line 130
+    const v4, 0x7f0b02c3
+
+    .line 131
     .line 132
     .line 133
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 134
     .line 135
-    const/4 v4, 0x0
-
     .line 136
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskbarView:Lcom/android/quickstep/interaction/AnimatedTaskbarView;
-
-    .line 137
-    .line 138
-    const v4, 0x7f0b0299
-
-    .line 139
-    .line 140
-    .line 141
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
-
-    .line 142
-    .line 143
-    .line 144
     move-result-object v4
 
+    .line 137
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mRippleView:Landroid/view/View;
+
+    .line 138
+    .line 139
+    invoke-virtual {v4}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+
+    .line 140
+    .line 141
+    .line 142
+    move-result-object v4
+
+    .line 143
+    check-cast v4, Landroid/graphics/drawable/RippleDrawable;
+
+    .line 144
     .line 145
-    check-cast v4, Lcom/android/quickstep/interaction/AnimatedTaskView;
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mRippleDrawable:Landroid/graphics/drawable/RippleDrawable;
 
     .line 146
     .line 147
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakePreviousTaskView:Lcom/android/quickstep/interaction/AnimatedTaskView;
+    const v4, 0x7f0b02b5
 
     .line 148
     .line 149
-    const v4, 0x7f0b02aa
-
     .line 150
-    .line 151
-    .line 152
     invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
+    .line 151
+    .line 152
     .line 153
-    .line 154
-    .line 155
     move-result-object v4
 
+    .line 154
+    check-cast v4, Landroid/widget/Button;
+
+    .line 155
     .line 156
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mRippleView:Landroid/view/View;
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
 
     .line 157
     .line 158
-    invoke-virtual {v4}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+    const v4, 0x7f0b02b4
 
     .line 159
     .line 160
     .line 161
-    move-result-object v4
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 162
-    check-cast v4, Landroid/graphics/drawable/RippleDrawable;
-
     .line 163
     .line 164
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mRippleDrawable:Landroid/graphics/drawable/RippleDrawable;
+    move-result-object v4
 
     .line 165
-    .line 166
-    const v4, 0x7f0b029d
+    check-cast v4, Landroid/widget/ImageView;
 
+    .line 166
     .line 167
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFingerDotView:Landroid/widget/ImageView;
+
     .line 168
     .line 169
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b02a7
 
     .line 170
     .line 171
     .line 172
-    move-result-object v4
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 173
-    check-cast v4, Landroid/widget/Button;
-
     .line 174
     .line 175
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
+    move-result-object v4
 
     .line 176
-    .line 177
-    const v4, 0x7f0b029c
+    check-cast v4, Landroid/widget/RelativeLayout;
 
+    .line 177
     .line 178
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFullGestureDemonstration:Landroid/widget/RelativeLayout;
+
     .line 179
     .line 180
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    const v4, 0x7f0b0161
 
     .line 181
     .line 182
     .line 183
-    move-result-object v4
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 184
-    check-cast v4, Landroid/widget/ImageView;
-
     .line 185
     .line 186
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFingerDotView:Landroid/widget/ImageView;
-
-    .line 187
-    .line 188
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->createSkipTutorialDialog()Landroidx/appcompat/app/b;
-
-    .line 189
-    .line 190
-    .line 191
     move-result-object v4
 
-    .line 192
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mSkipTutorialDialog:Landroidx/appcompat/app/b;
+    .line 187
+    check-cast v4, Lcom/airbnb/lottie/LottieAnimationView;
 
+    .line 188
+    .line 189
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
+
+    .line 190
+    .line 191
+    const v4, 0x7f0b02ab
+
+    .line 192
     .line 193
     .line 194
-    const v4, 0x7f0b028c
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 195
     .line 196
     .line 197
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
-
-    .line 198
-    .line 199
-    .line 200
     move-result-object v4
 
+    .line 198
+    check-cast v4, Lcom/airbnb/lottie/LottieAnimationView;
+
+    .line 199
+    .line 200
+    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mAnimatedGestureDemonstration:Lcom/airbnb/lottie/LottieAnimationView;
+
     .line 201
-    check-cast v4, Landroid/widget/RelativeLayout;
-
     .line 202
-    .line 203
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mFullGestureDemonstration:Landroid/widget/RelativeLayout;
+    const v4, 0x7f0b0273
 
+    .line 203
     .line 204
     .line 205
-    const v4, 0x7f0b0155
+    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
 
     .line 206
     .line 207
     .line 208
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    move-result-object v1
 
     .line 209
+    iput-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppView:Landroid/view/View;
+
     .line 210
     .line 211
-    move-result-object v4
+    invoke-virtual {p1}, Lcom/android/quickstep/interaction/TutorialFragment;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
     .line 212
-    check-cast v4, Lcom/airbnb/lottie/LottieAnimationView;
-
     .line 213
     .line 214
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
+    move-result-object v1
 
     .line 215
-    .line 216
-    const v4, 0x7f0b0290
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
+    .line 216
     .line 217
     .line 218
+    move-result-object v1
+
     .line 219
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    invoke-virtual {v1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 220
     .line 221
     .line 222
-    move-result-object v4
+    move-result v1
 
     .line 223
-    check-cast v4, Lcom/airbnb/lottie/LottieAnimationView;
+    int-to-float v1, v1
 
     .line 224
+    iput v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mScreenWidth:F
+
     .line 225
-    iput-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mAnimatedGestureDemonstration:Lcom/airbnb/lottie/LottieAnimationView;
-
     .line 226
-    .line 227
-    const v4, 0x7f0b0259
+    invoke-virtual {p1}, Lcom/android/quickstep/interaction/TutorialFragment;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
+    .line 227
     .line 228
     .line 229
+    move-result-object p1
+
     .line 230
-    invoke-virtual {v1, v4}, Landroid/widget/RelativeLayout;->findViewById(I)Landroid/view/View;
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 231
     .line 232
     .line 233
-    move-result-object v1
+    move-result-object p1
 
     .line 234
-    iput-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppView:Landroid/view/View;
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
     .line 235
     .line 236
-    invoke-virtual {p1}, Lcom/android/quickstep/interaction/TutorialFragment;->getDeviceProfile()Lcom/android/launcher3/h0;
-
     .line 237
-    .line 238
-    .line 239
-    move-result-object v1
+    move-result p1
 
+    .line 238
+    iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mScreenHeight:I
+
+    .line 239
     .line 240
-    iget v1, v1, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     .line 241
     .line 242
-    int-to-float v1, v1
-
     .line 243
-    iput v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mScreenWidth:F
+    move-result-object p1
 
     .line 244
-    .line 245
-    invoke-virtual {p1}, Lcom/android/quickstep/interaction/TutorialFragment;->getDeviceProfile()Lcom/android/launcher3/h0;
+    const v1, 0x7f0703c8
 
+    .line 245
     .line 246
     .line 247
+    invoke-virtual {p1, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
     .line 248
-    move-result-object p1
-
     .line 249
-    iget p1, p1, Lcom/android/launcher3/h0;->U0:I
-
     .line 250
+    move-result p1
+
     .line 251
-    iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mScreenHeight:I
+    int-to-float p1, p1
 
     .line 252
-    .line 253
-    invoke-virtual {p2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppMargin:F
 
+    .line 253
     .line 254
+    invoke-static {p2}, Lcom/android/systemui/shared/system/QuickStepContract;->getWindowCornerRadius(Landroid/content/Context;)F
+
     .line 255
     .line 256
-    move-result-object p1
-
     .line 257
-    const v1, 0x7f07038a
+    move-result p1
 
     .line 258
+    iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppStartingCornerRadius:F
+
     .line 259
     .line 260
-    invoke-virtual {p1, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {p2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     .line 261
     .line 262
     .line 263
-    move-result p1
+    move-result-object p1
 
     .line 264
-    int-to-float p1, p1
+    const p2, 0x7f0703c7
 
     .line 265
-    iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppMargin:F
-
     .line 266
     .line 267
-    invoke-static {p2}, Lcom/android/systemui/shared/system/QuickStepContract;->getWindowCornerRadius(Landroid/content/Context;)F
+    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     .line 268
     .line 269
@@ -663,195 +642,171 @@
     move-result p1
 
     .line 271
-    iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppStartingCornerRadius:F
-
-    .line 272
-    .line 273
-    invoke-virtual {p2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 274
-    .line 275
-    .line 276
-    move-result-object p1
-
-    .line 277
-    const p2, 0x7f070389
-
-    .line 278
-    .line 279
-    .line 280
-    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 281
-    .line 282
-    .line 283
-    move-result p1
-
-    .line 284
     int-to-float p1, p1
 
-    .line 285
+    .line 272
     iput p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppEndingCornerRadius:F
 
-    .line 286
-    .line 287
+    .line 273
+    .line 274
     iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mAnimatedGestureDemonstration:Lcom/airbnb/lottie/LottieAnimationView;
 
-    .line 288
-    .line 289
-    new-instance p2, Lcom/android/quickstep/interaction/I;
+    .line 275
+    .line 276
+    new-instance p2, Lcom/android/quickstep/interaction/j0;
 
+    .line 277
+    .line 278
+    invoke-direct {p2, p0}, Lcom/android/quickstep/interaction/j0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+
+    .line 279
+    .line 280
+    .line 281
+    invoke-virtual {p1, p2}, Lcom/airbnb/lottie/LottieAnimationView;->j(Lf8/h0;)Z
+
+    .line 282
+    .line 283
+    .line 284
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getIntroductionTitle()I
+
+    .line 285
+    .line 286
+    .line 287
+    move-result p1
+
+    .line 288
+    invoke-virtual {v3, p1}, Landroid/widget/TextView;->setText(I)V
+
+    .line 289
     .line 290
     .line 291
-    invoke-direct {p2, p0}, Lcom/android/quickstep/interaction/I;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getIntroductionSubtitle()I
 
     .line 292
     .line 293
     .line 294
-    invoke-virtual {p1, p2}, Lcom/airbnb/lottie/LottieAnimationView;->j(Lv0/t;)Z
-
-    .line 295
-    .line 296
-    .line 297
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getIntroductionTitle()I
-
-    .line 298
-    .line 299
-    .line 300
     move-result p1
 
+    .line 295
+    invoke-virtual {v2, p1}, Landroid/widget/TextView;->setText(I)V
+
+    .line 296
+    .line 297
+    .line 298
+    const-string/jumbo p1, "setupwizard.theme"
+
+    .line 299
+    .line 300
     .line 301
-    invoke-virtual {v3, p1}, Landroid/widget/TextView;->setText(I)V
+    const-string p2, ""
 
     .line 302
     .line 303
-    .line 304
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getIntroductionSubtitle()I
-
-    .line 305
-    .line 306
-    .line 307
-    move-result p1
-
-    .line 308
-    invoke-virtual {v2, p1}, Landroid/widget/TextView;->setText(I)V
-
-    .line 309
-    .line 310
-    .line 311
-    const-string p1, "setupwizard.theme"
-
-    .line 312
-    .line 313
-    const-string p2, ""
-
-    .line 314
-    .line 315
     invoke-static {p1, p2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
-    .line 316
-    .line 317
-    .line 318
+    .line 304
+    .line 305
+    .line 306
     move-result-object p1
 
-    .line 319
+    .line 307
     const-string p2, "glif_expressive"
 
-    .line 320
-    .line 321
+    .line 308
+    .line 309
     invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 322
-    .line 323
-    .line 324
+    .line 310
+    .line 311
+    .line 312
     move-result p2
 
-    .line 325
+    .line 313
     const/4 v1, 0x1
 
-    .line 326
+    .line 314
     if-nez p2, :cond_0
 
-    .line 327
-    .line 328
+    .line 315
+    .line 316
     const-string p2, "glif_expressive_light"
 
-    .line 329
-    .line 330
+    .line 317
+    .line 318
     invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    .line 331
-    .line 332
-    .line 333
+    .line 319
+    .line 320
+    .line 321
     move-result p1
 
-    .line 334
+    .line 322
     if-eqz p1, :cond_1
 
-    .line 335
-    .line 336
+    .line 323
+    .line 324
     :cond_0
     move v0, v1
 
-    .line 337
+    .line 325
     :cond_1
     iput-boolean v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mIsExpressiveThemeEnabledInSUW:Z
 
+    .line 326
+    .line 327
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->maybeSetTitleTypefaces()V
+
+    .line 328
+    .line 329
+    .line 330
+    iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppView:Landroid/view/View;
+
+    .line 331
+    .line 332
+    invoke-virtual {p1, v1}, Landroid/view/View;->setClipToOutline(Z)V
+
+    .line 333
+    .line 334
+    .line 335
+    iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppView:Landroid/view/View;
+
+    .line 336
+    .line 337
+    new-instance p2, Lcom/android/quickstep/interaction/TutorialController$1;
+
     .line 338
     .line 339
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->maybeSetTitleTypefaces()V
+    invoke-direct {p2, p0}, Lcom/android/quickstep/interaction/TutorialController$1;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 340
     .line 341
     .line 342
-    iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppView:Landroid/view/View;
+    invoke-virtual {p1, p2}, Landroid/view/View;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
 
     .line 343
     .line 344
-    invoke-virtual {p1, v1}, Landroid/view/View;->setClipToOutline(Z)V
-
     .line 345
+    new-instance p1, Lcom/android/quickstep/interaction/k0;
+
     .line 346
     .line 347
-    iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mExitingAppView:Landroid/view/View;
+    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/k0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 348
     .line 349
-    new-instance p2, Lcom/android/quickstep/interaction/TutorialController$1;
-
     .line 350
-    .line 351
-    invoke-direct {p2, p0}, Lcom/android/quickstep/interaction/TutorialController$1;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
-
-    .line 352
-    .line 353
-    .line 354
-    invoke-virtual {p1, p2}, Landroid/view/View;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
-
-    .line 355
-    .line 356
-    .line 357
-    new-instance p1, Lcom/android/quickstep/interaction/J;
-
-    .line 358
-    .line 359
-    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/J;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
-
-    .line 360
-    .line 361
-    .line 362
     iput-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mShowFeedbackRunnable:Ljava/lang/Runnable;
 
-    .line 363
-    .line 364
+    .line 351
+    .line 352
     return-void
 .end method
 
-.method public static synthetic a(Lcom/android/quickstep/interaction/TutorialController;Lv0/h;)V
+.method public static synthetic a(Lcom/android/quickstep/interaction/TutorialController;Lf8/h;)V
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1}, Lcom/android/quickstep/interaction/TutorialController;->createScalingMatrix(Lv0/h;)V
+    invoke-direct {p0, p1}, Lcom/android/quickstep/interaction/TutorialController;->createScalingMatrix(Lf8/h;)V
 
     .line 2
     .line 3
@@ -863,7 +818,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->lambda$hideFakeTaskbar$3()V
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->lambda$showActionButton$2()V
 
     .line 2
     .line 3
@@ -875,7 +830,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->lambda$new$2()V
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->lambda$new$0()V
 
     .line 2
     .line 3
@@ -883,11 +838,11 @@
     return-void
 .end method
 
-.method private createScalingMatrix(Lv0/h;)V
+.method private createScalingMatrix(Lf8/h;)V
     .locals 3
 
     .line 1
-    invoke-virtual {p1}, Lv0/h;->b()Landroid/graphics/Rect;
+    invoke-virtual {p1}, Lf8/h;->b()Landroid/graphics/Rect;
 
     .line 2
     .line 3
@@ -992,341 +947,11 @@
     return-void
 .end method
 
-.method private createSkipTutorialDialog()Landroidx/appcompat/app/b;
-    .locals 8
-
-    .line 1
-    const-string v0, "TutorialController"
-
-    .line 2
-    .line 3
-    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
-
-    .line 4
-    .line 5
-    instance-of v2, v1, Lcom/android/quickstep/interaction/GestureSandboxActivity;
-
-    .line 6
-    .line 7
-    const/4 v3, 0x0
-
-    .line 8
-    if-nez v2, :cond_0
-
-    .line 9
-    .line 10
-    return-object v3
-
-    .line 11
-    :cond_0
-    check-cast v1, Lcom/android/quickstep/interaction/GestureSandboxActivity;
-
-    .line 12
-    .line 13
-    const v2, 0x7f0e00e3
-
-    .line 14
-    .line 15
-    .line 16
-    invoke-static {v1, v2, v3}, Landroid/view/View;->inflate(Landroid/content/Context;ILandroid/view/ViewGroup;)Landroid/view/View;
-
-    .line 17
-    .line 18
-    .line 19
-    move-result-object v2
-
-    .line 20
-    new-instance v3, Landroidx/appcompat/app/b$a;
-
-    .line 21
-    .line 22
-    invoke-direct {v3, v1}, Landroidx/appcompat/app/b$a;-><init>(Landroid/content/Context;)V
-
-    .line 23
-    .line 24
-    .line 25
-    invoke-virtual {v3, v2}, Landroidx/appcompat/app/b$a;->r(Landroid/view/View;)Landroidx/appcompat/app/b$a;
-
-    .line 26
-    .line 27
-    .line 28
-    move-result-object v3
-
-    .line 29
-    invoke-virtual {v3}, Landroidx/appcompat/app/b$a;->a()Landroidx/appcompat/app/b;
-
-    .line 30
-    .line 31
-    .line 32
-    move-result-object v3
-
-    .line 33
-    iget-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
-
-    .line 34
-    .line 35
-    invoke-virtual {v4}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    .line 36
-    .line 37
-    .line 38
-    move-result-object v4
-
-    .line 39
-    sget-object v5, Lcom/android/quickstep/interaction/TutorialController;->DEFAULT_PIXEL_TIPS_APP_NAME:Ljava/lang/CharSequence;
-
-    .line 40
-    .line 41
-    :try_start_0
-    const-string v6, "com.google.android.apps.tips"
-
-    .line 42
-    .line 43
-    const/16 v7, 0x80
-
-    .line 44
-    .line 45
-    invoke-virtual {v4, v6, v7}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object v6
-
-    .line 49
-    invoke-virtual {v4, v6}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object v5
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 53
-    goto :goto_0
-
-    .line 54
-    :catch_0
-    move-exception v4
-
-    .line 55
-    const-string v6, "Could not find app label for package name: com.google.android.apps.tips. Defaulting to \'Pixel Tips.\'"
-
-    .line 56
-    .line 57
-    invoke-static {v0, v6, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 58
-    .line 59
-    .line 60
-    :goto_0
-    const v4, 0x7f0b0293
-
-    .line 61
-    .line 62
-    .line 63
-    invoke-virtual {v2, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
-
-    .line 64
-    .line 65
-    .line 66
-    move-result-object v4
-
-    .line 67
-    check-cast v4, Landroid/widget/TextView;
-
-    .line 68
-    .line 69
-    if-eqz v4, :cond_1
-
-    .line 70
-    .line 71
-    iget-object v6, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
-
-    .line 72
-    .line 73
-    const v7, 0x7f1403dc
-
-    .line 74
-    .line 75
-    .line 76
-    filled-new-array {v5}, [Ljava/lang/Object;
-
-    .line 77
-    .line 78
-    .line 79
-    move-result-object v5
-
-    .line 80
-    invoke-virtual {v6, v7, v5}, Landroid/content/Context;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    .line 81
-    .line 82
-    .line 83
-    move-result-object v5
-
-    .line 84
-    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 85
-    .line 86
-    .line 87
-    goto :goto_1
-
-    .line 88
-    :cond_1
-    const-string v4, "No subtitle view in the skip tutorial dialog to update."
-
-    .line 89
-    .line 90
-    invoke-static {v0, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 91
-    .line 92
-    .line 93
-    :goto_1
-    const v4, 0x7f0b0291
-
-    .line 94
-    .line 95
-    .line 96
-    invoke-virtual {v2, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
-
-    .line 97
-    .line 98
-    .line 99
-    move-result-object v4
-
-    .line 100
-    check-cast v4, Landroid/widget/Button;
-
-    .line 101
-    .line 102
-    if-eqz v4, :cond_2
-
-    .line 103
-    .line 104
-    new-instance v5, Lcom/android/quickstep/interaction/M;
-
-    .line 105
-    .line 106
-    invoke-direct {v5, v3}, Lcom/android/quickstep/interaction/M;-><init>(Landroidx/appcompat/app/b;)V
-
-    .line 107
-    .line 108
-    .line 109
-    invoke-virtual {v4, v5}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 110
-    .line 111
-    .line 112
-    goto :goto_2
-
-    .line 113
-    :cond_2
-    const-string v4, "No cancel button in the skip tutorial dialog to update."
-
-    .line 114
-    .line 115
-    invoke-static {v0, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 116
-    .line 117
-    .line 118
-    :goto_2
-    const v4, 0x7f0b0292
-
-    .line 119
-    .line 120
-    .line 121
-    invoke-virtual {v2, v4}, Landroid/view/View;->findViewById(I)Landroid/view/View;
-
-    .line 122
-    .line 123
-    .line 124
-    move-result-object v2
-
-    .line 125
-    check-cast v2, Landroid/widget/Button;
-
-    .line 126
-    .line 127
-    if-eqz v2, :cond_3
-
-    .line 128
-    .line 129
-    new-instance v0, Lcom/android/quickstep/interaction/N;
-
-    .line 130
-    .line 131
-    invoke-direct {v0, p0, v3}, Lcom/android/quickstep/interaction/N;-><init>(Lcom/android/quickstep/interaction/TutorialController;Landroidx/appcompat/app/b;)V
-
-    .line 132
-    .line 133
-    .line 134
-    invoke-virtual {v2, v0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 135
-    .line 136
-    .line 137
-    goto :goto_3
-
-    .line 138
-    :cond_3
-    const-string p0, "No confirm button in the skip tutorial dialog to update."
-
-    .line 139
-    .line 140
-    invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 141
-    .line 142
-    .line 143
-    :goto_3
-    invoke-virtual {v3}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
-
-    .line 144
-    .line 145
-    .line 146
-    move-result-object p0
-
-    .line 147
-    new-instance v0, Landroid/graphics/drawable/ColorDrawable;
-
-    .line 148
-    .line 149
-    const v2, 0x106000d
-
-    .line 150
-    .line 151
-    .line 152
-    invoke-virtual {v1, v2}, Landroid/app/Activity;->getColor(I)I
-
-    .line 153
-    .line 154
-    .line 155
-    move-result v1
-
-    .line 156
-    invoke-direct {v0, v1}, Landroid/graphics/drawable/ColorDrawable;-><init>(I)V
-
-    .line 157
-    .line 158
-    .line 159
-    invoke-virtual {p0, v0}, Landroid/view/Window;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    .line 160
-    .line 161
-    .line 162
-    return-object v3
-.end method
-
-.method public static synthetic d(Lcom/android/quickstep/interaction/TutorialController;Landroidx/appcompat/app/b;Landroid/view/View;)V
+.method public static synthetic d(Lcom/android/quickstep/interaction/TutorialController;)V
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Lcom/android/quickstep/interaction/TutorialController;->lambda$createSkipTutorialDialog$7(Landroidx/appcompat/app/b;Landroid/view/View;)V
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->lambda$hideFakeTaskbar$3()V
 
     .line 2
     .line 3
@@ -1334,31 +959,7 @@
     return-void
 .end method
 
-.method public static synthetic e(Lcom/android/quickstep/interaction/TutorialController;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/quickstep/interaction/TutorialController;->lambda$new$0(Landroid/view/View;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic f(Landroidx/appcompat/app/b;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/app/j;->dismiss()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static synthetic g(Lcom/android/quickstep/interaction/TutorialController;)V
+.method public static synthetic e(Lcom/android/quickstep/interaction/TutorialController;)V
     .locals 0
 
     .line 1
@@ -1370,7 +971,7 @@
     return-void
 .end method
 
-.method public static synthetic h(Lcom/android/quickstep/interaction/TutorialController;)V
+.method public static synthetic f(Lcom/android/quickstep/interaction/TutorialController;)V
     .locals 0
 
     .line 1
@@ -1382,7 +983,7 @@
     return-void
 .end method
 
-.method public static synthetic i(Lcom/android/quickstep/interaction/TutorialController;)V
+.method public static synthetic g(Lcom/android/quickstep/interaction/TutorialController;)V
     .locals 0
 
     .line 1
@@ -1394,7 +995,7 @@
     return-void
 .end method
 
-.method static bridge synthetic j(Lcom/android/quickstep/interaction/TutorialController;)Landroid/graphics/Rect;
+.method public static bridge synthetic h(Lcom/android/quickstep/interaction/TutorialController;)Landroid/graphics/Rect;
     .locals 0
 
     .line 1
@@ -1403,30 +1004,6 @@
     .line 2
     .line 3
     return-object p0
-.end method
-
-.method private synthetic lambda$createSkipTutorialDialog$7(Landroidx/appcompat/app/b;Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
-
-    .line 2
-    .line 3
-    const/4 p2, 0x1
-
-    .line 4
-    invoke-virtual {p0, p2}, Lcom/android/quickstep/interaction/TutorialFragment;->closeTutorialStep(Z)V
-
-    .line 5
-    .line 6
-    .line 7
-    invoke-virtual {p1}, Landroidx/appcompat/app/j;->dismiss()V
-
-    .line 8
-    .line 9
-    .line 10
-    return-void
 .end method
 
 .method private synthetic lambda$hideFakeTaskbar$3()V
@@ -1449,19 +1026,7 @@
     return-void
 .end method
 
-.method private synthetic lambda$new$0(Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->showSkipTutorialDialog()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method private synthetic lambda$new$1()V
+.method private synthetic lambda$new$0()V
     .locals 4
 
     .line 1
@@ -1516,11 +1081,11 @@
     .line 25
     .line 26
     .line 27
-    new-instance v1, Lcom/android/quickstep/interaction/G;
+    new-instance v1, Lcom/android/quickstep/interaction/m0;
 
     .line 28
     .line 29
-    invoke-direct {v1, v0}, Lcom/android/quickstep/interaction/G;-><init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
+    invoke-direct {v1, v0}, Lcom/android/quickstep/interaction/m0;-><init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
 
     .line 30
     .line 31
@@ -1572,7 +1137,7 @@
     return-void
 .end method
 
-.method private synthetic lambda$new$2()V
+.method private synthetic lambda$new$1()V
     .locals 3
 
     .line 1
@@ -1675,11 +1240,11 @@
     move-result-object v0
 
     .line 52
-    new-instance v1, Lcom/android/quickstep/interaction/E;
+    new-instance v1, Lcom/android/quickstep/interaction/i0;
 
     .line 53
     .line 54
-    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/E;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/i0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 55
     .line 56
@@ -1697,6 +1262,114 @@
     .line 62
     .line 63
     .line 64
+    return-void
+.end method
+
+.method private synthetic lambda$showActionButton$2()V
+    .locals 6
+
+    .line 1
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
+
+    .line 2
+    .line 3
+    invoke-virtual {v0}, Landroid/widget/Button;->getBottom()I
+
+    .line 4
+    .line 5
+    .line 6
+    move-result v0
+
+    .line 7
+    iget v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mScreenHeight:I
+
+    .line 8
+    .line 9
+    sub-int/2addr v0, v1
+
+    .line 10
+    if-lez v0, :cond_0
+
+    .line 11
+    .line 12
+    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackTitleView:Landroid/widget/TextView;
+
+    .line 13
+    .line 14
+    invoke-virtual {v1}, Landroid/widget/TextView;->getTop()I
+
+    .line 15
+    .line 16
+    .line 17
+    move-result v1
+
+    .line 18
+    sub-int v0, v1, v0
+
+    .line 19
+    .line 20
+    int-to-float v0, v0
+
+    .line 21
+    const/4 v2, 0x0
+
+    .line 22
+    :goto_0
+    iget-object v3, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackView:Landroid/view/ViewGroup;
+
+    .line 23
+    .line 24
+    invoke-virtual {v3}, Landroid/view/ViewGroup;->getChildCount()I
+
+    .line 25
+    .line 26
+    .line 27
+    move-result v3
+
+    .line 28
+    if-ge v2, v3, :cond_0
+
+    .line 29
+    .line 30
+    iget-object v3, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackView:Landroid/view/ViewGroup;
+
+    .line 31
+    .line 32
+    invoke-virtual {v3, v2}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+
+    .line 33
+    .line 34
+    .line 35
+    move-result-object v3
+
+    .line 36
+    const/high16 v4, 0x40000000    # 2.0f
+
+    .line 37
+    .line 38
+    div-float v4, v0, v4
+
+    .line 39
+    .line 40
+    int-to-float v5, v1
+
+    .line 41
+    sub-float/2addr v4, v5
+
+    .line 42
+    invoke-virtual {v3, v4}, Landroid/view/View;->setTranslationY(F)V
+
+    .line 43
+    .line 44
+    .line 45
+    add-int/lit8 v2, v2, 0x1
+
+    .line 46
+    .line 47
+    goto :goto_0
+
+    .line 48
+    :cond_0
     return-void
 .end method
 
@@ -1756,7 +1429,7 @@
 
     .line 4
     .line 5
-    invoke-static {}, LH2/c;->j()Z
+    invoke-static {}, Lcom/android/wm/shell/Flags;->enableGsf()Z
 
     .line 6
     .line 7
@@ -1797,11 +1470,11 @@
 
     .line 22
     .line 23
-    sget-object v1, Lcom/android/wm/shell/shared/o$b;->x:Lcom/android/wm/shell/shared/o$b;
+    sget-object v1, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->GSF_DISPLAY_MEDIUM_EMPHASIZED:Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;
 
     .line 24
     .line 25
-    invoke-virtual {v1}, Lcom/android/wm/shell/shared/o$b;->c()Ljava/lang/String;
+    invoke-virtual {v1}, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->getValue()Ljava/lang/String;
 
     .line 26
     .line 27
@@ -1813,11 +1486,11 @@
 
     .line 30
     :cond_2
-    sget-object v1, Lcom/android/wm/shell/shared/o$b;->y:Lcom/android/wm/shell/shared/o$b;
+    sget-object v1, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->GSF_DISPLAY_SMALL_EMPHASIZED:Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;
 
     .line 31
     .line 32
-    invoke-virtual {v1}, Lcom/android/wm/shell/shared/o$b;->c()Ljava/lang/String;
+    invoke-virtual {v1}, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->getValue()Ljava/lang/String;
 
     .line 33
     .line 34
@@ -1846,11 +1519,11 @@
 
     .line 45
     .line 46
-    sget-object v0, Lcom/android/wm/shell/shared/o$b;->t:Lcom/android/wm/shell/shared/o$b;
+    sget-object v0, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->GSF_BODY_LARGE:Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;
 
     .line 47
     .line 48
-    invoke-virtual {v0}, Lcom/android/wm/shell/shared/o$b;->c()Ljava/lang/String;
+    invoke-virtual {v0}, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->getValue()Ljava/lang/String;
 
     .line 49
     .line 50
@@ -1920,27 +1593,6 @@
     return-void
 .end method
 
-.method private showSkipTutorialDialog()V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mSkipTutorialDialog:Landroidx/appcompat/app/b;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroid/app/Dialog;->show()V
-
-    .line 6
-    .line 7
-    .line 8
-    :cond_0
-    return-void
-.end method
-
 .method private showSuccessPage()V
     .locals 2
 
@@ -1988,11 +1640,28 @@
     .line 22
     .line 23
     .line 24
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->maybeSetTitleTypefaces()V
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackSubtitleView:Landroid/widget/TextView;
 
     .line 25
     .line 26
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getSuccessSubtitleTextAppearance()I
+
     .line 27
+    .line 28
+    .line 29
+    move-result v1
+
+    .line 30
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setTextAppearance(I)V
+
+    .line 31
+    .line 32
+    .line 33
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->maybeSetTitleTypefaces()V
+
+    .line 34
+    .line 35
+    .line 36
     return-void
 .end method
 
@@ -2125,7 +1794,7 @@
 
     .line 48
     .line 49
-    const v1, 0x7f0b02ec
+    const v1, 0x7f0b030a
 
     .line 50
     .line 51
@@ -2166,16 +1835,16 @@
     move-result-object v0
 
     .line 70
-    new-instance v1, Lcom/android/quickstep/interaction/L;
+    new-instance v1, Lcom/android/quickstep/interaction/n0;
 
     .line 71
     .line 72
-    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/L;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/n0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 73
     .line 74
     .line 75
-    invoke-static {v1}, Lcom/android/launcher3/anim/h;->c(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
+    invoke-static {v1}, Lcom/android/launcher3/anim/AnimatorListeners;->forSuccessCallback(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
 
     .line 76
     .line 77
@@ -2281,7 +1950,7 @@
 
     .line 130
     .line 131
-    const v1, 0x7f0b02ed
+    const v1, 0x7f0b030b
 
     .line 132
     .line 133
@@ -2303,7 +1972,7 @@
 
     .line 142
     .line 143
-    const v1, 0x7f0b02ee
+    const v1, 0x7f0b030c
 
     .line 144
     .line 145
@@ -2325,7 +1994,7 @@
 
     .line 154
     .line 155
-    const v1, 0x7f0b02ef
+    const v1, 0x7f0b030d
 
     .line 156
     .line 157
@@ -2347,7 +2016,7 @@
 
     .line 166
     .line 167
-    const v1, 0x7f0b02f0
+    const v1, 0x7f0b030e
 
     .line 168
     .line 169
@@ -2369,7 +2038,7 @@
 
     .line 178
     .line 179
-    const v1, 0x7f0b02f1
+    const v1, 0x7f0b030f
 
     .line 180
     .line 181
@@ -2391,7 +2060,7 @@
 
     .line 190
     .line 191
-    const v1, 0x7f0b02f4
+    const v1, 0x7f0b0312
 
     .line 192
     .line 193
@@ -2505,12 +2174,12 @@
     move-result v2
 
     .line 26
-    const v3, 0x7f07039a
+    const v3, 0x7f0703d8
 
     .line 27
     .line 28
     .line 29
-    const v4, 0x7f0703c0
+    const v4, 0x7f0703fe
 
     .line 30
     .line 31
@@ -2616,7 +2285,7 @@
 
     .line 79
     .line 80
-    const v2, 0x7f0703c1
+    const v2, 0x7f0703ff
 
     .line 81
     .line 82
@@ -2625,7 +2294,7 @@
 
     .line 84
     :cond_3
-    const v2, 0x7f07039b
+    const v2, 0x7f0703d9
 
     .line 85
     .line 86
@@ -2733,7 +2402,7 @@
 
     .line 135
     .line 136
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialFragment;->getDeviceProfile()Lcom/android/launcher3/h0;
+    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialFragment;->getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
 
     .line 137
     .line 138
@@ -2741,92 +2410,104 @@
     move-result-object v1
 
     .line 140
-    iget-boolean v5, v1, Lcom/android/launcher3/h0;->N0:Z
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 141
     .line 142
-    if-eqz v5, :cond_7
-
     .line 143
+    move-result-object v5
+
     .line 144
-    invoke-virtual {v1}, Lcom/android/launcher3/h0;->S0()Z
+    invoke-virtual {v5}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->isLandscape()Z
 
     .line 145
     .line 146
     .line 147
-    move-result v1
+    move-result v5
 
     .line 148
-    if-eqz v1, :cond_6
+    if-eqz v5, :cond_7
 
     .line 149
     .line 150
-    move v2, v4
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->isSeascape()Z
 
     .line 151
+    .line 152
+    .line 153
+    move-result v1
+
+    .line 154
+    if-eqz v1, :cond_6
+
+    .line 155
+    .line 156
+    move v2, v4
+
+    .line 157
     goto :goto_3
 
-    .line 152
+    .line 158
     :cond_6
     move v2, v3
 
-    .line 153
+    .line 159
     :cond_7
     :goto_3
     invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
 
-    .line 154
-    .line 155
-    .line 156
+    .line 160
+    .line 161
+    .line 162
     goto :goto_4
 
-    .line 157
+    .line 163
     :cond_8
     const/4 v1, -0x1
 
-    .line 158
+    .line 164
     iput v1, v0, Landroid/widget/RelativeLayout$LayoutParams;->width:I
 
-    .line 159
-    .line 160
-    const/4 v1, -0x2
-
-    .line 161
-    iput v1, v0, Landroid/widget/RelativeLayout$LayoutParams;->height:I
-
-    .line 162
-    .line 163
-    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
-
-    .line 164
     .line 165
     .line 166
-    invoke-virtual {v0, v4}, Landroid/widget/RelativeLayout$LayoutParams;->removeRule(I)V
+    const/4 v1, -0x2
 
     .line 167
+    iput v1, v0, Landroid/widget/RelativeLayout$LayoutParams;->height:I
+
     .line 168
     .line 169
-    invoke-virtual {v0, v3}, Landroid/widget/RelativeLayout$LayoutParams;->removeRule(I)V
+    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
 
     .line 170
     .line 171
     .line 172
-    :goto_4
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeHotseatView:Landroid/widget/FrameLayout;
+    invoke-virtual {v0, v4}, Landroid/widget/RelativeLayout$LayoutParams;->removeRule(I)V
 
     .line 173
     .line 174
-    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
     .line 175
+    invoke-virtual {v0, v3}, Landroid/widget/RelativeLayout$LayoutParams;->removeRule(I)V
+
     .line 176
     .line 177
+    .line 178
+    :goto_4
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeHotseatView:Landroid/widget/FrameLayout;
+
+    .line 179
+    .line 180
+    invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 181
+    .line 182
+    .line 183
     return-void
 .end method
 
 
 # virtual methods
-.method cancelQueuedGestureAnimation()V
+.method public cancelQueuedGestureAnimation()V
     .locals 3
 
     .line 1
@@ -2906,7 +2587,7 @@
     return-void
 .end method
 
-.method protected createAnimationPause()Landroid/animation/Animator;
+.method public createAnimationPause()Landroid/animation/Animator;
     .locals 2
 
     .line 1
@@ -2955,7 +2636,7 @@
     .end array-data
 .end method
 
-.method protected createFingerDotAppearanceAnimatorSet()Landroid/animation/AnimatorSet;
+.method public createFingerDotAppearanceAnimatorSet()Landroid/animation/AnimatorSet;
     .locals 5
 
     .line 1
@@ -3096,25 +2777,12 @@
     .line 70
     .line 71
     .line 72
-    .line 73
-    .line 74
-    .line 75
-    .line 76
-    .line 77
     :array_1
     .array-data 4
         0x3f333333    # 0.7f
         0x3f800000    # 1.0f
     .end array-data
 
-    .line 78
-    .line 79
-    .line 80
-    .line 81
-    .line 82
-    .line 83
-    .line 84
-    .line 85
     :array_2
     .array-data 4
         0x3f333333    # 0.7f
@@ -3122,7 +2790,7 @@
     .end array-data
 .end method
 
-.method protected createFingerDotDisappearanceAnimatorSet()Landroid/animation/AnimatorSet;
+.method public createFingerDotDisappearanceAnimatorSet()Landroid/animation/AnimatorSet;
     .locals 5
 
     .line 1
@@ -3263,25 +2931,12 @@
     .line 70
     .line 71
     .line 72
-    .line 73
-    .line 74
-    .line 75
-    .line 76
-    .line 77
     :array_1
     .array-data 4
         0x3f800000    # 1.0f
         0x3f333333    # 0.7f
     .end array-data
 
-    .line 78
-    .line 79
-    .line 80
-    .line 81
-    .line 82
-    .line 83
-    .line 84
-    .line 85
     :array_2
     .array-data 4
         0x3f800000    # 1.0f
@@ -3289,7 +2944,7 @@
     .end array-data
 .end method
 
-.method fadeTaskViewAndRun(Ljava/lang/Runnable;)V
+.method public fadeTaskViewAndRun(Ljava/lang/Runnable;)V
     .locals 1
 
     .line 1
@@ -3316,7 +2971,7 @@
     move-result-object p0
 
     .line 12
-    invoke-static {p1}, Lcom/android/launcher3/anim/h;->c(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
+    invoke-static {p1}, Lcom/android/launcher3/anim/AnimatorListeners;->forSuccessCallback(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
 
     .line 13
     .line 14
@@ -3345,7 +3000,7 @@
     return p0
 .end method
 
-.method protected getExitingAppColor()I
+.method public getExitingAppColor()I
     .locals 0
 
     .line 1
@@ -3355,10 +3010,10 @@
     return p0
 .end method
 
-.method protected abstract getFakeLauncherColor()I
+.method public abstract getFakeLauncherColor()I
 .end method
 
-.method protected getFakeTaskViewColor()I
+.method public getFakeTaskViewColor()I
     .locals 0
 
     .line 1
@@ -3368,7 +3023,7 @@
     return p0
 .end method
 
-.method protected getGestureLottieAnimationId()I
+.method public getGestureLottieAnimationId()I
     .locals 0
 
     .line 1
@@ -3378,7 +3033,7 @@
     return p0
 .end method
 
-.method protected getHotseatIconColor()I
+.method public getHotseatIconColor()I
     .locals 0
 
     .line 1
@@ -3510,7 +3165,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f081159
+    const p0, 0x7f0811d0
 
     .line 2
     .line 3
@@ -3518,7 +3173,7 @@
     return p0
 .end method
 
-.method protected getMockAppTaskLayoutResId()I
+.method public getMockAppTaskLayoutResId()I
     .locals 0
 
     .line 1
@@ -3528,7 +3183,7 @@
     return p0
 .end method
 
-.method protected getMockHotseatResId()I
+.method public getMockHotseatResId()I
     .locals 1
 
     .line 1
@@ -3564,7 +3219,7 @@
 
     .line 16
     .line 17
-    const p0, 0x7f0e01d3
+    const p0, 0x7f0e01e4
 
     .line 18
     .line 19
@@ -3573,7 +3228,7 @@
 
     .line 21
     :cond_0
-    const p0, 0x7f0e01d6
+    const p0, 0x7f0e01e7
 
     .line 22
     .line 23
@@ -3582,7 +3237,7 @@
 
     .line 25
     :cond_1
-    const p0, 0x7f0e01d5
+    const p0, 0x7f0e01e6
 
     .line 26
     .line 27
@@ -3590,7 +3245,7 @@
     return p0
 .end method
 
-.method protected getMockPreviousAppTaskThumbnailColor()I
+.method public getMockPreviousAppTaskThumbnailColor()I
     .locals 1
 
     .line 1
@@ -3606,7 +3261,7 @@
     move-result-object p0
 
     .line 7
-    const v0, 0x7f06021e
+    const v0, 0x7f060234
 
     .line 8
     .line 9
@@ -3626,11 +3281,21 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f080a96
+    const p0, 0x7f080abe
 
     .line 2
     .line 3
     .line 4
+    return p0
+.end method
+
+.method public getSubtitleTextAppearance()I
+    .locals 0
+
+    .line 1
+    const/4 p0, -0x1
+
+    .line 2
     return p0
 .end method
 
@@ -3645,6 +3310,16 @@
 .end method
 
 .method public getSuccessFeedbackTitle()I
+    .locals 0
+
+    .line 1
+    const/4 p0, -0x1
+
+    .line 2
+    return p0
+.end method
+
+.method public getSuccessSubtitleTextAppearance()I
     .locals 0
 
     .line 1
@@ -3674,7 +3349,7 @@
     return p0
 .end method
 
-.method hideFakeTaskbar(Z)V
+.method public hideFakeTaskbar(Z)V
     .locals 2
 
     .line 1
@@ -3724,11 +3399,11 @@
 
     .line 22
     .line 23
-    new-instance p1, Lcom/android/quickstep/interaction/D;
+    new-instance p1, Lcom/android/quickstep/interaction/f0;
 
     .line 24
     .line 25
-    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/D;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/f0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 26
     .line 27
@@ -3756,7 +3431,7 @@
     return-void
 .end method
 
-.method hideFeedback()V
+.method public hideFeedback()V
     .locals 1
 
     .line 1
@@ -3820,7 +3495,7 @@
     return p0
 .end method
 
-.method onActionButtonClicked(Landroid/view/View;)V
+.method public onActionButtonClicked(Landroid/view/View;)V
     .locals 0
 
     .line 1
@@ -3836,7 +3511,7 @@
     return-void
 .end method
 
-.method pauseAndHideLottieAnimation()V
+.method public pauseAndHideLottieAnimation()V
     .locals 2
 
     .line 1
@@ -3873,7 +3548,7 @@
     return-void
 .end method
 
-.method protected resetViewsForBackGesture()V
+.method public resetViewsForBackGesture()V
     .locals 4
 
     .line 1
@@ -4017,7 +3692,7 @@
     return-void
 .end method
 
-.method setRippleHotspot(FF)V
+.method public setRippleHotspot(FF)V
     .locals 0
 
     .line 1
@@ -4033,7 +3708,7 @@
     return-void
 .end method
 
-.method setTutorialType(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
+.method public setTutorialType(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
     .locals 0
 
     .line 1
@@ -4044,57 +3719,62 @@
     return-void
 .end method
 
-.method showActionButton()V
+.method public showActionButton()V
     .locals 2
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mSkipButton:Landroid/widget/TextView;
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
 
     .line 2
     .line 3
-    const/16 v1, 0x8
-
-    .line 4
-    .line 5
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setVisibility(I)V
-
-    .line 6
-    .line 7
-    .line 8
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
-
-    .line 9
-    .line 10
     const/4 v1, 0x0
 
-    .line 11
+    .line 4
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setVisibility(I)V
+
+    .line 5
+    .line 6
+    .line 7
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
+
+    .line 8
+    .line 9
+    new-instance v1, Lcom/android/quickstep/interaction/g0;
+
+    .line 10
+    .line 11
+    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/g0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 12
     .line 13
     .line 14
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
+    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     .line 15
     .line 16
-    new-instance v1, Lcom/android/quickstep/interaction/F;
-
     .line 17
-    .line 18
-    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/F;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
 
+    .line 18
     .line 19
+    new-instance v1, Lcom/android/quickstep/interaction/h0;
+
     .line 20
     .line 21
-    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/h0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 22
     .line 23
     .line 24
+    invoke-virtual {v0, v1}, Landroid/widget/Button;->post(Ljava/lang/Runnable;)Z
+
+    .line 25
+    .line 26
+    .line 27
     return-void
 .end method
 
-.method showFakeTaskbar(Z)V
+.method public showFakeTaskbar(Z)V
     .locals 2
 
     .line 1
@@ -4144,11 +3824,11 @@
 
     .line 22
     .line 23
-    new-instance p1, Lcom/android/quickstep/interaction/K;
+    new-instance p1, Lcom/android/quickstep/interaction/l0;
 
     .line 24
     .line 25
-    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/K;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/l0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 26
     .line 27
@@ -4176,7 +3856,7 @@
     return-void
 .end method
 
-.method showFeedback()V
+.method public showFeedback()V
     .locals 1
 
     .line 1
@@ -4200,7 +3880,7 @@
     return-void
 .end method
 
-.method showFeedback(I)V
+.method public showFeedback(I)V
     .locals 1
 
     const/4 v0, 0x0
@@ -4211,7 +3891,7 @@
     return-void
 .end method
 
-.method showFeedback(IIZ)V
+.method public showFeedback(IIZ)V
     .locals 3
 
     .line 7
@@ -4241,31 +3921,31 @@
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(I)V
 
     .line 12
-    sget-object p1, Lcom/android/launcher3/util/p2;->n:Lcom/android/launcher3/util/I;
+    sget-object p1, Lcom/android/launcher3/util/SettingsCache;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
 
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     move-result-object p1
 
-    check-cast p1, Lcom/android/launcher3/util/p2;
+    check-cast p1, Lcom/android/launcher3/util/SettingsCache;
 
-    const-string p2, "user_setup_complete"
+    const-string/jumbo p2, "user_setup_complete"
 
     .line 13
     invoke-static {p2}, Landroid/provider/Settings$Secure;->getUriFor(Ljava/lang/String;)Landroid/net/Uri;
 
     move-result-object p2
 
-    const/4 v0, 0x0
-
     .line 14
-    invoke-virtual {p1, p2, v0}, Lcom/android/launcher3/util/p2;->g(Landroid/net/Uri;I)Z
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/util/SettingsCache;->getValue(Landroid/net/Uri;)Z
 
     move-result p1
 
     const/4 p2, 0x1
+
+    const/4 v0, 0x0
 
     if-nez p1, :cond_1
 
@@ -4285,7 +3965,7 @@
     if-eqz p1, :cond_2
 
     .line 16
-    invoke-static {}, LH2/c;->j()Z
+    invoke-static {}, Lcom/android/wm/shell/Flags;->enableGsf()Z
 
     move-result p1
 
@@ -4316,10 +3996,10 @@
     :cond_3
     iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
 
-    sget-object p2, Lcom/android/wm/shell/shared/o$b;->q:Lcom/android/wm/shell/shared/o$b;
+    sget-object p2, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->GSF_LABEL_LARGE:Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;
 
     .line 19
-    invoke-virtual {p2}, Lcom/android/wm/shell/shared/o$b;->c()Ljava/lang/String;
+    invoke-virtual {p2}, Lcom/android/wm/shell/shared/TypefaceUtils$FontFamily;->getValue()Ljava/lang/String;
 
     move-result-object p2
 
@@ -4382,7 +4062,7 @@
     return-void
 .end method
 
-.method showFeedback(IZ)V
+.method public showFeedback(IZ)V
     .locals 1
 
     if-eqz p2, :cond_0
@@ -4395,7 +4075,7 @@
     goto :goto_0
 
     :cond_0
-    const v0, 0x7f1401db
+    const v0, 0x7f14022a
 
     .line 6
     :goto_0
@@ -4404,7 +4084,7 @@
     return-void
 .end method
 
-.method showSuccessFeedback()V
+.method public showSuccessFeedback()V
     .locals 4
 
     .line 1
@@ -4497,252 +4177,191 @@
     return-void
 .end method
 
-.method transitToController()V
+.method public transitToController()V
     .locals 2
 
     .line 1
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->updateCloseButton()V
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->updateDrawables()V
 
     .line 2
     .line 3
     .line 4
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->updateDrawables()V
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->updateLayout()V
 
     .line 5
     .line 6
     .line 7
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->updateLayout()V
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackTitleView:Landroid/widget/TextView;
 
     .line 8
     .line 9
-    .line 10
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackTitleView:Landroid/widget/TextView;
-
-    .line 11
-    .line 12
     invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getTitleTextAppearance()I
 
-    .line 13
-    .line 14
-    .line 15
+    .line 10
+    .line 11
+    .line 12
     move-result v1
 
-    .line 16
+    .line 13
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setTextAppearance(I)V
+
+    .line 14
+    .line 15
+    .line 16
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFeedbackSubtitleView:Landroid/widget/TextView;
 
     .line 17
     .line 18
-    .line 19
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getSubtitleTextAppearance()I
 
+    .line 19
     .line 20
     .line 21
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getDoneButtonTextAppearance()I
-
-    .line 22
-    .line 23
-    .line 24
     move-result v1
 
+    .line 22
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setTextAppearance(I)V
+
+    .line 23
+    .line 24
     .line 25
-    invoke-virtual {v0, v1}, Landroid/widget/Button;->setTextAppearance(I)V
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
 
     .line 26
     .line 27
-    .line 28
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->maybeSetTitleTypefaces()V
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getDoneButtonTextAppearance()I
 
+    .line 28
     .line 29
     .line 30
+    move-result v1
+
     .line 31
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
+    invoke-virtual {v0, v1}, Landroid/widget/Button;->setTextAppearance(I)V
 
     .line 32
     .line 33
-    invoke-virtual {v0}, Landroid/widget/Button;->getBackground()Landroid/graphics/drawable/Drawable;
-
     .line 34
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->maybeSetTitleTypefaces()V
+
     .line 35
     .line 36
-    move-result-object v0
-
     .line 37
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getDoneButtonColor()I
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mDoneButton:Landroid/widget/Button;
 
     .line 38
     .line 39
+    invoke-virtual {v0}, Landroid/widget/Button;->getBackground()Landroid/graphics/drawable/Drawable;
+
     .line 40
-    move-result v1
-
     .line 41
-    invoke-virtual {v0, v1}, Landroid/graphics/drawable/Drawable;->setTint(I)V
-
     .line 42
-    .line 43
-    .line 44
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
+    move-result-object v0
 
+    .line 43
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->getDoneButtonColor()I
+
+    .line 44
     .line 45
     .line 46
-    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
-
-    .line 47
-    .line 48
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialFragment;->isAtFinalStep()Z
-
-    .line 49
-    .line 50
-    .line 51
     move-result v1
 
+    .line 47
+    invoke-virtual {v0, v1}, Landroid/graphics/drawable/Drawable;->setTint(I)V
+
+    .line 48
+    .line 49
+    .line 50
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
+
+    .line 51
     .line 52
-    if-eqz v1, :cond_0
+    const v1, 0x7f130004
 
     .line 53
     .line 54
-    const v1, 0x7f130004
-
     .line 55
+    invoke-virtual {v0, v1}, Lcom/airbnb/lottie/LottieAnimationView;->setAnimation(I)V
+
     .line 56
     .line 57
-    goto :goto_0
-
     .line 58
-    :cond_0
-    const v1, 0x7f130005
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->isGestureCompleted()Z
 
     .line 59
     .line 60
     .line 61
-    :goto_0
-    invoke-virtual {v0, v1}, Lcom/airbnb/lottie/LottieAnimationView;->setAnimation(I)V
+    move-result v0
 
     .line 62
+    if-nez v0, :cond_0
+
     .line 63
     .line 64
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->isGestureCompleted()Z
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
 
     .line 65
     .line 66
-    .line 67
-    move-result v0
+    const/16 v1, 0x8
 
+    .line 67
     .line 68
-    if-nez v0, :cond_1
+    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
     .line 69
     .line 70
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
-
     .line 71
-    .line 72
-    const/16 v1, 0x8
+    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->startGestureAnimation()V
 
+    .line 72
     .line 73
     .line 74
-    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setVisibility(I)V
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialType:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
 
     .line 75
     .line 76
-    .line 77
-    invoke-direct {p0}, Lcom/android/quickstep/interaction/TutorialController;->startGestureAnimation()V
+    sget-object v1, Lcom/android/quickstep/interaction/TutorialController$TutorialType;->BACK_NAVIGATION:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
 
+    .line 77
     .line 78
+    if-ne v0, v1, :cond_0
+
     .line 79
     .line 80
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialType:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->resetViewsForBackGesture()V
 
     .line 81
     .line 82
-    sget-object v1, Lcom/android/quickstep/interaction/TutorialController$TutorialType;->BACK_NAVIGATION:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
-
     .line 83
+    :cond_0
+    const/4 v0, 0x0
+
     .line 84
-    if-ne v0, v1, :cond_1
+    iput-boolean v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mGestureCompleted:Z
 
     .line 85
     .line 86
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->resetViewsForBackGesture()V
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeHotseatView:Landroid/widget/FrameLayout;
 
     .line 87
     .line 88
+    if-eqz p0, :cond_1
+
     .line 89
-    :cond_1
-    const/4 v0, 0x0
-
     .line 90
-    iput-boolean v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mGestureCompleted:Z
-
-    .line 91
-    .line 92
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeHotseatView:Landroid/widget/FrameLayout;
-
-    .line 93
-    .line 94
-    if-eqz p0, :cond_2
-
-    .line 95
-    .line 96
     const/4 v0, 0x4
 
-    .line 97
+    .line 91
     invoke-virtual {p0, v0}, Landroid/widget/FrameLayout;->setVisibility(I)V
 
-    .line 98
-    .line 99
-    .line 100
-    :cond_2
+    .line 92
+    .line 93
+    .line 94
+    :cond_1
     return-void
 .end method
 
-.method updateCloseButton()V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mSkipButton:Landroid/widget/TextView;
-
-    .line 2
-    .line 3
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
-
-    .line 4
-    .line 5
-    invoke-static {p0}, Lcom/android/launcher3/N5;->x(Landroid/content/Context;)Z
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
-
-    .line 9
-    if-eqz p0, :cond_0
-
-    .line 10
-    .line 11
-    const p0, 0x7f1502d7
-
-    .line 12
-    .line 13
-    .line 14
-    goto :goto_0
-
-    .line 15
-    :cond_0
-    const p0, 0x7f1502d8
-
-    .line 16
-    .line 17
-    .line 18
-    :goto_0
-    invoke-virtual {v0, p0}, Landroid/widget/TextView;->setTextAppearance(I)V
-
-    .line 19
-    .line 20
-    .line 21
-    return-void
-.end method
-
-.method updateFakeAppTaskViewLayout(I)V
+.method public updateFakeAppTaskViewLayout(I)V
     .locals 1
 
     .line 1
@@ -4758,7 +4377,7 @@
     return-void
 .end method
 
-.method updateFakeViewLayout(Landroid/view/ViewGroup;I)V
+.method public updateFakeViewLayout(Landroid/view/ViewGroup;I)V
     .locals 2
 
     .line 1

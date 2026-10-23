@@ -4,7 +4,7 @@
 
 
 # instance fields
-.field private e0:Z
+.field public c:Z
 
 
 # direct methods
@@ -12,7 +12,7 @@
     .locals 2
 
     .line 1
-    sget v0, Landroidx/preference/i;->h:I
+    sget v0, Le7/g;->h:I
 
     .line 2
     .line 3
@@ -21,7 +21,7 @@
     .line 4
     .line 5
     .line 6
-    invoke-static {p1, v0, v1}, LA/l;->a(Landroid/content/Context;II)I
+    invoke-static {p1, v0, v1}, Lq5/l;->a(Landroid/content/Context;II)I
 
     .line 7
     .line 8
@@ -37,7 +37,7 @@
     const/4 p1, 0x1
 
     .line 14
-    iput-boolean p1, p0, Landroidx/preference/PreferenceScreen;->e0:Z
+    iput-boolean p1, p0, Landroidx/preference/PreferenceScreen;->c:Z
 
     .line 15
     .line 16
@@ -46,11 +46,32 @@
 
 
 # virtual methods
-.method protected X()V
+.method public a()Z
+    .locals 0
+
+    .line 1
+    iget-boolean p0, p0, Landroidx/preference/PreferenceScreen;->c:Z
+
+    .line 2
+    .line 3
+    return p0
+.end method
+
+.method public isOnSameScreenAsChildren()Z
+    .locals 0
+
+    .line 1
+    const/4 p0, 0x0
+
+    .line 2
+    return p0
+.end method
+
+.method public onClick()V
     .locals 1
 
     .line 1
-    invoke-virtual {p0}, Landroidx/preference/Preference;->s()Landroid/content/Intent;
+    invoke-virtual {p0}, Landroidx/preference/Preference;->getIntent()Landroid/content/Intent;
 
     .line 2
     .line 3
@@ -62,7 +83,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0}, Landroidx/preference/Preference;->o()Ljava/lang/String;
+    invoke-virtual {p0}, Landroidx/preference/Preference;->getFragment()Ljava/lang/String;
 
     .line 8
     .line 9
@@ -74,7 +95,7 @@
 
     .line 12
     .line 13
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
 
     .line 14
     .line 15
@@ -90,7 +111,7 @@
 
     .line 20
     :cond_0
-    invoke-virtual {p0}, Landroidx/preference/Preference;->E()Landroidx/preference/f;
+    invoke-virtual {p0}, Landroidx/preference/Preference;->getPreferenceManager()Landroidx/preference/b;
 
     .line 21
     .line 22
@@ -98,7 +119,7 @@
     move-result-object v0
 
     .line 24
-    invoke-virtual {v0}, Landroidx/preference/f;->e()Landroidx/preference/f$b;
+    invoke-virtual {v0}, Landroidx/preference/b;->e()Landroidx/preference/b$b;
 
     .line 25
     .line 26
@@ -110,7 +131,7 @@
 
     .line 29
     .line 30
-    invoke-interface {v0, p0}, Landroidx/preference/f$b;->b(Landroidx/preference/PreferenceScreen;)V
+    invoke-interface {v0, p0}, Landroidx/preference/b$b;->onNavigateToScreen(Landroidx/preference/PreferenceScreen;)V
 
     .line 31
     .line 32
@@ -118,25 +139,4 @@
     :cond_1
     :goto_0
     return-void
-.end method
-
-.method protected b1()Z
-    .locals 0
-
-    .line 1
-    const/4 p0, 0x0
-
-    .line 2
-    return p0
-.end method
-
-.method public j1()Z
-    .locals 0
-
-    .line 1
-    iget-boolean p0, p0, Landroidx/preference/PreferenceScreen;->e0:Z
-
-    .line 2
-    .line 3
-    return p0
 .end method

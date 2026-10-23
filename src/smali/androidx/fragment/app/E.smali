@@ -1,17 +1,19 @@
-.class public final synthetic Landroidx/fragment/app/E;
+.class public final synthetic Landroidx/fragment/app/e;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Le0/d$c;
+.implements Lv5/d$a;
 
 
 # instance fields
-.field public final synthetic a:Landroidx/fragment/app/F;
+.field public final synthetic a:Landroid/animation/Animator;
+
+.field public final synthetic b:Landroidx/fragment/app/v0$c;
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroidx/fragment/app/F;)V
+.method public synthetic constructor <init>(Landroid/animation/Animator;Landroidx/fragment/app/v0$c;)V
     .locals 0
 
     .line 1
@@ -20,30 +22,35 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/fragment/app/E;->a:Landroidx/fragment/app/F;
+    iput-object p1, p0, Landroidx/fragment/app/e;->a:Landroid/animation/Animator;
 
     .line 5
     .line 6
+    iput-object p2, p0, Landroidx/fragment/app/e;->b:Landroidx/fragment/app/v0$c;
+
+    .line 7
+    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final a()Landroid/os/Bundle;
-    .locals 0
+.method public final onCancel()V
+    .locals 1
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/E;->a:Landroidx/fragment/app/F;
+    iget-object v0, p0, Landroidx/fragment/app/e;->a:Landroid/animation/Animator;
 
     .line 2
     .line 3
-    invoke-static {p0}, Landroidx/fragment/app/F;->b(Landroidx/fragment/app/F;)Landroid/os/Bundle;
+    iget-object p0, p0, Landroidx/fragment/app/e;->b:Landroidx/fragment/app/v0$c;
 
     .line 4
     .line 5
-    .line 6
-    move-result-object p0
+    invoke-static {v0, p0}, Landroidx/fragment/app/k;->y(Landroid/animation/Animator;Landroidx/fragment/app/v0$c;)V
 
+    .line 6
     .line 7
-    return-object p0
+    .line 8
+    return-void
 .end method

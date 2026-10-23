@@ -14,10 +14,18 @@
 
 
 # instance fields
-.field final W:Lo/r;
+.field public mAttachedToHierarchy:Z
+
+.field public final mClearRecycleCacheRunnable:Ljava/lang/Runnable;
+
+.field public mCurrentPreferenceOrder:I
+
+.field public final mHandler:Landroid/os/Handler;
+
+.field public final mIdRecycleCache:Ll0/k1;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Lo/r<",
+            "Ll0/k1<",
             "Ljava/lang/String;",
             "Ljava/lang/Long;",
             ">;"
@@ -25,9 +33,11 @@
     .end annotation
 .end field
 
-.field private final X:Landroid/os/Handler;
+.field public mInitialExpandedChildrenCount:I
 
-.field private final Y:Ljava/util/List;
+.field public mOrderingAsAdded:Z
+
+.field public final mPreferences:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -36,16 +46,6 @@
         }
     .end annotation
 .end field
-
-.field private Z:Z
-
-.field private a0:I
-
-.field private b0:Z
-
-.field private c0:I
-
-.field private final d0:Ljava/lang/Runnable;
 
 
 # direct methods
@@ -78,11 +78,11 @@
     invoke-direct {p0, p1, p2, p3, p4}, Landroidx/preference/Preference;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
 
     .line 2
-    new-instance v0, Lo/r;
+    new-instance v0, Ll0/k1;
 
-    invoke-direct {v0}, Lo/r;-><init>()V
+    invoke-direct {v0}, Ll0/k1;-><init>()V
 
-    iput-object v0, p0, Landroidx/preference/PreferenceGroup;->W:Lo/r;
+    iput-object v0, p0, Landroidx/preference/PreferenceGroup;->mIdRecycleCache:Ll0/k1;
 
     .line 3
     new-instance v0, Landroid/os/Handler;
@@ -93,59 +93,59 @@
 
     invoke-direct {v0, v1}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    iput-object v0, p0, Landroidx/preference/PreferenceGroup;->X:Landroid/os/Handler;
+    iput-object v0, p0, Landroidx/preference/PreferenceGroup;->mHandler:Landroid/os/Handler;
 
     const/4 v0, 0x1
 
     .line 4
-    iput-boolean v0, p0, Landroidx/preference/PreferenceGroup;->Z:Z
+    iput-boolean v0, p0, Landroidx/preference/PreferenceGroup;->mOrderingAsAdded:Z
 
     const/4 v1, 0x0
 
     .line 5
-    iput v1, p0, Landroidx/preference/PreferenceGroup;->a0:I
+    iput v1, p0, Landroidx/preference/PreferenceGroup;->mCurrentPreferenceOrder:I
 
     .line 6
-    iput-boolean v1, p0, Landroidx/preference/PreferenceGroup;->b0:Z
+    iput-boolean v1, p0, Landroidx/preference/PreferenceGroup;->mAttachedToHierarchy:Z
 
     const v1, 0x7fffffff
 
     .line 7
-    iput v1, p0, Landroidx/preference/PreferenceGroup;->c0:I
+    iput v1, p0, Landroidx/preference/PreferenceGroup;->mInitialExpandedChildrenCount:I
 
     .line 8
     new-instance v2, Landroidx/preference/PreferenceGroup$a;
 
     invoke-direct {v2, p0}, Landroidx/preference/PreferenceGroup$a;-><init>(Landroidx/preference/PreferenceGroup;)V
 
-    iput-object v2, p0, Landroidx/preference/PreferenceGroup;->d0:Ljava/lang/Runnable;
+    iput-object v2, p0, Landroidx/preference/PreferenceGroup;->mClearRecycleCacheRunnable:Ljava/lang/Runnable;
 
     .line 9
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
-    iput-object v2, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iput-object v2, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 10
-    sget-object v2, Landroidx/preference/q;->E0:[I
+    sget-object v2, Le7/o;->E0:[I
 
     invoke-virtual {p1, p2, v2, p3, p4}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
     move-result-object p1
 
     .line 11
-    sget p2, Landroidx/preference/q;->G0:I
+    sget p2, Le7/o;->G0:I
 
     .line 12
-    invoke-static {p1, p2, p2, v0}, LA/l;->b(Landroid/content/res/TypedArray;IIZ)Z
+    invoke-static {p1, p2, p2, v0}, Lq5/l;->b(Landroid/content/res/TypedArray;IIZ)Z
 
     move-result p2
 
-    iput-boolean p2, p0, Landroidx/preference/PreferenceGroup;->Z:Z
+    iput-boolean p2, p0, Landroidx/preference/PreferenceGroup;->mOrderingAsAdded:Z
 
     .line 13
-    sget p2, Landroidx/preference/q;->F0:I
+    sget p2, Le7/o;->F0:I
 
     invoke-virtual {p1, p2}, Landroid/content/res/TypedArray;->hasValue(I)Z
 
@@ -154,11 +154,11 @@
     if-eqz p3, :cond_0
 
     .line 14
-    invoke-static {p1, p2, p2, v1}, LA/l;->d(Landroid/content/res/TypedArray;III)I
+    invoke-static {p1, p2, p2, v1}, Lq5/l;->d(Landroid/content/res/TypedArray;III)I
 
     move-result p2
 
-    invoke-virtual {p0, p2}, Landroidx/preference/PreferenceGroup;->g1(I)V
+    invoke-virtual {p0, p2}, Landroidx/preference/PreferenceGroup;->setInitialExpandedChildrenCount(I)V
 
     .line 15
     :cond_0
@@ -167,272 +167,13 @@
     return-void
 .end method
 
-.method private f1(Landroidx/preference/Preference;)Z
-    .locals 5
-
-    .line 1
-    monitor-enter p0
-
-    .line 2
-    :try_start_0
-    invoke-virtual {p1}, Landroidx/preference/Preference;->d0()V
-
-    .line 3
-    .line 4
-    .line 5
-    invoke-virtual {p1}, Landroidx/preference/Preference;->y()Landroidx/preference/PreferenceGroup;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v0
-
-    .line 9
-    if-ne v0, p0, :cond_0
-
-    .line 10
-    .line 11
-    const/4 v0, 0x0
-
-    .line 12
-    invoke-virtual {p1, v0}, Landroidx/preference/Preference;->a(Landroidx/preference/PreferenceGroup;)V
-
-    .line 13
-    .line 14
-    .line 15
-    goto :goto_0
-
-    .line 16
-    :catchall_0
-    move-exception p1
-
-    .line 17
-    goto :goto_1
-
-    .line 18
-    :cond_0
-    :goto_0
-    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
-
-    .line 19
-    .line 20
-    invoke-interface {v0, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
-
-    .line 21
-    .line 22
-    .line 23
-    move-result v0
-
-    .line 24
-    if-eqz v0, :cond_2
-
-    .line 25
-    .line 26
-    invoke-virtual {p1}, Landroidx/preference/Preference;->t()Ljava/lang/String;
-
-    .line 27
-    .line 28
-    .line 29
-    move-result-object v1
-
-    .line 30
-    if-eqz v1, :cond_1
-
-    .line 31
-    .line 32
-    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->W:Lo/r;
-
-    .line 33
-    .line 34
-    invoke-virtual {p1}, Landroidx/preference/Preference;->p()J
-
-    .line 35
-    .line 36
-    .line 37
-    move-result-wide v3
-
-    .line 38
-    invoke-static {v3, v4}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    .line 39
-    .line 40
-    .line 41
-    move-result-object v3
-
-    .line 42
-    invoke-virtual {v2, v1, v3}, Lo/r;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 43
-    .line 44
-    .line 45
-    iget-object v1, p0, Landroidx/preference/PreferenceGroup;->X:Landroid/os/Handler;
-
-    .line 46
-    .line 47
-    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->d0:Ljava/lang/Runnable;
-
-    .line 48
-    .line 49
-    invoke-virtual {v1, v2}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
-
-    .line 50
-    .line 51
-    .line 52
-    iget-object v1, p0, Landroidx/preference/PreferenceGroup;->X:Landroid/os/Handler;
-
-    .line 53
-    .line 54
-    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->d0:Ljava/lang/Runnable;
-
-    .line 55
-    .line 56
-    invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
-
-    .line 57
-    .line 58
-    .line 59
-    :cond_1
-    iget-boolean v1, p0, Landroidx/preference/PreferenceGroup;->b0:Z
-
-    .line 60
-    .line 61
-    if-eqz v1, :cond_2
-
-    .line 62
-    .line 63
-    invoke-virtual {p1}, Landroidx/preference/Preference;->Z()V
-
-    .line 64
-    .line 65
-    .line 66
-    :cond_2
-    monitor-exit p0
-
-    .line 67
-    return v0
-
-    .line 68
-    :goto_1
-    monitor-exit p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 69
-    throw p1
-.end method
-
 
 # virtual methods
-.method public R(Z)V
-    .locals 3
-
-    .line 1
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->R(Z)V
-
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
-
-    .line 5
-    .line 6
-    .line 7
-    move-result v0
-
-    .line 8
-    const/4 v1, 0x0
-
-    .line 9
-    :goto_0
-    if-ge v1, v0, :cond_0
-
-    .line 10
-    .line 11
-    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->Z0(I)Landroidx/preference/Preference;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v2
-
-    .line 15
-    invoke-virtual {v2, p0, p1}, Landroidx/preference/Preference;->c0(Landroidx/preference/Preference;Z)V
-
-    .line 16
-    .line 17
-    .line 18
-    add-int/lit8 v1, v1, 0x1
-
-    .line 19
-    .line 20
-    goto :goto_0
-
-    .line 21
-    :cond_0
-    return-void
-.end method
-
-.method public T()V
-    .locals 3
-
-    .line 1
-    invoke-super {p0}, Landroidx/preference/Preference;->T()V
-
-    .line 2
-    .line 3
-    .line 4
-    const/4 v0, 0x1
-
-    .line 5
-    iput-boolean v0, p0, Landroidx/preference/PreferenceGroup;->b0:Z
-
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
-
-    .line 8
-    .line 9
-    .line 10
-    move-result v0
-
-    .line 11
-    const/4 v1, 0x0
-
-    .line 12
-    :goto_0
-    if-ge v1, v0, :cond_0
-
-    .line 13
-    .line 14
-    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->Z0(I)Landroidx/preference/Preference;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object v2
-
-    .line 18
-    invoke-virtual {v2}, Landroidx/preference/Preference;->T()V
-
-    .line 19
-    .line 20
-    .line 21
-    add-int/lit8 v1, v1, 0x1
-
-    .line 22
-    .line 23
-    goto :goto_0
-
-    .line 24
-    :cond_0
-    return-void
-.end method
-
-.method public U0(Landroidx/preference/Preference;)V
+.method public addItemFromInflater(Landroidx/preference/Preference;)V
     .locals 0
 
     .line 1
-    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceGroup;->V0(Landroidx/preference/Preference;)Z
+    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceGroup;->addPreference(Landroidx/preference/Preference;)Z
 
     .line 2
     .line 3
@@ -440,11 +181,11 @@
     return-void
 .end method
 
-.method public V0(Landroidx/preference/Preference;)Z
+.method public addPreference(Landroidx/preference/Preference;)Z
     .locals 6
 
     .line 1
-    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 2
     .line 3
@@ -467,7 +208,7 @@
 
     .line 11
     :cond_0
-    invoke-virtual {p1}, Landroidx/preference/Preference;->t()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getKey()Ljava/lang/String;
 
     .line 12
     .line 13
@@ -483,7 +224,7 @@
 
     .line 18
     :goto_0
-    invoke-virtual {v0}, Landroidx/preference/Preference;->y()Landroidx/preference/PreferenceGroup;
+    invoke-virtual {v0}, Landroidx/preference/Preference;->getParent()Landroidx/preference/PreferenceGroup;
 
     .line 19
     .line 20
@@ -495,7 +236,7 @@
 
     .line 23
     .line 24
-    invoke-virtual {v0}, Landroidx/preference/Preference;->y()Landroidx/preference/PreferenceGroup;
+    invoke-virtual {v0}, Landroidx/preference/Preference;->getParent()Landroidx/preference/PreferenceGroup;
 
     .line 25
     .line 26
@@ -507,7 +248,7 @@
 
     .line 29
     :cond_1
-    invoke-virtual {p1}, Landroidx/preference/Preference;->t()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getKey()Ljava/lang/String;
 
     .line 30
     .line 31
@@ -515,7 +256,7 @@
     move-result-object v2
 
     .line 33
-    invoke-virtual {v0, v2}, Landroidx/preference/PreferenceGroup;->W0(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+    invoke-virtual {v0, v2}, Landroidx/preference/PreferenceGroup;->findPreference(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
 
     .line 34
     .line 35
@@ -577,7 +318,7 @@
     .line 65
     .line 66
     :cond_2
-    invoke-virtual {p1}, Landroidx/preference/Preference;->x()I
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getOrder()I
 
     .line 67
     .line 68
@@ -594,7 +335,7 @@
 
     .line 74
     .line 75
-    iget-boolean v0, p0, Landroidx/preference/PreferenceGroup;->Z:Z
+    iget-boolean v0, p0, Landroidx/preference/PreferenceGroup;->mOrderingAsAdded:Z
 
     .line 76
     .line 77
@@ -602,7 +343,7 @@
 
     .line 78
     .line 79
-    iget v0, p0, Landroidx/preference/PreferenceGroup;->a0:I
+    iget v0, p0, Landroidx/preference/PreferenceGroup;->mCurrentPreferenceOrder:I
 
     .line 80
     .line 81
@@ -610,11 +351,11 @@
 
     .line 82
     .line 83
-    iput v2, p0, Landroidx/preference/PreferenceGroup;->a0:I
+    iput v2, p0, Landroidx/preference/PreferenceGroup;->mCurrentPreferenceOrder:I
 
     .line 84
     .line 85
-    invoke-virtual {p1, v0}, Landroidx/preference/Preference;->G0(I)V
+    invoke-virtual {p1, v0}, Landroidx/preference/Preference;->setOrder(I)V
 
     .line 86
     .line 87
@@ -635,17 +376,17 @@
 
     .line 94
     .line 95
-    iget-boolean v2, p0, Landroidx/preference/PreferenceGroup;->Z:Z
+    iget-boolean v2, p0, Landroidx/preference/PreferenceGroup;->mOrderingAsAdded:Z
 
     .line 96
     .line 97
-    invoke-virtual {v0, v2}, Landroidx/preference/PreferenceGroup;->h1(Z)V
+    invoke-virtual {v0, v2}, Landroidx/preference/PreferenceGroup;->setOrderingAsAdded(Z)V
 
     .line 98
     .line 99
     .line 100
     :cond_4
-    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 101
     .line 102
@@ -669,7 +410,7 @@
 
     .line 111
     :cond_5
-    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceGroup;->c1(Landroidx/preference/Preference;)Z
+    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceGroup;->onPrepareAddPreference(Landroidx/preference/Preference;)Z
 
     .line 112
     .line 113
@@ -692,7 +433,7 @@
 
     .line 120
     :try_start_0
-    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 121
     .line 122
@@ -706,7 +447,7 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 126
-    invoke-virtual {p0}, Landroidx/preference/Preference;->E()Landroidx/preference/f;
+    invoke-virtual {p0}, Landroidx/preference/Preference;->getPreferenceManager()Landroidx/preference/b;
 
     .line 127
     .line 128
@@ -714,7 +455,7 @@
     move-result-object v0
 
     .line 130
-    invoke-virtual {p1}, Landroidx/preference/Preference;->t()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getKey()Ljava/lang/String;
 
     .line 131
     .line 132
@@ -726,11 +467,11 @@
 
     .line 135
     .line 136
-    iget-object v3, p0, Landroidx/preference/PreferenceGroup;->W:Lo/r;
+    iget-object v3, p0, Landroidx/preference/PreferenceGroup;->mIdRecycleCache:Ll0/k1;
 
     .line 137
     .line 138
-    invoke-virtual {v3, v2}, Lo/r;->containsKey(Ljava/lang/Object;)Z
+    invoke-virtual {v3, v2}, Ll0/k1;->containsKey(Ljava/lang/Object;)Z
 
     .line 139
     .line 140
@@ -742,11 +483,11 @@
 
     .line 143
     .line 144
-    iget-object v3, p0, Landroidx/preference/PreferenceGroup;->W:Lo/r;
+    iget-object v3, p0, Landroidx/preference/PreferenceGroup;->mIdRecycleCache:Ll0/k1;
 
     .line 145
     .line 146
-    invoke-virtual {v3, v2}, Lo/r;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v3, v2}, Ll0/k1;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 147
     .line 148
@@ -766,11 +507,11 @@
     move-result-wide v3
 
     .line 156
-    iget-object v5, p0, Landroidx/preference/PreferenceGroup;->W:Lo/r;
+    iget-object v5, p0, Landroidx/preference/PreferenceGroup;->mIdRecycleCache:Ll0/k1;
 
     .line 157
     .line 158
-    invoke-virtual {v5, v2}, Lo/r;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v5, v2}, Ll0/k1;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 159
     .line 160
@@ -779,7 +520,7 @@
 
     .line 162
     :cond_7
-    invoke-virtual {v0}, Landroidx/preference/f;->d()J
+    invoke-virtual {v0}, Landroidx/preference/b;->d()J
 
     .line 163
     .line 164
@@ -788,17 +529,17 @@
 
     .line 166
     :goto_1
-    invoke-virtual {p1, v0, v3, v4}, Landroidx/preference/Preference;->V(Landroidx/preference/f;J)V
+    invoke-virtual {p1, v0, v3, v4}, Landroidx/preference/Preference;->onAttachedToHierarchy(Landroidx/preference/b;J)V
 
     .line 167
     .line 168
     .line 169
-    invoke-virtual {p1, p0}, Landroidx/preference/Preference;->a(Landroidx/preference/PreferenceGroup;)V
+    invoke-virtual {p1, p0}, Landroidx/preference/Preference;->assignParent(Landroidx/preference/PreferenceGroup;)V
 
     .line 170
     .line 171
     .line 172
-    iget-boolean v0, p0, Landroidx/preference/PreferenceGroup;->b0:Z
+    iget-boolean v0, p0, Landroidx/preference/PreferenceGroup;->mAttachedToHierarchy:Z
 
     .line 173
     .line 174
@@ -806,13 +547,13 @@
 
     .line 175
     .line 176
-    invoke-virtual {p1}, Landroidx/preference/Preference;->T()V
+    invoke-virtual {p1}, Landroidx/preference/Preference;->onAttached()V
 
     .line 177
     .line 178
     .line 179
     :cond_8
-    invoke-virtual {p0}, Landroidx/preference/Preference;->S()V
+    invoke-virtual {p0}, Landroidx/preference/Preference;->notifyHierarchyChanged()V
 
     .line 180
     .line 181
@@ -833,7 +574,105 @@
     throw p1
 .end method
 
-.method public W0(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+.method public dispatchRestoreInstanceState(Landroid/os/Bundle;)V
+    .locals 3
+
+    .line 1
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->dispatchRestoreInstanceState(Landroid/os/Bundle;)V
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
+
+    .line 5
+    .line 6
+    .line 7
+    move-result v0
+
+    .line 8
+    const/4 v1, 0x0
+
+    .line 9
+    :goto_0
+    if-ge v1, v0, :cond_0
+
+    .line 10
+    .line 11
+    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->getPreference(I)Landroidx/preference/Preference;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object v2
+
+    .line 15
+    invoke-virtual {v2, p1}, Landroidx/preference/Preference;->dispatchRestoreInstanceState(Landroid/os/Bundle;)V
+
+    .line 16
+    .line 17
+    .line 18
+    add-int/lit8 v1, v1, 0x1
+
+    .line 19
+    .line 20
+    goto :goto_0
+
+    .line 21
+    :cond_0
+    return-void
+.end method
+
+.method public dispatchSaveInstanceState(Landroid/os/Bundle;)V
+    .locals 3
+
+    .line 1
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->dispatchSaveInstanceState(Landroid/os/Bundle;)V
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
+
+    .line 5
+    .line 6
+    .line 7
+    move-result v0
+
+    .line 8
+    const/4 v1, 0x0
+
+    .line 9
+    :goto_0
+    if-ge v1, v0, :cond_0
+
+    .line 10
+    .line 11
+    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->getPreference(I)Landroidx/preference/Preference;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object v2
+
+    .line 15
+    invoke-virtual {v2, p1}, Landroidx/preference/Preference;->dispatchSaveInstanceState(Landroid/os/Bundle;)V
+
+    .line 16
+    .line 17
+    .line 18
+    add-int/lit8 v1, v1, 0x1
+
+    .line 19
+    .line 20
+    goto :goto_0
+
+    .line 21
+    :cond_0
+    return-void
+.end method
+
+.method public findPreference(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
     .locals 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -850,7 +689,7 @@
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/preference/Preference;->t()Ljava/lang/String;
+    invoke-virtual {p0}, Landroidx/preference/Preference;->getKey()Ljava/lang/String;
 
     .line 4
     .line 5
@@ -874,7 +713,7 @@
 
     .line 14
     :cond_0
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
 
     .line 15
     .line 16
@@ -890,7 +729,7 @@
 
     .line 20
     .line 21
-    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->Z0(I)Landroidx/preference/Preference;
+    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->getPreference(I)Landroidx/preference/Preference;
 
     .line 22
     .line 23
@@ -898,7 +737,7 @@
     move-result-object v2
 
     .line 25
-    invoke-virtual {v2}, Landroidx/preference/Preference;->t()Ljava/lang/String;
+    invoke-virtual {v2}, Landroidx/preference/Preference;->getKey()Ljava/lang/String;
 
     .line 26
     .line 27
@@ -934,7 +773,7 @@
 
     .line 41
     .line 42
-    invoke-virtual {v2, p1}, Landroidx/preference/PreferenceGroup;->W0(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+    invoke-virtual {v2, p1}, Landroidx/preference/PreferenceGroup;->findPreference(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
 
     .line 43
     .line 44
@@ -981,18 +820,18 @@
     throw p0
 .end method
 
-.method public X0()I
+.method public getInitialExpandedChildrenCount()I
     .locals 0
 
     .line 1
-    iget p0, p0, Landroidx/preference/PreferenceGroup;->c0:I
+    iget p0, p0, Landroidx/preference/PreferenceGroup;->mInitialExpandedChildrenCount:I
 
     .line 2
     .line 3
     return p0
 .end method
 
-.method public Y0()Landroidx/preference/PreferenceGroup$b;
+.method public getOnExpandButtonClickListener()Landroidx/preference/PreferenceGroup$b;
     .locals 0
 
     .line 1
@@ -1002,64 +841,11 @@
     return-object p0
 .end method
 
-.method public Z()V
-    .locals 3
-
-    .line 1
-    invoke-super {p0}, Landroidx/preference/Preference;->Z()V
-
-    .line 2
-    .line 3
-    .line 4
-    const/4 v0, 0x0
-
-    .line 5
-    iput-boolean v0, p0, Landroidx/preference/PreferenceGroup;->b0:Z
-
-    .line 6
-    .line 7
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
-
-    .line 8
-    .line 9
-    .line 10
-    move-result v1
-
-    .line 11
-    :goto_0
-    if-ge v0, v1, :cond_0
-
-    .line 12
-    .line 13
-    invoke-virtual {p0, v0}, Landroidx/preference/PreferenceGroup;->Z0(I)Landroidx/preference/Preference;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v2
-
-    .line 17
-    invoke-virtual {v2}, Landroidx/preference/Preference;->Z()V
-
-    .line 18
-    .line 19
-    .line 20
-    add-int/lit8 v0, v0, 0x1
-
-    .line 21
-    .line 22
-    goto :goto_0
-
-    .line 23
-    :cond_0
-    return-void
-.end method
-
-.method public Z0(I)Landroidx/preference/Preference;
+.method public getPreference(I)Landroidx/preference/Preference;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iget-object p0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 2
     .line 3
@@ -1078,11 +864,11 @@
     return-object p0
 .end method
 
-.method public a1()I
+.method public getPreferenceCount()I
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iget-object p0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 2
     .line 3
@@ -1097,7 +883,7 @@
     return p0
 .end method
 
-.method protected b1()Z
+.method public isOnSameScreenAsChildren()Z
     .locals 0
 
     .line 1
@@ -1107,11 +893,169 @@
     return p0
 .end method
 
-.method protected c1(Landroidx/preference/Preference;)Z
+.method public notifyDependencyChange(Z)V
+    .locals 3
+
+    .line 1
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->notifyDependencyChange(Z)V
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
+
+    .line 5
+    .line 6
+    .line 7
+    move-result v0
+
+    .line 8
+    const/4 v1, 0x0
+
+    .line 9
+    :goto_0
+    if-ge v1, v0, :cond_0
+
+    .line 10
+    .line 11
+    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->getPreference(I)Landroidx/preference/Preference;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object v2
+
+    .line 15
+    invoke-virtual {v2, p0, p1}, Landroidx/preference/Preference;->onParentChanged(Landroidx/preference/Preference;Z)V
+
+    .line 16
+    .line 17
+    .line 18
+    add-int/lit8 v1, v1, 0x1
+
+    .line 19
+    .line 20
+    goto :goto_0
+
+    .line 21
+    :cond_0
+    return-void
+.end method
+
+.method public onAttached()V
+    .locals 3
+
+    .line 1
+    invoke-super {p0}, Landroidx/preference/Preference;->onAttached()V
+
+    .line 2
+    .line 3
+    .line 4
+    const/4 v0, 0x1
+
+    .line 5
+    iput-boolean v0, p0, Landroidx/preference/PreferenceGroup;->mAttachedToHierarchy:Z
+
+    .line 6
+    .line 7
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
+
+    .line 8
+    .line 9
+    .line 10
+    move-result v0
+
+    .line 11
+    const/4 v1, 0x0
+
+    .line 12
+    :goto_0
+    if-ge v1, v0, :cond_0
+
+    .line 13
+    .line 14
+    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->getPreference(I)Landroidx/preference/Preference;
+
+    .line 15
+    .line 16
+    .line 17
+    move-result-object v2
+
+    .line 18
+    invoke-virtual {v2}, Landroidx/preference/Preference;->onAttached()V
+
+    .line 19
+    .line 20
+    .line 21
+    add-int/lit8 v1, v1, 0x1
+
+    .line 22
+    .line 23
+    goto :goto_0
+
+    .line 24
+    :cond_0
+    return-void
+.end method
+
+.method public onDetached()V
+    .locals 3
+
+    .line 1
+    invoke-super {p0}, Landroidx/preference/Preference;->onDetached()V
+
+    .line 2
+    .line 3
+    .line 4
+    const/4 v0, 0x0
+
+    .line 5
+    iput-boolean v0, p0, Landroidx/preference/PreferenceGroup;->mAttachedToHierarchy:Z
+
+    .line 6
+    .line 7
+    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->getPreferenceCount()I
+
+    .line 8
+    .line 9
+    .line 10
+    move-result v1
+
+    .line 11
+    :goto_0
+    if-ge v0, v1, :cond_0
+
+    .line 12
+    .line 13
+    invoke-virtual {p0, v0}, Landroidx/preference/PreferenceGroup;->getPreference(I)Landroidx/preference/Preference;
+
+    .line 14
+    .line 15
+    .line 16
+    move-result-object v2
+
+    .line 17
+    invoke-virtual {v2}, Landroidx/preference/Preference;->onDetached()V
+
+    .line 18
+    .line 19
+    .line 20
+    add-int/lit8 v0, v0, 0x1
+
+    .line 21
+    .line 22
+    goto :goto_0
+
+    .line 23
+    :cond_0
+    return-void
+.end method
+
+.method public onPrepareAddPreference(Landroidx/preference/Preference;)Z
     .locals 1
 
     .line 1
-    invoke-virtual {p0}, Landroidx/preference/Preference;->P0()Z
+    invoke-virtual {p0}, Landroidx/preference/Preference;->shouldDisableDependents()Z
 
     .line 2
     .line 3
@@ -1119,7 +1063,7 @@
     move-result v0
 
     .line 5
-    invoke-virtual {p1, p0, v0}, Landroidx/preference/Preference;->c0(Landroidx/preference/Preference;Z)V
+    invoke-virtual {p1, p0, v0}, Landroidx/preference/Preference;->onParentChanged(Landroidx/preference/Preference;Z)V
 
     .line 6
     .line 7
@@ -1130,94 +1074,7 @@
     return p0
 .end method
 
-.method public d1()V
-    .locals 3
-
-    .line 1
-    monitor-enter p0
-
-    .line 2
-    :try_start_0
-    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
-
-    .line 3
-    .line 4
-    invoke-interface {v0}, Ljava/util/List;->size()I
-
-    .line 5
-    .line 6
-    .line 7
-    move-result v1
-
-    .line 8
-    add-int/lit8 v1, v1, -0x1
-
-    .line 9
-    .line 10
-    :goto_0
-    if-ltz v1, :cond_0
-
-    .line 11
-    .line 12
-    const/4 v2, 0x0
-
-    .line 13
-    invoke-interface {v0, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
-
-    .line 14
-    .line 15
-    .line 16
-    move-result-object v2
-
-    .line 17
-    check-cast v2, Landroidx/preference/Preference;
-
-    .line 18
-    .line 19
-    invoke-direct {p0, v2}, Landroidx/preference/PreferenceGroup;->f1(Landroidx/preference/Preference;)Z
-
-    .line 20
-    .line 21
-    .line 22
-    add-int/lit8 v1, v1, -0x1
-
-    .line 23
-    .line 24
-    goto :goto_0
-
-    .line 25
-    :catchall_0
-    move-exception v0
-
-    .line 26
-    goto :goto_1
-
-    .line 27
-    :cond_0
-    monitor-exit p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 28
-    invoke-virtual {p0}, Landroidx/preference/Preference;->S()V
-
-    .line 29
-    .line 30
-    .line 31
-    return-void
-
-    .line 32
-    :goto_1
-    :try_start_1
-    monitor-exit p0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    .line 33
-    throw v0
-.end method
-
-.method protected e0(Landroid/os/Parcelable;)V
+.method public onRestoreInstanceState(Landroid/os/Parcelable;)V
     .locals 2
 
     .line 1
@@ -1257,11 +1114,11 @@
 
     .line 17
     .line 18
-    iget v0, p1, Landroidx/preference/PreferenceGroup$d;->g:I
+    iget v0, p1, Landroidx/preference/PreferenceGroup$d;->c:I
 
     .line 19
     .line 20
-    iput v0, p0, Landroidx/preference/PreferenceGroup;->c0:I
+    iput v0, p0, Landroidx/preference/PreferenceGroup;->mInitialExpandedChildrenCount:I
 
     .line 21
     .line 22
@@ -1273,7 +1130,7 @@
     move-result-object p1
 
     .line 26
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->e0(Landroid/os/Parcelable;)V
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->onRestoreInstanceState(Landroid/os/Parcelable;)V
 
     .line 27
     .line 28
@@ -1283,7 +1140,7 @@
     .line 30
     :cond_1
     :goto_0
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->e0(Landroid/os/Parcelable;)V
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->onRestoreInstanceState(Landroid/os/Parcelable;)V
 
     .line 31
     .line 32
@@ -1291,80 +1148,11 @@
     return-void
 .end method
 
-.method public e1(Landroidx/preference/Preference;)Z
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Landroidx/preference/PreferenceGroup;->f1(Landroidx/preference/Preference;)Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p1
-
-    .line 5
-    invoke-virtual {p0}, Landroidx/preference/Preference;->S()V
-
-    .line 6
-    .line 7
-    .line 8
-    return p1
-.end method
-
-.method protected f(Landroid/os/Bundle;)V
-    .locals 3
-
-    .line 1
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->f(Landroid/os/Bundle;)V
-
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
-
-    .line 5
-    .line 6
-    .line 7
-    move-result v0
-
-    .line 8
-    const/4 v1, 0x0
-
-    .line 9
-    :goto_0
-    if-ge v1, v0, :cond_0
-
-    .line 10
-    .line 11
-    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->Z0(I)Landroidx/preference/Preference;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v2
-
-    .line 15
-    invoke-virtual {v2, p1}, Landroidx/preference/Preference;->f(Landroid/os/Bundle;)V
-
-    .line 16
-    .line 17
-    .line 18
-    add-int/lit8 v1, v1, 0x1
-
-    .line 19
-    .line 20
-    goto :goto_0
-
-    .line 21
-    :cond_0
-    return-void
-.end method
-
-.method protected f0()Landroid/os/Parcelable;
+.method public onSaveInstanceState()Landroid/os/Parcelable;
     .locals 2
 
     .line 1
-    invoke-super {p0}, Landroidx/preference/Preference;->f0()Landroid/os/Parcelable;
+    invoke-super {p0}, Landroidx/preference/Preference;->onSaveInstanceState()Landroid/os/Parcelable;
 
     .line 2
     .line 3
@@ -1376,7 +1164,7 @@
 
     .line 6
     .line 7
-    iget p0, p0, Landroidx/preference/PreferenceGroup;->c0:I
+    iget p0, p0, Landroidx/preference/PreferenceGroup;->mInitialExpandedChildrenCount:I
 
     .line 8
     .line 9
@@ -1388,56 +1176,268 @@
     return-object v1
 .end method
 
-.method protected g(Landroid/os/Bundle;)V
+.method public removeAll()V
     .locals 3
 
     .line 1
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->g(Landroid/os/Bundle;)V
+    monitor-enter p0
 
     .line 2
+    :try_start_0
+    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
+
     .line 3
     .line 4
-    invoke-virtual {p0}, Landroidx/preference/PreferenceGroup;->a1()I
+    invoke-interface {v0}, Ljava/util/List;->size()I
 
     .line 5
     .line 6
     .line 7
-    move-result v0
+    move-result v1
 
     .line 8
-    const/4 v1, 0x0
+    add-int/lit8 v1, v1, -0x1
 
     .line 9
+    .line 10
     :goto_0
-    if-ge v1, v0, :cond_0
+    if-ltz v1, :cond_0
+
+    .line 11
+    .line 12
+    const/4 v2, 0x0
+
+    .line 13
+    invoke-interface {v0, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    .line 14
+    .line 15
+    .line 16
+    move-result-object v2
+
+    .line 17
+    check-cast v2, Landroidx/preference/Preference;
+
+    .line 18
+    .line 19
+    invoke-virtual {p0, v2}, Landroidx/preference/PreferenceGroup;->removePreferenceInt(Landroidx/preference/Preference;)Z
+
+    .line 20
+    .line 21
+    .line 22
+    add-int/lit8 v1, v1, -0x1
+
+    .line 23
+    .line 24
+    goto :goto_0
+
+    .line 25
+    :catchall_0
+    move-exception v0
+
+    .line 26
+    goto :goto_1
+
+    .line 27
+    :cond_0
+    monitor-exit p0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 28
+    invoke-virtual {p0}, Landroidx/preference/Preference;->notifyHierarchyChanged()V
+
+    .line 29
+    .line 30
+    .line 31
+    return-void
+
+    .line 32
+    :goto_1
+    :try_start_1
+    monitor-exit p0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    .line 33
+    throw v0
+.end method
+
+.method public removePreference(Landroidx/preference/Preference;)Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceGroup;->removePreferenceInt(Landroidx/preference/Preference;)Z
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p1
+
+    .line 5
+    invoke-virtual {p0}, Landroidx/preference/Preference;->notifyHierarchyChanged()V
+
+    .line 6
+    .line 7
+    .line 8
+    return p1
+.end method
+
+.method public final removePreferenceInt(Landroidx/preference/Preference;)Z
+    .locals 5
+
+    .line 1
+    monitor-enter p0
+
+    .line 2
+    :try_start_0
+    invoke-virtual {p1}, Landroidx/preference/Preference;->onPrepareForRemoval()V
+
+    .line 3
+    .line 4
+    .line 5
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getParent()Landroidx/preference/PreferenceGroup;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object v0
+
+    .line 9
+    if-ne v0, p0, :cond_0
 
     .line 10
     .line 11
-    invoke-virtual {p0, v1}, Landroidx/preference/PreferenceGroup;->Z0(I)Landroidx/preference/Preference;
+    const/4 v0, 0x0
 
     .line 12
+    invoke-virtual {p1, v0}, Landroidx/preference/Preference;->assignParent(Landroidx/preference/PreferenceGroup;)V
+
     .line 13
     .line 14
-    move-result-object v2
-
     .line 15
-    invoke-virtual {v2, p1}, Landroidx/preference/Preference;->g(Landroid/os/Bundle;)V
+    goto :goto_0
 
     .line 16
+    :catchall_0
+    move-exception p1
+
     .line 17
+    goto :goto_1
+
     .line 18
-    add-int/lit8 v1, v1, 0x1
+    :cond_0
+    :goto_0
+    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 19
     .line 20
-    goto :goto_0
+    invoke-interface {v0, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
     .line 21
-    :cond_0
-    return-void
+    .line 22
+    .line 23
+    move-result v0
+
+    .line 24
+    if-eqz v0, :cond_2
+
+    .line 25
+    .line 26
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getKey()Ljava/lang/String;
+
+    .line 27
+    .line 28
+    .line 29
+    move-result-object v1
+
+    .line 30
+    if-eqz v1, :cond_1
+
+    .line 31
+    .line 32
+    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->mIdRecycleCache:Ll0/k1;
+
+    .line 33
+    .line 34
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getId()J
+
+    .line 35
+    .line 36
+    .line 37
+    move-result-wide v3
+
+    .line 38
+    invoke-static {v3, v4}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    .line 39
+    .line 40
+    .line 41
+    move-result-object v3
+
+    .line 42
+    invoke-virtual {v2, v1, v3}, Ll0/k1;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 43
+    .line 44
+    .line 45
+    iget-object v1, p0, Landroidx/preference/PreferenceGroup;->mHandler:Landroid/os/Handler;
+
+    .line 46
+    .line 47
+    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->mClearRecycleCacheRunnable:Ljava/lang/Runnable;
+
+    .line 48
+    .line 49
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
+
+    .line 50
+    .line 51
+    .line 52
+    iget-object v1, p0, Landroidx/preference/PreferenceGroup;->mHandler:Landroid/os/Handler;
+
+    .line 53
+    .line 54
+    iget-object v2, p0, Landroidx/preference/PreferenceGroup;->mClearRecycleCacheRunnable:Ljava/lang/Runnable;
+
+    .line 55
+    .line 56
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    .line 57
+    .line 58
+    .line 59
+    :cond_1
+    iget-boolean v1, p0, Landroidx/preference/PreferenceGroup;->mAttachedToHierarchy:Z
+
+    .line 60
+    .line 61
+    if-eqz v1, :cond_2
+
+    .line 62
+    .line 63
+    invoke-virtual {p1}, Landroidx/preference/Preference;->onDetached()V
+
+    .line 64
+    .line 65
+    .line 66
+    :cond_2
+    monitor-exit p0
+
+    .line 67
+    return v0
+
+    .line 68
+    :goto_1
+    monitor-exit p0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 69
+    throw p1
 .end method
 
-.method public g1(I)V
+.method public setInitialExpandedChildrenCount(I)V
     .locals 2
 
     .line 1
@@ -1450,7 +1450,7 @@
 
     .line 5
     .line 6
-    invoke-virtual {p0}, Landroidx/preference/Preference;->K()Z
+    invoke-virtual {p0}, Landroidx/preference/Preference;->hasKey()Z
 
     .line 7
     .line 8
@@ -1519,25 +1519,25 @@
     .line 41
     .line 42
     :cond_0
-    iput p1, p0, Landroidx/preference/PreferenceGroup;->c0:I
+    iput p1, p0, Landroidx/preference/PreferenceGroup;->mInitialExpandedChildrenCount:I
 
     .line 43
     .line 44
     return-void
 .end method
 
-.method public h1(Z)V
+.method public setOrderingAsAdded(Z)V
     .locals 0
 
     .line 1
-    iput-boolean p1, p0, Landroidx/preference/PreferenceGroup;->Z:Z
+    iput-boolean p1, p0, Landroidx/preference/PreferenceGroup;->mOrderingAsAdded:Z
 
     .line 2
     .line 3
     return-void
 .end method
 
-.method i1()V
+.method public sortPreferences()V
     .locals 1
 
     .line 1
@@ -1545,7 +1545,7 @@
 
     .line 2
     :try_start_0
-    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->Y:Ljava/util/List;
+    iget-object v0, p0, Landroidx/preference/PreferenceGroup;->mPreferences:Ljava/util/List;
 
     .line 3
     .line 4

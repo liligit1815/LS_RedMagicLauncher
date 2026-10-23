@@ -45,7 +45,7 @@
 
 .field private final mMaxTranslationY:F
 
-.field private final mProgress:Lcom/android/launcher3/anim/d;
+.field private final mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
 .field private mRecentsAnimationController:Lcom/android/quickstep/RecentsAnimationController;
 
@@ -123,7 +123,7 @@
     return-void
 .end method
 
-.method public constructor <init>(Landroid/content/Context;Lcom/android/quickstep/RecentsAnimationDeviceState;Lcom/android/quickstep/TaskAnimationManager;Lcom/android/quickstep/GestureState;Lcom/android/systemui/shared/system/InputMonitorCompat;)V
+.method public constructor <init>(Landroid/content/Context;Lcom/android/quickstep/RecentsAnimationDeviceState;Lcom/android/quickstep/TaskAnimationManager;Lcom/android/quickstep/GestureState;Lcom/android/systemui/shared/system/InputMonitorCompat;Lcom/android/quickstep/RotationTouchHelper;)V
     .locals 2
 
     .line 1
@@ -166,25 +166,25 @@
 
     .line 21
     .line 22
-    new-instance v0, Lcom/android/launcher3/anim/d;
+    new-instance v0, Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 23
     .line 24
-    new-instance v1, Lcom/android/quickstep/inputconsumers/e;
+    new-instance v1, Lcom/android/quickstep/inputconsumers/i;
 
     .line 25
     .line 26
-    invoke-direct {v1, p0}, Lcom/android/quickstep/inputconsumers/e;-><init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/inputconsumers/i;-><init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
 
     .line 27
     .line 28
     .line 29
-    invoke-direct {v0, v1}, Lcom/android/launcher3/anim/d;-><init>(Ljava/lang/Runnable;)V
+    invoke-direct {v0, v1}, Lcom/android/launcher3/anim/AnimatedFloat;-><init>(Ljava/lang/Runnable;)V
 
     .line 30
     .line 31
     .line 32
-    iput-object v0, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/d;
+    iput-object v0, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 33
     .line 34
@@ -248,11 +248,11 @@
 
     .line 63
     .line 64
-    sget-object p2, Lcom/android/launcher3/util/Z;->r:Lcom/android/launcher3/util/I;
+    sget-object p2, Lcom/android/launcher3/display/DisplayController;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 65
     .line 66
-    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 67
     .line 68
@@ -260,51 +260,51 @@
     move-result-object p3
 
     .line 70
-    check-cast p3, Lcom/android/launcher3/util/Z;
+    check-cast p3, Lcom/android/launcher3/display/DisplayController;
 
     .line 71
     .line 72
-    invoke-virtual {p3, p1}, Lcom/android/launcher3/util/Z;->v(Landroid/content/Context;)Landroid/content/Context;
+    invoke-interface {p3, p1}, Lcom/android/launcher3/display/DisplayController;->getDisplayInfoContext(Landroid/content/Context;)Landroid/content/Context;
 
     .line 73
     .line 74
     .line 75
-    move-result-object p3
+    move-result-object p1
 
     .line 76
-    invoke-virtual {p3}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     .line 77
     .line 78
     .line 79
-    move-result-object p4
+    move-result-object p3
 
     .line 80
-    const p5, 0x7f0702aa
+    const p4, 0x7f0702bf
 
     .line 81
     .line 82
     .line 83
-    invoke-virtual {p4, p5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {p3, p4}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     .line 84
     .line 85
     .line 86
-    move-result p4
+    move-result p3
 
     .line 87
-    int-to-float p4, p4
+    int-to-float p3, p3
 
     .line 88
-    iput p4, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mMaxTranslationY:F
+    iput p3, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mMaxTranslationY:F
 
     .line 89
     .line 90
-    sget-object p4, Lcom/android/quickstep/RotationTouchHelper;->INSTANCE:Lcom/android/launcher3/util/I;
+    iput-object p6, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mRotationTouchHelper:Lcom/android/quickstep/RotationTouchHelper;
 
     .line 91
     .line 92
-    invoke-virtual {p4, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 93
     .line 94
@@ -312,96 +312,80 @@
     move-result-object p1
 
     .line 96
-    check-cast p1, Lcom/android/quickstep/RotationTouchHelper;
+    check-cast p1, Lcom/android/launcher3/display/DisplayController;
 
     .line 97
     .line 98
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mRotationTouchHelper:Lcom/android/quickstep/RotationTouchHelper;
+    invoke-interface {p1}, Lcom/android/launcher3/display/DisplayController;->getInfo()Lcom/android/launcher3/display/LauncherDisplayInfo;
 
     .line 99
     .line 100
-    invoke-virtual {p2, p3}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
-
     .line 101
-    .line 102
-    .line 103
     move-result-object p1
 
+    .line 102
+    iget-object p1, p1, Lcom/android/launcher3/display/LauncherDisplayInfo;->currentSize:Landroid/graphics/Point;
+
+    .line 103
     .line 104
-    check-cast p1, Lcom/android/launcher3/util/Z;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mDisplaySize:Landroid/graphics/Point;
 
     .line 105
     .line 106
-    invoke-virtual {p1}, Lcom/android/launcher3/util/Z;->w()Lcom/android/launcher3/util/Z$c;
+    new-instance p1, Lcom/android/quickstep/MultiStateCallback;
 
     .line 107
     .line 108
-    .line 109
-    move-result-object p1
+    sget-object p2, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->STATE_NAMES:[Ljava/lang/String;
 
+    .line 109
     .line 110
-    iget-object p1, p1, Lcom/android/launcher3/util/Z$c;->c:Landroid/graphics/Point;
+    invoke-direct {p1, p2}, Lcom/android/quickstep/MultiStateCallback;-><init>([Ljava/lang/String;)V
 
     .line 111
     .line 112
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mDisplaySize:Landroid/graphics/Point;
-
     .line 113
-    .line 114
-    new-instance p1, Lcom/android/quickstep/MultiStateCallback;
-
-    .line 115
-    .line 116
-    sget-object p2, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->STATE_NAMES:[Ljava/lang/String;
-
-    .line 117
-    .line 118
-    invoke-direct {p1, p2}, Lcom/android/quickstep/MultiStateCallback;-><init>([Ljava/lang/String;)V
-
-    .line 119
-    .line 120
-    .line 121
     iput-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mStateCallback:Lcom/android/quickstep/MultiStateCallback;
 
-    .line 122
-    .line 123
+    .line 114
+    .line 115
     sget p2, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->STATE_TARGET_RECEIVED:I
 
+    .line 116
+    .line 117
+    sget p3, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->STATE_HANDLER_INVALIDATED:I
+
+    .line 118
+    .line 119
+    or-int/2addr p2, p3
+
+    .line 120
+    new-instance p3, Lcom/android/quickstep/inputconsumers/j;
+
+    .line 121
+    .line 122
+    invoke-direct {p3, p0}, Lcom/android/quickstep/inputconsumers/j;-><init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
+
+    .line 123
     .line 124
     .line 125
-    sget p3, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->STATE_HANDLER_INVALIDATED:I
+    invoke-virtual {p1, p2, p3}, Lcom/android/quickstep/MultiStateCallback;->runOnceAtState(ILjava/lang/Runnable;)V
 
     .line 126
     .line 127
-    or-int/2addr p2, p3
-
     .line 128
-    new-instance p3, Lcom/android/quickstep/inputconsumers/f;
+    invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
 
     .line 129
     .line 130
-    invoke-direct {p3, p0}, Lcom/android/quickstep/inputconsumers/f;-><init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
-
     .line 131
-    .line 132
-    .line 133
-    invoke-virtual {p1, p2, p3}, Lcom/android/quickstep/MultiStateCallback;->runOnceAtState(ILjava/lang/Runnable;)V
-
-    .line 134
-    .line 135
-    .line 136
-    invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
-
-    .line 137
-    .line 138
-    .line 139
     move-result-object p1
 
-    .line 140
+    .line 132
     iput-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mVelocityTracker:Landroid/view/VelocityTracker;
 
-    .line 141
-    .line 142
+    .line 133
+    .line 134
     return-void
 .end method
 
@@ -413,11 +397,11 @@
 
     .line 2
     .line 3
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/d;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 4
     .line 5
-    iget v1, v1, Lcom/android/launcher3/anim/d;->d:F
+    iget v1, v1, Lcom/android/launcher3/anim/AnimatedFloat;->value:F
 
     .line 6
     .line 7
@@ -487,7 +471,7 @@
     return-void
 .end method
 
-.method static bridge synthetic e(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Landroid/content/Context;
+.method public static bridge synthetic e(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Landroid/content/Context;
     .locals 0
 
     .line 1
@@ -499,7 +483,7 @@
 .end method
 
 .method private endRemoteAnimation()V
-    .locals 2
+    .locals 4
 
     .line 1
     iget-boolean v0, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mHomeLaunched:Z
@@ -518,38 +502,55 @@
 
     .line 8
     .line 9
-    const/4 v0, 0x0
+    new-instance v0, Lcom/android/quickstep/util/ActiveGestureLog$CompoundString;
 
     .line 10
-    const/4 v1, 0x0
-
     .line 11
-    invoke-virtual {p0, v1, v0, v1}, Lcom/android/quickstep/RecentsAnimationController;->finishController(ZLjava/lang/Runnable;Z)V
+    const-string v1, "DeviceLockedInputConsumer.endRemoteAnimation"
 
     .line 12
     .line 13
+    const/4 v2, 0x0
+
     .line 14
-    return-void
+    new-array v3, v2, [Ljava/lang/Object;
 
     .line 15
+    .line 16
+    invoke-direct {v0, v1, v3}, Lcom/android/quickstep/util/ActiveGestureLog$CompoundString;-><init>(Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 17
+    .line 18
+    .line 19
+    const/4 v1, 0x0
+
+    .line 20
+    invoke-virtual {p0, v2, v1, v2, v0}, Lcom/android/quickstep/RecentsAnimationController;->finishController(ZLjava/lang/Runnable;ZLcom/android/quickstep/util/ActiveGestureLog$CompoundString;)V
+
+    .line 21
+    .line 22
+    .line 23
+    return-void
+
+    .line 24
     :cond_0
     const-string p0, "Recent_Toggle"
 
-    .line 16
-    .line 17
+    .line 25
+    .line 26
     const-string v0, "endRemoteAnimation: "
 
-    .line 18
-    .line 19
+    .line 27
+    .line 28
     invoke-static {p0, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 20
-    .line 21
-    .line 22
+    .line 29
+    .line 30
+    .line 31
     return-void
 .end method
 
-.method static bridge synthetic f(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/GestureState;
+.method public static bridge synthetic f(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/GestureState;
     .locals 0
 
     .line 1
@@ -561,7 +562,7 @@
 .end method
 
 .method private finishRecentsAnimationForShell(Z)V
-    .locals 1
+    .locals 4
 
     .line 1
     const/4 v0, 0x0
@@ -571,26 +572,43 @@
 
     .line 3
     .line 4
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mTaskAnimationManager:Lcom/android/quickstep/TaskAnimationManager;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mTaskAnimationManager:Lcom/android/quickstep/TaskAnimationManager;
 
     .line 5
     .line 6
-    invoke-virtual {v0, p1}, Lcom/android/quickstep/TaskAnimationManager;->finishRunningRecentsAnimation(Z)V
+    new-instance v2, Lcom/android/quickstep/util/ActiveGestureLog$CompoundString;
 
     .line 7
     .line 8
+    const-string v3, "DeviceLockedInputConsumer.finishRecentsAnimationForShell"
+
     .line 9
-    if-eqz p1, :cond_0
-
     .line 10
-    .line 11
-    const/4 p1, 0x1
+    new-array v0, v0, [Ljava/lang/Object;
 
+    .line 11
     .line 12
-    iput-boolean p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mHomeLaunched:Z
+    invoke-direct {v2, v3, v0}, Lcom/android/quickstep/util/ActiveGestureLog$CompoundString;-><init>(Ljava/lang/String;[Ljava/lang/Object;)V
 
     .line 13
     .line 14
+    .line 15
+    invoke-virtual {v1, p1, v2}, Lcom/android/quickstep/TaskAnimationManager;->finishRunningRecentsAnimation(ZLcom/android/quickstep/util/ActiveGestureLog$CompoundString;)V
+
+    .line 16
+    .line 17
+    .line 18
+    if-eqz p1, :cond_0
+
+    .line 19
+    .line 20
+    const/4 p1, 0x1
+
+    .line 21
+    iput-boolean p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mHomeLaunched:Z
+
+    .line 22
+    .line 23
     :cond_0
     return-void
 .end method
@@ -658,7 +676,7 @@
     move-result-object v2
 
     .line 30
-    const v3, 0x7f070a1f
+    const v3, 0x7f070a93
 
     .line 31
     .line 32
@@ -712,11 +730,11 @@
 
     .line 54
     :cond_1
-    iget-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/d;
+    iget-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 55
     .line 56
-    iget p1, p1, Lcom/android/launcher3/anim/d;->d:F
+    iget p1, p1, Lcom/android/launcher3/anim/AnimatedFloat;->value:F
 
     .line 57
     .line 58
@@ -734,15 +752,15 @@
     .line 64
     .line 65
     :goto_0
-    iget-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/d;
+    iget-object p1, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 66
     .line 67
-    iget v2, p1, Lcom/android/launcher3/anim/d;->d:F
+    iget v2, p1, Lcom/android/launcher3/anim/AnimatedFloat;->value:F
 
     .line 68
     .line 69
-    invoke-virtual {p1, v2, v4}, Lcom/android/launcher3/anim/d;->g(FF)Landroid/animation/ObjectAnimator;
+    invoke-virtual {p1, v2, v4}, Lcom/android/launcher3/anim/AnimatedFloat;->animateToValue(FF)Landroid/animation/ObjectAnimator;
 
     .line 70
     .line 71
@@ -759,7 +777,7 @@
     .line 76
     .line 77
     .line 78
-    sget-object v2, LJ0/h;->C:Landroid/view/animation/Interpolator;
+    sget-object v2, Lcom/android/app/animation/Interpolators;->ACCELERATE:Landroid/view/animation/Interpolator;
 
     .line 79
     .line 80
@@ -802,12 +820,12 @@
 
     .line 100
     .line 101
-    invoke-direct {v2, p1, v1}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;-><init>(Landroid/animation/Animator;Lcom/android/quickstep/inputconsumers/g;)V
+    invoke-direct {v2, p1, v1}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;-><init>(Landroid/animation/Animator;Lcom/android/quickstep/inputconsumers/k;)V
 
     .line 102
     .line 103
     .line 104
-    invoke-virtual {v0, v2}, Lcom/android/quickstep/RemoteAnimationTargets;->addReleaseCheck(Lcom/android/quickstep/RemoteAnimationTargets$ReleaseCheck;)V
+    invoke-virtual {v0, v2}, Lcom/android/quickstep/RemoteAnimationTargets;->addReleaseCheck(Lcom/android/quickstep/SurfaceReleaseCheck;)V
 
     .line 105
     .line 106
@@ -852,7 +870,7 @@
     return-void
 .end method
 
-.method static bridge synthetic g(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/RecentsAnimationController;
+.method public static bridge synthetic g(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/RecentsAnimationController;
     .locals 0
 
     .line 1
@@ -885,7 +903,7 @@
     return p0
 .end method
 
-.method static bridge synthetic h(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/MultiStateCallback;
+.method public static bridge synthetic h(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/MultiStateCallback;
     .locals 0
 
     .line 1
@@ -896,7 +914,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic i(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/TaskAnimationManager;
+.method public static bridge synthetic i(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)Lcom/android/quickstep/TaskAnimationManager;
     .locals 0
 
     .line 1
@@ -907,7 +925,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic j(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
+.method public static bridge synthetic j(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
     .locals 0
 
     .line 1
@@ -918,7 +936,7 @@
     return-void
 .end method
 
-.method static bridge synthetic k(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
+.method public static bridge synthetic k(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
     .locals 0
 
     .line 1
@@ -929,7 +947,7 @@
     return-void
 .end method
 
-.method static bridge synthetic l(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
+.method public static bridge synthetic l(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
     .locals 0
 
     .line 1
@@ -940,7 +958,7 @@
     return-void
 .end method
 
-.method static bridge synthetic m(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
+.method public static bridge synthetic m(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;Z)V
     .locals 0
 
     .line 1
@@ -952,7 +970,7 @@
     return-void
 .end method
 
-.method static bridge synthetic n()I
+.method public static bridge synthetic n()I
     .locals 1
 
     .line 1
@@ -989,7 +1007,7 @@
 
     .line 10
     .line 11
-    invoke-static {v0, v1}, Lcom/android/launcher3/testing/K;->a(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {v0, v1}, Lcom/android/launcher3/testing/TestLogging;->recordEvent(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 12
     .line 13
@@ -1110,11 +1128,11 @@
 
     .line 2
     .line 3
-    iget-object p3, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/d;
+    iget-object p3, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 4
     .line 5
-    iget p3, p3, Lcom/android/launcher3/anim/d;->d:F
+    iget p3, p3, Lcom/android/launcher3/anim/AnimatedFloat;->value:F
 
     .line 6
     .line 7
@@ -1331,7 +1349,7 @@
     sub-float/2addr v1, p1
 
     .line 78
-    invoke-static {v0, v1}, Lcom/android/launcher3/N5;->e0(FF)F
+    invoke-static {v0, v1}, Lcom/android/launcher3/Utilities;->squaredHypot(FF)F
 
     .line 79
     .line 80
@@ -1384,7 +1402,7 @@
     move-result p1
 
     .line 102
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/d;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->mProgress:Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 103
     .line 104
@@ -1402,7 +1420,7 @@
     div-float/2addr p1, p0
 
     .line 110
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/anim/d;->n(F)V
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/anim/AnimatedFloat;->updateValue(F)V
 
     .line 111
     .line 112

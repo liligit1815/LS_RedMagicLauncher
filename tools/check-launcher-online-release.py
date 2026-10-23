@@ -23,8 +23,8 @@ import time
 from urllib.parse import quote, unquote, urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST_URL = "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json"
-APP_ID = "stacked-desktop"
+MANIFEST_URL = "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json"
+APP_ID = "stacked-desktop-redmagic12"
 PACKAGE = "com.zte.mifavor.launcher"
 CERTIFICATE = "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb"
 MANIFEST_LIMIT = 64 * 1024

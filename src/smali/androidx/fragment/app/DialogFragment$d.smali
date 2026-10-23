@@ -1,9 +1,9 @@
-.class Landroidx/fragment/app/DialogFragment$d;
+.class public Landroidx/fragment/app/DialogFragment$d;
 .super Ljava/lang/Object;
 .source "DialogFragment.java"
 
 # interfaces
-.implements LW/i;
+.implements Lq6/l;
 
 
 # annotations
@@ -12,30 +12,30 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "LW/i<",
-        "LW/d;",
+        "Lq6/l<",
+        "Lq6/f;",
         ">;"
     }
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/fragment/app/DialogFragment;
+.field public final synthetic c:Landroidx/fragment/app/DialogFragment;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/DialogFragment;)V
+.method public constructor <init>(Landroidx/fragment/app/DialogFragment;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/fragment/app/DialogFragment$d;->g:Landroidx/fragment/app/DialogFragment;
+    iput-object p1, p0, Landroidx/fragment/app/DialogFragment$d;->c:Landroidx/fragment/app/DialogFragment;
 
     .line 2
     .line 3
@@ -58,11 +58,11 @@
     .end annotation
 
     .line 1
-    check-cast p1, LW/d;
+    check-cast p1, Lq6/f;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/fragment/app/DialogFragment$d;->b(LW/d;)V
+    invoke-virtual {p0, p1}, Landroidx/fragment/app/DialogFragment$d;->b(Lq6/f;)V
 
     .line 4
     .line 5
@@ -70,7 +70,7 @@
     return-void
 .end method
 
-.method public b(LW/d;)V
+.method public b(Lq6/f;)V
     .locals 2
     .annotation build Landroid/annotation/SuppressLint;
         value = {
@@ -83,11 +83,11 @@
 
     .line 2
     .line 3
-    iget-object p1, p0, Landroidx/fragment/app/DialogFragment$d;->g:Landroidx/fragment/app/DialogFragment;
+    iget-object p1, p0, Landroidx/fragment/app/DialogFragment$d;->c:Landroidx/fragment/app/DialogFragment;
 
     .line 4
     .line 5
-    invoke-static {p1}, Landroidx/fragment/app/DialogFragment;->o(Landroidx/fragment/app/DialogFragment;)Z
+    invoke-static {p1}, Landroidx/fragment/app/DialogFragment;->access$200(Landroidx/fragment/app/DialogFragment;)Z
 
     .line 6
     .line 7
@@ -99,7 +99,7 @@
 
     .line 10
     .line 11
-    iget-object p1, p0, Landroidx/fragment/app/DialogFragment$d;->g:Landroidx/fragment/app/DialogFragment;
+    iget-object p1, p0, Landroidx/fragment/app/DialogFragment$d;->c:Landroidx/fragment/app/DialogFragment;
 
     .line 12
     .line 13
@@ -123,11 +123,11 @@
 
     .line 22
     .line 23
-    iget-object v0, p0, Landroidx/fragment/app/DialogFragment$d;->g:Landroidx/fragment/app/DialogFragment;
+    iget-object v0, p0, Landroidx/fragment/app/DialogFragment$d;->c:Landroidx/fragment/app/DialogFragment;
 
     .line 24
     .line 25
-    invoke-static {v0}, Landroidx/fragment/app/DialogFragment;->l(Landroidx/fragment/app/DialogFragment;)Landroid/app/Dialog;
+    invoke-static {v0}, Landroidx/fragment/app/DialogFragment;->access$000(Landroidx/fragment/app/DialogFragment;)Landroid/app/Dialog;
 
     .line 26
     .line 27
@@ -142,7 +142,7 @@
     const/4 v0, 0x3
 
     .line 32
-    invoke-static {v0}, Landroidx/fragment/app/F;->J0(I)Z
+    invoke-static {v0}, Landroidx/fragment/app/f0;->J0(I)Z
 
     .line 33
     .line 34
@@ -186,11 +186,11 @@
     .line 54
     .line 55
     .line 56
-    iget-object v1, p0, Landroidx/fragment/app/DialogFragment$d;->g:Landroidx/fragment/app/DialogFragment;
+    iget-object v1, p0, Landroidx/fragment/app/DialogFragment$d;->c:Landroidx/fragment/app/DialogFragment;
 
     .line 57
     .line 58
-    invoke-static {v1}, Landroidx/fragment/app/DialogFragment;->l(Landroidx/fragment/app/DialogFragment;)Landroid/app/Dialog;
+    invoke-static {v1}, Landroidx/fragment/app/DialogFragment;->access$000(Landroidx/fragment/app/DialogFragment;)Landroid/app/Dialog;
 
     .line 59
     .line 60
@@ -221,11 +221,11 @@
     .line 73
     .line 74
     :cond_0
-    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$d;->g:Landroidx/fragment/app/DialogFragment;
+    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$d;->c:Landroidx/fragment/app/DialogFragment;
 
     .line 75
     .line 76
-    invoke-static {p0}, Landroidx/fragment/app/DialogFragment;->l(Landroidx/fragment/app/DialogFragment;)Landroid/app/Dialog;
+    invoke-static {p0}, Landroidx/fragment/app/DialogFragment;->access$000(Landroidx/fragment/app/DialogFragment;)Landroid/app/Dialog;
 
     .line 77
     .line 78

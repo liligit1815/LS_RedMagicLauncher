@@ -1,21 +1,64 @@
-.class public LQ1/f;
+.class public final Lq1/f;
 .super Ljava/lang/Object;
-.source "StateAnimationConfig.java"
+.source "InputMethodManager.android.kt"
 
 
-# instance fields
-.field public g:J
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u0003\u0008\u00c1\u0002\u0018\u00002\u00020\u0001B\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003J\u001d\u0010\t\u001a\u00020\u00082\u0006\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0007\u001a\u00020\u0006\u00a2\u0006\u0004\u0008\t\u0010\n\u00a8\u0006\u000b"
+    }
+    d2 = {
+        "Lq1/f;",
+        "",
+        "<init>",
+        "()V",
+        "Landroid/view/inputmethod/InputMethodManager;",
+        "imm",
+        "Landroid/view/View;",
+        "view",
+        "",
+        "a",
+        "(Landroid/view/inputmethod/InputMethodManager;Landroid/view/View;)V",
+        "foundation"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-.field public h:I
 
-.field public i:I
-
-.field protected final j:[Landroid/view/animation/Interpolator;
+# static fields
+.field public static final a:Lq1/f;
 
 
 # direct methods
-.method public constructor <init>()V
+.method static constructor <clinit>()V
     .locals 1
+
+    .line 1
+    new-instance v0, Lq1/f;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Lq1/f;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    sput-object v0, Lq1/f;->a:Lq1/f;
+
+    .line 7
+    .line 8
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 0
 
     .line 1
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,191 +66,19 @@
     .line 2
     .line 3
     .line 4
-    const/4 v0, 0x0
-
-    .line 5
-    iput v0, p0, LQ1/f;->h:I
-
-    .line 6
-    .line 7
-    iput v0, p0, LQ1/f;->i:I
-
-    .line 8
-    .line 9
-    const/16 v0, 0x15
-
-    .line 10
-    .line 11
-    new-array v0, v0, [Landroid/view/animation/Interpolator;
-
-    .line 12
-    .line 13
-    iput-object v0, p0, LQ1/f;->j:[Landroid/view/animation/Interpolator;
-
-    .line 14
-    .line 15
     return-void
 .end method
 
 
 # virtual methods
-.method public a(LQ1/f;)V
-    .locals 3
-
-    .line 1
-    iget-wide v0, p0, LQ1/f;->g:J
-
-    .line 2
-    .line 3
-    iput-wide v0, p1, LQ1/f;->g:J
-
-    .line 4
-    .line 5
-    iget v0, p0, LQ1/f;->i:I
-
-    .line 6
-    .line 7
-    iput v0, p1, LQ1/f;->i:I
-
-    .line 8
-    .line 9
-    iget v0, p0, LQ1/f;->h:I
-
-    .line 10
-    .line 11
-    iput v0, p1, LQ1/f;->h:I
-
-    .line 12
-    .line 13
-    const/4 v0, 0x0
-
-    .line 14
-    :goto_0
-    const/16 v1, 0x15
-
-    .line 15
-    .line 16
-    if-ge v0, v1, :cond_0
-
-    .line 17
-    .line 18
-    iget-object v1, p1, LQ1/f;->j:[Landroid/view/animation/Interpolator;
-
-    .line 19
-    .line 20
-    iget-object v2, p0, LQ1/f;->j:[Landroid/view/animation/Interpolator;
-
-    .line 21
-    .line 22
-    aget-object v2, v2, v0
-
-    .line 23
-    .line 24
-    aput-object v2, v1, v0
-
-    .line 25
-    .line 26
-    add-int/lit8 v0, v0, 0x1
-
-    .line 27
-    .line 28
-    goto :goto_0
-
-    .line 29
-    :cond_0
-    return-void
-.end method
-
-.method public b(ILandroid/view/animation/Interpolator;)Landroid/view/animation/Interpolator;
+.method public final a(Landroid/view/inputmethod/InputMethodManager;Landroid/view/View;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, LQ1/f;->j:[Landroid/view/animation/Interpolator;
+    invoke-virtual {p1, p2}, Landroid/view/inputmethod/InputMethodManager;->startStylusHandwriting(Landroid/view/View;)V
 
     .line 2
     .line 3
-    aget-object p0, p0, p1
-
     .line 4
-    .line 5
-    if-nez p0, :cond_0
-
-    .line 6
-    .line 7
-    return-object p2
-
-    .line 8
-    :cond_0
-    return-object p0
-.end method
-
-.method public c(I)Z
-    .locals 0
-
-    .line 1
-    iget p0, p0, LQ1/f;->i:I
-
-    .line 2
-    .line 3
-    and-int/2addr p0, p1
-
-    .line 4
-    if-eqz p0, :cond_0
-
-    .line 5
-    .line 6
-    const/4 p0, 0x1
-
-    .line 7
-    return p0
-
-    .line 8
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 9
-    return p0
-.end method
-
-.method public d()Z
-    .locals 1
-
-    .line 1
-    iget p0, p0, LQ1/f;->h:I
-
-    .line 2
-    .line 3
-    const/4 v0, 0x1
-
-    .line 4
-    and-int/2addr p0, v0
-
-    .line 5
-    if-eqz p0, :cond_0
-
-    .line 6
-    .line 7
-    return v0
-
-    .line 8
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 9
-    return p0
-.end method
-
-.method public e(ILandroid/view/animation/Interpolator;)V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LQ1/f;->j:[Landroid/view/animation/Interpolator;
-
-    .line 2
-    .line 3
-    aput-object p2, p0, p1
-
-    .line 4
-    .line 5
     return-void
 .end method

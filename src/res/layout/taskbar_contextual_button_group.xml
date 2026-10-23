@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingTop="@dimen/taskbar_contextual_group_padding_top" android:paddingBottom="@dimen/taskbar_contextual_group_padding_bottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingStart="@dimen/taskbar_contextual_group_padding_start" android:paddingEnd="@dimen/taskbar_contextual_group_padding_end"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

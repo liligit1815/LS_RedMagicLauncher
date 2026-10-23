@@ -1,4 +1,4 @@
-.class Landroidx/dynamicanimation/animation/e$p;
+.class public Landroidx/dynamicanimation/animation/e$p;
 .super Ljava/lang/Object;
 .source "DynamicAnimation.java"
 
@@ -9,19 +9,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "p"
 .end annotation
 
 
 # instance fields
-.field a:F
+.field public a:F
 
-.field b:F
+.field public b:F
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1

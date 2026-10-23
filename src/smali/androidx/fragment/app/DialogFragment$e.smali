@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/DialogFragment$e;
+.class public Landroidx/fragment/app/DialogFragment$e;
 .super Landroidx/fragment/app/u;
 .source "DialogFragment.java"
 
@@ -9,27 +9,27 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/fragment/app/u;
+.field public final synthetic c:Landroidx/fragment/app/u;
 
-.field final synthetic h:Landroidx/fragment/app/DialogFragment;
+.field public final synthetic m:Landroidx/fragment/app/DialogFragment;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/DialogFragment;Landroidx/fragment/app/u;)V
+.method public constructor <init>(Landroidx/fragment/app/DialogFragment;Landroidx/fragment/app/u;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/fragment/app/DialogFragment$e;->h:Landroidx/fragment/app/DialogFragment;
+    iput-object p1, p0, Landroidx/fragment/app/DialogFragment$e;->m:Landroidx/fragment/app/DialogFragment;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/fragment/app/DialogFragment$e;->g:Landroidx/fragment/app/u;
+    iput-object p2, p0, Landroidx/fragment/app/DialogFragment$e;->c:Landroidx/fragment/app/u;
 
     .line 4
     .line 5
@@ -43,15 +43,15 @@
 
 
 # virtual methods
-.method public c(I)Landroid/view/View;
+.method public f(I)Landroid/view/View;
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/fragment/app/DialogFragment$e;->g:Landroidx/fragment/app/u;
+    iget-object v0, p0, Landroidx/fragment/app/DialogFragment$e;->c:Landroidx/fragment/app/u;
 
     .line 2
     .line 3
-    invoke-virtual {v0}, Landroidx/fragment/app/u;->d()Z
+    invoke-virtual {v0}, Landroidx/fragment/app/u;->g()Z
 
     .line 4
     .line 5
@@ -63,11 +63,11 @@
 
     .line 8
     .line 9
-    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$e;->g:Landroidx/fragment/app/u;
+    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$e;->c:Landroidx/fragment/app/u;
 
     .line 10
     .line 11
-    invoke-virtual {p0, p1}, Landroidx/fragment/app/u;->c(I)Landroid/view/View;
+    invoke-virtual {p0, p1}, Landroidx/fragment/app/u;->f(I)Landroid/view/View;
 
     .line 12
     .line 13
@@ -79,11 +79,11 @@
 
     .line 16
     :cond_0
-    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$e;->h:Landroidx/fragment/app/DialogFragment;
+    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$e;->m:Landroidx/fragment/app/DialogFragment;
 
     .line 17
     .line 18
-    invoke-virtual {p0, p1}, Landroidx/fragment/app/DialogFragment;->v(I)Landroid/view/View;
+    invoke-virtual {p0, p1}, Landroidx/fragment/app/DialogFragment;->onFindViewById(I)Landroid/view/View;
 
     .line 19
     .line 20
@@ -94,15 +94,15 @@
     return-object p0
 .end method
 
-.method public d()Z
+.method public g()Z
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/fragment/app/DialogFragment$e;->g:Landroidx/fragment/app/u;
+    iget-object v0, p0, Landroidx/fragment/app/DialogFragment$e;->c:Landroidx/fragment/app/u;
 
     .line 2
     .line 3
-    invoke-virtual {v0}, Landroidx/fragment/app/u;->d()Z
+    invoke-virtual {v0}, Landroidx/fragment/app/u;->g()Z
 
     .line 4
     .line 5
@@ -114,11 +114,11 @@
 
     .line 8
     .line 9
-    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$e;->h:Landroidx/fragment/app/DialogFragment;
+    iget-object p0, p0, Landroidx/fragment/app/DialogFragment$e;->m:Landroidx/fragment/app/DialogFragment;
 
     .line 10
     .line 11
-    invoke-virtual {p0}, Landroidx/fragment/app/DialogFragment;->w()Z
+    invoke-virtual {p0}, Landroidx/fragment/app/DialogFragment;->onHasView()Z
 
     .line 12
     .line 13

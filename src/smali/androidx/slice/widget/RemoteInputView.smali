@@ -16,29 +16,29 @@
 
 
 # static fields
-.field public static final q:Ljava/lang/Object;
+.field public static final v:Ljava/lang/Object;
 
 
 # instance fields
-.field g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+.field public c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
-.field private h:Landroid/widget/ImageButton;
+.field public m:Landroid/widget/ImageButton;
 
-.field private i:Landroid/widget/ProgressBar;
+.field public n:Landroid/widget/ProgressBar;
 
-.field private j:Landroidx/slice/SliceItem;
+.field public o:Landroidx/slice/SliceItem;
 
-.field private k:[Landroid/app/RemoteInput;
+.field public p:[Landroid/app/RemoteInput;
 
-.field private l:Landroid/app/RemoteInput;
+.field public q:Landroid/app/RemoteInput;
 
-.field private m:I
+.field public r:I
 
-.field private n:I
+.field public s:I
 
-.field private o:I
+.field public t:I
 
-.field private p:Z
+.field public u:Z
 
 
 # direct methods
@@ -55,7 +55,7 @@
     .line 4
     .line 5
     .line 6
-    sput-object v0, Landroidx/slice/widget/RemoteInputView;->q:Ljava/lang/Object;
+    sput-object v0, Landroidx/slice/widget/RemoteInputView;->v:Ljava/lang/Object;
 
     .line 7
     .line 8
@@ -74,76 +74,6 @@
     return-void
 .end method
 
-.method private a()V
-    .locals 2
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    invoke-virtual {p0, v0}, Landroid/widget/LinearLayout;->setVisibility(I)V
-
-    .line 3
-    .line 4
-    .line 5
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
-
-    .line 6
-    .line 7
-    const/4 v1, 0x1
-
-    .line 8
-    invoke-virtual {v0, v1}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->setInnerFocusable(Z)V
-
-    .line 9
-    .line 10
-    .line 11
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
-
-    .line 12
-    .line 13
-    iput-boolean v1, v0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->i:Z
-
-    .line 14
-    .line 15
-    invoke-virtual {v0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object v1
-
-    .line 19
-    invoke-interface {v1}, Landroid/text/Editable;->length()I
-
-    .line 20
-    .line 21
-    .line 22
-    move-result v1
-
-    .line 23
-    invoke-virtual {v0, v1}, Landroid/widget/EditText;->setSelection(I)V
-
-    .line 24
-    .line 25
-    .line 26
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
-
-    .line 27
-    .line 28
-    invoke-virtual {v0}, Landroid/widget/EditText;->requestFocus()Z
-
-    .line 29
-    .line 30
-    .line 31
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView;->j()V
-
-    .line 32
-    .line 33
-    .line 34
-    return-void
-.end method
-
 .method public static c(Landroid/content/Context;Landroid/view/ViewGroup;)Landroidx/slice/widget/RemoteInputView;
     .locals 2
 
@@ -156,7 +86,7 @@
     move-result-object p0
 
     .line 5
-    sget v0, Li0/c;->c:I
+    sget v0, Ln7/c;->c:I
 
     .line 6
     .line 7
@@ -175,7 +105,7 @@
 
     .line 13
     .line 14
-    sget-object p1, Landroidx/slice/widget/RemoteInputView;->q:Ljava/lang/Object;
+    sget-object p1, Landroidx/slice/widget/RemoteInputView;->v:Ljava/lang/Object;
 
     .line 15
     .line 16
@@ -236,142 +166,83 @@
     return p0
 .end method
 
-.method private f()V
-    .locals 3
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    iput-boolean v0, p0, Landroidx/slice/widget/RemoteInputView;->p:Z
-
-    .line 3
-    .line 4
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
-
-    .line 5
-    .line 6
-    invoke-virtual {v1}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    .line 7
-    .line 8
-    .line 9
-    move-result-object v1
-
-    .line 10
-    invoke-interface {v1}, Landroid/text/Editable;->clear()V
-
-    .line 11
-    .line 12
-    .line 13
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
-
-    .line 14
-    .line 15
-    invoke-virtual {v1, v0}, Landroid/widget/EditText;->setEnabled(Z)V
-
-    .line 16
-    .line 17
-    .line 18
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->h:Landroid/widget/ImageButton;
-
-    .line 19
-    .line 20
-    const/4 v1, 0x0
-
-    .line 21
-    invoke-virtual {v0, v1}, Landroid/widget/ImageButton;->setVisibility(I)V
-
-    .line 22
-    .line 23
-    .line 24
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->i:Landroid/widget/ProgressBar;
-
-    .line 25
-    .line 26
-    const/4 v2, 0x4
-
-    .line 27
-    invoke-virtual {v0, v2}, Landroid/widget/ProgressBar;->setVisibility(I)V
-
-    .line 28
-    .line 29
-    .line 30
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView;->j()V
-
-    .line 31
-    .line 32
-    .line 33
-    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->e()V
-
-    .line 34
-    .line 35
-    .line 36
-    iput-boolean v1, p0, Landroidx/slice/widget/RemoteInputView;->p:Z
-
-    .line 37
-    .line 38
-    return-void
-.end method
-
-.method private j()V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->h:Landroid/widget/ImageButton;
-
-    .line 2
-    .line 3
-    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    invoke-interface {p0}, Landroid/text/Editable;->length()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result p0
-
-    .line 13
-    if-eqz p0, :cond_0
-
-    .line 14
-    .line 15
-    const/4 p0, 0x1
-
-    .line 16
-    goto :goto_0
-
-    .line 17
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 18
-    :goto_0
-    invoke-virtual {v0, p0}, Landroid/widget/ImageButton;->setEnabled(Z)V
-
-    .line 19
-    .line 20
-    .line 21
-    return-void
-.end method
-
 
 # virtual methods
+.method public final a()V
+    .locals 2
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    invoke-virtual {p0, v0}, Landroid/widget/LinearLayout;->setVisibility(I)V
+
+    .line 3
+    .line 4
+    .line 5
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+
+    .line 6
+    .line 7
+    const/4 v1, 0x1
+
+    .line 8
+    invoke-virtual {v0, v1}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->setInnerFocusable(Z)V
+
+    .line 9
+    .line 10
+    .line 11
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+
+    .line 12
+    .line 13
+    iput-boolean v1, v0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->n:Z
+
+    .line 14
+    .line 15
+    invoke-virtual {v0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    .line 16
+    .line 17
+    .line 18
+    move-result-object v1
+
+    .line 19
+    invoke-interface {v1}, Landroid/text/Editable;->length()I
+
+    .line 20
+    .line 21
+    .line 22
+    move-result v1
+
+    .line 23
+    invoke-virtual {v0, v1}, Landroid/widget/EditText;->setSelection(I)V
+
+    .line 24
+    .line 25
+    .line 26
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+
+    .line 27
+    .line 28
+    invoke-virtual {v0}, Landroid/widget/EditText;->requestFocus()Z
+
+    .line 29
+    .line 30
+    .line 31
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->j()V
+
+    .line 32
+    .line 33
+    .line 34
+    return-void
+.end method
+
 .method public afterTextChanged(Landroid/text/Editable;)V
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView;->j()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->j()V
 
     .line 2
     .line 3
@@ -395,15 +266,15 @@
 
     .line 6
     .line 7
-    iget v0, p0, Landroidx/slice/widget/RemoteInputView;->m:I
+    iget v0, p0, Landroidx/slice/widget/RemoteInputView;->r:I
 
     .line 8
     .line 9
-    iget v1, p0, Landroidx/slice/widget/RemoteInputView;->n:I
+    iget v1, p0, Landroidx/slice/widget/RemoteInputView;->s:I
 
     .line 10
     .line 11
-    iget v2, p0, Landroidx/slice/widget/RemoteInputView;->o:I
+    iget v2, p0, Landroidx/slice/widget/RemoteInputView;->t:I
 
     .line 12
     .line 13
@@ -436,7 +307,7 @@
     .line 26
     .line 27
     :cond_0
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView;->a()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->a()V
 
     .line 28
     .line 29
@@ -470,7 +341,7 @@
 
     .line 7
     .line 8
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 9
     .line 10
@@ -491,7 +362,7 @@
 
     .line 18
     :cond_0
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 19
     .line 20
@@ -518,7 +389,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 5
     .line 6
@@ -530,7 +401,7 @@
     return-void
 .end method
 
-.method e()V
+.method public e()V
     .locals 1
 
     .line 1
@@ -545,7 +416,85 @@
     return-void
 .end method
 
-.method g()V
+.method public final f()V
+    .locals 3
+
+    .line 1
+    const/4 v0, 0x1
+
+    .line 2
+    iput-boolean v0, p0, Landroidx/slice/widget/RemoteInputView;->u:Z
+
+    .line 3
+    .line 4
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+
+    .line 5
+    .line 6
+    invoke-virtual {v1}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    .line 7
+    .line 8
+    .line 9
+    move-result-object v1
+
+    .line 10
+    invoke-interface {v1}, Landroid/text/Editable;->clear()V
+
+    .line 11
+    .line 12
+    .line 13
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+
+    .line 14
+    .line 15
+    invoke-virtual {v1, v0}, Landroid/widget/EditText;->setEnabled(Z)V
+
+    .line 16
+    .line 17
+    .line 18
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->m:Landroid/widget/ImageButton;
+
+    .line 19
+    .line 20
+    const/4 v1, 0x0
+
+    .line 21
+    invoke-virtual {v0, v1}, Landroid/widget/ImageButton;->setVisibility(I)V
+
+    .line 22
+    .line 23
+    .line 24
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->n:Landroid/widget/ProgressBar;
+
+    .line 25
+    .line 26
+    const/4 v2, 0x4
+
+    .line 27
+    invoke-virtual {v0, v2}, Landroid/widget/ProgressBar;->setVisibility(I)V
+
+    .line 28
+    .line 29
+    .line 30
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->j()V
+
+    .line 31
+    .line 32
+    .line 33
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->e()V
+
+    .line 34
+    .line 35
+    .line 36
+    iput-boolean v1, p0, Landroidx/slice/widget/RemoteInputView;->u:Z
+
+    .line 37
+    .line 38
+    return-void
+.end method
+
+.method public g()V
     .locals 4
 
     .line 1
@@ -558,7 +507,7 @@
     .line 4
     .line 5
     .line 6
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->l:Landroid/app/RemoteInput;
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->q:Landroid/app/RemoteInput;
 
     .line 7
     .line 8
@@ -570,7 +519,7 @@
     move-result-object v1
 
     .line 12
-    iget-object v2, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v2, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 13
     .line 14
@@ -616,7 +565,7 @@
     move-result-object v1
 
     .line 36
-    iget-object v2, p0, Landroidx/slice/widget/RemoteInputView;->k:[Landroid/app/RemoteInput;
+    iget-object v2, p0, Landroidx/slice/widget/RemoteInputView;->p:[Landroid/app/RemoteInput;
 
     .line 37
     .line 38
@@ -625,7 +574,7 @@
     .line 39
     .line 40
     .line 41
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 42
     .line 43
@@ -637,7 +586,7 @@
     .line 45
     .line 46
     .line 47
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->h:Landroid/widget/ImageButton;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->m:Landroid/widget/ImageButton;
 
     .line 48
     .line 49
@@ -649,7 +598,7 @@
     .line 51
     .line 52
     .line 53
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->i:Landroid/widget/ProgressBar;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->n:Landroid/widget/ProgressBar;
 
     .line 54
     .line 55
@@ -658,16 +607,16 @@
     .line 56
     .line 57
     .line 58
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 59
     .line 60
-    iput-boolean v2, v0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->i:Z
+    iput-boolean v2, v0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->n:Z
 
     .line 61
     .line 62
     :try_start_0
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->j:Landroidx/slice/SliceItem;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->o:Landroidx/slice/SliceItem;
 
     .line 63
     .line 64
@@ -684,7 +633,7 @@
     .line 69
     .line 70
     .line 71
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView;->f()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->f()V
     :try_end_0
     .catch Landroid/app/PendingIntent$CanceledException; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -736,7 +685,7 @@
     .line 94
     .line 95
     .line 96
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView;->f()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView;->f()V
 
     .line 97
     .line 98
@@ -748,15 +697,15 @@
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView;->k:[Landroid/app/RemoteInput;
+    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView;->p:[Landroid/app/RemoteInput;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/slice/widget/RemoteInputView;->l:Landroid/app/RemoteInput;
+    iput-object p2, p0, Landroidx/slice/widget/RemoteInputView;->q:Landroid/app/RemoteInput;
 
     .line 4
     .line 5
-    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 6
     .line 7
@@ -780,18 +729,69 @@
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/slice/widget/RemoteInputView;->m:I
+    iput p1, p0, Landroidx/slice/widget/RemoteInputView;->r:I
 
     .line 2
     .line 3
-    iput p2, p0, Landroidx/slice/widget/RemoteInputView;->n:I
+    iput p2, p0, Landroidx/slice/widget/RemoteInputView;->s:I
 
     .line 4
     .line 5
-    iput p3, p0, Landroidx/slice/widget/RemoteInputView;->o:I
+    iput p3, p0, Landroidx/slice/widget/RemoteInputView;->t:I
 
     .line 6
     .line 7
+    return-void
+.end method
+
+.method public final j()V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->m:Landroid/widget/ImageButton;
+
+    .line 2
+    .line 3
+    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+
+    .line 4
+    .line 5
+    invoke-virtual {p0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object p0
+
+    .line 9
+    invoke-interface {p0}, Landroid/text/Editable;->length()I
+
+    .line 10
+    .line 11
+    .line 12
+    move-result p0
+
+    .line 13
+    if-eqz p0, :cond_0
+
+    .line 14
+    .line 15
+    const/4 p0, 0x1
+
+    .line 16
+    goto :goto_0
+
+    .line 17
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 18
+    :goto_0
+    invoke-virtual {v0, p0}, Landroid/widget/ImageButton;->setEnabled(Z)V
+
+    .line 19
+    .line 20
+    .line 21
     return-void
 .end method
 
@@ -799,7 +799,7 @@
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->h:Landroid/widget/ImageButton;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->m:Landroid/widget/ImageButton;
 
     .line 2
     .line 3
@@ -816,7 +816,7 @@
     return-void
 .end method
 
-.method protected onFinishInflate()V
+.method public onFinishInflate()V
     .locals 3
 
     .line 1
@@ -825,7 +825,7 @@
     .line 2
     .line 3
     .line 4
-    sget v0, Li0/b;->a:I
+    sget v0, Ln7/b;->a:I
 
     .line 5
     .line 6
@@ -841,11 +841,11 @@
 
     .line 11
     .line 12
-    iput-object v0, p0, Landroidx/slice/widget/RemoteInputView;->i:Landroid/widget/ProgressBar;
+    iput-object v0, p0, Landroidx/slice/widget/RemoteInputView;->n:Landroid/widget/ProgressBar;
 
     .line 13
     .line 14
-    sget v0, Li0/b;->b:I
+    sget v0, Ln7/b;->b:I
 
     .line 15
     .line 16
@@ -861,7 +861,7 @@
 
     .line 21
     .line 22
-    iput-object v0, p0, Landroidx/slice/widget/RemoteInputView;->h:Landroid/widget/ImageButton;
+    iput-object v0, p0, Landroidx/slice/widget/RemoteInputView;->m:Landroid/widget/ImageButton;
 
     .line 23
     .line 24
@@ -885,7 +885,7 @@
 
     .line 33
     .line 34
-    iput-object v1, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iput-object v1, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 35
     .line 36
@@ -903,7 +903,7 @@
     .line 42
     .line 43
     .line 44
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 45
     .line 46
@@ -912,7 +912,7 @@
     .line 47
     .line 48
     .line 49
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 50
     .line 51
@@ -921,11 +921,11 @@
     .line 52
     .line 53
     .line 54
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 55
     .line 56
-    iput-object p0, v0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->h:Landroidx/slice/widget/RemoteInputView;
+    iput-object p0, v0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->m:Landroidx/slice/widget/RemoteInputView;
 
     .line 57
     .line 58
@@ -936,7 +936,7 @@
     .locals 1
 
     .line 1
-    iget-boolean v0, p0, Landroidx/slice/widget/RemoteInputView;->p:Z
+    iget-boolean v0, p0, Landroidx/slice/widget/RemoteInputView;->u:Z
 
     .line 2
     .line 3
@@ -944,7 +944,7 @@
 
     .line 4
     .line 5
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 6
     .line 7
@@ -996,7 +996,7 @@
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView;->j:Landroidx/slice/SliceItem;
+    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView;->o:Landroidx/slice/SliceItem;
 
     .line 2
     .line 3

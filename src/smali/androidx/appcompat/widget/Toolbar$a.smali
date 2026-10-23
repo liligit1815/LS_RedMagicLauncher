@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/Toolbar$a;
+.class public Landroidx/appcompat/widget/Toolbar$a;
 .super Ljava/lang/Object;
 .source "Toolbar.java"
 
@@ -12,17 +12,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/appcompat/widget/Toolbar;
+.field public final synthetic a:Landroidx/appcompat/widget/Toolbar;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/Toolbar;)V
+.method public constructor <init>(Landroidx/appcompat/widget/Toolbar;)V
     .locals 0
 
     .line 1
@@ -48,11 +48,11 @@
 
     .line 2
     .line 3
-    iget-object v0, v0, Landroidx/appcompat/widget/Toolbar;->M:LJ/o;
+    iget-object v0, v0, Landroidx/appcompat/widget/Toolbar;->R:Lz5/r;
 
     .line 4
     .line 5
-    invoke-virtual {v0, p1}, LJ/o;->h(Landroid/view/MenuItem;)Z
+    invoke-virtual {v0, p1}, Lz5/r;->h(Landroid/view/MenuItem;)Z
 
     .line 6
     .line 7
@@ -75,7 +75,7 @@
 
     .line 14
     .line 15
-    iget-object p0, p0, Landroidx/appcompat/widget/Toolbar;->O:Landroidx/appcompat/widget/Toolbar$h;
+    iget-object p0, p0, Landroidx/appcompat/widget/Toolbar;->T:Landroidx/appcompat/widget/Toolbar$h;
 
     .line 16
     .line 17

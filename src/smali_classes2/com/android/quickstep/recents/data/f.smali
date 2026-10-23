@@ -3,11 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lu4/l;
+.implements Ljava/util/function/Consumer;
+
+
+# instance fields
+.field public final synthetic a:Lcom/android/quickstep/recents/data/TasksRepository;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Lcom/android/quickstep/recents/data/TasksRepository;)V
     .locals 0
 
     .line 1
@@ -16,26 +20,31 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lcom/android/quickstep/recents/data/f;->a:Lcom/android/quickstep/recents/data/TasksRepository;
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
+.method public final accept(Ljava/lang/Object;)V
     .locals 0
 
     .line 1
-    check-cast p1, Lcom/android/systemui/shared/recents/model/ThumbnailData;
+    iget-object p0, p0, Lcom/android/quickstep/recents/data/f;->a:Lcom/android/quickstep/recents/data/TasksRepository;
 
     .line 2
     .line 3
-    invoke-static {p1}, Lcom/android/quickstep/recents/data/TasksRepository;->b(Lcom/android/systemui/shared/recents/model/ThumbnailData;)Ljava/lang/Long;
+    check-cast p1, Ljava/util/List;
 
     .line 4
     .line 5
-    .line 6
-    move-result-object p0
+    invoke-static {p0, p1}, Lcom/android/quickstep/recents/data/TasksRepository;->a(Lcom/android/quickstep/recents/data/TasksRepository;Ljava/util/List;)V
 
+    .line 6
     .line 7
-    return-object p0
+    .line 8
+    return-void
 .end method

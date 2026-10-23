@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="36" android:compileSdkVersionCodename="16" package="com.zte.mifavor.launcher" platformBuildVersionCode="36" platformBuildVersionName="16">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="37" android:compileSdkVersionCodename="17" package="com.zte.mifavor.launcher" platformBuildVersionCode="37" platformBuildVersionName="17">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"/>
     <uses-permission android:name="android.permission.CONTROL_REMOTE_APP_TRANSITION_ANIMATIONS"/>
@@ -19,9 +19,20 @@
     <uses-permission android:name="android.permission.MONITOR_INPUT"/>
     <uses-permission android:name="android.permission.ALLOW_SLIPPERY_TOUCHES"/>
     <uses-permission android:name="android.permission.ACCESS_SHORTCUTS"/>
+    <uses-permission android:name="android.permission.READ_REMOTE_TASKS"/>
+    <uses-permission android:name="android.permission.REQUEST_TASK_HANDOFF"/>
+    <uses-permission android:name="android.permission.MANAGE_ROLE_HOLDERS"/>
+    <uses-permission android:featureFlag="com.android.server.ui_latency_stats.ui_latency_stats_service" android:name="android.permission.REPORT_UI_LATENCY_STATS"/>
     <uses-permission android:name="android.permission.SYSTEM_APPLICATION_OVERLAY"/>
+    <uses-permission android:name="android.permission.EXECUTE_APP_FUNCTIONS_SYSTEM"/>
+    <uses-permission android:name="android.permission.PERSONAL_CONTEXT_PUBLISH_HINTS"/>
+    <uses-permission android:name="android.permission.PERSONAL_CONTEXT_RECEIVE_INSIGHTS"/>
+    <uses-permission android:name="android.permission.PERSONAL_CONTEXT_HOST_INSIGHT_SURFACE"/>
+    <uses-permission android:name="android.permission.PERSONAL_CONTEXT_READ_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES_FULL"/>
+    <uses-permission android:name="android.permission.MANAGE_KEY_GESTURES"/>
     <permission android:name="com.zte.mifavor.launcher.permission.START_WIDGET_PICKER_ACTIVITY" android:protectionLevel="signature|privileged"/>
+    <uses-permission android:name="com.android.documentsui.LAUNCH_FILE_MANAGER"/>
     <permission android:name="launchermfv.permission.RECENT_CLEAR" android:protectionLevel="signatureOrSystem"/>
     <permission android:name="launchermfv.permission.READ_TASK" android:protectionLevel="signatureOrSystem"/>
     <permission android:name="launchermfv.permission.RECENT_CLEAR_BLACKLIST" android:protectionLevel="normal"/>
@@ -29,7 +40,6 @@
     <uses-permission android:name="zte.permission.READ_STRATEGY"/>
     <uses-permission android:name="zte.permission.WRITE_STRATEGY"/>
     <uses-permission android:name="zte.permission.LAUNCH_POWER_SAVER_ACTIVITY"/>
-    <uses-permission android:name="android.permission.ALLOW_SLIPPERY_TOUCHES"/>
     <queries>
         <package android:name="com.zte.distservice.relayservice"/>
     </queries>
@@ -48,6 +58,7 @@
     <uses-permission android:name="miboard.permission.signature.writeprovider"/>
     <uses-permission android:name="com.zte.notice.strategy.PERMISSION"/>
     <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <uses-permission android:name="com.zte.contexthub.PERMISSION_ACCESS"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.SET_WALLPAPER"/>
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS"/>
@@ -59,12 +70,12 @@
     <uses-permission android:name="android.permission.ROTATE_SURFACE_FLINGER"/>
     <uses-permission android:name="android.permission.WAKEUP_SURFACE_FLINGER"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:featureFlag="android.security.app_lock_apis" android:name="android.permission.LOCK_APPS"/>
+    <uses-permission android:name="com.android.systemui.permission.LAUNCH_ACCESSIBILITY_SHORTCUT_CHOOSER_DIALOG"/>
+    <permission android:knownCerts="@array/grid_control_known_signers" android:name="com.zte.mifavor.launcher.permission.GRID_CONTROL" android:protectionLevel="signatureOrSystem"/>
+    <uses-permission android:name="com.zte.mifavor.launcher.permission.GRID_CONTROL"/>
     <uses-permission android:name="com.zte.multscr.permission.ACCESS_PROVIDER"/>
-    <permission android:description="@string/permdesc_read_settings" android:label="@string/permlab_read_settings" android:name="launchermfv.permission.READ_SETTINGS" android:protectionLevel="normal"/>
-    <permission android:description="@string/permdesc_write_settings" android:label="@string/permlab_write_settings" android:name="launchermfv.permission.WRITE_SETTINGS" android:protectionLevel="signatureOrSystem"/>
-    <uses-permission android:name="launchermfv.permission.READ_SETTINGS"/>
-    <uses-permission android:name="launchermfv.permission.WRITE_SETTINGS"/>
-    <permission android:name="launchermfv.permission.RECEIVE_LAUNCH_BROADCASTS" android:protectionLevel="signature"/>
+    <permission android:name="launchermfv.permission.RECEIVE_LAUNCH_BROADCASTS" android:protectionLevel="signatureOrSystem"/>
     <permission android:name="launchermfv.permission.USE_BACKUP_SERVICE"/>
     <permission android:name="launchermfv.permission.Z_BACKUP_SERVICE"/>
     <permission android:name="launchermfv.permission.Z_RECOVER_SERVICE"/>
@@ -109,17 +120,23 @@
     <uses-permission android:name="com.zte.systemui.permission.UNLOCK_SPACE"/>
     <uses-permission android:name="systemui.permission.read_privatespace_provider"/>
     <uses-permission android:name="com.android.systemui.permission.fileprovider"/>
+    <uses-permission android:name="com.zte.beautifyadapter.permission.ACCESS_ONESHOT_FILES"/>
     <uses-permission android:name="com.aicd.client.permission.WIDGET_PROVIDER"/>
     <uses-permission android:name="com.aicd.client.permission.RECEIVE_BROADCAST"/>
     <permission android:name="launchermfv.permission.UNLOCK_ANIMATION" android:protectionLevel="signatureOrSystem"/>
     <permission android:name="launchermfv.permission.GS_LAUNCHER_DATA" android:protectionLevel="signatureOrSystem"/>
+    <uses-permission android:name="com.zte.autotask.permission.PULL_ALIVE"/>
     <permission android:name="com.zte.mifavor.launcher.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
     <uses-permission android:name="com.zte.mifavor.launcher.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
     <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:backupAgent="com.android.launcher3.LauncherBackupAgent" android:backupInForeground="true" android:defaultToDeviceProtectedStorage="true" android:directBootAware="true" android:enableOnBackInvokedCallback="true" android:extractNativeLibs="false" android:fullBackupContent="@xml/backupscheme" android:fullBackupOnly="true" android:hardwareAccelerated="true" android:icon="@drawable/ic_launcher_home" android:label="@string/application_myos_name" android:largeHeap="@bool/config_largeHeap" android:name="com.android.launcher3.LauncherApplication" android:restoreAnyVersion="true" android:supportsRtl="true" android:theme="@style/LauncherTheme" android:usesCleartextTraffic="true">
-        <provider android:authorities="com.zte.mifavor.launcher.online-updates" android:exported="false" android:grantUriPermissions="true" android:name="com.android.quickstep.views.LsUpdateFileProvider"/>
         <service android:directBootAware="true" android:exported="true" android:name="com.android.quickstep.TouchInteractionService" android:permission="android.permission.STATUS_BAR_SERVICE">
             <intent-filter>
                 <action android:name="android.intent.action.QUICKSTEP_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.android.launcher3.taskbar.CueBarInsightRendererService" android:permission="android.permission.BIND_CONTEXT_COMPONENT_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.personalcontext.renderer.InsightRendererService"/>
             </intent-filter>
         </service>
         <activity android:clearTaskOnLaunch="true" android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:enableOnBackInvokedCallback="false" android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.android.quickstep.RecentsActivity" android:resizeableActivity="true" android:resumeWhilePausing="true" android:screenOrientation="behind" android:stateNotNeeded="true" android:taskAffinity="" android:theme="@style/LauncherTheme"/>
@@ -138,22 +155,29 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:autoRemoveFromRecents="true" android:excludeFromRecents="true" android:exported="true" android:label="@string/allset_title" android:name="com.android.quickstep.interaction.AllSetActivity" android:permission="android.permission.REBOOT" android:theme="@style/AllSetTheme">
+        <activity android:autoRemoveFromRecents="true" android:enableOnBackInvokedCallback="false" android:excludeFromRecents="true" android:exported="true" android:label="@string/allset_title" android:name="com.android.quickstep.interaction.AllSetActivity" android:permission="android.permission.REBOOT" android:theme="@style/AllSetTheme">
             <intent-filter>
                 <action android:name="com.android.quickstep.action.GESTURE_ONBOARDING_ALL_SET"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:autoRemoveFromRecents="true" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTop" android:name="com.android.launcher3.WidgetPickerActivity" android:permission="com.zte.mifavor.launcher.permission.START_WIDGET_PICKER_ACTIVITY" android:showOnLockScreen="true" android:theme="@style/WidgetPickerActivityTheme">
+        <activity android:autoRemoveFromRecents="true" android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTop" android:name="com.android.launcher3.QuickstepWidgetPickerActivity" android:permission="com.zte.mifavor.launcher.permission.START_WIDGET_PICKER_ACTIVITY" android:theme="@style/WidgetPickerActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.PICK"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:autoRemoveFromRecents="true" android:excludeFromRecents="true" android:exported="true" android:name="com.android.launcher3.QuickstepAddItemActivity" android:screenOrientation="@integer/add_item_aty_orientation" android:theme="@style/AddItemActivityTheme">
+            <intent-filter>
+                <action android:name="android.content.pm.action.CONFIRM_PIN_SHORTCUT"/>
+                <action android:name="android.content.pm.action.CONFIRM_PIN_APPWIDGET"/>
             </intent-filter>
         </activity>
         <activity android:clearTaskOnLaunch="true" android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize" android:enabled="true" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:name="com.android.launcher3.uioverrides.QuickstepLauncher" android:resizeableActivity="true" android:resumeWhilePausing="true" android:screenOrientation="unspecified" android:stateNotNeeded="true" android:taskAffinity="" android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.SHOW_WORK_APPS"/>
+                <action android:name="android.intent.action.ALL_APPS"/>
                 <category android:name="android.intent.category.HOME"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.MONKEY"/>
@@ -219,8 +243,8 @@
                 <action android:name="android.content.pm.action.CONFIRM_PIN_APPWIDGET"/>
             </intent-filter>
         </activity>
-        <provider android:authorities="com.zte.mifavor.launcher.settings" android:exported="true" android:name="com.android.launcher3.LauncherProvider" android:readPermission="launchermfv.permission.READ_SETTINGS" android:writePermission="launchermfv.permission.WRITE_SETTINGS"/>
-        <provider android:authorities="com.zte.mifavor.launcher.grid_control" android:exported="true" android:name="com.android.launcher3.graphics.LauncherCustomizationProvider" android:permission="android.permission.BIND_WALLPAPER"/>
+        <provider android:authorities="com.zte.mifavor.launcher.settings" android:exported="true" android:name="com.android.launcher3.LauncherProvider" android:readPermission="android.permission.ACCESS_LAUNCHER_DATA" android:writePermission="android.permission.ACCESS_LAUNCHER_DATA"/>
+        <provider android:authorities="com.zte.mifavor.launcher.grid_control" android:exported="true" android:name="com.android.launcher3.graphics.LauncherCustomizationProvider"/>
         <provider android:authorities="com.zte.mifavor.launcher.TestInfo" android:enabled="false" android:exported="true" android:name="com.android.launcher3.testing.TestInformationProvider" android:readPermission="android.permission.WRITE_SECURE_SETTINGS" android:writePermission="android.permission.WRITE_SECURE_SETTINGS"/>
         <activity android:enabled="true" android:exported="true" android:launchMode="singleTop" android:name="com.android.launcher3.secondarydisplay.SecondaryDisplayLauncher" android:theme="@style/AppTheme">
             <intent-filter>
@@ -230,11 +254,22 @@
             </intent-filter>
         </activity>
         <property android:name="android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED" android:value="true"/>
+        <activity android:autoRemoveFromRecents="true" android:excludeFromRecents="true" android:exported="false" android:name="com.android.launcher3.organizer.creation.screen.ui.OrganizerActivity" android:theme="@style/OrganizerTheme">
+            <intent-filter>
+                <action android:name="com.android.launcher3.ORGANIZER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:autoRemoveFromRecents="true" android:excludeFromRecents="true" android:exported="false" android:name="com.android.launcher3.organizer.creation.screen.ui.foldercreator.FolderCreatorActivity" android:theme="@style/FolderCreatorTheme">
+            <intent-filter>
+                <action android:name="com.android.launcher3.FOLDER_CREATION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <meta-data android:name="enableVisitNotch" android:value="true"/>
         <meta-data android:name="zte_appuid" android:value="3309774"/>
         <meta-data android:name="marketinfo" android:value="preload"/>
         <meta-data android:name="enhanced" android:value="true"/>
-        <meta-data android:name="com.zte.mifavor.launcher.tools_key" android:value="@string/ai_tools_key"/>
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <activity android:autoRemoveFromRecents="true" android:configChanges="keyboardHidden|navigation|orientation|screenSize" android:exported="true" android:label="@string/settings_title" android:name="com.android.launcher3.settings.SettingsActivityMFV" android:screenOrientation="behind" android:theme="@style/SettingsActivityTheme">
             <intent-filter>
@@ -321,10 +356,28 @@
             </intent-filter>
         </receiver>
         <provider android:authorities="com.zte.mifavor.launcher.GSOuterProvider" android:exported="true" android:multiprocess="true" android:name="com.android.launcher3.globalsearch.GSOuterProvider" android:permission="launchermfv.permission.GS_LAUNCHER_DATA"/>
-        <meta-data android:name="ZteExtResVersion" android:value="MiFavor 16.0.010.001 2026-04-14 10:39"/>
+        <meta-data android:name="ZteExtResVersion" android:value="MiFavor 17.0.010.001 2026-09-23 16:55"/>
+        <service android:enabled="@bool/enablePlatformAppFunctionService" android:exported="true" android:name="androidx.appfunctions.service.PlatformAppFunctionService" android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            <property android:name="android.app.appfunctions" android:value="app_functions.xml"/>
+            <property android:name="android.app.appfunctions.schema" android:value="app_functions_schema.xsd"/>
+            <property android:name="android.app.appfunctions.v2" android:value="app_functions_v2.xml"/>
+            <intent-filter>
+                <action android:name="android.app.appfunctions.AppFunctionService"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="@bool/enableExtensionAppFunctionService" android:exported="true" android:name="androidx.appfunctions.service.ExtensionAppFunctionService" android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            <property android:name="android.app.appfunctions" android:value="app_functions.xml"/>
+            <property android:name="android.app.appfunctions.schema" android:value="app_functions_schema.xsd"/>
+            <property android:name="android.app.appfunctions.v2" android:value="app_functions_v2.xml"/>
+            <intent-filter>
+                <action android:name="android.app.appfunctions.AppFunctionService"/>
+            </intent-filter>
+        </service>
+        <uses-library android:name="com.android.extensions.appfunctions" android:required="false"/>
+        <activity android:exported="true" android:name="androidx.compose.ui.tooling.PreviewActivity"/>
+        <activity android:excludeFromRecents="true" android:name="androidx.slice.compat.SlicePermissionActivity"/>
         <uses-library android:name="androidx.window.extensions" android:required="false"/>
         <uses-library android:name="androidx.window.sidecar" android:required="false"/>
-        <activity android:excludeFromRecents="true" android:name="androidx.slice.compat.SlicePermissionActivity"/>
         <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP">
             <intent-filter>
                 <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
@@ -339,11 +392,12 @@
                 <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
             </intent-filter>
         </receiver>
-        <meta-data android:name="ZteWidgetVersion" android:value="16.0.010.001 2026-04-15 12:07"/>
+        <meta-data android:name="ZteWidgetVersion" android:value="17.0.010.001 2026-09-23 16:50"/>
         <receiver android:exported="true" android:name="com.zte.toolsdk.producer.ToolsReceiver"/>
         <receiver android:name="com.zte.toolsdk.producer.RemoteViewsReceiver"/>
         <provider android:authorities="com.zte.mifavor.launcher.sharedprefsprovider" android:exported="true" android:name="com.zte.toolsdk.consumer.SharedPrefsContentProvider"/>
         <provider android:authorities="com.zte.mifavor.launcher.cardprovider" android:enabled="true" android:exported="true" android:name="com.zte.toolsdk.consumer.CardContentProvider"/>
         <provider android:authorities="com.zte.mifavor.launcher.animationendprovider" android:enabled="true" android:exported="true" android:name="com.zte.toolsdk.producer.AnimationEndContentProvider"/>
+        <provider android:authorities="com.zte.mifavor.launcher.online-updates" android:exported="false" android:grantUriPermissions="true" android:name="com.android.quickstep.views.LsUpdateFileProvider"/>
     </application>
 </manifest>

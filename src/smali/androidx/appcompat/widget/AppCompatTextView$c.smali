@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/AppCompatTextView$c;
+.class public Landroidx/appcompat/widget/AppCompatTextView$c;
 .super Landroidx/appcompat/widget/AppCompatTextView$b;
 .source "AppCompatTextView.java"
 
@@ -9,17 +9,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "c"
 .end annotation
 
 
 # instance fields
-.field final synthetic b:Landroidx/appcompat/widget/AppCompatTextView;
+.field public final synthetic b:Landroidx/appcompat/widget/AppCompatTextView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/AppCompatTextView;)V
+.method public constructor <init>(Landroidx/appcompat/widget/AppCompatTextView;)V
     .locals 0
 
     .line 1

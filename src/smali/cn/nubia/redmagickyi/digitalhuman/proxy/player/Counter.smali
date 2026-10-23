@@ -92,7 +92,7 @@
     return-void
 .end method
 
-.method static synthetic access$000(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)Z
+.method public static synthetic access$000(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)Z
     .locals 0
 
     .line 1
@@ -103,7 +103,7 @@
     return p0
 .end method
 
-.method static synthetic access$100(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)F
+.method public static synthetic access$100(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)F
     .locals 0
 
     .line 1
@@ -114,7 +114,7 @@
     return p0
 .end method
 
-.method static synthetic access$200(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;FZ)V
+.method public static synthetic access$200(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;FZ)V
     .locals 0
 
     .line 1
@@ -126,7 +126,7 @@
     return-void
 .end method
 
-.method static synthetic access$300(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)I
+.method public static synthetic access$300(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)I
     .locals 0
 
     .line 1
@@ -137,7 +137,7 @@
     return p0
 .end method
 
-.method static synthetic access$400(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)J
+.method public static synthetic access$400(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)J
     .locals 2
 
     .line 1
@@ -148,7 +148,7 @@
     return-wide v0
 .end method
 
-.method static synthetic access$500(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)J
+.method public static synthetic access$500(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)J
     .locals 2
 
     .line 1
@@ -159,7 +159,7 @@
     return-wide v0
 .end method
 
-.method static synthetic access$600(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)F
+.method public static synthetic access$600(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)F
     .locals 0
 
     .line 1
@@ -170,7 +170,7 @@
     return p0
 .end method
 
-.method static synthetic access$700(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;F)F
+.method public static synthetic access$700(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;F)F
     .locals 0
 
     .line 1
@@ -185,7 +185,7 @@
     return p0
 .end method
 
-.method static synthetic access$800(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter$OnCounterEventListener;
+.method public static synthetic access$800(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter;)Lcn/nubia/redmagickyi/digitalhuman/proxy/player/Counter$OnCounterEventListener;
     .locals 0
 
     .line 1

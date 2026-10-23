@@ -14,11 +14,11 @@
 
 
 # instance fields
-.field private B:Landroidx/dynamicanimation/animation/k;
+.field public B:Landroidx/dynamicanimation/animation/k;
 
-.field private C:F
+.field public C:F
 
-.field private D:Z
+.field public D:Z
 
 
 # direct methods
@@ -150,7 +150,28 @@
     return-void
 .end method
 
-.method private A()V
+
+# virtual methods
+.method public A(FF)Z
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/dynamicanimation/animation/j;->B:Landroidx/dynamicanimation/animation/k;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1, p2}, Landroidx/dynamicanimation/animation/k;->e(FF)Z
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p0
+
+    .line 7
+    return p0
+.end method
+
+.method public final B()V
     .locals 4
 
     .line 1
@@ -257,9 +278,7 @@
     throw p0
 .end method
 
-
-# virtual methods
-.method public B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+.method public C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
     .locals 0
 
     .line 1
@@ -270,11 +289,11 @@
     return-object p0
 .end method
 
-.method public C()V
+.method public D()V
     .locals 1
 
     .line 1
-    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/j;->x()Z
+    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/j;->y()Z
 
     .line 2
     .line 3
@@ -424,18 +443,18 @@
     return-void
 .end method
 
-.method s(F)V
+.method public t(F)V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method public t()V
+.method public u()V
     .locals 3
 
     .line 1
-    invoke-direct {p0}, Landroidx/dynamicanimation/animation/j;->A()V
+    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/j;->B()V
 
     .line 2
     .line 3
@@ -444,7 +463,7 @@
 
     .line 5
     .line 6
-    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/e;->g()F
+    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/e;->h()F
 
     .line 7
     .line 8
@@ -460,7 +479,7 @@
     .line 12
     .line 13
     .line 14
-    invoke-super {p0}, Landroidx/dynamicanimation/animation/e;->t()V
+    invoke-super {p0}, Landroidx/dynamicanimation/animation/e;->u()V
 
     .line 15
     .line 16
@@ -468,7 +487,7 @@
     return-void
 .end method
 
-.method v(J)Z
+.method public w(J)Z
     .locals 20
 
     .line 1
@@ -756,7 +775,7 @@
 
     .line 136
     .line 137
-    invoke-virtual {v0, v1, v5}, Landroidx/dynamicanimation/animation/j;->z(FF)Z
+    invoke-virtual {v0, v1, v5}, Landroidx/dynamicanimation/animation/j;->A(FF)Z
 
     .line 138
     .line 139
@@ -795,11 +814,11 @@
     return v3
 .end method
 
-.method public w(F)V
+.method public x(F)V
     .locals 1
 
     .line 1
-    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/e;->h()Z
+    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/e;->i()Z
 
     .line 2
     .line 3
@@ -850,7 +869,7 @@
     .line 24
     .line 25
     .line 26
-    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/j;->t()V
+    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/j;->u()V
 
     .line 27
     .line 28
@@ -858,7 +877,7 @@
     return-void
 .end method
 
-.method public x()Z
+.method public y()Z
     .locals 4
 
     .line 1
@@ -895,7 +914,7 @@
     return p0
 .end method
 
-.method public y()Landroidx/dynamicanimation/animation/k;
+.method public z()Landroidx/dynamicanimation/animation/k;
     .locals 0
 
     .line 1
@@ -904,23 +923,4 @@
     .line 2
     .line 3
     return-object p0
-.end method
-
-.method z(FF)Z
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/dynamicanimation/animation/j;->B:Landroidx/dynamicanimation/animation/k;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1, p2}, Landroidx/dynamicanimation/animation/k;->e(FF)Z
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    return p0
 .end method

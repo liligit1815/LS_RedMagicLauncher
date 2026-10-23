@@ -1,70 +1,61 @@
-.class public final LJ/A;
+.class public interface abstract annotation Lj/a;
 .super Ljava/lang/Object;
-.source "PointerIconCompat.java"
+.source "Keep.jvm.kt"
+
+# interfaces
+.implements Ljava/lang/annotation/Annotation;
 
 
 # annotations
-.annotation system Ldalvik/annotation/MemberClasses;
+.annotation runtime Ljava/lang/annotation/Retention;
+    value = .enum Ljava/lang/annotation/RetentionPolicy;->CLASS:Ljava/lang/annotation/RetentionPolicy;
+.end annotation
+
+.annotation runtime Ljava/lang/annotation/Target;
     value = {
-        LJ/A$a;
+        .enum Ljava/lang/annotation/ElementType;->PACKAGE:Ljava/lang/annotation/ElementType;,
+        .enum Ljava/lang/annotation/ElementType;->TYPE:Ljava/lang/annotation/ElementType;,
+        .enum Ljava/lang/annotation/ElementType;->ANNOTATION_TYPE:Ljava/lang/annotation/ElementType;,
+        .enum Ljava/lang/annotation/ElementType;->CONSTRUCTOR:Ljava/lang/annotation/ElementType;,
+        .enum Ljava/lang/annotation/ElementType;->METHOD:Ljava/lang/annotation/ElementType;,
+        .enum Ljava/lang/annotation/ElementType;->FIELD:Ljava/lang/annotation/ElementType;
     }
 .end annotation
 
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u000c\n\u0002\u0018\u0002\n\u0002\u0010\u001b\n\u0002\u0008\u0003\u0008\u0087\u0002\u0018\u00002\u00020\u0001B\u0007\u00a2\u0006\u0004\u0008\u0002\u0010\u0003\u00a8\u0006\u0004"
+    }
+    d2 = {
+        "Lj/a;",
+        "",
+        "<init>",
+        "()V",
+        "annotation"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x9,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-# instance fields
-.field private final a:Landroid/view/PointerIcon;
+.annotation runtime Lkotlin/annotation/Retention;
+    value = .enum Lkotlin/annotation/AnnotationRetention;->BINARY:Lkotlin/annotation/AnnotationRetention;
+.end annotation
 
-
-# direct methods
-.method private constructor <init>(Landroid/view/PointerIcon;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 2
-    .line 3
-    .line 4
-    iput-object p1, p0, LJ/A;->a:Landroid/view/PointerIcon;
-
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public static b(Landroid/content/Context;I)LJ/A;
-    .locals 1
-
-    .line 1
-    new-instance v0, LJ/A;
-
-    .line 2
-    .line 3
-    invoke-static {p0, p1}, LJ/A$a;->a(Landroid/content/Context;I)Landroid/view/PointerIcon;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object p0
-
-    .line 7
-    invoke-direct {v0, p0}, LJ/A;-><init>(Landroid/view/PointerIcon;)V
-
-    .line 8
-    .line 9
-    .line 10
-    return-object v0
-.end method
-
-
-# virtual methods
-.method public a()Ljava/lang/Object;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LJ/A;->a:Landroid/view/PointerIcon;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
+.annotation runtime Lkotlin/annotation/Target;
+    allowedTargets = {
+        .enum Lkotlin/annotation/AnnotationTarget;->FILE:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->ANNOTATION_CLASS:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->CLASS:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->ANNOTATION_CLASS:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->CONSTRUCTOR:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->FUNCTION:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->PROPERTY_GETTER:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->PROPERTY_SETTER:Lkotlin/annotation/AnnotationTarget;,
+        .enum Lkotlin/annotation/AnnotationTarget;->FIELD:Lkotlin/annotation/AnnotationTarget;
+    }
+.end annotation

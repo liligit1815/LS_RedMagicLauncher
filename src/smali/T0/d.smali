@@ -1,89 +1,178 @@
-.class public final synthetic LT0/d;
+.class public final Lt0/d;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+.source "LazyListSnapLayoutInfoProvider.kt"
 
 
-# instance fields
-.field public final synthetic g:Lcom/android/launcher3/Workspace;
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lt0/d$a;
+    }
+.end annotation
 
-.field public final synthetic h:Lcom/android/launcher3/C2;
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0010\u0008\n\u0002\u0008\u0005\u0008\u0081@\u0018\u0000 \u00062\u00020\u0001:\u0001\u0006B\u0011\u0008\u0000\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u00a2\u0006\u0004\u0008\u0004\u0010\u0005\u0088\u0001\u0003\u0092\u0001\u00020\u0002\u00a8\u0006\u0007"
+    }
+    d2 = {
+        "Lt0/d;",
+        "",
+        "",
+        "value",
+        "d",
+        "(I)I",
+        "a",
+        "foundation"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-.field public final synthetic i:Lcom/android/launcher3/Hotseat;
+.annotation runtime Lkotlin/jvm/JvmInline;
+.end annotation
 
-.field public final synthetic j:Lcom/android/launcher3/pageindicators/MfvPageIndicatorLayout;
 
-.field public final synthetic k:Lcom/android/launcher3/LongClickTextView;
+# static fields
+.field public static final a:Lt0/d$a;
+
+.field public static final b:I
+
+.field public static final c:I
+
+.field public static final d:I
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/launcher3/Workspace;Lcom/android/launcher3/C2;Lcom/android/launcher3/Hotseat;Lcom/android/launcher3/pageindicators/MfvPageIndicatorLayout;Lcom/android/launcher3/LongClickTextView;)V
-    .locals 0
+.method static constructor <clinit>()V
+    .locals 2
 
     .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    new-instance v0, Lt0/d$a;
 
     .line 2
     .line 3
+    const/4 v1, 0x0
+
     .line 4
-    iput-object p1, p0, LT0/d;->g:Lcom/android/launcher3/Workspace;
+    invoke-direct {v0, v1}, Lt0/d$a;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 
     .line 5
     .line 6
-    iput-object p2, p0, LT0/d;->h:Lcom/android/launcher3/C2;
-
     .line 7
-    .line 8
-    iput-object p3, p0, LT0/d;->i:Lcom/android/launcher3/Hotseat;
+    sput-object v0, Lt0/d;->a:Lt0/d$a;
 
+    .line 8
     .line 9
+    const/4 v0, 0x0
+
     .line 10
-    iput-object p4, p0, LT0/d;->j:Lcom/android/launcher3/pageindicators/MfvPageIndicatorLayout;
+    invoke-static {v0}, Lt0/d;->d(I)I
 
     .line 11
     .line 12
-    iput-object p5, p0, LT0/d;->k:Lcom/android/launcher3/LongClickTextView;
-
     .line 13
+    move-result v0
+
     .line 14
+    sput v0, Lt0/d;->b:I
+
+    .line 15
+    .line 16
+    const/4 v0, 0x1
+
+    .line 17
+    invoke-static {v0}, Lt0/d;->d(I)I
+
+    .line 18
+    .line 19
+    .line 20
+    move-result v0
+
+    .line 21
+    sput v0, Lt0/d;->c:I
+
+    .line 22
+    .line 23
+    const/4 v0, 0x2
+
+    .line 24
+    invoke-static {v0}, Lt0/d;->d(I)I
+
+    .line 25
+    .line 26
+    .line 27
+    move-result v0
+
+    .line 28
+    sput v0, Lt0/d;->d:I
+
+    .line 29
+    .line 30
     return-void
 .end method
 
-
-# virtual methods
-.method public final onAnimationUpdate(Landroid/animation/ValueAnimator;)V
-    .locals 6
+.method public static final synthetic a()I
+    .locals 1
 
     .line 1
-    iget-object v0, p0, LT0/d;->g:Lcom/android/launcher3/Workspace;
+    sget v0, Lt0/d;->b:I
 
     .line 2
     .line 3
-    iget-object v1, p0, LT0/d;->h:Lcom/android/launcher3/C2;
+    return v0
+.end method
+
+.method public static final synthetic b()I
+    .locals 1
+
+    .line 1
+    sget v0, Lt0/d;->c:I
+
+    .line 2
+    .line 3
+    return v0
+.end method
+
+.method public static final synthetic c()I
+    .locals 1
+
+    .line 1
+    sget v0, Lt0/d;->d:I
+
+    .line 2
+    .line 3
+    return v0
+.end method
+
+.method public static d(I)I
+    .locals 0
+
+    .line 1
+    return p0
+.end method
+
+.method public static final e(II)Z
+    .locals 0
+
+    .line 1
+    if-ne p0, p1, :cond_0
+
+    .line 2
+    .line 3
+    const/4 p0, 0x1
 
     .line 4
+    return p0
+
     .line 5
-    iget-object v2, p0, LT0/d;->i:Lcom/android/launcher3/Hotseat;
+    :cond_0
+    const/4 p0, 0x0
 
     .line 6
-    .line 7
-    iget-object v3, p0, LT0/d;->j:Lcom/android/launcher3/pageindicators/MfvPageIndicatorLayout;
-
-    .line 8
-    .line 9
-    iget-object v4, p0, LT0/d;->k:Lcom/android/launcher3/LongClickTextView;
-
-    .line 10
-    .line 11
-    move-object v5, p1
-
-    .line 12
-    invoke-static/range {v0 .. v5}, LT0/p;->n(Lcom/android/launcher3/Workspace;Lcom/android/launcher3/C2;Lcom/android/launcher3/Hotseat;Lcom/android/launcher3/pageindicators/MfvPageIndicatorLayout;Lcom/android/launcher3/LongClickTextView;Landroid/animation/ValueAnimator;)V
-
-    .line 13
-    .line 14
-    .line 15
-    return-void
+    return p0
 .end method

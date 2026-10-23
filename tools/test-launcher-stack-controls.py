@@ -58,7 +58,7 @@ public class StackControlsTest {
         Context(SharedPreferences p){prefs=p;} Context getApplicationContext(){return this;}
         SharedPreferences getSharedPreferences(String name,int mode){return prefs;}
         Resources getResources(){return resources;}Object getDrawable(int id){return id+":"+night;}
-        int getColor(int id){return id==0x7f060752?(night?0xffeeeeee:0xff000000):id==0x7f060574?0xff8c8c8c:id;}
+        int getColor(int id){return id==0x7f060780?(night?0xffeeeeee:0xff000000):id==0x7f06058a?0xff8c8c8c:id;}
     }
     static class View {
         static final int VISIBLE=0,INVISIBLE=4,GONE=8;
@@ -119,12 +119,12 @@ public class StackControlsTest {
     static class GradientDrawable extends Drawable {static final int OVAL=1;int color,w,h;void setColor(int c){color=c;}void setCornerRadius(float r){}void setShape(int s){}void setSize(int w,int h){this.w=w;this.h=h;}void setStroke(int w,int c){}}
     static class ClipDrawable extends Drawable {static final int HORIZONTAL=1;Drawable child;ClipDrawable(Drawable d,int g,int o){child=d;}}
     static class LayerDrawable extends Drawable {Drawable[] layers;int[] ids={0,0},heights={0,0};LayerDrawable(Drawable[] a){layers=a;}void setId(int i,int id){ids[i]=id;}void setLayerHeight(int i,int h){heights[i]=h;}void setLayerGravity(int i,int g){}}
-    static class TaskViewIcon {
+    static class IconAppChipView {
         View view;Drawable drawable=new Drawable();float alpha;
-        TaskViewIcon(Context c){view=new View(c);}View asView(){return view;}Drawable getDrawable(){return drawable;}
+        IconAppChipView(Context c){view=new View(c);}View asView(){return view;}Drawable getDrawable(){return drawable;}
         void setContentAlpha(float a){alpha=a;if(view.visibility!=View.GONE)view.visibility=a==0?View.INVISIBLE:View.VISIBLE;}
     }
-    static class TaskContainer {TaskViewIcon icon;TaskContainer(TaskViewIcon i){icon=i;}TaskViewIcon getIconView(){return icon;}}
+    static class TaskContainer {IconAppChipView icon;TaskContainer(IconAppChipView i){icon=i;}IconAppChipView getIconView(){return icon;}}
     static class TaskView {
         int width=774,height=1708;int getWidth(){return width;}int getHeight(){return height;}
         TextView title;View mini,split,menu;
@@ -350,10 +350,10 @@ public class StackControlsTest {
                 LinearLayout card=style==3?a.card:style==4?a.orbitCard:a.fanCard;
                 TextView signature=(TextView)card.findViewWithTag(SCALE_SIGNATURE_TAG);
                 check(signature!=null&&"礼舟".equals(signature.text),"missing per-card signature");
-                check(signature.color==context.getColor(0x7f060574),"signature did not use OEM secondary text");
+                check(signature.color==context.getColor(0x7f06058a),"signature did not use OEM secondary text");
                 check(card.children.size()==2&&card.children.get(1)==signature,"refresh duplicated/moved footer");
-                check(card.background.equals(context.getDrawable(0x7f08098f)),"card retained old OEM surface");
-                ScaleControl control=control(a,style);int color=context.getColor(0x7f060752);
+                check(card.background.equals(context.getDrawable(0x7f0809b2)),"card retained old OEM surface");
+                ScaleControl control=control(a,style);int color=context.getColor(0x7f060780);
                 check(control.captionLabel.color==color&&control.valueLabel.color==color,"caption/value retained old theme");
                 for(TextView endpoint:control.limitLabels)check(endpoint.color==color,"range label retained old theme");
                 check(control.visibility==(style==5?View.VISIBLE:View.GONE),"theme refresh changed selection");
@@ -453,7 +453,7 @@ public class StackControlsTest {
         near(overviewSecondaryCenterFraction,.5f,"missing view retained raised center");
         near(overviewSpacingScale,1,"missing view retained landscape spacing");
         orbitScaleAndClearance(context,prefs);
-        TaskView task=new TaskView();TaskViewIcon icon=new TaskViewIcon(context);task.containers.add(new TaskContainer(icon));
+        TaskView task=new TaskView();IconAppChipView icon=new IconAppChipView(context);task.containers.add(new TaskContainer(icon));
         // A long title can be hidden without suppressing its much narrower icon.
         icon.setContentAlpha(0);updateStackIcons(recents,task,100,1,180,1000,false);
         near(icon.alpha,1,"fitting INVISIBLE icon failed to reappear");
@@ -471,7 +471,7 @@ public class StackControlsTest {
             check(icon.alpha>0&&icon.alpha<1&&icon.view.effect!=null,"scaled partial icon not blurred");
         }
         recents.handler.vertical=false;
-        TaskViewIcon second=new TaskViewIcon(context);second.view.x=100;task.containers.add(new TaskContainer(second));
+        IconAppChipView second=new IconAppChipView(context);second.view.x=100;task.containers.add(new TaskContainer(second));
         updateStackIcons(recents,task,100,1,180,1000,false);near(icon.alpha,1,"first group icon");near(second.alpha,0,"covered group icon");
         updateStackIcons(recents,task,100,1,1000,1000,true);near(icon.alpha,0,"loading deck icon leak");
         check(icon.view.effect==null&&second.view.effect==null,"loading reset retained blur");
@@ -547,8 +547,8 @@ with tempfile.TemporaryDirectory(prefix='ls-stack-controls-') as folder:
                     str(ROOT / 'helper-src/main/com/android/quickstep/views/LsFanGeometry.java')], check=True)
     subprocess.run(['java', '-cp', folder, 'StackControlsTest'], check=True)
 
-activity = (ROOT / 'src/smali/com/android/launcher3/settings/RecentAppStyleActivity.smali').read_text(encoding='utf-8')
-selection = activity.split('.method private q0(I)V', 1)[1].split('.end method', 1)[0]
+activity = (ROOT / 'src/smali_classes2/com/android/launcher3/settings/RecentAppStyleActivity.smali').read_text(encoding='utf-8')
+selection = activity.split('.method private updateUIState(I)V', 1)[1].split('.end method', 1)[0]
 assert 'invoke-static {p0, p1}' in selection and '->configureScaleControl(Landroid/app/Activity;I)V' in selection
 update = member(r'public static void update\(')
 assert update.index('updateStackIcons(') > update.rindex('setNativeStackChromeAlpha(')
@@ -556,11 +556,11 @@ assert 'loadOverviewScale(recents.getContext(), recents)' in update
 assert 'baseChromeAlpha' not in member(r'private static float getStackIconAlpha\(')
 assert '(fan ? 0f : titleAlpha) * (taskOrdinal == actionOrdinal' in update
 assert 'applyStackIconBlur(icon.asView(), 0)' in member(r'private static void resetIfNeeded\(')
-task_smali = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+task_smali = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
 chrome = task_smali.split('.method public setNativeStackChromeAlpha(FF)V',1)[1].split('.end method',1)[0]
 assert '->setTitleAlpha(' not in chrome and '->setContentAlpha(' not in chrome
 assert '->hasNext()Z' in chrome and '->getTitleView()' in chrome
-home = (ROOT / 'src/smali/com/android/launcher3/uioverrides/touchcontrollers/p.smali').read_text(encoding='utf-8').split('.method private s()V',1)[1].split('.end method',1)[0]
+home = (ROOT / 'src/smali_classes2/com/android/launcher3/uioverrides/touchcontrollers/NoButtonNavbarToOverviewTouchController.smali').read_text(encoding='utf-8').split('.method public onDragStart(ZF)V',1)[1].split('.end method',1)[0]
 assert home.index('->normalizeHomeEntryScale(') < home.index('FloatProperty;->set(')
 assert home.index('->normalizeHomeEntryTranslation(') < home.index('ViewGroup;->setTranslationX(')
 print('PASS production settings binding and independent icon composition order')

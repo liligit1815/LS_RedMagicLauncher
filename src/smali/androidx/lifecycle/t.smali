@@ -1,319 +1,124 @@
-.class public Landroidx/lifecycle/t;
+.class public final Landroidx/lifecycle/t;
 .super Ljava/lang/Object;
-.source "ViewModelProvider.android.kt"
+.source "SingleGeneratedAdapterObserver.jvm.kt"
+
+# interfaces
+.implements Landroidx/lifecycle/i;
 
 
 # annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Landroidx/lifecycle/t$a;,
-        Landroidx/lifecycle/t$b;,
-        Landroidx/lifecycle/t$c;,
-        Landroidx/lifecycle/t$d;,
-        Landroidx/lifecycle/t$e;
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000$\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u0005\u0008\u0000\u0018\u00002\u00020\u0001B\u000f\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u00a2\u0006\u0004\u0008\u0004\u0010\u0005J\u001f\u0010\u000b\u001a\u00020\n2\u0006\u0010\u0007\u001a\u00020\u00062\u0006\u0010\t\u001a\u00020\u0008H\u0016\u00a2\u0006\u0004\u0008\u000b\u0010\u000cR\u0014\u0010\u0003\u001a\u00020\u00028\u0002X\u0082\u0004\u00a2\u0006\u0006\n\u0004\u0008\r\u0010\u000e\u00a8\u0006\u000f"
     }
+    d2 = {
+        "Landroidx/lifecycle/t;",
+        "Landroidx/lifecycle/i;",
+        "Landroidx/lifecycle/e;",
+        "generatedAdapter",
+        "<init>",
+        "(Landroidx/lifecycle/e;)V",
+        "Lq6/f;",
+        "source",
+        "Landroidx/lifecycle/h$a;",
+        "event",
+        "",
+        "C",
+        "(Lq6/f;Landroidx/lifecycle/h$a;)V",
+        "c",
+        "Landroidx/lifecycle/e;",
+        "lifecycle-common"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x0,
+        0x0
+    }
+    xi = 0x30
 .end annotation
 
 
-# static fields
-.field public static final b:Landroidx/lifecycle/t$b;
-
-.field public static final c:LY/a$b;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "LY/a$b<",
-            "Ljava/lang/String;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field private final a:LY/d;
+.field public final c:Landroidx/lifecycle/e;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 2
+.method public constructor <init>(Landroidx/lifecycle/e;)V
+    .locals 1
 
     .line 1
-    new-instance v0, Landroidx/lifecycle/t$b;
+    const-string v0, "generatedAdapter"
 
     .line 2
     .line 3
-    const/4 v1, 0x0
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
-    invoke-direct {v0, v1}, Landroidx/lifecycle/t$b;-><init>(Lkotlin/jvm/internal/j;)V
-
     .line 5
     .line 6
-    .line 7
-    sput-object v0, Landroidx/lifecycle/t;->b:Landroidx/lifecycle/t$b;
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 7
     .line 8
     .line 9
-    sget-object v0, LZ/d$a;->a:LZ/d$a;
+    iput-object p1, p0, Landroidx/lifecycle/t;->c:Landroidx/lifecycle/e;
 
     .line 10
     .line 11
-    sput-object v0, Landroidx/lifecycle/t;->c:LY/a$b;
-
-    .line 12
-    .line 13
-    return-void
-.end method
-
-.method public constructor <init>(LW/o;Landroidx/lifecycle/t$c;)V
-    .locals 7
-
-    .line 1
-    const-string v0, "store"
-
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    const-string v0, "factory"
-
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    const/4 v5, 0x4
-
-    const/4 v6, 0x0
-
-    const/4 v4, 0x0
-
-    move-object v1, p0
-
-    move-object v2, p1
-
-    move-object v3, p2
-
-    invoke-direct/range {v1 .. v6}, Landroidx/lifecycle/t;-><init>(LW/o;Landroidx/lifecycle/t$c;LY/a;ILkotlin/jvm/internal/j;)V
-
-    return-void
-.end method
-
-.method public constructor <init>(LW/o;Landroidx/lifecycle/t$c;LY/a;)V
-    .locals 1
-
-    const-string v0, "store"
-
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    const-string v0, "factory"
-
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    const-string v0, "defaultCreationExtras"
-
-    invoke-static {p3, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 6
-    new-instance v0, LY/d;
-
-    invoke-direct {v0, p1, p2, p3}, LY/d;-><init>(LW/o;Landroidx/lifecycle/t$c;LY/a;)V
-
-    invoke-direct {p0, v0}, Landroidx/lifecycle/t;-><init>(LY/d;)V
-
-    return-void
-.end method
-
-.method public synthetic constructor <init>(LW/o;Landroidx/lifecycle/t$c;LY/a;ILkotlin/jvm/internal/j;)V
-    .locals 0
-
-    and-int/lit8 p4, p4, 0x4
-
-    if-eqz p4, :cond_0
-
-    .line 4
-    sget-object p3, LY/a$a;->b:LY/a$a;
-
-    .line 5
-    :cond_0
-    invoke-direct {p0, p1, p2, p3}, Landroidx/lifecycle/t;-><init>(LW/o;Landroidx/lifecycle/t$c;LY/a;)V
-
-    return-void
-.end method
-
-.method public constructor <init>(LW/p;Landroidx/lifecycle/t$c;)V
-    .locals 2
-
-    const-string v0, "owner"
-
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    const-string v0, "factory"
-
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 7
-    invoke-interface {p1}, LW/p;->getViewModelStore()LW/o;
-
-    move-result-object v0
-
-    .line 8
-    sget-object v1, LZ/d;->a:LZ/d;
-
-    invoke-virtual {v1, p1}, LZ/d;->a(LW/p;)LY/a;
-
-    move-result-object p1
-
-    .line 9
-    invoke-direct {p0, v0, p2, p1}, Landroidx/lifecycle/t;-><init>(LW/o;Landroidx/lifecycle/t$c;LY/a;)V
-
-    return-void
-.end method
-
-.method private constructor <init>(LY/d;)V
-    .locals 0
-
-    .line 2
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 3
-    iput-object p1, p0, Landroidx/lifecycle/t;->a:LY/d;
-
     return-void
 .end method
 
 
 # virtual methods
-.method public final a(LB4/c;)LW/n;
-    .locals 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "<T:",
-            "LW/n;",
-            ">(",
-            "LB4/c<",
-            "TT;>;)TT;"
-        }
-    .end annotation
+.method public C(Lq6/f;Landroidx/lifecycle/h$a;)V
+    .locals 3
 
     .line 1
-    const-string v0, "modelClass"
+    const-string v0, "source"
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    iget-object p0, p0, Landroidx/lifecycle/t;->a:LY/d;
+    const-string v0, "event"
 
     .line 7
     .line 8
-    const/4 v0, 0x0
-
-    .line 9
-    const/4 v1, 0x2
-
-    .line 10
-    invoke-static {p0, p1, v0, v1, v0}, LY/d;->b(LY/d;LB4/c;Ljava/lang/String;ILjava/lang/Object;)LW/n;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object p0
-
-    .line 14
-    return-object p0
-.end method
-
-.method public b(Ljava/lang/Class;)LW/n;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "<T:",
-            "LW/n;",
-            ">(",
-            "Ljava/lang/Class<",
-            "TT;>;)TT;"
-        }
-    .end annotation
-
-    .line 1
-    const-string v0, "modelClass"
-
-    .line 2
-    .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 4
-    .line 5
-    .line 6
-    invoke-static {p1}, Lt4/a;->c(Ljava/lang/Class;)LB4/c;
-
-    .line 7
-    .line 8
-    .line 9
-    move-result-object p1
-
-    .line 10
-    invoke-virtual {p0, p1}, Landroidx/lifecycle/t;->a(LB4/c;)LW/n;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object p0
-
-    .line 14
-    return-object p0
-.end method
-
-.method public c(Ljava/lang/String;Ljava/lang/Class;)LW/n;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "<T:",
-            "LW/n;",
-            ">(",
-            "Ljava/lang/String;",
-            "Ljava/lang/Class<",
-            "TT;>;)TT;"
-        }
-    .end annotation
-
-    .line 1
-    const-string v0, "key"
-
-    .line 2
-    .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 4
-    .line 5
-    .line 6
-    const-string v0, "modelClass"
-
-    .line 7
-    .line 8
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
     .line 11
-    iget-object p0, p0, Landroidx/lifecycle/t;->a:LY/d;
+    iget-object v0, p0, Landroidx/lifecycle/t;->c:Landroidx/lifecycle/e;
 
     .line 12
     .line 13
-    invoke-static {p2}, Lt4/a;->c(Ljava/lang/Class;)LB4/c;
+    const/4 v1, 0x0
 
     .line 14
+    const/4 v2, 0x0
+
     .line 15
+    invoke-interface {v0, p1, p2, v1, v2}, Landroidx/lifecycle/e;->a(Lq6/f;Landroidx/lifecycle/h$a;ZLq6/j;)V
+
     .line 16
-    move-result-object p2
-
     .line 17
-    invoke-virtual {p0, p2, p1}, LY/d;->a(LB4/c;Ljava/lang/String;)LW/n;
-
     .line 18
+    iget-object p0, p0, Landroidx/lifecycle/t;->c:Landroidx/lifecycle/e;
+
     .line 19
     .line 20
-    move-result-object p0
+    const/4 v0, 0x1
 
     .line 21
-    return-object p0
+    invoke-interface {p0, p1, p2, v0, v2}, Landroidx/lifecycle/e;->a(Lq6/f;Landroidx/lifecycle/h$a;ZLq6/j;)V
+
+    .line 22
+    .line 23
+    .line 24
+    return-void
 .end method

@@ -27,7 +27,7 @@
     return-void
 .end method
 
-.method static synthetic access$000(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
+.method public static synthetic access$000(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
     .locals 0
 
     .line 1
@@ -42,7 +42,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$100(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
+.method public static synthetic access$100(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
     .locals 0
 
     .line 1

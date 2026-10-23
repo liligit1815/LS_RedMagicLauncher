@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic a:Lcom/android/launcher3/logging/StatsLogManager$i;
+.field public final synthetic a:Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/launcher3/logging/StatsLogManager$i;)V
+.method public synthetic constructor <init>(Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/logging/a;->a:Lcom/android/launcher3/logging/StatsLogManager$i;
+    iput-object p1, p0, Lcom/android/quickstep/logging/a;->a:Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 5
     .line 6
@@ -33,15 +33,15 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/logging/a;->a:Lcom/android/launcher3/logging/StatsLogManager$i;
+    iget-object p0, p0, Lcom/android/quickstep/logging/a;->a:Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 2
     .line 3
-    check-cast p1, Lcom/android/launcher3/logging/StatsLogManager$e;
+    check-cast p1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 4
     .line 5
-    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 6
     .line 7

@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "FakeTransformParams"
 .end annotation
 
@@ -30,7 +30,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;Lcom/android/quickstep/interaction/C;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;Lcom/android/quickstep/interaction/e0;)V
     .locals 0
 
     .line 1
@@ -99,7 +99,7 @@
 
     .line 28
     .line 29
-    invoke-static {v0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->m(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/graphics/Rect;
+    invoke-static {v0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->k(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/graphics/Rect;
 
     .line 30
     .line 31
@@ -124,7 +124,7 @@
 
     .line 41
     .line 42
-    invoke-static {v0, p1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->o(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
+    invoke-static {v0, p1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->m(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
 
     .line 43
     .line 44

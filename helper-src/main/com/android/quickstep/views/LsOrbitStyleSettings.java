@@ -31,15 +31,15 @@ public final class LsOrbitStyleSettings {
     }
 
     public static void attach(Activity activity, View.OnClickListener listener) {
-        View stack = activity.findViewById(0x7f0b06c2);
+        View stack = activity.findViewById(0x7f0b071a);
         if (stack == null || !(stack.getParent() instanceof ViewGroup)) return;
         refreshStackPreview(activity);
         ViewGroup parent = (ViewGroup) stack.getParent();
         if (parent.findViewWithTag(CARD_TAG) != null) return;
-        View card = LayoutInflater.from(stack.getContext()).inflate(0x7f0e0285, parent, false);
-        TextView title = (TextView) card.findViewById(0x7f0b06c3);
-        RadioButton radio = (RadioButton) card.findViewById(0x7f0b06c4);
-        ImageView preview = (ImageView) card.findViewById(0x7f0b06c5);
+        View card = LayoutInflater.from(stack.getContext()).inflate(0x7f0e029b, parent, false);
+        TextView title = (TextView) card.findViewById(0x7f0b071b);
+        RadioButton radio = (RadioButton) card.findViewById(0x7f0b071c);
+        ImageView preview = (ImageView) card.findViewById(0x7f0b071d);
         // The template must not duplicate the stack card's IDs: its scale
         // control and existing Activity fields continue to target style 3.
         clearTemplateIds(card);
@@ -57,7 +57,7 @@ public final class LsOrbitStyleSettings {
     /** Match the OEM normal/grid transparent artwork, without modifying the
      * packaged stack bitmap or retaining an Activity in the Drawable. */
     private static void refreshStackPreview(Activity activity) {
-        View view = activity.findViewById(0x7f0b06c5);
+        View view = activity.findViewById(0x7f0b071d);
         if (!(view instanceof ImageView)) return;
         ImageView image = (ImageView) view;
         if (!(image.getDrawable() instanceof StackPreview)) image.setImageDrawable(new StackPreview());

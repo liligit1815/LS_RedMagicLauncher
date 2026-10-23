@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="bottom" android:layout_gravity="bottom" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.zte.mifavor.widget.ScrollViewMFV android:layout_width="match_parent" android:layout_height="0.0dp" android:layout_weight="1.0" android:overScrollMode="never">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:paddingStart="24.0dp" android:paddingEnd="24.0dp">
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/all_apps_statement_text_1" />
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:text="@string/all_apps_statement_text_2" />
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:text="@string/all_apps_statement_text_3" />
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textStyle="bold" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:text="@string/all_apps_statement_text_3_" />
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:id="@id/statement_text_4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:text="@string/all_apps_statement_text_4" />
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:text="@string/all_apps_statement_text_5" />
+            <com.zte.mifavor.widget.TextViewZTE android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:id="@id/statement_text_6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:text="@string/all_apps_statement_text_6" />
+        </LinearLayout>
+    </com.zte.mifavor.widget.ScrollViewMFV>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/statement_personal_recommendation_text" android:paddingTop="10.0dp" android:paddingBottom="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:paddingStart="24.0dp" android:paddingEnd="24.0dp">
+        <com.zte.mifavor.widget.CheckBoxZTE android:id="@id/statement_personal_recommendation_checkbox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/all_apps_recommend_title" android:layout_marginStart="16.0dp" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/statement_user_experience_improvement_program_text" android:paddingTop="10.0dp" android:paddingBottom="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="24.0dp" android:paddingEnd="24.0dp">
+        <com.zte.mifavor.widget.CheckBoxZTE android:id="@id/statement_user_experience_improvement_program_checkbox" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/statement_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/all_apps_user_improvement_plan" android:layout_marginStart="16.0dp" />
+    </LinearLayout>
+</LinearLayout>

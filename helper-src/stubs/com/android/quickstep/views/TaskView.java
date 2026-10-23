@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public abstract class TaskView extends FrameLayout {
+    public static android.util.FloatProperty<TaskView> DISMISS_SCALE;
     protected TaskView(Context context) {
         super(context);
     }
@@ -19,6 +20,7 @@ public abstract class TaskView extends FrameLayout {
     public abstract float getNativeDismissTranslationX();
     public abstract float getNativeDismissTranslationY();
     public abstract android.util.FloatProperty<TaskView> getPrimaryDismissTranslationProperty();
+    public abstract android.util.FloatProperty<TaskView> getSecondaryDismissTranslationProperty();
     public abstract int[] getTaskIds();
     public abstract RecentsView getRecentsView();
     public abstract void cancelNativeStackTouch(android.view.MotionEvent event);

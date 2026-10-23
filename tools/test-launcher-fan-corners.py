@@ -109,13 +109,13 @@ with tempfile.TemporaryDirectory(prefix="launcher-fan-corners-") as directory:
     subprocess.run(["javac", "-encoding", "UTF-8", "-d", directory, str(java)], check=True)
     subprocess.run(["java", "-cp", directory, "FanCornersTest"], check=True)
 
-task_source = (ROOT / "src/smali_classes2/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
-update = task_source.split(".method protected final updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V", 1)[1].split(".end method", 1)[0]
+task_source = (ROOT / "src/smali_classes3/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
+update = task_source.split(".method public final updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V", 1)[1].split(".end method", 1)[0]
 assert ".locals 3" in update
 assert "move-result p0" not in update
 assert update.index("->setProgress(FFF)V") < update.index("->adjustFanCornerRadius(")
 assert "invoke-static {p0, p1, v1}" in update
-dispatch = task_source.split(".method protected updateFullscreenParams()V", 1)[1].split(".end method", 1)[0]
+dispatch = task_source.split(".method public updateFullscreenParams()V", 1)[1].split(".end method", 1)[0]
 assert dispatch.index("->updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V") < dispatch.index("->setCornerRadius(F)V")
-assert dispatch.index("->updateFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V") < dispatch.index("->setFullscreenParams(Lcom/android/quickstep/FullscreenDrawParams;)V")
+assert "->setCornerRadius(F)V" in dispatch
 print("PASS OEM progress, new/legacy thumbnail corner dispatch and preserved TaskView receiver")

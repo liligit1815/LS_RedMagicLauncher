@@ -1,4 +1,4 @@
-.class interface abstract Landroidx/recyclerview/widget/u$b;
+.class public interface abstract Landroidx/recyclerview/widget/u$b;
 .super Ljava/lang/Object;
 .source "ViewBoundsCheck.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x608
+    accessFlags = 0x609
     name = "b"
 .end annotation
 

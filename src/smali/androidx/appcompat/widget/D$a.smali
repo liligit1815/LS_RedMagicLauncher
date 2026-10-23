@@ -1,83 +1,126 @@
-.class final Landroidx/appcompat/widget/D$a;
+.class public Landroidx/appcompat/widget/d$a;
 .super Ljava/lang/Object;
-.source "AppCompatTextViewAutoSizeHelper.java"
+.source "ToolbarWidgetWrapper.java"
+
+# interfaces
+.implements Landroid/view/View$OnClickListener;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Landroidx/appcompat/widget/D;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Landroidx/appcompat/widget/d;-><init>(Landroidx/appcompat/widget/Toolbar;ZII)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
-    name = "a"
+    accessFlags = 0x1
+    name = null
 .end annotation
 
 
+# instance fields
+.field public final c:Lr/a;
+
+.field public final synthetic m:Landroidx/appcompat/widget/d;
+
+
 # direct methods
-.method static a(Ljava/lang/CharSequence;Landroid/text/Layout$Alignment;ILandroid/widget/TextView;Landroid/text/TextPaint;)Landroid/text/StaticLayout;
-    .locals 8
+.method public constructor <init>(Landroidx/appcompat/widget/d;)V
+    .locals 7
 
     .line 1
-    invoke-virtual {p3}, Landroid/widget/TextView;->getLineSpacingMultiplier()F
+    iput-object p1, p0, Landroidx/appcompat/widget/d$a;->m:Landroidx/appcompat/widget/d;
 
     .line 2
     .line 3
-    .line 4
-    move-result v5
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 4
     .line 5
-    invoke-virtual {p3}, Landroid/widget/TextView;->getLineSpacingExtra()F
+    .line 6
+    new-instance v0, Lr/a;
+
+    .line 7
+    .line 8
+    iget-object v1, p1, Landroidx/appcompat/widget/d;->a:Landroidx/appcompat/widget/Toolbar;
+
+    .line 9
+    .line 10
+    invoke-virtual {v1}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
+
+    .line 11
+    .line 12
+    .line 13
+    move-result-object v1
+
+    .line 14
+    const/4 v5, 0x0
+
+    .line 15
+    iget-object v6, p1, Landroidx/appcompat/widget/d;->i:Ljava/lang/CharSequence;
+
+    .line 16
+    .line 17
+    const/4 v2, 0x0
+
+    .line 18
+    const v3, 0x102002c
+
+    .line 19
+    .line 20
+    .line 21
+    const/4 v4, 0x0
+
+    .line 22
+    invoke-direct/range {v0 .. v6}, Lr/a;-><init>(Landroid/content/Context;IIIILjava/lang/CharSequence;)V
+
+    .line 23
+    .line 24
+    .line 25
+    iput-object v0, p0, Landroidx/appcompat/widget/d$a;->c:Lr/a;
+
+    .line 26
+    .line 27
+    return-void
+.end method
+
+
+# virtual methods
+.method public onClick(Landroid/view/View;)V
+    .locals 1
+
+    .line 1
+    iget-object p1, p0, Landroidx/appcompat/widget/d$a;->m:Landroidx/appcompat/widget/d;
+
+    .line 2
+    .line 3
+    iget-object v0, p1, Landroidx/appcompat/widget/d;->l:Landroid/view/Window$Callback;
+
+    .line 4
+    .line 5
+    if-eqz v0, :cond_0
 
     .line 6
     .line 7
-    .line 8
-    move-result v6
+    iget-boolean p1, p1, Landroidx/appcompat/widget/d;->m:Z
 
+    .line 8
     .line 9
-    invoke-virtual {p3}, Landroid/widget/TextView;->getIncludeFontPadding()Z
+    if-eqz p1, :cond_0
 
     .line 10
     .line 11
+    const/4 p1, 0x0
+
     .line 12
-    move-result v7
+    iget-object p0, p0, Landroidx/appcompat/widget/d$a;->c:Lr/a;
 
     .line 13
-    new-instance v0, Landroid/text/StaticLayout;
-
     .line 14
+    invoke-interface {v0, p1, p0}, Landroid/view/Window$Callback;->onMenuItemSelected(ILandroid/view/MenuItem;)Z
+
     .line 15
-    move-object v1, p0
-
     .line 16
-    move-object v4, p1
-
     .line 17
-    move v3, p2
-
-    .line 18
-    move-object v2, p4
-
-    .line 19
-    invoke-direct/range {v0 .. v7}, Landroid/text/StaticLayout;-><init>(Ljava/lang/CharSequence;Landroid/text/TextPaint;ILandroid/text/Layout$Alignment;FFZ)V
-
-    .line 20
-    .line 21
-    .line 22
-    return-object v0
-.end method
-
-.method static b(Landroid/widget/TextView;)I
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroid/widget/TextView;->getMaxLines()I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
+    :cond_0
+    return-void
 .end method

@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field private final g:Ll0/a;
+.field public final c:Lt7/c;
 
 
 # direct methods
@@ -51,7 +51,7 @@
     return-void
 .end method
 
-.method protected constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 1
 
     .line 1
@@ -60,16 +60,16 @@
     .line 2
     .line 3
     .line 4
-    new-instance v0, Landroidx/versionedparcelable/b;
+    new-instance v0, Lt7/b;
 
     .line 5
     .line 6
-    invoke-direct {v0, p1}, Landroidx/versionedparcelable/b;-><init>(Landroid/os/Parcel;)V
+    invoke-direct {v0, p1}, Lt7/b;-><init>(Landroid/os/Parcel;)V
 
     .line 7
     .line 8
     .line 9
-    invoke-virtual {v0}, Landroidx/versionedparcelable/a;->B()Ll0/a;
+    invoke-virtual {v0}, Lt7/a;->B()Lt7/c;
 
     .line 10
     .line 11
@@ -77,7 +77,7 @@
     move-result-object p1
 
     .line 13
-    iput-object p1, p0, Landroidx/versionedparcelable/ParcelImpl;->g:Ll0/a;
+    iput-object p1, p0, Landroidx/versionedparcelable/ParcelImpl;->c:Lt7/c;
 
     .line 14
     .line 15
@@ -100,20 +100,20 @@
     .locals 0
 
     .line 1
-    new-instance p2, Landroidx/versionedparcelable/b;
+    new-instance p2, Lt7/b;
 
     .line 2
     .line 3
-    invoke-direct {p2, p1}, Landroidx/versionedparcelable/b;-><init>(Landroid/os/Parcel;)V
+    invoke-direct {p2, p1}, Lt7/b;-><init>(Landroid/os/Parcel;)V
 
     .line 4
     .line 5
     .line 6
-    iget-object p0, p0, Landroidx/versionedparcelable/ParcelImpl;->g:Ll0/a;
+    iget-object p0, p0, Landroidx/versionedparcelable/ParcelImpl;->c:Lt7/c;
 
     .line 7
     .line 8
-    invoke-virtual {p2, p0}, Landroidx/versionedparcelable/a;->Y(Ll0/a;)V
+    invoke-virtual {p2, p0}, Lt7/a;->Y(Lt7/c;)V
 
     .line 9
     .line 10

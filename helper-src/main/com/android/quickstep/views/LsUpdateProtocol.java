@@ -10,9 +10,9 @@ import java.security.MessageDigest;
 
 /** Small, host-testable policy shared by manifest and APK handling. */
 public final class LsUpdateProtocol {
-    public static final String APP_ID = "stacked-desktop";
+    public static final String APP_ID = "stacked-desktop-redmagic12";
     public static final String PACKAGE = "com.zte.mifavor.launcher";
-    public static final String MANIFEST = "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json";
+    public static final String MANIFEST = "https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json";
     public static final String CERTIFICATE = "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb";
     public static final int MANIFEST_LIMIT = 64 * 1024;
     public static final long APK_LIMIT = 256L * 1024 * 1024;

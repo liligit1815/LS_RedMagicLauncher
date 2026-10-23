@@ -3,11 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Function;
+.implements Lj2/t$a;
+
+
+# instance fields
+.field public final synthetic a:Lg2/e;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Lg2/e;)V
     .locals 0
 
     .line 1
@@ -16,26 +20,30 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lk2/g;->a:Lg2/e;
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final apply(Ljava/lang/Object;)Ljava/lang/Object;
+.method public final a(IILjava/lang/Object;)Z
     .locals 0
 
     .line 1
-    check-cast p1, Lg1/c;
+    iget-object p0, p0, Lk2/g;->a:Lg2/e;
 
     .line 2
     .line 3
-    invoke-interface {p1}, Lg1/d;->getCustomWidgetManager()Lk2/k;
+    invoke-static {p0, p1, p2, p3}, Lk2/f$a0;->h(Lg2/e;IILjava/lang/Object;)Z
 
     .line 4
     .line 5
     .line 6
-    move-result-object p0
+    move-result p0
 
     .line 7
-    return-object p0
+    return p0
 .end method

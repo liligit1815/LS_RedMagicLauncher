@@ -40,7 +40,7 @@
     return-void
 .end method
 
-.method public static read(Landroidx/versionedparcelable/a;)Landroidx/slice/SliceItemHolder;
+.method public static read(Lt7/a;)Landroidx/slice/SliceItemHolder;
     .locals 4
 
     .line 1
@@ -56,14 +56,14 @@
     move-result-object v0
 
     .line 7
-    iget-object v1, v0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iget-object v1, v0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 8
     .line 9
     const/4 v2, 0x1
 
     .line 10
-    invoke-virtual {p0, v1, v2}, Landroidx/versionedparcelable/a;->C(Ll0/a;I)Ll0/a;
+    invoke-virtual {p0, v1, v2}, Lt7/a;->C(Lt7/c;I)Lt7/c;
 
     .line 11
     .line 12
@@ -71,7 +71,7 @@
     move-result-object v1
 
     .line 14
-    iput-object v1, v0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iput-object v1, v0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 15
     .line 16
@@ -82,7 +82,7 @@
     const/4 v2, 0x2
 
     .line 19
-    invoke-virtual {p0, v1, v2}, Landroidx/versionedparcelable/a;->w(Landroid/os/Parcelable;I)Landroid/os/Parcelable;
+    invoke-virtual {p0, v1, v2}, Lt7/a;->w(Landroid/os/Parcelable;I)Landroid/os/Parcelable;
 
     .line 20
     .line 21
@@ -101,7 +101,7 @@
     const/4 v2, 0x3
 
     .line 28
-    invoke-virtual {p0, v1, v2}, Landroidx/versionedparcelable/a;->z(Ljava/lang/String;I)Ljava/lang/String;
+    invoke-virtual {p0, v1, v2}, Lt7/a;->z(Ljava/lang/String;I)Ljava/lang/String;
 
     .line 29
     .line 30
@@ -120,7 +120,7 @@
     const/4 v2, 0x4
 
     .line 37
-    invoke-virtual {p0, v1, v2}, Landroidx/versionedparcelable/a;->s(II)I
+    invoke-virtual {p0, v1, v2}, Lt7/a;->s(II)I
 
     .line 38
     .line 39
@@ -139,7 +139,7 @@
     const/4 v3, 0x5
 
     .line 46
-    invoke-virtual {p0, v1, v2, v3}, Landroidx/versionedparcelable/a;->u(JI)J
+    invoke-virtual {p0, v1, v2, v3}, Lt7/a;->u(JI)J
 
     .line 47
     .line 48
@@ -154,19 +154,19 @@
     return-object v0
 .end method
 
-.method public static write(Landroidx/slice/SliceItemHolder;Landroidx/versionedparcelable/a;)V
+.method public static write(Landroidx/slice/SliceItemHolder;Lt7/a;)V
     .locals 4
 
     .line 1
     const/4 v0, 0x1
 
     .line 2
-    invoke-virtual {p1, v0, v0}, Landroidx/versionedparcelable/a;->E(ZZ)V
+    invoke-virtual {p1, v0, v0}, Lt7/a;->E(ZZ)V
 
     .line 3
     .line 4
     .line 5
-    iget-object v1, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iget-object v1, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 6
     .line 7
@@ -174,7 +174,7 @@
 
     .line 8
     .line 9
-    invoke-virtual {p1, v1, v0}, Landroidx/versionedparcelable/a;->Z(Ll0/a;I)V
+    invoke-virtual {p1, v1, v0}, Lt7/a;->Z(Lt7/c;I)V
 
     .line 10
     .line 11
@@ -191,7 +191,7 @@
     const/4 v1, 0x2
 
     .line 17
-    invoke-virtual {p1, v0, v1}, Landroidx/versionedparcelable/a;->S(Landroid/os/Parcelable;I)V
+    invoke-virtual {p1, v0, v1}, Lt7/a;->S(Landroid/os/Parcelable;I)V
 
     .line 18
     .line 19
@@ -208,7 +208,7 @@
     const/4 v1, 0x3
 
     .line 25
-    invoke-virtual {p1, v0, v1}, Landroidx/versionedparcelable/a;->V(Ljava/lang/String;I)V
+    invoke-virtual {p1, v0, v1}, Lt7/a;->V(Ljava/lang/String;I)V
 
     .line 26
     .line 27
@@ -225,7 +225,7 @@
     const/4 v1, 0x4
 
     .line 33
-    invoke-virtual {p1, v0, v1}, Landroidx/versionedparcelable/a;->O(II)V
+    invoke-virtual {p1, v0, v1}, Lt7/a;->O(II)V
 
     .line 34
     .line 35
@@ -250,7 +250,7 @@
     const/4 p0, 0x5
 
     .line 45
-    invoke-virtual {p1, v0, v1, p0}, Landroidx/versionedparcelable/a;->Q(JI)V
+    invoke-virtual {p1, v0, v1, p0}, Lt7/a;->Q(JI)V
 
     .line 46
     .line 47

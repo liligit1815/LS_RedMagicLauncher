@@ -1,368 +1,86 @@
-.class public LK/f;
+.class public final Lk/f;
 .super Ljava/lang/Object;
-.source "AccessibilityRecordCompat.java"
-
-
-# instance fields
-.field private final a:Landroid/view/accessibility/AccessibilityRecord;
-
-
-# direct methods
-.method public constructor <init>(Ljava/lang/Object;)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
 
-    .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 2
-    .line 3
-    .line 4
-    check-cast p1, Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 5
-    .line 6
-    iput-object p1, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
 
-    .line 7
-    .line 8
-    return-void
-.end method
-
-.method public static f(Landroid/view/accessibility/AccessibilityRecord;I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setMaxScrollX(I)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static h(Landroid/view/accessibility/AccessibilityRecord;I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setMaxScrollY(I)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public static l(Landroid/view/accessibility/AccessibilityRecord;Landroid/view/View;I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    invoke-virtual {p0, p1, p2}, Landroid/view/accessibility/AccessibilityRecord;->setSource(Landroid/view/View;I)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-
-# virtual methods
-.method public a()I
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->getFromIndex()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    return p0
-.end method
-
-.method public b()I
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->getToIndex()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    return p0
-.end method
-
-.method public c(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setFromIndex(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public d(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setItemCount(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public e(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-static {p0, p1}, LK/f;->f(Landroid/view/accessibility/AccessibilityRecord;I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public equals(Ljava/lang/Object;)Z
-    .locals 3
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    const/4 v0, 0x1
-
-    .line 2
-    if-ne p0, p1, :cond_0
-
-    .line 3
-    .line 4
-    return v0
-
-    .line 5
-    :cond_0
-    instance-of v1, p1, LK/f;
-
-    .line 6
-    .line 7
-    const/4 v2, 0x0
-
-    .line 8
-    if-nez v1, :cond_1
-
-    .line 9
-    .line 10
-    return v2
-
-    .line 11
-    :cond_1
-    check-cast p1, LK/f;
-
-    .line 12
-    .line 13
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 14
-    .line 15
-    if-nez p0, :cond_3
-
-    .line 16
-    .line 17
-    iget-object p0, p1, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 18
-    .line 19
-    if-nez p0, :cond_2
-
-    .line 20
-    .line 21
-    return v0
-
-    .line 22
-    :cond_2
-    return v2
-
-    .line 23
-    :cond_3
-    iget-object p1, p1, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 24
-    .line 25
-    invoke-virtual {p0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p0
-
-    .line 29
-    return p0
-.end method
-
-.method public g(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-static {p0, p1}, LK/f;->h(Landroid/view/accessibility/AccessibilityRecord;I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public hashCode()I
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    if-nez p0, :cond_0
-
-    .line 4
-    .line 5
-    const/4 p0, 0x0
-
-    .line 6
-    return p0
-
-    .line 7
-    :cond_0
-    invoke-virtual {p0}, Ljava/lang/Object;->hashCode()I
-
-    .line 8
-    .line 9
-    .line 10
-    move-result p0
-
-    .line 11
-    return p0
-.end method
-
-.method public i(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setScrollX(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public j(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setScrollY(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public k(Z)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setScrollable(Z)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method public m(I)V
-    .locals 0
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, LK/f;->a:Landroid/view/accessibility/AccessibilityRecord;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setToIndex(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
+# static fields
+.field public static final A:I = 0x7f0b055d
+
+.field public static final B:I = 0x7f0b055f
+
+.field public static final C:I = 0x7f0b0564
+
+.field public static final D:I = 0x7f0b0565
+
+.field public static final E:I = 0x7f0b058b
+
+.field public static final F:I = 0x7f0b05a9
+
+.field public static final G:I = 0x7f0b05b0
+
+.field public static final H:I = 0x7f0b05d8
+
+.field public static final I:I = 0x7f0b05d9
+
+.field public static final J:I = 0x7f0b062f
+
+.field public static final K:I = 0x7f0b0630
+
+.field public static final L:I = 0x7f0b0659
+
+.field public static final M:I = 0x7f0b065b
+
+.field public static final N:I = 0x7f0b0661
+
+.field public static final O:I = 0x7f0b0673
+
+.field public static final a:I = 0x7f0b003c
+
+.field public static final b:I = 0x7f0b003d
+
+.field public static final c:I = 0x7f0b003f
+
+.field public static final d:I = 0x7f0b0042
+
+.field public static final e:I = 0x7f0b0043
+
+.field public static final f:I = 0x7f0b0049
+
+.field public static final g:I = 0x7f0b0055
+
+.field public static final h:I = 0x7f0b0057
+
+.field public static final i:I = 0x7f0b0058
+
+.field public static final j:I = 0x7f0b00b2
+
+.field public static final k:I = 0x7f0b013c
+
+.field public static final l:I = 0x7f0b019d
+
+.field public static final m:I = 0x7f0b019e
+
+.field public static final n:I = 0x7f0b01bf
+
+.field public static final o:I = 0x7f0b01c2
+
+.field public static final p:I = 0x7f0b020f
+
+.field public static final q:I = 0x7f0b0256
+
+.field public static final r:I = 0x7f0b02cc
+
+.field public static final s:I = 0x7f0b049f
+
+.field public static final t:I = 0x7f0b0548
+
+.field public static final u:I = 0x7f0b0549
+
+.field public static final v:I = 0x7f0b054a
+
+.field public static final w:I = 0x7f0b0554
+
+.field public static final x:I = 0x7f0b0555
+
+.field public static final y:I = 0x7f0b0559
+
+.field public static final z:I = 0x7f0b055c

@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/f$d;
+.class public Landroidx/recyclerview/widget/f$d;
 .super Ljava/lang/Object;
 .source "FastScroller.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "d"
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/recyclerview/widget/f;
+.field public final synthetic c:Landroidx/recyclerview/widget/f;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/f;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/f;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/f$d;->g:Landroidx/recyclerview/widget/f;
+    iput-object p1, p0, Landroidx/recyclerview/widget/f$d;->c:Landroidx/recyclerview/widget/f;
 
     .line 2
     .line 3
@@ -74,11 +74,11 @@
     float-to-int p1, p1
 
     .line 15
-    iget-object v0, p0, Landroidx/recyclerview/widget/f$d;->g:Landroidx/recyclerview/widget/f;
+    iget-object v0, p0, Landroidx/recyclerview/widget/f$d;->c:Landroidx/recyclerview/widget/f;
 
     .line 16
     .line 17
-    iget-object v0, v0, Landroidx/recyclerview/widget/f;->i:Landroid/graphics/drawable/StateListDrawable;
+    iget-object v0, v0, Landroidx/recyclerview/widget/f;->n:Landroid/graphics/drawable/StateListDrawable;
 
     .line 18
     .line 19
@@ -87,11 +87,11 @@
     .line 20
     .line 21
     .line 22
-    iget-object v0, p0, Landroidx/recyclerview/widget/f$d;->g:Landroidx/recyclerview/widget/f;
+    iget-object v0, p0, Landroidx/recyclerview/widget/f$d;->c:Landroidx/recyclerview/widget/f;
 
     .line 23
     .line 24
-    iget-object v0, v0, Landroidx/recyclerview/widget/f;->j:Landroid/graphics/drawable/Drawable;
+    iget-object v0, v0, Landroidx/recyclerview/widget/f;->o:Landroid/graphics/drawable/Drawable;
 
     .line 25
     .line 26
@@ -100,7 +100,7 @@
     .line 27
     .line 28
     .line 29
-    iget-object p0, p0, Landroidx/recyclerview/widget/f$d;->g:Landroidx/recyclerview/widget/f;
+    iget-object p0, p0, Landroidx/recyclerview/widget/f$d;->c:Landroidx/recyclerview/widget/f;
 
     .line 30
     .line 31

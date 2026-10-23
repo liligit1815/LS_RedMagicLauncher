@@ -1,17 +1,17 @@
-.class public final synthetic Lcom/android/quickstep/interaction/O;
+.class public final synthetic Lcom/android/quickstep/interaction/o;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/animation/ValueAnimator$AnimatorUpdateListener;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/TutorialController;
+.field public final synthetic c:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/TutorialController;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/O;->g:Lcom/android/quickstep/interaction/TutorialController;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/o;->c:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
 
     .line 5
     .line 6
@@ -29,15 +29,15 @@
 
 
 # virtual methods
-.method public final run()V
+.method public final onAnimationUpdate(Landroid/animation/ValueAnimator;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/O;->g:Lcom/android/quickstep/interaction/TutorialController;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/o;->c:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialController;->transitToController()V
+    invoke-static {p0, p1}, Lcom/android/quickstep/interaction/EdgeBackGesturePanel;->b(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;Landroid/animation/ValueAnimator;)V
 
     .line 4
     .line 5

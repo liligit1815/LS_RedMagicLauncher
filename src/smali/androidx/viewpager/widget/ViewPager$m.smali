@@ -1,4 +1,4 @@
-.class Landroidx/viewpager/widget/ViewPager$m;
+.class public Landroidx/viewpager/widget/ViewPager$m;
 .super Ljava/lang/Object;
 .source "ViewPager.java"
 
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "m"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1

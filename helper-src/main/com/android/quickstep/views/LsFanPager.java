@@ -164,7 +164,7 @@ public final class LsFanPager {
         state.preloadPage = page;
         state.loading = true;
         try {
-            recents.loadVisibleTaskData(7);
+            recents.loadVisibleTaskData();
         } finally {
             state.loading = false;
         }
@@ -299,7 +299,7 @@ public final class LsFanPager {
                         && Arrays.equals(state.touchedIds, target.getTaskIds())) {
                     boolean locked = false;
                     for (TaskContainer c : target.getTaskContainers()) {
-                        if (Boolean.TRUE.equals(c.isLocked())) locked = true;
+                        if (!recents.canRemoveTaskView(target)) locked = true;
                     }
                     if (!locked) {
                         // Replace the fan-only drag contribution with the same
@@ -307,7 +307,7 @@ public final class LsFanPager {
                         // OEM animation. The departing card must not jump home.
                         target.getPrimaryDismissTranslationProperty().setValue(target, physicalOffset);
                         render(state, recents);
-                        recents.dismissTaskView(target, true, true);
+                        recents.dismissTaskView(target, true);
                         handedOff = true;
                     }
                 }

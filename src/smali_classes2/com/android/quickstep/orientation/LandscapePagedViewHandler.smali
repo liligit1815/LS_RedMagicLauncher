@@ -13,6 +13,342 @@
     }
 .end annotation
 
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0082\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0008\n\u0002\u0010\u0008\n\u0002\u0010\u0007\n\u0000\n\u0002\u0010\u000b\n\u0002\u0008\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0008\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0008\u0007\n\u0002\u0018\u0002\n\u0002\u0008\u0005\n\u0002\u0018\u0002\n\u0002\u0008\u0007\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0008\u0013\n\u0002\u0018\u0002\n\u0002\u0008\u000b\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u000b\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0010\n\u0002\u0018\u0002\n\u0002\u0008\u0007\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0002\u0008 \n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u001a\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0016\n\u0002\u0018\u0002\n\u0002\u0008\u0008\n\u0002\u0018\u0002\n\u0002\u00082\n\u0002\u0018\u0002\n\u0002\u0008\u0008\u0008\u0017\u0018\u00002\u00020\u0001:\u0002\u00b5\u0002B\u0007\u00a2\u0006\u0004\u0008\u0002\u0010\u0003J#\u0010\u0004\u001a\u0002H\u0005\"\u0004\u0008\u0000\u0010\u00052\u0006\u0010\u0006\u001a\u0002H\u00052\u0006\u0010\u0007\u001a\u0002H\u0005H\u0016\u00a2\u0006\u0002\u0010\u0008J#\u0010\t\u001a\u0002H\u0005\"\u0004\u0008\u0000\u0010\u00052\u0006\u0010\u0006\u001a\u0002H\u00052\u0006\u0010\u0007\u001a\u0002H\u0005H\u0016\u00a2\u0006\u0002\u0010\u0008J\u0018\u0010\u0004\u001a\u00020\n2\u0006\u0010\u0006\u001a\u00020\n2\u0006\u0010\u0007\u001a\u00020\nH\u0016J\u0018\u0010\t\u001a\u00020\n2\u0006\u0010\u0006\u001a\u00020\n2\u0006\u0010\u0007\u001a\u00020\nH\u0016J\u0018\u0010\u0004\u001a\u00020\u000b2\u0006\u0010\u0006\u001a\u00020\u000b2\u0006\u0010\u0007\u001a\u00020\u000bH\u0016J\u0018\u0010\t\u001a\u00020\u000b2\u0006\u0010\u0006\u001a\u00020\u000b2\u0006\u0010\u0007\u001a\u00020\u000bH\u0016J\u0010\u0010\u000f\u001a\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0012H\u0016J\u0018\u0010\u0013\u001a\u00020\u00102\u0006\u0010\u0014\u001a\u00020\u00152\u0006\u0010\u0016\u001a\u00020\u0017H\u0016J1\u0010\u0018\u001a\u00020\u0010\"\u0004\u0008\u0000\u0010\u00052\u0006\u0010\u0019\u001a\u0002H\u00052\u000c\u0010\u001a\u001a\u0008\u0012\u0004\u0012\u0002H\u00050\u001b2\u0006\u0010\u001c\u001a\u00020\nH\u0016\u00a2\u0006\u0002\u0010\u001dJ1\u0010\u0018\u001a\u00020\u0010\"\u0004\u0008\u0000\u0010\u00052\u0006\u0010\u0019\u001a\u0002H\u00052\u000c\u0010\u001a\u001a\u0008\u0012\u0004\u0012\u0002H\u00050\u001e2\u0006\u0010\u001c\u001a\u00020\u000bH\u0016\u00a2\u0006\u0002\u0010\u001fJ1\u0010 \u001a\u00020\u0010\"\u0004\u0008\u0000\u0010\u00052\u0006\u0010\u0019\u001a\u0002H\u00052\u000c\u0010\u001a\u001a\u0008\u0012\u0004\u0012\u0002H\u00050\u001e2\u0006\u0010\u001c\u001a\u00020\u000bH\u0016\u00a2\u0006\u0002\u0010\u001fJ:\u0010!\u001a\u00020\u0010\"\u0004\u0008\u0000\u0010\u00052\u0006\u0010\u0019\u001a\u0002H\u00052\u000c\u0010\u001a\u001a\u0008\u0012\u0004\u0012\u0002H\u00050\u001b2\u0006\u0010\"\u001a\u00020\n2\u0006\u0010#\u001a\u00020\nH\u0096\u0002\u00a2\u0006\u0002\u0010$J\u0018\u0010%\u001a\u00020\u000b2\u0006\u0010&\u001a\u00020\'2\u0006\u0010(\u001a\u00020\nH\u0016J\u0018\u0010)\u001a\u00020\u000b2\u0006\u0010*\u001a\u00020+2\u0006\u0010,\u001a\u00020\nH\u0016J\u0010\u0010-\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J\u0010\u00100\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J\u0010\u00100\u001a\u00020\u000b2\u0006\u00101\u001a\u00020\u0015H\u0016J\u0010\u00102\u001a\u00020\u000b2\u0006\u00101\u001a\u00020\u0015H\u0016J\u0010\u00103\u001a\u00020\u000b2\u0006\u00101\u001a\u00020\u0015H\u0016J\u0010\u00104\u001a\u00020\u000b2\u0006\u00101\u001a\u00020\u0015H\u0016J\u0018\u00105\u001a\u00020\u00102\u0006\u00106\u001a\u0002072\u0006\u00108\u001a\u000207H\u0016J\u0018\u00109\u001a\u00020\n2\u0006\u0010.\u001a\u00020/2\u0006\u0010:\u001a\u00020\rH\u0016J\u0010\u0010;\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J\u0010\u0010B\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J\u0010\u0010C\u001a\u00020\u000b2\u0006\u0010.\u001a\u00020/H\u0016J\u0018\u0010D\u001a\u00020\u00102\u0006\u0010&\u001a\u00020E2\u0006\u0010F\u001a\u00020\nH\u0016J\u0010\u0010G\u001a\u00020\r2\u0006\u0010H\u001a\u00020IH\u0016J\u0018\u0010P\u001a\u00020\u00102\u0006\u0010.\u001a\u00020/2\u0006\u0010Q\u001a\u00020\u000bH\u0016J\u0018\u0010R\u001a\u00020\u00102\u0006\u0010.\u001a\u00020/2\u0006\u0010Q\u001a\u00020\u000bH\u0016J\u0010\u0010S\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J\u0018\u0010T\u001a\u00020\n2\u0006\u0010.\u001a\u00020/2\u0006\u00106\u001a\u000207H\u0016J\u0018\u0010U\u001a\u00020\n2\u0006\u0010.\u001a\u00020/2\u0006\u00106\u001a\u000207H\u0016J\u0018\u0010V\u001a\u00020\n2\u0006\u0010.\u001a\u00020/2\u0006\u00106\u001a\u000207H\u0016J\u0018\u0010Y\u001a\u00020\n2\u0006\u0010Z\u001a\u00020\n2\u0006\u0010\u0016\u001a\u00020\u0017H\u0016J\u0018\u0010[\u001a\u00020\u000b2\u0006\u0010\u0006\u001a\u00020\u000b2\u0006\u0010\\\u001a\u00020]H\u0016J \u0010^\u001a\u00020\u000b2\u0006\u0010\u0007\u001a\u00020\u000b2\u0006\u0010_\u001a\u00020/2\u0006\u0010\\\u001a\u00020]H\u0016J\u0018\u0010`\u001a\u00020\n2\u0006\u0010a\u001a\u00020]2\u0006\u0010:\u001a\u00020\rH\u0016J\u0018\u0010b\u001a\u00020\n2\u0006\u0010a\u001a\u00020]2\u0006\u0010:\u001a\u00020\rH\u0016J(\u0010c\u001a\u00020\n2\u0006\u0010d\u001a\u00020\u000b2\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010e\u001a\u00020\u000b2\u0006\u0010f\u001a\u00020\u000bH\u0016J(\u0010g\u001a\u00020\u00102\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010h\u001a\u00020i2\u0006\u0010j\u001a\u00020\n2\u0006\u0010k\u001a\u00020lH\u0016J \u0010m\u001a\u00020\u00102\u0006\u0010n\u001a\u00020o2\u0006\u0010p\u001a\u00020i2\u0006\u0010\u0016\u001a\u00020\u0017H\u0016J@\u0010q\u001a\u00020\u00102\u0006\u0010r\u001a\u00020\n2\u0006\u0010s\u001a\u00020\n2\u0006\u0010t\u001a\u00020\r2\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010u\u001a\u00020\n2\u0006\u0010v\u001a\u00020\n2\u0006\u0010w\u001a\u00020/H\u0016J@\u0010x\u001a\u00020\u00102\u0006\u0010r\u001a\u00020\n2\u0006\u0010s\u001a\u00020\n2\u0006\u0010t\u001a\u00020\r2\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010u\u001a\u00020\n2\u0006\u0010v\u001a\u00020\n2\u0006\u0010y\u001a\u00020/H\u0016JF\u0010z\u001a\u000e\u0012\u0004\u0012\u00020\u000b\u0012\u0004\u0012\u00020\u000b0{2\u0006\u0010r\u001a\u00020\n2\u0006\u0010s\u001a\u00020\n2\u0008\u0010|\u001a\u0004\u0018\u00010}2\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010~\u001a\u00020\n2\u0006\u0010w\u001a\u00020/H\u0016J\u0011\u0010\u0083\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\rH\u0016J\u0011\u0010\u0084\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\rH\u0016J\u001a\u0010\u0085\u0001\u001a\u00020\r2\u0007\u0010\u0086\u0001\u001a\u00020\u000b2\u0006\u0010:\u001a\u00020\rH\u0016J\u0011\u0010\u0087\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\rH\u0016J\t\u0010\u0088\u0001\u001a\u00020\nH\u0016J\u001b\u0010\u0089\u0001\u001a\u00020\n2\u0007\u0010\u008a\u0001\u001a\u00020\n2\u0007\u0010\u008b\u0001\u001a\u000207H\u0016J\u001b\u0010\u008c\u0001\u001a\u00020\n2\u0007\u0010\u008a\u0001\u001a\u00020\n2\u0007\u0010\u008b\u0001\u001a\u000207H\u0016J\u001a\u0010\u008d\u0001\u001a\u00020\u00102\u0006\u00101\u001a\u0002072\u0007\u0010\u008e\u0001\u001a\u00020\nH\u0016J\u001a\u0010\u008f\u0001\u001a\u00020\u00102\u0006\u00101\u001a\u0002072\u0007\u0010\u008e\u0001\u001a\u00020\nH\u0016J.\u0010\u0090\u0001\u001a\u00030\u0091\u00012\u0007\u0010\u0092\u0001\u001a\u00020/2\u0007\u0010\u0093\u0001\u001a\u00020\n2\u0007\u0010\u0094\u0001\u001a\u00020\n2\u0007\u0010\u0095\u0001\u001a\u00020\rH\u0016J\u001a\u0010\u0096\u0001\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0006\u00101\u001a\u000207H\u0016J\u001a\u0010\u0098\u0001\u001a\n\u0012\u0005\u0012\u00030\u009a\u00010\u0099\u00012\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J5\u0010\u009b\u0001\u001a\u00020\u00102\u0007\u0010\u009c\u0001\u001a\u00020\n2\u0007\u0010\u009d\u0001\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0006\u0010Z\u001a\u00020\n2\u0007\u0010\u009e\u0001\u001a\u000207H\u0016JY\u0010\u009f\u0001\u001a\u00020\u00102\u0007\u0010\u009e\u0001\u001a\u00020/2\u0007\u0010\u00a0\u0001\u001a\u00020\u000b2\u0007\u0010\u00a1\u0001\u001a\u00020\u000b2\u0007\u0010\u00a2\u0001\u001a\u00020\u000b2\u0007\u0010\u00a3\u0001\u001a\u00020\u000b2\u0007\u0010\u00a4\u0001\u001a\u00020\n2\u0007\u0010\u00a5\u0001\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0006\u0010Z\u001a\u00020\nH\u0016J\u0014\u0010\u00a6\u0001\u001a\u00020\n2\t\u0010\u0097\u0001\u001a\u0004\u0018\u00010\u0017H\u0002J-\u0010\u00a7\u0001\u001a\u00020\u00102\u0007\u0010\u009e\u0001\u001a\u00020/2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0007\u0010\u00a8\u0001\u001a\u00020\n2\u0007\u0010\u00a9\u0001\u001a\u00020\nH\u0016J5\u0010\u00aa\u0001\u001a\u00020\u00102\u0007\u0010\u00ab\u0001\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0006\u0010Z\u001a\u00020\n2\u0007\u0010\u00ac\u0001\u001a\u0002072\u0007\u0010\u00ad\u0001\u001a\u000207H\u0016J-\u0010\u00ae\u0001\u001a\u00020\u00102\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0007\u0010\u00af\u0001\u001a\u0002072\u0007\u0010\u00b0\u0001\u001a\u00020}2\u0007\u0010\u00b1\u0001\u001a\u00020\nH\u0016JY\u0010\u00b2\u0001\u001a\u00020\u00102\u0007\u0010\u00b3\u0001\u001a\u00020/2\u0007\u0010\u00b4\u0001\u001a\u00020/2\u0007\u0010\u00b5\u0001\u001a\u00020\n2\u0007\u0010\u00b6\u0001\u001a\u00020\n2\u0007\u0010\u00b7\u0001\u001a\u00020}2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0006\u0010:\u001a\u00020\r2\u0007\u0010\u00b8\u0001\u001a\u00020\r2\u0007\u0010\u00b9\u0001\u001a\u00020\nH\u0016JD\u0010\u00ba\u0001\u001a\u0010\u0012\u0005\u0012\u00030\u00bb\u0001\u0012\u0005\u0012\u00030\u00bb\u00010{2\u0007\u0010\u0097\u0001\u001a\u00020\u00172\u0007\u0010\u00b7\u0001\u001a\u00020}2\u0007\u0010\u00b5\u0001\u001a\u00020\n2\u0007\u0010\u00b6\u0001\u001a\u00020\n2\u0007\u0010\u00b9\u0001\u001a\u00020\nH\u0016J-\u0010\u00bc\u0001\u001a\u00020\u00102\u0008\u0010\u00bd\u0001\u001a\u00030\u00be\u00012\u0007\u0010\u00bf\u0001\u001a\u00020\n2\u0007\u0010\u00c0\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\rH\u0016J\u001c\u0010\u00c1\u0001\u001a\u00020\u00102\u0008\u0010\u00bd\u0001\u001a\u00030\u00be\u00012\u0007\u0010\u00c2\u0001\u001a\u00020\nH\u0016J.\u0010\u00c3\u0001\u001a\u00020\u00102\u0007\u0010\u00c4\u0001\u001a\u00020]2\u0008\u0010\u00c5\u0001\u001a\u00030\u00be\u00012\u0007\u0010\u00c6\u0001\u001a\u00020\n2\u0007\u0010\u00b9\u0001\u001a\u00020\nH\u0016Ja\u0010\u00c7\u0001\u001a\u00020\u00102\u0007\u0010\u00c8\u0001\u001a\u00020]2\u0007\u0010\u00c9\u0001\u001a\u00020]2\u0007\u0010\u00ca\u0001\u001a\u00020\n2\u0007\u0010\u00cb\u0001\u001a\u00020\n2\u0007\u0010\u00cc\u0001\u001a\u00020\n2\u0007\u0010\u00cd\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\r2\u0006\u0010\u0016\u001a\u00020\u00172\u0007\u0010\u00ce\u0001\u001a\u00020}2\u0007\u0010\u00b8\u0001\u001a\u00020\rH\u0016J\u0011\u0010\u00cf\u0001\u001a\u00020\n2\u0006\u0010\u0016\u001a\u00020\u0017H\u0016JM\u0010\u00d0\u0001\u001a\u001a\u0012\n\u0012\u0008\u0012\u0004\u0012\u0002H\u00050=\u0012\n\u0012\u0008\u0012\u0004\u0012\u0002H\u00050=0{\"\u0004\u0008\u0000\u0010\u00052\r\u0010\u00d1\u0001\u001a\u0008\u0012\u0004\u0012\u0002H\u00050=2\r\u0010\u00d2\u0001\u001a\u0008\u0012\u0004\u0012\u0002H\u00050=2\u0006\u0010\u0016\u001a\u00020\u0017H\u0016J,\u0010\u00d3\u0001\u001a\u00020\u000b2\u0007\u0010\u00d4\u0001\u001a\u00020/2\u0007\u0010\u00d5\u0001\u001a\u00020\u00152\u0006\u0010Z\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J$\u0010\u00d6\u0001\u001a\u00020\u00102\u0007\u0010\u00d4\u0001\u001a\u00020/2\u0007\u0010\u008e\u0001\u001a\u00020\u000b2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J\u001b\u0010\u00d7\u0001\u001a\u00020\u000b2\u0007\u0010\u00d4\u0001\u001a\u00020/2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J\n\u0010\u00d8\u0001\u001a\u00030\u00d9\u0001H\u0016J-\u0010\u00da\u0001\u001a\u00030\u00db\u00012\u0007\u0010\u00cb\u0001\u001a\u00020\n2\u0007\u0010\u00dc\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\r2\u0007\u0010\u00dd\u0001\u001a\u00020\nH\u0017J#\u0010\u00de\u0001\u001a\u00020\u00102\u0007\u0010\u00df\u0001\u001a\u00020]2\u0007\u0010\u00e0\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\rH\u0017J\u001b\u0010\u00e1\u0001\u001a\u00020\n2\u0007\u0010\u00dc\u0001\u001a\u00020\n2\u0007\u0010\u00ce\u0001\u001a\u00020}H\u0004J\t\u0010\u00e2\u0001\u001a\u00020\nH\u0016Js\u0010\u00e3\u0001\u001a\u00020\u00102\u0007\u0010\u00e4\u0001\u001a\u00020/2\u0007\u0010\u00e5\u0001\u001a\u00020/2\u0007\u0010\u00cc\u0001\u001a\u00020\n2\u0007\u0010\u00cd\u0001\u001a\u00020\n2\u0007\u0010\u00e6\u0001\u001a\u00020\n2\u0007\u0010\u00ca\u0001\u001a\u00020\n2\u0007\u0010\u00cb\u0001\u001a\u00020\n2\u0007\u0010\u00e7\u0001\u001a\u00020\n2\u0007\u0010\u00e8\u0001\u001a\u00020\n2\u0006\u0010:\u001a\u00020\r2\u0006\u0010\u0016\u001a\u00020\u00172\u0007\u0010\u00ce\u0001\u001a\u00020}H\u0016J8\u0010\u00e9\u0001\u001a\u0004\u0018\u0001072\u0007\u0010\u00ea\u0001\u001a\u0002072\u0007\u0010\u00b9\u0001\u001a\u00020\n2\u0008\u00106\u001a\u0004\u0018\u0001072\t\u0010\u00eb\u0001\u001a\u0004\u0018\u00010\rH\u0016\u00a2\u0006\u0003\u0010\u00ec\u0001J%\u0010\u00ed\u0001\u001a\u00030\u00bb\u00012\u0007\u0010\u00ee\u0001\u001a\u00020\n2\u0007\u0010\u00ef\u0001\u001a\u00020\n2\u0007\u0010\u00b9\u0001\u001a\u00020\nH\u0016J6\u0010\u00f0\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00f1\u0001\u001a\u0005\u0018\u00010\u00f2\u00012\t\u0010\u0097\u0001\u001a\u0004\u0018\u00010\u00172\t\u0010\u00af\u0001\u001a\u0004\u0018\u0001072\u0007\u0010\u00f3\u0001\u001a\u00020\u000bH\u0016J4\u0010\u00f4\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00f1\u0001\u001a\u0005\u0018\u00010\u00f2\u00012\u0007\u0010\u0097\u0001\u001a\u00020\u00172\t\u0010\u00af\u0001\u001a\u0004\u0018\u0001072\u0007\u0010\u00f3\u0001\u001a\u00020\u000bH\u0016J6\u0010\u00f5\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00f1\u0001\u001a\u0005\u0018\u00010\u00f2\u00012\t\u0010\u0097\u0001\u001a\u0004\u0018\u00010\u00172\t\u0010\u00af\u0001\u001a\u0004\u0018\u0001072\u0007\u0010\u00f3\u0001\u001a\u00020\u000bH\u0016J4\u0010\u00f6\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00f1\u0001\u001a\u0005\u0018\u00010\u00f2\u00012\u0007\u0010\u0097\u0001\u001a\u00020\u00172\t\u0010\u00af\u0001\u001a\u0004\u0018\u0001072\u0007\u0010\u00f3\u0001\u001a\u00020\u000bH\u0016J?\u0010\u00f7\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00f1\u0001\u001a\u0005\u0018\u00010\u00f2\u00012\t\u0010\u0097\u0001\u001a\u0004\u0018\u00010\u00172\t\u0010\u00af\u0001\u001a\u0004\u0018\u0001072\u0007\u0010\u00f8\u0001\u001a\u00020\n2\u0007\u0010\u00f3\u0001\u001a\u00020\u000bH\u0016JK\u0010\u00f9\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00f1\u0001\u001a\u0005\u0018\u00010\u00f2\u00012\t\u0010\u0097\u0001\u001a\u0004\u0018\u00010\u00172\t\u0010\u00af\u0001\u001a\u0004\u0018\u0001072\n\u0010\u00fa\u0001\u001a\u0005\u0018\u00010\u00fb\u00012\u0007\u0010\u00f8\u0001\u001a\u00020\n2\u0007\u0010\u00f3\u0001\u001a\u00020\u000bH\u0016J$\u0010\u00fc\u0001\u001a\u00020\n2\u0007\u0010\u00fd\u0001\u001a\u0002072\u0007\u0010\u00b9\u0001\u001a\u00020\n2\u0007\u0010\u00fe\u0001\u001a\u00020\nH\u0016J\u001a\u0010\u00ff\u0001\u001a\u00020\u00102\u0006\u0010.\u001a\u00020/2\u0007\u0010\u0080\u0002\u001a\u00020\u000bH\u0016J\u001a\u0010\u0081\u0002\u001a\u00020\u00102\u0006\u0010.\u001a\u00020/2\u0007\u0010\u0082\u0002\u001a\u00020\u000bH\u0016J\u0010\u00100\u001a\u00020\n2\u0006\u00101\u001a\u000207H\u0016J\u0010\u00102\u001a\u00020\n2\u0006\u00101\u001a\u000207H\u0016J\u0011\u0010\u0083\u0002\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J#\u0010\u0084\u0002\u001a\u00020\u000b2\u0007\u0010\u0085\u0002\u001a\u0002072\u0007\u0010\u0086\u0002\u001a\u0002072\u0006\u0010:\u001a\u00020\rH\u0016J\u0012\u0010\u0087\u0002\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J\u0011\u0010\u0088\u0002\u001a\u00020\u000b2\u0006\u0010:\u001a\u00020\rH\u0016J\u0011\u0010\u0089\u0002\u001a\u00020\u000b2\u0006\u0010:\u001a\u00020\rH\u0016J\u0011\u0010\u008a\u0002\u001a\u00020\n2\u0006\u00101\u001a\u000207H\u0016J\u0010\u00102\u001a\u00020\n2\u0006\u0010.\u001a\u00020/H\u0016J\t\u0010\u008b\u0002\u001a\u00020\nH\u0016J\u0012\u0010\u008c\u0002\u001a\u00020\n2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J\u001b\u0010\u008d\u0002\u001a\u00020\n2\u0007\u0010\u0085\u0002\u001a\u0002072\u0007\u0010\u00b9\u0001\u001a\u00020\nH\u0016J$\u0010\u008e\u0002\u001a\u00020\u000b2\u0007\u0010\u0085\u0002\u001a\u0002072\u0007\u0010\u008f\u0002\u001a\u00020/2\u0007\u0010\u00b9\u0001\u001a\u00020\nH\u0016J\u0019\u0010\u0090\u0002\u001a\u00020\n2\u0006\u0010:\u001a\u00020\r2\u0006\u00101\u001a\u000207H\u0016J%\u0010\u0091\u0002\u001a\u00030\u00bb\u00012\u0007\u0010\u0092\u0002\u001a\u0002072\u0007\u0010\u00f3\u0001\u001a\u00020\u000b2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0002J%\u0010\u0093\u0002\u001a\u00030\u00bb\u00012\u0007\u0010\u0092\u0002\u001a\u0002072\u0007\u0010\u00f3\u0001\u001a\u00020\u000b2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0002J,\u0010\u0094\u0002\u001a\u00020\n2\u0006\u0010.\u001a\u00020/2\u0008\u0010\u0095\u0002\u001a\u00030\u00be\u00012\u0007\u0010\u0096\u0002\u001a\u00020\n2\u0006\u0010\u0016\u001a\u00020\u0017H\u0016J\u008a\u0001\u0010\u0097\u0002\u001a\u00020\u00102\u0008\u0010\u0098\u0002\u001a\u00030\u00be\u00012\u0008\u0010\u00bd\u0001\u001a\u00030\u00be\u00012\u0008\u0010\u0099\u0002\u001a\u00030\u00be\u00012\u0008\u0010\u009a\u0002\u001a\u00030\u00be\u00012\u0006\u0010:\u001a\u00020\r2\u0007\u0010\u009b\u0002\u001a\u00020\u000b2\u0007\u0010\u009c\u0002\u001a\u00020\u000b2\u0007\u0010\u009d\u0002\u001a\u00020\u000b2\u0007\u0010\u009e\u0002\u001a\u00020\u000b2\u0007\u0010\u009f\u0002\u001a\u00020\u000b2\u0007\u0010\u00a0\u0002\u001a\u00020\n2\u0007\u0010\u00a1\u0002\u001a\u00020\n2\u0007\u0010\u00a2\u0002\u001a\u00020\n2\u0007\u0010\u00a3\u0002\u001a\u00020\nH\u0016J\u001c\u0010\u00a4\u0002\u001a\u00020\u00102\u0008\u0010\u00a5\u0002\u001a\u00030\u00be\u00012\u0007\u0010\u00a6\u0002\u001a\u00020\nH\u0016J$\u0010\u00a7\u0002\u001a\u00020\u00102\u0008\u0010\u00a8\u0002\u001a\u00030\u00be\u00012\u0007\u0010\u00a9\u0002\u001a\u00020\n2\u0006\u0010:\u001a\u00020\rH\u0016JP\u0010\u00aa\u0002\u001a\u00020\u00102\t\u0010\u00df\u0001\u001a\u0004\u0018\u00010]2\u0007\u0010\u009e\u0002\u001a\u00020\n2\u0007\u0010\u00ab\u0002\u001a\u00020\u000b2\u0008\u0010\u00ac\u0002\u001a\u00030\u00be\u00012\n\u0010\u00ad\u0002\u001a\u0005\u0018\u00010\u00ae\u00022\u0008\u0010\u00af\u0002\u001a\u00030\u00be\u00012\u0008\u0010\u00b0\u0002\u001a\u00030\u00be\u0001H\u0016J\u0019\u0010\u00b1\u0002\u001a\u00020\u000b2\u0006\u0010&\u001a\u00020\'2\u0006\u0010(\u001a\u00020\nH\u0016J\u0019\u0010;\u001a\u00020\n2\u0006\u0010.\u001a\u00020/2\u0007\u0010\u0097\u0001\u001a\u00020\u0017H\u0016J$\u0010\u00b2\u0002\u001a\u00020\u000b2\u0007\u0010\u00b3\u0002\u001a\u00020\u00152\u0007\u0010\u009e\u0002\u001a\u00020\u000b2\u0007\u0010\u00b4\u0002\u001a\u00020\u000bH\u0016R\u0014\u0010\u000c\u001a\u00020\rX\u0096D\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008\u000c\u0010\u000eR\u001a\u0010<\u001a\u0008\u0012\u0004\u0012\u00020/0=X\u0096\u0004\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008>\u0010?R\u001a\u0010@\u001a\u0008\u0012\u0004\u0012\u00020/0=X\u0096\u0004\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008A\u0010?R\u0014\u0010J\u001a\u00020\u000bX\u0096D\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008K\u0010LR\u0014\u0010M\u001a\u00020\nX\u0096D\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008N\u0010OR\u0014\u0010W\u001a\u00020\nX\u0096D\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008X\u0010OR\u0017\u0010\u007f\u001a\u00030\u0080\u0001X\u0096\u0004\u00a2\u0006\n\n\u0000\u001a\u0006\u0008\u0081\u0001\u0010\u0082\u0001\u00a8\u0006\u00b6\u0002"
+    }
+    d2 = {
+        "Lcom/android/quickstep/orientation/LandscapePagedViewHandler;",
+        "Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;",
+        "<init>",
+        "()V",
+        "getPrimaryValue",
+        "T",
+        "x",
+        "y",
+        "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;",
+        "getSecondaryValue",
+        "",
+        "",
+        "isLayoutNaturalToLauncher",
+        "",
+        "()Z",
+        "adjustFloatingIconStartVelocity",
+        "",
+        "velocity",
+        "Landroid/graphics/PointF;",
+        "fixBoundsForHomeAnimStartRect",
+        "outStartRect",
+        "Landroid/graphics/RectF;",
+        "deviceProfile",
+        "Lcom/android/launcher3/DeviceProfile;",
+        "setPrimary",
+        "target",
+        "action",
+        "Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;",
+        "param",
+        "(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;I)V",
+        "Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;",
+        "(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;F)V",
+        "setSecondary",
+        "set",
+        "primaryParam",
+        "secondaryParam",
+        "(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;II)V",
+        "getPrimaryDirection",
+        "event",
+        "Landroid/view/MotionEvent;",
+        "pointerIndex",
+        "getPrimaryVelocity",
+        "velocityTracker",
+        "Landroid/view/VelocityTracker;",
+        "pointerId",
+        "getMeasuredSize",
+        "view",
+        "Landroid/view/View;",
+        "getPrimarySize",
+        "rect",
+        "getSecondarySize",
+        "getStart",
+        "getEnd",
+        "rotateInsets",
+        "insets",
+        "Landroid/graphics/Rect;",
+        "outInsets",
+        "getClearAllSidePadding",
+        "isRtl",
+        "getSecondaryDimension",
+        "primaryViewTranslate",
+        "Landroid/util/FloatProperty;",
+        "getPrimaryViewTranslate",
+        "()Landroid/util/FloatProperty;",
+        "secondaryViewTranslate",
+        "getSecondaryViewTranslate",
+        "getPrimaryScroll",
+        "getPrimaryScale",
+        "setMaxScroll",
+        "Landroid/view/accessibility/AccessibilityEvent;",
+        "maxScroll",
+        "getRecentsRtlSetting",
+        "resources",
+        "Landroid/content/res/Resources;",
+        "degreesRotated",
+        "getDegreesRotated",
+        "()F",
+        "rotation",
+        "getRotation",
+        "()I",
+        "setPrimaryScale",
+        "scale",
+        "setSecondaryScale",
+        "getChildStart",
+        "getCenterForPage",
+        "getScrollOffsetStart",
+        "getScrollOffsetEnd",
+        "secondaryTranslationDirectionFactor",
+        "getSecondaryTranslationDirectionFactor",
+        "getSplitTranslationDirectionFactor",
+        "stagePosition",
+        "getTaskMenuX",
+        "appChip",
+        "Lcom/android/quickstep/views/IconAppChipView;",
+        "getTaskMenuY",
+        "taskMenuView",
+        "getAppChipMenuMarginX",
+        "appChipView",
+        "getAppChipMenuMarginY",
+        "getTaskMenuHeight",
+        "taskInsetMargin",
+        "taskMenuX",
+        "taskMenuY",
+        "setTaskOptionsMenuLayoutOrientation",
+        "taskMenuLayout",
+        "Landroid/widget/LinearLayout;",
+        "dividerSpacing",
+        "dividerDrawable",
+        "Landroid/graphics/drawable/ShapeDrawable;",
+        "setLayoutParamsForTaskMenuOptionItem",
+        "lp",
+        "Landroid/widget/LinearLayout$LayoutParams;",
+        "viewGroup",
+        "updateDwbBannerLayout",
+        "taskViewWidth",
+        "taskViewHeight",
+        "isGroupedTaskView",
+        "snapshotViewWidth",
+        "snapshotViewHeight",
+        "banner",
+        "updateAppTimerLayout",
+        "appTimerToast",
+        "getDwbBannerTranslations",
+        "Landroid/util/Pair;",
+        "splitBounds",
+        "Lcom/android/wm/shell/shared/split/SplitBounds;",
+        "desiredTaskId",
+        "upDownSwipeDirection",
+        "Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;",
+        "getUpDownSwipeDirection",
+        "()Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;",
+        "getUpDirection",
+        "getDownDirection",
+        "isGoingUp",
+        "displacement",
+        "getTaskDragDisplacementFactor",
+        "getTaskDismissVerticalDirection",
+        "getTaskDismissLength",
+        "secondaryDimension",
+        "taskThumbnailBounds",
+        "getTaskLaunchLength",
+        "extendRectForPrimaryTranslation",
+        "translation",
+        "extendRectForSecondaryTranslation",
+        "getChildBounds",
+        "Lcom/android/launcher3/touch/PagedOrientationHandler$ChildBounds;",
+        "child",
+        "childStart",
+        "pageCenter",
+        "layoutChild",
+        "getDistanceToBottomOfRect",
+        "dp",
+        "getSplitPositionOptions",
+        "",
+        "Lcom/android/launcher3/util/SplitConfigurationOptions$SplitPositionOption;",
+        "getInitialSplitPlaceholderBounds",
+        "placeholderHeight",
+        "placeholderInset",
+        "out",
+        "updateSplitIconParams",
+        "onScreenRectCenterX",
+        "onScreenRectCenterY",
+        "fullscreenScaleX",
+        "fullscreenScaleY",
+        "drawableWidth",
+        "drawableHeight",
+        "getPlaceholderSizeAdjustment",
+        "setSplitInstructionsParams",
+        "splitInstructionsHeight",
+        "splitInstructionsWidth",
+        "getFinalSplitPlaceholderBounds",
+        "splitDividerSize",
+        "out1",
+        "out2",
+        "setSplitTaskSwipeRect",
+        "outRect",
+        "splitInfo",
+        "desiredStagePosition",
+        "measureGroupedTaskViewThumbnailBounds",
+        "primarySnapshot",
+        "secondarySnapshot",
+        "parentWidth",
+        "parentHeight",
+        "splitBoundsConfig",
+        "inSplitSelection",
+        "thumbnailTopMargin",
+        "getGroupedTaskViewSizes",
+        "Landroid/graphics/Point;",
+        "setTaskIconParams",
+        "iconParams",
+        "Landroid/widget/FrameLayout$LayoutParams;",
+        "taskIconMargin",
+        "taskIconHeight",
+        "setIconAppChipChildrenParams",
+        "chipChildMarginStart",
+        "setIconAppChipMenuParams",
+        "iconAppChipView",
+        "iconMenuParams",
+        "iconMenuMargin",
+        "setSplitIconParams",
+        "primaryAppChipView",
+        "secondaryAppChipView",
+        "primarySnapshotWidth",
+        "primarySnapshotHeight",
+        "groupedTaskViewHeight",
+        "groupedTaskViewWidth",
+        "splitConfig",
+        "getDefaultSplitPosition",
+        "getSplitSelectTaskOffset",
+        "primary",
+        "secondary",
+        "getFloatingTaskOffscreenTranslationTarget",
+        "floatingTask",
+        "onScreenRect",
+        "setFloatingTaskPrimaryTranslation",
+        "getFloatingTaskPrimaryTranslation",
+        "getHandlerTypeForLogging",
+        "Lcom/android/launcher3/logger/LauncherAtom$TaskSwitcherContainer$OrientationHandler;",
+        "getSplitIconsPosition",
+        "Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;",
+        "totalThumbnailHeight",
+        "dividerSize",
+        "updateSplitIconsPosition",
+        "iconView",
+        "translationY",
+        "getDividerBarSize",
+        "getTaskLockDirectionFactor",
+        "setSplitTitleParams",
+        "primaryTitleView",
+        "secondaryTitleView",
+        "taskIconWidth",
+        "paddingTop",
+        "paddingLeft",
+        "updateTaskSizeAndPadding",
+        "tempRect",
+        "isGrid",
+        "(Landroid/graphics/Rect;ILandroid/graphics/Rect;Ljava/lang/Boolean;)Landroid/graphics/Rect;",
+        "updateTaskExpectedWidthAndHeight",
+        "boxWidth",
+        "boxHeight",
+        "calculateSingleGridSize",
+        "context",
+        "Landroid/content/Context;",
+        "taskRatio",
+        "calculateSingleGridTaskSize",
+        "calculateDoubleGridSize",
+        "calculateDoubleGridTaskSize",
+        "calculateMultiGridSize",
+        "taskCount",
+        "calculateMultiGridTaskSize",
+        "orientationHandler",
+        "Lcom/android/launcher3/touch/PagedOrientationHandler;",
+        "calculateTopBottomHeightDiff",
+        "tasSize",
+        "rowSpacing",
+        "setTranslationPrimary",
+        "horizontalDiff",
+        "setTranslationSecondary",
+        "verticalDiff",
+        "getLayoutParameterSizePrimary",
+        "getGridScrollOffset",
+        "taskSize",
+        "gridSize",
+        "getPageSpacing",
+        "getGridPositionFactor",
+        "getClearAllPositionFactor",
+        "getPrimaryPosition",
+        "getSecondaryTranslationFactor",
+        "getOverviewRowSpace",
+        "calculateTargetTaskSecondaryPosition",
+        "calculateTaskCenterSecondaryTranslation",
+        "taskView",
+        "getPrimaryGridEnd",
+        "getSingleTaskSize",
+        "gridRect",
+        "getDoubleTaskSize",
+        "setOverviewActionsLayoutParams",
+        "params",
+        "bottomMarginPortrait",
+        "setTaskTitleAndIconOrientationState",
+        "titleParams",
+        "splitIconParams",
+        "menuIconParams",
+        "textWidth",
+        "textHeight",
+        "iconPaddingLeft",
+        "iconSize",
+        "textPaddingRight",
+        "textPaddingTop",
+        "menuPaddingLeft",
+        "menuSize",
+        "menuPaddingTop",
+        "setTaskThumbnailOrientationState",
+        "thumbnailParams",
+        "thumbnailTopMarin",
+        "setTaskLockIconOrientationState",
+        "lockIconParams",
+        "lockIconMargin",
+        "updateGroupTaskIconAndTaskPosition",
+        "iconGap",
+        "primaryIconParams",
+        "textView",
+        "Landroid/widget/TextView;",
+        "primaryTitleLayoutParams",
+        "secondaryTitleLayoutParams",
+        "getSecondaryDirection",
+        "calculateWindowRadiusToHome",
+        "winRect",
+        "iconRadius",
+        "SplitIconPositions",
+        "Launcher_aospWithQuickstepInternalMiFavorRelease"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x2,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nLandscapePagedViewHandler.kt\nKotlin\n*S Kotlin\n*F\n+ 1 LandscapePagedViewHandler.kt\ncom/android/quickstep/orientation/LandscapePagedViewHandler\n+ 2 View.kt\nandroidx/core/view/ViewKt\n+ 3 Pair.kt\nandroidx/core/util/PairKt\n+ 4 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,1179:1\n327#2,4:1180\n327#2,4:1184\n66#3:1188\n78#3:1189\n1#4:1190\n*S KotlinDebug\n*F\n+ 1 LandscapePagedViewHandler.kt\ncom/android/quickstep/orientation/LandscapePagedViewHandler\n*L\n246#1:1180,4\n261#1:1184,4\n489#1:1188\n489#1:1189\n*E\n"
+    }
+.end annotation
+
+
+# static fields
+.field public static final $stable:I = 0x8
+
 
 # instance fields
 .field private final degreesRotated:F
@@ -43,10 +379,17 @@
     .end annotation
 .end field
 
-.field private final upDownSwipeDirection:Lcom/android/launcher3/touch/H$c;
+.field private final upDownSwipeDirection:Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .locals 0
+
+    .line 1
+    return-void
+.end method
+
 .method public constructor <init>()V
     .locals 3
 
@@ -63,7 +406,7 @@
 
     .line 6
     .line 7
-    sget-object v1, Lcom/android/launcher3/G2;->j:Landroid/util/FloatProperty;
+    sget-object v1, Lcom/android/launcher3/LauncherAnimUtils;->VIEW_TRANSLATE_Y:Landroid/util/FloatProperty;
 
     .line 8
     .line 9
@@ -71,7 +414,7 @@
 
     .line 10
     .line 11
-    invoke-static {v1, v2}, Lkotlin/jvm/internal/o;->e(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {v1, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 12
     .line 13
@@ -80,7 +423,7 @@
 
     .line 15
     .line 16
-    sget-object v1, Lcom/android/launcher3/G2;->i:Landroid/util/FloatProperty;
+    sget-object v1, Lcom/android/launcher3/LauncherAnimUtils;->VIEW_TRANSLATE_X:Landroid/util/FloatProperty;
 
     .line 17
     .line 18
@@ -88,7 +431,7 @@
 
     .line 19
     .line 20
-    invoke-static {v1, v2}, Lkotlin/jvm/internal/o;->e(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {v1, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 21
     .line 22
@@ -113,7 +456,7 @@
 
     .line 32
     .line 33
-    sget-object v0, Lcom/android/launcher3/touch/H;->x:Lcom/android/launcher3/touch/H$c;
+    sget-object v0, Lcom/android/launcher3/touch/SingleAxisSwipeDetector;->HORIZONTAL:Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;
 
     .line 34
     .line 35
@@ -121,19 +464,19 @@
 
     .line 36
     .line 37
-    invoke-static {v0, v1}, Lkotlin/jvm/internal/o;->e(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 38
     .line 39
     .line 40
-    iput-object v0, p0, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->upDownSwipeDirection:Lcom/android/launcher3/touch/H$c;
+    iput-object v0, p0, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->upDownSwipeDirection:Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;
 
     .line 41
     .line 42
     return-void
 .end method
 
-.method private final getDoubleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/h0;)Landroid/graphics/Point;
+.method private final getDoubleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/DeviceProfile;)Landroid/graphics/Point;
     .locals 0
 
     .line 1
@@ -145,7 +488,7 @@
     move-result p0
 
     .line 5
-    iget p1, p3, Lcom/android/launcher3/X3;->y0:I
+    iget p1, p3, Lcom/android/launcher3/MFVDeviceProfile;->overviewRowSpacingLand:I
 
     .line 6
     .line 7
@@ -162,7 +505,7 @@
     div-float/2addr p0, p1
 
     .line 12
-    iget p1, p3, Lcom/android/launcher3/X3;->v0:I
+    iget p1, p3, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
 
     .line 13
     .line 14
@@ -206,16 +549,16 @@
     return-object p2
 .end method
 
-.method private final getPlaceholderSizeAdjustment(Lcom/android/launcher3/h0;)I
+.method private final getPlaceholderSizeAdjustment(Lcom/android/launcher3/DeviceProfile;)I
     .locals 2
 
     .line 1
-    invoke-static {p1}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 2
     .line 3
     .line 4
-    invoke-virtual {p1}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 5
     .line 6
@@ -227,35 +570,43 @@
 
     .line 9
     .line 10
-    iget p1, p1, Lcom/android/launcher3/h0;->Z2:I
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->getSysuiProfile()Lcom/android/launcher3/deviceprofile/SysuiProfile;
 
     .line 11
     .line 12
-    sub-int/2addr p0, p1
-
     .line 13
-    int-to-double p0, p0
+    move-result-object p1
 
     .line 14
-    const-wide/16 v0, 0x0
+    iget p1, p1, Lcom/android/launcher3/deviceprofile/SysuiProfile;->splitPlaceholderInset:I
 
     .line 15
     .line 16
-    invoke-static {p0, p1, v0, v1}, Ljava/lang/Math;->max(DD)D
+    sub-int/2addr p0, p1
 
     .line 17
-    .line 18
-    .line 19
-    move-result-wide p0
+    int-to-double p0, p0
 
+    .line 18
+    const-wide/16 v0, 0x0
+
+    .line 19
     .line 20
-    double-to-int p0, p0
+    invoke-static {p0, p1, v0, v1}, Ljava/lang/Math;->max(DD)D
 
     .line 21
+    .line 22
+    .line 23
+    move-result-wide p0
+
+    .line 24
+    double-to-int p0, p0
+
+    .line 25
     return p0
 .end method
 
-.method private final getSingleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/h0;)Landroid/graphics/Point;
+.method private final getSingleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/DeviceProfile;)Landroid/graphics/Point;
     .locals 0
 
     .line 1
@@ -267,36 +618,48 @@
     move-result p0
 
     .line 5
-    iget p1, p3, Lcom/android/launcher3/h0;->S2:I
+    invoke-virtual {p3}, Lcom/android/launcher3/DeviceProfile;->getOverviewProfile()Lcom/android/launcher3/deviceprofile/OverviewProfile;
 
     .line 6
     .line 7
-    sub-int/2addr p0, p1
-
     .line 8
-    int-to-float p1, p0
+    move-result-object p1
 
     .line 9
-    div-float/2addr p1, p2
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/OverviewProfile;->getTaskThumbnailTopMarginPx()I
 
     .line 10
-    invoke-static {p1}, Ljava/lang/Math;->round(F)I
-
     .line 11
     .line 12
-    .line 13
     move-result p1
 
+    .line 13
+    sub-int/2addr p0, p1
+
     .line 14
-    new-instance p2, Landroid/graphics/Point;
+    int-to-float p1, p0
 
     .line 15
+    div-float/2addr p1, p2
+
     .line 16
-    invoke-direct {p2, p0, p1}, Landroid/graphics/Point;-><init>(II)V
+    invoke-static {p1}, Lkotlin/math/MathKt;->roundToInt(F)I
 
     .line 17
     .line 18
     .line 19
+    move-result p1
+
+    .line 20
+    new-instance p2, Landroid/graphics/Point;
+
+    .line 21
+    .line 22
+    invoke-direct {p2, p0, p1}, Landroid/graphics/Point;-><init>(II)V
+
+    .line 23
+    .line 24
+    .line 25
     return-object p2
 .end method
 
@@ -306,39 +669,40 @@
     .locals 1
 
     .line 1
-    const-string p0, "velocity"
+    const-string/jumbo p0, "velocity"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     iget p0, p1, Landroid/graphics/PointF;->x:F
 
-    .line 7
     .line 8
+    .line 9
     iget v0, p1, Landroid/graphics/PointF;->y:F
 
-    .line 9
     .line 10
+    .line 11
     neg-float v0, v0
 
-    .line 11
+    .line 12
     invoke-virtual {p1, v0, p0}, Landroid/graphics/PointF;->set(FF)V
 
-    .line 12
     .line 13
     .line 14
+    .line 15
     return-void
 .end method
 
-.method public calculateDoubleGridSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
+.method public calculateDoubleGridSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
     .locals 9
 
     .line 1
-    invoke-static {p1}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 2
     .line 3
@@ -351,12 +715,12 @@
     move-result-object v0
 
     .line 8
-    invoke-static {p2}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 9
     .line 10
     .line 11
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 12
     .line 13
@@ -364,7 +728,7 @@
     move-result-object v1
 
     .line 15
-    const v2, 0x7f070973
+    const v2, 0x7f0709df
 
     .line 16
     .line 17
@@ -377,7 +741,7 @@
     move-result v2
 
     .line 22
-    invoke-static {p1, v2}, Lx1/O;->A0(Landroid/content/Context;I)I
+    invoke-static {p1, v2}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getPixelFromDefaultDensity(Landroid/content/Context;I)I
 
     .line 23
     .line 24
@@ -385,7 +749,7 @@
     move-result v2
 
     .line 26
-    const v3, 0x7f070965
+    const v3, 0x7f0709d1
 
     .line 27
     .line 28
@@ -398,7 +762,7 @@
     move-result v0
 
     .line 33
-    invoke-static {p1, v0}, Lx1/O;->A0(Landroid/content/Context;I)I
+    invoke-static {p1, v0}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getPixelFromDefaultDensity(Landroid/content/Context;I)I
 
     .line 34
     .line 35
@@ -406,133 +770,169 @@
     move-result p1
 
     .line 37
-    invoke-static {p3}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 38
     .line 39
     .line 40
-    iget v0, p2, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 41
     .line 42
-    iget v3, p2, Lcom/android/launcher3/h0;->U0:I
-
     .line 43
+    move-result-object v0
+
     .line 44
-    const/4 v4, 0x0
+    invoke-virtual {v0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 45
-    invoke-virtual {p3, v4, v4, v0, v3}, Landroid/graphics/Rect;->set(IIII)V
-
     .line 46
     .line 47
+    move-result v0
+
     .line 48
-    iget v0, v1, Landroid/graphics/Rect;->left:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 49
     .line 50
-    int-to-double v5, v0
-
     .line 51
-    instance-of v0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
+    move-result-object v3
 
     .line 52
-    .line 53
-    if-eqz v0, :cond_0
+    invoke-virtual {v3}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
+    .line 53
     .line 54
     .line 55
-    move v3, v2
+    move-result v3
 
     .line 56
-    goto :goto_0
+    const/4 v4, 0x0
 
     .line 57
+    invoke-virtual {p3, v4, v4, v0, v3}, Landroid/graphics/Rect;->set(IIII)V
+
+    .line 58
+    .line 59
+    .line 60
+    iget v0, v1, Landroid/graphics/Rect;->left:I
+
+    .line 61
+    .line 62
+    int-to-double v5, v0
+
+    .line 63
+    instance-of v0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
+
+    .line 64
+    .line 65
+    if-eqz v0, :cond_0
+
+    .line 66
+    .line 67
+    move v3, v2
+
+    .line 68
+    goto :goto_0
+
+    .line 69
     :cond_0
     move v3, p1
 
-    .line 58
+    .line 70
     :goto_0
     int-to-double v7, v3
 
-    .line 59
-    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->max(DD)D
-
-    .line 60
-    .line 61
-    .line 62
-    move-result-wide v5
-
-    .line 63
-    double-to-int v3, v5
-
-    .line 64
-    iget v1, v1, Landroid/graphics/Rect;->right:I
-
-    .line 65
-    .line 66
-    int-to-double v5, v1
-
-    .line 67
-    if-eqz v0, :cond_1
-
-    .line 68
-    .line 69
-    move v2, p1
-
-    .line 70
-    :cond_1
-    int-to-double v0, v2
-
     .line 71
-    invoke-static {v5, v6, v0, v1}, Ljava/lang/Math;->max(DD)D
+    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->max(DD)D
 
     .line 72
     .line 73
     .line 74
-    move-result-wide v0
+    move-result-wide v5
 
     .line 75
-    double-to-int p1, v0
+    double-to-int v3, v5
 
     .line 76
-    invoke-virtual {p3, v3, v4, p1, v4}, Landroid/graphics/Rect;->inset(IIII)V
+    iget v1, v1, Landroid/graphics/Rect;->right:I
 
     .line 77
     .line 78
+    int-to-double v5, v1
+
     .line 79
-    invoke-direct {p0, p3, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDoubleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/h0;)Landroid/graphics/Point;
+    if-eqz v0, :cond_1
 
     .line 80
     .line 81
+    move v2, p1
+
     .line 82
-    move-result-object p0
+    :cond_1
+    int-to-double v0, v2
 
     .line 83
-    iget p1, p2, Lcom/android/launcher3/h0;->U0:I
+    invoke-static {v5, v6, v0, v1}, Ljava/lang/Math;->max(DD)D
 
     .line 84
     .line 85
-    iget p0, p0, Landroid/graphics/Point;->y:I
-
     .line 86
+    move-result-wide v0
+
     .line 87
-    sub-int/2addr p1, p0
+    double-to-int p1, v0
 
     .line 88
-    div-int/lit8 p1, p1, 0x2
+    invoke-virtual {p3, v3, v4, p1, v4}, Landroid/graphics/Rect;->inset(IIII)V
 
     .line 89
     .line 90
-    invoke-virtual {p3, v4, p1, v4, p1}, Landroid/graphics/Rect;->inset(IIII)V
-
     .line 91
+    invoke-direct {p0, p3, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDoubleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/DeviceProfile;)Landroid/graphics/Point;
+
     .line 92
     .line 93
+    .line 94
+    move-result-object p0
+
+    .line 95
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
+
+    .line 96
+    .line 97
+    .line 98
+    move-result-object p1
+
+    .line 99
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
+    .line 100
+    .line 101
+    .line 102
+    move-result p1
+
+    .line 103
+    iget p0, p0, Landroid/graphics/Point;->y:I
+
+    .line 104
+    .line 105
+    sub-int/2addr p1, p0
+
+    .line 106
+    div-int/lit8 p1, p1, 0x2
+
+    .line 107
+    .line 108
+    invoke-virtual {p3, v4, p1, v4, p1}, Landroid/graphics/Rect;->inset(IIII)V
+
+    .line 109
+    .line 110
+    .line 111
     return-object p3
 .end method
 
-.method public calculateDoubleGridTaskSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
+.method public calculateDoubleGridTaskSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
     .locals 2
 
     .line 1
@@ -540,7 +940,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -554,12 +954,12 @@
     .line 9
     .line 10
     .line 11
-    invoke-virtual {p0, p1, p2, v0, p4}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->calculateDoubleGridSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
+    invoke-virtual {p0, p1, p2, v0, p4}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->calculateDoubleGridSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
 
     .line 12
     .line 13
     .line 14
-    invoke-direct {p0, v0, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDoubleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/h0;)Landroid/graphics/Point;
+    invoke-direct {p0, v0, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDoubleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/DeviceProfile;)Landroid/graphics/Point;
 
     .line 15
     .line 16
@@ -578,7 +978,7 @@
 
     .line 22
     .line 23
-    iget v1, p2, Lcom/android/launcher3/X3;->v0:I
+    iget v1, p2, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
 
     .line 24
     .line 25
@@ -601,7 +1001,7 @@
 
     .line 31
     :cond_1
-    iget p2, p2, Lcom/android/launcher3/X3;->v0:I
+    iget p2, p2, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
 
     .line 32
     .line 33
@@ -644,11 +1044,11 @@
     return-object p3
 .end method
 
-.method public calculateMultiGridSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;IF)Landroid/graphics/Rect;
+.method public calculateMultiGridSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;IF)Landroid/graphics/Rect;
     .locals 9
 
     .line 1
-    invoke-static {p1}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 2
     .line 3
@@ -661,12 +1061,12 @@
     move-result-object v0
 
     .line 8
-    invoke-static {p2}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 9
     .line 10
     .line 11
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 12
     .line 13
@@ -674,7 +1074,7 @@
     move-result-object v1
 
     .line 15
-    const v2, 0x7f070973
+    const v2, 0x7f0709df
 
     .line 16
     .line 17
@@ -687,7 +1087,7 @@
     move-result v2
 
     .line 22
-    invoke-static {p1, v2}, Lx1/O;->A0(Landroid/content/Context;I)I
+    invoke-static {p1, v2}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getPixelFromDefaultDensity(Landroid/content/Context;I)I
 
     .line 23
     .line 24
@@ -695,7 +1095,7 @@
     move-result v2
 
     .line 26
-    const v3, 0x7f070965
+    const v3, 0x7f0709d1
 
     .line 27
     .line 28
@@ -708,7 +1108,7 @@
     move-result v0
 
     .line 33
-    invoke-static {p1, v0}, Lx1/O;->A0(Landroid/content/Context;I)I
+    invoke-static {p1, v0}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getPixelFromDefaultDensity(Landroid/content/Context;I)I
 
     .line 34
     .line 35
@@ -716,257 +1116,293 @@
     move-result p1
 
     .line 37
-    invoke-static {p3}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 38
     .line 39
     .line 40
-    iget v0, p2, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 41
     .line 42
-    iget v3, p2, Lcom/android/launcher3/h0;->U0:I
-
     .line 43
+    move-result-object v0
+
     .line 44
-    const/4 v4, 0x0
+    invoke-virtual {v0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 45
-    invoke-virtual {p3, v4, v4, v0, v3}, Landroid/graphics/Rect;->set(IIII)V
-
     .line 46
     .line 47
+    move-result v0
+
     .line 48
-    iget v0, v1, Landroid/graphics/Rect;->left:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 49
     .line 50
-    int-to-double v5, v0
-
     .line 51
-    instance-of p0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
+    move-result-object v3
 
     .line 52
-    .line 53
-    if-eqz p0, :cond_0
+    invoke-virtual {v3}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
+    .line 53
     .line 54
     .line 55
-    move v0, v2
+    move-result v3
 
     .line 56
-    goto :goto_0
+    const/4 v4, 0x0
 
     .line 57
+    invoke-virtual {p3, v4, v4, v0, v3}, Landroid/graphics/Rect;->set(IIII)V
+
+    .line 58
+    .line 59
+    .line 60
+    iget v0, v1, Landroid/graphics/Rect;->left:I
+
+    .line 61
+    .line 62
+    int-to-double v5, v0
+
+    .line 63
+    instance-of p0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
+
+    .line 64
+    .line 65
+    if-eqz p0, :cond_0
+
+    .line 66
+    .line 67
+    move v0, v2
+
+    .line 68
+    goto :goto_0
+
+    .line 69
     :cond_0
     move v0, p1
 
-    .line 58
+    .line 70
     :goto_0
     int-to-double v7, v0
 
-    .line 59
-    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->max(DD)D
-
-    .line 60
-    .line 61
-    .line 62
-    move-result-wide v5
-
-    .line 63
-    double-to-int v0, v5
-
-    .line 64
-    iget v3, v1, Landroid/graphics/Rect;->right:I
-
-    .line 65
-    .line 66
-    int-to-double v5, v3
-
-    .line 67
-    if-eqz p0, :cond_1
-
-    .line 68
-    .line 69
-    move v2, p1
-
-    .line 70
-    :cond_1
-    int-to-double p0, v2
-
     .line 71
-    invoke-static {v5, v6, p0, p1}, Ljava/lang/Math;->max(DD)D
+    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->max(DD)D
 
     .line 72
     .line 73
     .line 74
-    move-result-wide p0
+    move-result-wide v5
 
     .line 75
-    double-to-int p0, p0
+    double-to-int v0, v5
 
     .line 76
-    invoke-virtual {p3, v0, v4, p0, v4}, Landroid/graphics/Rect;->inset(IIII)V
+    iget v3, v1, Landroid/graphics/Rect;->right:I
 
     .line 77
     .line 78
+    int-to-double v5, v3
+
     .line 79
-    invoke-virtual {p3}, Landroid/graphics/Rect;->width()I
+    if-eqz p0, :cond_1
 
     .line 80
     .line 81
+    move v2, p1
+
     .line 82
-    move-result p0
+    :cond_1
+    int-to-double p0, v2
 
     .line 83
-    iget p1, p2, Lcom/android/launcher3/X3;->y0:I
+    invoke-static {v5, v6, p0, p1}, Ljava/lang/Math;->max(DD)D
 
     .line 84
     .line 85
-    sub-int/2addr p0, p1
-
     .line 86
-    int-to-float p0, p0
+    move-result-wide p0
 
     .line 87
-    const/high16 p1, 0x40000000    # 2.0f
+    double-to-int p0, p0
 
     .line 88
+    invoke-virtual {p3, v0, v4, p0, v4}, Landroid/graphics/Rect;->inset(IIII)V
+
     .line 89
-    div-float/2addr p0, p1
-
     .line 90
-    iget p1, p2, Lcom/android/launcher3/X3;->v0:I
-
     .line 91
+    invoke-virtual {p3}, Landroid/graphics/Rect;->width()I
+
     .line 92
-    int-to-float p1, p1
-
     .line 93
-    sub-float/2addr p0, p1
-
     .line 94
-    invoke-static {p0}, Ljava/lang/Math;->round(F)I
+    move-result p0
 
     .line 95
+    iget p1, p2, Lcom/android/launcher3/MFVDeviceProfile;->overviewRowSpacingLand:I
+
     .line 96
     .line 97
-    move-result p0
+    sub-int/2addr p0, p1
 
     .line 98
     int-to-float p0, p0
 
     .line 99
-    div-float/2addr p0, p5
+    const/high16 p1, 0x40000000    # 2.0f
 
     .line 100
-    invoke-static {p0}, Ljava/lang/Math;->round(F)I
-
     .line 101
-    .line 102
-    .line 103
-    move-result p0
+    div-float/2addr p0, p1
 
+    .line 102
+    iget p1, p2, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
+
+    .line 103
     .line 104
-    div-int/lit8 p1, p4, 0x2
+    int-to-float p1, p1
 
     .line 105
+    sub-float/2addr p0, p1
+
     .line 106
-    rem-int/lit8 p4, p4, 0x2
+    invoke-static {p0}, Ljava/lang/Math;->round(F)I
 
     .line 107
     .line 108
-    add-int/2addr p1, p4
-
     .line 109
-    iget p4, p2, Lcom/android/launcher3/h0;->U0:I
+    move-result p0
 
     .line 110
+    int-to-float p0, p0
+
     .line 111
-    mul-int/2addr p0, p1
+    div-float/2addr p0, p5
 
     .line 112
-    sub-int/2addr p4, p0
+    invoke-static {p0}, Ljava/lang/Math;->round(F)I
 
     .line 113
-    iget p0, p2, Lcom/android/launcher3/X3;->x0:I
-
     .line 114
     .line 115
-    add-int/lit8 p1, p1, -0x1
+    move-result p0
 
     .line 116
-    .line 117
-    mul-int/2addr p1, p0
+    div-int/lit8 p1, p4, 0x2
 
+    .line 117
     .line 118
-    sub-int/2addr p4, p1
+    rem-int/lit8 p4, p4, 0x2
 
     .line 119
-    div-int/lit8 p4, p4, 0x2
-
     .line 120
+    add-int/2addr p1, p4
+
     .line 121
-    if-gt p4, p0, :cond_2
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 122
     .line 123
-    goto :goto_1
-
     .line 124
-    :cond_2
-    move p0, p4
+    move-result-object p4
 
     .line 125
-    :goto_1
-    iget p1, v1, Landroid/graphics/Rect;->top:I
+    invoke-virtual {p4}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
     .line 126
     .line 127
-    int-to-double p1, p1
-
     .line 128
-    int-to-double p4, p0
+    move-result p4
 
     .line 129
-    invoke-static {p1, p2, p4, p5}, Ljava/lang/Math;->max(DD)D
+    mul-int/2addr p0, p1
 
     .line 130
-    .line 131
-    .line 132
-    move-result-wide p0
+    sub-int/2addr p4, p0
 
+    .line 131
+    iget p0, p2, Lcom/android/launcher3/MFVDeviceProfile;->overviewPageSpacingLand:I
+
+    .line 132
     .line 133
-    double-to-int p0, p0
+    add-int/lit8 p1, p1, -0x1
 
     .line 134
-    iget p1, v1, Landroid/graphics/Rect;->bottom:I
-
     .line 135
+    mul-int/2addr p1, p0
+
     .line 136
-    int-to-double p1, p1
+    sub-int/2addr p4, p1
 
     .line 137
-    invoke-static {p1, p2, p4, p5}, Ljava/lang/Math;->max(DD)D
+    div-int/lit8 p4, p4, 0x2
 
     .line 138
     .line 139
-    .line 140
-    move-result-wide p1
+    if-gt p4, p0, :cond_2
 
+    .line 140
     .line 141
-    double-to-int p1, p1
+    goto :goto_1
 
     .line 142
-    invoke-virtual {p3, v4, p0, v4, p1}, Landroid/graphics/Rect;->inset(IIII)V
+    :cond_2
+    move p0, p4
 
     .line 143
+    :goto_1
+    iget p1, v1, Landroid/graphics/Rect;->top:I
+
     .line 144
     .line 145
+    int-to-double p1, p1
+
+    .line 146
+    int-to-double p4, p0
+
+    .line 147
+    invoke-static {p1, p2, p4, p5}, Ljava/lang/Math;->max(DD)D
+
+    .line 148
+    .line 149
+    .line 150
+    move-result-wide p0
+
+    .line 151
+    double-to-int p0, p0
+
+    .line 152
+    iget p1, v1, Landroid/graphics/Rect;->bottom:I
+
+    .line 153
+    .line 154
+    int-to-double p1, p1
+
+    .line 155
+    invoke-static {p1, p2, p4, p5}, Ljava/lang/Math;->max(DD)D
+
+    .line 156
+    .line 157
+    .line 158
+    move-result-wide p1
+
+    .line 159
+    double-to-int p1, p1
+
+    .line 160
+    invoke-virtual {p3, v4, p0, v4, p1}, Landroid/graphics/Rect;->inset(IIII)V
+
+    .line 161
+    .line 162
+    .line 163
     return-object p3
 .end method
 
-.method public calculateMultiGridTaskSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;Lcom/android/launcher3/touch/G;IF)Landroid/graphics/Rect;
+.method public calculateMultiGridTaskSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;Lcom/android/launcher3/touch/PagedOrientationHandler;IF)Landroid/graphics/Rect;
     .locals 6
 
     .line 1
@@ -994,7 +1430,7 @@
     move v5, p6
 
     .line 11
-    invoke-virtual/range {v0 .. v5}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->calculateMultiGridSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;IF)Landroid/graphics/Rect;
+    invoke-virtual/range {v0 .. v5}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->calculateMultiGridSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;IF)Landroid/graphics/Rect;
 
     .line 12
     .line 13
@@ -1007,12 +1443,12 @@
     move-result p0
 
     .line 18
-    invoke-static {v2}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 19
     .line 20
     .line 21
-    iget p1, v2, Lcom/android/launcher3/X3;->y0:I
+    iget p1, v2, Lcom/android/launcher3/MFVDeviceProfile;->overviewRowSpacingLand:I
 
     .line 22
     .line 23
@@ -1032,7 +1468,7 @@
     float-to-int p0, p0
 
     .line 29
-    iget p1, v2, Lcom/android/launcher3/X3;->v0:I
+    iget p1, v2, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
 
     .line 30
     .line 31
@@ -1064,7 +1500,7 @@
 
     .line 42
     .line 43
-    iget p5, v2, Lcom/android/launcher3/X3;->v0:I
+    iget p5, v2, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
 
     .line 44
     .line 45
@@ -1087,7 +1523,7 @@
 
     .line 51
     :cond_1
-    iget p6, v2, Lcom/android/launcher3/X3;->v0:I
+    iget p6, v2, Lcom/android/launcher3/MFVDeviceProfile;->overviewMultiTaskThumbnailTopMarginPx:I
 
     .line 52
     .line 53
@@ -1122,11 +1558,11 @@
     return-object p3
 .end method
 
-.method public calculateSingleGridSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
+.method public calculateSingleGridSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
     .locals 9
 
     .line 1
-    invoke-static {p1}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 2
     .line 3
@@ -1139,12 +1575,12 @@
     move-result-object v0
 
     .line 8
-    invoke-static {p2}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 9
     .line 10
     .line 11
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 12
     .line 13
@@ -1152,183 +1588,219 @@
     move-result-object v1
 
     .line 15
-    invoke-static {p3}, Lkotlin/jvm/internal/o;->c(Ljava/lang/Object;)V
+    invoke-static {p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
 
     .line 16
     .line 17
     .line 18
-    iget v2, p2, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 19
     .line 20
-    iget v3, p2, Lcom/android/launcher3/h0;->U0:I
-
     .line 21
+    move-result-object v2
+
     .line 22
-    const/4 v4, 0x0
+    invoke-virtual {v2}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 23
-    invoke-virtual {p3, v4, v4, v2, v3}, Landroid/graphics/Rect;->set(IIII)V
-
     .line 24
     .line 25
+    move-result v2
+
     .line 26
-    const v2, 0x7f070970
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 27
     .line 28
     .line 29
-    invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    move-result-object v3
 
     .line 30
+    invoke-virtual {v3}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
     .line 31
     .line 32
-    move-result v2
-
     .line 33
-    invoke-static {p1, v2}, Lx1/O;->A0(Landroid/content/Context;I)I
+    move-result v3
 
     .line 34
+    const/4 v4, 0x0
+
     .line 35
+    invoke-virtual {p3, v4, v4, v2, v3}, Landroid/graphics/Rect;->set(IIII)V
+
     .line 36
-    move-result v2
-
     .line 37
-    const v3, 0x7f07096e
-
     .line 38
+    const v2, 0x7f0709dc
+
     .line 39
     .line 40
-    invoke-virtual {v0, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
     .line 41
+    invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
     .line 42
     .line 43
-    move-result v0
-
     .line 44
-    invoke-static {p1, v0}, Lx1/O;->A0(Landroid/content/Context;I)I
+    move-result v2
 
     .line 45
+    invoke-static {p1, v2}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getPixelFromDefaultDensity(Landroid/content/Context;I)I
+
     .line 46
     .line 47
-    move-result p1
-
     .line 48
-    iget v0, v1, Landroid/graphics/Rect;->left:I
+    move-result v2
 
     .line 49
+    const v3, 0x7f0709da
+
     .line 50
-    int-to-double v5, v0
-
     .line 51
-    instance-of v0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
-
     .line 52
-    .line 53
-    if-eqz v0, :cond_0
+    invoke-virtual {v0, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
+    .line 53
     .line 54
     .line 55
-    move v3, v2
+    move-result v0
 
     .line 56
-    goto :goto_0
+    invoke-static {p1, v0}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getPixelFromDefaultDensity(Landroid/content/Context;I)I
 
     .line 57
+    .line 58
+    .line 59
+    move-result p1
+
+    .line 60
+    iget v0, v1, Landroid/graphics/Rect;->left:I
+
+    .line 61
+    .line 62
+    int-to-double v5, v0
+
+    .line 63
+    instance-of v0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
+
+    .line 64
+    .line 65
+    if-eqz v0, :cond_0
+
+    .line 66
+    .line 67
+    move v3, v2
+
+    .line 68
+    goto :goto_0
+
+    .line 69
     :cond_0
     move v3, p1
 
-    .line 58
+    .line 70
     :goto_0
     int-to-double v7, v3
 
-    .line 59
-    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->max(DD)D
-
-    .line 60
-    .line 61
-    .line 62
-    move-result-wide v5
-
-    .line 63
-    double-to-int v3, v5
-
-    .line 64
-    iget v1, v1, Landroid/graphics/Rect;->right:I
-
-    .line 65
-    .line 66
-    int-to-double v5, v1
-
-    .line 67
-    if-eqz v0, :cond_1
-
-    .line 68
-    .line 69
-    move v2, p1
-
-    .line 70
-    :cond_1
-    int-to-double v0, v2
-
     .line 71
-    invoke-static {v5, v6, v0, v1}, Ljava/lang/Math;->max(DD)D
+    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->max(DD)D
 
     .line 72
     .line 73
     .line 74
-    move-result-wide v0
+    move-result-wide v5
 
     .line 75
-    double-to-int p1, v0
+    double-to-int v3, v5
 
     .line 76
-    invoke-virtual {p3, v3, v4, p1, v4}, Landroid/graphics/Rect;->inset(IIII)V
+    iget v1, v1, Landroid/graphics/Rect;->right:I
 
     .line 77
     .line 78
+    int-to-double v5, v1
+
     .line 79
-    invoke-direct {p0, p3, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getSingleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/h0;)Landroid/graphics/Point;
+    if-eqz v0, :cond_1
 
     .line 80
     .line 81
+    move v2, p1
+
     .line 82
-    move-result-object p0
+    :cond_1
+    int-to-double v0, v2
 
     .line 83
-    iget p1, p2, Lcom/android/launcher3/h0;->U0:I
+    invoke-static {v5, v6, v0, v1}, Ljava/lang/Math;->max(DD)D
 
     .line 84
     .line 85
-    iget p0, p0, Landroid/graphics/Point;->y:I
-
     .line 86
+    move-result-wide v0
+
     .line 87
-    sub-int/2addr p1, p0
+    double-to-int p1, v0
 
     .line 88
-    div-int/lit8 p1, p1, 0x2
+    invoke-virtual {p3, v3, v4, p1, v4}, Landroid/graphics/Rect;->inset(IIII)V
 
     .line 89
     .line 90
-    invoke-virtual {p3, v4, p1, v4, p1}, Landroid/graphics/Rect;->inset(IIII)V
-
     .line 91
+    invoke-direct {p0, p3, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getSingleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/DeviceProfile;)Landroid/graphics/Point;
+
     .line 92
     .line 93
+    .line 94
+    move-result-object p0
+
+    .line 95
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
+
+    .line 96
+    .line 97
+    .line 98
+    move-result-object p1
+
+    .line 99
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
+    .line 100
+    .line 101
+    .line 102
+    move-result p1
+
+    .line 103
+    iget p0, p0, Landroid/graphics/Point;->y:I
+
+    .line 104
+    .line 105
+    sub-int/2addr p1, p0
+
+    .line 106
+    div-int/lit8 p1, p1, 0x2
+
+    .line 107
+    .line 108
+    invoke-virtual {p3, v4, p1, v4, p1}, Landroid/graphics/Rect;->inset(IIII)V
+
+    .line 109
+    .line 110
+    .line 111
     return-object p3
 .end method
 
-.method public calculateSingleGridTaskSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
-    .locals 2
+.method public calculateSingleGridTaskSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
+    .locals 1
 
     .line 1
     const-string v0, "dp"
 
     .line 2
     .line 3
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -1342,80 +1814,44 @@
     .line 9
     .line 10
     .line 11
-    invoke-virtual {p0, p1, p2, v0, p4}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->calculateSingleGridSize(Landroid/content/Context;Lcom/android/launcher3/h0;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
+    invoke-virtual {p0, p1, p2, v0, p4}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->calculateSingleGridSize(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;F)Landroid/graphics/Rect;
 
     .line 12
     .line 13
     .line 14
-    invoke-direct {p0, v0, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getSingleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/h0;)Landroid/graphics/Point;
+    invoke-direct {p0, v0, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getSingleTaskSize(Landroid/graphics/Rect;FLcom/android/launcher3/DeviceProfile;)Landroid/graphics/Point;
 
     .line 15
     .line 16
     .line 17
-    move-result-object p1
+    move-result-object p0
 
     .line 18
-    instance-of p0, p0, Lcom/android/quickstep/orientation/SeascapePagedViewHandler;
+    const/4 p1, 0x0
 
     .line 19
+    invoke-virtual {v0, p1, p1, p1, p1}, Landroid/graphics/Rect;->inset(IIII)V
+
     .line 20
-    const/4 p4, 0x0
-
     .line 21
-    if-eqz p0, :cond_0
-
     .line 22
+    iget p1, p0, Landroid/graphics/Point;->x:I
+
     .line 23
-    iget v1, p2, Lcom/android/launcher3/h0;->S2:I
-
     .line 24
+    iget p0, p0, Landroid/graphics/Point;->y:I
+
     .line 25
-    goto :goto_0
-
     .line 26
-    :cond_0
-    move v1, p4
-
-    .line 27
-    :goto_0
-    if-eqz p0, :cond_1
-
-    .line 28
-    .line 29
-    move p0, p4
-
-    .line 30
-    goto :goto_1
-
-    .line 31
-    :cond_1
-    iget p0, p2, Lcom/android/launcher3/h0;->S2:I
-
-    .line 32
-    .line 33
-    :goto_1
-    invoke-virtual {v0, v1, p4, p0, p4}, Landroid/graphics/Rect;->inset(IIII)V
-
-    .line 34
-    .line 35
-    .line 36
-    iget p0, p1, Landroid/graphics/Point;->x:I
-
-    .line 37
-    .line 38
-    iget p1, p1, Landroid/graphics/Point;->y:I
-
-    .line 39
-    .line 40
     const/16 p2, 0x11
 
-    .line 41
-    .line 42
-    invoke-static {p2, p0, p1, v0, p3}, Landroid/view/Gravity;->apply(IIILandroid/graphics/Rect;Landroid/graphics/Rect;)V
+    .line 27
+    .line 28
+    invoke-static {p2, p1, p0, v0, p3}, Landroid/view/Gravity;->apply(IIILandroid/graphics/Rect;Landroid/graphics/Rect;)V
 
-    .line 43
-    .line 44
-    .line 45
+    .line 29
+    .line 30
+    .line 31
     return-object p3
 .end method
 
@@ -1423,19 +1859,20 @@
     .locals 0
 
     .line 1
-    const-string p0, "taskSize"
+    const-string/jumbo p0, "taskSize"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     iget p0, p1, Landroid/graphics/Rect;->left:I
 
-    .line 7
     .line 8
+    .line 9
     return p0
 .end method
 
@@ -1443,93 +1880,95 @@
     .locals 1
 
     .line 1
-    const-string p0, "taskSize"
+    const-string/jumbo p0, "taskSize"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
-    const-string p0, "taskView"
-
     .line 7
-    .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string/jumbo p0, "taskView"
 
+    .line 8
     .line 9
     .line 10
-    .line 11
-    iget p0, p1, Landroid/graphics/Rect;->left:I
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 11
     .line 12
     .line 13
-    int-to-float p0, p0
+    iget p0, p1, Landroid/graphics/Rect;->left:I
 
     .line 14
+    .line 15
+    int-to-float p0, p0
+
+    .line 16
     invoke-virtual {p1}, Landroid/graphics/Rect;->width()I
 
-    .line 15
-    .line 16
     .line 17
-    move-result p1
-
     .line 18
-    int-to-float p1, p1
-
     .line 19
-    const/high16 v0, 0x40000000    # 2.0f
+    move-result p1
 
     .line 20
-    .line 21
-    div-float/2addr p1, v0
-
-    .line 22
-    add-float/2addr p0, p1
-
-    .line 23
-    invoke-virtual {p2}, Landroid/view/View;->getX()F
-
-    .line 24
-    .line 25
-    .line 26
-    move-result p1
-
-    .line 27
-    invoke-virtual {p2}, Landroid/view/View;->getWidth()I
-
-    .line 28
-    .line 29
-    .line 30
-    move-result p2
-
-    .line 31
-    sub-int/2addr p2, p3
-
-    .line 32
-    int-to-float p2, p2
-
-    .line 33
-    div-float/2addr p2, v0
-
-    .line 34
-    add-float/2addr p1, p2
-
-    .line 35
-    sub-float/2addr p0, p1
-
-    .line 36
-    const/16 p1, 0x1b
-
-    .line 37
-    .line 38
     int-to-float p1, p1
 
-    .line 39
+    .line 21
+    const/high16 v0, 0x40000000    # 2.0f
+
+    .line 22
+    .line 23
+    div-float/2addr p1, v0
+
+    .line 24
     add-float/2addr p0, p1
 
+    .line 25
+    invoke-virtual {p2}, Landroid/view/View;->getX()F
+
+    .line 26
+    .line 27
+    .line 28
+    move-result p1
+
+    .line 29
+    invoke-virtual {p2}, Landroid/view/View;->getWidth()I
+
+    .line 30
+    .line 31
+    .line 32
+    move-result p2
+
+    .line 33
+    sub-int/2addr p2, p3
+
+    .line 34
+    int-to-float p2, p2
+
+    .line 35
+    div-float/2addr p2, v0
+
+    .line 36
+    add-float/2addr p1, p2
+
+    .line 37
+    sub-float/2addr p0, p1
+
+    .line 38
+    const/16 p1, 0x1b
+
+    .line 39
     .line 40
+    int-to-float p1, p1
+
+    .line 41
+    add-float/2addr p0, p1
+
+    .line 42
     return p0
 .end method
 
@@ -1537,29 +1976,30 @@
     .locals 0
 
     .line 1
-    const-string p0, "tasSize"
+    const-string/jumbo p0, "tasSize"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1}, Landroid/graphics/Rect;->width()I
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result p0
 
-    .line 10
+    .line 11
     add-int/2addr p0, p2
 
-    .line 11
+    .line 12
     add-int/2addr p0, p3
 
-    .line 12
+    .line 13
     return p0
 .end method
 
@@ -1567,46 +2007,139 @@
     .locals 0
 
     .line 1
-    const-string p0, "winRect"
+    const-string/jumbo p0, "winRect"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 5
+    .line 6
+    .line 7
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 8
+    .line 9
+    .line 10
+    invoke-virtual {p1}, Landroid/graphics/RectF;->height()F
+
+    .line 11
+    .line 12
+    .line 13
+    move-result p0
+
+    .line 14
+    mul-float/2addr p0, p3
+
+    .line 15
+    div-float/2addr p0, p2
+
+    .line 16
+    return p0
+.end method
+
+.method public extendRectForPrimaryTranslation(Landroid/graphics/Rect;I)V
+    .locals 0
+
+    .line 1
+    const-string p0, "rect"
+
+    .line 2
+    .line 3
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    if-gez p2, :cond_0
 
     .line 7
     .line 8
+    iget p0, p1, Landroid/graphics/Rect;->top:I
+
     .line 9
-    invoke-virtual {p1}, Landroid/graphics/RectF;->height()F
-
     .line 10
-    .line 11
-    .line 12
-    move-result p0
+    add-int/2addr p0, p2
 
+    .line 11
+    iput p0, p1, Landroid/graphics/Rect;->top:I
+
+    .line 12
     .line 13
-    mul-float/2addr p0, p3
+    return-void
 
     .line 14
-    div-float/2addr p0, p2
+    :cond_0
+    iget p0, p1, Landroid/graphics/Rect;->bottom:I
 
     .line 15
-    return p0
+    .line 16
+    add-int/2addr p0, p2
+
+    .line 17
+    iput p0, p1, Landroid/graphics/Rect;->bottom:I
+
+    .line 18
+    .line 19
+    return-void
 .end method
 
-.method public fixBoundsForHomeAnimStartRect(Landroid/graphics/RectF;Lcom/android/launcher3/h0;)V
-    .locals 2
+.method public extendRectForSecondaryTranslation(Landroid/graphics/Rect;I)V
+    .locals 0
+
+    .line 1
+    const-string p0, "rect"
+
+    .line 2
+    .line 3
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 4
+    .line 5
+    .line 6
+    if-gez p2, :cond_0
+
+    .line 7
+    .line 8
+    iget p0, p1, Landroid/graphics/Rect;->left:I
+
+    .line 9
+    .line 10
+    add-int/2addr p0, p2
+
+    .line 11
+    iput p0, p1, Landroid/graphics/Rect;->left:I
+
+    .line 12
+    .line 13
+    return-void
+
+    .line 14
+    :cond_0
+    iget p0, p1, Landroid/graphics/Rect;->right:I
+
+    .line 15
+    .line 16
+    add-int/2addr p0, p2
+
+    .line 17
+    iput p0, p1, Landroid/graphics/Rect;->right:I
+
+    .line 18
+    .line 19
+    return-void
+.end method
+
+.method public fixBoundsForHomeAnimStartRect(Landroid/graphics/RectF;Lcom/android/launcher3/DeviceProfile;)V
+    .locals 1
 
     .line 1
     const-string p0, "outStartRect"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -1615,7 +2148,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -1624,138 +2157,230 @@
 
     .line 12
     .line 13
-    iget p2, p2, Lcom/android/launcher3/h0;->U0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 14
     .line 15
-    int-to-float v0, p2
-
     .line 16
-    cmpl-float v0, p0, v0
+    move-result-object v0
 
     .line 17
+    invoke-virtual {v0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
     .line 18
-    const/4 v1, 0x0
-
     .line 19
-    if-lez v0, :cond_0
-
     .line 20
+    move-result v0
+
     .line 21
-    iget p0, p1, Landroid/graphics/RectF;->top:F
+    int-to-float v0, v0
 
     .line 22
+    cmpl-float p0, p0, v0
+
     .line 23
-    invoke-virtual {p1, v1, p0}, Landroid/graphics/RectF;->offsetTo(FF)V
-
     .line 24
-    .line 25
-    .line 26
-    return-void
+    const/4 v0, 0x0
 
+    .line 25
+    if-lez p0, :cond_0
+
+    .line 26
     .line 27
-    :cond_0
-    neg-int p2, p2
+    iget p0, p1, Landroid/graphics/RectF;->top:F
 
     .line 28
-    int-to-float p2, p2
-
     .line 29
-    cmpg-float p0, p0, p2
+    invoke-virtual {p1, v0, p0}, Landroid/graphics/RectF;->offsetTo(FF)V
 
     .line 30
     .line 31
-    if-gez p0, :cond_1
-
     .line 32
+    return-void
+
     .line 33
-    iget p0, p1, Landroid/graphics/RectF;->top:F
+    :cond_0
+    iget p0, p1, Landroid/graphics/RectF;->left:F
 
     .line 34
     .line 35
-    invoke-virtual {p1, v1, p0}, Landroid/graphics/RectF;->offsetTo(FF)V
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 36
     .line 37
     .line 38
+    move-result-object p2
+
+    .line 39
+    invoke-virtual {p2}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
+    .line 40
+    .line 41
+    .line 42
+    move-result p2
+
+    .line 43
+    neg-int p2, p2
+
+    .line 44
+    int-to-float p2, p2
+
+    .line 45
+    cmpg-float p0, p0, p2
+
+    .line 46
+    .line 47
+    if-gez p0, :cond_1
+
+    .line 48
+    .line 49
+    iget p0, p1, Landroid/graphics/RectF;->top:F
+
+    .line 50
+    .line 51
+    invoke-virtual {p1, v0, p0}, Landroid/graphics/RectF;->offsetTo(FF)V
+
+    .line 52
+    .line 53
+    .line 54
     :cond_1
     return-void
+.end method
+
+.method public getAppChipMenuMarginX(Lcom/android/quickstep/views/IconAppChipView;Z)I
+    .locals 0
+
+    .line 1
+    const-string p0, "appChipView"
+
+    .line 2
+    .line 3
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 4
+    .line 5
+    .line 6
+    invoke-virtual {p1}, Lcom/android/quickstep/views/IconAppChipView;->getMenuToCollapsedChipGap()I
+
+    .line 7
+    .line 8
+    .line 9
+    move-result p0
+
+    .line 10
+    return p0
+.end method
+
+.method public getAppChipMenuMarginY(Lcom/android/quickstep/views/IconAppChipView;Z)I
+    .locals 0
+
+    .line 1
+    const-string p0, "appChipView"
+
+    .line 2
+    .line 3
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 4
+    .line 5
+    .line 6
+    invoke-virtual {p1}, Lcom/android/quickstep/views/IconAppChipView;->getBackgroundMarginTopStart()I
+
+    .line 7
+    .line 8
+    .line 9
+    move-result p0
+
+    .line 10
+    if-eqz p2, :cond_0
+
+    .line 11
+    .line 12
+    return p0
+
+    .line 13
+    :cond_0
+    neg-int p0, p0
+
+    .line 14
+    return p0
 .end method
 
 .method public getCenterForPage(Landroid/view/View;Landroid/graphics/Rect;)I
     .locals 1
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     const-string p0, "insets"
 
-    .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     invoke-virtual {p1}, Landroid/view/View;->getPaddingLeft()I
 
-    .line 12
     .line 13
     .line 14
+    .line 15
     move-result p0
 
-    .line 15
+    .line 16
     invoke-virtual {p1}, Landroid/view/View;->getMeasuredWidth()I
 
-    .line 16
     .line 17
     .line 18
+    .line 19
     move-result v0
 
-    .line 19
-    add-int/2addr p0, v0
-
     .line 20
-    iget v0, p2, Landroid/graphics/Rect;->left:I
+    add-int/2addr p0, v0
 
     .line 21
+    iget v0, p2, Landroid/graphics/Rect;->left:I
+
     .line 22
+    .line 23
     add-int/2addr p0, v0
 
-    .line 23
+    .line 24
     iget p2, p2, Landroid/graphics/Rect;->right:I
 
-    .line 24
     .line 25
+    .line 26
     sub-int/2addr p0, p2
 
-    .line 26
+    .line 27
     invoke-virtual {p1}, Landroid/view/View;->getPaddingRight()I
 
-    .line 27
     .line 28
     .line 29
+    .line 30
     move-result p1
 
-    .line 30
+    .line 31
     sub-int/2addr p0, p1
 
-    .line 31
+    .line 32
     div-int/lit8 p0, p0, 0x2
 
-    .line 32
     .line 33
+    .line 34
     return p0
 .end method
 
-.method public getChildBounds(Landroid/view/View;IIZ)Lcom/android/launcher3/touch/G$a;
+.method public getChildBounds(Landroid/view/View;IIZ)Lcom/android/launcher3/touch/PagedOrientationHandler$ChildBounds;
     .locals 3
 
     .line 1
@@ -1763,7 +2388,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -1809,11 +2434,11 @@
     .line 25
     .line 26
     :cond_0
-    new-instance p1, Lcom/android/launcher3/touch/G$a;
+    new-instance p1, Lcom/android/launcher3/touch/PagedOrientationHandler$ChildBounds;
 
     .line 27
     .line 28
-    invoke-direct {p1, p0, v0, v1, p3}, Lcom/android/launcher3/touch/G$a;-><init>(IIII)V
+    invoke-direct {p1, p0, v0, v1, p3}, Lcom/android/launcher3/touch/PagedOrientationHandler$ChildBounds;-><init>(IIII)V
 
     .line 29
     .line 30
@@ -1825,23 +2450,24 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1}, Landroid/view/View;->getTop()I
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result p0
 
-    .line 10
+    .line 11
     return p0
 .end method
 
@@ -1872,51 +2498,52 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     if-eqz p2, :cond_0
 
-    .line 7
     .line 8
+    .line 9
     invoke-virtual {p1}, Landroid/view/View;->getPaddingBottom()I
 
-    .line 9
     .line 10
     .line 11
+    .line 12
     move-result p0
 
-    .line 12
+    .line 13
     :goto_0
     div-int/lit8 p0, p0, 0x2
 
-    .line 13
     .line 14
+    .line 15
     return p0
 
-    .line 15
+    .line 16
     :cond_0
     invoke-virtual {p1}, Landroid/view/View;->getPaddingTop()I
 
-    .line 16
     .line 17
     .line 18
+    .line 19
     move-result p0
 
-    .line 19
+    .line 20
     neg-int p0, p0
 
-    .line 20
+    .line 21
     goto :goto_0
 .end method
 
-.method public getDefaultSplitPosition(Lcom/android/launcher3/h0;)I
+.method public getDefaultSplitPosition(Lcom/android/launcher3/DeviceProfile;)I
     .locals 0
 
     .line 1
@@ -1924,7 +2551,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -1956,7 +2583,7 @@
     return p0
 .end method
 
-.method public getDistanceToBottomOfRect(Lcom/android/launcher3/h0;Landroid/graphics/Rect;)I
+.method public getDistanceToBottomOfRect(Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;)I
     .locals 0
 
     .line 1
@@ -1964,7 +2591,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -1973,7 +2600,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -1985,41 +2612,42 @@
     return p0
 .end method
 
-.method protected final getDividerBarSize(ILcom/android/launcher3/util/y2$a;)I
+.method public final getDividerBarSize(ILcom/android/wm/shell/shared/split/SplitBounds;)I
     .locals 0
 
     .line 1
-    const-string p0, "splitConfig"
+    const-string/jumbo p0, "splitConfig"
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     int-to-float p0, p1
 
-    .line 7
-    invoke-virtual {p2}, Lcom/android/launcher3/util/y2$a;->a()F
-
     .line 8
+    invoke-virtual {p2}, Lcom/android/wm/shell/shared/split/SplitBounds;->getDividerPercent()F
+
     .line 9
     .line 10
+    .line 11
     move-result p1
 
-    .line 11
+    .line 12
     mul-float/2addr p0, p1
 
-    .line 12
+    .line 13
     invoke-static {p0}, Ljava/lang/Math;->round(F)I
 
-    .line 13
     .line 14
     .line 15
+    .line 16
     move-result p0
 
-    .line 16
+    .line 17
     return p0
 .end method
 
@@ -2044,15 +2672,13 @@
     return p0
 .end method
 
-.method public getDwbBannerTranslations(IILcom/android/launcher3/util/y2$a;Lcom/android/launcher3/h0;[Landroid/view/View;ILandroid/view/View;)Landroid/util/Pair;
+.method public getDwbBannerTranslations(IILcom/android/wm/shell/shared/split/SplitBounds;Lcom/android/launcher3/DeviceProfile;ILandroid/view/View;)Landroid/util/Pair;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(II",
-            "Lcom/android/launcher3/util/y2$a;",
-            "Lcom/android/launcher3/h0;",
-            "[",
-            "Landroid/view/View;",
+            "Lcom/android/wm/shell/shared/split/SplitBounds;",
+            "Lcom/android/launcher3/DeviceProfile;",
             "I",
             "Landroid/view/View;",
             ")",
@@ -2068,164 +2694,106 @@
 
     .line 2
     .line 3
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p0, "thumbnailViews"
+    const-string p0, "banner"
 
     .line 7
     .line 8
-    invoke-static {p5, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p6, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
     .line 11
-    const-string p0, "banner"
+    invoke-virtual {p6}, Landroid/view/View;->getHeight()I
 
     .line 12
     .line 13
-    invoke-static {p7, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    move-result p0
+
     .line 15
+    int-to-float p0, p0
+
     .line 16
-    const/4 p0, 0x0
+    if-eqz p3, :cond_1
 
     .line 17
-    aget-object p0, p5, p0
-
     .line 18
-    .line 19
-    invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    iget p1, p3, Lcom/android/wm/shell/shared/split/SplitBounds;->leftTopTaskId:I
 
+    .line 19
     .line 20
+    if-ne p5, p1, :cond_0
+
     .line 21
     .line 22
-    move-result-object p0
+    goto :goto_0
 
     .line 23
-    const-string p1, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams"
+    :cond_0
+    int-to-float p1, p2
 
     .line 24
-    .line 25
-    invoke-static {p0, p1}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-virtual {p3}, Lcom/android/wm/shell/shared/split/SplitBounds;->getLeftTopTaskPercent()F
 
+    .line 25
     .line 26
     .line 27
+    move-result p2
+
     .line 28
-    check-cast p0, Landroid/widget/FrameLayout$LayoutParams;
+    invoke-virtual {p3}, Lcom/android/wm/shell/shared/split/SplitBounds;->getDividerPercent()F
 
     .line 29
     .line 30
-    invoke-virtual {p7}, Landroid/view/View;->getHeight()I
-
     .line 31
-    .line 32
-    .line 33
-    move-result p1
-
-    .line 34
-    int-to-float p1, p1
-
-    .line 35
-    if-nez p3, :cond_0
-
-    .line 36
-    .line 37
-    iget p0, p0, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
-
-    .line 38
-    .line 39
-    :goto_0
-    int-to-float p0, p0
-
-    .line 40
-    goto :goto_1
-
-    .line 41
-    :cond_0
-    iget p4, p3, Lcom/android/launcher3/util/y2$a;->k:I
-
-    .line 42
-    .line 43
-    if-ne p6, p4, :cond_1
-
-    .line 44
-    .line 45
-    iget p0, p0, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
-
-    .line 46
-    .line 47
-    goto :goto_0
-
-    .line 48
-    :cond_1
-    invoke-virtual {p3}, Lcom/android/launcher3/util/y2$a;->b()F
-
-    .line 49
-    .line 50
-    .line 51
-    move-result p4
-
-    .line 52
-    invoke-virtual {p3}, Lcom/android/launcher3/util/y2$a;->a()F
-
-    .line 53
-    .line 54
-    .line 55
     move-result p3
 
-    .line 56
-    add-float/2addr p4, p3
+    .line 32
+    add-float/2addr p2, p3
 
-    .line 57
-    iget p0, p0, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
+    .line 33
+    mul-float/2addr p1, p2
 
-    .line 58
-    .line 59
-    int-to-float p3, p0
+    .line 34
+    goto :goto_1
 
-    .line 60
-    sub-int/2addr p2, p0
+    .line 35
+    :cond_1
+    :goto_0
+    const/4 p1, 0x0
 
-    .line 61
-    int-to-float p0, p2
-
-    .line 62
-    mul-float/2addr p0, p4
-
-    .line 63
-    add-float/2addr p0, p3
-
-    .line 64
+    .line 36
     :goto_1
     new-instance p2, Landroid/util/Pair;
 
-    .line 65
-    .line 66
-    invoke-static {p1}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
-
-    .line 67
-    .line 68
-    .line 69
-    move-result-object p1
-
-    .line 70
+    .line 37
+    .line 38
     invoke-static {p0}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
 
-    .line 71
-    .line 72
-    .line 73
+    .line 39
+    .line 40
+    .line 41
     move-result-object p0
 
-    .line 74
-    invoke-direct {p2, p1, p0}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+    .line 42
+    invoke-static {p1}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
 
-    .line 75
-    .line 76
-    .line 77
+    .line 43
+    .line 44
+    .line 45
+    move-result-object p1
+
+    .line 46
+    invoke-direct {p2, p0, p1}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 47
+    .line 48
+    .line 49
     return-object p2
 .end method
 
@@ -2237,7 +2805,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2249,7 +2817,7 @@
     return p0
 .end method
 
-.method public getFinalSplitPlaceholderBounds(ILcom/android/launcher3/h0;ILandroid/graphics/Rect;Landroid/graphics/Rect;)V
+.method public getFinalSplitPlaceholderBounds(ILcom/android/launcher3/DeviceProfile;ILandroid/graphics/Rect;Landroid/graphics/Rect;)V
     .locals 2
 
     .line 1
@@ -2257,7 +2825,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2266,7 +2834,7 @@
 
     .line 7
     .line 8
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -2275,47 +2843,71 @@
 
     .line 12
     .line 13
-    invoke-static {p5, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p5, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 14
     .line 15
     .line 16
-    iget p0, p2, Lcom/android/launcher3/h0;->U0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 17
     .line 18
-    iget p2, p2, Lcom/android/launcher3/h0;->T0:I
-
     .line 19
+    move-result-object p0
+
     .line 20
-    div-int/lit8 p3, p0, 0x2
+    invoke-virtual {p0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
     .line 21
     .line 22
-    sub-int v0, p3, p1
-
     .line 23
+    move-result p0
+
     .line 24
-    const/4 v1, 0x0
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 25
-    invoke-virtual {p4, v1, v1, p2, v0}, Landroid/graphics/Rect;->set(IIII)V
-
     .line 26
     .line 27
+    move-result-object p2
+
     .line 28
-    add-int/2addr p3, p1
+    invoke-virtual {p2}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 29
-    invoke-virtual {p5, v1, p3, p2, p0}, Landroid/graphics/Rect;->set(IIII)V
-
     .line 30
     .line 31
+    move-result p2
+
     .line 32
+    div-int/lit8 p3, p0, 0x2
+
+    .line 33
+    .line 34
+    sub-int v0, p3, p1
+
+    .line 35
+    .line 36
+    const/4 v1, 0x0
+
+    .line 37
+    invoke-virtual {p4, v1, v1, p2, v0}, Landroid/graphics/Rect;->set(IIII)V
+
+    .line 38
+    .line 39
+    .line 40
+    add-int/2addr p3, p1
+
+    .line 41
+    invoke-virtual {p5, v1, p3, p2, p0}, Landroid/graphics/Rect;->set(IIII)V
+
+    .line 42
+    .line 43
+    .line 44
     return-void
 .end method
 
-.method public getFloatingTaskOffscreenTranslationTarget(Landroid/view/View;Landroid/graphics/RectF;ILcom/android/launcher3/h0;)F
+.method public getFloatingTaskOffscreenTranslationTarget(Landroid/view/View;Landroid/graphics/RectF;ILcom/android/launcher3/DeviceProfile;)F
     .locals 0
 
     .line 1
@@ -2323,7 +2915,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2332,7 +2924,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -2341,7 +2933,7 @@
 
     .line 12
     .line 13
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 14
     .line 15
@@ -2368,7 +2960,7 @@
     return p0
 .end method
 
-.method public getFloatingTaskPrimaryTranslation(Landroid/view/View;Lcom/android/launcher3/h0;)F
+.method public getFloatingTaskPrimaryTranslation(Landroid/view/View;Lcom/android/launcher3/DeviceProfile;)F
     .locals 0
 
     .line 1
@@ -2376,7 +2968,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2385,7 +2977,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -2428,65 +3020,66 @@
     .locals 0
 
     .line 1
-    const-string p0, "taskSize"
+    const-string/jumbo p0, "taskSize"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     const-string p0, "gridSize"
 
-    .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     if-eqz p3, :cond_0
 
-    .line 12
     .line 13
+    .line 14
     iget p0, p1, Landroid/graphics/Rect;->top:I
 
-    .line 14
     .line 15
+    .line 16
     iget p1, p2, Landroid/graphics/Rect;->top:I
 
-    .line 16
     .line 17
+    .line 18
     :goto_0
     sub-int/2addr p0, p1
 
-    .line 18
+    .line 19
     int-to-float p0, p0
 
-    .line 19
+    .line 20
     return p0
 
-    .line 20
+    .line 21
     :cond_0
     iget p0, p1, Landroid/graphics/Rect;->bottom:I
 
-    .line 21
     .line 22
+    .line 23
     iget p1, p2, Landroid/graphics/Rect;->bottom:I
 
-    .line 23
     .line 24
+    .line 25
     goto :goto_0
 .end method
 
-.method public getGroupedTaskViewSizes(Lcom/android/launcher3/h0;Lcom/android/launcher3/util/y2$a;III)Landroid/util/Pair;
+.method public getGroupedTaskViewSizes(Lcom/android/launcher3/DeviceProfile;Lcom/android/wm/shell/shared/split/SplitBounds;III)Landroid/util/Pair;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/android/launcher3/h0;",
-            "Lcom/android/launcher3/util/y2$a;",
+            "Lcom/android/launcher3/DeviceProfile;",
+            "Lcom/android/wm/shell/shared/split/SplitBounds;",
             "III)",
             "Landroid/util/Pair<",
             "Landroid/graphics/Point;",
@@ -2500,82 +3093,83 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p5}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p5}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p1, "splitBoundsConfig"
+    const-string/jumbo p1, "splitBoundsConfig"
 
     .line 7
     .line 8
-    invoke-static {p2, p1}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
-    invoke-virtual {p0, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDividerBarSize(ILcom/android/launcher3/util/y2$a;)I
-
     .line 12
+    invoke-virtual {p0, p4, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDividerBarSize(ILcom/android/wm/shell/shared/split/SplitBounds;)I
+
     .line 13
     .line 14
+    .line 15
     move-result p0
 
-    .line 15
-    invoke-virtual {p2}, Lcom/android/launcher3/util/y2$a;->b()F
-
     .line 16
+    invoke-virtual {p2}, Lcom/android/wm/shell/shared/split/SplitBounds;->getLeftTopTaskPercent()F
+
     .line 17
     .line 18
+    .line 19
     move-result p1
 
-    .line 19
+    .line 20
     new-instance p2, Landroid/graphics/Point;
 
-    .line 20
     .line 21
+    .line 22
     int-to-float p5, p4
 
-    .line 22
+    .line 23
     mul-float/2addr p5, p1
 
-    .line 23
+    .line 24
     float-to-int p1, p5
 
-    .line 24
+    .line 25
     invoke-direct {p2, p3, p1}, Landroid/graphics/Point;-><init>(II)V
 
-    .line 25
     .line 26
     .line 27
+    .line 28
     new-instance p1, Landroid/graphics/Point;
 
-    .line 28
     .line 29
+    .line 30
     iget p5, p2, Landroid/graphics/Point;->y:I
 
-    .line 30
     .line 31
+    .line 32
     sub-int/2addr p4, p5
 
-    .line 32
+    .line 33
     sub-int/2addr p4, p0
 
-    .line 33
+    .line 34
     invoke-direct {p1, p3, p4}, Landroid/graphics/Point;-><init>(II)V
 
-    .line 34
     .line 35
     .line 36
+    .line 37
     new-instance p0, Landroid/util/Pair;
 
-    .line 37
     .line 38
+    .line 39
     invoke-direct {p0, p2, p1}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
 
-    .line 39
     .line 40
     .line 41
+    .line 42
     return-object p0
 .end method
 
@@ -2590,7 +3184,7 @@
     return-object p0
 .end method
 
-.method public getInitialSplitPlaceholderBounds(IILcom/android/launcher3/h0;ILandroid/graphics/Rect;)V
+.method public getInitialSplitPlaceholderBounds(IILcom/android/launcher3/DeviceProfile;ILandroid/graphics/Rect;)V
     .locals 1
 
     .line 1
@@ -2598,7 +3192,7 @@
 
     .line 2
     .line 3
-    invoke-static {p3, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p3, p4}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2607,102 +3201,138 @@
 
     .line 7
     .line 8
-    invoke-static {p5, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p5, p4}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
     .line 11
-    iget p4, p3, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p3}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 12
     .line 13
-    invoke-direct {p0, p3}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getPlaceholderSizeAdjustment(Lcom/android/launcher3/h0;)I
-
     .line 14
+    move-result-object p4
+
     .line 15
+    invoke-virtual {p4}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
+
     .line 16
-    move-result p0
-
     .line 17
-    add-int/2addr p0, p1
-
     .line 18
-    const/4 v0, 0x0
+    move-result p4
 
     .line 19
-    invoke-virtual {p5, v0, v0, p4, p0}, Landroid/graphics/Rect;->set(IIII)V
+    invoke-direct {p0, p3}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getPlaceholderSizeAdjustment(Lcom/android/launcher3/DeviceProfile;)I
 
     .line 20
     .line 21
     .line 22
-    invoke-virtual {p5, p2, v0}, Landroid/graphics/Rect;->inset(II)V
+    move-result p0
 
     .line 23
+    add-int/2addr p0, p1
+
     .line 24
+    const/4 v0, 0x0
+
     .line 25
-    iget p0, p3, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p5, v0, v0, p4, p0}, Landroid/graphics/Rect;->set(IIII)V
 
     .line 26
     .line 27
-    iget p3, p3, Lcom/android/launcher3/h0;->U0:I
-
     .line 28
-    .line 29
-    const/high16 p4, 0x3f800000    # 1.0f
+    invoke-virtual {p5, p2, v0}, Landroid/graphics/Rect;->inset(II)V
 
+    .line 29
     .line 30
     .line 31
-    int-to-float p3, p3
+    invoke-virtual {p3}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 32
-    mul-float/2addr p3, p4
-
     .line 33
-    const/4 p4, 0x2
-
     .line 34
-    int-to-float v0, p4
+    move-result-object p0
 
     .line 35
-    div-float/2addr p3, v0
+    invoke-virtual {p0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 36
-    mul-int/2addr p2, p4
-
     .line 37
-    sub-int p2, p0, p2
-
     .line 38
+    move-result p0
+
     .line 39
-    int-to-float p2, p2
+    invoke-virtual {p3}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 40
-    mul-float/2addr p3, p2
-
     .line 41
-    int-to-float p0, p0
-
     .line 42
-    div-float/2addr p3, p0
+    move-result-object p3
 
     .line 43
-    float-to-int p0, p3
+    invoke-virtual {p3}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
     .line 44
-    iget p2, p5, Landroid/graphics/Rect;->top:I
-
     .line 45
     .line 46
-    sub-int/2addr p0, p1
+    move-result p3
 
     .line 47
-    sub-int/2addr p2, p0
+    const/high16 p4, 0x3f800000    # 1.0f
 
     .line 48
+    .line 49
+    int-to-float p3, p3
+
+    .line 50
+    mul-float/2addr p3, p4
+
+    .line 51
+    const/4 p4, 0x2
+
+    .line 52
+    int-to-float v0, p4
+
+    .line 53
+    div-float/2addr p3, v0
+
+    .line 54
+    mul-int/2addr p2, p4
+
+    .line 55
+    sub-int p2, p0, p2
+
+    .line 56
+    .line 57
+    int-to-float p2, p2
+
+    .line 58
+    mul-float/2addr p3, p2
+
+    .line 59
+    int-to-float p0, p0
+
+    .line 60
+    div-float/2addr p3, p0
+
+    .line 61
+    float-to-int p0, p3
+
+    .line 62
+    iget p2, p5, Landroid/graphics/Rect;->top:I
+
+    .line 63
+    .line 64
+    sub-int/2addr p0, p1
+
+    .line 65
+    sub-int/2addr p2, p0
+
+    .line 66
     iput p2, p5, Landroid/graphics/Rect;->top:I
 
-    .line 49
-    .line 50
+    .line 67
+    .line 68
     return-void
 .end method
 
@@ -2710,27 +3340,28 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result-object p0
 
-    .line 10
+    .line 11
     iget p0, p0, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 11
     .line 12
+    .line 13
     return p0
 .end method
 
@@ -2738,27 +3369,28 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1}, Landroid/view/View;->getMeasuredHeight()I
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result p0
 
-    .line 10
+    .line 11
     return p0
 .end method
 
-.method public getOverviewRowSpace(Lcom/android/launcher3/h0;)I
+.method public getOverviewRowSpace(Lcom/android/launcher3/DeviceProfile;)I
     .locals 0
 
     .line 1
@@ -2766,19 +3398,19 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    iget p0, p1, Lcom/android/launcher3/X3;->y0:I
+    iget p0, p1, Lcom/android/launcher3/MFVDeviceProfile;->overviewRowSpacingLand:I
 
     .line 7
     .line 8
     return p0
 .end method
 
-.method public getPageSpacing(Lcom/android/launcher3/h0;)I
+.method public getPageSpacing(Lcom/android/launcher3/DeviceProfile;)I
     .locals 0
 
     .line 1
@@ -2786,12 +3418,12 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    iget p0, p1, Lcom/android/launcher3/X3;->x0:I
+    iget p0, p1, Lcom/android/launcher3/MFVDeviceProfile;->overviewPageSpacingLand:I
 
     .line 7
     .line 8
@@ -2806,7 +3438,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2830,7 +3462,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2862,7 +3494,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -2878,23 +3510,24 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1}, Landroid/view/View;->getScaleY()F
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result p0
 
-    .line 10
+    .line 11
     return p0
 .end method
 
@@ -2902,23 +3535,24 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1}, Landroid/view/View;->getScrollY()I
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result p0
 
-    .line 10
+    .line 11
     return p0
 .end method
 
@@ -2927,7 +3561,7 @@
 
     const-string p0, "rect"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 2
     invoke-virtual {p1}, Landroid/graphics/RectF;->height()F
@@ -2942,7 +3576,7 @@
 
     const-string p0, "rect"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 3
     invoke-virtual {p1}, Landroid/graphics/Rect;->height()I
@@ -2955,9 +3589,9 @@
 .method public getPrimarySize(Landroid/view/View;)I
     .locals 0
 
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 1
     invoke-virtual {p1}, Landroid/view/View;->getHeight()I
@@ -2999,23 +3633,24 @@
     .locals 0
 
     .line 1
-    const-string p0, "velocityTracker"
+    const-string/jumbo p0, "velocityTracker"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1, p2}, Landroid/view/VelocityTracker;->getYVelocity(I)F
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     move-result p0
 
-    .line 10
+    .line 11
     return p0
 .end method
 
@@ -3046,12 +3681,12 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    invoke-static {p1}, Lcom/android/launcher3/N5;->D(Landroid/content/res/Resources;)Z
+    invoke-static {p1}, Lcom/android/launcher3/Utilities;->isRtl(Landroid/content/res/Resources;)Z
 
     .line 7
     .line 8
@@ -3081,50 +3716,51 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     const-string p0, "insets"
 
-    .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     invoke-virtual {p1}, Landroid/view/View;->getHeight()I
 
-    .line 12
     .line 13
     .line 14
+    .line 15
     move-result p0
 
-    .line 15
+    .line 16
     invoke-virtual {p1}, Landroid/view/View;->getPaddingBottom()I
 
-    .line 16
     .line 17
     .line 18
+    .line 19
     move-result p1
 
-    .line 19
-    sub-int/2addr p0, p1
-
     .line 20
-    iget p1, p2, Landroid/graphics/Rect;->bottom:I
+    sub-int/2addr p0, p1
 
     .line 21
+    iget p1, p2, Landroid/graphics/Rect;->bottom:I
+
     .line 22
+    .line 23
     sub-int/2addr p0, p1
 
-    .line 23
+    .line 24
     return p0
 .end method
 
@@ -3132,48 +3768,49 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     const-string p0, "insets"
 
-    .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     iget p0, p2, Landroid/graphics/Rect;->top:I
 
-    .line 12
     .line 13
+    .line 14
     invoke-virtual {p1}, Landroid/view/View;->getPaddingTop()I
 
-    .line 14
     .line 15
     .line 16
+    .line 17
     move-result p1
 
-    .line 17
+    .line 18
     add-int/2addr p0, p1
 
-    .line 18
+    .line 19
     return p0
 .end method
 
 .method public getSecondaryDimension(Landroid/view/View;)I
     .locals 0
 
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 1
     invoke-virtual {p1}, Landroid/view/View;->getWidth()I
@@ -3183,16 +3820,16 @@
     return p0
 .end method
 
-.method public getSecondaryDimension(Landroid/view/View;Lcom/android/launcher3/h0;)I
+.method public getSecondaryDimension(Landroid/view/View;Lcom/android/launcher3/DeviceProfile;)I
     .locals 0
 
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     const-string p0, "dp"
 
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     const/4 p0, 0x2
 
@@ -3203,7 +3840,13 @@
     invoke-virtual {p1, p0}, Landroid/view/View;->getLocationOnScreen([I)V
 
     .line 4
-    iget p1, p2, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
+
+    move-result p1
 
     const/4 p2, 0x0
 
@@ -3222,7 +3865,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -3238,14 +3881,29 @@
     return p0
 .end method
 
+.method public getSecondarySize(Landroid/graphics/RectF;)F
+    .locals 0
+
+    const-string p0, "rect"
+
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 1
+    invoke-virtual {p1}, Landroid/graphics/RectF;->width()F
+
+    move-result p0
+
+    return p0
+.end method
+
 .method public getSecondarySize(Landroid/graphics/Rect;)I
     .locals 0
 
     const-string p0, "rect"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
-    .line 1
+    .line 2
     invoke-virtual {p1}, Landroid/graphics/Rect;->width()I
 
     move-result p0
@@ -3256,11 +3914,11 @@
 .method public getSecondarySize(Landroid/view/View;)I
     .locals 0
 
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
-    .line 2
+    .line 3
     invoke-virtual {p1}, Landroid/view/View;->getWidth()I
 
     move-result p0
@@ -3336,124 +3994,60 @@
     return-object p0
 .end method
 
-.method public getSplitIconsPosition(IIIZIIZ)Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
+.method public getSplitIconsPosition(IIZI)Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
     .locals 0
 
     .line 1
-    invoke-static {}, Lcom/android/launcher3/y0;->L()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    if-eqz p0, :cond_1
-
-    .line 6
-    .line 7
     const/4 p0, 0x0
 
+    .line 2
+    if-eqz p3, :cond_0
+
+    .line 3
+    .line 4
+    new-instance p3, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
+
+    .line 5
+    .line 6
+    sub-int/2addr p2, p1
+
+    .line 7
+    neg-int p1, p2
+
     .line 8
-    if-eqz p4, :cond_0
+    invoke-direct {p3, p1, p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;-><init>(II)V
 
     .line 9
     .line 10
-    new-instance p1, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
-
     .line 11
+    return-object p3
+
     .line 12
-    sub-int/2addr p3, p2
+    :cond_0
+    new-instance p2, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
 
     .line 13
-    neg-int p2, p3
-
     .line 14
-    invoke-direct {p1, p2, p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;-><init>(II)V
+    add-int/2addr p1, p4
 
     .line 15
+    invoke-direct {p2, p0, p1}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;-><init>(II)V
+
     .line 16
     .line 17
-    return-object p1
-
     .line 18
-    :cond_0
-    new-instance p1, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
-
-    .line 19
-    .line 20
-    add-int/2addr p2, p6
-
-    .line 21
-    invoke-direct {p1, p0, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;-><init>(II)V
-
-    .line 22
-    .line 23
-    .line 24
-    return-object p1
-
-    .line 25
-    :cond_1
-    if-eqz p7, :cond_2
-
-    .line 26
-    .line 27
-    add-int/2addr p2, p5
-
-    .line 28
-    add-int/2addr p1, p6
-
-    .line 29
-    div-int/lit8 p1, p1, 0x2
-
-    .line 30
-    .line 31
-    add-int/2addr p2, p1
-
-    .line 32
-    new-instance p0, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
-
-    .line 33
-    .line 34
-    invoke-direct {p0, p2, p2}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;-><init>(II)V
-
-    .line 35
-    .line 36
-    .line 37
-    return-object p0
-
-    .line 38
-    :cond_2
-    add-int/2addr p2, p5
-
-    .line 39
-    new-instance p0, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
-
-    .line 40
-    .line 41
-    add-int/2addr p6, p2
-
-    .line 42
-    add-int/2addr p6, p1
-
-    .line 43
-    invoke-direct {p0, p2, p6}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;-><init>(II)V
-
-    .line 44
-    .line 45
-    .line 46
-    return-object p0
+    return-object p2
 .end method
 
-.method public getSplitPositionOptions(Lcom/android/launcher3/h0;)Ljava/util/List;
+.method public getSplitPositionOptions(Lcom/android/launcher3/DeviceProfile;)Ljava/util/List;
     .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lcom/android/launcher3/h0;",
+            "Lcom/android/launcher3/DeviceProfile;",
             ")",
             "Ljava/util/List<",
-            "Lcom/android/launcher3/util/y2$b;",
+            "Lcom/android/launcher3/util/SplitConfigurationOptions$SplitPositionOption;",
             ">;"
         }
     .end annotation
@@ -3463,16 +4057,16 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    new-instance p0, Lcom/android/launcher3/util/y2$b;
+    new-instance p0, Lcom/android/launcher3/util/SplitConfigurationOptions$SplitPositionOption;
 
     .line 7
     .line 8
-    const p1, 0x7f140328
+    const p1, 0x7f1403e0
 
     .line 9
     .line 10
@@ -3480,17 +4074,17 @@
     const/4 v0, 0x0
 
     .line 12
-    const v1, 0x7f080d71
+    const v1, 0x7f080dc5
 
     .line 13
     .line 14
     .line 15
-    invoke-direct {p0, v1, p1, v0, v0}, Lcom/android/launcher3/util/y2$b;-><init>(IIII)V
+    invoke-direct {p0, v1, p1, v0, v0}, Lcom/android/launcher3/util/SplitConfigurationOptions$SplitPositionOption;-><init>(IIII)V
 
     .line 16
     .line 17
     .line 18
-    invoke-static {p0}, Li4/m;->d(Ljava/lang/Object;)Ljava/util/List;
+    invoke-static {p0}, Lkotlin/collections/CollectionsKt;->listOf(Ljava/lang/Object;)Ljava/util/List;
 
     .line 19
     .line 20
@@ -3501,7 +4095,7 @@
     return-object p0
 .end method
 
-.method public getSplitSelectTaskOffset(Landroid/util/FloatProperty;Landroid/util/FloatProperty;Lcom/android/launcher3/h0;)Landroid/util/Pair;
+.method public getSplitSelectTaskOffset(Landroid/util/FloatProperty;Landroid/util/FloatProperty;Lcom/android/launcher3/DeviceProfile;)Landroid/util/Pair;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3512,7 +4106,7 @@
             "TT;>;",
             "Landroid/util/FloatProperty<",
             "TT;>;",
-            "Lcom/android/launcher3/h0;",
+            "Lcom/android/launcher3/DeviceProfile;",
             ")",
             "Landroid/util/Pair<",
             "Landroid/util/FloatProperty<",
@@ -3527,42 +4121,43 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p0, "secondary"
+    const-string/jumbo p0, "secondary"
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     const-string p0, "deviceProfile"
 
-    .line 12
     .line 13
-    invoke-static {p3, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    invoke-static {p3, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
+    .line 17
     new-instance p0, Landroid/util/Pair;
 
-    .line 17
     .line 18
+    .line 19
     invoke-direct {p0, p1, p2}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
 
-    .line 19
     .line 20
     .line 21
+    .line 22
     return-object p0
 .end method
 
-.method public getSplitTranslationDirectionFactor(ILcom/android/launcher3/h0;)I
+.method public getSplitTranslationDirectionFactor(ILcom/android/launcher3/DeviceProfile;)I
     .locals 0
 
     .line 1
@@ -3570,7 +4165,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -3597,7 +4192,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -3613,22 +4208,23 @@
     .locals 0
 
     .line 1
-    const-string p0, "taskThumbnailBounds"
+    const-string/jumbo p0, "taskThumbnailBounds"
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     iget p0, p2, Landroid/graphics/Rect;->left:I
 
-    .line 7
     .line 8
+    .line 9
     sub-int/2addr p1, p0
 
-    .line 9
+    .line 10
     return p1
 .end method
 
@@ -3667,19 +4263,20 @@
     .locals 0
 
     .line 1
-    const-string p0, "taskThumbnailBounds"
+    const-string/jumbo p0, "taskThumbnailBounds"
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     iget p0, p2, Landroid/graphics/Rect;->left:I
 
-    .line 7
     .line 8
+    .line 9
     return p0
 .end method
 
@@ -3693,7 +4290,7 @@
     return p0
 .end method
 
-.method public getTaskMenuHeight(FLcom/android/launcher3/h0;FF)I
+.method public getTaskMenuHeight(FLcom/android/launcher3/DeviceProfile;FF)I
     .locals 0
 
     .line 1
@@ -3701,7 +4298,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -3715,237 +4312,92 @@
     return p0
 .end method
 
-.method public getTaskMenuWidth(Landroid/view/View;Lcom/android/launcher3/h0;I)I
+.method public getTaskMenuX(FLcom/android/quickstep/views/IconAppChipView;)F
     .locals 0
 
     .line 1
-    const-string p0, "thumbnailView"
+    const-string p0, "appChip"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p0, "deviceProfile"
+    invoke-virtual {p2}, Lcom/android/quickstep/views/IconAppChipView;->getMenuToCollapsedChipGap()I
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    move-result p0
+
     .line 10
+    int-to-float p0, p0
+
     .line 11
-    invoke-static {}, Lcom/android/launcher3/y0;->L()Z
+    add-float/2addr p1, p0
 
     .line 12
-    .line 13
-    .line 14
-    move-result p0
-
-    .line 15
-    if-eqz p0, :cond_0
-
-    .line 16
-    .line 17
-    invoke-virtual {p1}, Landroid/view/View;->getResources()Landroid/content/res/Resources;
-
-    .line 18
-    .line 19
-    .line 20
-    move-result-object p0
-
-    .line 21
-    const p1, 0x7f070b4d
-
-    .line 22
-    .line 23
-    .line 24
-    invoke-virtual {p0, p1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    .line 25
-    .line 26
-    .line 27
-    move-result p0
-
-    .line 28
-    return p0
-
-    .line 29
-    :cond_0
-    const/4 p0, -0x1
-
-    .line 30
-    if-ne p3, p0, :cond_1
-
-    .line 31
-    .line 32
-    invoke-virtual {p1}, Landroid/view/View;->getMeasuredWidth()I
-
-    .line 33
-    .line 34
-    .line 35
-    move-result p0
-
-    .line 36
-    return p0
-
-    .line 37
-    :cond_1
-    invoke-virtual {p1}, Landroid/view/View;->getMeasuredHeight()I
-
-    .line 38
-    .line 39
-    .line 40
-    move-result p0
-
-    .line 41
-    return p0
+    return p1
 .end method
 
-.method public getTaskMenuX(FLandroid/view/View;Lcom/android/launcher3/h0;FLandroid/view/View;)F
+.method public getTaskMenuY(FLandroid/view/View;Lcom/android/quickstep/views/IconAppChipView;)F
     .locals 0
 
     .line 1
-    const-string p0, "thumbnailView"
+    const-string/jumbo p0, "taskMenuView"
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
-    const-string p0, "deviceProfile"
-
     .line 7
-    .line 8
-    invoke-static {p3, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string p0, "appChip"
 
+    .line 8
     .line 9
+    invoke-static {p3, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
-    const-string p0, "taskViewIcon"
-
     .line 12
-    .line 13
-    invoke-static {p5, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-virtual {p3}, Lcom/android/quickstep/views/IconAppChipView;->getBackgroundMarginTopStart()I
 
+    .line 13
     .line 14
     .line 15
+    move-result p0
+
     .line 16
-    invoke-virtual {p2}, Landroid/view/View;->getMeasuredWidth()I
+    invoke-virtual {p2}, Landroid/view/View;->isLayoutRtl()Z
 
     .line 17
     .line 18
     .line 19
-    move-result p0
+    move-result p2
 
     .line 20
     int-to-float p0, p0
 
     .line 21
-    add-float/2addr p0, p1
+    if-eqz p2, :cond_0
 
     .line 22
-    sub-float/2addr p0, p4
-
     .line 23
-    return p0
-.end method
+    sub-float/2addr p1, p0
 
-.method public getTaskMenuY(FLandroid/view/View;ILandroid/view/View;FLandroid/view/View;)F
-    .locals 0
-
-    .line 1
-    const-string p0, "thumbnailView"
-
-    .line 2
-    .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 4
-    .line 5
-    .line 6
-    const-string p0, "taskMenuView"
-
-    .line 7
-    .line 8
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 9
-    .line 10
-    .line 11
-    const-string p0, "taskViewIcon"
-
-    .line 12
-    .line 13
-    invoke-static {p6, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 14
-    .line 15
-    .line 16
-    invoke-virtual {p4}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 17
-    .line 18
-    .line 19
-    move-result-object p0
-
-    .line 20
-    const-string p4, "null cannot be cast to non-null type com.android.launcher3.views.BaseDragLayer.LayoutParams"
-
-    .line 21
-    .line 22
-    invoke-static {p0, p4}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 23
     .line 24
+    return p1
+
     .line 25
-    check-cast p0, Lcom/android/launcher3/views/BaseDragLayer$LayoutParams;
-
-    .line 26
-    .line 27
-    add-float/2addr p1, p5
-
-    .line 28
-    const/4 p4, -0x1
-
-    .line 29
-    if-ne p3, p4, :cond_0
-
-    .line 30
-    .line 31
-    invoke-virtual {p2}, Landroid/view/View;->getMeasuredHeight()I
-
-    .line 32
-    .line 33
-    .line 34
-    move-result p2
-
-    .line 35
-    iget p0, p0, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
-    .line 36
-    .line 37
-    sub-int/2addr p2, p0
-
-    .line 38
-    int-to-float p0, p2
-
-    .line 39
-    const/high16 p2, 0x40000000    # 2.0f
-
-    .line 40
-    .line 41
-    div-float/2addr p0, p2
-
-    .line 42
+    :cond_0
     add-float/2addr p1, p0
 
-    .line 43
-    :cond_0
+    .line 26
     return p1
 .end method
 
@@ -3970,11 +4422,11 @@
     return p0
 .end method
 
-.method public getUpDownSwipeDirection()Lcom/android/launcher3/touch/H$c;
+.method public getUpDownSwipeDirection()Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->upDownSwipeDirection:Lcom/android/launcher3/touch/H$c;
+    iget-object p0, p0, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->upDownSwipeDirection:Lcom/android/launcher3/touch/SingleAxisSwipeDetector$Direction;
 
     .line 2
     .line 3
@@ -4040,7 +4492,7 @@
     return p0
 .end method
 
-.method public measureGroupedTaskViewThumbnailBounds(Landroid/view/View;Landroid/view/View;IILcom/android/launcher3/util/y2$a;Lcom/android/launcher3/h0;ZZI)V
+.method public measureGroupedTaskViewThumbnailBounds(Landroid/view/View;Landroid/view/View;IILcom/android/wm/shell/shared/split/SplitBounds;Lcom/android/launcher3/DeviceProfile;ZZI)V
     .locals 6
 
     .line 1
@@ -4048,221 +4500,168 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p7}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p7}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p7, "secondarySnapshot"
+    const-string/jumbo p7, "secondarySnapshot"
 
     .line 7
     .line 8
-    invoke-static {p2, p7}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p7}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
-    const-string p7, "splitBoundsConfig"
-
     .line 12
-    .line 13
-    invoke-static {p5, p7}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string/jumbo p7, "splitBoundsConfig"
 
+    .line 13
     .line 14
     .line 15
-    .line 16
-    const-string p7, "dp"
+    invoke-static {p5, p7}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 16
     .line 17
     .line 18
-    invoke-static {p6, p7}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string p7, "dp"
 
     .line 19
     .line 20
-    .line 21
-    invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-static {p6, p7}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 21
     .line 22
     .line 23
+    invoke-virtual {p0, p4, p5}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDividerBarSize(ILcom/android/wm/shell/shared/split/SplitBounds;)I
+
     .line 24
-    move-result-object p7
-
     .line 25
-    const-string p8, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams"
-
     .line 26
+    move-result p7
+
     .line 27
-    invoke-static {p7, p8}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
+    sub-int v3, p3, p9
 
     .line 28
     .line 29
+    move-object v0, p0
+
     .line 30
-    check-cast p7, Landroid/widget/FrameLayout$LayoutParams;
+    move v4, p4
 
     .line 31
+    move-object v2, p5
+
     .line 32
-    invoke-virtual {p2}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    move-object v1, p6
 
     .line 33
+    move v5, p9
+
     .line 34
+    invoke-virtual/range {v0 .. v5}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getGroupedTaskViewSizes(Lcom/android/launcher3/DeviceProfile;Lcom/android/wm/shell/shared/split/SplitBounds;III)Landroid/util/Pair;
+
     .line 35
-    move-result-object v0
-
     .line 36
-    invoke-static {v0, p8}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 37
+    move-result-object p0
+
     .line 38
+    iget-object p3, p0, Landroid/util/Pair;->first:Ljava/lang/Object;
+
     .line 39
-    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
-
     .line 40
-    .line 41
-    const/4 p8, 0x0
+    check-cast p3, Landroid/graphics/Point;
 
+    .line 41
     .line 42
-    iput p8, v0, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
+    iget-object p0, p0, Landroid/util/Pair;->second:Ljava/lang/Object;
 
     .line 43
     .line 44
-    iput p8, p7, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
+    check-cast p0, Landroid/graphics/Point;
 
     .line 45
     .line 46
-    invoke-virtual {p0, p4, p5}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDividerBarSize(ILcom/android/launcher3/util/y2$a;)I
+    iget p4, p3, Landroid/graphics/Point;->x:I
 
     .line 47
     .line 48
-    .line 49
-    move-result p7
+    const/high16 p5, 0x40000000    # 2.0f
 
+    .line 49
     .line 50
-    sub-int v3, p3, p9
+    invoke-static {p4, p5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
     .line 51
     .line 52
-    move-object v0, p0
-
     .line 53
-    move v4, p4
+    move-result p4
 
     .line 54
-    move-object v2, p5
+    iget p6, p3, Landroid/graphics/Point;->y:I
 
     .line 55
-    move-object v1, p6
-
     .line 56
-    move v5, p9
+    invoke-static {p6, p5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
     .line 57
-    invoke-virtual/range {v0 .. v5}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getGroupedTaskViewSizes(Lcom/android/launcher3/h0;Lcom/android/launcher3/util/y2$a;III)Landroid/util/Pair;
-
     .line 58
     .line 59
+    move-result p6
+
     .line 60
-    move-result-object p0
+    invoke-virtual {p1, p4, p6}, Landroid/view/View;->measure(II)V
 
     .line 61
-    iget-object p3, p0, Landroid/util/Pair;->first:Ljava/lang/Object;
-
     .line 62
     .line 63
-    check-cast p3, Landroid/graphics/Point;
+    iget p1, p3, Landroid/graphics/Point;->y:I
 
     .line 64
     .line 65
-    iget-object p0, p0, Landroid/util/Pair;->second:Ljava/lang/Object;
+    add-int/2addr p1, p7
 
     .line 66
+    int-to-float p1, p1
+
     .line 67
-    check-cast p0, Landroid/graphics/Point;
+    invoke-virtual {p2, p1}, Landroid/view/View;->setTranslationY(F)V
 
     .line 68
     .line 69
-    iget p4, p3, Landroid/graphics/Point;->x:I
-
     .line 70
-    .line 71
-    const/high16 p5, 0x40000000    # 2.0f
-
-    .line 72
-    .line 73
-    invoke-static {p4, p5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
-
-    .line 74
-    .line 75
-    .line 76
-    move-result p4
-
-    .line 77
-    iget p6, p3, Landroid/graphics/Point;->y:I
-
-    .line 78
-    .line 79
-    invoke-static {p6, p5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
-
-    .line 80
-    .line 81
-    .line 82
-    move-result p6
-
-    .line 83
-    invoke-virtual {p1, p4, p6}, Landroid/view/View;->measure(II)V
-
-    .line 84
-    .line 85
-    .line 86
-    iget p1, p3, Landroid/graphics/Point;->y:I
-
-    .line 87
-    .line 88
-    add-int/2addr p1, v5
-
-    .line 89
-    add-int/2addr p1, p7
-
-    .line 90
-    sub-int/2addr p1, v5
-
-    .line 91
-    int-to-float p1, p1
-
-    .line 92
-    invoke-virtual {p2, p1}, Landroid/view/View;->setTranslationY(F)V
-
-    .line 93
-    .line 94
-    .line 95
     iget p1, p0, Landroid/graphics/Point;->x:I
 
-    .line 96
-    .line 97
+    .line 71
+    .line 72
     invoke-static {p1, p5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
-    .line 98
-    .line 99
-    .line 100
+    .line 73
+    .line 74
+    .line 75
     move-result p1
 
-    .line 101
+    .line 76
     iget p0, p0, Landroid/graphics/Point;->y:I
 
-    .line 102
-    .line 103
+    .line 77
+    .line 78
     invoke-static {p0, p5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
-    .line 104
-    .line 105
-    .line 106
+    .line 79
+    .line 80
+    .line 81
     move-result p0
 
-    .line 107
+    .line 82
     invoke-virtual {p2, p1, p0}, Landroid/view/View;->measure(II)V
 
-    .line 108
-    .line 109
-    .line 110
+    .line 83
+    .line 84
+    .line 85
     return-void
 .end method
 
@@ -4274,7 +4673,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -4283,7 +4682,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -4312,14 +4711,14 @@
     return-void
 .end method
 
-.method public set(Ljava/lang/Object;Lcom/android/launcher3/touch/G$c;II)V
+.method public set(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;II)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
             "Ljava/lang/Object;",
             ">(TT;",
-            "Lcom/android/launcher3/touch/G$c<",
+            "Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction<",
             "TT;>;II)V"
         }
     .end annotation
@@ -4329,12 +4728,12 @@
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    invoke-interface {p2, p1, p4, p3}, Lcom/android/launcher3/touch/G$c;->a(Ljava/lang/Object;II)V
+    invoke-interface {p2, p1, p4, p3}, Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;->call(Ljava/lang/Object;II)V
 
     .line 7
     .line 8
@@ -4342,7 +4741,7 @@
     return-void
 .end method
 
-.method public setFloatingTaskPrimaryTranslation(Landroid/view/View;FLcom/android/launcher3/h0;)V
+.method public setFloatingTaskPrimaryTranslation(Landroid/view/View;FLcom/android/launcher3/DeviceProfile;)V
     .locals 0
 
     .line 1
@@ -4350,7 +4749,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -4359,7 +4758,7 @@
 
     .line 7
     .line 8
-    invoke-static {p3, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p3, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -4380,7 +4779,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -4417,7 +4816,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p4}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -4426,7 +4825,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p4}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -4597,7 +4996,7 @@
     return-void
 .end method
 
-.method public setLayoutParamsForTaskMenuOptionItem(Landroid/widget/LinearLayout$LayoutParams;Landroid/widget/LinearLayout;Lcom/android/launcher3/h0;)V
+.method public setLayoutParamsForTaskMenuOptionItem(Landroid/widget/LinearLayout$LayoutParams;Landroid/widget/LinearLayout;Lcom/android/launcher3/DeviceProfile;)V
     .locals 0
 
     .line 1
@@ -4605,51 +5004,52 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p0, "viewGroup"
+    const-string/jumbo p0, "viewGroup"
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     const-string p0, "deviceProfile"
 
-    .line 12
     .line 13
-    invoke-static {p3, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    invoke-static {p3, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
+    .line 17
     const/4 p0, 0x0
 
-    .line 17
+    .line 18
     invoke-virtual {p2, p0}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 18
     .line 19
     .line 20
+    .line 21
     const/4 p0, -0x1
 
-    .line 21
+    .line 22
     iput p0, p1, Landroid/widget/LinearLayout$LayoutParams;->width:I
 
-    .line 22
     .line 23
+    .line 24
     const/4 p0, -0x2
 
-    .line 24
+    .line 25
     iput p0, p1, Landroid/widget/LinearLayout$LayoutParams;->height:I
 
-    .line 25
     .line 26
+    .line 27
     return-void
 .end method
 
@@ -4661,7 +5061,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -4674,125 +5074,173 @@
     return-void
 .end method
 
-.method public setOverviewActionsLayoutParams(Landroid/view/View;Landroid/widget/FrameLayout$LayoutParams;ILcom/android/launcher3/h0;)I
+.method public setOverviewActionsLayoutParams(Landroid/view/View;Landroid/widget/FrameLayout$LayoutParams;ILcom/android/launcher3/DeviceProfile;)I
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     const-string p0, "params"
 
-    .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     const-string p0, "deviceProfile"
 
-    .line 12
     .line 13
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
-    iget p0, p4, Lcom/android/launcher3/X3;->k0:I
-
     .line 17
+    iget p0, p4, Lcom/android/launcher3/MFVDeviceProfile;->overviewActionsHeightLandscapeOrientation:I
+
     .line 18
+    .line 19
     iput p0, p2, Landroid/widget/FrameLayout$LayoutParams;->height:I
 
-    .line 19
     .line 20
-    iget p1, p4, Lcom/android/launcher3/h0;->U0:I
-
     .line 21
-    .line 22
-    iget p3, p4, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {p4}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
+    .line 22
     .line 23
     .line 24
-    sub-int p3, p1, p3
+    move-result-object p0
 
     .line 25
-    .line 26
-    div-int/lit8 p3, p3, 0x2
+    invoke-virtual {p0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
+    .line 26
     .line 27
     .line 28
-    sub-int/2addr p1, p3
+    move-result p0
 
     .line 29
-    sub-int/2addr p1, p0
+    invoke-virtual {p4}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 30
-    iput p1, p2, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
-
     .line 31
     .line 32
-    iget p1, p4, Lcom/android/launcher3/X3;->l0:I
+    move-result-object p1
 
     .line 33
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
     .line 34
+    .line 35
+    .line 36
+    move-result p1
+
+    .line 37
+    invoke-virtual {p4}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
+
+    .line 38
+    .line 39
+    .line 40
+    move-result-object p3
+
+    .line 41
+    invoke-virtual {p3}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
+
+    .line 42
+    .line 43
+    .line 44
+    move-result p3
+
+    .line 45
+    sub-int/2addr p1, p3
+
+    .line 46
+    div-int/lit8 p1, p1, 0x2
+
+    .line 47
+    .line 48
+    sub-int/2addr p0, p1
+
+    .line 49
+    iget p1, p2, Landroid/widget/FrameLayout$LayoutParams;->height:I
+
+    .line 50
+    .line 51
+    sub-int/2addr p0, p1
+
+    .line 52
+    iput p0, p2, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
+
+    .line 53
+    .line 54
+    iget p0, p4, Lcom/android/launcher3/MFVDeviceProfile;->overviewActionsHeightLandscapeOrientation:I
+
+    .line 55
+    .line 56
+    iget p1, p4, Lcom/android/launcher3/MFVDeviceProfile;->overviewActionsMarginBottomLandscapeOrientation:I
+
+    .line 57
+    .line 58
     add-int/2addr p0, p1
 
-    .line 35
+    .line 59
     return p0
 .end method
 
-.method public setPrimary(Ljava/lang/Object;Lcom/android/launcher3/touch/G$b;F)V
+.method public setPrimary(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;F)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
             "Ljava/lang/Object;",
             ">(TT;",
-            "Lcom/android/launcher3/touch/G$b<",
+            "Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction<",
             "TT;>;F)V"
         }
     .end annotation
 
     const-string p0, "action"
 
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     const/4 p0, 0x0
 
     .line 2
-    invoke-interface {p2, p1, p0, p3}, Lcom/android/launcher3/touch/G$b;->a(Ljava/lang/Object;FF)V
+    invoke-interface {p2, p1, p0, p3}, Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;->call(Ljava/lang/Object;FF)V
 
     return-void
 .end method
 
-.method public setPrimary(Ljava/lang/Object;Lcom/android/launcher3/touch/G$c;I)V
+.method public setPrimary(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;I)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
             "Ljava/lang/Object;",
             ">(TT;",
-            "Lcom/android/launcher3/touch/G$c<",
+            "Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction<",
             "TT;>;I)V"
         }
     .end annotation
 
     const-string p0, "action"
 
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     const/4 p0, 0x0
 
     .line 1
-    invoke-interface {p2, p1, p0, p3}, Lcom/android/launcher3/touch/G$c;->a(Ljava/lang/Object;II)V
+    invoke-interface {p2, p1, p0, p3}, Lcom/android/launcher3/touch/PagedOrientationHandler$Int2DAction;->call(Ljava/lang/Object;II)V
 
     return-void
 .end method
@@ -4801,31 +5249,32 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1, p2}, Landroid/view/View;->setScaleY(F)V
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     return-void
 .end method
 
-.method public setSecondary(Ljava/lang/Object;Lcom/android/launcher3/touch/G$b;F)V
+.method public setSecondary(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;F)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
             "Ljava/lang/Object;",
             ">(TT;",
-            "Lcom/android/launcher3/touch/G$b<",
+            "Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction<",
             "TT;>;F)V"
         }
     .end annotation
@@ -4835,7 +5284,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -4843,7 +5292,7 @@
     const/4 p0, 0x0
 
     .line 7
-    invoke-interface {p2, p1, p3, p0}, Lcom/android/launcher3/touch/G$b;->a(Ljava/lang/Object;FF)V
+    invoke-interface {p2, p1, p3, p0}, Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;->call(Ljava/lang/Object;FF)V
 
     .line 8
     .line 9
@@ -4855,135 +5304,112 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1, p2}, Landroid/view/View;->setScaleX(F)V
 
-    .line 7
     .line 8
     .line 9
+    .line 10
     return-void
 .end method
 
-.method public setSplitIconParams(Landroid/view/View;Landroid/view/View;IIIIIZLcom/android/launcher3/h0;Lcom/android/launcher3/util/y2$a;ZZI)V
+.method public setSplitIconParams(Lcom/android/quickstep/views/IconAppChipView;Lcom/android/quickstep/views/IconAppChipView;IIIIZLcom/android/launcher3/DeviceProfile;Lcom/android/wm/shell/shared/split/SplitBounds;Z)V
     .locals 0
 
     .line 1
-    const-string p4, "primaryIconView"
+    const-string p3, "primaryAppChipView"
 
     .line 2
     .line 3
-    invoke-static {p1, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p4, "secondaryIconView"
+    const-string/jumbo p3, "secondaryAppChipView"
 
     .line 7
     .line 8
-    invoke-static {p2, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
-    const-string p4, "deviceProfile"
-
     .line 12
-    .line 13
-    invoke-static {p9, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string p3, "deviceProfile"
 
+    .line 13
     .line 14
+    invoke-static {p8, p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
-    const-string p4, "splitConfig"
-
     .line 17
-    .line 18
-    invoke-static {p10, p4}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string/jumbo p3, "splitConfig"
 
+    .line 18
     .line 19
     .line 20
-    .line 21
-    iget p4, p9, Lcom/android/launcher3/h0;->S2:I
+    invoke-static {p9, p3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 21
     .line 22
     .line 23
-    sub-int/2addr p6, p4
+    invoke-virtual {p0, p5, p9}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDividerBarSize(ILcom/android/wm/shell/shared/split/SplitBounds;)I
 
     .line 24
-    invoke-virtual {p0, p6, p10}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDividerBarSize(ILcom/android/launcher3/util/y2$a;)I
-
     .line 25
     .line 26
+    move-result p3
+
     .line 27
-    move-result p11
+    invoke-virtual {p0, p4, p5, p7, p3}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getSplitIconsPosition(IIZI)Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
 
     .line 28
-    iget p10, p9, Lcom/android/launcher3/h0;->O2:I
-
     .line 29
     .line 30
-    move p7, p5
+    move-result-object p3
 
     .line 31
-    move p9, p8
+    invoke-virtual {p3}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;->component1()I
 
     .line 32
-    move-object p5, p0
-
     .line 33
-    move p8, p6
-
     .line 34
-    move p6, p3
+    move-result p4
 
     .line 35
-    invoke-virtual/range {p5 .. p12}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getSplitIconsPosition(IIIZIIZ)Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;
+    invoke-virtual {p3}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;->component2()I
 
     .line 36
     .line 37
     .line 38
-    move-result-object p0
+    move-result p3
 
     .line 39
-    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;->component1()I
+    invoke-virtual {p0, p1, p4, p7}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->updateSplitIconsPosition(Lcom/android/quickstep/views/IconAppChipView;IZ)V
 
     .line 40
     .line 41
     .line 42
-    move-result p3
+    invoke-virtual {p0, p2, p3, p7}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->updateSplitIconsPosition(Lcom/android/quickstep/views/IconAppChipView;IZ)V
 
     .line 43
-    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler$SplitIconPositions;->component2()I
-
     .line 44
     .line 45
-    .line 46
-    move-result p0
-
-    .line 47
-    invoke-virtual {p5, p1, p3, p9}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->updateSplitIconsPosition(Landroid/view/View;IZ)V
-
-    .line 48
-    .line 49
-    .line 50
-    invoke-virtual {p5, p2, p0, p9}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->updateSplitIconsPosition(Landroid/view/View;IZ)V
-
-    .line 51
-    .line 52
-    .line 53
     return-void
 .end method
 
-.method public setSplitInstructionsParams(Landroid/view/View;Lcom/android/launcher3/h0;II)V
+.method public setSplitInstructionsParams(Landroid/view/View;Lcom/android/launcher3/DeviceProfile;II)V
     .locals 2
 
     .line 1
@@ -4991,7 +5417,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -5000,7 +5426,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -5042,7 +5468,7 @@
     move-result-object p0
 
     .line 30
-    const v0, 0x7f070a86
+    const v0, 0x7f070b00
 
     .line 31
     .line 32
@@ -5055,7 +5481,7 @@
     move-result p0
 
     .line 37
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 38
     .line 39
@@ -5067,7 +5493,7 @@
 
     .line 42
     .line 43
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 44
     .line 45
@@ -5079,7 +5505,7 @@
 
     .line 48
     .line 49
-    invoke-virtual {p2}, Lcom/android/launcher3/h0;->y0()Landroid/graphics/Rect;
+    invoke-virtual {p2}, Lcom/android/launcher3/DeviceProfile;->getInsets()Landroid/graphics/Rect;
 
     .line 50
     .line 51
@@ -5148,7 +5574,7 @@
 
     .line 79
     .line 80
-    invoke-static {p0, p2}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p0, p2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 81
     .line 82
@@ -5173,7 +5599,7 @@
     return-void
 .end method
 
-.method public setSplitTaskSwipeRect(Lcom/android/launcher3/h0;Landroid/graphics/Rect;Lcom/android/launcher3/util/y2$a;I)V
+.method public setSplitTaskSwipeRect(Lcom/android/launcher3/DeviceProfile;Landroid/graphics/Rect;Lcom/android/wm/shell/shared/split/SplitBounds;I)V
     .locals 0
 
     .line 1
@@ -5181,7 +5607,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -5190,107 +5616,108 @@
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
     .line 11
-    const-string p0, "splitInfo"
+    const-string/jumbo p0, "splitInfo"
 
     .line 12
     .line 13
-    invoke-static {p3, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    invoke-static {p3, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
-    invoke-virtual {p3}, Lcom/android/launcher3/util/y2$a;->b()F
-
     .line 17
+    invoke-virtual {p3}, Lcom/android/wm/shell/shared/split/SplitBounds;->getLeftTopTaskPercent()F
+
     .line 18
     .line 19
+    .line 20
     move-result p0
 
-    .line 20
-    invoke-virtual {p3}, Lcom/android/launcher3/util/y2$a;->a()F
-
     .line 21
+    invoke-virtual {p3}, Lcom/android/wm/shell/shared/split/SplitBounds;->getDividerPercent()F
+
     .line 22
     .line 23
+    .line 24
     move-result p1
 
-    .line 24
+    .line 25
     if-nez p4, :cond_0
 
-    .line 25
     .line 26
+    .line 27
     iget p1, p2, Landroid/graphics/Rect;->top:I
 
-    .line 27
     .line 28
+    .line 29
     invoke-virtual {p2}, Landroid/graphics/Rect;->height()I
 
-    .line 29
     .line 30
     .line 31
+    .line 32
     move-result p3
 
-    .line 32
+    .line 33
     int-to-float p3, p3
 
-    .line 33
+    .line 34
     mul-float/2addr p3, p0
 
-    .line 34
+    .line 35
     float-to-int p0, p3
 
-    .line 35
+    .line 36
     add-int/2addr p1, p0
 
-    .line 36
+    .line 37
     iput p1, p2, Landroid/graphics/Rect;->bottom:I
 
-    .line 37
     .line 38
+    .line 39
     return-void
 
-    .line 39
+    .line 40
     :cond_0
     iget p3, p2, Landroid/graphics/Rect;->top:I
 
-    .line 40
     .line 41
+    .line 42
     invoke-virtual {p2}, Landroid/graphics/Rect;->height()I
 
-    .line 42
     .line 43
     .line 44
+    .line 45
     move-result p4
 
-    .line 45
+    .line 46
     int-to-float p4, p4
 
-    .line 46
+    .line 47
     add-float/2addr p0, p1
 
-    .line 47
+    .line 48
     mul-float/2addr p4, p0
 
-    .line 48
+    .line 49
     float-to-int p0, p4
 
-    .line 49
+    .line 50
     add-int/2addr p3, p0
 
-    .line 50
+    .line 51
     iput p3, p2, Landroid/graphics/Rect;->top:I
 
-    .line 51
     .line 52
+    .line 53
     return-void
 .end method
 
-.method public setSplitTitleParams(Landroid/view/View;Landroid/view/View;IIIIIIIZLcom/android/launcher3/h0;Lcom/android/launcher3/util/y2$a;)V
+.method public setSplitTitleParams(Landroid/view/View;Landroid/view/View;IIIIIIIZLcom/android/launcher3/DeviceProfile;Lcom/android/wm/shell/shared/split/SplitBounds;)V
     .locals 8
 
     .line 1
@@ -5310,426 +5737,428 @@
 
     .line 8
     .line 9
-    invoke-static {p1, v3}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 10
     .line 11
     .line 12
-    const-string v3, "secondaryTitleView"
+    const-string/jumbo v3, "secondaryTitleView"
 
     .line 13
     .line 14
-    invoke-static {p2, v3}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 15
+    invoke-static {p2, v3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 16
     .line 17
+    .line 18
     const-string v3, "deviceProfile"
 
-    .line 18
     .line 19
-    invoke-static {v1, v3}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 20
+    invoke-static {v1, v3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 21
     .line 22
-    const-string v3, "splitConfig"
-
     .line 23
-    .line 24
-    invoke-static {v2, v3}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string/jumbo v3, "splitConfig"
 
+    .line 24
     .line 25
     .line 26
-    .line 27
-    invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-static {v2, v3}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 27
     .line 28
     .line 29
+    invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
     .line 30
+    .line 31
+    .line 32
     move-result-object v3
 
-    .line 31
-    const-string v4, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams"
-
-    .line 32
     .line 33
-    invoke-static {v3, v4}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
+    const-string v4, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams"
 
     .line 34
     .line 35
-    .line 36
-    check-cast v3, Landroid/widget/FrameLayout$LayoutParams;
+    invoke-static {v3, v4}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 36
     .line 37
     .line 38
-    new-instance v4, Landroid/widget/FrameLayout$LayoutParams;
+    check-cast v3, Landroid/widget/FrameLayout$LayoutParams;
 
     .line 39
     .line 40
-    invoke-direct {v4, v3}, Landroid/widget/FrameLayout$LayoutParams;-><init>(Landroid/widget/FrameLayout$LayoutParams;)V
+    new-instance v4, Landroid/widget/FrameLayout$LayoutParams;
 
     .line 41
     .line 42
-    .line 43
-    iget-boolean v5, v2, Lcom/android/launcher3/util/y2$a;->i:Z
+    invoke-direct {v4, v3}, Landroid/widget/FrameLayout$LayoutParams;-><init>(Landroid/widget/FrameLayout$LayoutParams;)V
 
+    .line 43
     .line 44
     .line 45
-    if-eqz v5, :cond_0
+    iget-boolean v5, v2, Lcom/android/wm/shell/shared/split/SplitBounds;->appsStackedVertically:Z
 
     .line 46
     .line 47
-    invoke-virtual {v2}, Lcom/android/launcher3/util/y2$a;->a()F
+    if-eqz v5, :cond_0
 
     .line 48
     .line 49
+    invoke-virtual {v2}, Lcom/android/wm/shell/shared/split/SplitBounds;->getDividerPercent()F
+
     .line 50
+    .line 51
+    .line 52
     move-result p4
 
-    .line 51
+    .line 53
     int-to-float p3, p3
 
-    .line 52
+    .line 54
     mul-float/2addr p4, p3
 
-    .line 53
+    .line 55
     float-to-int p3, p4
 
-    .line 54
+    .line 56
     goto :goto_0
 
-    .line 55
-    :cond_0
-    invoke-virtual {v2}, Lcom/android/launcher3/util/y2$a;->a()F
-
-    .line 56
     .line 57
+    :cond_0
+    invoke-virtual {v2}, Lcom/android/wm/shell/shared/split/SplitBounds;->getDividerPercent()F
+
     .line 58
+    .line 59
+    .line 60
     move-result p3
 
-    .line 59
+    .line 61
     int-to-float p4, p4
 
-    .line 60
+    .line 62
     mul-float/2addr p3, p4
 
-    .line 61
+    .line 63
     float-to-int p3, p3
 
-    .line 62
+    .line 64
     :goto_0
     const p4, 0x800005
 
-    .line 63
-    .line 64
     .line 65
-    const v2, 0x800003
-
     .line 66
     .line 67
-    .line 68
-    if-eqz p10, :cond_1
+    const v2, 0x800003
 
+    .line 68
     .line 69
     .line 70
-    move v5, v2
+    if-eqz p10, :cond_1
 
     .line 71
+    .line 72
+    move v5, v2
+
+    .line 73
     goto :goto_1
 
-    .line 72
+    .line 74
     :cond_1
     move v5, p4
 
-    .line 73
+    .line 75
     :goto_1
     or-int/lit8 v5, v5, 0x30
 
-    .line 74
-    .line 75
-    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
     .line 76
     .line 77
-    instance-of v5, p1, Landroid/widget/TextView;
+    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
     .line 78
     .line 79
-    if-eqz v5, :cond_3
+    instance-of v5, p1, Landroid/widget/TextView;
 
     .line 80
     .line 81
-    move-object v5, p1
+    if-eqz v5, :cond_3
 
     .line 82
-    check-cast v5, Landroid/widget/TextView;
-
     .line 83
+    move-object v5, p1
+
     .line 84
-    if-eqz p10, :cond_2
+    check-cast v5, Landroid/widget/TextView;
 
     .line 85
     .line 86
-    move v6, v2
+    if-eqz p10, :cond_2
 
     .line 87
+    .line 88
+    move v6, v2
+
+    .line 89
     goto :goto_2
 
-    .line 88
+    .line 90
     :cond_2
     move v6, p4
 
-    .line 89
+    .line 91
     :goto_2
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 90
-    .line 91
     .line 92
+    .line 93
+    .line 94
     :cond_3
     sub-int v5, p7, p5
 
-    .line 93
-    .line 94
-    sub-int v5, v5, p9
-
     .line 95
     .line 96
-    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
+    sub-int v5, v5, p9
 
     .line 97
     .line 98
-    iput v0, v3, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
     .line 99
     .line 100
-    const/4 v5, 0x0
+    iput v0, v3, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
     .line 101
-    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
-
     .line 102
+    const/4 v5, 0x0
+
     .line 103
-    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
+    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
     .line 104
     .line 105
-    iget v6, v1, Lcom/android/launcher3/X3;->g0:I
+    iput v5, v3, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
     .line 106
     .line 107
-    iput v6, v3, Landroid/widget/FrameLayout$LayoutParams;->width:I
+    iget v6, v1, Lcom/android/launcher3/MFVDeviceProfile;->overviewTaskTitleWidth:I
 
     .line 108
     .line 109
-    const/4 v6, 0x0
+    iput v6, v3, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
     .line 110
+    .line 111
+    const/4 v6, 0x0
+
+    .line 112
     invoke-virtual {p1, v6}, Landroid/view/View;->setTranslationX(F)V
 
-    .line 111
-    .line 112
     .line 113
-    invoke-virtual {p1, v6}, Landroid/view/View;->setTranslationY(F)V
-
     .line 114
     .line 115
-    .line 116
-    invoke-virtual {p1}, Landroid/view/View;->getMeasuredWidth()I
+    invoke-virtual {p1, v6}, Landroid/view/View;->setTranslationY(F)V
 
+    .line 116
     .line 117
     .line 118
+    invoke-virtual {p1}, Landroid/view/View;->getMeasuredWidth()I
+
     .line 119
-    move-result v7
-
     .line 120
-    int-to-float v7, v7
-
     .line 121
-    invoke-virtual {p1, v7}, Landroid/view/View;->setPivotX(F)V
+    move-result v7
 
     .line 122
-    .line 123
-    .line 124
-    invoke-virtual {p1, v6}, Landroid/view/View;->setPivotY(F)V
+    int-to-float v7, v7
 
+    .line 123
+    invoke-virtual {p1, v7}, Landroid/view/View;->setPivotX(F)V
+
+    .line 124
     .line 125
     .line 126
-    .line 127
-    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDegreesRotated()F
+    invoke-virtual {p1, v6}, Landroid/view/View;->setPivotY(F)V
 
+    .line 127
     .line 128
     .line 129
+    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDegreesRotated()F
+
     .line 130
+    .line 131
+    .line 132
     move-result v7
 
-    .line 131
+    .line 133
     invoke-virtual {p1, v7}, Landroid/view/View;->setRotation(F)V
 
-    .line 132
-    .line 133
     .line 134
-    invoke-virtual {p1, v3}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
     .line 135
     .line 136
-    .line 137
-    if-eqz p10, :cond_4
+    invoke-virtual {p1, v3}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
+    .line 137
     .line 138
     .line 139
-    move p1, v2
+    if-eqz p10, :cond_4
 
     .line 140
+    .line 141
+    move p1, v2
+
+    .line 142
     goto :goto_3
 
-    .line 141
+    .line 143
     :cond_4
     move p1, p4
 
-    .line 142
+    .line 144
     :goto_3
     or-int/lit8 p1, p1, 0x30
 
-    .line 143
-    .line 144
-    iput p1, v4, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
     .line 145
     .line 146
-    instance-of p1, p2, Landroid/widget/TextView;
+    iput p1, v4, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
     .line 147
     .line 148
-    if-eqz p1, :cond_6
+    instance-of p1, p2, Landroid/widget/TextView;
 
     .line 149
     .line 150
-    move-object p1, p2
+    if-eqz p1, :cond_6
 
     .line 151
-    check-cast p1, Landroid/widget/TextView;
-
     .line 152
+    move-object p1, p2
+
     .line 153
-    if-eqz p10, :cond_5
+    check-cast p1, Landroid/widget/TextView;
 
     .line 154
     .line 155
-    goto :goto_4
+    if-eqz p10, :cond_5
 
     .line 156
+    .line 157
+    goto :goto_4
+
+    .line 158
     :cond_5
     move p4, v2
 
-    .line 157
+    .line 159
     :goto_4
     invoke-virtual {p1, p4}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 158
-    .line 159
     .line 160
+    .line 161
+    .line 162
     :cond_6
     add-int p1, p7, p3
 
-    .line 161
-    .line 162
+    .line 163
+    .line 164
     add-int/2addr p1, p5
 
-    .line 163
-    add-int p1, p1, p9
-
-    .line 164
     .line 165
-    invoke-virtual {p2}, Landroid/view/View;->getMeasuredWidth()I
+    add-int p1, p1, p9
 
     .line 166
     .line 167
+    invoke-virtual {p2}, Landroid/view/View;->getMeasuredWidth()I
+
     .line 168
+    .line 169
+    .line 170
     move-result p3
 
-    .line 169
+    .line 171
     add-int/2addr p1, p3
 
-    .line 170
-    iput p1, v4, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
-
-    .line 171
     .line 172
-    iput v0, v4, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+    iput p1, v4, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
     .line 173
     .line 174
-    iput v5, v4, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
+    iput v0, v4, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
     .line 175
     .line 176
-    iput v5, v4, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
+    iput v5, v4, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
     .line 177
     .line 178
-    iget p1, v1, Lcom/android/launcher3/X3;->g0:I
+    iput v5, v4, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
     .line 179
     .line 180
-    iput p1, v4, Landroid/widget/FrameLayout$LayoutParams;->width:I
+    iget p1, v1, Lcom/android/launcher3/MFVDeviceProfile;->overviewTaskTitleWidth:I
 
     .line 181
     .line 182
-    invoke-virtual {p2}, Landroid/view/View;->getMeasuredWidth()I
+    iput p1, v4, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
     .line 183
     .line 184
+    invoke-virtual {p2}, Landroid/view/View;->getMeasuredWidth()I
+
     .line 185
+    .line 186
+    .line 187
     move-result p1
 
-    .line 186
+    .line 188
     int-to-float p1, p1
 
-    .line 187
+    .line 189
     invoke-virtual {p2, p1}, Landroid/view/View;->setPivotX(F)V
 
-    .line 188
-    .line 189
     .line 190
-    invoke-virtual {p2, v6}, Landroid/view/View;->setPivotY(F)V
-
     .line 191
     .line 192
-    .line 193
-    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDegreesRotated()F
+    invoke-virtual {p2, v6}, Landroid/view/View;->setPivotY(F)V
 
+    .line 193
     .line 194
     .line 195
+    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDegreesRotated()F
+
     .line 196
+    .line 197
+    .line 198
     move-result p0
 
-    .line 197
+    .line 199
     invoke-virtual {p2, p0}, Landroid/view/View;->setRotation(F)V
 
-    .line 198
-    .line 199
     .line 200
-    invoke-virtual {p2, v6}, Landroid/view/View;->setTranslationX(F)V
-
     .line 201
     .line 202
-    .line 203
-    invoke-virtual {p2, v6}, Landroid/view/View;->setTranslationY(F)V
+    invoke-virtual {p2, v6}, Landroid/view/View;->setTranslationX(F)V
 
+    .line 203
     .line 204
     .line 205
-    .line 206
-    invoke-virtual {p2, v4}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {p2, v6}, Landroid/view/View;->setTranslationY(F)V
 
+    .line 206
     .line 207
     .line 208
+    invoke-virtual {p2, v4}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
     .line 209
+    .line 210
+    .line 211
     return-void
 .end method
 
-.method public setTaskIconParams(Landroid/widget/FrameLayout$LayoutParams;IIIZ)V
+.method public setTaskIconParams(Landroid/widget/FrameLayout$LayoutParams;IIZ)V
     .locals 0
 
     .line 1
@@ -5737,12 +6166,12 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    if-eqz p5, :cond_0
+    if-eqz p4, :cond_0
 
     .line 7
     .line 8
@@ -5786,18 +6215,14 @@
 
     .line 25
     .line 26
-    div-int/lit8 p4, p4, 0x2
+    iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
     .line 27
     .line 28
-    iput p4, p1, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
+    iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
     .line 29
     .line 30
-    iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
-
-    .line 31
-    .line 32
     return-void
 .end method
 
@@ -5809,7 +6234,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -5863,7 +6288,7 @@
     return-void
 .end method
 
-.method public setTaskOptionsMenuLayoutOrientation(Lcom/android/launcher3/h0;Landroid/widget/LinearLayout;ILandroid/graphics/drawable/ShapeDrawable;)V
+.method public setTaskOptionsMenuLayoutOrientation(Lcom/android/launcher3/DeviceProfile;Landroid/widget/LinearLayout;ILandroid/graphics/drawable/ShapeDrawable;)V
     .locals 0
 
     .line 1
@@ -5871,47 +6296,48 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p0, "taskMenuLayout"
+    const-string/jumbo p0, "taskMenuLayout"
 
     .line 7
     .line 8
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 10
     .line 11
+    .line 12
     const-string p0, "dividerDrawable"
 
-    .line 12
     .line 13
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
+    .line 17
     const/4 p0, 0x1
 
-    .line 17
+    .line 18
     invoke-virtual {p2, p0}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 18
     .line 19
     .line 20
+    .line 21
     invoke-virtual {p4, p3}, Landroid/graphics/drawable/ShapeDrawable;->setIntrinsicHeight(I)V
 
-    .line 21
     .line 22
     .line 23
+    .line 24
     invoke-virtual {p2, p4}, Landroid/widget/LinearLayout;->setDividerDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 24
     .line 25
     .line 26
+    .line 27
     return-void
 .end method
 
@@ -5919,237 +6345,359 @@
     .locals 0
 
     .line 1
-    const-string p0, "thumbnailParams"
+    const-string/jumbo p0, "thumbnailParams"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     iput p2, p1, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
-    .line 7
     .line 8
+    .line 9
     const/4 p0, 0x0
 
-    .line 9
+    .line 10
     iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
-    .line 10
     .line 11
+    .line 12
     iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
-    .line 12
     .line 13
+    .line 14
     iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
-    .line 14
     .line 15
+    .line 16
     return-void
 .end method
 
 .method public setTaskTitleAndIconOrientationState(Landroid/widget/FrameLayout$LayoutParams;Landroid/widget/FrameLayout$LayoutParams;Landroid/widget/FrameLayout$LayoutParams;Landroid/widget/FrameLayout$LayoutParams;ZFFFFFIIII)V
     .locals 1
 
-    const-string p0, "titleParams"
+    .line 1
+    const-string/jumbo p0, "titleParams"
 
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    .line 2
+    .line 3
+    .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 5
+    .line 6
+    .line 7
     const-string p0, "iconParams"
 
-    invoke-static {p2, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    .line 8
+    .line 9
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
-    const-string p0, "splitIconParams"
+    .line 10
+    .line 11
+    .line 12
+    const-string/jumbo p0, "splitIconParams"
 
-    invoke-static {p3, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    .line 13
+    .line 14
+    .line 15
+    invoke-static {p3, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 16
+    .line 17
+    .line 18
     const-string p0, "menuIconParams"
 
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    .line 19
+    .line 20
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
+    .line 21
+    .line 22
+    .line 23
     neg-float p0, p7
 
+    .line 24
     const/high16 v0, 0x40000000    # 2.0f
 
+    .line 25
+    .line 26
     div-float/2addr p0, v0
 
+    .line 27
     add-float/2addr p0, p8
 
+    .line 28
     add-float/2addr p0, p10
 
+    .line 29
     add-float/2addr p0, p9
 
+    .line 30
     div-float p9, p6, v0
 
+    .line 31
+    .line 32
     add-float/2addr p0, p9
 
-    .line 1
+    .line 33
     invoke-static {p0}, Ljava/lang/Math;->round(F)I
 
+    .line 34
+    .line 35
+    .line 36
     move-result p0
 
+    .line 37
     if-eqz p5, :cond_0
 
+    .line 38
+    .line 39
     const p9, 0x800053
 
+    .line 40
+    .line 41
+    .line 42
     goto :goto_0
 
+    .line 43
     :cond_0
     const p9, 0x800035
 
-    .line 2
+    .line 44
+    .line 45
+    .line 46
     :goto_0
     iput p9, p1, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
+    .line 47
+    .line 48
     neg-float p6, p6
 
+    .line 49
     div-float/2addr p6, v0
 
+    .line 50
     int-to-float p10, p11
 
+    .line 51
     add-float/2addr p6, p10
 
+    .line 52
     div-float/2addr p7, v0
 
+    .line 53
     add-float/2addr p6, p7
 
-    .line 3
+    .line 54
     invoke-static {p6}, Ljava/lang/Math;->round(F)I
 
+    .line 55
+    .line 56
+    .line 57
     move-result p6
 
+    .line 58
     iput p6, p1, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
+    .line 59
+    .line 60
     const/4 p6, 0x0
 
+    .line 61
     if-eqz p5, :cond_1
 
+    .line 62
+    .line 63
     move p7, p6
 
+    .line 64
     goto :goto_1
 
+    .line 65
     :cond_1
     move p7, p0
 
-    .line 4
+    .line 66
     :goto_1
     iput p7, p1, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
+    .line 67
+    .line 68
     if-eqz p5, :cond_2
 
+    .line 69
+    .line 70
     goto :goto_2
 
+    .line 71
     :cond_2
     move p0, p6
 
-    .line 5
+    .line 72
     :goto_2
     iput p0, p1, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
-    .line 6
+    .line 73
+    .line 74
     iput p6, p1, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
-    .line 7
+    .line 75
+    .line 76
     iput p9, p2, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 8
+    .line 77
+    .line 78
     iput p6, p2, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
+    .line 79
+    .line 80
     if-eqz p5, :cond_3
 
+    .line 81
+    .line 82
     move p0, p6
 
+    .line 83
     goto :goto_3
 
-    .line 9
+    .line 84
     :cond_3
     invoke-static {p8}, Ljava/lang/Math;->round(F)I
 
+    .line 85
+    .line 86
+    .line 87
     move-result p0
 
+    .line 88
     :goto_3
     iput p0, p2, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
+    .line 89
+    .line 90
     if-eqz p5, :cond_4
 
-    .line 10
+    .line 91
+    .line 92
     invoke-static {p8}, Ljava/lang/Math;->round(F)I
 
+    .line 93
+    .line 94
+    .line 95
     move-result p0
 
+    .line 96
     goto :goto_4
 
+    .line 97
     :cond_4
     move p0, p6
 
+    .line 98
     :goto_4
     iput p0, p2, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
-    .line 11
+    .line 99
+    .line 100
     iput p6, p2, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
+    .line 101
+    .line 102
     if-eqz p5, :cond_5
 
+    .line 103
+    .line 104
     const p0, 0x800033
 
+    .line 105
+    .line 106
+    .line 107
     goto :goto_5
 
+    .line 108
     :cond_5
     const p0, 0x800055
 
-    .line 12
+    .line 109
+    .line 110
+    .line 111
     :goto_5
     iput p0, p3, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 13
+    .line 112
+    .line 113
     iput p14, p3, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
+    .line 114
+    .line 115
     if-eqz p5, :cond_6
 
+    .line 116
+    .line 117
     add-int p1, p12, p13
 
+    .line 118
+    .line 119
     goto :goto_6
 
+    .line 120
     :cond_6
     move p1, p6
 
-    .line 14
+    .line 121
     :goto_6
     iput p1, p3, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
+    .line 122
+    .line 123
     if-eqz p5, :cond_7
 
+    .line 124
+    .line 125
     move p12, p6
 
+    .line 126
     goto :goto_7
 
+    .line 127
     :cond_7
     add-int/2addr p12, p13
 
-    .line 15
+    .line 128
     :goto_7
     iput p12, p3, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
-    .line 16
+    .line 129
+    .line 130
     iput p6, p3, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
-    .line 17
+    .line 131
+    .line 132
     iput p0, p4, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 18
+    .line 133
+    .line 134
     iput p14, p4, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
-    .line 19
+    .line 135
+    .line 136
     iput p6, p4, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
 
-    .line 20
+    .line 137
+    .line 138
     iput p6, p4, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
 
-    .line 21
+    .line 139
+    .line 140
     iput p6, p4, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
 
+    .line 141
+    .line 142
     return-void
 .end method
 
@@ -6157,40 +6705,17 @@
     .locals 0
 
     .line 1
-    const-string p0, "view"
+    const-string/jumbo p0, "view"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     invoke-virtual {p1, p2}, Landroid/view/View;->setTranslationY(F)V
-
-    .line 7
-    .line 8
-    .line 9
-    return-void
-.end method
-
-.method public setTranslationSecondary(Landroid/view/View;F)V
-    .locals 0
-
-    .line 1
-    const-string p0, "view"
-
-    .line 2
-    .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 4
-    .line 5
-    .line 6
-    neg-float p0, p2
-
-    .line 7
-    invoke-virtual {p1, p0}, Landroid/view/View;->setTranslationX(F)V
 
     .line 8
     .line 9
@@ -6198,7 +6723,227 @@
     return-void
 .end method
 
-.method public updateDwbBannerLayout(IIZLcom/android/launcher3/h0;IILandroid/view/View;)V
+.method public setTranslationSecondary(Landroid/view/View;F)V
+    .locals 0
+
+    .line 1
+    const-string/jumbo p0, "view"
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 5
+    .line 6
+    .line 7
+    neg-float p0, p2
+
+    .line 8
+    invoke-virtual {p1, p0}, Landroid/view/View;->setTranslationX(F)V
+
+    .line 9
+    .line 10
+    .line 11
+    return-void
+.end method
+
+.method public updateAppTimerLayout(IIZLcom/android/launcher3/DeviceProfile;IILandroid/view/View;)V
+    .locals 1
+
+    .line 1
+    const-string p1, "deviceProfile"
+
+    .line 2
+    .line 3
+    invoke-static {p4, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 4
+    .line 5
+    .line 6
+    const-string p1, "appTimerToast"
+
+    .line 7
+    .line 8
+    invoke-static {p7, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 9
+    .line 10
+    .line 11
+    invoke-virtual {p7}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object p1
+
+    .line 15
+    if-eqz p1, :cond_3
+
+    .line 16
+    .line 17
+    check-cast p1, Landroidx/constraintlayout/widget/ConstraintLayout$b;
+
+    .line 18
+    .line 19
+    const/4 p4, 0x2
+
+    .line 20
+    invoke-virtual {p7, p4}, Landroid/view/View;->setLayoutDirection(I)V
+
+    .line 21
+    .line 22
+    .line 23
+    const/4 p4, 0x0
+
+    .line 24
+    iput p4, p1, Landroidx/constraintlayout/widget/ConstraintLayout$b;->i:I
+
+    .line 25
+    .line 26
+    const/4 p5, -0x1
+
+    .line 27
+    iput p5, p1, Landroidx/constraintlayout/widget/ConstraintLayout$b;->l:I
+
+    .line 28
+    .line 29
+    invoke-virtual {p7}, Landroid/view/View;->isLayoutRtl()Z
+
+    .line 30
+    .line 31
+    .line 32
+    move-result v0
+
+    .line 33
+    if-eqz v0, :cond_0
+
+    .line 34
+    .line 35
+    move v0, p5
+
+    .line 36
+    goto :goto_0
+
+    .line 37
+    :cond_0
+    move v0, p4
+
+    .line 38
+    :goto_0
+    iput v0, p1, Landroidx/constraintlayout/widget/ConstraintLayout$b;->t:I
+
+    .line 39
+    .line 40
+    invoke-virtual {p7}, Landroid/view/View;->isLayoutRtl()Z
+
+    .line 41
+    .line 42
+    .line 43
+    move-result v0
+
+    .line 44
+    if-eqz v0, :cond_1
+
+    .line 45
+    .line 46
+    goto :goto_1
+
+    .line 47
+    :cond_1
+    move p4, p5
+
+    .line 48
+    :goto_1
+    iput p4, p1, Landroidx/constraintlayout/widget/ConstraintLayout$b;->v:I
+
+    .line 49
+    .line 50
+    if-eqz p3, :cond_2
+
+    .line 51
+    .line 52
+    move p2, p6
+
+    .line 53
+    :cond_2
+    iput p2, p1, Landroid/view/ViewGroup$MarginLayoutParams;->width:I
+
+    .line 54
+    .line 55
+    invoke-virtual {p7, p1}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 56
+    .line 57
+    .line 58
+    const/4 p1, 0x0
+
+    .line 59
+    invoke-virtual {p7, p1}, Landroid/view/View;->setPivotX(F)V
+
+    .line 60
+    .line 61
+    .line 62
+    invoke-virtual {p7, p1}, Landroid/view/View;->setPivotY(F)V
+
+    .line 63
+    .line 64
+    .line 65
+    invoke-virtual {p0}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getDegreesRotated()F
+
+    .line 66
+    .line 67
+    .line 68
+    move-result p0
+
+    .line 69
+    invoke-virtual {p7, p0}, Landroid/view/View;->setRotation(F)V
+
+    .line 70
+    .line 71
+    .line 72
+    invoke-virtual {p7}, Landroid/view/View;->getHeight()I
+
+    .line 73
+    .line 74
+    .line 75
+    move-result p0
+
+    .line 76
+    int-to-float p0, p0
+
+    .line 77
+    invoke-virtual {p7, p0}, Landroid/view/View;->setTranslationX(F)V
+
+    .line 78
+    .line 79
+    .line 80
+    invoke-virtual {p7, p1}, Landroid/view/View;->setTranslationY(F)V
+
+    .line 81
+    .line 82
+    .line 83
+    return-void
+
+    .line 84
+    :cond_3
+    new-instance p0, Ljava/lang/NullPointerException;
+
+    .line 85
+    .line 86
+    const-string p1, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams"
+
+    .line 87
+    .line 88
+    invoke-direct {p0, p1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+
+    .line 89
+    .line 90
+    .line 91
+    throw p0
+.end method
+
+.method public updateDwbBannerLayout(IIZLcom/android/launcher3/DeviceProfile;IILandroid/view/View;)V
     .locals 0
 
     .line 1
@@ -6206,7 +6951,7 @@
 
     .line 2
     .line 3
-    invoke-static {p4, p1}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p4, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -6215,7 +6960,7 @@
 
     .line 7
     .line 8
-    invoke-static {p7, p1}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p7, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -6301,206 +7046,186 @@
 
     .line 51
     .line 52
-    goto :goto_1
+    move p2, p6
 
     .line 53
     :cond_1
-    iget p1, p4, Lcom/android/launcher3/h0;->S2:I
+    iput p2, p0, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
     .line 54
     .line 55
-    sub-int p6, p2, p1
+    invoke-virtual {p7, p0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 56
     .line 57
-    :goto_1
-    iput p6, p0, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
     .line 58
-    .line 59
-    invoke-virtual {p7, p0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 60
-    .line 61
-    .line 62
     return-void
 
-    .line 63
+    .line 59
     :cond_2
     new-instance p0, Ljava/lang/NullPointerException;
 
-    .line 64
-    .line 65
+    .line 60
+    .line 61
     const-string p1, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams"
 
-    .line 66
-    .line 67
+    .line 62
+    .line 63
     invoke-direct {p0, p1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
 
-    .line 68
-    .line 69
-    .line 70
+    .line 64
+    .line 65
+    .line 66
     throw p0
 .end method
 
-.method public updateGroupTaskIconAndTaskPosition(Lcom/android/quickstep/views/TaskViewIcon;IFLandroid/widget/FrameLayout$LayoutParams;Landroid/widget/TextView;Landroid/widget/FrameLayout$LayoutParams;Landroid/widget/FrameLayout$LayoutParams;)V
+.method public updateGroupTaskIconAndTaskPosition(Lcom/android/quickstep/views/IconAppChipView;IFLandroid/widget/FrameLayout$LayoutParams;Landroid/widget/TextView;Landroid/widget/FrameLayout$LayoutParams;Landroid/widget/FrameLayout$LayoutParams;)V
     .locals 0
 
     .line 1
-    const-string p0, "iconView"
+    const-string p0, "primaryIconParams"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p4, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    const-string p0, "primaryIconParams"
+    const-string p0, "primaryTitleLayoutParams"
 
     .line 7
     .line 8
-    invoke-static {p4, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p6, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
     .line 11
-    const-string p0, "primaryTitleLayoutParams"
+    const-string/jumbo p0, "secondaryTitleLayoutParams"
 
     .line 12
     .line 13
-    invoke-static {p6, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 14
+    invoke-static {p7, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 15
     .line 16
-    const-string p0, "secondaryTitleLayoutParams"
-
     .line 17
-    .line 18
-    invoke-static {p7, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    if-eqz p1, :cond_0
 
+    .line 18
     .line 19
+    iget p0, p4, Landroid/widget/FrameLayout$LayoutParams;->width:I
+
     .line 20
     .line 21
-    invoke-interface {p1}, Lcom/android/quickstep/views/TaskViewIcon;->asView()Landroid/view/View;
+    int-to-float p0, p0
 
     .line 22
+    add-float/2addr p0, p3
+
     .line 23
+    invoke-virtual {p1, p0}, Landroid/widget/FrameLayout;->setTranslationY(F)V
+
     .line 24
-    move-result-object p0
-
     .line 25
-    iget p1, p4, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
     .line 26
-    .line 27
-    int-to-float p1, p1
+    :cond_0
+    iget p0, p6, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
 
+    .line 27
     .line 28
-    add-float/2addr p1, p3
+    int-to-float p0, p0
 
     .line 29
-    invoke-virtual {p0, p1}, Landroid/view/View;->setTranslationY(F)V
+    iget p1, p6, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
     .line 30
     .line 31
+    int-to-float p1, p1
+
     .line 32
-    iget p0, p6, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+    const/high16 p4, 0x40000000    # 2.0f
 
     .line 33
     .line 34
-    int-to-float p0, p0
+    div-float/2addr p1, p4
 
     .line 35
-    iget p1, p6, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
-    .line 36
-    .line 37
-    int-to-float p1, p1
-
-    .line 38
-    const/high16 p4, 0x40000000    # 2.0f
-
-    .line 39
-    .line 40
-    div-float/2addr p1, p4
-
-    .line 41
     add-float/2addr p0, p1
 
-    .line 42
+    .line 36
     iget p1, p7, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
-    .line 43
-    .line 44
+    .line 37
+    .line 38
     int-to-float p1, p1
 
-    .line 45
+    .line 39
     div-float/2addr p1, p4
 
-    .line 46
+    .line 40
     sub-float/2addr p0, p1
 
+    .line 41
+    invoke-static {p0}, Lkotlin/math/MathKt;->roundToInt(F)I
+
+    .line 42
+    .line 43
+    .line 44
+    move-result p0
+
+    .line 45
+    iput p0, p7, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+
+    .line 46
     .line 47
-    invoke-static {p0}, Ljava/lang/Math;->round(F)I
+    if-eqz p5, :cond_1
 
     .line 48
     .line 49
+    int-to-float p0, p2
+
     .line 50
-    move-result p0
+    add-float/2addr p3, p0
 
     .line 51
-    iput p0, p7, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+    iget p0, p7, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
     .line 52
     .line 53
-    if-eqz p5, :cond_0
+    int-to-float p0, p0
 
     .line 54
+    div-float/2addr p0, p4
+
     .line 55
-    int-to-float p0, p2
+    add-float/2addr p3, p0
 
     .line 56
-    add-float/2addr p3, p0
-
-    .line 57
-    iget p0, p7, Landroid/widget/FrameLayout$LayoutParams;->width:I
-
-    .line 58
-    .line 59
-    int-to-float p0, p0
-
-    .line 60
-    div-float/2addr p0, p4
-
-    .line 61
-    add-float/2addr p3, p0
-
-    .line 62
     iget p0, p6, Landroid/widget/FrameLayout$LayoutParams;->width:I
 
-    .line 63
-    .line 64
+    .line 57
+    .line 58
     int-to-float p0, p0
 
-    .line 65
+    .line 59
     div-float/2addr p0, p4
 
-    .line 66
+    .line 60
     sub-float/2addr p3, p0
 
-    .line 67
+    .line 61
     invoke-virtual {p5, p3}, Landroid/widget/TextView;->setTranslationY(F)V
 
-    .line 68
-    .line 69
-    .line 70
-    :cond_0
+    .line 62
+    .line 63
+    .line 64
+    :cond_1
     return-void
 .end method
 
-.method public updateSplitIconParams(Landroid/view/View;FFFFIILcom/android/launcher3/h0;I)V
+.method public updateSplitIconParams(Landroid/view/View;FFFFIILcom/android/launcher3/DeviceProfile;I)V
     .locals 0
 
     .line 1
@@ -6508,7 +7233,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p9}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p9}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -6517,12 +7242,12 @@
 
     .line 7
     .line 8
-    invoke-static {p8, p9}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p8, p9}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
     .line 11
-    invoke-direct {p0, p8}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getPlaceholderSizeAdjustment(Lcom/android/launcher3/h0;)I
+    invoke-direct {p0, p8}, Lcom/android/quickstep/orientation/LandscapePagedViewHandler;->getPlaceholderSizeAdjustment(Lcom/android/launcher3/DeviceProfile;)I
 
     .line 12
     .line 13
@@ -6596,8 +7321,8 @@
     return-void
 .end method
 
-.method public updateSplitIconsPosition(Landroid/view/View;IZ)V
-    .locals 2
+.method public updateSplitIconsPosition(Lcom/android/quickstep/views/IconAppChipView;IZ)V
+    .locals 1
     .annotation build Landroid/annotation/SuppressLint;
         value = {
             "RtlHardcoded"
@@ -6609,12 +7334,12 @@
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-virtual {p1}, Landroid/widget/FrameLayout;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     .line 7
     .line 8
@@ -6626,7 +7351,7 @@
 
     .line 11
     .line 12
-    invoke-static {p0, v0}, Lkotlin/jvm/internal/o;->d(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p0, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 13
     .line 14
@@ -6635,97 +7360,50 @@
 
     .line 16
     .line 17
-    invoke-static {}, Lcom/android/launcher3/y0;->L()Z
+    if-eqz p3, :cond_0
 
     .line 18
     .line 19
+    const p3, 0x800053
+
     .line 20
-    move-result v0
-
     .line 21
-    const/4 v1, 0x0
-
     .line 22
-    if-eqz v0, :cond_1
+    goto :goto_0
 
     .line 23
-    .line 24
-    check-cast p1, Lcom/android/quickstep/views/IconAppChipView;
+    :cond_0
+    const p3, 0x800035
 
+    .line 24
     .line 25
     .line 26
-    if-eqz p3, :cond_0
+    :goto_0
+    iput p3, p0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
     .line 27
     .line 28
-    const p3, 0x800053
+    invoke-virtual {p1, p0}, Landroid/widget/FrameLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 29
     .line 30
     .line 31
-    goto :goto_0
+    const/4 p0, 0x0
 
     .line 32
-    :cond_0
-    const p3, 0x800035
+    invoke-virtual {p1, p0}, Lcom/android/quickstep/views/IconAppChipView;->setSplitTranslationX(F)V
 
     .line 33
     .line 34
     .line 35
-    :goto_0
-    iput p3, p0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
-    .line 36
-    .line 37
-    invoke-virtual {p1, p0}, Landroid/widget/FrameLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 38
-    .line 39
-    .line 40
-    invoke-virtual {p1, v1}, Lcom/android/quickstep/views/IconAppChipView;->setSplitTranslationX(F)V
-
-    .line 41
-    .line 42
-    .line 43
     int-to-float p0, p2
 
-    .line 44
+    .line 36
     invoke-virtual {p1, p0}, Lcom/android/quickstep/views/IconAppChipView;->setSplitTranslationY(F)V
 
-    .line 45
-    .line 46
-    .line 47
-    return-void
-
-    .line 48
-    :cond_1
-    const/16 p3, 0x35
-
-    .line 49
-    .line 50
-    iput p3, p0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
-    .line 51
-    .line 52
-    iput p2, p0, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
-
-    .line 53
-    .line 54
-    invoke-virtual {p1, v1}, Landroid/view/View;->setTranslationX(F)V
-
-    .line 55
-    .line 56
-    .line 57
-    invoke-virtual {p1, v1}, Landroid/view/View;->setTranslationY(F)V
-
-    .line 58
-    .line 59
-    .line 60
-    invoke-virtual {p1, p0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 61
-    .line 62
-    .line 63
+    .line 37
+    .line 38
+    .line 39
     return-void
 .end method
 
@@ -6752,25 +7430,26 @@
     .locals 0
 
     .line 1
-    const-string p0, "tempRect"
+    const-string/jumbo p0, "tempRect"
 
     .line 2
     .line 3
-    invoke-static {p1, p0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
-
     .line 4
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 5
     .line 6
+    .line 7
     iget p0, p1, Landroid/graphics/Rect;->right:I
 
-    .line 7
     .line 8
+    .line 9
     add-int/2addr p0, p2
 
-    .line 9
+    .line 10
     iput p0, p1, Landroid/graphics/Rect;->right:I
 
-    .line 10
     .line 11
+    .line 12
     return-object p1
 .end method

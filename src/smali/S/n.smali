@@ -1,97 +1,81 @@
-.class public final LS/n;
-.super LS/m;
-.source "WrongFragmentContainerViolation.kt"
-
-
-# instance fields
-.field private final h:Landroid/view/ViewGroup;
+.class public Ls/n;
+.super Ljava/lang/Object;
+.source "AppCompatHintHelper.java"
 
 
 # direct methods
-.method public constructor <init>(Landroidx/fragment/app/n;Landroid/view/ViewGroup;)V
-    .locals 2
+.method public static a(Landroid/view/inputmethod/InputConnection;Landroid/view/inputmethod/EditorInfo;Landroid/view/View;)Landroid/view/inputmethod/InputConnection;
+    .locals 1
 
     .line 1
-    const-string v0, "fragment"
+    if-eqz p0, :cond_1
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    iget-object v0, p1, Landroid/view/inputmethod/EditorInfo;->hintText:Ljava/lang/CharSequence;
 
     .line 4
     .line 5
+    if-nez v0, :cond_1
+
     .line 6
-    const-string v0, "container"
-
     .line 7
-    .line 8
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-virtual {p2}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
 
+    .line 8
     .line 9
     .line 10
+    move-result-object p2
+
     .line 11
-    new-instance v0, Ljava/lang/StringBuilder;
+    :goto_0
+    instance-of v0, p2, Landroid/view/View;
 
     .line 12
     .line 13
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    if-eqz v0, :cond_1
 
     .line 14
     .line 15
+    instance-of v0, p2, Ls/d1;
+
     .line 16
-    const-string v1, "Attempting to add fragment "
-
     .line 17
-    .line 18
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    if-eqz v0, :cond_0
 
+    .line 18
     .line 19
+    check-cast p2, Ls/d1;
+
     .line 20
     .line 21
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-interface {p2}, Ls/d1;->a()Ljava/lang/CharSequence;
 
     .line 22
     .line 23
     .line 24
-    const-string v1, " to container "
+    move-result-object p2
 
     .line 25
+    iput-object p2, p1, Landroid/view/inputmethod/EditorInfo;->hintText:Ljava/lang/CharSequence;
+
     .line 26
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     .line 27
-    .line 28
-    .line 29
-    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    return-object p0
 
+    .line 28
+    :cond_0
+    invoke-interface {p2}, Landroid/view/ViewParent;->getParent()Landroid/view/ViewParent;
+
+    .line 29
     .line 30
     .line 31
+    move-result-object p2
+
     .line 32
-    const-string v1, " which is not a FragmentContainerView"
+    goto :goto_0
 
     .line 33
-    .line 34
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 35
-    .line 36
-    .line 37
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object v0
-
-    .line 41
-    invoke-direct {p0, p1, v0}, LS/m;-><init>(Landroidx/fragment/app/n;Ljava/lang/String;)V
-
-    .line 42
-    .line 43
-    .line 44
-    iput-object p2, p0, LS/n;->h:Landroid/view/ViewGroup;
-
-    .line 45
-    .line 46
-    return-void
+    :cond_1
+    return-object p0
 .end method

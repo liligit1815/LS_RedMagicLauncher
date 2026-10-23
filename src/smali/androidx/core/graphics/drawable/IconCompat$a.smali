@@ -1,4 +1,4 @@
-.class Landroidx/core/graphics/drawable/IconCompat$a;
+.class public Landroidx/core/graphics/drawable/IconCompat$a;
 .super Ljava/lang/Object;
 .source "IconCompat.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # direct methods
-.method static a(Ljava/lang/Object;)I
+.method public static a(Ljava/lang/Object;)I
     .locals 0
 
     .line 1
@@ -30,7 +30,7 @@
     return p0
 .end method
 
-.method static b(Ljava/lang/Object;)Ljava/lang/String;
+.method public static b(Ljava/lang/Object;)Ljava/lang/String;
     .locals 0
 
     .line 1
@@ -45,7 +45,7 @@
     return-object p0
 .end method
 
-.method static c(Ljava/lang/Object;)I
+.method public static c(Ljava/lang/Object;)I
     .locals 0
 
     .line 1
@@ -60,7 +60,7 @@
     return p0
 .end method
 
-.method static d(Ljava/lang/Object;)Landroid/net/Uri;
+.method public static d(Ljava/lang/Object;)Landroid/net/Uri;
     .locals 0
 
     .line 1
@@ -75,22 +75,7 @@
     return-object p0
 .end method
 
-.method static e(Landroid/graphics/drawable/Icon;Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0, p1}, Landroid/graphics/drawable/Icon;->loadDrawable(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    return-object p0
-.end method
-
-.method static f(Landroidx/core/graphics/drawable/IconCompat;Landroid/content/Context;)Landroid/graphics/drawable/Icon;
+.method public static e(Landroidx/core/graphics/drawable/IconCompat;Landroid/content/Context;)Landroid/graphics/drawable/Icon;
     .locals 2
 
     .line 1

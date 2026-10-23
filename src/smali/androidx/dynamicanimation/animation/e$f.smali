@@ -1,4 +1,4 @@
-.class Landroidx/dynamicanimation/animation/e$f;
+.class public Landroidx/dynamicanimation/animation/e$f;
 .super Landroidx/dynamicanimation/animation/g;
 .source "DynamicAnimation.java"
 
@@ -9,19 +9,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/dynamicanimation/animation/h;
+.field public final synthetic a:Landroidx/dynamicanimation/animation/h;
 
-.field final synthetic b:Landroidx/dynamicanimation/animation/e;
+.field public final synthetic b:Landroidx/dynamicanimation/animation/e;
 
 
 # direct methods
-.method constructor <init>(Landroidx/dynamicanimation/animation/e;Ljava/lang/String;Landroidx/dynamicanimation/animation/h;)V
+.method public constructor <init>(Landroidx/dynamicanimation/animation/e;Ljava/lang/String;Landroidx/dynamicanimation/animation/h;)V
     .locals 0
 
     .line 1

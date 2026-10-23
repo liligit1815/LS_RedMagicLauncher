@@ -15,7 +15,7 @@
 
 
 # static fields
-.field private static r0:Landroid/util/SparseIntArray;
+.field public static r0:Landroid/util/SparseIntArray;
 
 
 # instance fields
@@ -2184,7 +2184,7 @@
     return-void
 .end method
 
-.method b(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.method public b(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 8
 
     .line 1

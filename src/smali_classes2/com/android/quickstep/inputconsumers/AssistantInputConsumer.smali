@@ -143,7 +143,7 @@
 
     .line 37
     .line 38
-    const p4, 0x7f0703e3
+    const p4, 0x7f070421
 
     .line 39
     .line 40
@@ -160,7 +160,7 @@
 
     .line 46
     .line 47
-    const p4, 0x7f0703e4
+    const p4, 0x7f070422
 
     .line 48
     .line 49
@@ -177,7 +177,7 @@
 
     .line 55
     .line 56
-    const p4, 0x7f0c001b
+    const p4, 0x7f0c001e
 
     .line 57
     .line 58
@@ -197,7 +197,7 @@
 
     .line 65
     .line 66
-    const p4, 0x7f0c001a
+    const p4, 0x7f0c001d
 
     .line 67
     .line 68
@@ -351,7 +351,7 @@
     return-void
 .end method
 
-.method static bridge synthetic c(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)Landroid/content/Context;
+.method public static bridge synthetic c(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)Landroid/content/Context;
     .locals 0
 
     .line 1
@@ -362,7 +362,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic d(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)F
+.method public static bridge synthetic d(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)F
     .locals 0
 
     .line 1
@@ -373,7 +373,7 @@
     return p0
 .end method
 
-.method static bridge synthetic e(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)F
+.method public static bridge synthetic e(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)F
     .locals 0
 
     .line 1
@@ -384,7 +384,7 @@
     return p0
 .end method
 
-.method static bridge synthetic f(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)Z
+.method public static bridge synthetic f(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)Z
     .locals 0
 
     .line 1
@@ -395,7 +395,7 @@
     return p0
 .end method
 
-.method static bridge synthetic g(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;F)V
+.method public static bridge synthetic g(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;F)V
     .locals 0
 
     .line 1
@@ -406,7 +406,7 @@
     return-void
 .end method
 
-.method static bridge synthetic h(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;FF)Z
+.method public static bridge synthetic h(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;FF)Z
     .locals 0
 
     .line 1
@@ -421,7 +421,7 @@
     return p0
 .end method
 
-.method static bridge synthetic i(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)V
+.method public static bridge synthetic i(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)V
     .locals 0
 
     .line 1
@@ -543,7 +543,7 @@
     move-result p1
 
     .line 11
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 12
     .line 13
@@ -551,7 +551,7 @@
 
     .line 14
     .line 15
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 16
     .line 17
@@ -575,175 +575,178 @@
     .locals 4
 
     .line 1
-    const-string v0, "startAssistantInternal"
+    const-string/jumbo v0, "startAssistantInternal"
 
     .line 2
     .line 3
+    .line 4
     const-string v1, "AssistantInputConsumer"
 
-    .line 4
     .line 5
+    .line 6
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 6
     .line 7
     .line 8
+    .line 9
     iget-object v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContainerInterface:Lcom/android/quickstep/BaseContainerInterface;
 
-    .line 9
     .line 10
+    .line 11
     invoke-virtual {v0}, Lcom/android/quickstep/BaseContainerInterface;->getCreatedContainer()Lcom/android/quickstep/views/RecentsViewContainer;
 
-    .line 11
     .line 12
     .line 13
+    .line 14
     move-result-object v0
 
-    .line 14
+    .line 15
     if-eqz v0, :cond_1
 
-    .line 15
     .line 16
-    invoke-static {}, Lx1/d;->h()Z
-
     .line 17
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/AACVibratorWrapper;->useAAC()Z
+
     .line 18
     .line 19
+    .line 20
     move-result v0
 
-    .line 20
+    .line 21
     if-eqz v0, :cond_0
 
-    .line 21
     .line 22
-    const-string v0, "startAssistantInternal: UseACC"
-
     .line 23
-    .line 24
-    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    const-string/jumbo v0, "startAssistantInternal: UseACC"
 
+    .line 24
     .line 25
     .line 26
-    .line 27
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 27
     .line 28
     .line 29
-    invoke-virtual {v0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
 
     .line 30
     .line 31
+    invoke-virtual {v0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
+
     .line 32
+    .line 33
+    .line 34
     move-result-object v0
 
-    .line 33
-    const-string v1, "launcher_recent"
-
-    .line 34
     .line 35
-    invoke-static {v0, v1}, Lx1/d;->i(Landroid/content/Context;Ljava/lang/String;)V
+    const-string v1, "launcher_recent"
 
     .line 36
     .line 37
+    invoke-static {v0, v1}, Lcom/android/launcher3/mfvUtil/AACVibratorWrapper;->vibrate(Landroid/content/Context;Ljava/lang/String;)V
+
     .line 38
+    .line 39
+    .line 40
     goto :goto_0
 
-    .line 39
-    :cond_0
-    sget-object v0, Lcom/android/launcher3/util/V2;->e:Lcom/android/launcher3/util/I;
-
-    .line 40
     .line 41
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
+    :cond_0
+    sget-object v0, Lcom/android/launcher3/util/VibratorWrapper;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 42
     .line 43
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
 
     .line 44
     .line 45
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
+
     .line 46
+    .line 47
+    .line 48
     move-result-object v0
 
-    .line 47
-    check-cast v0, Lcom/android/launcher3/util/V2;
-
-    .line 48
     .line 49
-    sget-object v1, Lcom/android/launcher3/util/V2;->i:Landroid/os/VibrationEffect;
+    check-cast v0, Lcom/android/launcher3/util/VibratorWrapper;
 
     .line 50
     .line 51
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/V2;->n(Landroid/os/VibrationEffect;)V
+    sget-object v1, Lcom/android/launcher3/util/VibratorWrapper;->OVERVIEW_HAPTIC:Landroid/os/VibrationEffect;
 
     .line 52
     .line 53
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/VibratorWrapper;->vibrate(Landroid/os/VibrationEffect;)V
+
     .line 54
+    .line 55
+    .line 56
     :cond_1
     :goto_0
     new-instance v0, Landroid/os/Bundle;
 
-    .line 55
-    .line 56
-    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
-
     .line 57
     .line 58
-    .line 59
-    const-string v1, "triggered_by"
+    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
 
+    .line 59
     .line 60
     .line 61
-    const/16 v2, 0x53
+    const-string/jumbo v1, "triggered_by"
 
     .line 62
     .line 63
-    invoke-virtual {v0, v1, v2}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
-
     .line 64
+    const/16 v2, 0x53
+
     .line 65
     .line 66
-    const-string v1, "invocation_type"
+    invoke-virtual {v0, v1, v2}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
 
     .line 67
     .line 68
-    const/4 v2, 0x1
-
     .line 69
-    invoke-virtual {v0, v1, v2}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+    const-string v1, "invocation_type"
 
     .line 70
     .line 71
+    const/4 v2, 0x1
+
     .line 72
-    sget-object v1, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    invoke-virtual {v0, v1, v2}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
 
     .line 73
     .line 74
+    .line 75
+    sget-object v1, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
+
+    .line 76
+    .line 77
     iget-object v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
 
-    .line 75
-    .line 76
-    invoke-virtual {v1, v3}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
-
-    .line 77
     .line 78
     .line 79
-    move-result-object v1
+    invoke-virtual {v1, v3}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 80
-    check-cast v1, Lcom/android/quickstep/SystemUiProxy;
-
     .line 81
     .line 82
-    invoke-virtual {v1, v0}, Lcom/android/quickstep/SystemUiProxy;->startAssistant(Landroid/os/Bundle;)V
+    move-result-object v1
 
     .line 83
+    check-cast v1, Lcom/android/quickstep/SystemUiProxy;
+
     .line 84
     .line 85
-    iput-boolean v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLaunchedAssistant:Z
+    invoke-virtual {v1, v0}, Lcom/android/quickstep/SystemUiProxy;->startAssistant(Landroid/os/Bundle;)V
 
     .line 86
     .line 87
+    .line 88
+    iput-boolean v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLaunchedAssistant:Z
+
+    .line 89
+    .line 90
     return-void
 .end method
 
@@ -820,7 +823,7 @@
 
     .line 33
     .line 34
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 35
     .line 36
@@ -828,7 +831,7 @@
 
     .line 37
     .line 38
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 39
     .line 40
@@ -857,7 +860,7 @@
 
     .line 52
     :cond_0
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 53
     .line 54
@@ -865,7 +868,7 @@
 
     .line 55
     .line 56
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 57
     .line 58
@@ -892,7 +895,7 @@
 
 
 # virtual methods
-.method protected getDelegatorName()Ljava/lang/String;
+.method public getDelegatorName()Ljava/lang/String;
     .locals 0
 
     .line 1
@@ -927,59 +930,59 @@
 .end method
 
 .method public onMotionEvent(Landroid/view/MotionEvent;)V
-    .locals 7
+    .locals 9
 
     .line 1
-    const/4 v0, 0x2
-
-    .line 2
-    const/4 v1, 0x1
-
-    .line 3
-    const/4 v2, 0x0
-
-    .line 4
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
 
+    .line 2
+    .line 3
+    .line 4
+    move-result v0
+
     .line 5
+    const/4 v1, 0x0
+
     .line 6
+    const/4 v2, 0x0
+
     .line 7
-    move-result v3
+    const/4 v3, 0x1
 
     .line 8
-    const/4 v4, 0x0
+    if-eqz v0, :cond_b
 
     .line 9
-    if-eqz v3, :cond_b
-
     .line 10
+    const/4 v4, 0x2
+
     .line 11
-    if-eq v3, v1, :cond_9
+    if-eq v0, v3, :cond_9
 
     .line 12
     .line 13
-    if-eq v3, v0, :cond_3
+    if-eq v0, v4, :cond_3
 
     .line 14
     .line 15
     const/4 v5, 0x3
 
     .line 16
-    if-eq v3, v5, :cond_9
+    if-eq v0, v5, :cond_9
 
     .line 17
     .line 18
-    const/4 v4, 0x5
+    const/4 v1, 0x5
 
     .line 19
-    if-eq v3, v4, :cond_2
+    if-eq v0, v1, :cond_2
 
     .line 20
     .line 21
-    const/4 v0, 0x6
+    const/4 v1, 0x6
 
     .line 22
-    if-eq v3, v0, :cond_0
+    if-eq v0, v1, :cond_0
 
     .line 23
     .line 24
@@ -1001,14 +1004,14 @@
     .line 31
     .line 32
     .line 33
-    move-result v3
+    move-result v1
 
     .line 34
     iget v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mActivePointerId:I
 
     .line 35
     .line 36
-    if-ne v3, v4, :cond_c
+    if-ne v1, v4, :cond_c
 
     .line 37
     .line 38
@@ -1016,7 +1019,7 @@
 
     .line 39
     .line 40
-    move v2, v1
+    move v2, v3
 
     .line 41
     :cond_1
@@ -1029,7 +1032,7 @@
     .line 44
     .line 45
     .line 46
-    move-result v3
+    move-result v1
 
     .line 47
     iget-object v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
@@ -1051,7 +1054,7 @@
     sub-float/2addr v4, v5
 
     .line 56
-    sub-float/2addr v3, v4
+    sub-float/2addr v1, v4
 
     .line 57
     invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getY(I)F
@@ -1084,7 +1087,7 @@
     sub-float/2addr v4, v5
 
     .line 71
-    invoke-virtual {v0, v3, v4}, Landroid/graphics/PointF;->set(FF)V
+    invoke-virtual {v0, v1, v4}, Landroid/graphics/PointF;->set(FF)V
 
     .line 72
     .line 73
@@ -1098,7 +1101,7 @@
     .line 77
     .line 78
     .line 79
-    move-result v3
+    move-result v1
 
     .line 80
     invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getY(I)F
@@ -1109,7 +1112,7 @@
     move-result v4
 
     .line 84
-    invoke-virtual {v0, v3, v4}, Landroid/graphics/PointF;->set(FF)V
+    invoke-virtual {v0, v1, v4}, Landroid/graphics/PointF;->set(FF)V
 
     .line 85
     .line 86
@@ -1131,15 +1134,15 @@
     .line 94
     .line 95
     :cond_2
-    iget v2, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
 
     .line 96
     .line 97
-    if-eq v2, v1, :cond_c
+    if-eq v0, v3, :cond_c
 
     .line 98
     .line 99
-    iput v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
+    iput v4, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
 
     .line 100
     .line 101
@@ -1148,11 +1151,11 @@
     .line 102
     .line 103
     :cond_3
-    iget v2, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
 
     .line 104
     .line 105
-    if-ne v2, v0, :cond_4
+    if-ne v0, v4, :cond_4
 
     .line 106
     .line 107
@@ -1161,23 +1164,23 @@
     .line 108
     .line 109
     :cond_4
-    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mDelegate:Lcom/android/quickstep/InputConsumer;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mDelegate:Lcom/android/quickstep/InputConsumer;
 
     .line 110
     .line 111
-    invoke-interface {v2}, Lcom/android/quickstep/InputConsumer;->allowInterceptByParent()Z
+    invoke-interface {v0}, Lcom/android/quickstep/InputConsumer;->allowInterceptByParent()Z
 
     .line 112
     .line 113
     .line 114
-    move-result v2
+    move-result v0
 
     .line 115
-    if-nez v2, :cond_5
+    if-nez v0, :cond_5
 
     .line 116
     .line 117
-    iput v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
+    iput v4, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
 
     .line 118
     .line 119
@@ -1186,22 +1189,22 @@
     .line 120
     .line 121
     :cond_5
-    iget v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mActivePointerId:I
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mActivePointerId:I
 
     .line 122
     .line 123
-    invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->findPointerIndex(I)I
+    invoke-virtual {p1, v0}, Landroid/view/MotionEvent;->findPointerIndex(I)I
 
     .line 124
     .line 125
     .line 126
-    move-result v2
+    move-result v0
 
     .line 127
-    const/4 v3, -0x1
+    const/4 v2, -0x1
 
     .line 128
-    if-ne v2, v3, :cond_6
+    if-ne v0, v2, :cond_6
 
     .line 129
     .line 130
@@ -1210,11 +1213,11 @@
     .line 131
     .line 132
     :cond_6
-    iget-object v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
+    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
 
     .line 133
     .line 134
-    invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getX(I)F
+    invoke-virtual {p1, v0}, Landroid/view/MotionEvent;->getX(I)F
 
     .line 135
     .line 136
@@ -1222,98 +1225,98 @@
     move-result v5
 
     .line 138
-    invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getY(I)F
+    invoke-virtual {p1, v0}, Landroid/view/MotionEvent;->getY(I)F
 
     .line 139
     .line 140
     .line 141
-    move-result v2
+    move-result v0
 
     .line 142
-    invoke-virtual {v3, v5, v2}, Landroid/graphics/PointF;->set(FF)V
+    invoke-virtual {v2, v5, v0}, Landroid/graphics/PointF;->set(FF)V
 
     .line 143
     .line 144
     .line 145
-    iget-boolean v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mPassedSlop:Z
+    iget-boolean v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mPassedSlop:Z
 
     .line 146
     .line 147
-    if-nez v2, :cond_8
+    if-nez v0, :cond_8
 
     .line 148
     .line 149
-    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
 
     .line 150
     .line 151
-    iget v3, v2, Landroid/graphics/PointF;->x:F
+    iget v1, v0, Landroid/graphics/PointF;->x:F
 
     .line 152
     .line 153
-    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDownPos:Landroid/graphics/PointF;
+    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDownPos:Landroid/graphics/PointF;
 
     .line 154
     .line 155
-    iget v5, v4, Landroid/graphics/PointF;->x:F
+    iget v5, v2, Landroid/graphics/PointF;->x:F
 
     .line 156
     .line 157
-    sub-float/2addr v3, v5
+    sub-float/2addr v1, v5
 
     .line 158
-    iget v2, v2, Landroid/graphics/PointF;->y:F
+    iget v0, v0, Landroid/graphics/PointF;->y:F
 
     .line 159
     .line 160
-    iget v4, v4, Landroid/graphics/PointF;->y:F
+    iget v2, v2, Landroid/graphics/PointF;->y:F
 
     .line 161
     .line 162
-    sub-float/2addr v2, v4
+    sub-float/2addr v0, v2
 
     .line 163
-    invoke-static {v3, v2}, Lcom/android/launcher3/N5;->e0(FF)F
+    invoke-static {v1, v0}, Lcom/android/launcher3/Utilities;->squaredHypot(FF)F
 
     .line 164
     .line 165
     .line 166
-    move-result v2
+    move-result v0
 
     .line 167
-    iget v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mSquaredSlop:F
+    iget v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mSquaredSlop:F
 
     .line 168
     .line 169
-    cmpl-float v2, v2, v3
+    cmpl-float v0, v0, v1
 
     .line 170
     .line 171
-    if-lez v2, :cond_c
+    if-lez v0, :cond_c
 
     .line 172
     .line 173
-    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mPassedSlop:Z
+    iput-boolean v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mPassedSlop:Z
 
     .line 174
     .line 175
-    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mStartDragPos:Landroid/graphics/PointF;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mStartDragPos:Landroid/graphics/PointF;
 
     .line 176
     .line 177
-    iget-object v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
 
     .line 178
     .line 179
-    iget v4, v3, Landroid/graphics/PointF;->x:F
+    iget v2, v1, Landroid/graphics/PointF;->x:F
 
     .line 180
     .line 181
-    iget v3, v3, Landroid/graphics/PointF;->y:F
+    iget v1, v1, Landroid/graphics/PointF;->y:F
 
     .line 182
     .line 183
-    invoke-virtual {v2, v4, v3}, Landroid/graphics/PointF;->set(FF)V
+    invoke-virtual {v0, v2, v1}, Landroid/graphics/PointF;->set(FF)V
 
     .line 184
     .line 185
@@ -1323,52 +1326,52 @@
     .line 187
     .line 188
     .line 189
-    move-result-wide v2
+    move-result-wide v0
 
     .line 190
-    iput-wide v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDragTime:J
+    iput-wide v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDragTime:J
 
     .line 191
     .line 192
-    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDownPos:Landroid/graphics/PointF;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDownPos:Landroid/graphics/PointF;
 
     .line 193
     .line 194
-    iget v3, v2, Landroid/graphics/PointF;->x:F
+    iget v1, v0, Landroid/graphics/PointF;->x:F
 
     .line 195
     .line 196
-    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
+    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastPos:Landroid/graphics/PointF;
 
     .line 197
     .line 198
-    iget v5, v4, Landroid/graphics/PointF;->x:F
+    iget v5, v2, Landroid/graphics/PointF;->x:F
 
     .line 199
     .line 200
-    sub-float/2addr v3, v5
+    sub-float/2addr v1, v5
 
     .line 201
-    iget v2, v2, Landroid/graphics/PointF;->y:F
+    iget v0, v0, Landroid/graphics/PointF;->y:F
 
     .line 202
     .line 203
-    iget v4, v4, Landroid/graphics/PointF;->y:F
+    iget v2, v2, Landroid/graphics/PointF;->y:F
 
     .line 204
     .line 205
-    sub-float/2addr v2, v4
+    sub-float/2addr v0, v2
 
     .line 206
-    invoke-direct {p0, v3, v2}, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->isValidAssistantGestureAngle(FF)Z
+    invoke-direct {p0, v1, v0}, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->isValidAssistantGestureAngle(FF)Z
 
     .line 207
     .line 208
     .line 209
-    move-result v2
+    move-result v0
 
     .line 210
-    if-eqz v2, :cond_7
+    if-eqz v0, :cond_7
 
     .line 211
     .line 212
@@ -1382,7 +1385,7 @@
     .line 216
     .line 217
     :cond_7
-    iput v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
+    iput v4, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
 
     .line 218
     .line 219
@@ -1399,11 +1402,11 @@
 
     .line 224
     .line 225
-    iget-object v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mStartDragPos:Landroid/graphics/PointF;
+    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mStartDragPos:Landroid/graphics/PointF;
 
     .line 226
     .line 227
-    iget v5, v3, Landroid/graphics/PointF;->x:F
+    iget v5, v4, Landroid/graphics/PointF;->x:F
 
     .line 228
     .line 229
@@ -1417,32 +1420,32 @@
 
     .line 232
     .line 233
-    iget v2, v3, Landroid/graphics/PointF;->y:F
+    iget v2, v4, Landroid/graphics/PointF;->y:F
 
     .line 234
     .line 235
     sub-float/2addr v0, v2
 
     .line 236
-    float-to-double v2, v0
+    float-to-double v7, v0
 
     .line 237
-    invoke-static {v5, v6, v2, v3}, Ljava/lang/Math;->hypot(DD)D
+    invoke-static {v5, v6, v7, v8}, Ljava/lang/Math;->hypot(DD)D
 
     .line 238
     .line 239
     .line 240
-    move-result-wide v2
+    move-result-wide v4
 
     .line 241
-    double-to-float v0, v2
+    double-to-float v0, v4
 
     .line 242
     iput v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDistance:F
 
     .line 243
     .line 244
-    cmpl-float v0, v0, v4
+    cmpl-float v0, v0, v1
 
     .line 245
     .line 246
@@ -1455,37 +1458,37 @@
     .line 249
     .line 250
     .line 251
-    move-result-wide v2
+    move-result-wide v0
 
     .line 252
     iget-wide v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mDragTime:J
 
     .line 253
     .line 254
-    sub-long/2addr v2, v4
+    sub-long/2addr v0, v4
 
     .line 255
-    long-to-float v0, v2
+    long-to-float v0, v0
 
     .line 256
-    const/high16 v2, 0x3f800000    # 1.0f
+    const/high16 v1, 0x3f800000    # 1.0f
 
     .line 257
     .line 258
-    mul-float/2addr v0, v2
+    mul-float/2addr v0, v1
 
     .line 259
-    iget-wide v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mTimeThreshold:J
+    iget-wide v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mTimeThreshold:J
 
     .line 260
     .line 261
-    long-to-float v3, v3
+    long-to-float v2, v4
 
     .line 262
-    div-float/2addr v0, v3
+    div-float/2addr v0, v2
 
     .line 263
-    invoke-static {v0, v2}, Ljava/lang/Math;->min(FF)F
+    invoke-static {v0, v1}, Ljava/lang/Math;->min(FF)F
 
     .line 264
     .line 265
@@ -1506,39 +1509,39 @@
 
     .line 273
     :cond_9
-    iget v3, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->mState:I
 
     .line 274
     .line 275
-    if-eq v3, v0, :cond_a
+    if-eq v0, v4, :cond_a
 
     .line 276
     .line 277
-    iget-boolean v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLaunchedAssistant:Z
+    iget-boolean v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLaunchedAssistant:Z
 
     .line 278
     .line 279
-    if-nez v3, :cond_a
+    if-nez v0, :cond_a
 
     .line 280
     .line 281
-    iget v3, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastProgress:F
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mLastProgress:F
 
     .line 282
     .line 283
-    new-array v0, v0, [F
+    new-array v4, v4, [F
 
     .line 284
     .line 285
-    aput v3, v0, v2
+    aput v0, v4, v2
 
     .line 286
     .line 287
-    aput v4, v0, v1
+    aput v1, v4, v3
 
     .line 288
     .line 289
-    invoke-static {v0}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
+    invoke-static {v4}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
 
     .line 290
     .line 291
@@ -1546,11 +1549,11 @@
     move-result-object v0
 
     .line 293
-    const-wide/16 v3, 0x12c
+    const-wide/16 v4, 0x12c
 
     .line 294
     .line 295
-    invoke-virtual {v0, v3, v4}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
+    invoke-virtual {v0, v4, v5}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
 
     .line 296
     .line 297
@@ -1558,39 +1561,39 @@
     move-result-object v0
 
     .line 299
-    new-instance v3, Lcom/android/quickstep/inputconsumers/a;
+    new-instance v1, Lcom/android/quickstep/inputconsumers/a;
 
     .line 300
     .line 301
-    invoke-direct {v3, p0}, Lcom/android/quickstep/inputconsumers/a;-><init>(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/inputconsumers/a;-><init>(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)V
 
     .line 302
     .line 303
     .line 304
-    invoke-virtual {v0, v3}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+    invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
     .line 305
     .line 306
     .line 307
-    new-instance v3, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer$1;
+    new-instance v1, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer$1;
 
     .line 308
     .line 309
-    invoke-direct {v3, p0}, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer$1;-><init>(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer$1;-><init>(Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;)V
 
     .line 310
     .line 311
     .line 312
-    invoke-virtual {v0, v3}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 313
     .line 314
     .line 315
-    sget-object v3, LJ0/h;->L:Landroid/view/animation/Interpolator;
+    sget-object v1, Lcom/android/app/animation/Interpolators;->DECELERATE_2:Landroid/view/animation/Interpolator;
 
     .line 316
     .line 317
-    invoke-virtual {v0, v3}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+    invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
     .line 318
     .line 319
@@ -1642,10 +1645,10 @@
     .line 341
     .line 342
     .line 343
-    move-result v3
+    move-result v4
 
     .line 344
-    invoke-virtual {v0, v2, v3}, Landroid/graphics/PointF;->set(FF)V
+    invoke-virtual {v0, v2, v4}, Landroid/graphics/PointF;->set(FF)V
 
     .line 345
     .line 346
@@ -1663,19 +1666,19 @@
     .line 352
     .line 353
     .line 354
-    iput v4, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mTimeFraction:F
+    iput v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mTimeFraction:F
 
     .line 355
     .line 356
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 357
     .line 358
-    iget-object v2, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;->mContext:Landroid/content/Context;
 
     .line 359
     .line 360
-    invoke-virtual {v0, v2}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 361
     .line 362
@@ -1692,7 +1695,7 @@
     .line 367
     .line 368
     .line 369
-    move-result v2
+    move-result v1
 
     .line 370
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
@@ -1700,10 +1703,10 @@
     .line 371
     .line 372
     .line 373
-    move-result v3
+    move-result v2
 
     .line 374
-    invoke-virtual {v0, v2, v3}, Lcom/android/quickstep/SystemUiProxy;->onAssistantGestureStart(FF)V
+    invoke-virtual {v0, v1, v2}, Lcom/android/quickstep/SystemUiProxy;->onAssistantGestureStart(FF)V
 
     .line 375
     .line 376
@@ -1723,7 +1726,7 @@
 
     .line 383
     .line 384
-    if-eq v0, v1, :cond_d
+    if-eq v0, v3, :cond_d
 
     .line 385
     .line 386

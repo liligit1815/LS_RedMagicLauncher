@@ -24,11 +24,11 @@
 
 
 # virtual methods
-.method public u(Landroid/os/Bundle;)Landroid/app/Dialog;
+.method public onCreateDialog(Landroid/os/Bundle;)Landroid/app/Dialog;
     .locals 1
 
     .line 1
-    new-instance p1, Landroidx/appcompat/app/j;
+    new-instance p1, Ll/i;
 
     .line 2
     .line 3
@@ -40,7 +40,7 @@
     move-result-object v0
 
     .line 7
-    invoke-virtual {p0}, Landroidx/fragment/app/DialogFragment;->s()I
+    invoke-virtual {p0}, Landroidx/fragment/app/DialogFragment;->getTheme()I
 
     .line 8
     .line 9
@@ -48,7 +48,7 @@
     move-result p0
 
     .line 11
-    invoke-direct {p1, v0, p0}, Landroidx/appcompat/app/j;-><init>(Landroid/content/Context;I)V
+    invoke-direct {p1, v0, p0}, Ll/i;-><init>(Landroid/content/Context;I)V
 
     .line 12
     .line 13
@@ -56,11 +56,11 @@
     return-object p1
 .end method
 
-.method public z(Landroid/app/Dialog;I)V
+.method public setupDialog(Landroid/app/Dialog;I)V
     .locals 2
 
     .line 1
-    instance-of v0, p1, Landroidx/appcompat/app/j;
+    instance-of v0, p1, Ll/i;
 
     .line 2
     .line 3
@@ -71,7 +71,7 @@
     move-object p0, p1
 
     .line 6
-    check-cast p0, Landroidx/appcompat/app/j;
+    check-cast p0, Ll/i;
 
     .line 7
     .line 8
@@ -118,7 +118,7 @@
     .line 26
     .line 27
     :cond_1
-    invoke-virtual {p0, v0}, Landroidx/appcompat/app/j;->n(I)Z
+    invoke-virtual {p0, v0}, Ll/i;->q(I)Z
 
     .line 28
     .line 29
@@ -127,7 +127,7 @@
 
     .line 31
     :cond_2
-    invoke-super {p0, p1, p2}, Landroidx/fragment/app/DialogFragment;->z(Landroid/app/Dialog;I)V
+    invoke-super {p0, p1, p2}, Landroidx/fragment/app/DialogFragment;->setupDialog(Landroid/app/Dialog;I)V
 
     .line 32
     .line 33

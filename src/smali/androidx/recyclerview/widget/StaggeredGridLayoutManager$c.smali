@@ -15,9 +15,9 @@
 
 
 # instance fields
-.field a:Landroidx/recyclerview/widget/StaggeredGridLayoutManager$f;
+.field public a:Landroidx/recyclerview/widget/StaggeredGridLayoutManager$f;
 
-.field b:Z
+.field public b:Z
 
 
 # direct methods

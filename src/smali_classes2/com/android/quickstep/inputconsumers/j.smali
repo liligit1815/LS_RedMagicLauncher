@@ -7,13 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
-
-.field public final synthetic h:Landroid/view/MotionEvent;
+.field public final synthetic c:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;Landroid/view/MotionEvent;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
     .locals 0
 
     .line 1
@@ -22,35 +20,27 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/j;->g:Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/j;->c:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
 
     .line 5
     .line 6
-    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/j;->h:Landroid/view/MotionEvent;
-
-    .line 7
-    .line 8
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 1
+    .locals 0
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/j;->g:Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/j;->c:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
 
     .line 2
     .line 3
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/j;->h:Landroid/view/MotionEvent;
+    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->d(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
 
     .line 4
     .line 5
-    invoke-static {v0, p0}, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;->b(Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;Landroid/view/MotionEvent;)V
-
     .line 6
-    .line 7
-    .line 8
     return-void
 .end method

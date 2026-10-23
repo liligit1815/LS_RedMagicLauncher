@@ -15,11 +15,11 @@
 
 
 # virtual methods
-.method public abstract a(IFI)V
+.method public abstract onPageScrollStateChanged(I)V
 .end method
 
-.method public abstract b(I)V
+.method public abstract onPageScrolled(IFI)V
 .end method
 
-.method public abstract c(I)V
+.method public abstract onPageSelected(I)V
 .end method

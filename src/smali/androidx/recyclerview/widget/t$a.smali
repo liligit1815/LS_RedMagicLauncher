@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/t$a;
+.class public Landroidx/recyclerview/widget/t$a;
 .super Landroidx/recyclerview/widget/RecyclerView$OnScrollListener;
 .source "SnapHelper.java"
 
@@ -9,23 +9,23 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field g:Z
+.field public c:Z
 
-.field final synthetic h:Landroidx/recyclerview/widget/t;
+.field public final synthetic m:Landroidx/recyclerview/widget/t;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/t;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/t;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/t$a;->h:Landroidx/recyclerview/widget/t;
+    iput-object p1, p0, Landroidx/recyclerview/widget/t$a;->m:Landroidx/recyclerview/widget/t;
 
     .line 2
     .line 3
@@ -37,7 +37,7 @@
     const/4 p1, 0x0
 
     .line 7
-    iput-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->g:Z
+    iput-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->c:Z
 
     .line 8
     .line 9
@@ -59,7 +59,7 @@
 
     .line 5
     .line 6
-    iget-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->g:Z
+    iget-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->c:Z
 
     .line 7
     .line 8
@@ -70,11 +70,11 @@
     const/4 p1, 0x0
 
     .line 11
-    iput-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->g:Z
+    iput-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->c:Z
 
     .line 12
     .line 13
-    iget-object p0, p0, Landroidx/recyclerview/widget/t$a;->h:Landroidx/recyclerview/widget/t;
+    iget-object p0, p0, Landroidx/recyclerview/widget/t$a;->m:Landroidx/recyclerview/widget/t;
 
     .line 14
     .line 15
@@ -111,7 +111,7 @@
     const/4 p1, 0x1
 
     .line 8
-    iput-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->g:Z
+    iput-boolean p1, p0, Landroidx/recyclerview/widget/t$a;->c:Z
 
     .line 9
     .line 10

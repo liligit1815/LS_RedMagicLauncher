@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SearchView$q;
+.class public Landroidx/appcompat/widget/SearchView$q;
 .super Landroid/view/TouchDelegate;
 .source "SearchView.java"
 
@@ -9,23 +9,23 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "q"
 .end annotation
 
 
 # instance fields
-.field private final a:Landroid/view/View;
+.field public final a:Landroid/view/View;
 
-.field private final b:Landroid/graphics/Rect;
+.field public final b:Landroid/graphics/Rect;
 
-.field private final c:Landroid/graphics/Rect;
+.field public final c:Landroid/graphics/Rect;
 
-.field private final d:Landroid/graphics/Rect;
+.field public final d:Landroid/graphics/Rect;
 
-.field private final e:I
+.field public final e:I
 
-.field private f:Z
+.field public f:Z
 
 
 # direct methods

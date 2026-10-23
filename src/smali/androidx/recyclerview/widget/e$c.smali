@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/e$c;
+.class public Landroidx/recyclerview/widget/e$c;
 .super Ljava/lang/Object;
 .source "DiffUtil.java"
 
@@ -9,19 +9,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "c"
 .end annotation
 
 
 # instance fields
-.field private final a:[I
+.field public final a:[I
 
-.field private final b:I
+.field public final b:I
 
 
 # direct methods
-.method constructor <init>(I)V
+.method public constructor <init>(I)V
     .locals 0
 
     .line 1
@@ -54,7 +54,7 @@
 
 
 # virtual methods
-.method a()[I
+.method public a()[I
     .locals 0
 
     .line 1
@@ -65,7 +65,7 @@
     return-object p0
 .end method
 
-.method b(I)I
+.method public b(I)I
     .locals 1
 
     .line 1
@@ -87,7 +87,7 @@
     return p0
 .end method
 
-.method c(II)V
+.method public c(II)V
     .locals 1
 
     .line 1

@@ -126,7 +126,7 @@
     return-void
 .end method
 
-.method static bridge synthetic i(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
+.method public static bridge synthetic c(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/View;
     .locals 0
 
     .line 1
@@ -137,7 +137,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic j(Lcom/android/quickstep/interaction/AnimatedTaskView;)F
+.method public static bridge synthetic g(Lcom/android/quickstep/interaction/AnimatedTaskView;)F
     .locals 0
 
     .line 1
@@ -148,7 +148,7 @@
     return p0
 .end method
 
-.method static bridge synthetic k(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/graphics/Rect;
+.method public static bridge synthetic i(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/graphics/Rect;
     .locals 0
 
     .line 1
@@ -159,7 +159,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic l(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/ViewOutlineProvider;
+.method public static bridge synthetic l(Lcom/android/quickstep/interaction/AnimatedTaskView;)Landroid/view/ViewOutlineProvider;
     .locals 0
 
     .line 1
@@ -249,7 +249,7 @@
     return-void
 .end method
 
-.method static bridge synthetic m(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/view/View;Landroid/graphics/Rect;F)V
+.method public static bridge synthetic m(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/view/View;Landroid/graphics/Rect;F)V
     .locals 0
 
     .line 1
@@ -263,110 +263,110 @@
 
 
 # virtual methods
-.method createAnimationToMultiRowLayout()Landroid/animation/AnimatorSet;
-    .locals 9
+.method public createAnimationToMultiRowLayout()Landroid/animation/AnimatorSet;
+    .locals 8
 
     .line 1
-    const/4 v0, 0x2
+    iget-object v0, p0, Lcom/android/quickstep/interaction/AnimatedTaskView;->mTaskViewOutlineProvider:Landroid/view/ViewOutlineProvider;
 
     .line 2
-    iget-object v1, p0, Lcom/android/quickstep/interaction/AnimatedTaskView;->mTaskViewOutlineProvider:Landroid/view/ViewOutlineProvider;
-
     .line 3
-    .line 4
-    if-nez v1, :cond_0
+    if-nez v0, :cond_0
 
+    .line 4
     .line 5
-    .line 6
     const/4 p0, 0x0
 
-    .line 7
+    .line 6
     return-object p0
 
-    .line 8
+    .line 7
     :cond_0
-    new-instance v1, Landroid/graphics/Outline;
+    new-instance v0, Landroid/graphics/Outline;
 
+    .line 8
     .line 9
-    .line 10
-    invoke-direct {v1}, Landroid/graphics/Outline;-><init>()V
+    invoke-direct {v0}, Landroid/graphics/Outline;-><init>()V
 
+    .line 10
     .line 11
     .line 12
+    iget-object v1, p0, Lcom/android/quickstep/interaction/AnimatedTaskView;->mTaskViewOutlineProvider:Landroid/view/ViewOutlineProvider;
+
     .line 13
-    iget-object v2, p0, Lcom/android/quickstep/interaction/AnimatedTaskView;->mTaskViewOutlineProvider:Landroid/view/ViewOutlineProvider;
-
     .line 14
-    .line 15
-    invoke-virtual {v2, p0, v1}, Landroid/view/ViewOutlineProvider;->getOutline(Landroid/view/View;Landroid/graphics/Outline;)V
+    invoke-virtual {v1, p0, v0}, Landroid/view/ViewOutlineProvider;->getOutline(Landroid/view/View;Landroid/graphics/Outline;)V
 
+    .line 15
     .line 16
     .line 17
+    new-instance v4, Landroid/graphics/Rect;
+
     .line 18
-    new-instance v5, Landroid/graphics/Rect;
-
     .line 19
-    .line 20
-    invoke-direct {v5}, Landroid/graphics/Rect;-><init>()V
+    invoke-direct {v4}, Landroid/graphics/Rect;-><init>()V
 
+    .line 20
     .line 21
     .line 22
-    .line 23
-    invoke-virtual {v1, v5}, Landroid/graphics/Outline;->getRect(Landroid/graphics/Rect;)Z
+    invoke-virtual {v0, v4}, Landroid/graphics/Outline;->getRect(Landroid/graphics/Rect;)Z
 
+    .line 23
     .line 24
     .line 25
+    iget-object v1, p0, Lcom/android/quickstep/interaction/AnimatedTaskView;->mTopTaskView:Landroid/view/View;
+
     .line 26
-    iget-object v2, p0, Lcom/android/quickstep/interaction/AnimatedTaskView;->mTopTaskView:Landroid/view/View;
-
     .line 27
-    .line 28
-    invoke-virtual {v2}, Landroid/view/View;->getHeight()I
+    invoke-virtual {v1}, Landroid/view/View;->getHeight()I
 
+    .line 28
     .line 29
     .line 30
+    move-result v5
+
     .line 31
-    move-result v6
+    invoke-virtual {v0}, Landroid/graphics/Outline;->getRadius()F
 
     .line 32
-    invoke-virtual {v1}, Landroid/graphics/Outline;->getRadius()F
-
     .line 33
     .line 34
-    .line 35
-    move-result v7
+    move-result v6
 
-    .line 36
+    .line 35
     invoke-virtual {p0}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
 
+    .line 36
     .line 37
     .line 38
+    move-result-object v0
+
     .line 39
-    move-result-object v1
+    invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     .line 40
-    invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
     .line 41
     .line 42
+    move-result-object v0
+
     .line 43
-    move-result-object v1
+    const v1, 0x7f0703fa
 
     .line 44
-    const v2, 0x7f0703bc
-
     .line 45
     .line 46
-    .line 47
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
+    .line 47
     .line 48
     .line 49
+    move-result v0
+
     .line 50
-    move-result v1
+    int-to-float v7, v0
 
     .line 51
-    int-to-float v8, v1
+    const/4 v0, 0x2
 
     .line 52
     new-array v1, v0, [F
@@ -386,19 +386,19 @@
     move-result-object v1
 
     .line 61
-    new-instance v3, Lcom/android/quickstep/interaction/k;
+    new-instance v2, Lcom/android/quickstep/interaction/n;
 
     .line 62
     .line 63
-    move-object v4, p0
+    move-object v3, p0
 
     .line 64
-    invoke-direct/range {v3 .. v8}, Lcom/android/quickstep/interaction/k;-><init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;IFF)V
+    invoke-direct/range {v2 .. v7}, Lcom/android/quickstep/interaction/n;-><init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;IFF)V
 
     .line 65
     .line 66
     .line 67
-    invoke-virtual {v1, v3}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+    invoke-virtual {v1, v2}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
     .line 68
     .line 69
@@ -407,7 +407,7 @@
 
     .line 71
     .line 72
-    invoke-direct {p0, v4, v5, v7}, Lcom/android/quickstep/interaction/AnimatedTaskView$1;-><init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;F)V
+    invoke-direct {p0, v3, v4, v6}, Lcom/android/quickstep/interaction/AnimatedTaskView$1;-><init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;F)V
 
     .line 73
     .line 74
@@ -426,11 +426,11 @@
     .line 81
     .line 82
     .line 83
-    iget-object v2, v4, Lcom/android/quickstep/interaction/AnimatedTaskView;->mBottomTaskView:Landroid/view/View;
+    iget-object v2, v3, Lcom/android/quickstep/interaction/AnimatedTaskView;->mBottomTaskView:Landroid/view/View;
 
     .line 84
     .line 85
-    sget-object v3, Landroid/view/View;->TRANSLATION_X:Landroid/util/Property;
+    sget-object v5, Landroid/view/View;->TRANSLATION_X:Landroid/util/Property;
 
     .line 86
     .line 87
@@ -469,7 +469,7 @@
 
     .line 101
     .line 102
-    invoke-static {v2, v3, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {v2, v5, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 103
     .line 104
@@ -505,7 +505,7 @@
 
     .line 121
     .line 122
-    invoke-direct {p0, v4, v5}, Lcom/android/quickstep/interaction/AnimatedTaskView$2;-><init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;)V
+    invoke-direct {p0, v3, v4}, Lcom/android/quickstep/interaction/AnimatedTaskView$2;-><init>(Lcom/android/quickstep/interaction/AnimatedTaskView;Landroid/graphics/Rect;)V
 
     .line 123
     .line 124
@@ -525,7 +525,7 @@
     .end array-data
 .end method
 
-.method protected onFinishInflate()V
+.method public onFinishInflate()V
     .locals 1
 
     .line 1
@@ -534,7 +534,7 @@
     .line 2
     .line 3
     .line 4
-    const v0, 0x7f0b028d
+    const v0, 0x7f0b02a8
 
     .line 5
     .line 6
@@ -551,7 +551,7 @@
 
     .line 12
     .line 13
-    const v0, 0x7f0b0625
+    const v0, 0x7f0b0677
 
     .line 14
     .line 15
@@ -568,7 +568,7 @@
 
     .line 21
     .line 22
-    const v0, 0x7f0b0119
+    const v0, 0x7f0b0122
 
     .line 23
     .line 24
@@ -612,7 +612,7 @@
     return-void
 .end method
 
-.method setFakeTaskViewFillColor(I)V
+.method public setFakeTaskViewFillColor(I)V
     .locals 1
 
     .line 1
@@ -682,7 +682,7 @@
     return-void
 .end method
 
-.method setToMultiRowLayout()V
+.method public setToMultiRowLayout()V
     .locals 2
 
     .line 1
@@ -722,7 +722,7 @@
     return-void
 .end method
 
-.method setToSingleRowLayout(Z)V
+.method public setToSingleRowLayout(Z)V
     .locals 3
 
     .line 1

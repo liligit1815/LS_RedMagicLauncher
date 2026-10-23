@@ -79,7 +79,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 1
 
     .line 4
@@ -121,7 +121,7 @@
     return p0
 .end method
 
-.method protected onReceiveResult(ILandroid/os/Bundle;)V
+.method public onReceiveResult(ILandroid/os/Bundle;)V
     .locals 0
 
     .line 1

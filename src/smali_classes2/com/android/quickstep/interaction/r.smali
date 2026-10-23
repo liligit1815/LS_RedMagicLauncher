@@ -3,11 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnApplyWindowInsetsListener;
+.implements Ljava/lang/Runnable;
+
+
+# instance fields
+.field public final synthetic c:Lcom/android/quickstep/interaction/GestureSandboxActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/GestureSandboxActivity;)V
     .locals 0
 
     .line 1
@@ -16,22 +20,27 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lcom/android/quickstep/interaction/r;->c:Lcom/android/quickstep/interaction/GestureSandboxActivity;
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final onApplyWindowInsets(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
+.method public final run()V
     .locals 0
 
     .line 1
-    invoke-static {p1, p2}, Lcom/android/quickstep/interaction/GestureSandboxActivity;->r(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/r;->c:Lcom/android/quickstep/interaction/GestureSandboxActivity;
 
     .line 2
     .line 3
-    .line 4
-    move-result-object p0
+    invoke-static {p0}, Lcom/android/quickstep/interaction/GestureSandboxActivity;->w(Lcom/android/quickstep/interaction/GestureSandboxActivity;)V
 
+    .line 4
     .line 5
-    return-object p0
+    .line 6
+    return-void
 .end method

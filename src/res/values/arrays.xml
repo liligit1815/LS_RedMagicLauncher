@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="allowed_image_mime_types">
+        <item>image/png</item>
+        <item>image/jpeg</item>
+        <item>image/webp</item>
+        <item>image/gif</item>
+        <item>image/bmp</item>
+        <item>image/x-ico</item>
+        <item>image/vnd.wap.wbmp</item>
+        <item>image/heif</item>
+        <item>image/heic</item>
+        <item>image/avif</item>
+    </string-array>
     <string-array name="back_gesture_blocking_activities">
         <item>com.android.launcher3/com.android.quickstep.interaction.GestureSandboxActivity</item>
     </string-array>
@@ -55,15 +67,16 @@
         <item>com.android.location.fused</item>
         <item>com.baidu.map.location</item>
     </string-array>
-    <array name="custom_widget_providers" />
     <string-array name="day">
         <item>day</item>
     </string-array>
+    <array name="default_featured_widget_apps" />
     <array name="dynamic_resources">
         <item>@dimen/swipe_up_scale_start</item>
         <item>@dimen/swipe_up_max_velocity</item>
     </array>
     <array name="filtered_components" />
+    <array name="grid_control_known_signers" />
     <array name="icon_size_steps">
         <item>@dimen/iconSize48dp</item>
         <item>@dimen/iconSize50dp</item>
@@ -98,6 +111,7 @@
     <string-array name="skip_private_profile_shortcut_packages">
         <item>com.android.settings</item>
     </string-array>
+    <array name="supported_overlay_apps" />
     <string-array name="year">
         <item>year</item>
     </string-array>

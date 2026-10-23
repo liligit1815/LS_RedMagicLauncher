@@ -57,7 +57,7 @@
 
 .field private final mDownPos:Landroid/graphics/PointF;
 
-.field protected mDp:Lcom/android/launcher3/h0;
+.field protected mDp:Lcom/android/launcher3/DeviceProfile;
 
 .field protected mDragLengthFactor:F
 
@@ -139,7 +139,7 @@
 
     .line 14
     .line 15
-    sget-object v0, Lcom/android/launcher3/anim/L;->g:Landroid/view/animation/Interpolator;
+    sget-object v0, Lcom/android/launcher3/anim/InterpolatorsMFV;->DEACCEL:Landroid/view/animation/Interpolator;
 
     .line 16
     .line 17
@@ -262,11 +262,11 @@
 
     .line 44
     .line 45
-    sget-object v0, Lcom/android/quickstep/RotationTouchHelper;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/RotationTouchHelper;->REPOSITORY_INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 46
     .line 47
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 48
     .line 49
@@ -274,368 +274,393 @@
     move-result-object v0
 
     .line 51
-    check-cast v0, Lcom/android/quickstep/RotationTouchHelper;
+    check-cast v0, Lcom/android/app/displaylib/PerDisplayRepository;
 
     .line 52
     .line 53
-    invoke-virtual {v0}, Lcom/android/quickstep/RotationTouchHelper;->getDisplayRotation()I
+    invoke-virtual {p3}, Lcom/android/quickstep/GestureState;->getDisplayId()I
 
     .line 54
     .line 55
     .line 56
-    move-result v0
+    move-result v1
 
     .line 57
-    const/4 v1, 0x0
+    invoke-interface {v0, v1}, Lcom/android/app/displaylib/PerDisplayRepository;->get(I)Ljava/lang/Object;
 
     .line 58
-    const/4 v2, 0x1
-
     .line 59
-    if-eq v0, v2, :cond_1
-
     .line 60
+    move-result-object v0
+
     .line 61
-    const/4 v3, 0x3
+    check-cast v0, Lcom/android/quickstep/RotationTouchHelper;
 
     .line 62
+    .line 63
+    invoke-static {v0}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 64
+    .line 65
+    .line 66
+    invoke-virtual {v0}, Lcom/android/quickstep/RotationTouchHelper;->getDisplayRotation()I
+
+    .line 67
+    .line 68
+    .line 69
+    move-result v0
+
+    .line 70
+    const/4 v1, 0x0
+
+    .line 71
+    const/4 v2, 0x1
+
+    .line 72
+    if-eq v0, v2, :cond_1
+
+    .line 73
+    .line 74
+    const/4 v3, 0x3
+
+    .line 75
     if-ne v0, v3, :cond_0
 
-    .line 63
-    .line 64
+    .line 76
+    .line 77
     goto :goto_0
 
-    .line 65
+    .line 78
     :cond_0
     move v0, v1
 
-    .line 66
+    .line 79
     goto :goto_1
 
-    .line 67
+    .line 80
     :cond_1
     :goto_0
     move v0, v2
 
-    .line 68
+    .line 81
     :goto_1
     new-instance v3, Lcom/android/quickstep/util/MotionPauseDetector;
 
-    .line 69
-    .line 70
+    .line 82
+    .line 83
     invoke-virtual {p2}, Lcom/android/quickstep/util/NavBarPosition;->isLeftEdge()Z
 
-    .line 71
-    .line 72
-    .line 73
+    .line 84
+    .line 85
+    .line 86
     move-result v4
 
-    .line 74
+    .line 87
     if-nez v4, :cond_3
 
-    .line 75
-    .line 76
+    .line 88
+    .line 89
     invoke-virtual {p2}, Lcom/android/quickstep/util/NavBarPosition;->isRightEdge()Z
 
-    .line 77
-    .line 78
-    .line 79
+    .line 90
+    .line 91
+    .line 92
     move-result p2
 
-    .line 80
+    .line 93
     if-eqz p2, :cond_2
 
-    .line 81
-    .line 82
+    .line 94
+    .line 95
     goto :goto_2
 
-    .line 83
+    .line 96
     :cond_2
     move p2, v2
 
-    .line 84
+    .line 97
     goto :goto_3
 
-    .line 85
+    .line 98
     :cond_3
     :goto_2
     move p2, v1
 
-    .line 86
+    .line 99
     :goto_3
     invoke-direct {v3, p1, v1, p2, v0}, Lcom/android/quickstep/util/MotionPauseDetector;-><init>(Landroid/content/Context;ZIZ)V
 
-    .line 87
-    .line 88
-    .line 89
-    iput-object v3, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mMotionPauseDetector:Lcom/android/quickstep/util/MotionPauseDetector;
-
-    .line 90
-    .line 91
-    invoke-virtual {v3}, Lcom/android/quickstep/util/MotionPauseDetector;->setMFVSpeedSlowSlop()V
-
-    .line 92
-    .line 93
-    .line 94
-    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    .line 95
-    .line 96
-    .line 97
-    move-result-object p1
-
-    .line 98
-    const p2, 0x7f070853
-
-    .line 99
     .line 100
     .line 101
-    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimension(I)F
-
     .line 102
+    iput-object v3, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mMotionPauseDetector:Lcom/android/quickstep/util/MotionPauseDetector;
+
     .line 103
     .line 104
-    move-result p1
+    invoke-virtual {v3}, Lcom/android/quickstep/util/MotionPauseDetector;->setMFVSpeedSlowSlop()V
 
     .line 105
-    iput p1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mMotionPauseMinDisplacement:F
-
     .line 106
     .line 107
-    invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     .line 108
     .line 109
     .line 110
-    move-result-object p2
+    move-result-object p1
 
     .line 111
-    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mVelocityTracker:Landroid/view/VelocityTracker;
+    const p2, 0x7f0708aa
 
     .line 112
     .line 113
-    iput-object p4, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mInputMonitorCompat:Lcom/android/systemui/shared/system/InputMonitorCompat;
-
     .line 114
-    .line 115
-    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mIsDeferredDownTarget:Z
+    invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimension(I)F
 
+    .line 115
     .line 116
     .line 117
-    invoke-static {p0}, Landroid/view/ViewConfiguration;->get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
+    move-result p1
 
     .line 118
+    iput p1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mMotionPauseMinDisplacement:F
+
     .line 119
     .line 120
-    move-result-object p2
+    invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
 
     .line 121
-    invoke-virtual {p2}, Landroid/view/ViewConfiguration;->getScaledTouchSlop()I
-
     .line 122
     .line 123
+    move-result-object p2
+
     .line 124
-    move-result p2
+    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mVelocityTracker:Landroid/view/VelocityTracker;
 
     .line 125
-    int-to-float p2, p2
-
     .line 126
-    iput p2, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mTouchSlop:F
+    iput-object p4, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mInputMonitorCompat:Lcom/android/systemui/shared/system/InputMonitorCompat;
 
     .line 127
     .line 128
-    const/high16 p4, 0x40000000    # 2.0f
+    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mIsDeferredDownTarget:Z
 
     .line 129
     .line 130
-    mul-float/2addr p4, p2
+    invoke-static {p0}, Landroid/view/ViewConfiguration;->get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
 
     .line 131
-    mul-float/2addr p4, p2
-
     .line 132
-    iput p4, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mSquaredTouchSlop:F
-
     .line 133
+    move-result-object p2
+
     .line 134
-    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mPassedWindowMoveSlop:Z
+    invoke-virtual {p2}, Landroid/view/ViewConfiguration;->getScaledTouchSlop()I
 
     .line 135
     .line 136
-    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mPassedPilferInputSlop:Z
-
     .line 137
+    move-result p2
+
     .line 138
-    iput-boolean p5, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mDisableHorizontalSwipe:Z
+    int-to-float p2, p2
 
     .line 139
+    iput p2, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mTouchSlop:F
+
     .line 140
-    new-instance v3, Lcom/android/quickstep/util/TaskViewSimulator;
-
     .line 141
-    .line 142
-    invoke-virtual {p3}, Lcom/android/quickstep/GestureState;->getContainerInterface()Lcom/android/quickstep/BaseContainerInterface;
+    const/high16 p4, 0x40000000    # 2.0f
 
+    .line 142
     .line 143
+    mul-float/2addr p4, p2
+
     .line 144
+    mul-float/2addr p4, p2
+
     .line 145
-    move-result-object p3
+    iput p4, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mSquaredTouchSlop:F
 
     .line 146
-    invoke-direct {v3, p0, p3, v2, v1}, Lcom/android/quickstep/util/TaskViewSimulator;-><init>(Landroid/content/Context;Lcom/android/quickstep/BaseContainerInterface;ZI)V
-
     .line 147
+    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mPassedWindowMoveSlop:Z
+
     .line 148
     .line 149
-    iput-object v3, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mTaskViewSimulator:Lcom/android/quickstep/util/TaskViewSimulator;
+    iput-boolean v1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mPassedPilferInputSlop:Z
 
     .line 150
     .line 151
-    sget-object p3, Lcom/android/launcher3/F1;->L1:Lcom/android/launcher3/util/I;
+    iput-boolean p5, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mDisableHorizontalSwipe:Z
 
     .line 152
     .line 153
-    invoke-virtual {p3, p0}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    new-instance v3, Lcom/android/quickstep/util/TaskViewSimulator;
 
     .line 154
     .line 155
+    invoke-virtual {p3}, Lcom/android/quickstep/GestureState;->getContainerInterface()Lcom/android/quickstep/BaseContainerInterface;
+
     .line 156
+    .line 157
+    .line 158
     move-result-object p3
 
-    .line 157
-    check-cast p3, Lcom/android/launcher3/F1;
-
-    .line 158
     .line 159
-    invoke-virtual {p3, p0}, Lcom/android/launcher3/F1;->t0(Landroid/content/Context;)Lcom/android/launcher3/h0;
+    invoke-direct {v3, p0, p3, v2, v1}, Lcom/android/quickstep/util/TaskViewSimulator;-><init>(Landroid/content/Context;Lcom/android/quickstep/BaseContainerInterface;ZI)V
 
     .line 160
     .line 161
     .line 162
-    move-result-object p3
+    iput-object v3, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mTaskViewSimulator:Lcom/android/quickstep/util/TaskViewSimulator;
 
     .line 163
-    invoke-virtual {p0, p3}, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->initTransitionEndpoints(Lcom/android/launcher3/h0;)V
-
     .line 164
+    sget-object p3, Lcom/android/launcher3/InvariantDeviceProfile;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
+
     .line 165
     .line 166
-    sget-object p3, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->GESTURE_COURSE_STATE:Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer$GestureCourseState;
+    invoke-virtual {p3, p0}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 167
     .line 168
-    const/4 v2, 0x4
-
     .line 169
-    invoke-virtual {p3, p0, v2}, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer$GestureCourseState;->syncGestureState(Landroid/content/Context;I)V
+    move-result-object p3
 
     .line 170
+    check-cast p3, Lcom/android/launcher3/InvariantDeviceProfile;
+
     .line 171
     .line 172
-    new-instance p3, Ljava/lang/StringBuilder;
+    invoke-virtual {p3, p0}, Lcom/android/launcher3/InvariantDeviceProfile;->getDeviceProfile(Landroid/content/Context;)Lcom/android/launcher3/DeviceProfile;
 
     .line 173
     .line 174
-    invoke-direct {p3}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 175
-    .line 176
-    .line 177
-    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    move-result-object p3
 
+    .line 176
+    invoke-virtual {p0, p3}, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->initTransitionEndpoints(Lcom/android/launcher3/DeviceProfile;)V
+
+    .line 177
     .line 178
     .line 179
-    .line 180
-    const-string v0, " , "
+    sget-object p3, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->GESTURE_COURSE_STATE:Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer$GestureCourseState;
 
+    .line 180
     .line 181
+    const/4 v2, 0x4
+
     .line 182
-    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p3, p0, v2}, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer$GestureCourseState;->syncGestureState(Landroid/content/Context;I)V
 
     .line 183
     .line 184
     .line 185
-    invoke-virtual {p3, p1}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+    new-instance p3, Ljava/lang/StringBuilder;
 
     .line 186
     .line 187
-    .line 188
-    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct {p3}, Ljava/lang/StringBuilder;-><init>()V
 
+    .line 188
     .line 189
     .line 190
-    .line 191
-    invoke-virtual {p3, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
+    .line 191
     .line 192
     .line 193
+    const-string v0, " , "
+
     .line 194
+    .line 195
     invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 195
     .line 196
     .line 197
-    invoke-virtual {p3, p2}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
-
     .line 198
+    invoke-virtual {p3, p1}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+
     .line 199
     .line 200
+    .line 201
     invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 201
     .line 202
     .line 203
-    invoke-virtual {p3, p4}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
-
     .line 204
+    invoke-virtual {p3, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
     .line 205
     .line 206
+    .line 207
     invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 207
     .line 208
     .line 209
-    iget-boolean p0, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mPassedWindowMoveSlop:Z
-
     .line 210
-    .line 211
-    invoke-virtual {p3, p0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual {p3, p2}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
 
+    .line 211
     .line 212
     .line 213
-    .line 214
     invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 214
     .line 215
     .line 216
-    .line 217
-    invoke-virtual {p3, p5}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual {p3, p4}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
 
+    .line 217
     .line 218
     .line 219
-    .line 220
-    invoke-virtual {p3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 220
     .line 221
     .line 222
-    .line 223
-    move-result-object p0
+    iget-boolean p0, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mPassedWindowMoveSlop:Z
 
+    .line 223
     .line 224
-    const-string p1, "GestureCourseInputConsumer"
+    invoke-virtual {p3, p0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     .line 225
     .line 226
-    invoke-static {p1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
     .line 227
+    invoke-virtual {p3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     .line 228
     .line 229
+    .line 230
+    invoke-virtual {p3, p5}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    .line 231
+    .line 232
+    .line 233
+    invoke-virtual {p3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 234
+    .line 235
+    .line 236
+    move-result-object p0
+
+    .line 237
+    const-string p1, "GestureCourseInputConsumer"
+
+    .line 238
+    .line 239
+    invoke-static {p1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 240
+    .line 241
+    .line 242
     return-void
 .end method
 
-.method static bridge synthetic a(Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;)Z
+.method public static bridge synthetic a(Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;)Z
     .locals 0
 
     .line 1
@@ -646,7 +671,7 @@
     return p0
 .end method
 
-.method static bridge synthetic b(Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;Z)V
+.method public static bridge synthetic b(Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;Z)V
     .locals 0
 
     .line 1
@@ -657,7 +682,7 @@
     return-void
 .end method
 
-.method static bridge synthetic c(Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;Z)V
+.method public static bridge synthetic c(Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;Z)V
     .locals 0
 
     .line 1
@@ -1028,7 +1053,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic d()Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer$GestureCourseState;
+.method public static bridge synthetic d()Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer$GestureCourseState;
     .locals 1
 
     .line 1
@@ -1043,7 +1068,7 @@
     .locals 4
 
     .line 1
-    sget-object v0, Lcom/android/launcher3/util/K2;->INSTANCE:Lcom/android/launcher3/util/K2;
+    sget-object v0, Lcom/android/launcher3/util/TraceHelper;->INSTANCE:Lcom/android/launcher3/util/TraceHelper;
 
     .line 2
     .line 3
@@ -1051,7 +1076,7 @@
 
     .line 4
     .line 5
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/K2;->beginSection(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/TraceHelper;->beginSection(Ljava/lang/String;)V
 
     .line 6
     .line 7
@@ -1283,11 +1308,11 @@
     .line 115
     .line 116
     .line 117
-    sget-object p0, Lcom/android/launcher3/util/K2;->INSTANCE:Lcom/android/launcher3/util/K2;
+    sget-object p0, Lcom/android/launcher3/util/TraceHelper;->INSTANCE:Lcom/android/launcher3/util/TraceHelper;
 
     .line 118
     .line 119
-    invoke-virtual {p0}, Lcom/android/launcher3/util/K2;->endSection()V
+    invoke-virtual {p0}, Lcom/android/launcher3/util/TraceHelper;->endSection()V
 
     .line 120
     .line 121
@@ -1590,44 +1615,45 @@
 
     .line 2
     .line 3
-    const-string v1, "startQuickstep"
+    const-string/jumbo v1, "startQuickstep"
 
     .line 4
     .line 5
+    .line 6
     invoke-virtual {v0, v1}, Lcom/android/quickstep/util/ActiveGestureLog;->addLog(Ljava/lang/String;)V
 
-    .line 6
     .line 7
     .line 8
+    .line 9
     const-string v0, "Pilfer"
 
-    .line 9
     .line 10
+    .line 11
     const-string v1, "pilferPointers"
 
-    .line 11
     .line 12
-    invoke-static {v0, v1}, Lcom/android/launcher3/testing/K;->a(Ljava/lang/String;Ljava/lang/String;)V
-
     .line 13
+    invoke-static {v0, v1}, Lcom/android/launcher3/testing/TestLogging;->recordEvent(Ljava/lang/String;Ljava/lang/String;)V
+
     .line 14
     .line 15
+    .line 16
     iget-object v0, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mInputMonitorCompat:Lcom/android/systemui/shared/system/InputMonitorCompat;
 
-    .line 16
     .line 17
+    .line 18
     invoke-virtual {v0}, Lcom/android/systemui/shared/system/InputMonitorCompat;->pilferPointers()V
 
-    .line 18
     .line 19
     .line 20
+    .line 21
     const/4 v0, 0x1
 
-    .line 21
+    .line 22
     iput-boolean v0, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mGestureStarted:Z
 
-    .line 22
     .line 23
+    .line 24
     return-void
 .end method
 
@@ -1719,11 +1745,11 @@
     return p0
 .end method
 
-.method protected initTransitionEndpoints(Lcom/android/launcher3/h0;)V
+.method public initTransitionEndpoints(Lcom/android/launcher3/DeviceProfile;)V
     .locals 3
 
     .line 1
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mDp:Lcom/android/launcher3/h0;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mDp:Lcom/android/launcher3/DeviceProfile;
 
     .line 2
     .line 3
@@ -1731,7 +1757,7 @@
 
     .line 4
     .line 5
-    invoke-virtual {v0, p1}, Lcom/android/quickstep/util/TaskViewSimulator;->setDp(Lcom/android/launcher3/h0;)V
+    invoke-virtual {v0, p1}, Lcom/android/quickstep/util/TaskViewSimulator;->setDp(Lcom/android/launcher3/DeviceProfile;)V
 
     .line 6
     .line 7
@@ -1740,7 +1766,7 @@
 
     .line 9
     .line 10
-    invoke-virtual {v0, p1}, Lcom/android/quickstep/util/TaskViewSimulator;->setDp(Lcom/android/launcher3/h0;)V
+    invoke-virtual {v0, p1}, Lcom/android/quickstep/util/TaskViewSimulator;->setDp(Lcom/android/launcher3/DeviceProfile;)V
 
     .line 11
     .line 12
@@ -1781,7 +1807,7 @@
     move-result-object v2
 
     .line 31
-    invoke-virtual {v0, p1, p0, v1, v2}, Lcom/android/quickstep/BaseContainerInterface;->getSwipeUpDestinationAndLength(Lcom/android/launcher3/h0;Landroid/content/Context;Landroid/graphics/Rect;Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;)I
+    invoke-virtual {v0, p1, p0, v1, v2}, Lcom/android/quickstep/BaseContainerInterface;->getSwipeUpDestinationAndLength(Lcom/android/launcher3/DeviceProfile;Landroid/content/Context;Landroid/graphics/Rect;Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;)I
 
     .line 32
     .line 33
@@ -1793,23 +1819,39 @@
 
     .line 36
     .line 37
-    iget p1, p1, Lcom/android/launcher3/h0;->U0:I
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 38
     .line 39
-    int-to-float p1, p1
-
     .line 40
-    int-to-float v0, v0
+    move-result-object p1
 
     .line 41
-    div-float/2addr p1, v0
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
 
     .line 42
-    iput p1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mDragLengthFactor:F
-
     .line 43
     .line 44
+    move-result p1
+
+    .line 45
+    int-to-float p1, p1
+
+    .line 46
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mTransitionDragLength:I
+
+    .line 47
+    .line 48
+    int-to-float v0, v0
+
+    .line 49
+    div-float/2addr p1, v0
+
+    .line 50
+    iput p1, p0, Lcom/android/quickstep/inputconsumers/GestureCourseInputConsumer;->mDragLengthFactor:F
+
+    .line 51
+    .line 52
     return-void
 .end method
 
@@ -1860,7 +1902,7 @@
     move-result-object p3
 
     .line 5
-    const v0, 0x7f070a1f
+    const v0, 0x7f070a93
 
     .line 6
     .line 7
@@ -2176,7 +2218,7 @@
     neg-float v6, v0
 
     .line 116
-    invoke-static {v4, v3}, Lcom/android/launcher3/N5;->e0(FF)F
+    invoke-static {v4, v3}, Lcom/android/launcher3/Utilities;->squaredHypot(FF)F
 
     .line 117
     .line 118
@@ -2485,7 +2527,7 @@
 
     .line 258
     :cond_11
-    sget-object v0, Lcom/android/launcher3/util/K2;->INSTANCE:Lcom/android/launcher3/util/K2;
+    sget-object v0, Lcom/android/launcher3/util/TraceHelper;->INSTANCE:Lcom/android/launcher3/util/TraceHelper;
 
     .line 259
     .line 260
@@ -2493,7 +2535,7 @@
 
     .line 261
     .line 262
-    invoke-virtual {v0, v2}, Lcom/android/launcher3/util/K2;->beginSection(Ljava/lang/String;)V
+    invoke-virtual {v0, v2}, Lcom/android/launcher3/util/TraceHelper;->beginSection(Ljava/lang/String;)V
 
     .line 263
     .line 264
@@ -2582,11 +2624,11 @@
     .line 307
     .line 308
     .line 309
-    sget-object p0, Lcom/android/launcher3/util/K2;->INSTANCE:Lcom/android/launcher3/util/K2;
+    sget-object p0, Lcom/android/launcher3/util/TraceHelper;->INSTANCE:Lcom/android/launcher3/util/TraceHelper;
 
     .line 310
     .line 311
-    invoke-virtual {p0}, Lcom/android/launcher3/util/K2;->endSection()V
+    invoke-virtual {p0}, Lcom/android/launcher3/util/TraceHelper;->endSection()V
 
     .line 312
     .line 313
@@ -2594,15 +2636,15 @@
     return-void
 .end method
 
-.method protected performHapticFeedback()V
+.method public performHapticFeedback()V
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/android/launcher3/util/V2;->e:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/launcher3/util/VibratorWrapper;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 2
     .line 3
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 4
     .line 5
@@ -2610,15 +2652,15 @@
     move-result-object p0
 
     .line 7
-    check-cast p0, Lcom/android/launcher3/util/V2;
+    check-cast p0, Lcom/android/launcher3/util/VibratorWrapper;
 
     .line 8
     .line 9
-    sget-object v0, Lcom/android/launcher3/util/V2;->i:Landroid/os/VibrationEffect;
+    sget-object v0, Lcom/android/launcher3/util/VibratorWrapper;->OVERVIEW_HAPTIC:Landroid/os/VibrationEffect;
 
     .line 10
     .line 11
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/util/V2;->n(Landroid/os/VibrationEffect;)V
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/util/VibratorWrapper;->vibrate(Landroid/os/VibrationEffect;)V
 
     .line 12
     .line 13

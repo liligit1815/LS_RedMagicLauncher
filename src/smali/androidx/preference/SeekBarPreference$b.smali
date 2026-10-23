@@ -1,4 +1,4 @@
-.class Landroidx/preference/SeekBarPreference$b;
+.class public Landroidx/preference/SeekBarPreference$b;
 .super Ljava/lang/Object;
 .source "SeekBarPreference.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/preference/SeekBarPreference;
+.field public final synthetic c:Landroidx/preference/SeekBarPreference;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/SeekBarPreference;)V
+.method public constructor <init>(Landroidx/preference/SeekBarPreference;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/SeekBarPreference$b;->g:Landroidx/preference/SeekBarPreference;
+    iput-object p1, p0, Landroidx/preference/SeekBarPreference$b;->c:Landroidx/preference/SeekBarPreference;
 
     .line 2
     .line 3
@@ -63,11 +63,11 @@
 
     .line 9
     :cond_0
-    iget-object p0, p0, Landroidx/preference/SeekBarPreference$b;->g:Landroidx/preference/SeekBarPreference;
+    iget-object p0, p0, Landroidx/preference/SeekBarPreference$b;->c:Landroidx/preference/SeekBarPreference;
 
     .line 10
     .line 11
-    iget-boolean p1, p0, Landroidx/preference/SeekBarPreference;->d0:Z
+    iget-boolean p1, p0, Landroidx/preference/SeekBarPreference;->s:Z
 
     .line 12
     .line 13
@@ -116,7 +116,7 @@
 
     .line 33
     :cond_3
-    iget-object p0, p0, Landroidx/preference/SeekBarPreference;->b0:Landroid/widget/SeekBar;
+    iget-object p0, p0, Landroidx/preference/SeekBarPreference;->q:Landroid/widget/SeekBar;
 
     .line 34
     .line 35

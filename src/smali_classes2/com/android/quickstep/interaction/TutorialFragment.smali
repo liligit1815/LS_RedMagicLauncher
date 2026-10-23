@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field private mDeviceProfile:Lcom/android/launcher3/h0;
+.field private mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
 .field private mEdgeAnimation:Landroid/graphics/drawable/AnimatedVectorDrawable;
 
@@ -55,7 +55,7 @@
 
 
 # direct methods
-.method constructor <init>(Z)V
+.method public constructor <init>(Z)V
     .locals 2
 
     .line 1
@@ -103,6 +103,21 @@
     .line 21
     .line 22
     return-void
+.end method
+
+.method public static synthetic g(Lcom/android/quickstep/interaction/TutorialFragment;Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
+    .locals 0
+
+    .line 1
+    invoke-direct {p0, p1, p2}, Lcom/android/quickstep/interaction/TutorialFragment;->lambda$onCreateView$0(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p0
+
+    .line 5
+    return-object p0
 .end method
 
 .method private static getFragmentForTutorialType(Lcom/android/quickstep/interaction/TutorialController$TutorialType;Z)Lcom/android/quickstep/interaction/TutorialFragment;
@@ -339,19 +354,27 @@
     return-object p0
 .end method
 
-.method public static synthetic l(Lcom/android/quickstep/interaction/TutorialFragment;Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
+.method public static bridge synthetic h(Lcom/android/quickstep/interaction/TutorialFragment;)Landroid/graphics/drawable/AnimatedVectorDrawable;
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Lcom/android/quickstep/interaction/TutorialFragment;->lambda$onCreateView$0(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mEdgeAnimation:Landroid/graphics/drawable/AnimatedVectorDrawable;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static bridge synthetic j(Lcom/android/quickstep/interaction/TutorialFragment;Ljava/lang/Runnable;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0, p1}, Lcom/android/quickstep/interaction/TutorialFragment;->runOnAttached(Ljava/lang/Runnable;)V
 
     .line 2
     .line 3
     .line 4
-    move-result-object p0
-
-    .line 5
-    return-object p0
+    return-void
 .end method
 
 .method private synthetic lambda$onCreateView$0(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
@@ -394,17 +417,6 @@
     return-object p2
 .end method
 
-.method static bridge synthetic n(Lcom/android/quickstep/interaction/TutorialFragment;)Landroid/graphics/drawable/AnimatedVectorDrawable;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mEdgeAnimation:Landroid/graphics/drawable/AnimatedVectorDrawable;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
 .method public static newInstance(Lcom/android/quickstep/interaction/TutorialController$TutorialType;ZZ)Lcom/android/quickstep/interaction/TutorialFragment;
     .locals 2
 
@@ -444,42 +456,31 @@
     .line 17
     .line 18
     .line 19
-    const-string v1, "tutorial_type"
+    const-string/jumbo v1, "tutorial_type"
 
     .line 20
     .line 21
+    .line 22
     invoke-virtual {p2, v1, p0}, Landroid/os/Bundle;->putSerializable(Ljava/lang/String;Ljava/io/Serializable;)V
 
-    .line 22
     .line 23
     .line 24
+    .line 25
     const-string p0, "gesture_complete"
 
-    .line 25
     .line 26
+    .line 27
     invoke-virtual {p2, p0, p1}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
 
-    .line 27
     .line 28
     .line 29
+    .line 30
     invoke-virtual {v0, p2}, Landroidx/fragment/app/n;->setArguments(Landroid/os/Bundle;)V
 
-    .line 30
     .line 31
     .line 32
+    .line 33
     return-object v0
-.end method
-
-.method static bridge synthetic o(Lcom/android/quickstep/interaction/TutorialFragment;Ljava/lang/Runnable;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0, p1}, Lcom/android/quickstep/interaction/TutorialFragment;->runOnAttached(Ljava/lang/Runnable;)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
 .end method
 
 .method private onAttached()V
@@ -541,7 +542,7 @@
 
 
 # virtual methods
-.method canRecreateFragment()Z
+.method public canRecreateFragment()Z
     .locals 0
 
     .line 1
@@ -551,7 +552,7 @@
     return p0
 .end method
 
-.method changeController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
+.method public changeController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
     .locals 2
 
     .line 1
@@ -619,11 +620,11 @@
     .line 32
     .line 33
     .line 34
-    new-instance v1, Lcom/android/quickstep/interaction/O;
+    new-instance v1, Lcom/android/quickstep/interaction/o0;
 
     .line 35
     .line 36
-    invoke-direct {v1, v0}, Lcom/android/quickstep/interaction/O;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-direct {v1, v0}, Lcom/android/quickstep/interaction/o0;-><init>(Lcom/android/quickstep/interaction/TutorialController;)V
 
     .line 37
     .line 38
@@ -719,7 +720,7 @@
     return-void
 .end method
 
-.method close()V
+.method public close()V
     .locals 1
 
     .line 1
@@ -734,7 +735,7 @@
     return-void
 .end method
 
-.method closeTutorialStep(Z)V
+.method public closeTutorialStep(Z)V
     .locals 2
 
     .line 1
@@ -795,7 +796,7 @@
 
     .line 28
     .line 29
-    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 30
     .line 31
@@ -803,11 +804,11 @@
     move-result-object p1
 
     .line 33
-    sget-object v0, Lcom/android/launcher3/logging/StatsLogManager$e;->r2:Lcom/android/launcher3/logging/StatsLogManager$e;
+    sget-object v0, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_GESTURE_TUTORIAL_SKIPPED:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 34
     .line 35
-    invoke-interface {p1, v0}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {p1, v0}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 36
     .line 37
@@ -850,7 +851,7 @@
     return-void
 .end method
 
-.method continueTutorial()V
+.method public continueTutorial()V
     .locals 4
 
     .line 1
@@ -982,10 +983,10 @@
     return-void
 .end method
 
-.method abstract createController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)Lcom/android/quickstep/interaction/TutorialController;
+.method public abstract createController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)Lcom/android/quickstep/interaction/TutorialController;
 .end method
 
-.method protected createGestureAnimation()Landroid/animation/Animator;
+.method public createGestureAnimation()Landroid/animation/Animator;
     .locals 0
 
     .line 1
@@ -995,7 +996,7 @@
     return-object p0
 .end method
 
-.method abstract getControllerClass()Ljava/lang/Class;
+.method public abstract getControllerClass()Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -1007,7 +1008,7 @@
     .end annotation
 .end method
 
-.method getCurrentStep()I
+.method public getCurrentStep()I
     .locals 0
 
     .line 1
@@ -1041,21 +1042,21 @@
     return p0
 .end method
 
-.method abstract getDefaultTutorialType()Lcom/android/quickstep/interaction/TutorialController$TutorialType;
+.method public abstract getDefaultTutorialType()Lcom/android/quickstep/interaction/TutorialController$TutorialType;
 .end method
 
-.method getDeviceProfile()Lcom/android/launcher3/h0;
+.method public getDeviceProfile()Lcom/android/launcher3/DeviceProfile;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mDeviceProfile:Lcom/android/launcher3/h0;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
     .line 2
     .line 3
     return-object p0
 .end method
 
-.method getEdgeAnimation()Landroid/graphics/drawable/AnimatedVectorDrawable;
+.method public getEdgeAnimation()Landroid/graphics/drawable/AnimatedVectorDrawable;
     .locals 0
 
     .line 1
@@ -1066,7 +1067,7 @@
     return-object p0
 .end method
 
-.method getEdgeAnimationResId()Ljava/lang/Integer;
+.method public getEdgeAnimationResId()Ljava/lang/Integer;
     .locals 0
 
     .line 1
@@ -1076,7 +1077,7 @@
     return-object p0
 .end method
 
-.method getGestureAnimation()Landroid/animation/Animator;
+.method public getGestureAnimation()Landroid/animation/Animator;
     .locals 0
 
     .line 1
@@ -1087,7 +1088,7 @@
     return-object p0
 .end method
 
-.method getNumSteps()I
+.method public getNumSteps()I
     .locals 0
 
     .line 1
@@ -1121,7 +1122,7 @@
     return p0
 .end method
 
-.method getRootView()Lcom/android/quickstep/interaction/RootSandboxLayout;
+.method public getRootView()Lcom/android/quickstep/interaction/RootSandboxLayout;
     .locals 0
 
     .line 1
@@ -1132,7 +1133,7 @@
     return-object p0
 .end method
 
-.method initializeFeedbackVideoView()V
+.method public initializeFeedbackVideoView()V
     .locals 7
 
     .line 1
@@ -1370,7 +1371,7 @@
     return-void
 .end method
 
-.method isAtFinalStep()Z
+.method public isAtFinalStep()Z
     .locals 1
 
     .line 1
@@ -1418,7 +1419,7 @@
     return p0
 .end method
 
-.method isGestureComplete()Z
+.method public isGestureComplete()Z
     .locals 1
 
     .line 1
@@ -1479,10 +1480,10 @@
     return p0
 .end method
 
-.method abstract logTutorialStepCompleted(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public abstract logTutorialStepCompleted(Lcom/android/launcher3/logging/StatsLogManager;)V
 .end method
 
-.method abstract logTutorialStepShown(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public abstract logTutorialStepShown(Lcom/android/launcher3/logging/StatsLogManager;)V
 .end method
 
 .method public onAttach(Landroid/content/Context;)V
@@ -1502,7 +1503,7 @@
     return-void
 .end method
 
-.method onAttachedToWindow()V
+.method public onAttachedToWindow()V
     .locals 1
 
     .line 1
@@ -1589,204 +1590,233 @@
 
     .line 11
     :goto_0
-    const-string v0, "tutorial_type"
+    const-string/jumbo v0, "tutorial_type"
 
     .line 12
     .line 13
+    .line 14
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getSerializable(Ljava/lang/String;)Ljava/io/Serializable;
 
-    .line 14
     .line 15
     .line 16
-    move-result-object v0
-
     .line 17
-    check-cast v0, Lcom/android/quickstep/interaction/TutorialController$TutorialType;
+    move-result-object v0
 
     .line 18
+    check-cast v0, Lcom/android/quickstep/interaction/TutorialController$TutorialType;
+
     .line 19
+    .line 20
     iput-object v0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mTutorialType:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
 
-    .line 20
     .line 21
+    .line 22
     const-string v0, "gesture_complete"
 
-    .line 22
     .line 23
+    .line 24
     const/4 v1, 0x0
 
-    .line 24
+    .line 25
     invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
 
-    .line 25
     .line 26
     .line 27
+    .line 28
     move-result p1
 
-    .line 28
+    .line 29
     iput-boolean p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mGestureComplete:Z
 
-    .line 29
     .line 30
+    .line 31
     invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
 
-    .line 31
     .line 32
     .line 33
-    move-result-object p1
-
     .line 34
-    invoke-static {p1}, Lcom/android/launcher3/P2;->h(Landroid/content/Context;)Lcom/android/launcher3/P2;
+    move-result-object p1
 
     .line 35
+    invoke-static {p1}, Lcom/android/launcher3/LauncherAppState;->getInstance(Landroid/content/Context;)Lcom/android/launcher3/LauncherAppState;
+
     .line 36
     .line 37
-    move-result-object p1
-
     .line 38
-    invoke-virtual {p1}, Lcom/android/launcher3/P2;->i()Lcom/android/launcher3/F1;
+    move-result-object p1
 
     .line 39
+    invoke-virtual {p1}, Lcom/android/launcher3/LauncherAppState;->getInvariantDeviceProfile()Lcom/android/launcher3/InvariantDeviceProfile;
+
     .line 40
     .line 41
-    move-result-object p1
-
     .line 42
-    invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
+    move-result-object p1
 
     .line 43
+    invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
+
     .line 44
     .line 45
-    move-result-object v0
-
     .line 46
-    invoke-virtual {p1, v0}, Lcom/android/launcher3/F1;->t0(Landroid/content/Context;)Lcom/android/launcher3/h0;
+    move-result-object v0
 
     .line 47
+    invoke-virtual {p1, v0}, Lcom/android/launcher3/InvariantDeviceProfile;->getDeviceProfile(Landroid/content/Context;)Lcom/android/launcher3/DeviceProfile;
+
     .line 48
     .line 49
-    move-result-object p1
-
     .line 50
-    new-instance v0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;
+    move-result-object p1
 
     .line 51
+    new-instance v0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;
+
     .line 52
+    .line 53
     invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
 
-    .line 53
     .line 54
     .line 55
-    move-result-object v2
-
     .line 56
-    invoke-direct {v0, v2, p1}, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;-><init>(Landroid/content/Context;Lcom/android/launcher3/h0;)V
+    move-result-object v2
 
     .line 57
+    invoke-direct {v0, v2, p1}, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;-><init>(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;)V
+
     .line 58
     .line 59
+    .line 60
     iput-object v0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mEdgeBackGestureHandler:Lcom/android/quickstep/interaction/EdgeBackGestureHandler;
 
-    .line 60
     .line 61
+    .line 62
     new-instance v0, Lcom/android/quickstep/interaction/NavBarGestureHandler;
 
-    .line 62
     .line 63
+    .line 64
     invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
 
-    .line 64
     .line 65
     .line 66
+    .line 67
     move-result-object v2
 
-    .line 67
-    invoke-direct {v0, v2, p1}, Lcom/android/quickstep/interaction/NavBarGestureHandler;-><init>(Landroid/content/Context;Lcom/android/launcher3/h0;)V
-
     .line 68
+    invoke-direct {v0, v2, p1}, Lcom/android/quickstep/interaction/NavBarGestureHandler;-><init>(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;)V
+
     .line 69
     .line 70
+    .line 71
     iput-object v0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mNavBarGestureHandler:Lcom/android/quickstep/interaction/NavBarGestureHandler;
 
-    .line 71
     .line 72
-    sget-object p1, Lcom/android/launcher3/F1;->L1:Lcom/android/launcher3/util/I;
-
     .line 73
+    sget-object p1, Lcom/android/launcher3/InvariantDeviceProfile;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
+
     .line 74
+    .line 75
     invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
 
-    .line 75
     .line 76
     .line 77
-    move-result-object v0
-
     .line 78
-    invoke-virtual {p1, v0}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    move-result-object v0
 
     .line 79
+    invoke-virtual {p1, v0}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
+
     .line 80
     .line 81
-    move-result-object p1
-
     .line 82
-    check-cast p1, Lcom/android/launcher3/F1;
+    move-result-object p1
 
     .line 83
+    check-cast p1, Lcom/android/launcher3/InvariantDeviceProfile;
+
     .line 84
+    .line 85
     invoke-virtual {p0}, Landroidx/fragment/app/n;->getContext()Landroid/content/Context;
 
-    .line 85
     .line 86
     .line 87
+    .line 88
     move-result-object v0
 
-    .line 88
-    invoke-virtual {p1, v0}, Lcom/android/launcher3/F1;->t0(Landroid/content/Context;)Lcom/android/launcher3/h0;
-
     .line 89
+    invoke-virtual {p1, v0}, Lcom/android/launcher3/InvariantDeviceProfile;->getDeviceProfile(Landroid/content/Context;)Lcom/android/launcher3/DeviceProfile;
+
     .line 90
     .line 91
+    .line 92
     move-result-object p1
 
-    .line 92
-    iput-object p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mDeviceProfile:Lcom/android/launcher3/h0;
-
     .line 93
+    iput-object p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
+
     .line 94
-    iget-boolean v0, p1, Lcom/android/launcher3/h0;->G0:Z
-
     .line 95
-    .line 96
-    iput-boolean v0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mIsLargeScreen:Z
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
+    .line 96
     .line 97
     .line 98
-    iget-boolean p1, p1, Lcom/android/launcher3/h0;->K0:Z
+    move-result-object p1
 
     .line 99
-    .line 100
-    iput-boolean p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mIsFoldable:Z
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->isLargeScreen()Z
 
+    .line 100
     .line 101
     .line 102
-    iget-boolean p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mOnAttachedToWindowPendingCreate:Z
+    move-result p1
 
     .line 103
+    iput-boolean p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mIsLargeScreen:Z
+
     .line 104
-    if-eqz p1, :cond_1
-
     .line 105
+    iget-object p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
+
     .line 106
-    iput-boolean v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mOnAttachedToWindowPendingCreate:Z
-
     .line 107
-    .line 108
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialFragment;->onAttachedToWindow()V
+    invoke-virtual {p1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
+    .line 108
     .line 109
     .line 110
+    move-result-object p1
+
     .line 111
+    invoke-virtual {p1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->isTwoPanels()Z
+
+    .line 112
+    .line 113
+    .line 114
+    move-result p1
+
+    .line 115
+    iput-boolean p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mIsFoldable:Z
+
+    .line 116
+    .line 117
+    iget-boolean p1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mOnAttachedToWindowPendingCreate:Z
+
+    .line 118
+    .line 119
+    if-eqz p1, :cond_1
+
+    .line 120
+    .line 121
+    iput-boolean v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mOnAttachedToWindowPendingCreate:Z
+
+    .line 122
+    .line 123
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialFragment;->onAttachedToWindow()V
+
+    .line 124
+    .line 125
+    .line 126
     :cond_1
     return-void
 .end method
@@ -1800,7 +1830,7 @@
     .line 2
     .line 3
     .line 4
-    const p3, 0x7f0e01d4
+    const p3, 0x7f0e01e5
 
     .line 5
     .line 6
@@ -1824,11 +1854,11 @@
 
     .line 15
     .line 16
-    new-instance p2, Lcom/android/quickstep/interaction/P;
+    new-instance p2, Lcom/android/quickstep/interaction/p0;
 
     .line 17
     .line 18
-    invoke-direct {p2, p0}, Lcom/android/quickstep/interaction/P;-><init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
+    invoke-direct {p2, p0}, Lcom/android/quickstep/interaction/p0;-><init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
 
     .line 19
     .line 20
@@ -1851,7 +1881,7 @@
 
     .line 30
     .line 31
-    const p2, 0x7f0b0295
+    const p2, 0x7f0b02ad
 
     .line 32
     .line 33
@@ -1876,7 +1906,7 @@
 
     .line 43
     .line 44
-    const p2, 0x7f0b029c
+    const p2, 0x7f0b02b4
 
     .line 45
     .line 46
@@ -1897,7 +1927,7 @@
 
     .line 54
     .line 55
-    const p2, 0x7f0b0299
+    const p2, 0x7f0b02b1
 
     .line 56
     .line 57
@@ -1951,7 +1981,7 @@
     return-void
 .end method
 
-.method onDetachedFromWindow()V
+.method public onDetachedFromWindow()V
     .locals 1
 
     .line 1
@@ -1977,7 +2007,7 @@
     return-void
 .end method
 
-.method onInterceptTouch(Landroid/view/MotionEvent;)Z
+.method public onInterceptTouch(Landroid/view/MotionEvent;)Z
     .locals 1
 
     .line 1
@@ -2090,54 +2120,56 @@
     .locals 2
 
     .line 1
-    const-string v0, "tutorial_type"
+    const-string/jumbo v0, "tutorial_type"
 
     .line 2
     .line 3
+    .line 4
     iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mTutorialType:Lcom/android/quickstep/interaction/TutorialController$TutorialType;
 
-    .line 4
     .line 5
+    .line 6
     invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putSerializable(Ljava/lang/String;Ljava/io/Serializable;)V
 
-    .line 6
     .line 7
     .line 8
+    .line 9
     const-string v0, "gesture_complete"
 
-    .line 9
     .line 10
+    .line 11
     invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialFragment;->isGestureComplete()Z
 
-    .line 11
     .line 12
     .line 13
+    .line 14
     move-result v1
 
-    .line 14
+    .line 15
     invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
 
-    .line 15
     .line 16
     .line 17
-    const-string v0, "use_tutorial_menu"
-
     .line 18
-    .line 19
-    iget-boolean v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mFromTutorialMenu:Z
+    const-string/jumbo v0, "use_tutorial_menu"
 
+    .line 19
     .line 20
     .line 21
-    invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
+    iget-boolean v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mFromTutorialMenu:Z
 
     .line 22
     .line 23
-    .line 24
-    invoke-super {p0, p1}, Landroidx/fragment/app/n;->onSaveInstanceState(Landroid/os/Bundle;)V
+    invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
 
+    .line 24
     .line 25
     .line 26
+    invoke-super {p0, p1}, Landroidx/fragment/app/n;->onSaveInstanceState(Landroid/os/Bundle;)V
+
     .line 27
+    .line 28
+    .line 29
     return-void
 .end method
 
@@ -2238,7 +2270,7 @@
     return p0
 .end method
 
-.method recreateFragment()Lcom/android/quickstep/interaction/GestureSandboxFragment;
+.method public recreateFragment()Lcom/android/quickstep/interaction/GestureSandboxFragment;
     .locals 2
 
     .line 1
@@ -2299,7 +2331,7 @@
     return-object p0
 .end method
 
-.method releaseFeedbackAnimation()V
+.method public releaseFeedbackAnimation()V
     .locals 1
 
     .line 1
@@ -2409,7 +2441,7 @@
     return-void
 .end method
 
-.method startSystemNavigationSetting()V
+.method public startSystemNavigationSetting()V
     .locals 2
 
     .line 1
@@ -2434,7 +2466,7 @@
     return-void
 .end method
 
-.method updateEdgeAnimation()Z
+.method public updateEdgeAnimation()Z
     .locals 3
 
     .line 1
@@ -2552,7 +2584,7 @@
     return v1
 .end method
 
-.method updateFeedbackAnimation()Z
+.method public updateFeedbackAnimation()Z
     .locals 3
 
     .line 1

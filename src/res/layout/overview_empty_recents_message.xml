@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.quickstep.views.EmptyRecentsMessageView android:layout_gravity="center" android:background="@drawable/overview_empty_recents_12_sided_cookie_background" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxWidth="@dimen/recents_empty_message_background_size_large" android:maxHeight="@dimen/recents_empty_message_background_size_large" android:minWidth="@dimen/recents_empty_message_background_size" android:minHeight="@dimen/recents_empty_message_background_size">
+        <TextView android:textSize="@dimen/recents_empty_message_text_size" android:textColor="@color/materialColorOnSurface" android:gravity="center" android:layout_gravity="center" android:id="@id/empty_recents_content" android:focusable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/recents_empty_message" android:drawableTop="@drawable/overview_empty_recents_icon" android:drawablePadding="@dimen/recents_empty_message_drawable_padding" android:importantForAccessibility="no" android:paddingHorizontal="@dimen/recents_empty_message_text_padding" />
+    </com.android.quickstep.views.EmptyRecentsMessageView>
+</FrameLayout>

@@ -3,13 +3,13 @@
 
 
 # static fields
-.field public static final a:I = 0x7f0b03e3
+.field public static final a:I = 0x7f0b0418
 
-.field public static final b:I = 0x7f0b066c
+.field public static final b:I = 0x7f0b06c1
 
 
 # direct methods
-.method private constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1

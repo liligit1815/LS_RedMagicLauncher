@@ -3,12 +3,12 @@
 .source "Zip.kt"
 
 # interfaces
-.implements Lu4/a;
+.implements Lkotlin/jvm/functions/Function0;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForThumbnailsToUpdate$$inlined$combine$1;->collect(LI4/e;Ll4/d;)Ljava/lang/Object;
+    value = Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForThumbnailsToUpdate$$inlined$combine$1;->collect(Lgi/g;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,24 +19,40 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lu4/a<",
+        "Lkotlin/jvm/functions/Function0<",
         "[",
         "Lcom/android/systemui/shared/recents/model/ThumbnailData;",
         ">;"
     }
 .end annotation
 
+.annotation runtime Lkotlin/Metadata;
+    k = 0x3
+    mv = {
+        0x2,
+        0x2,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nZip.kt\nKotlin\n*S Kotlin\n*F\n+ 1 Zip.kt\nkotlinx/coroutines/flow/FlowKt__ZipKt$combine$6$1\n*L\n1#1,328:1\n*E\n"
+    }
+.end annotation
+
 
 # instance fields
-.field final synthetic $flowArray:[LI4/d;
+.field final synthetic $flowArray:[Lgi/f;
 
 
 # direct methods
-.method public constructor <init>([LI4/d;)V
+.method public constructor <init>([Lgi/f;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForThumbnailsToUpdate$$inlined$combine$1$2;->$flowArray:[LI4/d;
+    iput-object p1, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForThumbnailsToUpdate$$inlined$combine$1$2;->$flowArray:[Lgi/f;
 
     .line 2
     .line 3
@@ -71,7 +87,7 @@
     .end annotation
 
     .line 2
-    iget-object p0, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForThumbnailsToUpdate$$inlined$combine$1$2;->$flowArray:[LI4/d;
+    iget-object p0, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForThumbnailsToUpdate$$inlined$combine$1$2;->$flowArray:[Lgi/f;
 
     array-length p0, p0
 

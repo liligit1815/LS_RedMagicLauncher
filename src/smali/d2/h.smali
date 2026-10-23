@@ -1,25 +1,260 @@
-.class public final synthetic Ld2/h;
+.class public final Ld2/h;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Landroid/view/View$OnLongClickListener;
+.source "ButtonLargeTokens.kt"
 
 
-# instance fields
-.field public final synthetic g:Landroid/content/SharedPreferences;
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u001c\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0005\n\u0002\u0018\u0002\n\u0002\u0008\u001f\u0008\u00c1\u0002\u0018\u00002\u00020\u0001B\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003R\u0017\u0010\t\u001a\u00020\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008\u0005\u0010\u0006\u001a\u0004\u0008\u0007\u0010\u0008R\u0017\u0010\u000f\u001a\u00020\n8\u0006\u00a2\u0006\u000c\n\u0004\u0008\u000b\u0010\u000c\u001a\u0004\u0008\r\u0010\u000eR\u0017\u0010\u0012\u001a\u00020\n8\u0006\u00a2\u0006\u000c\n\u0004\u0008\u0010\u0010\u000c\u001a\u0004\u0008\u0011\u0010\u000eR\u0017\u0010\u0014\u001a\u00020\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008\u0013\u0010\u0006\u001a\u0004\u0008\u0005\u0010\u0008R\u0017\u0010\u0016\u001a\u00020\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008\u0015\u0010\u0006\u001a\u0004\u0008\u000b\u0010\u0008R\u0017\u0010\u0019\u001a\u00020\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008\u0017\u0010\u0006\u001a\u0004\u0008\u0018\u0010\u0008R\u0017\u0010\u001c\u001a\u00020\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008\u001a\u0010\u0006\u001a\u0004\u0008\u001b\u0010\u0008R\u0017\u0010\u001f\u001a\u00020\n8\u0006\u00a2\u0006\u000c\n\u0004\u0008\u001d\u0010\u000c\u001a\u0004\u0008\u001e\u0010\u000eR\u0017\u0010\"\u001a\u00020\n8\u0006\u00a2\u0006\u000c\n\u0004\u0008 \u0010\u000c\u001a\u0004\u0008!\u0010\u000eR\u0017\u0010%\u001a\u00020\n8\u0006\u00a2\u0006\u000c\n\u0004\u0008#\u0010\u000c\u001a\u0004\u0008$\u0010\u000eR\u0017\u0010(\u001a\u00020\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008&\u0010\u0006\u001a\u0004\u0008\'\u0010\u0008\u00a8\u0006)"
+    }
+    d2 = {
+        "Ld2/h;",
+        "",
+        "<init>",
+        "()V",
+        "Lx4/h;",
+        "b",
+        "F",
+        "a",
+        "()F",
+        "ContainerHeight",
+        "Ld2/k0;",
+        "c",
+        "Ld2/k0;",
+        "getContainerShapeRound",
+        "()Ld2/k0;",
+        "ContainerShapeRound",
+        "d",
+        "getContainerShapeSquare",
+        "ContainerShapeSquare",
+        "e",
+        "IconLabelSpace",
+        "f",
+        "IconSize",
+        "g",
+        "getLeadingSpace-D9Ej5fM",
+        "LeadingSpace",
+        "h",
+        "getOutlinedOutlineWidth-D9Ej5fM",
+        "OutlinedOutlineWidth",
+        "i",
+        "getPressedContainerShape",
+        "PressedContainerShape",
+        "j",
+        "getSelectedContainerShapeRound",
+        "SelectedContainerShapeRound",
+        "k",
+        "getSelectedContainerShapeSquare",
+        "SelectedContainerShapeSquare",
+        "l",
+        "getTrailingSpace-D9Ej5fM",
+        "TrailingSpace",
+        "material3"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-.field public final synthetic h:Landroidx/preference/Preference;
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nButtonLargeTokens.kt\nKotlin\n*S Kotlin\n*F\n+ 1 ButtonLargeTokens.kt\nandroidx/compose/material3/tokens/ButtonLargeTokens\n+ 2 Dp.kt\nandroidx/compose/ui/unit/DpKt\n*L\n1#1,36:1\n118#2:37\n118#2:38\n118#2:39\n118#2:40\n118#2:41\n118#2:42\n*S KotlinDebug\n*F\n+ 1 ButtonLargeTokens.kt\nandroidx/compose/material3/tokens/ButtonLargeTokens\n*L\n24#1:37\n27#1:38\n28#1:39\n29#1:40\n30#1:41\n34#1:42\n*E\n"
+    }
+.end annotation
 
-.field public final synthetic i:Lcom/android/launcher3/ExtendedEditText;
 
-.field public final synthetic j:Lcom/android/launcher3/uioverrides/flags/DevOptionsUiHelper;
+# static fields
+.field public static final a:Ld2/h;
 
-.field public final synthetic k:Lcom/android/quickstep/util/DeviceConfigHelper$DebugInfo;
+.field public static final b:F
+
+.field public static final c:Ld2/k0;
+
+.field public static final d:Ld2/k0;
+
+.field public static final e:F
+
+.field public static final f:F
+
+.field public static final g:F
+
+.field public static final h:F
+
+.field public static final i:Ld2/k0;
+
+.field public static final j:Ld2/k0;
+
+.field public static final k:Ld2/k0;
+
+.field public static final l:F
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroid/content/SharedPreferences;Landroidx/preference/Preference;Lcom/android/launcher3/ExtendedEditText;Lcom/android/launcher3/uioverrides/flags/DevOptionsUiHelper;Lcom/android/quickstep/util/DeviceConfigHelper$DebugInfo;)V
+.method static constructor <clinit>()V
+    .locals 5
+
+    .line 1
+    new-instance v0, Ld2/h;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Ld2/h;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    sput-object v0, Ld2/h;->a:Ld2/h;
+
+    .line 7
+    .line 8
+    const-wide/high16 v0, 0x4058000000000000L    # 96.0
+
+    .line 9
+    .line 10
+    double-to-float v0, v0
+
+    .line 11
+    invoke-static {v0}, Lx4/h;->j(F)F
+
+    .line 12
+    .line 13
+    .line 14
+    move-result v0
+
+    .line 15
+    sput v0, Ld2/h;->b:F
+
+    .line 16
+    .line 17
+    sget-object v0, Ld2/k0;->r:Ld2/k0;
+
+    .line 18
+    .line 19
+    sput-object v0, Ld2/h;->c:Ld2/k0;
+
+    .line 20
+    .line 21
+    sget-object v1, Ld2/k0;->m:Ld2/k0;
+
+    .line 22
+    .line 23
+    sput-object v1, Ld2/h;->d:Ld2/k0;
+
+    .line 24
+    .line 25
+    const-wide/high16 v2, 0x4028000000000000L    # 12.0
+
+    .line 26
+    .line 27
+    double-to-float v2, v2
+
+    .line 28
+    invoke-static {v2}, Lx4/h;->j(F)F
+
+    .line 29
+    .line 30
+    .line 31
+    move-result v2
+
+    .line 32
+    sput v2, Ld2/h;->e:F
+
+    .line 33
+    .line 34
+    const-wide/high16 v2, 0x4040000000000000L    # 32.0
+
+    .line 35
+    .line 36
+    double-to-float v2, v2
+
+    .line 37
+    invoke-static {v2}, Lx4/h;->j(F)F
+
+    .line 38
+    .line 39
+    .line 40
+    move-result v2
+
+    .line 41
+    sput v2, Ld2/h;->f:F
+
+    .line 42
+    .line 43
+    const-wide/high16 v2, 0x4048000000000000L    # 48.0
+
+    .line 44
+    .line 45
+    double-to-float v2, v2
+
+    .line 46
+    invoke-static {v2}, Lx4/h;->j(F)F
+
+    .line 47
+    .line 48
+    .line 49
+    move-result v3
+
+    .line 50
+    sput v3, Ld2/h;->g:F
+
+    .line 51
+    .line 52
+    const-wide/high16 v3, 0x4000000000000000L    # 2.0
+
+    .line 53
+    .line 54
+    double-to-float v3, v3
+
+    .line 55
+    invoke-static {v3}, Lx4/h;->j(F)F
+
+    .line 56
+    .line 57
+    .line 58
+    move-result v3
+
+    .line 59
+    sput v3, Ld2/h;->h:F
+
+    .line 60
+    .line 61
+    sget-object v3, Ld2/k0;->s:Ld2/k0;
+
+    .line 62
+    .line 63
+    sput-object v3, Ld2/h;->i:Ld2/k0;
+
+    .line 64
+    .line 65
+    sput-object v0, Ld2/h;->j:Ld2/k0;
+
+    .line 66
+    .line 67
+    sput-object v1, Ld2/h;->k:Ld2/k0;
+
+    .line 68
+    .line 69
+    invoke-static {v2}, Lx4/h;->j(F)F
+
+    .line 70
+    .line 71
+    .line 72
+    move-result v0
+
+    .line 73
+    sput v0, Ld2/h;->l:F
+
+    .line 74
+    .line 75
+    return-void
+.end method
+
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -28,65 +263,40 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Ld2/h;->g:Landroid/content/SharedPreferences;
-
-    .line 5
-    .line 6
-    iput-object p2, p0, Ld2/h;->h:Landroidx/preference/Preference;
-
-    .line 7
-    .line 8
-    iput-object p3, p0, Ld2/h;->i:Lcom/android/launcher3/ExtendedEditText;
-
-    .line 9
-    .line 10
-    iput-object p4, p0, Ld2/h;->j:Lcom/android/launcher3/uioverrides/flags/DevOptionsUiHelper;
-
-    .line 11
-    .line 12
-    iput-object p5, p0, Ld2/h;->k:Lcom/android/quickstep/util/DeviceConfigHelper$DebugInfo;
-
-    .line 13
-    .line 14
     return-void
 .end method
 
 
 # virtual methods
-.method public final onLongClick(Landroid/view/View;)Z
-    .locals 6
+.method public final a()F
+    .locals 0
 
     .line 1
-    iget-object v0, p0, Ld2/h;->g:Landroid/content/SharedPreferences;
+    sget p0, Ld2/h;->b:F
 
     .line 2
     .line 3
-    iget-object v1, p0, Ld2/h;->h:Landroidx/preference/Preference;
+    return p0
+.end method
 
-    .line 4
-    .line 5
-    iget-object v2, p0, Ld2/h;->i:Lcom/android/launcher3/ExtendedEditText;
+.method public final b()F
+    .locals 0
 
-    .line 6
-    .line 7
-    iget-object v3, p0, Ld2/h;->j:Lcom/android/launcher3/uioverrides/flags/DevOptionsUiHelper;
+    .line 1
+    sget p0, Ld2/h;->e:F
 
-    .line 8
-    .line 9
-    iget-object v4, p0, Ld2/h;->k:Lcom/android/quickstep/util/DeviceConfigHelper$DebugInfo;
+    .line 2
+    .line 3
+    return p0
+.end method
 
-    .line 10
-    .line 11
-    move-object v5, p1
+.method public final c()F
+    .locals 0
 
-    .line 12
-    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/uioverrides/flags/DevOptionsUiHelper;->o1(Landroid/content/SharedPreferences;Landroidx/preference/Preference;Lcom/android/launcher3/ExtendedEditText;Lcom/android/launcher3/uioverrides/flags/DevOptionsUiHelper;Lcom/android/quickstep/util/DeviceConfigHelper$DebugInfo;Landroid/view/View;)Z
+    .line 1
+    sget p0, Ld2/h;->f:F
 
-    .line 13
-    .line 14
-    .line 15
-    move-result p0
-
-    .line 16
+    .line 2
+    .line 3
     return p0
 .end method

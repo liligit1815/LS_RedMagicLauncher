@@ -1,4 +1,4 @@
-.class Landroidx/constraintlayout/widget/k$a;
+.class public Landroidx/constraintlayout/widget/k$a;
 .super Ljava/lang/Object;
 .source "StateSet.java"
 
@@ -9,15 +9,15 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:Ljava/util/ArrayList;
+.field public b:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/ArrayList<",
@@ -27,13 +27,13 @@
     .end annotation
 .end field
 
-.field c:I
+.field public c:I
 
-.field d:Z
+.field public d:Z
 
 
 # direct methods
-.method constructor <init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
+.method public constructor <init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
     .locals 5
 
     .line 1
@@ -242,7 +242,7 @@
 
 
 # virtual methods
-.method a(Landroidx/constraintlayout/widget/k$b;)V
+.method public a(Landroidx/constraintlayout/widget/k$b;)V
     .locals 0
 
     .line 1

@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "permissions": [
+    {
+      "topic": "system-app",
+      "permission_type": "PUBLISH",
+      "subcategories": ["launcher"],
+      "description": "发布桌面相关数据"
+    }
+  ],
+  "metadata": {
+    "app_name": "launcher",
+    "developer": "ZTE"
+  },
+  "receive_config": {
+    "enabled": false,
+    "type": "BROADCAST",
+    "receiver_class": "com.zte.mifavor.launcher.contexthub.SubscribeReceiver",
+    "action": "com.zte.mifavor.launcher.CONTEXTHUB_RECEIVE"
+  }
+
+}

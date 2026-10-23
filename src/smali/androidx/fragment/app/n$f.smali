@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/n$f;
+.class public Landroidx/fragment/app/n$f;
 .super Landroidx/fragment/app/u;
 .source "Fragment.java"
 
@@ -9,21 +9,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/fragment/app/n;
+.field public final synthetic c:Landroidx/fragment/app/n;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/n;)V
+.method public constructor <init>(Landroidx/fragment/app/n;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/fragment/app/n$f;->g:Landroidx/fragment/app/n;
+    iput-object p1, p0, Landroidx/fragment/app/n$f;->c:Landroidx/fragment/app/n;
 
     .line 2
     .line 3
@@ -37,11 +37,11 @@
 
 
 # virtual methods
-.method public c(I)Landroid/view/View;
+.method public f(I)Landroid/view/View;
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/fragment/app/n$f;->g:Landroidx/fragment/app/n;
+    iget-object v0, p0, Landroidx/fragment/app/n$f;->c:Landroidx/fragment/app/n;
 
     .line 2
     .line 3
@@ -87,7 +87,7 @@
     .line 22
     .line 23
     .line 24
-    iget-object p0, p0, Landroidx/fragment/app/n$f;->g:Landroidx/fragment/app/n;
+    iget-object p0, p0, Landroidx/fragment/app/n$f;->c:Landroidx/fragment/app/n;
 
     .line 25
     .line 26
@@ -121,11 +121,11 @@
     throw p1
 .end method
 
-.method public d()Z
+.method public g()Z
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/n$f;->g:Landroidx/fragment/app/n;
+    iget-object p0, p0, Landroidx/fragment/app/n$f;->c:Landroidx/fragment/app/n;
 
     .line 2
     .line 3

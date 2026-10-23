@@ -1,0 +1,46 @@
+.class public final synthetic Lob/a;
+.super Ljava/lang/Object;
+.source "R8$$SyntheticClass"
+
+# interfaces
+.implements Lcom/android/launcher3/allapps/AllAppsStore$OnUpdateListener;
+
+
+# instance fields
+.field public final synthetic c:Lcom/android/launcher3/secondarydisplay/PinnedAppsAdapter;
+
+
+# direct methods
+.method public synthetic constructor <init>(Lcom/android/launcher3/secondarydisplay/PinnedAppsAdapter;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lob/a;->c:Lcom/android/launcher3/secondarydisplay/PinnedAppsAdapter;
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+
+# virtual methods
+.method public final onAppsUpdated()V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lob/a;->c:Lcom/android/launcher3/secondarydisplay/PinnedAppsAdapter;
+
+    .line 2
+    .line 3
+    invoke-static {p0}, Lcom/android/launcher3/secondarydisplay/PinnedAppsAdapter;->f(Lcom/android/launcher3/secondarydisplay/PinnedAppsAdapter;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method

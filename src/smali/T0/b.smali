@@ -1,139 +1,71 @@
-.class public final synthetic LT0/b;
+.class public interface abstract Lt0/b;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+.source "SnapFlingBehavior.kt"
 
 
-# instance fields
-.field public final synthetic g:LT0/p;
+# annotations
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "<T:",
+        "Ljava/lang/Object;",
+        "V:",
+        "Lo0/t;",
+        ">",
+        "Ljava/lang/Object;"
+    }
+.end annotation
 
-.field public final synthetic h:F
-
-.field public final synthetic i:Lcom/android/launcher3/C2;
-
-.field public final synthetic j:F
-
-.field public final synthetic k:F
-
-.field public final synthetic l:F
-
-.field public final synthetic m:F
-
-.field public final synthetic n:F
-
-.field public final synthetic o:F
-
-.field public final synthetic p:Landroid/view/View;
-
-
-# direct methods
-.method public synthetic constructor <init>(LT0/p;FLcom/android/launcher3/C2;FFFFFFLandroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 2
-    .line 3
-    .line 4
-    iput-object p1, p0, LT0/b;->g:LT0/p;
-
-    .line 5
-    .line 6
-    iput p2, p0, LT0/b;->h:F
-
-    .line 7
-    .line 8
-    iput-object p3, p0, LT0/b;->i:Lcom/android/launcher3/C2;
-
-    .line 9
-    .line 10
-    iput p4, p0, LT0/b;->j:F
-
-    .line 11
-    .line 12
-    iput p5, p0, LT0/b;->k:F
-
-    .line 13
-    .line 14
-    iput p6, p0, LT0/b;->l:F
-
-    .line 15
-    .line 16
-    iput p7, p0, LT0/b;->m:F
-
-    .line 17
-    .line 18
-    iput p8, p0, LT0/b;->n:F
-
-    .line 19
-    .line 20
-    iput p9, p0, LT0/b;->o:F
-
-    .line 21
-    .line 22
-    iput-object p10, p0, LT0/b;->p:Landroid/view/View;
-
-    .line 23
-    .line 24
-    return-void
-.end method
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u00002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0003\u0008b\u0018\u0000*\u0004\u0008\u0000\u0010\u0001*\u0008\u0008\u0001\u0010\u0003*\u00020\u00022\u00020\u0004JW\u0010\u0010\u001a\u000e\u0012\u0004\u0012\u00028\u0000\u0012\u0004\u0012\u00028\u00010\u000f2\u0006\u0010\u0006\u001a\u00020\u00052\u0006\u0010\u0007\u001a\u00028\u00002\u0006\u0010\u0008\u001a\u00028\u00002!\u0010\u000e\u001a\u001d\u0012\u0013\u0012\u00118\u0000\u00a2\u0006\u000c\u0008\n\u0012\u0008\u0008\u000b\u0012\u0004\u0008\u0008(\u000c\u0012\u0004\u0012\u00020\r0\tH\u00a6@\u00a2\u0006\u0004\u0008\u0010\u0010\u0011\u00f8\u0001\u0000\u0082\u0002\u0006\n\u0004\u0008!0\u0001\u00a8\u0006\u0012\u00c0\u0006\u0001"
+    }
+    d2 = {
+        "Lt0/b;",
+        "T",
+        "Lo0/t;",
+        "V",
+        "",
+        "Ls0/c2;",
+        "scope",
+        "offset",
+        "velocity",
+        "Lkotlin/Function1;",
+        "Lkotlin/ParameterName;",
+        "name",
+        "delta",
+        "",
+        "onAnimationStep",
+        "Lt0/a;",
+        "a",
+        "(Ls0/c2;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+        "foundation"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # virtual methods
-.method public final onAnimationUpdate(Landroid/animation/ValueAnimator;)V
-    .locals 11
-
-    .line 1
-    iget-object v0, p0, LT0/b;->g:LT0/p;
-
-    .line 2
-    .line 3
-    iget v1, p0, LT0/b;->h:F
-
-    .line 4
-    .line 5
-    iget-object v2, p0, LT0/b;->i:Lcom/android/launcher3/C2;
-
-    .line 6
-    .line 7
-    iget v3, p0, LT0/b;->j:F
-
-    .line 8
-    .line 9
-    iget v4, p0, LT0/b;->k:F
-
-    .line 10
-    .line 11
-    iget v5, p0, LT0/b;->l:F
-
-    .line 12
-    .line 13
-    iget v6, p0, LT0/b;->m:F
-
-    .line 14
-    .line 15
-    iget v7, p0, LT0/b;->n:F
-
-    .line 16
-    .line 17
-    iget v8, p0, LT0/b;->o:F
-
-    .line 18
-    .line 19
-    iget-object v9, p0, LT0/b;->p:Landroid/view/View;
-
-    .line 20
-    .line 21
-    move-object v10, p1
-
-    .line 22
-    invoke-static/range {v0 .. v10}, LT0/p;->x(LT0/p;FLcom/android/launcher3/C2;FFFFFFLandroid/view/View;Landroid/animation/ValueAnimator;)V
-
-    .line 23
-    .line 24
-    .line 25
-    return-void
+.method public abstract a(Ls0/c2;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ls0/c2;",
+            "TT;TT;",
+            "Lkotlin/jvm/functions/Function1<",
+            "-TT;",
+            "Lkotlin/Unit;",
+            ">;",
+            "Lkotlin/coroutines/Continuation<",
+            "-",
+            "Lt0/a<",
+            "TT;TV;>;>;)",
+            "Ljava/lang/Object;"
+        }
+    .end annotation
 .end method

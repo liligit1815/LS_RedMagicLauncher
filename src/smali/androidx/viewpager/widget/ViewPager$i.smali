@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract a(Landroidx/viewpager/widget/ViewPager;Landroidx/viewpager/widget/a;Landroidx/viewpager/widget/a;)V
+.method public abstract a(Landroidx/viewpager/widget/ViewPager;Lu7/a;Lu7/a;)V
 .end method

@@ -1,4 +1,4 @@
-.class interface abstract Landroidx/dynamicanimation/animation/b$c;
+.class public interface abstract Landroidx/dynamicanimation/animation/b$c;
 .super Ljava/lang/Object;
 .source "AnimationHandler.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x608
+    accessFlags = 0x609
     name = "c"
 .end annotation
 

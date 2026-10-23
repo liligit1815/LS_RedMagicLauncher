@@ -30,7 +30,7 @@
 
 .field private final mContext:Landroid/content/Context;
 
-.field private final mDeviceProfile:Lcom/android/launcher3/h0;
+.field private final mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
 .field private mDisallowedGestureReason:Lcom/android/quickstep/interaction/EdgeBackGestureHandler$BackGestureResult;
 
@@ -85,7 +85,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/content/Context;Lcom/android/launcher3/h0;)V
+.method public constructor <init>(Landroid/content/Context;Lcom/android/launcher3/DeviceProfile;)V
     .locals 1
 
     .line 1
@@ -156,7 +156,7 @@
 
     .line 35
     .line 36
-    iput-object p2, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDeviceProfile:Lcom/android/launcher3/h0;
+    iput-object p2, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
     .line 37
     .line 38
@@ -211,7 +211,7 @@
 
     .line 62
     .line 63
-    invoke-static {p1, v0}, Lc2/a;->d(Ljava/lang/String;Landroid/content/res/Resources;)I
+    invoke-static {p1, v0}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getNavbarSize(Ljava/lang/String;Landroid/content/res/Resources;)I
 
     .line 64
     .line 65
@@ -227,7 +227,7 @@
 
     .line 70
     .line 71
-    invoke-static {p1, v0}, Lc2/a;->d(Ljava/lang/String;Landroid/content/res/Resources;)I
+    invoke-static {p1, v0}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getNavbarSize(Ljava/lang/String;Landroid/content/res/Resources;)I
 
     .line 72
     .line 73
@@ -243,7 +243,7 @@
 
     .line 78
     .line 79
-    invoke-static {p1}, Lcom/android/launcher3/N5;->i(F)I
+    invoke-static {p1}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
     .line 80
     .line 81
@@ -259,7 +259,7 @@
     return-void
 .end method
 
-.method static bridge synthetic a(Lcom/android/quickstep/interaction/EdgeBackGestureHandler;)Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
+.method public static bridge synthetic a(Lcom/android/quickstep/interaction/EdgeBackGestureHandler;)Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
     .locals 0
 
     .line 1
@@ -270,7 +270,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic b(Lcom/android/quickstep/interaction/EdgeBackGestureHandler;)Lcom/android/quickstep/interaction/EdgeBackGestureHandler$BackGestureAttemptCallback;
+.method public static bridge synthetic b(Lcom/android/quickstep/interaction/EdgeBackGestureHandler;)Lcom/android/quickstep/interaction/EdgeBackGestureHandler$BackGestureAttemptCallback;
     .locals 0
 
     .line 1
@@ -349,7 +349,7 @@
 
     .line 10
     .line 11
-    invoke-static {v1, p0}, Lc2/a;->d(Ljava/lang/String;Landroid/content/res/Resources;)I
+    invoke-static {v1, p0}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getNavbarSize(Ljava/lang/String;Landroid/content/res/Resources;)I
 
     .line 12
     .line 13
@@ -361,7 +361,7 @@
 
     .line 16
     .line 17
-    invoke-static {v2, p0}, Lc2/a;->d(Ljava/lang/String;Landroid/content/res/Resources;)I
+    invoke-static {v2, p0}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getNavbarSize(Ljava/lang/String;Landroid/content/res/Resources;)I
 
     .line 18
     .line 19
@@ -1012,7 +1012,7 @@
 
 
 # virtual methods
-.method onInterceptTouch(Landroid/view/MotionEvent;)Z
+.method public onInterceptTouch(Landroid/view/MotionEvent;)Z
     .locals 1
 
     .line 1
@@ -1079,7 +1079,7 @@
     return p0
 .end method
 
-.method registerBackGestureAttemptCallback(Lcom/android/quickstep/interaction/EdgeBackGestureHandler$BackGestureAttemptCallback;)V
+.method public registerBackGestureAttemptCallback(Lcom/android/quickstep/interaction/EdgeBackGestureHandler$BackGestureAttemptCallback;)V
     .locals 0
 
     .line 1
@@ -1090,7 +1090,7 @@
     return-void
 .end method
 
-.method setInsets(II)V
+.method public setInsets(II)V
     .locals 0
 
     .line 1
@@ -1105,7 +1105,7 @@
     return-void
 .end method
 
-.method setViewGroupParent(Landroid/view/ViewGroup;)V
+.method public setViewGroupParent(Landroid/view/ViewGroup;)V
     .locals 3
 
     .line 1
@@ -1195,41 +1195,69 @@
 
     .line 41
     .line 42
-    iget-object v0, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDeviceProfile:Lcom/android/launcher3/h0;
+    iget-object v0, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
 
     .line 43
     .line 44
-    iget v1, v0, Lcom/android/launcher3/h0;->T0:I
+    invoke-virtual {v0}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
     .line 45
     .line 46
-    iget v0, v0, Lcom/android/launcher3/h0;->U0:I
-
     .line 47
+    move-result-object v0
+
     .line 48
-    invoke-virtual {p1, v1, v0}, Landroid/graphics/Point;->set(II)V
+    invoke-virtual {v0}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getWidthPx()I
 
     .line 49
     .line 50
     .line 51
-    iget-object p1, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mEdgeBackPanel:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
+    move-result v0
 
     .line 52
+    iget-object v1, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDeviceProfile:Lcom/android/launcher3/DeviceProfile;
+
     .line 53
-    iget-object p0, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDisplaySize:Landroid/graphics/Point;
-
     .line 54
-    .line 55
-    invoke-virtual {p1, p0}, Lcom/android/quickstep/interaction/EdgeBackGesturePanel;->setDisplaySize(Landroid/graphics/Point;)V
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->getDeviceProperties()Lcom/android/launcher3/deviceprofile/DeviceProperties;
 
+    .line 55
     .line 56
     .line 57
+    move-result-object v1
+
     .line 58
+    invoke-virtual {v1}, Lcom/android/launcher3/deviceprofile/DeviceProperties;->getHeightPx()I
+
+    .line 59
+    .line 60
+    .line 61
+    move-result v1
+
+    .line 62
+    invoke-virtual {p1, v0, v1}, Landroid/graphics/Point;->set(II)V
+
+    .line 63
+    .line 64
+    .line 65
+    iget-object p1, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mEdgeBackPanel:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
+
+    .line 66
+    .line 67
+    iget-object p0, p0, Lcom/android/quickstep/interaction/EdgeBackGestureHandler;->mDisplaySize:Landroid/graphics/Point;
+
+    .line 68
+    .line 69
+    invoke-virtual {p1, p0}, Lcom/android/quickstep/interaction/EdgeBackGesturePanel;->setDisplaySize(Landroid/graphics/Point;)V
+
+    .line 70
+    .line 71
+    .line 72
     :cond_2
     return-void
 .end method
 
-.method unregisterBackGestureAttemptCallback()V
+.method public unregisterBackGestureAttemptCallback()V
     .locals 1
 
     .line 1

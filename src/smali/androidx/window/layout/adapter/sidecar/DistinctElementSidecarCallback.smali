@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field private final a:Ljava/lang/Object;
+.field public final a:Ljava/lang/Object;
 
-.field private b:Landroidx/window/sidecar/SidecarDeviceState;
+.field public b:Landroidx/window/sidecar/SidecarDeviceState;
 
-.field private final c:Ljava/util/Map;
+.field public final c:Ljava/util/Map;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Map<",
@@ -22,13 +22,13 @@
     .end annotation
 .end field
 
-.field private final d:Ls0/a;
+.field public final d:Lc8/e;
 
-.field private final e:Landroidx/window/sidecar/SidecarInterface$SidecarCallback;
+.field public final e:Landroidx/window/sidecar/SidecarInterface$SidecarCallback;
 
 
 # direct methods
-.method constructor <init>(Ls0/a;Landroidx/window/sidecar/SidecarInterface$SidecarCallback;)V
+.method public constructor <init>(Lc8/e;Landroidx/window/sidecar/SidecarInterface$SidecarCallback;)V
     .locals 1
 
     .line 1
@@ -63,7 +63,7 @@
 
     .line 17
     .line 18
-    iput-object p1, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->d:Ls0/a;
+    iput-object p1, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->d:Lc8/e;
 
     .line 19
     .line 20
@@ -96,7 +96,7 @@
 
     .line 7
     :try_start_0
-    iget-object v1, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->d:Ls0/a;
+    iget-object v1, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->d:Lc8/e;
 
     .line 8
     .line 9
@@ -104,7 +104,7 @@
 
     .line 10
     .line 11
-    invoke-virtual {v1, v2, p1}, Ls0/a;->a(Landroidx/window/sidecar/SidecarDeviceState;Landroidx/window/sidecar/SidecarDeviceState;)Z
+    invoke-virtual {v1, v2, p1}, Lc8/e;->e(Landroidx/window/sidecar/SidecarDeviceState;Landroidx/window/sidecar/SidecarDeviceState;)Z
 
     .line 12
     .line 13
@@ -134,25 +134,28 @@
 
     .line 22
     .line 23
-    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->e:Landroidx/window/sidecar/SidecarInterface$SidecarCallback;
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 24
+    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->e:Landroidx/window/sidecar/SidecarInterface$SidecarCallback;
+
     .line 25
+    .line 26
     invoke-interface {p0, p1}, Landroidx/window/sidecar/SidecarInterface$SidecarCallback;->onDeviceStateChanged(Landroidx/window/sidecar/SidecarDeviceState;)V
 
-    .line 26
     .line 27
     .line 28
-    monitor-exit v0
-
     .line 29
     return-void
 
     .line 30
     :goto_0
+    :try_start_1
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 31
     throw p0
@@ -186,11 +189,11 @@
 
     .line 11
     .line 12
-    iget-object v2, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->d:Ls0/a;
+    iget-object v2, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->d:Lc8/e;
 
     .line 13
     .line 14
-    invoke-virtual {v2, v1, p2}, Ls0/a;->d(Landroidx/window/sidecar/SidecarWindowLayoutInfo;Landroidx/window/sidecar/SidecarWindowLayoutInfo;)Z
+    invoke-virtual {v2, v1, p2}, Lc8/e;->h(Landroidx/window/sidecar/SidecarWindowLayoutInfo;Landroidx/window/sidecar/SidecarWindowLayoutInfo;)Z
 
     .line 15
     .line 16
@@ -225,25 +228,28 @@
     .line 27
     .line 28
     .line 29
-    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->e:Landroidx/window/sidecar/SidecarInterface$SidecarCallback;
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 30
+    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/DistinctElementSidecarCallback;->e:Landroidx/window/sidecar/SidecarInterface$SidecarCallback;
+
     .line 31
+    .line 32
     invoke-interface {p0, p1, p2}, Landroidx/window/sidecar/SidecarInterface$SidecarCallback;->onWindowLayoutChanged(Landroid/os/IBinder;Landroidx/window/sidecar/SidecarWindowLayoutInfo;)V
 
-    .line 32
     .line 33
     .line 34
-    monitor-exit v0
-
     .line 35
     return-void
 
     .line 36
     :goto_0
+    :try_start_1
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 37
     throw p0

@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "SavedState"
 .end annotation
 
@@ -53,7 +53,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$1;)V
+.method public synthetic constructor <init>(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$1;)V
     .locals 0
 
     .line 3
@@ -62,7 +62,7 @@
     return-void
 .end method
 
-.method static synthetic access$1000(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)V
+.method public static synthetic access$1000(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)V
     .locals 0
 
     .line 1
@@ -74,7 +74,7 @@
     return-void
 .end method
 
-.method static synthetic access$1100(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)V
+.method public static synthetic access$1100(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)V
     .locals 0
 
     .line 1
@@ -86,7 +86,7 @@
     return-void
 .end method
 
-.method static synthetic access$1200(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)V
+.method public static synthetic access$1200(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)V
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -100,7 +100,7 @@
     return-void
 .end method
 
-.method static synthetic access$300(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Integer;
+.method public static synthetic access$300(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Integer;
     .locals 0
 
     .line 1
@@ -111,7 +111,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$400(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Boolean;
+.method public static synthetic access$400(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Boolean;
     .locals 0
 
     .line 1
@@ -122,7 +122,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$600(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Boolean;
+.method public static synthetic access$600(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Boolean;
     .locals 0
 
     .line 1
@@ -133,7 +133,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$700(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Boolean;
+.method public static synthetic access$700(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Boolean;
     .locals 0
 
     .line 1
@@ -144,7 +144,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$800(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Landroid/view/ViewGroup;
+.method public static synthetic access$800(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Landroid/view/ViewGroup;
     .locals 0
 
     .line 1
@@ -155,7 +155,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$900(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Integer;
+.method public static synthetic access$900(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;)Ljava/lang/Integer;
     .locals 0
 
     .line 1

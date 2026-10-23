@@ -1,874 +1,416 @@
-.class public Lf2/d;
-.super Lcom/android/launcher3/V3;
-.source "OverviewState.java"
+.class public final Lf2/d;
+.super Ljava/lang/Object;
+.source "MutableVector.kt"
 
 
-# static fields
-.field protected static final D:Landroid/graphics/Rect;
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0012\n\u0002\u0010 \n\u0002\u0010\u0008\n\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u000e\u001a\u001f\u0010\u0004\u001a\u00020\u0003*\u0006\u0012\u0002\u0008\u00030\u00002\u0006\u0010\u0002\u001a\u00020\u0001H\u0000\u00a2\u0006\u0004\u0008\u0004\u0010\u0005\u001a\u001f\u0010\u0007\u001a\u00020\u00032\u0006\u0010\u0002\u001a\u00020\u00012\u0006\u0010\u0006\u001a\u00020\u0001H\u0002\u00a2\u0006\u0004\u0008\u0007\u0010\u0008\u001a\'\u0010\u000b\u001a\u00020\u0003*\u0006\u0012\u0002\u0008\u00030\u00002\u0006\u0010\t\u001a\u00020\u00012\u0006\u0010\n\u001a\u00020\u0001H\u0000\u00a2\u0006\u0004\u0008\u000b\u0010\u000c\u001a\u001f\u0010\r\u001a\u00020\u00032\u0006\u0010\n\u001a\u00020\u00012\u0006\u0010\u0006\u001a\u00020\u0001H\u0002\u00a2\u0006\u0004\u0008\r\u0010\u0008\u001a\u0017\u0010\u000e\u001a\u00020\u00032\u0006\u0010\t\u001a\u00020\u0001H\u0002\u00a2\u0006\u0004\u0008\u000e\u0010\u000f\u001a\u001f\u0010\u0010\u001a\u00020\u00032\u0006\u0010\t\u001a\u00020\u00012\u0006\u0010\n\u001a\u00020\u0001H\u0002\u00a2\u0006\u0004\u0008\u0010\u0010\u0008\u00a8\u0006\u0011"
+    }
+    d2 = {
+        "",
+        "",
+        "index",
+        "",
+        "a",
+        "(Ljava/util/List;I)V",
+        "size",
+        "c",
+        "(II)V",
+        "fromIndex",
+        "toIndex",
+        "b",
+        "(Ljava/util/List;II)V",
+        "e",
+        "d",
+        "(I)V",
+        "f",
+        "runtime"
+    }
+    k = 0x2
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-.field private static final E:I
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nMutableVector.kt\nKotlin\n*S Kotlin\n*F\n+ 1 MutableVector.kt\nandroidx/compose/runtime/collection/MutableVectorKt\n*L\n1#1,1116:1\n1085#1,2:1117\n*S KotlinDebug\n*F\n+ 1 MutableVector.kt\nandroidx/compose/runtime/collection/MutableVectorKt\n*L\n1107#1:1117,2\n*E\n"
+    }
+.end annotation
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 2
+.method public static final a(Ljava/util/List;I)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "*>;I)V"
+        }
+    .end annotation
 
     .line 1
-    new-instance v0, Landroid/graphics/Rect;
+    invoke-interface {p0}, Ljava/util/List;->size()I
 
     .line 2
     .line 3
-    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
+    .line 4
+    move-result p0
+
+    .line 5
+    if-ltz p1, :cond_1
+
+    .line 6
+    .line 7
+    if-lt p1, p0, :cond_0
+
+    .line 8
+    .line 9
+    goto :goto_0
+
+    .line 10
+    :cond_0
+    return-void
+
+    .line 11
+    :cond_1
+    :goto_0
+    invoke-static {p1, p0}, Lf2/d;->c(II)V
+
+    .line 12
+    .line 13
+    .line 14
+    return-void
+.end method
+
+.method public static final b(Ljava/util/List;II)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "*>;II)V"
+        }
+    .end annotation
+
+    .line 1
+    if-le p1, p2, :cond_0
+
+    .line 2
+    .line 3
+    invoke-static {p1, p2}, Lf2/d;->f(II)V
 
     .line 4
     .line 5
     .line 6
-    sput-object v0, Lf2/d;->D:Landroid/graphics/Rect;
+    :cond_0
+    if-gez p1, :cond_1
 
     .line 7
     .line 8
-    sget v0, Lcom/android/launcher3/V3;->g:I
+    invoke-static {p1}, Lf2/d;->d(I)V
 
     .line 9
     .line 10
-    or-int/lit8 v0, v0, 0x2
-
     .line 11
-    .line 12
-    sget v1, Lcom/android/launcher3/V3;->k:I
+    :cond_1
+    invoke-interface {p0}, Ljava/util/List;->size()I
 
+    .line 12
     .line 13
     .line 14
-    or-int/2addr v0, v1
+    move-result p1
 
     .line 15
-    sget v1, Lcom/android/launcher3/V3;->f:I
+    if-le p2, p1, :cond_2
 
     .line 16
     .line 17
-    or-int/2addr v0, v1
+    invoke-interface {p0}, Ljava/util/List;->size()I
 
     .line 18
-    sget v1, Lcom/android/launcher3/V3;->j:I
-
     .line 19
     .line 20
-    or-int/2addr v0, v1
+    move-result p0
 
     .line 21
-    sput v0, Lf2/d;->E:I
+    invoke-static {p2, p0}, Lf2/d;->e(II)V
 
     .line 22
     .line 23
+    .line 24
+    :cond_2
     return-void
 .end method
 
-.method public constructor <init>(I)V
-    .locals 1
-
-    .line 1
-    sget v0, Lf2/d;->E:I
-
-    invoke-direct {p0, p1, v0}, Lf2/d;-><init>(II)V
-
-    return-void
-.end method
-
-.method protected constructor <init>(II)V
-    .locals 1
-
-    const/4 v0, 0x3
-
-    .line 2
-    invoke-direct {p0, p1, v0, p2}, Lf2/d;-><init>(III)V
-
-    return-void
-.end method
-
-.method protected constructor <init>(III)V
-    .locals 0
-
-    .line 3
-    invoke-direct {p0, p1, p2, p3}, Lcom/android/launcher3/V3;-><init>(III)V
-
-    return-void
-.end method
-
-.method public static J(Lcom/android/launcher3/C2;)F
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-static {p0, v0}, Lcom/android/quickstep/util/LayoutUtils;->getDefaultSwipeHeight(Landroid/content/Context;Lcom/android/launcher3/h0;)F
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
-
-    .line 9
-    return p0
-.end method
-
-.method public static K(I)Lf2/d;
-    .locals 1
-
-    .line 1
-    new-instance v0, Lf2/b;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lf2/b;-><init>(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
-.end method
-
-.method public static L(I)Lf2/d;
-    .locals 1
-
-    .line 1
-    new-instance v0, Lf2/c;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lf2/c;-><init>(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
-.end method
-
-.method public static M(I)Lf2/d;
-    .locals 1
-
-    .line 1
-    new-instance v0, Lf2/i;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lf2/i;-><init>(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
-.end method
-
-.method public static N(I)Lf2/d;
-    .locals 1
-
-    .line 1
-    new-instance v0, Lf2/e;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p0}, Lf2/e;-><init>(I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object v0
-.end method
-
-
-# virtual methods
-.method public A(Lcom/android/launcher3/C2;)Z
-    .locals 0
-
-    .line 1
-    const/4 p0, 0x0
-
-    .line 2
-    return p0
-.end method
-
-.method public E(Lcom/android/launcher3/C2;)V
-    .locals 1
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->getOverviewPanel()Landroid/view/View;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    check-cast v0, Lcom/android/quickstep/views/RecentsView;
-
-    .line 6
-    .line 7
-    invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->getRunningTaskView()Lcom/android/quickstep/views/TaskView;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object v0
-
-    .line 11
-    if-eqz v0, :cond_0
-
-    .line 12
-    .line 13
-    invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->launchWithAnimation()Lcom/android/launcher3/util/Y1;
-
-    .line 14
-    .line 15
-    .line 16
-    return-void
-
-    .line 17
-    :cond_0
-    invoke-super {p0, p1}, Lcom/android/launcher3/V3;->E(Lcom/android/launcher3/C2;)V
-
-    .line 18
-    .line 19
-    .line 20
-    return-void
-.end method
-
-.method public b()Z
-    .locals 0
-
-    .line 1
-    const/4 p0, 0x1
-
-    .line 2
-    return p0
-.end method
-
-.method public d()Z
-    .locals 0
-
-    .line 1
-    const/4 p0, 0x1
-
-    .line 2
-    return p0
-.end method
-
-.method public detachDesktopCarousel()Z
-    .locals 0
-
-    .line 1
-    const/4 p0, 0x0
-
-    .line 2
-    return p0
-.end method
-
-.method public displayOverviewTasksAsGrid(Lcom/android/launcher3/h0;)Z
-    .locals 0
-
-    .line 1
-    iget-boolean p0, p1, Lcom/android/launcher3/h0;->G0:Z
-
-    .line 2
-    .line 3
-    if-nez p0, :cond_1
-
-    .line 4
-    .line 5
-    invoke-virtual {p1}, Lcom/android/launcher3/X3;->b()Z
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
-
-    .line 9
-    if-eqz p0, :cond_0
-
-    .line 10
-    .line 11
-    goto :goto_0
-
-    .line 12
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 13
-    return p0
-
-    .line 14
-    :cond_1
-    :goto_0
-    const/4 p0, 0x1
-
-    .line 15
-    return p0
-.end method
-
-.method protected g(Landroid/content/Context;)F
+.method private static final c(II)V
     .locals 3
 
     .line 1
-    invoke-static {}, Lcom/android/launcher3/y0;->U()Z
+    new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     .line 2
     .line 3
-    .line 4
-    move-result p0
+    new-instance v1, Ljava/lang/StringBuilder;
 
+    .line 4
     .line 5
-    const/4 p1, 0x0
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 6
-    const/high16 v0, 0x3f800000    # 1.0f
-
     .line 7
     .line 8
-    const/4 v1, 0x1
+    const-string v2, "Index "
 
     .line 9
-    const-string v2, "ro.launcher.depth.overview"
-
     .line 10
-    .line 11
-    if-eqz p0, :cond_1
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 11
     .line 12
     .line 13
-    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 14
     .line 15
     .line 16
-    move-result p0
+    const-string p0, " is out of bounds. The list has "
 
     .line 17
-    if-eqz p0, :cond_0
-
     .line 18
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     .line 19
-    return v0
-
     .line 20
-    :cond_0
-    return p1
-
     .line 21
-    :cond_1
-    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 22
     .line 23
     .line 24
-    move-result p0
+    const-string p0, " elements."
 
     .line 25
-    if-eqz p0, :cond_2
-
     .line 26
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     .line 27
-    return v0
-
     .line 28
-    :cond_2
-    return p1
-.end method
+    .line 29
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-.method public getTransitionDuration(Lcom/android/launcher3/views/k;Z)I
-    .locals 0
-
-    .line 1
-    const/16 p0, 0xfa
-
-    .line 2
-    .line 3
-    if-eqz p2, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {p1}, Lcom/android/launcher3/views/k;->asContext()Landroid/content/Context;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p1
-
-    .line 9
-    invoke-static {p1}, Lcom/android/launcher3/util/Z;->y(Landroid/content/Context;)Lcom/android/launcher3/util/C1;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object p1
-
-    .line 13
-    iget-boolean p1, p1, Lcom/android/launcher3/util/C1;->g:Z
-
-    .line 14
-    .line 15
-    if-eqz p1, :cond_0
-
-    .line 16
-    .line 17
-    const/16 p0, 0x17c
-
-    .line 18
-    .line 19
-    :cond_0
-    return p0
-.end method
-
-.method public h(Lcom/android/launcher3/C2;)Ljava/lang/String;
-    .locals 0
-
-    .line 1
-    const p0, 0x7f140033
-
-    .line 2
-    .line 3
-    .line 4
-    invoke-virtual {p1, p0}, Landroid/app/Activity;->getString(I)Ljava/lang/String;
-
-    .line 5
-    .line 6
-    .line 7
+    .line 30
+    .line 31
+    .line 32
     move-result-object p0
 
-    .line 8
-    return-object p0
+    .line 33
+    invoke-direct {v0, p0}, Ljava/lang/IndexOutOfBoundsException;-><init>(Ljava/lang/String;)V
+
+    .line 34
+    .line 35
+    .line 36
+    throw v0
 .end method
 
-.method public i(Lcom/android/launcher3/C2;)I
-    .locals 1
-
-    .line 1
-    const/16 v0, 0x80
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1, v0}, Lcom/android/launcher3/V3;->c(Lcom/android/launcher3/C2;I)Z
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v0
-
-    .line 7
-    if-eqz v0, :cond_0
-
-    .line 8
-    .line 9
-    const/4 p0, 0x0
-
-    .line 10
-    return p0
-
-    .line 11
-    :cond_0
-    invoke-super {p0, p1}, Lcom/android/launcher3/V3;->i(Lcom/android/launcher3/C2;)I
-
-    .line 12
-    .line 13
-    .line 14
-    move-result p0
-
-    .line 15
-    return p0
-.end method
-
-.method public p(Lcom/android/launcher3/C2;)[F
-    .locals 0
-
-    .line 1
-    const/4 p0, 0x2
-
-    .line 2
-    new-array p0, p0, [F
-
-    .line 3
-    .line 4
-    fill-array-data p0, :array_0
-
-    .line 5
-    .line 6
-    .line 7
-    return-object p0
-
-    .line 8
-    nop
-
-    .line 9
-    :array_0
-    .array-data 4
-        0x3f800000    # 1.0f
-        0x0
-    .end array-data
-.end method
-
-.method public q(Lcom/android/launcher3/C2;)F
-    .locals 0
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->isSplitSelectionActive()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    if-nez p0, :cond_0
-
-    .line 6
-    .line 7
-    const/4 p0, 0x0
-
-    .line 8
-    return p0
-
-    .line 9
-    :cond_0
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->getOverviewPanel()Landroid/view/View;
-
-    .line 10
-    .line 11
-    .line 12
-    move-result-object p0
-
-    .line 13
-    check-cast p0, Lcom/android/quickstep/views/RecentsView;
-
-    .line 14
-    .line 15
-    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getSplitSelectTranslation()F
-
-    .line 16
-    .line 17
-    .line 18
-    move-result p0
-
-    .line 19
-    return p0
-.end method
-
-.method public r()I
-    .locals 0
-
-    .line 1
-    const p0, 0x7f140033
-
-    .line 2
-    .line 3
-    .line 4
-    return p0
-.end method
-
-.method public showExplodedDesktopView()Z
-    .locals 0
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/y0;->l()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method public t(Lcom/android/launcher3/C2;)I
+.method private static final d(I)V
     .locals 3
 
     .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
+    new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     .line 2
     .line 3
-    .line 4
-    move-result-object v0
+    new-instance v1, Ljava/lang/StringBuilder;
 
+    .line 4
     .line 5
-    iget-boolean v1, v0, Lcom/android/launcher3/h0;->H0:Z
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 6
     .line 7
-    const/4 v2, 0x1
-
     .line 8
-    if-eqz v1, :cond_0
+    const-string v2, "fromIndex ("
 
     .line 9
     .line 10
-    iget-boolean p0, v0, Lcom/android/launcher3/h0;->N0:Z
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 11
     .line 12
-    xor-int/2addr p0, v2
-
     .line 13
-    goto :goto_1
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 14
-    :cond_0
-    iget-boolean v0, v0, Lcom/android/launcher3/h0;->p3:Z
-
     .line 15
     .line 16
-    if-eqz v0, :cond_2
+    const-string p0, ") is less than 0."
 
     .line 17
     .line 18
-    invoke-virtual {p0, p1}, Lcom/android/launcher3/V3;->B(Lcom/android/launcher3/C2;)Z
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 19
     .line 20
     .line 21
-    move-result p0
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     .line 22
-    if-eqz p0, :cond_1
-
     .line 23
     .line 24
-    goto :goto_0
+    move-result-object p0
 
     .line 25
-    :cond_1
-    const/4 v2, 0x0
+    invoke-direct {v0, p0}, Ljava/lang/IndexOutOfBoundsException;-><init>(Ljava/lang/String;)V
 
     .line 26
-    :cond_2
-    :goto_0
-    move p0, v2
+    .line 27
+    .line 28
+    throw v0
+.end method
+
+.method private static final e(II)V
+    .locals 3
+
+    .line 1
+    new-instance v0, Ljava/lang/IndexOutOfBoundsException;
+
+    .line 2
+    .line 3
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    .line 4
+    .line 5
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 6
+    .line 7
+    .line 8
+    const-string v2, "toIndex ("
+
+    .line 9
+    .line 10
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 11
+    .line 12
+    .line 13
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    .line 14
+    .line 15
+    .line 16
+    const-string p0, ") is more than than the list size ("
+
+    .line 17
+    .line 18
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 19
+    .line 20
+    .line 21
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    .line 22
+    .line 23
+    .line 24
+    const/16 p0, 0x29
+
+    .line 25
+    .line 26
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 27
-    :goto_1
-    if-eqz p0, :cond_3
-
     .line 28
     .line 29
-    const/16 p0, 0x198
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     .line 30
     .line 31
-    goto :goto_2
-
     .line 32
-    :cond_3
-    const/16 p0, 0x118
+    move-result-object p0
 
     .line 33
-    .line 34
-    :goto_2
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->isSplitSelectionActive()Z
+    invoke-direct {v0, p0}, Ljava/lang/IndexOutOfBoundsException;-><init>(Ljava/lang/String;)V
 
+    .line 34
     .line 35
     .line 36
-    .line 37
-    move-result p1
-
-    .line 38
-    if-eqz p1, :cond_4
-
-    .line 39
-    .line 40
-    and-int/lit16 p0, p0, -0x111
-
-    .line 41
-    .line 42
-    :cond_4
-    return p0
+    throw v0
 .end method
 
-.method public v(Lcom/android/launcher3/C2;)Lcom/android/launcher3/V3$f;
-    .locals 1
+.method private static final f(II)V
+    .locals 3
 
     .line 1
-    new-instance p1, Lf2/d$a;
+    new-instance v0, Ljava/lang/IllegalArgumentException;
 
     .line 2
     .line 3
-    sget-object v0, LJ0/h;->L:Landroid/view/animation/Interpolator;
+    new-instance v1, Ljava/lang/StringBuilder;
 
     .line 4
     .line 5
-    invoke-direct {p1, p0, v0}, Lf2/d$a;-><init>(Lf2/d;Landroid/view/animation/Interpolator;)V
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 6
     .line 7
     .line 8
-    return-object p1
-.end method
+    const-string v2, "Indices are out of order. fromIndex ("
 
-.method public x(Lcom/android/launcher3/C2;)Lcom/android/launcher3/V3$h;
-    .locals 2
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->getOverviewPanel()Landroid/view/View;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    check-cast p0, Lcom/android/quickstep/views/RecentsView;
-
-    .line 6
-    .line 7
-    sget-object v0, Lf2/d;->D:Landroid/graphics/Rect;
-
-    .line 8
     .line 9
-    invoke-virtual {p0, v0}, Lcom/android/quickstep/views/RecentsView;->getTaskSize(Landroid/graphics/Rect;)V
-
     .line 10
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     .line 11
     .line 12
-    invoke-virtual {p1}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
-
     .line 13
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
     .line 14
     .line 15
-    move-result-object p0
-
     .line 16
-    iget-boolean p0, p0, Lcom/android/launcher3/h0;->K0:Z
+    const-string p0, ") is greater than toIndex ("
 
     .line 17
     .line 18
-    new-instance p0, Lcom/android/launcher3/V3$h;
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 19
     .line 20
-    invoke-static {p1}, Lf2/d;->J(Lcom/android/launcher3/C2;)F
-
     .line 21
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
     .line 22
     .line 23
-    move-result p1
-
     .line 24
-    neg-float p1, p1
+    const-string p0, ")."
 
     .line 25
-    const/high16 v0, 0x3f000000    # 0.5f
-
     .line 26
-    .line 27
-    mul-float/2addr p1, v0
-
-    .line 28
-    const v0, 0x3f6b851f    # 0.92f
-
-    .line 29
-    .line 30
-    .line 31
-    const/4 v1, 0x0
-
-    .line 32
-    invoke-direct {p0, v0, v1, p1}, Lcom/android/launcher3/V3$h;-><init>(FFF)V
-
-    .line 33
-    .line 34
-    .line 35
-    return-object p0
-.end method
-
-.method public y(Lcom/android/launcher3/C2;)I
-    .locals 0
-
-    .line 1
-    invoke-static {}, Lcom/android/launcher3/H5;->U()Lcom/android/launcher3/H5;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    if-eqz p0, :cond_1
-
-    .line 6
-    .line 7
-    invoke-static {}, Lcom/android/launcher3/H5;->U()Lcom/android/launcher3/H5;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object p0
-
-    .line 11
-    invoke-virtual {p0}, Lcom/android/launcher3/H5;->Y()Lcom/android/launcher3/H5$g;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object p0
-
-    .line 15
-    invoke-virtual {p0}, Lcom/android/launcher3/H5$g;->a()I
-
-    .line 16
-    .line 17
-    .line 18
-    move-result p0
-
-    .line 19
-    invoke-static {p0}, Lx1/O;->G0(I)I
-
-    .line 20
-    .line 21
-    .line 22
-    move-result p0
-
-    .line 23
-    invoke-static {}, Lx1/O;->c0()Z
-
-    .line 24
-    .line 25
-    .line 26
-    move-result p1
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 27
-    if-eqz p1, :cond_0
-
     .line 28
     .line 29
-    const/16 p1, 0x33
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     .line 30
     .line 31
-    goto :goto_0
-
     .line 32
-    :cond_0
-    const/16 p1, 0x4c
+    move-result-object p0
 
     .line 33
-    .line 34
-    :goto_0
-    invoke-static {p0, p1}, Ls1/q;->h(II)I
+    invoke-direct {v0, p0}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
+    .line 34
     .line 35
     .line 36
-    .line 37
-    move-result p0
-
-    .line 38
-    return p0
-
-    .line 39
-    :cond_1
-    const/4 p0, 0x0
-
-    .line 40
-    return p0
+    throw v0
 .end method

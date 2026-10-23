@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/RecycleListView$a;
+.class public Landroidx/appcompat/app/RecycleListView$a;
 .super Ljava/lang/Object;
 .source "RecycleListView.java"
 
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -24,15 +24,15 @@
 
 
 # instance fields
-.field private a:Landroid/util/SparseArray;
+.field public a:Landroid/util/SparseArray;
 
-.field private b:I
+.field public b:I
 
-.field final synthetic c:Landroidx/appcompat/app/RecycleListView;
+.field public final synthetic c:Landroidx/appcompat/app/RecycleListView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/app/RecycleListView;)V
+.method public constructor <init>(Landroidx/appcompat/app/RecycleListView;)V
     .locals 1
 
     .line 1
@@ -68,7 +68,9 @@
     return-void
 .end method
 
-.method private a()I
+
+# virtual methods
+.method public final a()I
     .locals 3
 
     .line 1
@@ -163,8 +165,6 @@
     return v1
 .end method
 
-
-# virtual methods
 .method public onScroll(Landroid/widget/AbsListView;III)V
     .locals 0
 
@@ -259,7 +259,7 @@
 
     .line 45
     .line 46
-    invoke-direct {p0}, Landroidx/appcompat/app/RecycleListView$a;->a()I
+    invoke-virtual {p0}, Landroidx/appcompat/app/RecycleListView$a;->a()I
 
     .line 47
     .line 48
@@ -302,7 +302,7 @@
 
     .line 66
     .line 67
-    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
 
     .line 68
     .line 69
@@ -322,7 +322,7 @@
     move-result p0
 
     .line 77
-    invoke-virtual {p1, p0}, Lb4/e;->C(I)V
+    invoke-virtual {p1, p0}, Lwh/e;->C(I)V
 
     .line 78
     .line 79
@@ -395,7 +395,7 @@
 
     .line 32
     .line 33
-    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
 
     .line 34
     .line 35
@@ -419,7 +419,7 @@
 
     .line 43
     .line 44
-    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+    invoke-static {p1}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
 
     .line 45
     .line 46
@@ -427,7 +427,7 @@
     move-result-object p1
 
     .line 48
-    invoke-virtual {p1}, Lb4/e;->t()Z
+    invoke-virtual {p1}, Lwh/e;->t()Z
 
     .line 49
     .line 50
@@ -552,7 +552,7 @@
 
     .line 112
     .line 113
-    invoke-static {p0}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+    invoke-static {p0}, Landroidx/appcompat/app/RecycleListView;->c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
 
     .line 114
     .line 115
@@ -564,7 +564,7 @@
 
     .line 118
     .line 119
-    invoke-virtual {p0, p1, p2}, Lb4/e;->x(Landroid/view/View;I)V
+    invoke-virtual {p0, p1, p2}, Lwh/e;->x(Landroid/view/View;I)V
 
     .line 120
     .line 121

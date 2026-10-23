@@ -9,9 +9,9 @@
 
 
 # instance fields
-.field private o:Landroid/widget/EditText;
+.field public t:Landroid/widget/EditText;
 
-.field private p:Ljava/lang/CharSequence;
+.field public u:Ljava/lang/CharSequence;
 
 
 # direct methods
@@ -27,25 +27,6 @@
     .line 3
     .line 4
     return-void
-.end method
-
-.method private h()Landroidx/preference/EditTextPreference;
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/preference/PreferenceDialogFragment;->a()Landroidx/preference/DialogPreference;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    check-cast p0, Landroidx/preference/EditTextPreference;
-
-    .line 6
-    .line 7
-    return-object p0
 .end method
 
 .method public static i(Ljava/lang/String;)Landroidx/preference/EditTextPreferenceDialogFragment;
@@ -94,7 +75,7 @@
 
 
 # virtual methods
-.method protected b()Z
+.method public b()Z
     .locals 0
 
     .line 1
@@ -104,7 +85,7 @@
     return p0
 .end method
 
-.method protected c(Landroid/view/View;)V
+.method public c(Landroid/view/View;)V
     .locals 1
 
     .line 1
@@ -130,7 +111,7 @@
 
     .line 12
     .line 13
-    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->o:Landroid/widget/EditText;
+    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->t:Landroid/widget/EditText;
 
     .line 14
     .line 15
@@ -139,7 +120,7 @@
     .line 16
     .line 17
     .line 18
-    iget-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->o:Landroid/widget/EditText;
+    iget-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->t:Landroid/widget/EditText;
 
     .line 19
     .line 20
@@ -147,7 +128,7 @@
 
     .line 21
     .line 22
-    iget-object v0, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->p:Ljava/lang/CharSequence;
+    iget-object v0, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->u:Ljava/lang/CharSequence;
 
     .line 23
     .line 24
@@ -156,7 +137,7 @@
     .line 25
     .line 26
     .line 27
-    iget-object p0, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->o:Landroid/widget/EditText;
+    iget-object p0, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->t:Landroid/widget/EditText;
 
     .line 28
     .line 29
@@ -211,7 +192,7 @@
 
     .line 2
     .line 3
-    iget-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->o:Landroid/widget/EditText;
+    iget-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->t:Landroid/widget/EditText;
 
     .line 4
     .line 5
@@ -231,7 +212,7 @@
     move-result-object p1
 
     .line 13
-    invoke-direct {p0}, Landroidx/preference/EditTextPreferenceDialogFragment;->h()Landroidx/preference/EditTextPreference;
+    invoke-virtual {p0}, Landroidx/preference/EditTextPreferenceDialogFragment;->h()Landroidx/preference/EditTextPreference;
 
     .line 14
     .line 15
@@ -239,7 +220,7 @@
     move-result-object v0
 
     .line 17
-    invoke-virtual {v0, p1}, Landroidx/preference/Preference;->c(Ljava/lang/Object;)Z
+    invoke-virtual {v0, p1}, Landroidx/preference/Preference;->callChangeListener(Ljava/lang/Object;)Z
 
     .line 18
     .line 19
@@ -251,7 +232,7 @@
 
     .line 22
     .line 23
-    invoke-direct {p0}, Landroidx/preference/EditTextPreferenceDialogFragment;->h()Landroidx/preference/EditTextPreference;
+    invoke-virtual {p0}, Landroidx/preference/EditTextPreferenceDialogFragment;->h()Landroidx/preference/EditTextPreference;
 
     .line 24
     .line 25
@@ -259,13 +240,32 @@
     move-result-object p0
 
     .line 27
-    invoke-virtual {p0, p1}, Landroidx/preference/EditTextPreference;->c1(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Landroidx/preference/EditTextPreference;->n(Ljava/lang/String;)V
 
     .line 28
     .line 29
     .line 30
     :cond_0
     return-void
+.end method
+
+.method public final h()Landroidx/preference/EditTextPreference;
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/preference/PreferenceDialogFragment;->a()Landroidx/preference/DialogPreference;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p0
+
+    .line 5
+    check-cast p0, Landroidx/preference/EditTextPreference;
+
+    .line 6
+    .line 7
+    return-object p0
 .end method
 
 .method public onCreate(Landroid/os/Bundle;)V
@@ -281,7 +281,7 @@
 
     .line 5
     .line 6
-    invoke-direct {p0}, Landroidx/preference/EditTextPreferenceDialogFragment;->h()Landroidx/preference/EditTextPreference;
+    invoke-virtual {p0}, Landroidx/preference/EditTextPreferenceDialogFragment;->h()Landroidx/preference/EditTextPreference;
 
     .line 7
     .line 8
@@ -289,7 +289,7 @@
     move-result-object p1
 
     .line 10
-    invoke-virtual {p1}, Landroidx/preference/EditTextPreference;->b1()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/preference/EditTextPreference;->l()Ljava/lang/String;
 
     .line 11
     .line 12
@@ -297,7 +297,7 @@
     move-result-object p1
 
     .line 14
-    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->p:Ljava/lang/CharSequence;
+    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->u:Ljava/lang/CharSequence;
 
     .line 15
     .line 16
@@ -317,7 +317,7 @@
     move-result-object p1
 
     .line 23
-    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->p:Ljava/lang/CharSequence;
+    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->u:Ljava/lang/CharSequence;
 
     .line 24
     .line 25
@@ -337,7 +337,7 @@
 
     .line 5
     .line 6
-    iget-object p0, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->p:Ljava/lang/CharSequence;
+    iget-object p0, p0, Landroidx/preference/EditTextPreferenceDialogFragment;->u:Ljava/lang/CharSequence;
 
     .line 7
     .line 8

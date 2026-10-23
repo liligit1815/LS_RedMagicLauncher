@@ -1,25 +1,19 @@
-.class public final synthetic LG1/b;
+.class public final synthetic Lg1/b;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Supplier;
+.implements Lkotlin/jvm/functions/Function2;
 
 
 # instance fields
-.field public final synthetic a:I
+.field public final synthetic c:J
 
-.field public final synthetic b:Lkotlin/jvm/internal/C;
-
-.field public final synthetic c:Landroidx/recyclerview/widget/RecyclerView;
-
-.field public final synthetic d:Landroidx/recyclerview/widget/RecyclerView$Adapter;
-
-.field public final synthetic e:I
+.field public final synthetic m:Lx2/m;
 
 
 # direct methods
-.method public synthetic constructor <init>(ILkotlin/jvm/internal/C;Landroidx/recyclerview/widget/RecyclerView;Landroidx/recyclerview/widget/RecyclerView$Adapter;I)V
+.method public synthetic constructor <init>(JLx2/m;)V
     .locals 0
 
     .line 1
@@ -28,62 +22,54 @@
     .line 2
     .line 3
     .line 4
-    iput p1, p0, LG1/b;->a:I
+    iput-wide p1, p0, Lg1/b;->c:J
 
     .line 5
     .line 6
-    iput-object p2, p0, LG1/b;->b:Lkotlin/jvm/internal/C;
+    iput-object p3, p0, Lg1/b;->m:Lx2/m;
 
     .line 7
     .line 8
-    iput-object p3, p0, LG1/b;->c:Landroidx/recyclerview/widget/RecyclerView;
-
-    .line 9
-    .line 10
-    iput-object p4, p0, LG1/b;->d:Landroidx/recyclerview/widget/RecyclerView$Adapter;
-
-    .line 11
-    .line 12
-    iput p5, p0, LG1/b;->e:I
-
-    .line 13
-    .line 14
     return-void
 .end method
 
 
 # virtual methods
-.method public final get()Ljava/lang/Object;
-    .locals 4
+.method public final invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 2
 
     .line 1
-    iget v0, p0, LG1/b;->a:I
+    iget-wide v0, p0, Lg1/b;->c:J
 
     .line 2
     .line 3
-    iget-object v1, p0, LG1/b;->b:Lkotlin/jvm/internal/C;
+    iget-object p0, p0, Lg1/b;->m:Lx2/m;
 
     .line 4
     .line 5
-    iget-object v2, p0, LG1/b;->c:Landroidx/recyclerview/widget/RecyclerView;
+    check-cast p1, Le2/r;
 
     .line 6
     .line 7
-    iget-object v3, p0, LG1/b;->d:Landroidx/recyclerview/widget/RecyclerView$Adapter;
+    check-cast p2, Ljava/lang/Integer;
 
     .line 8
     .line 9
-    iget p0, p0, LG1/b;->e:I
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
 
     .line 10
     .line 11
-    invoke-static {v0, v1, v2, v3, p0}, LG1/d;->c(ILkotlin/jvm/internal/C;Landroidx/recyclerview/widget/RecyclerView;Landroidx/recyclerview/widget/RecyclerView$Adapter;I)Ljava/util/List;
-
     .line 12
+    move-result p2
+
     .line 13
+    invoke-static {v0, v1, p0, p1, p2}, Lg1/g;->b(JLx2/m;Le2/r;I)Lkotlin/Unit;
+
     .line 14
+    .line 15
+    .line 16
     move-result-object p0
 
-    .line 15
+    .line 17
     return-object p0
 .end method

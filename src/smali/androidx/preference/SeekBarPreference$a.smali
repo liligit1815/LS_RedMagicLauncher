@@ -1,4 +1,4 @@
-.class Landroidx/preference/SeekBarPreference$a;
+.class public Landroidx/preference/SeekBarPreference$a;
 .super Ljava/lang/Object;
 .source "SeekBarPreference.java"
 
@@ -12,17 +12,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/preference/SeekBarPreference;
+.field public final synthetic a:Landroidx/preference/SeekBarPreference;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/SeekBarPreference;)V
+.method public constructor <init>(Landroidx/preference/SeekBarPreference;)V
     .locals 0
 
     .line 1
@@ -52,7 +52,7 @@
 
     .line 4
     .line 5
-    iget-boolean v0, p3, Landroidx/preference/SeekBarPreference;->f0:Z
+    iget-boolean v0, p3, Landroidx/preference/SeekBarPreference;->u:Z
 
     .line 6
     .line 7
@@ -60,7 +60,7 @@
 
     .line 8
     .line 9
-    iget-boolean v0, p3, Landroidx/preference/SeekBarPreference;->a0:Z
+    iget-boolean v0, p3, Landroidx/preference/SeekBarPreference;->p:Z
 
     .line 10
     .line 11
@@ -69,7 +69,7 @@
     .line 12
     .line 13
     :cond_0
-    invoke-virtual {p3, p1}, Landroidx/preference/SeekBarPreference;->Y0(Landroid/widget/SeekBar;)V
+    invoke-virtual {p3, p1}, Landroidx/preference/SeekBarPreference;->h(Landroid/widget/SeekBar;)V
 
     .line 14
     .line 15
@@ -82,14 +82,14 @@
 
     .line 18
     .line 19
-    iget p1, p0, Landroidx/preference/SeekBarPreference;->X:I
+    iget p1, p0, Landroidx/preference/SeekBarPreference;->m:I
 
     .line 20
     .line 21
     add-int/2addr p2, p1
 
     .line 22
-    invoke-virtual {p0, p2}, Landroidx/preference/SeekBarPreference;->Z0(I)V
+    invoke-virtual {p0, p2}, Landroidx/preference/SeekBarPreference;->i(I)V
 
     .line 23
     .line 24
@@ -108,7 +108,7 @@
     const/4 p1, 0x1
 
     .line 4
-    iput-boolean p1, p0, Landroidx/preference/SeekBarPreference;->a0:Z
+    iput-boolean p1, p0, Landroidx/preference/SeekBarPreference;->p:Z
 
     .line 5
     .line 6
@@ -126,7 +126,7 @@
     const/4 v1, 0x0
 
     .line 4
-    iput-boolean v1, v0, Landroidx/preference/SeekBarPreference;->a0:Z
+    iput-boolean v1, v0, Landroidx/preference/SeekBarPreference;->p:Z
 
     .line 5
     .line 6
@@ -142,14 +142,14 @@
 
     .line 11
     .line 12
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->X:I
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->m:I
 
     .line 13
     .line 14
     add-int/2addr v0, v1
 
     .line 15
-    iget v1, p0, Landroidx/preference/SeekBarPreference;->W:I
+    iget v1, p0, Landroidx/preference/SeekBarPreference;->c:I
 
     .line 16
     .line 17
@@ -157,7 +157,7 @@
 
     .line 18
     .line 19
-    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->Y0(Landroid/widget/SeekBar;)V
+    invoke-virtual {p0, p1}, Landroidx/preference/SeekBarPreference;->h(Landroid/widget/SeekBar;)V
 
     .line 20
     .line 21

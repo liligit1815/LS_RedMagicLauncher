@@ -18,7 +18,7 @@
 
 
 # virtual methods
-.method canRecreateFragment()Z
+.method public canRecreateFragment()Z
     .locals 0
 
     .line 1
@@ -28,7 +28,7 @@
     return p0
 .end method
 
-.method close()V
+.method public close()V
     .locals 1
 
     .line 1
@@ -61,21 +61,21 @@
     return-void
 .end method
 
-.method onAttachedToWindow()V
+.method public onAttachedToWindow()V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method onDetachedFromWindow()V
+.method public onDetachedFromWindow()V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method recreateFragment()Lcom/android/quickstep/interaction/GestureSandboxFragment;
+.method public recreateFragment()Lcom/android/quickstep/interaction/GestureSandboxFragment;
     .locals 0
 
     .line 1
@@ -85,7 +85,7 @@
     return-object p0
 .end method
 
-.method shouldDisableSystemGestures()Z
+.method public shouldDisableSystemGestures()Z
     .locals 0
 
     .line 1

@@ -8,13 +8,13 @@ root = Path(__file__).resolve().parents[1]
 source = (root / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').read_text(encoding='utf-8')
 selector = re.search(r'    private static TaskView getPreferredEntryTask\(.*?\n    }', source, re.S)
 assert selector
-smali = (root / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+smali = (root / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
 for signature in ('reloadIfNeeded()V', 'reloadIfNeeded(Z)V'):
     method = re.search(r'\.method public ' + re.escape(signature) + r'.*?\.end method', smali, re.S).group()
     assert method.index('->markNativeStackTaskListLoading()V') < method.index('RecentsModel;->getTasks(')
-load = re.search(r'\.method protected applyLoadPlan\(.*?\.end method', smali, re.S).group()
+load = re.search(r'\.method public applyLoadPlan\(.*?\.end method', smali, re.S).group()
 assert load.count('->markNativeStackTaskListReady()V') == 2  # Populated and empty lists.
-assert load.index('->markNativeStackTaskListReady()V') < load.index('->runOnPageScrollsInitialized(')
+assert load.index('->markNativeStackTaskListReady()V') < load.index('->resetTaskVisuals(')
 
 harness = '''
 import java.lang.ref.WeakReference;

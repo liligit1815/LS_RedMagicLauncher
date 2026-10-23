@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/f$c;
+.class public Landroidx/recyclerview/widget/f$c;
 .super Landroid/animation/AnimatorListenerAdapter;
 .source "FastScroller.java"
 
@@ -9,23 +9,23 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "c"
 .end annotation
 
 
 # instance fields
-.field private g:Z
+.field public c:Z
 
-.field final synthetic h:Landroidx/recyclerview/widget/f;
+.field public final synthetic m:Landroidx/recyclerview/widget/f;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/f;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/f;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/f$c;->h:Landroidx/recyclerview/widget/f;
+    iput-object p1, p0, Landroidx/recyclerview/widget/f$c;->m:Landroidx/recyclerview/widget/f;
 
     .line 2
     .line 3
@@ -37,7 +37,7 @@
     const/4 p1, 0x0
 
     .line 7
-    iput-boolean p1, p0, Landroidx/recyclerview/widget/f$c;->g:Z
+    iput-boolean p1, p0, Landroidx/recyclerview/widget/f$c;->c:Z
 
     .line 8
     .line 9
@@ -53,7 +53,7 @@
     const/4 p1, 0x1
 
     .line 2
-    iput-boolean p1, p0, Landroidx/recyclerview/widget/f$c;->g:Z
+    iput-boolean p1, p0, Landroidx/recyclerview/widget/f$c;->c:Z
 
     .line 3
     .line 4
@@ -64,7 +64,7 @@
     .locals 2
 
     .line 1
-    iget-boolean p1, p0, Landroidx/recyclerview/widget/f$c;->g:Z
+    iget-boolean p1, p0, Landroidx/recyclerview/widget/f$c;->c:Z
 
     .line 2
     .line 3
@@ -75,7 +75,7 @@
 
     .line 5
     .line 6
-    iput-boolean v0, p0, Landroidx/recyclerview/widget/f$c;->g:Z
+    iput-boolean v0, p0, Landroidx/recyclerview/widget/f$c;->c:Z
 
     .line 7
     .line 8
@@ -83,11 +83,11 @@
 
     .line 9
     :cond_0
-    iget-object p1, p0, Landroidx/recyclerview/widget/f$c;->h:Landroidx/recyclerview/widget/f;
+    iget-object p1, p0, Landroidx/recyclerview/widget/f$c;->m:Landroidx/recyclerview/widget/f;
 
     .line 10
     .line 11
-    iget-object p1, p1, Landroidx/recyclerview/widget/f;->F:Landroid/animation/ValueAnimator;
+    iget-object p1, p1, Landroidx/recyclerview/widget/f;->K:Landroid/animation/ValueAnimator;
 
     .line 12
     .line 13
@@ -122,11 +122,11 @@
 
     .line 27
     .line 28
-    iget-object p0, p0, Landroidx/recyclerview/widget/f$c;->h:Landroidx/recyclerview/widget/f;
+    iget-object p0, p0, Landroidx/recyclerview/widget/f$c;->m:Landroidx/recyclerview/widget/f;
 
     .line 29
     .line 30
-    iput v0, p0, Landroidx/recyclerview/widget/f;->G:I
+    iput v0, p0, Landroidx/recyclerview/widget/f;->L:I
 
     .line 31
     .line 32
@@ -139,14 +139,14 @@
 
     .line 36
     :cond_1
-    iget-object p0, p0, Landroidx/recyclerview/widget/f$c;->h:Landroidx/recyclerview/widget/f;
+    iget-object p0, p0, Landroidx/recyclerview/widget/f$c;->m:Landroidx/recyclerview/widget/f;
 
     .line 37
     .line 38
     const/4 p1, 0x2
 
     .line 39
-    iput p1, p0, Landroidx/recyclerview/widget/f;->G:I
+    iput p1, p0, Landroidx/recyclerview/widget/f;->L:I
 
     .line 40
     .line 41

@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
+.field public final synthetic c:Lcom/android/launcher3/taskbar/bubbles/BubbleBarSwipeController;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
+.method public synthetic constructor <init>(Lcom/android/launcher3/taskbar/bubbles/BubbleBarSwipeController;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/e;->g:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/e;->c:Lcom/android/launcher3/taskbar/bubbles/BubbleBarSwipeController;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/e;->g:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/e;->c:Lcom/android/launcher3/taskbar/bubbles/BubbleBarSwipeController;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->c(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
+    invoke-virtual {p0}, Lcom/android/launcher3/taskbar/bubbles/BubbleBarSwipeController;->start()V
 
     .line 4
     .line 5

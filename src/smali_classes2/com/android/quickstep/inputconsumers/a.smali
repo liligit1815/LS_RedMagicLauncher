@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;
+.field public final synthetic c:Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;
 
 
 # direct methods
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/a;->g:Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/a;->c:Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;
 
     .line 5
     .line 6
@@ -33,7 +33,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/a;->g:Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/a;->c:Lcom/android/quickstep/inputconsumers/AssistantInputConsumer;
 
     .line 2
     .line 3

@@ -1,4 +1,4 @@
-.class final Landroidx/dynamicanimation/animation/b$f;
+.class public final Landroidx/dynamicanimation/animation/b$f;
 .super Ljava/lang/Object;
 .source "AnimationHandler.java"
 
@@ -12,19 +12,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x18
+    accessFlags = 0x19
     name = "f"
 .end annotation
 
 
 # instance fields
-.field private final a:Landroid/view/Choreographer;
+.field public final a:Landroid/view/Choreographer;
 
-.field private final b:Landroid/os/Looper;
+.field public final b:Landroid/os/Looper;
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 1
 
     .line 1

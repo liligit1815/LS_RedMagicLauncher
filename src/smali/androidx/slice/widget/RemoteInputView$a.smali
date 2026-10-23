@@ -1,4 +1,4 @@
-.class Landroidx/slice/widget/RemoteInputView$a;
+.class public Landroidx/slice/widget/RemoteInputView$a;
 .super Ljava/lang/Object;
 .source "RemoteInputView.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/slice/widget/RemoteInputView;
+.field public final synthetic c:Landroidx/slice/widget/RemoteInputView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/slice/widget/RemoteInputView;)V
+.method public constructor <init>(Landroidx/slice/widget/RemoteInputView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView$a;->g:Landroidx/slice/widget/RemoteInputView;
+    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView$a;->c:Landroidx/slice/widget/RemoteInputView;
 
     .line 2
     .line 3
@@ -151,11 +151,11 @@
     .line 44
     :cond_4
     :goto_2
-    iget-object p1, p0, Landroidx/slice/widget/RemoteInputView$a;->g:Landroidx/slice/widget/RemoteInputView;
+    iget-object p1, p0, Landroidx/slice/widget/RemoteInputView$a;->c:Landroidx/slice/widget/RemoteInputView;
 
     .line 45
     .line 46
-    iget-object p1, p1, Landroidx/slice/widget/RemoteInputView;->g:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object p1, p1, Landroidx/slice/widget/RemoteInputView;->c:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 47
     .line 48
@@ -171,7 +171,7 @@
 
     .line 53
     .line 54
-    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView$a;->g:Landroidx/slice/widget/RemoteInputView;
+    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView$a;->c:Landroidx/slice/widget/RemoteInputView;
 
     .line 55
     .line 56

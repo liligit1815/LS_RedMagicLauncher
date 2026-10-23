@@ -3,17 +3,19 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lcom/android/launcher3/util/a2;
+.implements Lkotlin/jvm/functions/Function0;
 
 
 # instance fields
-.field public final synthetic g:Lk2/k;
+.field public final synthetic c:J
 
-.field public final synthetic h:Ljava/lang/Runnable;
+.field public final synthetic m:Lj2/t;
+
+.field public final synthetic n:Li2/g;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lk2/k;Ljava/lang/Runnable;)V
+.method public synthetic constructor <init>(JLj2/t;Li2/g;)V
     .locals 0
 
     .line 1
@@ -22,35 +24,46 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lk2/j;->g:Lk2/k;
+    iput-wide p1, p0, Lk2/j;->c:J
 
     .line 5
     .line 6
-    iput-object p2, p0, Lk2/j;->h:Ljava/lang/Runnable;
+    iput-object p3, p0, Lk2/j;->m:Lj2/t;
 
     .line 7
     .line 8
+    iput-object p4, p0, Lk2/j;->n:Li2/g;
+
+    .line 9
+    .line 10
     return-void
 .end method
 
 
 # virtual methods
-.method public final close()V
-    .locals 1
+.method public final invoke()Ljava/lang/Object;
+    .locals 3
 
     .line 1
-    iget-object v0, p0, Lk2/j;->g:Lk2/k;
+    iget-wide v0, p0, Lk2/j;->c:J
 
     .line 2
     .line 3
-    iget-object p0, p0, Lk2/j;->h:Ljava/lang/Runnable;
+    iget-object v2, p0, Lk2/j;->m:Lj2/t;
 
     .line 4
     .line 5
-    invoke-static {v0, p0}, Lk2/k;->a(Lk2/k;Ljava/lang/Runnable;)V
+    iget-object p0, p0, Lk2/j;->n:Li2/g;
 
     .line 6
     .line 7
+    invoke-static {v0, v1, v2, p0}, Lk2/k;->a(JLj2/t;Li2/g;)Lw2/a;
+
     .line 8
-    return-void
+    .line 9
+    .line 10
+    move-result-object p0
+
+    .line 11
+    return-object p0
 .end method

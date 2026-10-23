@@ -1,89 +1,70 @@
-.class public final LQ/f;
-.super Ljava/lang/Object;
-.source "EmojiTextViewHelper.java"
+.class public Lq/f;
+.super Landroid/view/ActionMode;
+.source "SupportActionModeWrapper.java"
 
 
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        LQ/f$a;,
-        LQ/f$c;,
-        LQ/f$b;
+        Lq/f$a;
     }
 .end annotation
 
 
 # instance fields
-.field private final a:LQ/f$b;
+.field public final a:Landroid/content/Context;
+
+.field public final b:Lq/b;
 
 
 # direct methods
-.method public constructor <init>(Landroid/widget/TextView;Z)V
-    .locals 1
+.method public constructor <init>(Landroid/content/Context;Lq/b;)V
+    .locals 0
 
     .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Landroid/view/ActionMode;-><init>()V
 
     .line 2
     .line 3
     .line 4
-    const-string v0, "textView cannot be null"
+    iput-object p1, p0, Lq/f;->a:Landroid/content/Context;
 
     .line 5
     .line 6
-    invoke-static {p1, v0}, LI/h;->g(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    iput-object p2, p0, Lq/f;->b:Lq/b;
 
     .line 7
     .line 8
-    .line 9
-    if-nez p2, :cond_0
-
-    .line 10
-    .line 11
-    new-instance p2, LQ/f$c;
-
-    .line 12
-    .line 13
-    invoke-direct {p2, p1}, LQ/f$c;-><init>(Landroid/widget/TextView;)V
-
-    .line 14
-    .line 15
-    .line 16
-    iput-object p2, p0, LQ/f;->a:LQ/f$b;
-
-    .line 17
-    .line 18
-    return-void
-
-    .line 19
-    :cond_0
-    new-instance p2, LQ/f$a;
-
-    .line 20
-    .line 21
-    invoke-direct {p2, p1}, LQ/f$a;-><init>(Landroid/widget/TextView;)V
-
-    .line 22
-    .line 23
-    .line 24
-    iput-object p2, p0, LQ/f;->a:LQ/f$b;
-
-    .line 25
-    .line 26
     return-void
 .end method
 
 
 # virtual methods
-.method public a([Landroid/text/InputFilter;)[Landroid/text/InputFilter;
+.method public finish()V
     .locals 0
 
     .line 1
-    iget-object p0, p0, LQ/f;->a:LQ/f$b;
+    iget-object p0, p0, Lq/f;->b:Lq/b;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, LQ/f$b;->a([Landroid/text/InputFilter;)[Landroid/text/InputFilter;
+    invoke-virtual {p0}, Lq/b;->c()V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public getCustomView()Landroid/view/View;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lq/b;->d()Landroid/view/View;
 
     .line 4
     .line 5
@@ -94,15 +75,127 @@
     return-object p0
 .end method
 
-.method public b()Z
-    .locals 0
+.method public getMenu()Landroid/view/Menu;
+    .locals 2
 
     .line 1
-    iget-object p0, p0, LQ/f;->a:LQ/f$b;
+    new-instance v0, Lr/e;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, LQ/f$b;->b()Z
+    iget-object v1, p0, Lq/f;->a:Landroid/content/Context;
+
+    .line 4
+    .line 5
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 6
+    .line 7
+    invoke-virtual {p0}, Lq/b;->e()Landroid/view/Menu;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p0
+
+    .line 11
+    check-cast p0, Lt5/a;
+
+    .line 12
+    .line 13
+    invoke-direct {v0, v1, p0}, Lr/e;-><init>(Landroid/content/Context;Lt5/a;)V
+
+    .line 14
+    .line 15
+    .line 16
+    return-object v0
+.end method
+
+.method public getMenuInflater()Landroid/view/MenuInflater;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lq/b;->f()Landroid/view/MenuInflater;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    return-object p0
+.end method
+
+.method public getSubtitle()Ljava/lang/CharSequence;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lq/b;->g()Ljava/lang/CharSequence;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    return-object p0
+.end method
+
+.method public getTag()Ljava/lang/Object;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lq/b;->h()Ljava/lang/Object;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    return-object p0
+.end method
+
+.method public getTitle()Ljava/lang/CharSequence;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lq/b;->i()Ljava/lang/CharSequence;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    return-object p0
+.end method
+
+.method public getTitleOptionalHint()Z
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lq/b;->j()Z
 
     .line 4
     .line 5
@@ -113,15 +206,15 @@
     return p0
 .end method
 
-.method public c(Z)V
+.method public invalidate()V
     .locals 0
 
     .line 1
-    iget-object p0, p0, LQ/f;->a:LQ/f$b;
+    iget-object p0, p0, Lq/f;->b:Lq/b;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, LQ/f$b;->c(Z)V
+    invoke-virtual {p0}, Lq/b;->k()V
 
     .line 4
     .line 5
@@ -129,37 +222,113 @@
     return-void
 .end method
 
-.method public d(Z)V
+.method public isTitleOptional()Z
     .locals 0
 
     .line 1
-    iget-object p0, p0, LQ/f;->a:LQ/f$b;
+    iget-object p0, p0, Lq/f;->b:Lq/b;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, LQ/f$b;->d(Z)V
+    invoke-virtual {p0}, Lq/b;->l()Z
 
     .line 4
     .line 5
     .line 6
-    return-void
-.end method
-
-.method public e(Landroid/text/method/TransformationMethod;)Landroid/text/method/TransformationMethod;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LQ/f;->a:LQ/f$b;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, LQ/f$b;->e(Landroid/text/method/TransformationMethod;)Landroid/text/method/TransformationMethod;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object p0
+    move-result p0
 
     .line 7
-    return-object p0
+    return p0
+.end method
+
+.method public setCustomView(Landroid/view/View;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1}, Lq/b;->m(Landroid/view/View;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public setSubtitle(I)V
+    .locals 0
+
+    .line 2
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    invoke-virtual {p0, p1}, Lq/b;->n(I)V
+
+    return-void
+.end method
+
+.method public setSubtitle(Ljava/lang/CharSequence;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    invoke-virtual {p0, p1}, Lq/b;->o(Ljava/lang/CharSequence;)V
+
+    return-void
+.end method
+
+.method public setTag(Ljava/lang/Object;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1}, Lq/b;->p(Ljava/lang/Object;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public setTitle(I)V
+    .locals 0
+
+    .line 2
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    invoke-virtual {p0, p1}, Lq/b;->q(I)V
+
+    return-void
+.end method
+
+.method public setTitle(Ljava/lang/CharSequence;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    invoke-virtual {p0, p1}, Lq/b;->r(Ljava/lang/CharSequence;)V
+
+    return-void
+.end method
+
+.method public setTitleOptionalHint(Z)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lq/f;->b:Lq/b;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1}, Lq/b;->s(Z)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
 .end method

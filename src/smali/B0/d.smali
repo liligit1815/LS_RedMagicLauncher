@@ -1,113 +1,140 @@
-.class public LB0/d;
-.super LB0/n;
-.source "AnimatableIntegerValue.java"
-
-
-# annotations
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "LB0/n<",
-        "Ljava/lang/Integer;",
-        "Ljava/lang/Integer;",
-        ">;"
-    }
-.end annotation
+.class public final Lb0/d;
+.super Ljava/lang/Object;
+.source "RequestToPlatformConverter.java"
 
 
 # direct methods
-.method public constructor <init>(Ljava/util/List;)V
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/List<",
-            "LI0/a<",
-            "Ljava/lang/Integer;",
-            ">;>;)V"
-        }
-    .end annotation
+.method public static a(Ly/l;)Landroid/app/appsearch/GetByDocumentIdRequest;
+    .locals 3
 
     .line 1
-    invoke-direct {p0, p1}, LB0/n;-><init>(Ljava/util/List;)V
+    invoke-static {p0}, Ly5/h;->f(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 2
     .line 3
     .line 4
-    return-void
-.end method
+    new-instance v0, Landroid/app/appsearch/GetByDocumentIdRequest$Builder;
 
-
-# virtual methods
-.method public a()Ly0/a;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ly0/a<",
-            "Ljava/lang/Integer;",
-            "Ljava/lang/Integer;",
-            ">;"
-        }
-    .end annotation
-
-    .line 1
-    new-instance v0, Ly0/f;
-
-    .line 2
-    .line 3
-    iget-object p0, p0, LB0/n;->a:Ljava/util/List;
-
-    .line 4
     .line 5
-    invoke-direct {v0, p0}, Ly0/f;-><init>(Ljava/util/List;)V
-
     .line 6
+    invoke-virtual {p0}, Ly/l;->b()Ljava/lang/String;
+
     .line 7
     .line 8
-    return-object v0
-.end method
+    .line 9
+    move-result-object v1
 
-.method public bridge synthetic b()Z
-    .locals 0
+    .line 10
+    invoke-direct {v0, v1}, Landroid/app/appsearch/GetByDocumentIdRequest$Builder;-><init>(Ljava/lang/String;)V
 
-    .line 1
-    invoke-super {p0}, LB0/n;->b()Z
+    .line 11
+    .line 12
+    .line 13
+    invoke-virtual {p0}, Ly/l;->a()Ljava/util/Set;
 
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
+    .line 14
+    .line 15
+    .line 16
+    move-result-object v1
 
-    .line 5
-    return p0
-.end method
+    .line 17
+    invoke-virtual {v0, v1}, Landroid/app/appsearch/GetByDocumentIdRequest$Builder;->addIds(Ljava/util/Collection;)Landroid/app/appsearch/GetByDocumentIdRequest$Builder;
 
-.method public bridge synthetic getKeyframes()Ljava/util/List;
-    .locals 0
+    .line 18
+    .line 19
+    .line 20
+    move-result-object v0
 
-    .line 1
-    invoke-super {p0}, LB0/n;->getKeyframes()Ljava/util/List;
+    .line 21
+    invoke-virtual {p0}, Ly/l;->c()Ljava/util/Map;
 
-    .line 2
-    .line 3
-    .line 4
+    .line 22
+    .line 23
+    .line 24
     move-result-object p0
 
-    .line 5
-    return-object p0
-.end method
+    .line 25
+    invoke-interface {p0}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
-.method public bridge synthetic toString()Ljava/lang/String;
-    .locals 0
-
-    .line 1
-    invoke-super {p0}, LB0/n;->toString()Ljava/lang/String;
-
-    .line 2
-    .line 3
-    .line 4
+    .line 26
+    .line 27
+    .line 28
     move-result-object p0
 
-    .line 5
+    .line 29
+    invoke-interface {p0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    .line 30
+    .line 31
+    .line 32
+    move-result-object p0
+
+    .line 33
+    :goto_0
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 34
+    .line 35
+    .line 36
+    move-result v1
+
+    .line 37
+    if-eqz v1, :cond_0
+
+    .line 38
+    .line 39
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    .line 40
+    .line 41
+    .line 42
+    move-result-object v1
+
+    .line 43
+    check-cast v1, Ljava/util/Map$Entry;
+
+    .line 44
+    .line 45
+    invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+
+    .line 46
+    .line 47
+    .line 48
+    move-result-object v2
+
+    .line 49
+    check-cast v2, Ljava/lang/String;
+
+    .line 50
+    .line 51
+    invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+
+    .line 52
+    .line 53
+    .line 54
+    move-result-object v1
+
+    .line 55
+    check-cast v1, Ljava/util/Collection;
+
+    .line 56
+    .line 57
+    invoke-virtual {v0, v2, v1}, Landroid/app/appsearch/GetByDocumentIdRequest$Builder;->addProjection(Ljava/lang/String;Ljava/util/Collection;)Landroid/app/appsearch/GetByDocumentIdRequest$Builder;
+
+    .line 58
+    .line 59
+    .line 60
+    goto :goto_0
+
+    .line 61
+    :cond_0
+    invoke-virtual {v0}, Landroid/app/appsearch/GetByDocumentIdRequest$Builder;->build()Landroid/app/appsearch/GetByDocumentIdRequest;
+
+    .line 62
+    .line 63
+    .line 64
+    move-result-object p0
+
+    .line 65
     return-object p0
 .end method

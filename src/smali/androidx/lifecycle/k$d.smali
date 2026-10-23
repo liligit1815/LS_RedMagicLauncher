@@ -1,4 +1,4 @@
-.class abstract Landroidx/lifecycle/k$d;
+.class public abstract Landroidx/lifecycle/k$d;
 .super Ljava/lang/Object;
 .source "LiveData.java"
 
@@ -9,41 +9,41 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x402
+    accessFlags = 0x401
     name = "d"
 .end annotation
 
 
 # instance fields
-.field final g:LW/i;
+.field public final c:Lq6/l;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "LW/i<",
+            "Lq6/l<",
             "-TT;>;"
         }
     .end annotation
 .end field
 
-.field h:Z
+.field public m:Z
 
-.field i:I
+.field public n:I
 
-.field final synthetic j:Landroidx/lifecycle/k;
+.field public final synthetic o:Landroidx/lifecycle/k;
 
 
 # direct methods
-.method constructor <init>(Landroidx/lifecycle/k;LW/i;)V
+.method public constructor <init>(Landroidx/lifecycle/k;Lq6/l;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LW/i<",
+            "Lq6/l<",
             "-TT;>;)V"
         }
     .end annotation
 
     .line 1
-    iput-object p1, p0, Landroidx/lifecycle/k$d;->j:Landroidx/lifecycle/k;
+    iput-object p1, p0, Landroidx/lifecycle/k$d;->o:Landroidx/lifecycle/k;
 
     .line 2
     .line 3
@@ -55,11 +55,11 @@
     const/4 p1, -0x1
 
     .line 7
-    iput p1, p0, Landroidx/lifecycle/k$d;->i:I
+    iput p1, p0, Landroidx/lifecycle/k$d;->n:I
 
     .line 8
     .line 9
-    iput-object p2, p0, Landroidx/lifecycle/k$d;->g:LW/i;
+    iput-object p2, p0, Landroidx/lifecycle/k$d;->c:Lq6/l;
 
     .line 10
     .line 11
@@ -68,11 +68,11 @@
 
 
 # virtual methods
-.method a(Z)V
+.method public a(Z)V
     .locals 1
 
     .line 1
-    iget-boolean v0, p0, Landroidx/lifecycle/k$d;->h:Z
+    iget-boolean v0, p0, Landroidx/lifecycle/k$d;->m:Z
 
     .line 2
     .line 3
@@ -84,11 +84,11 @@
 
     .line 6
     :cond_0
-    iput-boolean p1, p0, Landroidx/lifecycle/k$d;->h:Z
+    iput-boolean p1, p0, Landroidx/lifecycle/k$d;->m:Z
 
     .line 7
     .line 8
-    iget-object v0, p0, Landroidx/lifecycle/k$d;->j:Landroidx/lifecycle/k;
+    iget-object v0, p0, Landroidx/lifecycle/k$d;->o:Landroidx/lifecycle/k;
 
     .line 9
     .line 10
@@ -112,7 +112,7 @@
     .line 16
     .line 17
     .line 18
-    iget-boolean p1, p0, Landroidx/lifecycle/k$d;->h:Z
+    iget-boolean p1, p0, Landroidx/lifecycle/k$d;->m:Z
 
     .line 19
     .line 20
@@ -120,7 +120,7 @@
 
     .line 21
     .line 22
-    iget-object p1, p0, Landroidx/lifecycle/k$d;->j:Landroidx/lifecycle/k;
+    iget-object p1, p0, Landroidx/lifecycle/k$d;->o:Landroidx/lifecycle/k;
 
     .line 23
     .line 24
@@ -134,12 +134,12 @@
     return-void
 .end method
 
-.method c()V
+.method public b()V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method abstract d()Z
+.method public abstract c()Z
 .end method

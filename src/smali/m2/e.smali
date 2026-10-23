@@ -1,17 +1,48 @@
-.class public final synthetic Lm2/e;
+.class public final Lm2/e;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
+.source "Utils.kt"
 
-# interfaces
-.implements Ljava/util/function/Consumer;
+
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u000c\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0008\u0008\u0001\u0018\u00002\u00020\u0001B\u0011\u0012\u0008\u0010\u0002\u001a\u0004\u0018\u00010\u0001\u00a2\u0006\u0004\u0008\u0003\u0010\u0004R$\u0010\u0002\u001a\u0004\u0018\u00010\u00018\u0006@\u0006X\u0086\u000e\u00a2\u0006\u0012\n\u0004\u0008\u0005\u0010\u0006\u001a\u0004\u0008\u0005\u0010\u0007\"\u0004\u0008\u0008\u0010\u0004\u00a8\u0006\t"
+    }
+    d2 = {
+        "Lm2/e;",
+        "",
+        "value",
+        "<init>",
+        "(Ljava/lang/Object;)V",
+        "a",
+        "Ljava/lang/Object;",
+        "()Ljava/lang/Object;",
+        "b",
+        "runtime"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # instance fields
-.field public final synthetic a:Ljava/util/ArrayList;
+.field public a:Ljava/lang/Object;
 
 
 # direct methods
-.method public synthetic constructor <init>(Ljava/util/ArrayList;)V
+.method static constructor <clinit>()V
+    .locals 0
+
+    .line 1
+    return-void
+.end method
+
+.method public constructor <init>(Ljava/lang/Object;)V
     .locals 0
 
     .line 1
@@ -20,7 +51,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lm2/e;->a:Ljava/util/ArrayList;
+    iput-object p1, p0, Lm2/e;->a:Ljava/lang/Object;
 
     .line 5
     .line 6
@@ -29,22 +60,24 @@
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
+.method public final a()Ljava/lang/Object;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lm2/e;->a:Ljava/util/ArrayList;
+    iget-object p0, p0, Lm2/e;->a:Ljava/lang/Object;
 
     .line 2
     .line 3
-    check-cast p1, Lz1/Z4;
+    return-object p0
+.end method
 
-    .line 4
-    .line 5
-    invoke-static {p0, p1}, Lm2/g;->b(Ljava/util/ArrayList;Lz1/Z4;)V
+.method public final b(Ljava/lang/Object;)V
+    .locals 0
 
-    .line 6
-    .line 7
-    .line 8
+    .line 1
+    iput-object p1, p0, Lm2/e;->a:Ljava/lang/Object;
+
+    .line 2
+    .line 3
     return-void
 .end method

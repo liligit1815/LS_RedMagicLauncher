@@ -1,4 +1,4 @@
-.class Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;
+.class public Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;
 .super Ljava/lang/Object;
 .source "RemoteInputView.java"
 
@@ -12,27 +12,27 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroid/view/inputmethod/InputMethodManager;
+.field public final synthetic c:Landroid/view/inputmethod/InputMethodManager;
 
-.field final synthetic h:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+.field public final synthetic m:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
 
 # direct methods
-.method constructor <init>(Landroidx/slice/widget/RemoteInputView$RemoteEditText;Landroid/view/inputmethod/InputMethodManager;)V
+.method public constructor <init>(Landroidx/slice/widget/RemoteInputView$RemoteEditText;Landroid/view/inputmethod/InputMethodManager;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->h:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->m:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->g:Landroid/view/inputmethod/InputMethodManager;
+    iput-object p2, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->c:Landroid/view/inputmethod/InputMethodManager;
 
     .line 4
     .line 5
@@ -50,11 +50,11 @@
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->g:Landroid/view/inputmethod/InputMethodManager;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->c:Landroid/view/inputmethod/InputMethodManager;
 
     .line 2
     .line 3
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->h:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->m:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 4
     .line 5
@@ -63,11 +63,11 @@
     .line 6
     .line 7
     .line 8
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->g:Landroid/view/inputmethod/InputMethodManager;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->c:Landroid/view/inputmethod/InputMethodManager;
 
     .line 9
     .line 10
-    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->h:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
+    iget-object p0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText$a;->m:Landroidx/slice/widget/RemoteInputView$RemoteEditText;
 
     .line 11
     .line 12

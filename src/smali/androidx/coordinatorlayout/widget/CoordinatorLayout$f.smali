@@ -15,9 +15,9 @@
 
 
 # instance fields
-.field a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+.field public a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
 
-.field b:Z
+.field public b:Z
 
 .field public c:I
 
@@ -25,31 +25,31 @@
 
 .field public e:I
 
-.field f:I
+.field public f:I
 
 .field public g:I
 
 .field public h:I
 
-.field i:I
+.field public i:I
 
-.field j:I
+.field public j:I
 
-.field k:Landroid/view/View;
+.field public k:Landroid/view/View;
 
-.field l:Landroid/view/View;
+.field public l:Landroid/view/View;
 
-.field private m:Z
+.field public m:Z
 
-.field private n:Z
+.field public n:Z
 
-.field private o:Z
+.field public o:Z
 
-.field private p:Z
+.field public p:Z
 
-.field final q:Landroid/graphics/Rect;
+.field public final q:Landroid/graphics/Rect;
 
-.field r:Ljava/lang/Object;
+.field public r:Ljava/lang/Object;
 
 
 # direct methods
@@ -94,7 +94,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 4
 
     .line 10
@@ -133,14 +133,14 @@
     iput-object v2, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->q:Landroid/graphics/Rect;
 
     .line 19
-    sget-object v2, Lw/c;->e:[I
+    sget-object v2, Lk5/c;->e:[I
 
     invoke-virtual {p1, p2, v2}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[I)Landroid/content/res/TypedArray;
 
     move-result-object v2
 
     .line 20
-    sget v3, Lw/c;->f:I
+    sget v3, Lk5/c;->f:I
 
     invoke-virtual {v2, v3, v0}, Landroid/content/res/TypedArray;->getInteger(II)I
 
@@ -149,7 +149,7 @@
     iput v3, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->c:I
 
     .line 21
-    sget v3, Lw/c;->g:I
+    sget v3, Lk5/c;->g:I
 
     invoke-virtual {v2, v3, v1}, Landroid/content/res/TypedArray;->getResourceId(II)I
 
@@ -158,7 +158,7 @@
     iput v3, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
 
     .line 22
-    sget v3, Lw/c;->h:I
+    sget v3, Lk5/c;->h:I
 
     invoke-virtual {v2, v3, v0}, Landroid/content/res/TypedArray;->getInteger(II)I
 
@@ -167,7 +167,7 @@
     iput v3, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->d:I
 
     .line 23
-    sget v3, Lw/c;->l:I
+    sget v3, Lk5/c;->l:I
 
     invoke-virtual {v2, v3, v1}, Landroid/content/res/TypedArray;->getInteger(II)I
 
@@ -176,7 +176,7 @@
     iput v1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->e:I
 
     .line 24
-    sget v1, Lw/c;->k:I
+    sget v1, Lk5/c;->k:I
 
     invoke-virtual {v2, v1, v0}, Landroid/content/res/TypedArray;->getInt(II)I
 
@@ -185,7 +185,7 @@
     iput v1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->g:I
 
     .line 25
-    sget v1, Lw/c;->j:I
+    sget v1, Lk5/c;->j:I
 
     invoke-virtual {v2, v1, v0}, Landroid/content/res/TypedArray;->getInt(II)I
 
@@ -194,7 +194,7 @@
     iput v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->h:I
 
     .line 26
-    sget v0, Lw/c;->i:I
+    sget v0, Lk5/c;->i:I
 
     invoke-virtual {v2, v0}, Landroid/content/res/TypedArray;->hasValue(I)Z
 
@@ -225,7 +225,7 @@
     if-eqz p1, :cond_1
 
     .line 30
-    invoke-virtual {p1, p0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->k(Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;)V
+    invoke-virtual {p1, p0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->onAttachedToLayoutParams(Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;)V
 
     :cond_1
     return-void
@@ -354,7 +354,383 @@
     return-void
 .end method
 
-.method private n(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
+
+# virtual methods
+.method public a()Z
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_0
+
+    .line 4
+    .line 5
+    iget p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
+
+    .line 6
+    .line 7
+    const/4 v0, -0x1
+
+    .line 8
+    if-eq p0, v0, :cond_0
+
+    .line 9
+    .line 10
+    const/4 p0, 0x1
+
+    .line 11
+    return p0
+
+    .line 12
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 13
+    return p0
+.end method
+
+.method public b(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;Landroid/view/View;)Z
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->l:Landroid/view/View;
+
+    .line 2
+    .line 3
+    if-eq p3, v0, :cond_1
+
+    .line 4
+    .line 5
+    invoke-static {p1}, Lz5/o0;->w(Landroid/view/View;)I
+
+    .line 6
+    .line 7
+    .line 8
+    move-result v0
+
+    .line 9
+    invoke-virtual {p0, p3, v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->s(Landroid/view/View;I)Z
+
+    .line 10
+    .line 11
+    .line 12
+    move-result v0
+
+    .line 13
+    if-nez v0, :cond_1
+
+    .line 14
+    .line 15
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+
+    .line 16
+    .line 17
+    if-eqz p0, :cond_0
+
+    .line 18
+    .line 19
+    invoke-virtual {p0, p1, p2, p3}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->layoutDependsOn(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;Landroid/view/View;)Z
+
+    .line 20
+    .line 21
+    .line 22
+    move-result p0
+
+    .line 23
+    if-eqz p0, :cond_0
+
+    .line 24
+    .line 25
+    goto :goto_0
+
+    .line 26
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 27
+    return p0
+
+    .line 28
+    :cond_1
+    :goto_0
+    const/4 p0, 0x1
+
+    .line 29
+    return p0
+.end method
+
+.method public c()Z
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_0
+
+    .line 4
+    .line 5
+    const/4 v0, 0x0
+
+    .line 6
+    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
+
+    .line 7
+    .line 8
+    :cond_0
+    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
+
+    .line 9
+    .line 10
+    return p0
+.end method
+
+.method public d(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;)Landroid/view/View;
+    .locals 2
+
+    .line 1
+    iget v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
+
+    .line 2
+    .line 3
+    const/4 v1, -0x1
+
+    .line 4
+    if-ne v0, v1, :cond_0
+
+    .line 5
+    .line 6
+    const/4 p1, 0x0
+
+    .line 7
+    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->l:Landroid/view/View;
+
+    .line 8
+    .line 9
+    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
+
+    .line 10
+    .line 11
+    return-object p1
+
+    .line 12
+    :cond_0
+    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
+
+    .line 13
+    .line 14
+    if-eqz v0, :cond_1
+
+    .line 15
+    .line 16
+    invoke-virtual {p0, p2, p1}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->t(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)Z
+
+    .line 17
+    .line 18
+    .line 19
+    move-result v0
+
+    .line 20
+    if-nez v0, :cond_2
+
+    .line 21
+    .line 22
+    :cond_1
+    invoke-virtual {p0, p2, p1}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->n(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
+
+    .line 23
+    .line 24
+    .line 25
+    :cond_2
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
+
+    .line 26
+    .line 27
+    return-object p0
+.end method
+
+.method public e()I
+    .locals 0
+
+    .line 1
+    iget p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
+
+    .line 2
+    .line 3
+    return p0
+.end method
+
+.method public f()Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public g()Z
+    .locals 0
+
+    .line 1
+    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->p:Z
+
+    .line 2
+    .line 3
+    return p0
+.end method
+
+.method public h()Landroid/graphics/Rect;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->q:Landroid/graphics/Rect;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public i(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;)Z
+    .locals 2
+
+    .line 1
+    iget-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
+
+    .line 2
+    .line 3
+    if-eqz v0, :cond_0
+
+    .line 4
+    .line 5
+    const/4 p0, 0x1
+
+    .line 6
+    return p0
+
+    .line 7
+    :cond_0
+    iget-object v1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+
+    .line 8
+    .line 9
+    if-eqz v1, :cond_1
+
+    .line 10
+    .line 11
+    invoke-virtual {v1, p1, p2}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->blocksInteractionBelow(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;)Z
+
+    .line 12
+    .line 13
+    .line 14
+    move-result p1
+
+    .line 15
+    goto :goto_0
+
+    .line 16
+    :cond_1
+    const/4 p1, 0x0
+
+    .line 17
+    :goto_0
+    or-int/2addr p1, v0
+
+    .line 18
+    iput-boolean p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
+
+    .line 19
+    .line 20
+    return p1
+.end method
+
+.method public j(I)Z
+    .locals 1
+
+    .line 1
+    if-eqz p1, :cond_1
+
+    .line 2
+    .line 3
+    const/4 v0, 0x1
+
+    .line 4
+    if-eq p1, v0, :cond_0
+
+    .line 5
+    .line 6
+    const/4 p0, 0x0
+
+    .line 7
+    return p0
+
+    .line 8
+    :cond_0
+    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->o:Z
+
+    .line 9
+    .line 10
+    return p0
+
+    .line 11
+    :cond_1
+    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->n:Z
+
+    .line 12
+    .line 13
+    return p0
+.end method
+
+.method public k()V
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->p:Z
+
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public l(I)V
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    invoke-virtual {p0, p1, v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->r(IZ)V
+
+    .line 3
+    .line 4
+    .line 5
+    return-void
+.end method
+
+.method public m()V
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
+
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public final n(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
     .locals 4
 
     .line 1
@@ -625,7 +1001,121 @@
     throw v0
 .end method
 
-.method private s(Landroid/view/View;I)Z
+.method public o(Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;)V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+
+    .line 2
+    .line 3
+    if-eq v0, p1, :cond_1
+
+    .line 4
+    .line 5
+    if-eqz v0, :cond_0
+
+    .line 6
+    .line 7
+    invoke-virtual {v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->onDetachedFromLayoutParams()V
+
+    .line 8
+    .line 9
+    .line 10
+    :cond_0
+    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
+
+    .line 11
+    .line 12
+    const/4 v0, 0x0
+
+    .line 13
+    iput-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->r:Ljava/lang/Object;
+
+    .line 14
+    .line 15
+    const/4 v0, 0x1
+
+    .line 16
+    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->b:Z
+
+    .line 17
+    .line 18
+    if-eqz p1, :cond_1
+
+    .line 19
+    .line 20
+    invoke-virtual {p1, p0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->onAttachedToLayoutParams(Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;)V
+
+    .line 21
+    .line 22
+    .line 23
+    :cond_1
+    return-void
+.end method
+
+.method public p(Z)V
+    .locals 0
+
+    .line 1
+    iput-boolean p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->p:Z
+
+    .line 2
+    .line 3
+    return-void
+.end method
+
+.method public q(Landroid/graphics/Rect;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->q:Landroid/graphics/Rect;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1}, Landroid/graphics/Rect;->set(Landroid/graphics/Rect;)V
+
+    .line 4
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public r(IZ)V
+    .locals 1
+
+    .line 1
+    if-eqz p1, :cond_1
+
+    .line 2
+    .line 3
+    const/4 v0, 0x1
+
+    .line 4
+    if-eq p1, v0, :cond_0
+
+    .line 5
+    .line 6
+    return-void
+
+    .line 7
+    :cond_0
+    iput-boolean p2, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->o:Z
+
+    .line 8
+    .line 9
+    return-void
+
+    .line 10
+    :cond_1
+    iput-boolean p2, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->n:Z
+
+    .line 11
+    .line 12
+    return-void
+.end method
+
+.method public final s(Landroid/view/View;I)Z
     .locals 0
 
     .line 1
@@ -645,7 +1135,7 @@
 
     .line 8
     .line 9
-    invoke-static {p1, p2}, LJ/h;->b(II)I
+    invoke-static {p1, p2}, Lz5/j;->b(II)I
 
     .line 10
     .line 11
@@ -661,7 +1151,7 @@
 
     .line 16
     .line 17
-    invoke-static {p0, p2}, LJ/h;->b(II)I
+    invoke-static {p0, p2}, Lz5/j;->b(II)I
 
     .line 18
     .line 19
@@ -689,7 +1179,7 @@
     return p0
 .end method
 
-.method private t(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)Z
+.method public final t(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)Z
     .locals 4
 
     .line 1
@@ -801,494 +1291,4 @@
 
     .line 47
     return p0
-.end method
-
-
-# virtual methods
-.method a()Z
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    iget p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
-
-    .line 6
-    .line 7
-    const/4 v0, -0x1
-
-    .line 8
-    if-eq p0, v0, :cond_0
-
-    .line 9
-    .line 10
-    const/4 p0, 0x1
-
-    .line 11
-    return p0
-
-    .line 12
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 13
-    return p0
-.end method
-
-.method b(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;Landroid/view/View;)Z
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->l:Landroid/view/View;
-
-    .line 2
-    .line 3
-    if-eq p3, v0, :cond_1
-
-    .line 4
-    .line 5
-    invoke-static {p1}, LJ/I;->v(Landroid/view/View;)I
-
-    .line 6
-    .line 7
-    .line 8
-    move-result v0
-
-    .line 9
-    invoke-direct {p0, p3, v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->s(Landroid/view/View;I)Z
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v0
-
-    .line 13
-    if-nez v0, :cond_1
-
-    .line 14
-    .line 15
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-
-    .line 16
-    .line 17
-    if-eqz p0, :cond_0
-
-    .line 18
-    .line 19
-    invoke-virtual {p0, p1, p2, p3}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->i(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;Landroid/view/View;)Z
-
-    .line 20
-    .line 21
-    .line 22
-    move-result p0
-
-    .line 23
-    if-eqz p0, :cond_0
-
-    .line 24
-    .line 25
-    goto :goto_0
-
-    .line 26
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 27
-    return p0
-
-    .line 28
-    :cond_1
-    :goto_0
-    const/4 p0, 0x1
-
-    .line 29
-    return p0
-.end method
-
-.method c()Z
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    const/4 v0, 0x0
-
-    .line 6
-    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
-
-    .line 7
-    .line 8
-    :cond_0
-    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
-
-    .line 9
-    .line 10
-    return p0
-.end method
-
-.method d(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;)Landroid/view/View;
-    .locals 2
-
-    .line 1
-    iget v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
-
-    .line 2
-    .line 3
-    const/4 v1, -0x1
-
-    .line 4
-    if-ne v0, v1, :cond_0
-
-    .line 5
-    .line 6
-    const/4 p1, 0x0
-
-    .line 7
-    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->l:Landroid/view/View;
-
-    .line 8
-    .line 9
-    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
-
-    .line 10
-    .line 11
-    return-object p1
-
-    .line 12
-    :cond_0
-    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
-
-    .line 13
-    .line 14
-    if-eqz v0, :cond_1
-
-    .line 15
-    .line 16
-    invoke-direct {p0, p2, p1}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->t(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)Z
-
-    .line 17
-    .line 18
-    .line 19
-    move-result v0
-
-    .line 20
-    if-nez v0, :cond_2
-
-    .line 21
-    .line 22
-    :cond_1
-    invoke-direct {p0, p2, p1}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->n(Landroid/view/View;Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
-
-    .line 23
-    .line 24
-    .line 25
-    :cond_2
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->k:Landroid/view/View;
-
-    .line 26
-    .line 27
-    return-object p0
-.end method
-
-.method public e()I
-    .locals 0
-
-    .line 1
-    iget p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->f:I
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method public f()Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method g()Z
-    .locals 0
-
-    .line 1
-    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->p:Z
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method h()Landroid/graphics/Rect;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->q:Landroid/graphics/Rect;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method i(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;)Z
-    .locals 2
-
-    .line 1
-    iget-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    const/4 p0, 0x1
-
-    .line 6
-    return p0
-
-    .line 7
-    :cond_0
-    iget-object v1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-
-    .line 8
-    .line 9
-    if-eqz v1, :cond_1
-
-    .line 10
-    .line 11
-    invoke-virtual {v1, p1, p2}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->e(Landroidx/coordinatorlayout/widget/CoordinatorLayout;Landroid/view/View;)Z
-
-    .line 12
-    .line 13
-    .line 14
-    move-result p1
-
-    .line 15
-    goto :goto_0
-
-    .line 16
-    :cond_1
-    const/4 p1, 0x0
-
-    .line 17
-    :goto_0
-    or-int/2addr p1, v0
-
-    .line 18
-    iput-boolean p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
-
-    .line 19
-    .line 20
-    return p1
-.end method
-
-.method j(I)Z
-    .locals 1
-
-    .line 1
-    if-eqz p1, :cond_1
-
-    .line 2
-    .line 3
-    const/4 v0, 0x1
-
-    .line 4
-    if-eq p1, v0, :cond_0
-
-    .line 5
-    .line 6
-    const/4 p0, 0x0
-
-    .line 7
-    return p0
-
-    .line 8
-    :cond_0
-    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->o:Z
-
-    .line 9
-    .line 10
-    return p0
-
-    .line 11
-    :cond_1
-    iget-boolean p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->n:Z
-
-    .line 12
-    .line 13
-    return p0
-.end method
-
-.method k()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->p:Z
-
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method l(I)V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    invoke-virtual {p0, p1, v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->r(IZ)V
-
-    .line 3
-    .line 4
-    .line 5
-    return-void
-.end method
-
-.method m()V
-    .locals 1
-
-    .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->m:Z
-
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method public o(Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;)V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-
-    .line 2
-    .line 3
-    if-eq v0, p1, :cond_1
-
-    .line 4
-    .line 5
-    if-eqz v0, :cond_0
-
-    .line 6
-    .line 7
-    invoke-virtual {v0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->n()V
-
-    .line 8
-    .line 9
-    .line 10
-    :cond_0
-    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;
-
-    .line 11
-    .line 12
-    const/4 v0, 0x0
-
-    .line 13
-    iput-object v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->r:Ljava/lang/Object;
-
-    .line 14
-    .line 15
-    const/4 v0, 0x1
-
-    .line 16
-    iput-boolean v0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->b:Z
-
-    .line 17
-    .line 18
-    if-eqz p1, :cond_1
-
-    .line 19
-    .line 20
-    invoke-virtual {p1, p0}, Landroidx/coordinatorlayout/widget/CoordinatorLayout$c;->k(Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;)V
-
-    .line 21
-    .line 22
-    .line 23
-    :cond_1
-    return-void
-.end method
-
-.method p(Z)V
-    .locals 0
-
-    .line 1
-    iput-boolean p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->p:Z
-
-    .line 2
-    .line 3
-    return-void
-.end method
-
-.method q(Landroid/graphics/Rect;)V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->q:Landroid/graphics/Rect;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroid/graphics/Rect;->set(Landroid/graphics/Rect;)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
-.end method
-
-.method r(IZ)V
-    .locals 1
-
-    .line 1
-    if-eqz p1, :cond_1
-
-    .line 2
-    .line 3
-    const/4 v0, 0x1
-
-    .line 4
-    if-eq p1, v0, :cond_0
-
-    .line 5
-    .line 6
-    return-void
-
-    .line 7
-    :cond_0
-    iput-boolean p2, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->o:Z
-
-    .line 8
-    .line 9
-    return-void
-
-    .line 10
-    :cond_1
-    iput-boolean p2, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$f;->n:Z
-
-    .line 11
-    .line 12
-    return-void
 .end method

@@ -12,9 +12,9 @@
 
 
 # instance fields
-.field private a:Landroid/util/SparseIntArray;
+.field public a:Landroid/util/SparseIntArray;
 
-.field private b:Ljava/util/HashMap;
+.field public b:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/HashMap<",

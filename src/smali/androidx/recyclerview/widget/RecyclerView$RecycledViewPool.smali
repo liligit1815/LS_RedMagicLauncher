@@ -150,7 +150,7 @@
 
 
 # virtual methods
-.method attach()V
+.method public attach()V
     .locals 1
 
     .line 1
@@ -169,7 +169,7 @@
     return-void
 .end method
 
-.method attachForPoolingContainer(Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
+.method public attachForPoolingContainer(Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -273,7 +273,7 @@
 
     .line 37
     .line 38
-    invoke-static {v3}, LN/a;->a(Landroid/view/View;)V
+    invoke-static {v3}, Lg6/a;->b(Landroid/view/View;)V
 
     .line 39
     .line 40
@@ -302,7 +302,7 @@
     return-void
 .end method
 
-.method detach()V
+.method public detach()V
     .locals 1
 
     .line 1
@@ -321,7 +321,7 @@
     return-void
 .end method
 
-.method detachForPoolingContainer(Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
+.method public detachForPoolingContainer(Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -444,7 +444,7 @@
 
     .line 54
     .line 55
-    invoke-static {v2}, LN/a;->a(Landroid/view/View;)V
+    invoke-static {v2}, Lg6/a;->b(Landroid/view/View;)V
 
     .line 56
     .line 57
@@ -468,7 +468,7 @@
     return-void
 .end method
 
-.method factorInBindTime(IJ)V
+.method public factorInBindTime(IJ)V
     .locals 2
 
     .line 1
@@ -499,7 +499,7 @@
     return-void
 .end method
 
-.method factorInCreateTime(IJ)V
+.method public factorInCreateTime(IJ)V
     .locals 2
 
     .line 1
@@ -672,7 +672,7 @@
     return p0
 .end method
 
-.method onAdapterChanged(Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
+.method public onAdapterChanged(Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -786,7 +786,7 @@
 
     .line 28
     .line 29
-    invoke-static {p0}, LN/a;->a(Landroid/view/View;)V
+    invoke-static {p0}, Lg6/a;->b(Landroid/view/View;)V
 
     .line 30
     .line 31
@@ -850,7 +850,7 @@
     return-void
 .end method
 
-.method runningAverage(JJ)J
+.method public runningAverage(JJ)J
     .locals 4
 
     .line 1
@@ -950,7 +950,7 @@
     return-void
 .end method
 
-.method size()I
+.method public size()I
     .locals 3
 
     .line 1
@@ -1024,7 +1024,7 @@
     return v1
 .end method
 
-.method willBindInTime(IJJ)Z
+.method public willBindInTime(IJJ)Z
     .locals 2
 
     .line 1
@@ -1081,7 +1081,7 @@
     return p0
 .end method
 
-.method willCreateInTime(IJJ)Z
+.method public willCreateInTime(IJJ)Z
     .locals 2
 
     .line 1

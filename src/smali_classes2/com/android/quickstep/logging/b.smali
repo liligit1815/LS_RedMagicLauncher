@@ -3,11 +3,17 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Function;
+.implements Ljava/util/function/BiConsumer;
+
+
+# instance fields
+.field public final synthetic a:Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
+
+.field public final synthetic b:Landroid/content/SharedPreferences;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;Landroid/content/SharedPreferences;)V
     .locals 0
 
     .line 1
@@ -16,26 +22,43 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lcom/android/quickstep/logging/b;->a:Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
+
+    .line 5
+    .line 6
+    iput-object p2, p0, Lcom/android/quickstep/logging/b;->b:Landroid/content/SharedPreferences;
+
+    .line 7
+    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final apply(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+.method public final accept(Ljava/lang/Object;Ljava/lang/Object;)V
+    .locals 1
 
     .line 1
-    check-cast p1, Lcom/android/launcher3/util/C1;
+    iget-object v0, p0, Lcom/android/quickstep/logging/b;->a:Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 2
     .line 3
-    invoke-static {p1}, Lcom/android/quickstep/logging/SettingsChangeLogger;->b(Lcom/android/launcher3/util/C1;)Lcom/android/launcher3/logging/StatsLogManager$e;
+    iget-object p0, p0, Lcom/android/quickstep/logging/b;->b:Landroid/content/SharedPreferences;
 
     .line 4
     .line 5
-    .line 6
-    move-result-object p0
+    check-cast p1, Ljava/lang/String;
 
+    .line 6
     .line 7
-    return-object p0
+    check-cast p2, Lcom/android/quickstep/logging/SettingsChangeLogger$LoggablePref;
+
+    .line 8
+    .line 9
+    invoke-static {v0, p0, p1, p2}, Lcom/android/quickstep/logging/SettingsChangeLogger;->a(Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;Landroid/content/SharedPreferences;Ljava/lang/String;Lcom/android/quickstep/logging/SettingsChangeLogger$LoggablePref;)V
+
+    .line 10
+    .line 11
+    .line 12
+    return-void
 .end method

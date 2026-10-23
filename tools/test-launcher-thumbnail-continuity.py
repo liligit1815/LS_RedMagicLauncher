@@ -191,7 +191,12 @@ with tempfile.TemporaryDirectory(prefix='ls-thumbnail-continuity-') as folder:
 
 # The extension must precede the existing unload decision, with the original
 # flag as input (neither replace the OEM loader nor skip its cleanup lifecycle).
-recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
-loader = recents.split('.method private synthetic lambda$loadVisibleTaskData$16(', 1)[1].split('.end method', 1)[0]
-assert re.search(r':goto_0\s+(?:#[^\n]*\n\s*)*invoke-static \{p0, p8, p1\}[^\n]*->shouldKeepTaskData[^\n]*\n\s*move-result p1\s+if-eqz p1, :cond_9', loader)
-assert '->onTaskListVisibilityChanged(ZI)V' in loader
+recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+loader = recents.split('.method public loadVisibleTaskData()V', 1)[1].split('.end method', 1)[0]
+assert '->getVisibleTaskIds()' in loader and '->updateVisibleTasks(' in loader
+utils = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsViewUtils.smali').read_text(encoding='utf-8')
+visible = utils.split('.method public final getVisibleTaskIds()', 1)[1].split('.end method', 1)[0]
+assert 'LsPlatform12;->visibleTaskIds(' in visible
+bridge = (ROOT / 'helper-src/main/com/android/quickstep/views/LsPlatform12.java').read_text(encoding='utf-8')
+assert 'LsNativeStack.shouldKeepTaskData(' in bridge
+print('PASS OEM12 ViewModel receives exposed and reflow-destination thumbnail ids')

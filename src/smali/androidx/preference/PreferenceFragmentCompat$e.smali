@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract h(Landroidx/preference/PreferenceFragmentCompat;Landroidx/preference/Preference;)Z
+.method public abstract c(Landroidx/preference/PreferenceFragmentCompat;Landroidx/preference/Preference;)Z
 .end method

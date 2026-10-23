@@ -36,7 +36,7 @@
 
 
 # instance fields
-.field final g:Landroid/os/Bundle;
+.field public final c:Landroid/os/Bundle;
 
 
 # direct methods
@@ -60,7 +60,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
+.method public constructor <init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
     .locals 0
 
     .line 1
@@ -77,7 +77,7 @@
     move-result-object p1
 
     .line 8
-    iput-object p1, p0, Landroidx/fragment/app/n$o;->g:Landroid/os/Bundle;
+    iput-object p1, p0, Landroidx/fragment/app/n$o;->c:Landroid/os/Bundle;
 
     .line 9
     .line 10
@@ -114,7 +114,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/n$o;->g:Landroid/os/Bundle;
+    iget-object p0, p0, Landroidx/fragment/app/n$o;->c:Landroid/os/Bundle;
 
     .line 2
     .line 3

@@ -1,0 +1,56 @@
+.class public final synthetic Lja/j;
+.super Ljava/lang/Object;
+.source "R8$$SyntheticClass"
+
+# interfaces
+.implements Lcom/android/launcher3/icons/BitmapRenderer;
+
+
+# instance fields
+.field public final synthetic a:I
+
+.field public final synthetic b:Landroid/graphics/ColorFilter;
+
+
+# direct methods
+.method public synthetic constructor <init>(ILandroid/graphics/ColorFilter;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    iput p1, p0, Lja/j;->a:I
+
+    .line 5
+    .line 6
+    iput-object p2, p0, Lja/j;->b:Landroid/graphics/ColorFilter;
+
+    .line 7
+    .line 8
+    return-void
+.end method
+
+
+# virtual methods
+.method public final draw(Landroid/graphics/Canvas;)V
+    .locals 1
+
+    .line 1
+    iget v0, p0, Lja/j;->a:I
+
+    .line 2
+    .line 3
+    iget-object p0, p0, Lja/j;->b:Landroid/graphics/ColorFilter;
+
+    .line 4
+    .line 5
+    invoke-static {v0, p0, p1}, Lcom/android/launcher3/icons/GraphicsUtils;->c(ILandroid/graphics/ColorFilter;Landroid/graphics/Canvas;)V
+
+    .line 6
+    .line 7
+    .line 8
+    return-void
+.end method

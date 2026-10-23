@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 def check_mini_window_bridge():
     """Execute the actual tiny Smali bridge against observable OEM-update effects."""
-    task_smali = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+    task_smali = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
     match = re.search(r'(?ms)^\.method public final isNativeStackMiniWindowAvailable\(\)Z\n(.*?)^\.end method', task_smali)
     assert match, 'Missing native mini-window eligibility bridge'
     code = [line.strip() for line in match.group(1).splitlines()
@@ -90,6 +90,10 @@ def check_mini_window_bridge():
 check_mini_window_bridge()
 source = args.source.read_text(encoding='utf-8')
 source = re.sub(r'^(?:package|import) .*?;\s*$', '', source, flags=re.M)
+source = re.sub(r'\bAbstractFloatingView\b', 'a', source)
+source = re.sub(r'\bSystemShortcut\b', 'P', source).replace('P.AppInfo', 'P.b')
+source = source.replace('params.setIgnoreInsets(true)', 'params.a(true)')
+source = source.replace('com.android.launcher3.mfvUtil.MFVUtils.getZteSceneDecisionFeature()', 'x1.O.Q0()')
 source = 'import java.util.*;\nimport java.lang.ref.WeakReference;\n' + source
 
 stubs = r'''
@@ -291,7 +295,7 @@ class TaskShortcutFactory {
         boolean initialized,locked=true,seenMode;int stateQueries;String labelOverride;
         boolean isAppLocked(TaskView task,boolean mode){stateQueries++;seenMode=mode;return locked;}
         void init(ViewGroup holder){
-            if(!(holder.findViewById(0x7f0b02fc) instanceof ImageView)||!(holder.findViewById(0x7f0b05e0) instanceof TextView))throw new AssertionError("OEM lock view ids/types missing");
+            if(!(holder.findViewById(0x7f0b0319) instanceof ImageView)||!(holder.findViewById(0x7f0b062b) instanceof TextView))throw new AssertionError("OEM lock view ids/types missing");
             initialized=true;
         }
         @Override void setIconAndContentDescriptionFor(ImageView v){if(!initialized)throw new AssertionError("lock rendered before state initialized");super.setIconAndContentDescriptionFor(v);v.setContentDescription(labelOverride!=null?labelOverride:locked?"unlock":"lock");}

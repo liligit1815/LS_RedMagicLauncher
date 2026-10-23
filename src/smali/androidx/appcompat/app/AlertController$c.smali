@@ -1,4 +1,4 @@
-.class final Landroidx/appcompat/app/AlertController$c;
+.class public final Landroidx/appcompat/app/AlertController$c;
 .super Landroid/os/Handler;
 .source "AlertController.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
+    accessFlags = 0x19
     name = "c"
 .end annotation
 
 
 # instance fields
-.field private a:Ljava/lang/ref/WeakReference;
+.field public a:Ljava/lang/ref/WeakReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/ref/WeakReference<",

@@ -23,7 +23,7 @@
 
 
 # direct methods
-.method private constructor <init>(Ljava/lang/String;)V
+.method public constructor <init>(Ljava/lang/String;)V
     .locals 0
 
     .line 2
@@ -32,7 +32,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Ljava/lang/String;Landroidx/dynamicanimation/animation/e$g;)V
+.method public synthetic constructor <init>(Ljava/lang/String;Landroidx/dynamicanimation/animation/e$g;)V
     .locals 0
 
     .line 1

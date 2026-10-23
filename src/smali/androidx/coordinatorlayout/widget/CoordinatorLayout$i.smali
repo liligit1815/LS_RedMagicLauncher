@@ -1,4 +1,4 @@
-.class Landroidx/coordinatorlayout/widget/CoordinatorLayout$i;
+.class public Landroidx/coordinatorlayout/widget/CoordinatorLayout$i;
 .super Ljava/lang/Object;
 .source "CoordinatorLayout.java"
 
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "i"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -45,7 +45,7 @@
     .locals 0
 
     .line 1
-    invoke-static {p1}, LJ/I;->I(Landroid/view/View;)F
+    invoke-static {p1}, Lz5/o0;->J(Landroid/view/View;)F
 
     .line 2
     .line 3
@@ -53,7 +53,7 @@
     move-result p0
 
     .line 5
-    invoke-static {p2}, LJ/I;->I(Landroid/view/View;)F
+    invoke-static {p2}, Lz5/o0;->J(Landroid/view/View;)F
 
     .line 6
     .line 7

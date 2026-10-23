@@ -1,49 +1,45 @@
-.class public final synthetic LT0/o;
+.class public interface abstract Lt0/o;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Lcom/android/launcher3/util/Y0$a;
+.source "SnapPosition.kt"
 
 
-# instance fields
-.field public final synthetic a:Landroid/view/View;
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lt0/o$a;,
+        Lt0/o$b;
+    }
+.end annotation
 
-
-# direct methods
-.method public synthetic constructor <init>(Landroid/view/View;)V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 2
-    .line 3
-    .line 4
-    iput-object p1, p0, LT0/o;->a:Landroid/view/View;
-
-    .line 5
-    .line 6
-    return-void
-.end method
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0010\u0008\n\u0002\u0008\n\u0008g\u0018\u00002\u00020\u0001:\u0002\u000b\tJ?\u0010\t\u001a\u00020\u00022\u0006\u0010\u0003\u001a\u00020\u00022\u0006\u0010\u0004\u001a\u00020\u00022\u0006\u0010\u0005\u001a\u00020\u00022\u0006\u0010\u0006\u001a\u00020\u00022\u0006\u0010\u0007\u001a\u00020\u00022\u0006\u0010\u0008\u001a\u00020\u0002H&\u00a2\u0006\u0004\u0008\t\u0010\n\u00f8\u0001\u0000\u0082\u0002\u0006\n\u0004\u0008!0\u0001\u00a8\u0006\u000c\u00c0\u0006\u0001"
+    }
+    d2 = {
+        "Lt0/o;",
+        "",
+        "",
+        "layoutSize",
+        "itemSize",
+        "beforeContentPadding",
+        "afterContentPadding",
+        "itemIndex",
+        "itemCount",
+        "a",
+        "(IIIIII)I",
+        "b",
+        "foundation"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # virtual methods
-.method public final a(Lcom/android/launcher3/model/data/y;Landroid/view/View;)Z
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LT0/o;->a:Landroid/view/View;
-
-    .line 2
-    .line 3
-    invoke-static {p0, p1, p2}, LT0/p;->t(Landroid/view/View;Lcom/android/launcher3/model/data/y;Landroid/view/View;)Z
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    return p0
+.method public abstract a(IIIIII)I
 .end method

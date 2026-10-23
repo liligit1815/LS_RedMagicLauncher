@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/Toolbar$i$a;
+.class public Landroidx/appcompat/widget/Toolbar$i$a;
 .super Ljava/lang/Object;
 .source "Toolbar.java"
 
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1

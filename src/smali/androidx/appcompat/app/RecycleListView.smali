@@ -15,19 +15,19 @@
 
 
 # instance fields
-.field private i:Lb4/e;
+.field public n:Lwh/e;
 
-.field private j:I
+.field public o:I
 
-.field private k:Z
+.field public p:Z
 
-.field private l:Z
+.field public q:Z
 
-.field private m:Lc4/h;
+.field public r:Lxh/h;
 
-.field private n:Lc4/c;
+.field public s:Lxh/c;
 
-.field private o:Landroid/view/GestureDetector;
+.field public t:Landroid/view/GestureDetector;
 
 
 # direct methods
@@ -43,25 +43,25 @@
     const/4 p2, 0x0
 
     .line 5
-    iput p2, p0, Landroidx/appcompat/app/RecycleListView;->j:I
+    iput p2, p0, Landroidx/appcompat/app/RecycleListView;->o:I
 
     .line 6
     .line 7
     const/4 v0, 0x1
 
     .line 8
-    iput-boolean v0, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iput-boolean v0, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 9
     .line 10
-    iput-boolean v0, p0, Landroidx/appcompat/app/RecycleListView;->l:Z
+    iput-boolean v0, p0, Landroidx/appcompat/app/RecycleListView;->q:Z
 
     .line 11
     .line 12
     const/4 v1, 0x0
 
     .line 13
-    iput-object v1, p0, Landroidx/appcompat/app/RecycleListView;->n:Lc4/c;
+    iput-object v1, p0, Landroidx/appcompat/app/RecycleListView;->s:Lxh/c;
 
     .line 14
     .line 15
@@ -105,16 +105,16 @@
     .line 35
     .line 36
     .line 37
-    new-instance v2, Lb4/e;
+    new-instance v2, Lwh/e;
 
     .line 38
     .line 39
-    invoke-direct {v2}, Lb4/e;-><init>()V
+    invoke-direct {v2}, Lwh/e;-><init>()V
 
     .line 40
     .line 41
     .line 42
-    iput-object v2, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iput-object v2, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 43
     .line 44
@@ -125,12 +125,12 @@
     const/4 v5, 0x0
 
     .line 47
-    invoke-virtual {v2, p0, v4, v5}, Lb4/e;->s(Landroid/view/View;Landroidx/dynamicanimation/animation/g;F)V
+    invoke-virtual {v2, p0, v4, v5}, Lwh/e;->s(Landroid/view/View;Landroidx/dynamicanimation/animation/g;F)V
 
     .line 48
     .line 49
     .line 50
-    iget-object v2, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object v2, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 51
     .line 52
@@ -142,12 +142,12 @@
     move-result-object v4
 
     .line 56
-    invoke-virtual {v2, v4}, Lb4/e;->j(Landroid/content/Context;)V
+    invoke-virtual {v2, v4}, Lwh/e;->j(Landroid/content/Context;)V
 
     .line 57
     .line 58
     .line 59
-    invoke-static {p1}, Lcom/zte/mifavor/widget/s;->d(Landroid/content/Context;)Ljava/lang/Boolean;
+    invoke-static {p1}, Lcom/zte/mifavor/widget/r;->d(Landroid/content/Context;)Ljava/lang/Boolean;
 
     .line 60
     .line 61
@@ -163,11 +163,11 @@
     move-result p1
 
     .line 67
-    iput-boolean p1, p0, Landroidx/appcompat/app/RecycleListView;->l:Z
+    iput-boolean p1, p0, Landroidx/appcompat/app/RecycleListView;->q:Z
 
     .line 68
     .line 69
-    iget-boolean v2, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iget-boolean v2, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 70
     .line 71
@@ -183,15 +183,15 @@
 
     .line 76
     :cond_0
-    iput-boolean p2, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iput-boolean p2, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 77
     .line 78
-    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object p1, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 79
     .line 80
-    invoke-virtual {p1, p2}, Lb4/e;->B(Z)V
+    invoke-virtual {p1, p2}, Lwh/e;->B(Z)V
 
     .line 81
     .line 82
@@ -212,7 +212,7 @@
 
     .line 90
     .line 91
-    invoke-direct {v0, p0, v1}, Landroidx/appcompat/app/RecycleListView$b;-><init>(Landroidx/appcompat/app/RecycleListView;Landroidx/appcompat/app/q;)V
+    invoke-direct {v0, p0, v1}, Landroidx/appcompat/app/RecycleListView$b;-><init>(Landroidx/appcompat/app/RecycleListView;Ll/p;)V
 
     .line 92
     .line 93
@@ -222,7 +222,7 @@
     .line 95
     .line 96
     .line 97
-    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView;->o:Landroid/view/GestureDetector;
+    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView;->t:Landroid/view/GestureDetector;
 
     .line 98
     .line 99
@@ -244,7 +244,7 @@
     .line 107
     .line 108
     .line 109
-    iget-boolean p2, p0, Landroidx/appcompat/app/RecycleListView;->l:Z
+    iget-boolean p2, p0, Landroidx/appcompat/app/RecycleListView;->q:Z
 
     .line 110
     .line 111
@@ -262,7 +262,7 @@
     .line 117
     .line 118
     .line 119
-    iget-boolean p0, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iget-boolean p0, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 120
     .line 121
@@ -287,44 +287,44 @@
     return-void
 .end method
 
-.method static bridge synthetic b(Landroidx/appcompat/app/RecycleListView;)Z
+.method public static bridge synthetic b(Landroidx/appcompat/app/RecycleListView;)Z
     .locals 0
 
     .line 1
-    iget-boolean p0, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iget-boolean p0, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 2
     .line 3
     return p0
 .end method
 
-.method static bridge synthetic c(Landroidx/appcompat/app/RecycleListView;)Lb4/e;
+.method public static bridge synthetic c(Landroidx/appcompat/app/RecycleListView;)Lwh/e;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 2
     .line 3
     return-object p0
 .end method
 
-.method static bridge synthetic d(Landroidx/appcompat/app/RecycleListView;)I
+.method public static bridge synthetic d(Landroidx/appcompat/app/RecycleListView;)I
     .locals 0
 
     .line 1
-    iget p0, p0, Landroidx/appcompat/app/RecycleListView;->j:I
+    iget p0, p0, Landroidx/appcompat/app/RecycleListView;->o:I
 
     .line 2
     .line 3
     return p0
 .end method
 
-.method static bridge synthetic e(Landroidx/appcompat/app/RecycleListView;I)V
+.method public static bridge synthetic e(Landroidx/appcompat/app/RecycleListView;I)V
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/appcompat/app/RecycleListView;->j:I
+    iput p1, p0, Landroidx/appcompat/app/RecycleListView;->o:I
 
     .line 2
     .line 3
@@ -353,11 +353,11 @@
 
     .line 8
     :cond_0
-    iget-object v0, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object v0, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 9
     .line 10
-    invoke-virtual {v0}, Lb4/e;->f()V
+    invoke-virtual {v0}, Lwh/e;->f()V
 
     .line 11
     .line 12
@@ -365,7 +365,7 @@
     const/4 v0, 0x0
 
     .line 14
-    iput v0, p0, Landroidx/appcompat/app/RecycleListView;->j:I
+    iput v0, p0, Landroidx/appcompat/app/RecycleListView;->o:I
 
     .line 15
     .line 16
@@ -385,11 +385,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->n:Lc4/c;
+    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->s:Lxh/c;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lb4/f;->a(Lc4/c;)Z
+    invoke-static {p0}, Lwh/f;->a(Lxh/c;)Z
 
     .line 4
     .line 5
@@ -404,7 +404,7 @@
     .locals 0
 
     .line 1
-    iget-boolean p0, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iget-boolean p0, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 2
     .line 3
@@ -415,11 +415,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lb4/f;->b(Lb4/e;)Z
+    invoke-static {p0}, Lwh/f;->b(Lwh/e;)Z
 
     .line 4
     .line 5
@@ -434,11 +434,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lb4/f;->d(Lb4/e;)Z
+    invoke-static {p0}, Lwh/f;->d(Lwh/e;)Z
 
     .line 4
     .line 5
@@ -449,7 +449,7 @@
     return p0
 .end method
 
-.method protected onFinishInflate()V
+.method public onFinishInflate()V
     .locals 2
 
     .line 1
@@ -476,7 +476,7 @@
     .line 12
     .line 13
     .line 14
-    iget-boolean v1, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iget-boolean v1, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 15
     .line 16
@@ -502,7 +502,7 @@
     .line 26
     .line 27
     .line 28
-    iget-boolean v0, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iget-boolean v0, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 29
     .line 30
@@ -580,7 +580,7 @@
     .line 25
     .line 26
     .line 27
-    iget-object v0, p0, Landroidx/appcompat/app/RecycleListView;->o:Landroid/view/GestureDetector;
+    iget-object v0, p0, Landroidx/appcompat/app/RecycleListView;->t:Landroid/view/GestureDetector;
 
     .line 28
     .line 29
@@ -623,18 +623,18 @@
     invoke-super {p0, p1}, Landroid/widget/ListView;->setAdapter(Landroid/widget/ListAdapter;)V
 
     .line 3
-    new-instance p1, Lc4/h;
+    new-instance p1, Lxh/h;
 
-    invoke-direct {p1, p0}, Lc4/h;-><init>(Landroid/view/View;)V
+    invoke-direct {p1, p0}, Lxh/h;-><init>(Landroid/view/View;)V
 
-    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView;->m:Lc4/h;
+    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView;->r:Lxh/h;
 
     .line 4
-    invoke-virtual {p1}, Lc4/h;->b()Lc4/c;
+    invoke-virtual {p1}, Lxh/h;->b()Lxh/c;
 
     move-result-object p1
 
-    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView;->n:Lc4/c;
+    iput-object p1, p0, Landroidx/appcompat/app/RecycleListView;->s:Lxh/c;
 
     return-void
 .end method
@@ -647,7 +647,7 @@
 
     .line 2
     .line 3
-    iget-boolean p1, p0, Landroidx/appcompat/app/RecycleListView;->l:Z
+    iget-boolean p1, p0, Landroidx/appcompat/app/RecycleListView;->q:Z
 
     .line 4
     .line 5
@@ -666,15 +666,15 @@
 
     .line 10
     :goto_0
-    iput-boolean p1, p0, Landroidx/appcompat/app/RecycleListView;->k:Z
+    iput-boolean p1, p0, Landroidx/appcompat/app/RecycleListView;->p:Z
 
     .line 11
     .line 12
-    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->i:Lb4/e;
+    iget-object p0, p0, Landroidx/appcompat/app/RecycleListView;->n:Lwh/e;
 
     .line 13
     .line 14
-    invoke-static {p0, p1}, Lb4/f;->e(Lb4/e;Z)V
+    invoke-static {p0, p1}, Lwh/f;->e(Lwh/e;Z)V
 
     .line 15
     .line 16

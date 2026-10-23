@@ -3,7 +3,7 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lb/b;
+.implements Lg/b;
 
 
 # instance fields
@@ -37,7 +37,7 @@
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Landroidx/fragment/app/s;->j(Landroidx/fragment/app/s;Landroid/content/Context;)V
+    invoke-static {p0, p1}, Landroidx/fragment/app/s;->r(Landroidx/fragment/app/s;Landroid/content/Context;)V
 
     .line 4
     .line 5

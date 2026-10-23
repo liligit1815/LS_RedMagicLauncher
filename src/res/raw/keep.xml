@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:shrinkMode="strict"
+    tools:keep="
+    @layout/*,
+    @string/*,
+    @color/*,
+    @raw/*,
+    @integer/*,
+    @fraction/*,
+    @plurals/*,
+    @array/*,
+    @bool/*,
+    @xml/*,
+    @dimen/*,
+
+
+
+    @drawable/dynamic_res_*,
+    @drawable/shortcut_*_bg,@drawable/info,@drawable/info_outline,@drawable/remove_circle,
+    @drawable/share,@drawable/unload,@drawable/app_widget,@drawable/nointerest,
+    @drawable/pin_full,@drawable/pin_off,@drawable/paintbucket,@drawable/rename,
+    @drawable/transform_folder_bg,@drawable/transform_folder_bg*,@drawable/folder_bg_*,@drawable/transform_icon_resize*,
+    @drawable/folder_icon_resize*,@drawable/icon_size_*,@drawable/deep_shortcut_bg,
+    @drawable/bubbleburst_*,@drawable/ai_future_widget_*,@drawable/ai_widget_clock*,@drawable/ai_custom_widget_*,@drawable/default_pointer_*,
+    @drawable/default_effect_*,@drawable/*_fake,@drawable/*_fake*,
+	@drawable/color_picker_recent*,@drawable/color_round_rect_view_selector,@drawable/slider_view_selector_back
+" />

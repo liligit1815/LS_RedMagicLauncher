@@ -329,7 +329,7 @@ public class EntryRotationTest {
 '''.replace('CONSTANTS', constants).replace('METHODS', methods)
 
 # Inspect actual packaged integration, including the no-window-rotation path.
-simulator = (ROOT / 'src/smali_classes2/com/android/quickstep/util/TaskViewSimulator.smali').read_text(encoding='utf-8')
+simulator = (ROOT / 'src/smali_classes3/com/android/quickstep/util/TaskViewSimulator.smali').read_text(encoding='utf-8')
 apply_start = simulator.index('.method public apply(Lcom/android/quickstep/util/TransformParams;Lcom/android/quickstep/util/SurfaceTransaction;Z)V')
 apply_body = simulator[apply_start:simulator.index('.end method', apply_start)]
 reset = apply_body.index('Landroid/graphics/Matrix;->reset()V')

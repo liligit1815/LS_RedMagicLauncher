@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/content_container" android:layout_width="match_parent" android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent">
+        <ImageView android:id="@id/image_view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@string/nudge_a11y_image" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+        <TextView android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/nudge_content_elements_spacing" app:layout_constraintStart_toEndOf="@id/image_view" app:layout_constraintTop_toTopOf="parent" style="@style/TextAppearance.Nudge.Title" />
+        <TextView android:id="@id/body" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/nudge_content_elements_spacing" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/image_view" app:layout_constraintTop_toBottomOf="@id/title" style="@style/TextAppearance.Nudge.Subtext" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/button_container" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/nudge_buttons_margin_top" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@id/content_container">
+        <Button android:id="@id/secondary_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="@dimen/nudge_buttons_spacing" android:paddingHorizontal="@dimen/nudge_button_horizontal_padding" android:paddingVertical="@dimen/nudge_button_vertical_padding" style="@style/Nudge.Button.Secondary" />
+        <Button android:id="@id/primary_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="@dimen/nudge_button_horizontal_padding" android:paddingVertical="@dimen/nudge_button_vertical_padding" style="@style/Nudge.Button.Primary" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

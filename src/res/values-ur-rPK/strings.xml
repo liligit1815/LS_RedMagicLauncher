@@ -131,7 +131,6 @@
     <string name="date_picker_increment_month_button">ماہ بڑھائیں</string>
     <string name="date_picker_increment_year_button">سال بڑھائیں</string>
     <string name="datetime_dialog_title">تاریخ اور وقت سیٹ کریں</string>
-    <string name="default_device_name">آلہ</string>
     <string name="default_effect_cross">کراس پلٹائیں</string>
     <string name="default_effect_fanlight">شیشہ</string>
     <string name="default_effect_inbox">کیوب ان</string>
@@ -166,8 +165,6 @@
     <string name="folder_closed">فولڈر بند</string>
     <string name="folder_created">فولڈر بنایا گیا۔</string>
     <string name="folder_hint_text">نام میں ترمیم کریں۔</string>
-    <string name="folder_name_format_exact">فولڈر: %1$s , %2$d آئٹمز</string>
-    <string name="folder_name_format_overflow">فولڈر: %1$s , %2$d یا مزید آئٹمز</string>
     <string name="folder_opened">فولڈر کھولا گیا، %1$d بذریعہ %2$d</string>
     <string name="folder_renamed">فولڈر کا نام بدل کر %1$s کر دیا گیا</string>
     <string name="folder_tap_to_close">فولڈر بند کرنے کے لیے تھپتھپائیں۔</string>
@@ -178,9 +175,7 @@
     <string name="gadget_setup_text">ویجیٹ کی سیٹنگز</string>
     <string name="game_space">گیم اسپیس</string>
     <string name="gesture_tutorial_action_button_label">ہوگیا</string>
-    <string name="gesture_tutorial_action_button_label_cancel">منسوخ کریں</string>
     <string name="gesture_tutorial_action_button_label_settings">ترتیبات</string>
-    <string name="gesture_tutorial_action_button_label_skip">نظر انداز کریں</string>
     <string name="gesture_tutorial_confirm_title">سب ٹھیک</string>
     <string name="gesture_tutorial_nice">اچھا!</string>
     <string name="gesture_tutorial_rotation_prompt">اشارہ نیویگیشن ٹیوٹوریل مکمل کرنے کے لیے براہ کرم اپنے ڈیوائس کو گھمائیں</string>
@@ -203,16 +198,11 @@
     <string name="home_gesture_tutorial_subtitle">اپنی اسکرین کے نیچے سے اوپر کی طرف سوائپ کریں</string>
     <string name="home_gesture_tutorial_success">بہت اچھے!</string>
     <string name="home_gesture_tutorial_title">ہوم پر جائیں</string>
+    <string name="home_mono_icon_switch_summary">آئیکن کا رنگ سسٹم کے رنگ کے ساتھ تبدیل ہوتا ہے</string>
     <string name="home_screen">ہوم</string>
     <string name="hotsaet_tip_prediction_disabled">ایپ کی تجاویز غیر فعال ہیں۔</string>
     <string name="hotsaet_tip_prediction_enabled">ایپ کی تجاویز فعال ہیں۔</string>
     <string name="hotseat_auto_enrolled">سب سے زیادہ استعمال ہونے والی ایپس یہاں ظاہر ہوتی ہیں، اور روٹین کی بنیاد پر تبدیل ہوتی ہیں۔</string>
-    <string name="hotseat_edu_accept">ایپ کی تجاویز حاصل کریں۔</string>
-    <string name="hotseat_edu_dismiss">نہیں شکریہ</string>
-    <string name="hotseat_edu_message_migrate">ہوم اسکرین پر ہی اپنی سب سے زیادہ استعمال ہونے والی ایپس تک آسانی سے رسائی حاصل کریں۔ آپ کے معمولات کی بنیاد پر تجاویز تبدیل ہو جائیں گی۔ نیچے کی قطار میں موجود ایپس آپ کی ہوم اسکرین پر جائیں گی۔</string>
-    <string name="hotseat_edu_message_migrate_landscape">ہوم اسکرین پر ہی اپنی سب سے زیادہ استعمال ہونے والی ایپس تک آسانی سے رسائی حاصل کریں۔ آپ کے معمولات کی بنیاد پر تجاویز تبدیل ہو جائیں گی۔ پسندیدہ قطار میں موجود ایپس آپ کی ہوم اسکرین پر منتقل ہو جائیں گی۔</string>
-    <string name="hotseat_edu_title_migrate">اپنی ہوم اسکرین کی نچلی قطار میں ایپ کی تجاویز حاصل کریں۔</string>
-    <string name="hotseat_edu_title_migrate_landscape">اپنی ہوم اسکرین کی پسندیدہ قطار پر ایپ کی تجاویز حاصل کریں۔</string>
     <string name="hotseat_out_of_space">فیورٹ ٹرے میں مزید گنجائش نہیں ہے۔</string>
     <string name="hotseat_prediction_content_description">پیش گوئی کردہ ایپ: %1$s</string>
     <string name="hotseat_prediction_settings">ترتیبات</string>
@@ -410,8 +400,6 @@
     <string name="shortcut_not_available">شارٹ کٹ دستیاب نہیں ہے۔</string>
     <string name="shortcuts_count">{count, plural, =1{# shortcut} other{# shortcuts}}</string>
     <string name="shorter_duration_less_than_one_minute">&lt; 1 منٹ</string>
-    <string name="skip_tutorial_dialog_subtitle">آپ اسے بعد میں %1$s ایپ میں تلاش کر سکتے ہیں</string>
-    <string name="skip_tutorial_dialog_title">نیویگیشن ٹیوٹوریل کو چھوڑیں؟</string>
     <string name="slide_to_open_notification">اطلاع کا دراز</string>
     <string name="slide_to_open_notification_myos12">ٹاپ پینل</string>
     <string name="slide_to_open_search">تلاش کریں</string>
@@ -428,7 +416,6 @@
     <string name="suggested_widgets_header_title">تجاویز (%1$d)</string>
     <string name="system_shortcut_folder_change_background_color">پس منظر کا رنگ</string>
     <string name="system_shortcut_folder_rename">نام بدلیں</string>
-    <string name="taskbar_a11y_shown_title">ٹاسک بار دکھایا گیا ہے</string>
     <string name="taskbar_a11y_title">ٹاسک بار</string>
     <string name="taskbar_button_a11y">Accessibility</string>
     <string name="taskbar_button_back">واپس جائیں</string>
@@ -513,7 +500,6 @@
     <string name="work_apps_paused_telephony_unavailable_body">آپ کو اپنے کام سے متعلق ایپس سے فون کالز، ٹیکسٹ پیغامات یا اطلاعات موصول نہیں ہوں گی۔</string>
     <string name="work_apps_paused_title">کام کی ایپس موقوف ہیں۔</string>
     <string name="work_folder_name">دفتری</string>
-    <string name="work_profile_edu_accept">سمجھ آ گئی</string>
     <string name="work_profile_edu_work_apps">دفتری ایپس پر بیج لگائے گئے ہیں اور آپ کے IT منتظم کو دکھائی دے رہے ہیں۔</string>
     <string name="work_profile_toggle_label">دفتری پروفائل</string>
     <string name="workspace_new_page">نیا ہوم اسکرین صفحہ</string>

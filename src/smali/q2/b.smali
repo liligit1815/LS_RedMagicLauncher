@@ -1,284 +1,134 @@
 .class public final Lq2/b;
 .super Ljava/lang/Object;
-.source "WidgetPreviewContainerSizes.kt"
+.source "Atomic.kt"
 
 
-# static fields
-.field private static final a:Ljava/util/List;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/List<",
-            "Lq2/a;",
-            ">;"
-        }
-    .end annotation
-.end field
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0010\u000b\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0008\u0005\n\u0002\u0010\u0002\n\u0002\u0008\u0006\u0008\u0081@\u0018\u00002\u00020\u0001B\u0011\u0008\u0016\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u00a2\u0006\u0004\u0008\u0004\u0010\u0005B\u0011\u0012\u0008\u0008\u0002\u0010\u0007\u001a\u00020\u0006\u00a2\u0006\u0004\u0008\u0008\u0010\tJ\r\u0010\n\u001a\u00020\u0002\u00a2\u0006\u0004\u0008\n\u0010\u000bJ\u0015\u0010\r\u001a\u00020\u000c2\u0006\u0010\u0003\u001a\u00020\u0002\u00a2\u0006\u0004\u0008\r\u0010\u000eJ\u0015\u0010\u0010\u001a\u00020\u00022\u0006\u0010\u000f\u001a\u00020\u0002\u00a2\u0006\u0004\u0008\u0010\u0010\u0011\u0088\u0001\u0007\u0092\u0001\u00020\u0006\u00a8\u0006\u0012"
+    }
+    d2 = {
+        "Lq2/b;",
+        "",
+        "",
+        "value",
+        "b",
+        "(Z)Lq2/c;",
+        "Lq2/c;",
+        "wrapped",
+        "a",
+        "(Lq2/c;)Lq2/c;",
+        "c",
+        "(Lq2/c;)Z",
+        "",
+        "e",
+        "(Lq2/c;Z)V",
+        "newValue",
+        "d",
+        "(Lq2/c;Z)Z",
+        "runtime"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
-.field private static final b:Ljava/util/List;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/List<",
-            "Lq2/a;",
-            ">;"
-        }
-    .end annotation
-.end field
+.annotation runtime Lkotlin/jvm/JvmInline;
+.end annotation
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 20
+.method public static a(Lq2/c;)Lq2/c;
+    .locals 0
 
     .line 1
-    new-instance v0, Lq2/a;
+    return-object p0
+.end method
+
+.method public static b(Z)Lq2/c;
+    .locals 1
+
+    .line 1
+    new-instance v0, Lq2/c;
 
     .line 2
     .line 3
-    const/4 v8, 0x4
+    invoke-direct {v0, p0}, Lq2/c;-><init>(I)V
 
     .line 4
-    const/4 v9, 0x3
+    .line 5
+    .line 6
+    invoke-static {v0}, Lq2/b;->a(Lq2/c;)Lq2/c;
+
+    .line 7
+    .line 8
+    .line 9
+    move-result-object p0
+
+    .line 10
+    return-object p0
+.end method
+
+.method public static final c(Lq2/c;)Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p0
 
     .line 5
-    invoke-direct {v0, v8, v9}, Lq2/a;-><init>(II)V
+    if-eqz p0, :cond_0
 
     .line 6
     .line 7
+    const/4 p0, 0x1
+
     .line 8
-    new-instance v1, Lq2/a;
+    return p0
 
     .line 9
+    :cond_0
+    const/4 p0, 0x0
+
     .line 10
-    const/4 v10, 0x2
+    return p0
+.end method
 
-    .line 11
-    invoke-direct {v1, v8, v10}, Lq2/a;-><init>(II)V
+.method public static final d(Lq2/c;Z)Z
+    .locals 1
 
-    .line 12
-    .line 13
-    .line 14
-    new-instance v2, Lq2/a;
+    .line 1
+    const/4 v0, 0x1
 
-    .line 15
-    .line 16
-    invoke-direct {v2, v10, v9}, Lq2/a;-><init>(II)V
+    .line 2
+    invoke-virtual {p0, v0, p1}, Ljava/util/concurrent/atomic/AtomicInteger;->compareAndSet(II)Z
 
-    .line 17
-    .line 18
-    .line 19
-    new-instance v3, Lq2/a;
+    .line 3
+    .line 4
+    .line 5
+    move-result p0
 
-    .line 20
-    .line 21
-    invoke-direct {v3, v10, v10}, Lq2/a;-><init>(II)V
+    .line 6
+    return p0
+.end method
 
-    .line 22
-    .line 23
-    .line 24
-    new-instance v4, Lq2/a;
+.method public static final e(Lq2/c;Z)V
+    .locals 0
 
-    .line 25
-    .line 26
-    const/4 v11, 0x1
+    .line 1
+    invoke-virtual {p0, p1}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
-    .line 27
-    invoke-direct {v4, v8, v11}, Lq2/a;-><init>(II)V
-
-    .line 28
-    .line 29
-    .line 30
-    new-instance v5, Lq2/a;
-
-    .line 31
-    .line 32
-    invoke-direct {v5, v9, v11}, Lq2/a;-><init>(II)V
-
-    .line 33
-    .line 34
-    .line 35
-    new-instance v6, Lq2/a;
-
-    .line 36
-    .line 37
-    invoke-direct {v6, v10, v11}, Lq2/a;-><init>(II)V
-
-    .line 38
-    .line 39
-    .line 40
-    new-instance v7, Lq2/a;
-
-    .line 41
-    .line 42
-    invoke-direct {v7, v11, v11}, Lq2/a;-><init>(II)V
-
-    .line 43
-    .line 44
-    .line 45
-    filled-new-array/range {v0 .. v7}, [Lq2/a;
-
-    .line 46
-    .line 47
-    .line 48
-    move-result-object v0
-
-    .line 49
-    invoke-static {v0}, Li4/m;->m([Ljava/lang/Object;)Ljava/util/List;
-
-    .line 50
-    .line 51
-    .line 52
-    move-result-object v0
-
-    .line 53
-    sput-object v0, Lq2/b;->a:Ljava/util/List;
-
-    .line 54
-    .line 55
-    new-instance v12, Lq2/a;
-
-    .line 56
-    .line 57
-    invoke-direct {v12, v9, v8}, Lq2/a;-><init>(II)V
-
-    .line 58
-    .line 59
-    .line 60
-    new-instance v13, Lq2/a;
-
-    .line 61
-    .line 62
-    invoke-direct {v13, v9, v9}, Lq2/a;-><init>(II)V
-
-    .line 63
-    .line 64
-    .line 65
-    new-instance v14, Lq2/a;
-
-    .line 66
-    .line 67
-    invoke-direct {v14, v9, v10}, Lq2/a;-><init>(II)V
-
-    .line 68
-    .line 69
-    .line 70
-    new-instance v15, Lq2/a;
-
-    .line 71
-    .line 72
-    invoke-direct {v15, v10, v9}, Lq2/a;-><init>(II)V
-
-    .line 73
-    .line 74
-    .line 75
-    new-instance v0, Lq2/a;
-
-    .line 76
-    .line 77
-    invoke-direct {v0, v10, v10}, Lq2/a;-><init>(II)V
-
-    .line 78
-    .line 79
-    .line 80
-    new-instance v1, Lq2/a;
-
-    .line 81
-    .line 82
-    invoke-direct {v1, v9, v11}, Lq2/a;-><init>(II)V
-
-    .line 83
-    .line 84
-    .line 85
-    new-instance v2, Lq2/a;
-
-    .line 86
-    .line 87
-    invoke-direct {v2, v10, v11}, Lq2/a;-><init>(II)V
-
-    .line 88
-    .line 89
-    .line 90
-    new-instance v3, Lq2/a;
-
-    .line 91
-    .line 92
-    invoke-direct {v3, v11, v11}, Lq2/a;-><init>(II)V
-
-    .line 93
-    .line 94
-    .line 95
-    move-object/from16 v16, v0
-
-    .line 96
-    .line 97
-    move-object/from16 v17, v1
-
-    .line 98
-    .line 99
-    move-object/from16 v18, v2
-
-    .line 100
-    .line 101
-    move-object/from16 v19, v3
-
-    .line 102
-    .line 103
-    filled-new-array/range {v12 .. v19}, [Lq2/a;
-
-    .line 104
-    .line 105
-    .line 106
-    move-result-object v0
-
-    .line 107
-    invoke-static {v0}, Li4/m;->m([Ljava/lang/Object;)Ljava/util/List;
-
-    .line 108
-    .line 109
-    .line 110
-    move-result-object v0
-
-    .line 111
-    sput-object v0, Lq2/b;->b:Ljava/util/List;
-
-    .line 112
-    .line 113
+    .line 2
+    .line 3
+    .line 4
     return-void
-.end method
-
-.method public static final a()Ljava/util/List;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ljava/util/List<",
-            "Lq2/a;",
-            ">;"
-        }
-    .end annotation
-
-    .line 1
-    sget-object v0, Lq2/b;->a:Ljava/util/List;
-
-    .line 2
-    .line 3
-    return-object v0
-.end method
-
-.method public static final b()Ljava/util/List;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ljava/util/List<",
-            "Lq2/a;",
-            ">;"
-        }
-    .end annotation
-
-    .line 1
-    sget-object v0, Lq2/b;->b:Ljava/util/List;
-
-    .line 2
-    .line 3
-    return-object v0
 .end method

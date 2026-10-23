@@ -1,286 +1,240 @@
-.class public LQ1/e;
-.super Lcom/android/launcher3/V3;
-.source "SpringLoadedState.java"
+.class public final Lq1/e;
+.super Ljava/lang/Object;
+.source "RecordingInputConnection.android.kt"
+
+
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000R\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0002\u0008\u0003\u0008\u00c3\u0002\u0018\u00002\u00020\u0001B\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003J[\u0010\u0014\u001a\u00020\u00122\u0008\u0010\u0005\u001a\u0004\u0018\u00010\u00042\u0008\u0010\u0007\u001a\u0004\u0018\u00010\u00062\u0006\u0010\t\u001a\u00020\u00082\u0008\u0010\u000b\u001a\u0004\u0018\u00010\n2\u0008\u0010\r\u001a\u0004\u0018\u00010\u000c2\u0008\u0010\u000f\u001a\u0004\u0018\u00010\u000e2\u0012\u0010\u0013\u001a\u000e\u0012\u0004\u0012\u00020\u0011\u0012\u0004\u0012\u00020\u00120\u0010\u00a2\u0006\u0004\u0008\u0014\u0010\u0015J3\u0010\u001a\u001a\u00020\u00192\u0008\u0010\u0005\u001a\u0004\u0018\u00010\u00042\u0008\u0010\u0007\u001a\u0004\u0018\u00010\u00062\u0006\u0010\t\u001a\u00020\u00162\u0008\u0010\u0018\u001a\u0004\u0018\u00010\u0017\u00a2\u0006\u0004\u0008\u001a\u0010\u001b\u00a8\u0006\u001c"
+    }
+    d2 = {
+        "Lq1/e;",
+        "",
+        "<init>",
+        "()V",
+        "Lg1/x2;",
+        "legacyTextFieldState",
+        "Ls1/w1;",
+        "textFieldSelectionManager",
+        "Landroid/view/inputmethod/HandwritingGesture;",
+        "gesture",
+        "Lz3/d3;",
+        "viewConfiguration",
+        "Ljava/util/concurrent/Executor;",
+        "executor",
+        "Ljava/util/function/IntConsumer;",
+        "consumer",
+        "Lkotlin/Function1;",
+        "Lo4/j;",
+        "",
+        "editCommandConsumer",
+        "b",
+        "(Lg1/x2;Ls1/w1;Landroid/view/inputmethod/HandwritingGesture;Lz3/d3;Ljava/util/concurrent/Executor;Ljava/util/function/IntConsumer;Lkotlin/jvm/functions/Function1;)V",
+        "Landroid/view/inputmethod/PreviewableHandwritingGesture;",
+        "Landroid/os/CancellationSignal;",
+        "cancellationSignal",
+        "",
+        "d",
+        "(Lg1/x2;Ls1/w1;Landroid/view/inputmethod/PreviewableHandwritingGesture;Landroid/os/CancellationSignal;)Z",
+        "foundation"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # static fields
-.field private static final D:I
+.field public static final a:Lq1/e;
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .locals 1
 
     .line 1
-    sget v0, Lcom/android/launcher3/V3;->e:I
+    new-instance v0, Lq1/e;
 
     .line 2
     .line 3
-    sget v1, Lcom/android/launcher3/V3;->f:I
+    invoke-direct {v0}, Lq1/e;-><init>()V
 
     .line 4
     .line 5
-    or-int/2addr v0, v1
-
     .line 6
-    or-int/lit8 v0, v0, 0x2
+    sput-object v0, Lq1/e;->a:Lq1/e;
 
     .line 7
     .line 8
-    sget v1, Lcom/android/launcher3/V3;->g:I
-
-    .line 9
-    .line 10
-    or-int/2addr v0, v1
-
-    .line 11
-    sget v1, Lcom/android/launcher3/V3;->h:I
-
-    .line 12
-    .line 13
-    or-int/2addr v0, v1
-
-    .line 14
-    sput v0, LQ1/e;->D:I
-
-    .line 15
-    .line 16
     return-void
 .end method
 
-.method public constructor <init>(I)V
-    .locals 2
+.method public constructor <init>()V
+    .locals 0
 
     .line 1
-    const/4 v0, 0x2
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 2
-    sget v1, LQ1/e;->D:I
-
     .line 3
     .line 4
-    invoke-direct {p0, p1, v0, v1}, Lcom/android/launcher3/V3;-><init>(III)V
+    return-void
+.end method
 
-    .line 5
-    .line 6
-    .line 7
+.method public static synthetic a(Ljava/util/function/IntConsumer;I)V
+    .locals 0
+
+    .line 1
+    invoke-static {p0, p1}, Lq1/e;->c(Ljava/util/function/IntConsumer;I)V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public static final c(Ljava/util/function/IntConsumer;I)V
+    .locals 0
+
+    .line 1
+    invoke-interface {p0, p1}, Ljava/util/function/IntConsumer;->accept(I)V
+
+    .line 2
+    .line 3
+    .line 4
     return-void
 .end method
 
 
 # virtual methods
-.method protected g(Landroid/content/Context;)F
-    .locals 0
+.method public final b(Lg1/x2;Ls1/w1;Landroid/view/inputmethod/HandwritingGesture;Lz3/d3;Ljava/util/concurrent/Executor;Ljava/util/function/IntConsumer;Lkotlin/jvm/functions/Function1;)V
+    .locals 6
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lg1/x2;",
+            "Ls1/w1;",
+            "Landroid/view/inputmethod/HandwritingGesture;",
+            "Lz3/d3;",
+            "Ljava/util/concurrent/Executor;",
+            "Ljava/util/function/IntConsumer;",
+            "Lkotlin/jvm/functions/Function1<",
+            "-",
+            "Lo4/j;",
+            "Lkotlin/Unit;",
+            ">;)V"
+        }
+    .end annotation
 
     .line 1
-    invoke-static {}, Lcom/android/launcher3/y0;->U()Z
+    if-eqz p1, :cond_0
 
     .line 2
     .line 3
+    sget-object v0, Lq1/d0;->a:Lq1/d0;
+
     .line 4
+    .line 5
+    move-object v1, p1
+
+    .line 6
+    move-object v3, p2
+
+    .line 7
+    move-object v2, p3
+
+    .line 8
+    move-object v4, p4
+
+    .line 9
+    move-object v5, p7
+
+    .line 10
+    invoke-virtual/range {v0 .. v5}, Lq1/d0;->g(Lg1/x2;Landroid/view/inputmethod/HandwritingGesture;Ls1/w1;Lz3/d3;Lkotlin/jvm/functions/Function1;)I
+
+    .line 11
+    .line 12
+    .line 13
     move-result p0
-
-    .line 5
-    if-eqz p0, :cond_0
-
-    .line 6
-    .line 7
-    const p0, 0x3e19999a    # 0.15f
-
-    .line 8
-    .line 9
-    .line 10
-    return p0
-
-    .line 11
-    :cond_0
-    const/high16 p0, 0x3f000000    # 0.5f
-
-    .line 12
-    .line 13
-    return p0
-.end method
-
-.method public getTransitionDuration(Lcom/android/launcher3/views/k;Z)I
-    .locals 0
-
-    .line 1
-    const/16 p0, 0x96
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method public m(Lcom/android/launcher3/C2;)Lcom/android/launcher3/V3$h;
-    .locals 1
-
-    .line 1
-    new-instance p0, Lcom/android/launcher3/V3$h;
-
-    .line 2
-    .line 3
-    const/high16 p1, 0x3f800000    # 1.0f
-
-    .line 4
-    .line 5
-    const/4 v0, 0x0
-
-    .line 6
-    invoke-direct {p0, p1, v0, v0}, Lcom/android/launcher3/V3$h;-><init>(FFF)V
-
-    .line 7
-    .line 8
-    .line 9
-    return-object p0
-.end method
-
-.method public u(Lcom/android/launcher3/C2;)F
-    .locals 0
-
-    .line 1
-    const p0, 0x3e4ccccd    # 0.2f
-
-    .line 2
-    .line 3
-    .line 4
-    return p0
-.end method
-
-.method public x(Lcom/android/launcher3/C2;)Lcom/android/launcher3/V3$h;
-    .locals 4
-
-    .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/v;->getDeviceProfile()Lcom/android/launcher3/h0;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
-
-    .line 5
-    invoke-virtual {p1}, Lcom/android/launcher3/C2;->B2()Lcom/android/launcher3/Workspace;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v1
-
-    .line 9
-    invoke-virtual {v1}, Landroid/view/ViewGroup;->getChildCount()I
-
-    .line 10
-    .line 11
-    .line 12
-    move-result v2
-
-    .line 13
-    if-nez v2, :cond_0
 
     .line 14
+    goto :goto_0
+
     .line 15
-    invoke-super {p0, p1}, Lcom/android/launcher3/V3;->x(Lcom/android/launcher3/C2;)Lcom/android/launcher3/V3$h;
+    :cond_0
+    const/4 p0, 0x3
 
     .line 16
+    :goto_0
+    if-nez p6, :cond_1
+
     .line 17
     .line 18
-    move-result-object p0
+    return-void
 
     .line 19
-    return-object p0
+    :cond_1
+    if-eqz p5, :cond_2
 
     .line 20
-    :cond_0
-    invoke-virtual {v0}, Lcom/android/launcher3/h0;->h0()F
-
     .line 21
+    new-instance p1, Lq1/d;
+
     .line 22
     .line 23
-    move-result p0
+    invoke-direct {p1, p6, p0}, Lq1/d;-><init>(Ljava/util/function/IntConsumer;I)V
 
     .line 24
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/h0;->N0(Landroid/content/Context;)F
-
     .line 25
     .line 26
+    invoke-interface {p5, p1}, Ljava/util/concurrent/Executor;->execute(Ljava/lang/Runnable;)V
+
     .line 27
-    move-result p1
-
     .line 28
-    invoke-virtual {v1}, Landroid/view/ViewGroup;->getHeight()I
-
     .line 29
+    return-void
+
     .line 30
+    :cond_2
+    invoke-interface {p6, p0}, Ljava/util/function/IntConsumer;->accept(I)V
+
     .line 31
-    move-result v0
-
     .line 32
-    div-int/lit8 v0, v0, 0x2
-
     .line 33
-    .line 34
-    int-to-float v0, v0
+    return-void
+.end method
 
-    .line 35
-    invoke-virtual {v1}, Landroid/view/ViewGroup;->getTop()I
+.method public final d(Lg1/x2;Ls1/w1;Landroid/view/inputmethod/PreviewableHandwritingGesture;Landroid/os/CancellationSignal;)Z
+    .locals 0
 
-    .line 36
-    .line 37
-    .line 38
-    move-result v2
+    .line 1
+    if-eqz p1, :cond_0
 
-    .line 39
-    int-to-float v2, v2
+    .line 2
+    .line 3
+    sget-object p0, Lq1/d0;->a:Lq1/d0;
 
-    .line 40
-    add-float/2addr v2, v0
+    .line 4
+    .line 5
+    invoke-virtual {p0, p1, p3, p2, p4}, Lq1/d0;->r(Lg1/x2;Landroid/view/inputmethod/PreviewableHandwritingGesture;Ls1/w1;Landroid/os/CancellationSignal;)Z
 
-    .line 41
-    const/4 v3, 0x0
+    .line 6
+    .line 7
+    .line 8
+    move-result p0
 
-    .line 42
-    invoke-virtual {v1, v3}, Lcom/android/launcher3/Workspace;->getChildAt(I)Landroid/view/View;
+    .line 9
+    return p0
 
-    .line 43
-    .line 44
-    .line 45
-    move-result-object v1
+    .line 10
+    :cond_0
+    const/4 p0, 0x0
 
-    .line 46
-    invoke-virtual {v1}, Landroid/view/View;->getTop()I
-
-    .line 47
-    .line 48
-    .line 49
-    move-result v1
-
-    .line 50
-    int-to-float v1, v1
-
-    .line 51
-    sub-float/2addr v0, v1
-
-    .line 52
-    mul-float/2addr v0, p1
-
-    .line 53
-    sub-float/2addr v2, v0
-
-    .line 54
-    new-instance v0, Lcom/android/launcher3/V3$h;
-
-    .line 55
-    .line 56
-    const/4 v1, 0x0
-
-    .line 57
-    sub-float/2addr p0, v2
-
-    .line 58
-    invoke-direct {v0, p1, v1, p0}, Lcom/android/launcher3/V3$h;-><init>(FFF)V
-
-    .line 59
-    .line 60
-    .line 61
-    return-object v0
+    .line 11
+    return p0
 .end method

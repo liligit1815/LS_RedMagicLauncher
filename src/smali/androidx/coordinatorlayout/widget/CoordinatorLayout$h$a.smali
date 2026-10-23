@@ -1,4 +1,4 @@
-.class final Landroidx/coordinatorlayout/widget/CoordinatorLayout$h$a;
+.class public final Landroidx/coordinatorlayout/widget/CoordinatorLayout$h$a;
 .super Ljava/lang/Object;
 .source "CoordinatorLayout.java"
 
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = null
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1

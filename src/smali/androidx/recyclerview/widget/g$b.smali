@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/g$b;
+.class public Landroidx/recyclerview/widget/g$b;
 .super Ljava/lang/Object;
 .source "GapWorker.java"
 
@@ -18,23 +18,23 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "b"
 .end annotation
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:I
+.field public b:I
 
-.field c:[I
+.field public c:[I
 
-.field d:I
+.field public d:I
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -48,7 +48,7 @@
 
 
 # virtual methods
-.method a()V
+.method public a()V
     .locals 2
 
     .line 1
@@ -226,7 +226,7 @@
     throw p0
 .end method
 
-.method b(Landroidx/recyclerview/widget/RecyclerView;Z)V
+.method public b(Landroidx/recyclerview/widget/RecyclerView;Z)V
     .locals 4
 
     .line 1
@@ -387,7 +387,7 @@
     return-void
 .end method
 
-.method c(I)Z
+.method public c(I)Z
     .locals 4
 
     .line 1
@@ -448,7 +448,7 @@
     return v1
 .end method
 
-.method d(II)V
+.method public d(II)V
     .locals 0
 
     .line 1

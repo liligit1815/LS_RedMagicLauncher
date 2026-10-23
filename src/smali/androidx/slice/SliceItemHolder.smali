@@ -3,7 +3,7 @@
 .source "SliceItemHolder.java"
 
 # interfaces
-.implements Ll0/a;
+.implements Lt7/c;
 
 
 # annotations
@@ -19,19 +19,19 @@
 
 
 # instance fields
-.field public a:Ll0/a;
+.field public a:Lt7/c;
 
-.field b:Landroid/os/Parcelable;
+.field public b:Landroid/os/Parcelable;
 
-.field c:Ljava/lang/Object;
+.field public c:Ljava/lang/Object;
 
-.field d:Ljava/lang/String;
+.field public d:Ljava/lang/String;
 
-.field e:I
+.field public e:I
 
-.field f:J
+.field public f:J
 
-.field private g:Landroidx/slice/SliceItemHolder$a;
+.field public g:Landroidx/slice/SliceItemHolder$a;
 
 
 # direct methods
@@ -55,7 +55,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroidx/slice/SliceItemHolder$a;)V
+.method public constructor <init>(Landroidx/slice/SliceItemHolder$a;)V
     .locals 2
 
     .line 1
@@ -64,7 +64,7 @@
     const/4 v0, 0x0
 
     .line 2
-    iput-object v0, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iput-object v0, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 3
     iput-object v0, p0, Landroidx/slice/SliceItemHolder;->b:Landroid/os/Parcelable;
@@ -97,7 +97,7 @@
     const/4 v0, 0x0
 
     .line 9
-    iput-object v0, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iput-object v0, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 10
     iput-object v0, p0, Landroidx/slice/SliceItemHolder;->b:Landroid/os/Parcelable;
@@ -118,20 +118,20 @@
     .line 14
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
-    const/4 v1, -0x1
-
     invoke-virtual {p1}, Ljava/lang/String;->hashCode()I
 
-    move-result v2
+    move-result v1
 
-    sparse-switch v2, :sswitch_data_0
+    const/4 v2, -0x1
+
+    sparse-switch v1, :sswitch_data_0
 
     goto :goto_0
 
     :sswitch_0
-    const-string v2, "slice"
+    const-string v1, "slice"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -140,14 +140,14 @@
     goto :goto_0
 
     :cond_0
-    const/4 v1, 0x6
+    const/4 v2, 0x6
 
     goto :goto_0
 
     :sswitch_1
-    const-string v2, "input"
+    const-string v1, "input"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -156,14 +156,14 @@
     goto :goto_0
 
     :cond_1
-    const/4 v1, 0x5
+    const/4 v2, 0x5
 
     goto :goto_0
 
     :sswitch_2
-    const-string v2, "image"
+    const-string v1, "image"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -172,14 +172,14 @@
     goto :goto_0
 
     :cond_2
-    const/4 v1, 0x4
+    const/4 v2, 0x4
 
     goto :goto_0
 
     :sswitch_3
-    const-string v2, "text"
+    const-string v1, "text"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -188,14 +188,14 @@
     goto :goto_0
 
     :cond_3
-    const/4 v1, 0x3
+    const/4 v2, 0x3
 
     goto :goto_0
 
     :sswitch_4
-    const-string v2, "long"
+    const-string v1, "long"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -204,14 +204,14 @@
     goto :goto_0
 
     :cond_4
-    const/4 v1, 0x2
+    const/4 v2, 0x2
 
     goto :goto_0
 
     :sswitch_5
-    const-string v2, "int"
+    const-string v1, "int"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -220,14 +220,14 @@
     goto :goto_0
 
     :cond_5
-    const/4 v1, 0x1
+    const/4 v2, 0x1
 
     goto :goto_0
 
     :sswitch_6
-    const-string v2, "action"
+    const-string v1, "action"
 
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
@@ -236,10 +236,10 @@
     goto :goto_0
 
     :cond_6
-    move v1, v0
+    move v2, v0
 
     :goto_0
-    packed-switch v1, :pswitch_data_0
+    packed-switch v2, :pswitch_data_0
 
     goto :goto_3
 
@@ -253,9 +253,9 @@
 
     .line 16
     :pswitch_1
-    check-cast p2, Ll0/a;
+    check-cast p2, Lt7/c;
 
-    iput-object p2, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iput-object p2, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     goto :goto_3
 
@@ -267,7 +267,7 @@
 
     check-cast p2, Landroid/text/Spanned;
 
-    invoke-static {p2, v0}, LH/b;->b(Landroid/text/Spanned;I)Ljava/lang/String;
+    invoke-static {p2, v0}, Lx5/b;->b(Landroid/text/Spanned;I)Ljava/lang/String;
 
     move-result-object p1
 
@@ -309,9 +309,9 @@
 
     .line 20
     :pswitch_5
-    check-cast p2, LI/d;
+    check-cast p2, Ly5/d;
 
-    iget-object p1, p2, LI/d;->a:Ljava/lang/Object;
+    iget-object p1, p2, Ly5/d;->a:Ljava/lang/Object;
 
     instance-of v0, p1, Landroid/app/PendingIntent;
 
@@ -329,11 +329,11 @@
 
     .line 22
     :goto_2
-    iget-object p1, p2, LI/d;->b:Ljava/lang/Object;
+    iget-object p1, p2, Ly5/d;->b:Ljava/lang/Object;
 
-    check-cast p1, Ll0/a;
+    check-cast p1, Lt7/c;
 
-    iput-object p1, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iput-object p1, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     :goto_3
     return-void
@@ -377,26 +377,26 @@
     .locals 3
 
     .line 1
-    const/4 v0, 0x0
-
-    .line 2
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
+    .line 2
     .line 3
     .line 4
-    .line 5
-    const/4 v1, -0x1
-
-    .line 6
     invoke-virtual {p1}, Ljava/lang/String;->hashCode()I
 
+    .line 5
+    .line 6
     .line 7
+    move-result v0
+
     .line 8
+    const/4 v1, 0x0
+
     .line 9
-    move-result v2
+    const/4 v2, -0x1
 
     .line 10
-    sparse-switch v2, :sswitch_data_0
+    sparse-switch v0, :sswitch_data_0
 
     .line 11
     .line 12
@@ -405,19 +405,19 @@
 
     .line 14
     :sswitch_0
-    const-string v2, "slice"
+    const-string v0, "slice"
 
     .line 15
     .line 16
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 17
     .line 18
     .line 19
-    move-result v2
+    move-result v0
 
     .line 20
-    if-nez v2, :cond_0
+    if-nez v0, :cond_0
 
     .line 21
     .line 22
@@ -425,26 +425,26 @@
 
     .line 23
     :cond_0
-    const/4 v1, 0x6
+    const/4 v2, 0x6
 
     .line 24
     goto :goto_0
 
     .line 25
     :sswitch_1
-    const-string v2, "input"
+    const-string v0, "input"
 
     .line 26
     .line 27
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 28
     .line 29
     .line 30
-    move-result v2
+    move-result v0
 
     .line 31
-    if-nez v2, :cond_1
+    if-nez v0, :cond_1
 
     .line 32
     .line 33
@@ -452,26 +452,26 @@
 
     .line 34
     :cond_1
-    const/4 v1, 0x5
+    const/4 v2, 0x5
 
     .line 35
     goto :goto_0
 
     .line 36
     :sswitch_2
-    const-string v2, "image"
+    const-string v0, "image"
 
     .line 37
     .line 38
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 39
     .line 40
     .line 41
-    move-result v2
+    move-result v0
 
     .line 42
-    if-nez v2, :cond_2
+    if-nez v0, :cond_2
 
     .line 43
     .line 44
@@ -479,26 +479,26 @@
 
     .line 45
     :cond_2
-    const/4 v1, 0x4
+    const/4 v2, 0x4
 
     .line 46
     goto :goto_0
 
     .line 47
     :sswitch_3
-    const-string v2, "text"
+    const-string v0, "text"
 
     .line 48
     .line 49
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 50
     .line 51
     .line 52
-    move-result v2
+    move-result v0
 
     .line 53
-    if-nez v2, :cond_3
+    if-nez v0, :cond_3
 
     .line 54
     .line 55
@@ -506,26 +506,26 @@
 
     .line 56
     :cond_3
-    const/4 v1, 0x3
+    const/4 v2, 0x3
 
     .line 57
     goto :goto_0
 
     .line 58
     :sswitch_4
-    const-string v2, "long"
+    const-string v0, "long"
 
     .line 59
     .line 60
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 61
     .line 62
     .line 63
-    move-result v2
+    move-result v0
 
     .line 64
-    if-nez v2, :cond_4
+    if-nez v0, :cond_4
 
     .line 65
     .line 66
@@ -533,26 +533,26 @@
 
     .line 67
     :cond_4
-    const/4 v1, 0x2
+    const/4 v2, 0x2
 
     .line 68
     goto :goto_0
 
     .line 69
     :sswitch_5
-    const-string v2, "int"
+    const-string v0, "int"
 
     .line 70
     .line 71
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 72
     .line 73
     .line 74
-    move-result v2
+    move-result v0
 
     .line 75
-    if-nez v2, :cond_5
+    if-nez v0, :cond_5
 
     .line 76
     .line 77
@@ -560,26 +560,26 @@
 
     .line 78
     :cond_5
-    const/4 v1, 0x1
+    const/4 v2, 0x1
 
     .line 79
     goto :goto_0
 
     .line 80
     :sswitch_6
-    const-string v2, "action"
+    const-string v0, "action"
 
     .line 81
     .line 82
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     .line 83
     .line 84
     .line 85
-    move-result v2
+    move-result v0
 
     .line 86
-    if-nez v2, :cond_6
+    if-nez v0, :cond_6
 
     .line 87
     .line 88
@@ -587,11 +587,11 @@
 
     .line 89
     :cond_6
-    move v1, v0
+    move v2, v1
 
     .line 90
     :goto_0
-    packed-switch v1, :pswitch_data_0
+    packed-switch v2, :pswitch_data_0
 
     .line 91
     .line 92
@@ -648,7 +648,7 @@
 
     .line 119
     :pswitch_1
-    iget-object p0, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iget-object p0, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 120
     .line 121
@@ -684,7 +684,7 @@
 
     .line 134
     .line 135
-    invoke-static {p0, v0}, LH/b;->a(Ljava/lang/String;I)Landroid/text/Spanned;
+    invoke-static {p0, v1}, Lx5/b;->a(Ljava/lang/String;I)Landroid/text/Spanned;
 
     .line 136
     .line 137
@@ -745,7 +745,7 @@
 
     .line 160
     .line 161
-    iget-object v0, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iget-object v0, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 162
     .line 163
@@ -760,7 +760,7 @@
 
     .line 167
     :cond_9
-    new-instance v0, LI/d;
+    new-instance v0, Ly5/d;
 
     .line 168
     .line 169
@@ -777,7 +777,7 @@
     .line 173
     .line 174
     :goto_2
-    iget-object p0, p0, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iget-object p0, p0, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 175
     .line 176
@@ -785,7 +785,7 @@
 
     .line 177
     .line 178
-    invoke-direct {v0, p1, p0}, LI/d;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+    invoke-direct {v0, p1, p0}, Ly5/d;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
 
     .line 179
     .line 180
@@ -828,15 +828,6 @@
     .line 202
     .line 203
     .line 204
-    .line 205
-    .line 206
-    .line 207
-    .line 208
-    .line 209
-    .line 210
-    .line 211
-    .line 212
-    .line 213
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_5

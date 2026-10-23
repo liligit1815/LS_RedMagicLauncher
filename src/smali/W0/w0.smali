@@ -1,0 +1,63 @@
+.class public final synthetic Lw0/w0;
+.super Ljava/lang/Object;
+.source "R8$$SyntheticClass"
+
+# interfaces
+.implements Lkotlin/jvm/functions/Function1;
+
+
+# instance fields
+.field public final synthetic c:Lw0/y0;
+
+.field public final synthetic m:Lw0/b1;
+
+
+# direct methods
+.method public synthetic constructor <init>(Lw0/y0;Lw0/b1;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lw0/w0;->c:Lw0/y0;
+
+    .line 5
+    .line 6
+    iput-object p2, p0, Lw0/w0;->m:Lw0/b1;
+
+    .line 7
+    .line 8
+    return-void
+.end method
+
+
+# virtual methods
+.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Lw0/w0;->c:Lw0/y0;
+
+    .line 2
+    .line 3
+    iget-object p0, p0, Lw0/w0;->m:Lw0/b1;
+
+    .line 4
+    .line 5
+    check-cast p1, Lw3/p1;
+
+    .line 6
+    .line 7
+    invoke-static {v0, p0, p1}, Lw0/y0;->b(Lw0/y0;Lw0/b1;Lw3/p1;)Lkotlin/Unit;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p0
+
+    .line 11
+    return-object p0
+.end method

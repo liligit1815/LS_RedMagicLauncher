@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/p$a;
+.class public Landroidx/recyclerview/widget/p$a;
 .super Landroidx/recyclerview/widget/l;
 .source "PagerSnapHelper.java"
 
@@ -9,21 +9,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic i:Landroidx/recyclerview/widget/p;
+.field public final synthetic a:Landroidx/recyclerview/widget/p;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/p;Landroid/content/Context;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/p;Landroid/content/Context;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/p$a;->i:Landroidx/recyclerview/widget/p;
+    iput-object p1, p0, Landroidx/recyclerview/widget/p$a;->a:Landroidx/recyclerview/widget/p;
 
     .line 2
     .line 3
@@ -37,7 +37,7 @@
 
 
 # virtual methods
-.method protected d(Landroid/util/DisplayMetrics;)F
+.method public calculateSpeedPerPixel(Landroid/util/DisplayMetrics;)F
     .locals 0
 
     .line 1
@@ -58,7 +58,7 @@
     return p1
 .end method
 
-.method protected f(I)I
+.method public calculateTimeForScrolling(I)I
     .locals 1
 
     .line 1
@@ -66,7 +66,7 @@
 
     .line 2
     .line 3
-    invoke-super {p0, p1}, Landroidx/recyclerview/widget/l;->f(I)I
+    invoke-super {p0, p1}, Landroidx/recyclerview/widget/l;->calculateTimeForScrolling(I)I
 
     .line 4
     .line 5
@@ -85,11 +85,11 @@
     return p0
 .end method
 
-.method protected onTargetFound(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+.method public onTargetFound(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
     .locals 2
 
     .line 1
-    iget-object p2, p0, Landroidx/recyclerview/widget/p$a;->i:Landroidx/recyclerview/widget/p;
+    iget-object p2, p0, Landroidx/recyclerview/widget/p$a;->a:Landroidx/recyclerview/widget/p;
 
     .line 2
     .line 3
@@ -151,7 +151,7 @@
     move-result v0
 
     .line 31
-    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->e(I)I
+    invoke-virtual {p0, v0}, Landroidx/recyclerview/widget/l;->calculateTimeForDeceleration(I)I
 
     .line 32
     .line 33
@@ -163,7 +163,7 @@
 
     .line 36
     .line 37
-    iget-object p0, p0, Landroidx/recyclerview/widget/l;->b:Landroid/view/animation/DecelerateInterpolator;
+    iget-object p0, p0, Landroidx/recyclerview/widget/l;->mDecelerateInterpolator:Landroid/view/animation/DecelerateInterpolator;
 
     .line 38
     .line 39

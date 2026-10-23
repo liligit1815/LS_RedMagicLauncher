@@ -1,4 +1,4 @@
-.class Landroidx/core/graphics/drawable/IconCompat$b;
+.class public Landroidx/core/graphics/drawable/IconCompat$b;
 .super Ljava/lang/Object;
 .source "IconCompat.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "b"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/graphics/Bitmap;)Landroid/graphics/drawable/Icon;
+.method public static a(Landroid/graphics/Bitmap;)Landroid/graphics/drawable/Icon;
     .locals 0
 
     .line 1

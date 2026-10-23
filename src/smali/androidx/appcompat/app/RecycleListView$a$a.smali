@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/RecycleListView$a$a;
+.class public Landroidx/appcompat/app/RecycleListView$a$a;
 .super Ljava/lang/Object;
 .source "RecycleListView.java"
 
@@ -9,19 +9,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "a"
 .end annotation
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:I
+.field public b:I
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/app/RecycleListView$a;)V
+.method public constructor <init>(Landroidx/appcompat/app/RecycleListView$a;)V
     .locals 0
 
     .line 1

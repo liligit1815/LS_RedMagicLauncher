@@ -133,7 +133,7 @@
     return-object p0
 .end method
 
-.method protected abstract getDelegatorName()Ljava/lang/String;
+.method public abstract getDelegatorName()Ljava/lang/String;
 .end method
 
 .method public getDisplayId()I
@@ -227,7 +227,7 @@
     return-void
 .end method
 
-.method protected setActive(Landroid/view/MotionEvent;)V
+.method public setActive(Landroid/view/MotionEvent;)V
     .locals 2
 
     .line 1
@@ -259,7 +259,7 @@
 
     .line 14
     .line 15
-    invoke-static {v0, v1}, Lcom/android/launcher3/testing/K;->a(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {v0, v1}, Lcom/android/launcher3/testing/TestLogging;->recordEvent(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 16
     .line 17

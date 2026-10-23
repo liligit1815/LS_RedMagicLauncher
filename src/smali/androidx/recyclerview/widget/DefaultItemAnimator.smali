@@ -643,7 +643,7 @@
     return p0
 .end method
 
-.method animateAddImpl(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
+.method public animateAddImpl(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
     .locals 5
 
     .line 1
@@ -937,7 +937,7 @@
     return p0
 .end method
 
-.method animateChangeImpl(Landroidx/recyclerview/widget/DefaultItemAnimator$i;)V
+.method public animateChangeImpl(Landroidx/recyclerview/widget/DefaultItemAnimator$i;)V
     .locals 6
 
     .line 1
@@ -1319,7 +1319,7 @@
     return p0
 .end method
 
-.method animateMoveImpl(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;IIII)V
+.method public animateMoveImpl(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;IIII)V
     .locals 7
 
     .line 1
@@ -1522,7 +1522,7 @@
     return p0
 .end method
 
-.method cancelAll(Ljava/util/List;)V
+.method public cancelAll(Ljava/util/List;)V
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1591,7 +1591,7 @@
     return-void
 .end method
 
-.method dispatchFinishedWhenDone()V
+.method public dispatchFinishedWhenDone()V
     .locals 1
 
     .line 1
@@ -3247,7 +3247,7 @@
     move-result-wide v7
 
     .line 106
-    invoke-static {v5, v6, v7, v8}, LJ/I;->b0(Landroid/view/View;Ljava/lang/Runnable;J)V
+    invoke-static {v5, v6, v7, v8}, Lz5/o0;->d0(Landroid/view/View;Ljava/lang/Runnable;J)V
 
     .line 107
     .line 108
@@ -3344,7 +3344,7 @@
     move-result-wide v7
 
     .line 156
-    invoke-static {v5, v6, v7, v8}, LJ/I;->b0(Landroid/view/View;Ljava/lang/Runnable;J)V
+    invoke-static {v5, v6, v7, v8}, Lz5/o0;->d0(Landroid/view/View;Ljava/lang/Runnable;J)V
 
     .line 157
     .line 158
@@ -3519,7 +3519,7 @@
 
     .line 237
     .line 238
-    invoke-static {p0, v5, v8, v9}, LJ/I;->b0(Landroid/view/View;Ljava/lang/Runnable;J)V
+    invoke-static {p0, v5, v8, v9}, Lz5/o0;->d0(Landroid/view/View;Ljava/lang/Runnable;J)V
 
     .line 239
     .line 240

@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/n;
+.class public Landroidx/recyclerview/widget/n;
 .super Ljava/lang/Object;
 .source "OpReorderer.java"
 
@@ -12,11 +12,11 @@
 
 
 # instance fields
-.field final a:Landroidx/recyclerview/widget/n$a;
+.field public final a:Landroidx/recyclerview/widget/n$a;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/n$a;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/n$a;)V
     .locals 0
 
     .line 1
@@ -32,7 +32,9 @@
     return-void
 .end method
 
-.method private a(Ljava/util/List;)I
+
+# virtual methods
+.method public final a(Ljava/util/List;)I
     .locals 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -116,7 +118,51 @@
     return p0
 .end method
 
-.method private c(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
+.method public b(Ljava/util/List;)V
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Landroidx/recyclerview/widget/a$b;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 1
+    :goto_0
+    invoke-virtual {p0, p1}, Landroidx/recyclerview/widget/n;->a(Ljava/util/List;)I
+
+    .line 2
+    .line 3
+    .line 4
+    move-result v0
+
+    .line 5
+    const/4 v1, -0x1
+
+    .line 6
+    if-eq v0, v1, :cond_0
+
+    .line 7
+    .line 8
+    add-int/lit8 v1, v0, 0x1
+
+    .line 9
+    .line 10
+    invoke-virtual {p0, p1, v0, v1}, Landroidx/recyclerview/widget/n;->d(Ljava/util/List;II)V
+
+    .line 11
+    .line 12
+    .line 13
+    goto :goto_0
+
+    .line 14
+    :cond_0
+    return-void
+.end method
+
+.method public final c(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -224,7 +270,7 @@
     return-void
 .end method
 
-.method private d(Ljava/util/List;II)V
+.method public final d(Ljava/util/List;II)V
     .locals 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -349,7 +395,7 @@
     move v5, p3
 
     .line 47
-    invoke-direct/range {v1 .. v6}, Landroidx/recyclerview/widget/n;->c(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
+    invoke-virtual/range {v1 .. v6}, Landroidx/recyclerview/widget/n;->c(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
 
     .line 48
     .line 49
@@ -357,53 +403,7 @@
     return-void
 .end method
 
-
-# virtual methods
-.method b(Ljava/util/List;)V
-    .locals 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/List<",
-            "Landroidx/recyclerview/widget/a$b;",
-            ">;)V"
-        }
-    .end annotation
-
-    .line 1
-    :goto_0
-    invoke-direct {p0, p1}, Landroidx/recyclerview/widget/n;->a(Ljava/util/List;)I
-
-    .line 2
-    .line 3
-    .line 4
-    move-result v0
-
-    .line 5
-    const/4 v1, -0x1
-
-    .line 6
-    if-eq v0, v1, :cond_0
-
-    .line 7
-    .line 8
-    add-int/lit8 v1, v0, 0x1
-
-    .line 9
-    .line 10
-    invoke-direct {p0, p1, v0, v1}, Landroidx/recyclerview/widget/n;->d(Ljava/util/List;II)V
-
-    .line 11
-    .line 12
-    .line 13
-    goto :goto_0
-
-    .line 14
-    :cond_0
-    return-void
-.end method
-
-.method e(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
+.method public e(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
     .locals 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -942,7 +942,7 @@
     return-void
 .end method
 
-.method f(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
+.method public f(Ljava/util/List;ILandroidx/recyclerview/widget/a$b;ILandroidx/recyclerview/widget/a$b;)V
     .locals 8
     .annotation system Ldalvik/annotation/Signature;
         value = {

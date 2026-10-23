@@ -1,14 +1,31 @@
-.class final LG0/a;
-.super Ljava/lang/RuntimeException;
-.source "JsonDataException.java"
+.class public final synthetic Lg0/a;
+.super Ljava/lang/Object;
+.source "R8$$SyntheticClass"
+
+# interfaces
+.implements Ljava/util/concurrent/Executor;
 
 
 # direct methods
-.method constructor <init>(Ljava/lang/String;)V
+.method public synthetic constructor <init>()V
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+
+# virtual methods
+.method public final execute(Ljava/lang/Runnable;)V
+    .locals 0
+
+    .line 1
+    invoke-static {p1}, Lg0/c;->d(Ljava/lang/Runnable;)V
 
     .line 2
     .line 3

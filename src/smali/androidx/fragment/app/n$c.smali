@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/n$c;
+.class public Landroidx/fragment/app/n$c;
 .super Landroidx/fragment/app/n$n;
 .source "Fragment.java"
 
@@ -9,17 +9,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/fragment/app/n;
+.field public final synthetic a:Landroidx/fragment/app/n;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/n;)V
+.method public constructor <init>(Landroidx/fragment/app/n;)V
     .locals 0
 
     .line 1
@@ -40,7 +40,7 @@
 
 
 # virtual methods
-.method a()V
+.method public a()V
     .locals 2
 
     .line 1
@@ -48,11 +48,11 @@
 
     .line 2
     .line 3
-    iget-object v0, v0, Landroidx/fragment/app/n;->mSavedStateRegistryController:Le0/e;
+    iget-object v0, v0, Landroidx/fragment/app/n;->mSavedStateRegistryController:Lh7/h;
 
     .line 4
     .line 5
-    invoke-virtual {v0}, Le0/e;->c()V
+    invoke-virtual {v0}, Lh7/h;->c()V
 
     .line 6
     .line 7
@@ -61,7 +61,7 @@
 
     .line 9
     .line 10
-    invoke-static {v0}, Landroidx/lifecycle/q;->c(Le0/f;)V
+    invoke-static {v0}, Landroidx/lifecycle/r;->c(Lh7/i;)V
 
     .line 11
     .line 12
@@ -102,11 +102,11 @@
 
     .line 28
     .line 29
-    iget-object p0, p0, Landroidx/fragment/app/n;->mSavedStateRegistryController:Le0/e;
+    iget-object p0, p0, Landroidx/fragment/app/n;->mSavedStateRegistryController:Lh7/h;
 
     .line 30
     .line 31
-    invoke-virtual {p0, v0}, Le0/e;->d(Landroid/os/Bundle;)V
+    invoke-virtual {p0, v0}, Lh7/h;->d(Landroid/os/Bundle;)V
 
     .line 32
     .line 33

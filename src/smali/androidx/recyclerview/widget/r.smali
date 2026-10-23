@@ -1,10 +1,10 @@
-.class Landroidx/recyclerview/widget/r;
+.class public Landroidx/recyclerview/widget/r;
 .super Ljava/lang/Object;
 .source "ScrollbarHelper.java"
 
 
 # direct methods
-.method static a(Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/o;Landroid/view/View;Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Z)I
+.method public static a(Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/o;Landroid/view/View;Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Z)I
     .locals 1
 
     .line 1
@@ -129,7 +129,7 @@
     return p0
 .end method
 
-.method static b(Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/o;Landroid/view/View;Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;ZZ)I
+.method public static b(Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/o;Landroid/view/View;Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;ZZ)I
     .locals 4
 
     .line 1
@@ -382,7 +382,7 @@
     return v1
 .end method
 
-.method static c(Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/o;Landroid/view/View;Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Z)I
+.method public static c(Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/o;Landroid/view/View;Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Z)I
     .locals 1
 
     .line 1

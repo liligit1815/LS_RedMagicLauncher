@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -22,7 +22,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;)V
+.method public constructor <init>(Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;)V
     .locals 0
 
     .line 1
@@ -69,7 +69,7 @@
 
     .line 8
     .line 9
-    invoke-static {}, Lx1/O;->k2()Ljava/lang/Boolean;
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isGestureOptimization()Ljava/lang/Boolean;
 
     .line 10
     .line 11
@@ -138,7 +138,7 @@
 
     .line 8
     .line 9
-    invoke-static {}, Lx1/O;->k2()Ljava/lang/Boolean;
+    invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->isGestureOptimization()Ljava/lang/Boolean;
 
     .line 10
     .line 11

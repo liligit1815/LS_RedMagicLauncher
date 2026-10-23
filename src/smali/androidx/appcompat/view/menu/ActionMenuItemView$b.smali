@@ -29,5 +29,5 @@
 
 
 # virtual methods
-.method public abstract a()Landroidx/appcompat/view/menu/p;
+.method public abstract a()Lr/f;
 .end method

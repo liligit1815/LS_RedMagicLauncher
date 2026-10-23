@@ -112,19 +112,19 @@ public final class LsNativeStack {
      * same TaskViews late in its Overview animation, so a delayed second page
      * commit inevitably produces a visible snap on high-refresh displays. */
 
-    private static final int RES_FOCUS_CENTER = 0x7f0c0109;
-    private static final int RES_FIRST_BACK_CENTER = 0x7f0c010a;
-    private static final int RES_TAIL_GAP = 0x7f0c010b;
-    private static final int RES_TAIL_DECAY = 0x7f0c010c;
-    private static final int RES_FOCUS_SCALE = 0x7f0c0104;
-    private static final int RES_SCALE_STEP = 0x7f0c0105;
-    private static final int RES_MAX_DEPTH = 0x7f0c0106;
-    private static final int RES_INCOMING_DISTANCE = 0x7f0c010d;
-    private static final int RES_INCOMING_SCALE_GAIN = 0x7f0c010e;
-    private static final int RES_MIN_BACK_SCALE = 0x7f0c010f;
-    private static final int RES_NATIVE_CENTER_CORRECTION = 0x7f0c0110;
+    private static final int RES_FOCUS_CENTER = 0x7f0c0118;
+    private static final int RES_FIRST_BACK_CENTER = 0x7f0c0119;
+    private static final int RES_TAIL_GAP = 0x7f0c011a;
+    private static final int RES_TAIL_DECAY = 0x7f0c011b;
+    private static final int RES_FOCUS_SCALE = 0x7f0c0113;
+    private static final int RES_SCALE_STEP = 0x7f0c0114;
+    private static final int RES_MAX_DEPTH = 0x7f0c0115;
+    private static final int RES_INCOMING_DISTANCE = 0x7f0c011c;
+    private static final int RES_INCOMING_SCALE_GAIN = 0x7f0c011d;
+    private static final int RES_MIN_BACK_SCALE = 0x7f0c011e;
+    private static final int RES_NATIVE_CENTER_CORRECTION = 0x7f0c011f;
 
-    private static final int RES_RECENT_STYLE_KEY = 0x7f1403b7;
+    private static final int RES_RECENT_STYLE_KEY = 0x7f140482;
     private static final int NATIVE_STACK_STYLE = 3;
     private static final int ORBIT_STYLE = 4;
     private static final int FAN_STYLE = 5;
@@ -511,7 +511,7 @@ public final class LsNativeStack {
     }
 
     public static boolean isStackHeaderView(TaskView task, View child) {
-        if (child instanceof TaskViewIcon) return true;
+        if (child instanceof IconAppChipView) return true;
         for (TaskContainer container : task.getTaskContainers()) {
             if (container.getTitleView() == child) return true;
         }
@@ -3302,7 +3302,7 @@ public final class LsNativeStack {
                 // INVISIBLE/VISIBLE twice per draw and invalidates their layout.
                 if (freeLayout) {
                     for (TaskContainer container : task.getTaskContainers()) {
-                        TaskViewIcon icon = container.getIconView();
+                        IconAppChipView icon = container.getIconView();
                         if (icon != null) {
                             icon.setContentAlpha(fan || hideHeader || (entryLoading && !entryDeckReady)
                                     ? 0f : taskOrdinal == actionOrdinal ? 1f - actionProgress : 1f);
@@ -3357,7 +3357,7 @@ public final class LsNativeStack {
                 task.setNativeStackHeaderHidden(false);
                 task.setNativeStackChromeAlpha(1.0f, 1.0f);
                 for (TaskContainer container : task.getTaskContainers()) {
-                    TaskViewIcon icon = container.getIconView();
+                    IconAppChipView icon = container.getIconView();
                     if (icon != null) {
                         icon.setContentAlpha(1.0f);
                         applyStackIconBlur(icon.asView(), 0);
@@ -3505,7 +3505,7 @@ public final class LsNativeStack {
 
     /** Settings owns this view. No static Activity/View reference is retained. */
     public static void configureScaleControl(Activity activity, int style) {
-        configureStyleScaleControl(activity.findViewById(0x7f0b06c2), NATIVE_STACK_STYLE, style);
+        configureStyleScaleControl(activity.findViewById(0x7f0b071a), NATIVE_STACK_STYLE, style);
         View content = activity.findViewById(android.R.id.content);
         if (content == null) return;
         configureStyleScaleControl(content.findViewWithTag("ls_orbit_style_card"), ORBIT_STYLE, style);
@@ -3517,7 +3517,7 @@ public final class LsNativeStack {
         LinearLayout parent = (LinearLayout) card;
         Context context = card.getContext();
         // The same inset/radius/tinted surface used by the normal/grid cards.
-        parent.setBackground(context.getDrawable(0x7f08098f));
+        parent.setBackground(context.getDrawable(0x7f0809b2));
         View existing = parent.findViewWithTag(SCALE_SIGNATURE_TAG);
         if (existing == null) {
             TextView signature = new TextView(context);
@@ -3532,7 +3532,7 @@ public final class LsNativeStack {
             existing = signature;
         }
         if (existing instanceof TextView) {
-            ((TextView) existing).setTextColor(context.getColor(0x7f060574));
+            ((TextView) existing).setTextColor(context.getColor(0x7f06058a));
         }
         for (int i = 0; i < parent.getChildCount(); i++) {
             View child = parent.getChildAt(i);
@@ -3614,7 +3614,7 @@ public final class LsNativeStack {
         }
 
         private void refreshTheme() {
-            int textColor = super.getContext().getColor(0x7f060752);
+            int textColor = super.getContext().getColor(0x7f060780);
             captionLabel.setTextColor(textColor);
             valueLabel.setTextColor(textColor);
             for (TextView text : limitLabels) text.setTextColor(textColor);
@@ -3681,7 +3681,7 @@ public final class LsNativeStack {
             float displayedStart, float scale, float higherLayerStart,
             int primarySize, boolean hidden) {
         for (TaskContainer container : task.getTaskContainers()) {
-            TaskViewIcon icon = container.getIconView();
+            IconAppChipView icon = container.getIconView();
             if (icon != null) {
                 float visible = hidden ? 0.0f : getStackIconAlpha(recents,
                         task, icon, displayedStart, scale, higherLayerStart, primarySize);
@@ -3698,7 +3698,7 @@ public final class LsNativeStack {
     }
 
     private static float getStackIconAlpha(RecentsView recents, TaskView task,
-            TaskViewIcon icon, float displayedStart, float scale,
+            IconAppChipView icon, float displayedStart, float scale,
             float higherLayerStart, int primarySize) {
         View view = icon.asView();
         // Content alpha can make IconView INVISIBLE. Testing for VISIBLE here

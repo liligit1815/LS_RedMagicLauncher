@@ -29,13 +29,13 @@
 
 
 # virtual methods
-.method public abstract a(II)Z
+.method public abstract areContentsTheSame(II)Z
 .end method
 
-.method public abstract b(II)Z
+.method public abstract areItemsTheSame(II)Z
 .end method
 
-.method public c(II)Ljava/lang/Object;
+.method public getChangePayload(II)Ljava/lang/Object;
     .locals 0
 
     .line 1
@@ -45,8 +45,8 @@
     return-object p0
 .end method
 
-.method public abstract d()I
+.method public abstract getNewListSize()I
 .end method
 
-.method public abstract e()I
+.method public abstract getOldListSize()I
 .end method

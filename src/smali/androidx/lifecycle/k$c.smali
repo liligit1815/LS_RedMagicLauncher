@@ -1,9 +1,9 @@
-.class Landroidx/lifecycle/k$c;
+.class public Landroidx/lifecycle/k$c;
 .super Landroidx/lifecycle/k$d;
 .source "LiveData.java"
 
 # interfaces
-.implements Landroidx/lifecycle/h;
+.implements Landroidx/lifecycle/i;
 
 
 # annotations
@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "c"
 .end annotation
 
@@ -20,6 +20,6 @@
     value = {
         "Landroidx/lifecycle/k<",
         "TT;>.d;",
-        "Landroidx/lifecycle/h;"
+        "Landroidx/lifecycle/i;"
     }
 .end annotation

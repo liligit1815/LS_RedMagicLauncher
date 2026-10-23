@@ -1,161 +1,217 @@
-.class LL0/s;
-.super Landroid/tracing/perfetto/DataSource;
-.source "ViewCaptureDataSource.java"
+.class public final Ll0/s;
+.super Ljava/lang/Object;
+.source "IntObjectMap.kt"
 
 
 # annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        LL0/s$b;
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\"\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0010\u0008\n\u0002\u0008\u0008\n\u0002\u0010\u0001\n\u0002\u0008\u0003\u001a\u0019\u0010\u0002\u001a\u0008\u0012\u0004\u0012\u00028\u00000\u0001\"\u0004\u0008\u0000\u0010\u0000\u00a2\u0006\u0004\u0008\u0002\u0010\u0003\u001a\u0019\u0010\u0004\u001a\u0008\u0012\u0004\u0012\u00028\u00000\u0001\"\u0004\u0008\u0000\u0010\u0000\u00a2\u0006\u0004\u0008\u0004\u0010\u0003\u001a\u0019\u0010\u0006\u001a\u0008\u0012\u0004\u0012\u00028\u00000\u0005\"\u0004\u0008\u0000\u0010\u0000\u00a2\u0006\u0004\u0008\u0006\u0010\u0007\u001aI\u0010\u000f\u001a\u0008\u0012\u0004\u0012\u00028\u00000\u0005\"\u0004\u0008\u0000\u0010\u00002\u0006\u0010\t\u001a\u00020\u00082\u0006\u0010\n\u001a\u00028\u00002\u0006\u0010\u000b\u001a\u00020\u00082\u0006\u0010\u000c\u001a\u00028\u00002\u0006\u0010\r\u001a\u00020\u00082\u0006\u0010\u000e\u001a\u00028\u0000\u00a2\u0006\u0004\u0008\u000f\u0010\u0010\"\u001a\u0010\u0013\u001a\u0008\u0012\u0004\u0012\u00020\u00110\u00058\u0002X\u0082\u0004\u00a2\u0006\u0006\n\u0004\u0008\u0002\u0010\u0012\u00a8\u0006\u0014"
     }
+    d2 = {
+        "V",
+        "Ll0/r;",
+        "a",
+        "()Ll0/r;",
+        "b",
+        "Ll0/l0;",
+        "c",
+        "()Ll0/l0;",
+        "",
+        "key1",
+        "value1",
+        "key2",
+        "value2",
+        "key3",
+        "value3",
+        "d",
+        "(ILjava/lang/Object;ILjava/lang/Object;ILjava/lang/Object;)Ll0/l0;",
+        "",
+        "Ll0/l0;",
+        "EmptyIntObjectMap",
+        "collection"
+    }
+    k = 0x2
+    mv = {
+        0x1,
+        0x9,
+        0x0
+    }
+    xi = 0x30
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
     value = {
-        "Landroid/tracing/perfetto/DataSource<",
-        "Landroid/tracing/perfetto/DataSourceInstance;",
-        "Ljava/lang/Void;",
-        "LL0/s$b;",
-        ">;"
+        "SMAP\nIntObjectMap.kt\nKotlin\n*S Kotlin\n*F\n+ 1 IntObjectMap.kt\nandroidx/collection/IntObjectMapKt\n+ 2 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,1017:1\n1#2:1018\n*E\n"
     }
 .end annotation
 
 
 # static fields
-.field public static d:Ljava/lang/String; = "android.viewcapture"
-
-
-# instance fields
-.field private final a:Ljava/lang/Runnable;
-
-.field private final b:Ljava/lang/Runnable;
-
-.field private final c:Ljava/lang/Runnable;
+.field public static final a:Ll0/l0;
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .locals 2
 
     .line 1
-    return-void
-.end method
-
-.method constructor <init>(Ljava/lang/Runnable;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
-    .locals 1
-
-    .line 1
-    sget-object v0, LL0/s;->d:Ljava/lang/String;
+    new-instance v0, Ll0/l0;
 
     .line 2
     .line 3
-    invoke-direct {p0, v0}, Landroid/tracing/perfetto/DataSource;-><init>(Ljava/lang/String;)V
+    const/4 v1, 0x0
 
     .line 4
+    invoke-direct {v0, v1}, Ll0/l0;-><init>(I)V
+
     .line 5
     .line 6
-    iput-object p1, p0, LL0/s;->a:Ljava/lang/Runnable;
-
     .line 7
+    sput-object v0, Ll0/s;->a:Ll0/l0;
+
     .line 8
-    iput-object p2, p0, LL0/s;->b:Ljava/lang/Runnable;
-
     .line 9
-    .line 10
-    iput-object p3, p0, LL0/s;->c:Ljava/lang/Runnable;
-
-    .line 11
-    .line 12
     return-void
 .end method
 
-.method static bridge synthetic a(LL0/s;)Ljava/lang/Runnable;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LL0/s;->b:Ljava/lang/Runnable;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic b(LL0/s;)Ljava/lang/Runnable;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LL0/s;->a:Ljava/lang/Runnable;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic c(LL0/s;)Ljava/lang/Runnable;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, LL0/s;->c:Ljava/lang/Runnable;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-
-# virtual methods
-.method public bridge synthetic createIncrementalState(Landroid/tracing/perfetto/CreateIncrementalStateArgs;)Ljava/lang/Object;
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0, p1}, LL0/s;->d(Landroid/tracing/perfetto/CreateIncrementalStateArgs;)LL0/s$b;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    return-object p0
-.end method
-
-.method public createInstance(Landroid/util/proto/ProtoInputStream;I)Landroid/tracing/perfetto/DataSourceInstance;
-    .locals 0
-
-    .line 1
-    new-instance p1, LL0/s$a;
-
-    .line 2
-    .line 3
-    invoke-direct {p1, p0, p0, p2}, LL0/s$a;-><init>(LL0/s;Landroid/tracing/perfetto/DataSource;I)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-object p1
-.end method
-
-.method public d(Landroid/tracing/perfetto/CreateIncrementalStateArgs;)LL0/s$b;
-    .locals 0
+.method public static final a()Ll0/r;
+    .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(",
-            "Landroid/tracing/perfetto/CreateIncrementalStateArgs<",
-            "Landroid/tracing/perfetto/DataSourceInstance;",
-            ">;)",
-            "LL0/s$b;"
+            "<V:",
+            "Ljava/lang/Object;",
+            ">()",
+            "Ll0/r<",
+            "TV;>;"
         }
     .end annotation
 
     .line 1
-    new-instance p0, LL0/s$b;
+    sget-object v0, Ll0/s;->a:Ll0/l0;
 
     .line 2
     .line 3
-    invoke-direct {p0}, LL0/s$b;-><init>()V
+    const-string v1, "null cannot be cast to non-null type androidx.collection.IntObjectMap<V of androidx.collection.IntObjectMapKt.emptyIntObjectMap>"
 
     .line 4
     .line 5
+    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 6
-    return-object p0
+    .line 7
+    .line 8
+    return-object v0
+.end method
+
+.method public static final b()Ll0/r;
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<V:",
+            "Ljava/lang/Object;",
+            ">()",
+            "Ll0/r<",
+            "TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    sget-object v0, Ll0/s;->a:Ll0/l0;
+
+    .line 2
+    .line 3
+    const-string v1, "null cannot be cast to non-null type androidx.collection.IntObjectMap<V of androidx.collection.IntObjectMapKt.intObjectMapOf>"
+
+    .line 4
+    .line 5
+    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 6
+    .line 7
+    .line 8
+    return-object v0
+.end method
+
+.method public static final c()Ll0/l0;
+    .locals 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<V:",
+            "Ljava/lang/Object;",
+            ">()",
+            "Ll0/l0<",
+            "TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    new-instance v0, Ll0/l0;
+
+    .line 2
+    .line 3
+    const/4 v1, 0x1
+
+    .line 4
+    const/4 v2, 0x0
+
+    .line 5
+    const/4 v3, 0x0
+
+    .line 6
+    invoke-direct {v0, v3, v1, v2}, Ll0/l0;-><init>(IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+
+    .line 7
+    .line 8
+    .line 9
+    return-object v0
+.end method
+
+.method public static final d(ILjava/lang/Object;ILjava/lang/Object;ILjava/lang/Object;)Ll0/l0;
+    .locals 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<V:",
+            "Ljava/lang/Object;",
+            ">(ITV;ITV;ITV;)",
+            "Ll0/l0<",
+            "TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    new-instance v0, Ll0/l0;
+
+    .line 2
+    .line 3
+    const/4 v1, 0x1
+
+    .line 4
+    const/4 v2, 0x0
+
+    .line 5
+    const/4 v3, 0x0
+
+    .line 6
+    invoke-direct {v0, v3, v1, v2}, Ll0/l0;-><init>(IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+
+    .line 7
+    .line 8
+    .line 9
+    invoke-virtual {v0, p0, p1}, Ll0/l0;->r(ILjava/lang/Object;)V
+
+    .line 10
+    .line 11
+    .line 12
+    invoke-virtual {v0, p2, p3}, Ll0/l0;->r(ILjava/lang/Object;)V
+
+    .line 13
+    .line 14
+    .line 15
+    invoke-virtual {v0, p4, p5}, Ll0/l0;->r(ILjava/lang/Object;)V
+
+    .line 16
+    .line 17
+    .line 18
+    return-object v0
 .end method

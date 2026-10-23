@@ -195,7 +195,7 @@
 
     .line 35
     .line 36
-    invoke-static {p2, p3}, Landroid/support/v4/os/IResultReceiver$_Parcel;->access$000(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
+    invoke-virtual {p2, p3}, Landroid/os/Parcel;->readTypedObject(Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
 
     .line 37
     .line 38

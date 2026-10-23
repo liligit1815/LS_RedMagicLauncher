@@ -10,12 +10,12 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT = ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali"
+DEFAULT = ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsView.smali"
 
 
 def draw_trace(path, style, has_focus, initial_shift, home_exit=False):
     source = path.read_text(encoding="utf-8")
-    body = source.split(".method protected dispatchDraw(Landroid/graphics/Canvas;)V", 1)[1].split(".end method", 1)[0]
+    body = source.split(".method public dispatchDraw(Landroid/graphics/Canvas;)V", 1)[1].split(".end method", 1)[0]
     code = [line.split("#", 1)[0].strip() for line in body.splitlines()]
     code = [line for line in code if line and not line.startswith(".")]
     labels = {line: i for i, line in enumerate(code) if line.startswith(":")}
@@ -29,7 +29,9 @@ def draw_trace(path, style, has_focus, initial_shift, home_exit=False):
                 return trace, shift
             continue
         if line.startswith("invoke-"):
-            if "->beforeDispatchDraw(" in line:
+            if "LsPlatform12;->beforeDraw(" in line:
+                continue
+            elif "->beforeDispatchDraw(" in line:
                 trace.append("compose_stack")
             elif "->isNativeStackStyle()Z" in line:
                 result = style == 3
@@ -37,7 +39,7 @@ def draw_trace(path, style, has_focus, initial_shift, home_exit=False):
                 result = style == 3 and home_exit
                 if result:
                     trace.append('grouped_children')
-            elif "keyboard/a;->e(" in line:
+            elif "->draw(" in line or "->drawFocusIndicator(" in line:
                 if not registers[re.search(r"\{(\w+),", line)[1]]:
                     raise AssertionError("focus draw dereferences a null helper")
                 trace.append("focus")

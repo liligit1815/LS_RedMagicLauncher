@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract c(Landroid/view/View;Landroid/view/View;II)V
+.method public abstract prepareForDrop(Landroid/view/View;Landroid/view/View;II)V
 .end method

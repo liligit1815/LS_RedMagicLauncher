@@ -1,4 +1,4 @@
-.class abstract Landroidx/fragment/app/n$n;
+.class public abstract Landroidx/fragment/app/n$n;
 .super Ljava/lang/Object;
 .source "Fragment.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x40a
+    accessFlags = 0x409
     name = "n"
 .end annotation
 
 
 # direct methods
-.method private constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -24,7 +24,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Landroidx/fragment/app/n$b;)V
+.method public synthetic constructor <init>(Landroidx/fragment/app/n$b;)V
     .locals 0
 
     .line 2
@@ -35,5 +35,5 @@
 
 
 # virtual methods
-.method abstract a()V
+.method public abstract a()V
 .end method

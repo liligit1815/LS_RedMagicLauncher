@@ -49,7 +49,7 @@
 
     .line 2
     .line 3
-    invoke-static {v0}, Lcom/android/launcher3/N5;->i(F)I
+    invoke-static {v0}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
     .line 4
     .line 5
@@ -64,7 +64,7 @@
     return-void
 .end method
 
-.method constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
     .locals 5
 
     .line 1
@@ -122,7 +122,7 @@
 
     .line 28
     .line 29
-    sget-object v3, Lcom/android/quickstep/OverviewComponentObserver;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v3, Lcom/android/quickstep/OverviewComponentObserver;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 30
     .line 31
@@ -130,7 +130,7 @@
 
     .line 32
     .line 33
-    invoke-virtual {v3, v4}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v3, v4}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 34
     .line 35
@@ -150,164 +150,192 @@
     .line 41
     .line 42
     .line 43
-    invoke-direct {v0, p0, v1, v2}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;Landroid/content/Context;Lcom/android/quickstep/GestureState;)V
+    sget-object v3, Lcom/android/quickstep/RotationTouchHelper;->REPOSITORY_INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 44
     .line 45
+    iget-object v4, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
+
     .line 46
-    iput-object v0, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mTaskViewSwipeUpAnimation:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;
-
     .line 47
-    .line 48
-    sget-object v1, Lcom/android/launcher3/F1;->L1:Lcom/android/launcher3/util/I;
+    invoke-virtual {v3, v4}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
+    .line 48
     .line 49
     .line 50
-    iget-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
+    move-result-object v3
 
     .line 51
-    .line 52
-    invoke-virtual {v1, v2}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    check-cast v3, Lcom/android/app/displaylib/PerDisplayRepository;
 
+    .line 52
     .line 53
+    invoke-interface {v3, p2}, Lcom/android/app/displaylib/PerDisplayRepository;->get(I)Ljava/lang/Object;
+
     .line 54
     .line 55
-    move-result-object v1
-
     .line 56
-    check-cast v1, Lcom/android/launcher3/F1;
+    move-result-object v3
 
     .line 57
+    check-cast v3, Lcom/android/quickstep/RotationTouchHelper;
+
     .line 58
-    iget-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
-
     .line 59
-    .line 60
-    invoke-virtual {v1, v2}, Lcom/android/launcher3/F1;->t0(Landroid/content/Context;)Lcom/android/launcher3/h0;
+    invoke-direct {v0, p0, v1, v2, v3}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;Landroid/content/Context;Lcom/android/quickstep/GestureState;Lcom/android/quickstep/RotationTouchHelper;)V
 
+    .line 60
     .line 61
     .line 62
-    .line 63
-    move-result-object v1
+    iput-object v0, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mTaskViewSwipeUpAnimation:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;
 
+    .line 63
     .line 64
-    iget-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
+    sget-object v1, Lcom/android/launcher3/InvariantDeviceProfile;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 65
     .line 66
-    invoke-virtual {v1, v2}, Lcom/android/launcher3/h0;->S(Landroid/content/Context;)Lcom/android/launcher3/h0;
+    iget-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
 
     .line 67
     .line 68
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
+
     .line 69
+    .line 70
+    .line 71
     move-result-object v1
 
-    .line 70
-    invoke-virtual {v0, v1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->initDp(Lcom/android/launcher3/h0;)V
-
-    .line 71
     .line 72
+    check-cast v1, Lcom/android/launcher3/InvariantDeviceProfile;
+
     .line 73
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
-
     .line 74
-    .line 75
-    invoke-virtual {v0}, Lcom/android/quickstep/interaction/TutorialFragment;->getRootView()Lcom/android/quickstep/interaction/RootSandboxLayout;
+    iget-object v2, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
 
+    .line 75
     .line 76
+    invoke-virtual {v1, v2}, Lcom/android/launcher3/InvariantDeviceProfile;->getDeviceProfile(Landroid/content/Context;)Lcom/android/launcher3/DeviceProfile;
+
     .line 77
     .line 78
-    move-result-object v0
-
     .line 79
-    invoke-virtual {v0}, Lcom/android/quickstep/interaction/RootSandboxLayout;->getFullscreenHeight()I
-
-    .line 80
-    .line 81
-    .line 82
-    move-result v0
-
-    .line 83
-    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
-
-    .line 84
-    .line 85
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialFragment;->getRootView()Lcom/android/quickstep/interaction/RootSandboxLayout;
-
-    .line 86
-    .line 87
-    .line 88
     move-result-object v1
 
+    .line 80
+    invoke-virtual {v1}, Lcom/android/launcher3/DeviceProfile;->copy()Lcom/android/launcher3/DeviceProfile;
+
+    .line 81
+    .line 82
+    .line 83
+    move-result-object v1
+
+    .line 84
+    invoke-virtual {v0, v1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->initDp(Lcom/android/launcher3/DeviceProfile;)V
+
+    .line 85
+    .line 86
+    .line 87
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
+
+    .line 88
     .line 89
-    invoke-virtual {v1}, Landroid/widget/RelativeLayout;->getWidth()I
+    invoke-virtual {v0}, Lcom/android/quickstep/interaction/TutorialFragment;->getRootView()Lcom/android/quickstep/interaction/RootSandboxLayout;
 
     .line 90
     .line 91
     .line 92
-    move-result v1
+    move-result-object v0
 
     .line 93
-    invoke-virtual {p1, p2, p2, v1, v0}, Landroid/graphics/Rect;->set(IIII)V
+    invoke-virtual {v0}, Lcom/android/quickstep/interaction/RootSandboxLayout;->getFullscreenHeight()I
 
     .line 94
     .line 95
     .line 96
-    const/4 p1, 0x0
+    move-result v0
 
     .line 97
-    iput p1, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mFakeTaskViewRadius:F
+    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
 
     .line 98
     .line 99
-    new-instance p1, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$2;
+    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialFragment;->getRootView()Lcom/android/quickstep/interaction/RootSandboxLayout;
 
     .line 100
     .line 101
-    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$2;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)V
-
     .line 102
-    .line 103
-    .line 104
-    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
+    move-result-object v1
 
+    .line 103
+    invoke-virtual {v1}, Landroid/widget/RelativeLayout;->getWidth()I
+
+    .line 104
     .line 105
     .line 106
-    const/4 v0, 0x1
+    move-result v1
 
     .line 107
-    invoke-virtual {p2, v0}, Landroid/widget/FrameLayout;->setClipToOutline(Z)V
+    invoke-virtual {p1, p2, p2, v1, v0}, Landroid/graphics/Rect;->set(IIII)V
 
     .line 108
     .line 109
     .line 110
-    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
+    const/4 p1, 0x0
 
     .line 111
-    .line 112
-    invoke-virtual {p2, p1}, Landroid/widget/FrameLayout;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
+    iput p1, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mFakeTaskViewRadius:F
 
+    .line 112
     .line 113
+    new-instance p1, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$2;
+
     .line 114
     .line 115
-    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakePreviousTaskView:Lcom/android/quickstep/interaction/AnimatedTaskView;
+    invoke-direct {p1, p0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$2;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)V
 
     .line 116
     .line 117
-    invoke-virtual {p2, v0}, Lcom/android/quickstep/interaction/AnimatedTaskView;->setClipToOutline(Z)V
-
     .line 118
+    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
+
     .line 119
     .line 120
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakePreviousTaskView:Lcom/android/quickstep/interaction/AnimatedTaskView;
+    const/4 v0, 0x1
 
     .line 121
-    .line 122
-    invoke-virtual {p0, p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
+    invoke-virtual {p2, v0}, Landroid/widget/FrameLayout;->setClipToOutline(Z)V
 
+    .line 122
     .line 123
     .line 124
+    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
+
     .line 125
+    .line 126
+    invoke-virtual {p2, p1}, Landroid/widget/FrameLayout;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
+
+    .line 127
+    .line 128
+    .line 129
+    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakePreviousTaskView:Lcom/android/quickstep/interaction/AnimatedTaskView;
+
+    .line 130
+    .line 131
+    invoke-virtual {p2, v0}, Lcom/android/quickstep/interaction/AnimatedTaskView;->setClipToOutline(Z)V
+
+    .line 132
+    .line 133
+    .line 134
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakePreviousTaskView:Lcom/android/quickstep/interaction/AnimatedTaskView;
+
+    .line 135
+    .line 136
+    invoke-virtual {p0, p1}, Lcom/android/quickstep/interaction/AnimatedTaskView;->setOutlineProvider(Landroid/view/ViewOutlineProvider;)V
+
+    .line 137
+    .line 138
+    .line 139
     return-void
 .end method
 
@@ -363,11 +391,11 @@
     move-result-object v0
 
     .line 11
-    new-instance v1, Lcom/android/quickstep/interaction/B;
+    new-instance v1, Lcom/android/quickstep/interaction/d0;
 
     .line 12
     .line 13
-    invoke-direct {v1, p0, p1}, Lcom/android/quickstep/interaction/B;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
+    invoke-direct {v1, p0, p1}, Lcom/android/quickstep/interaction/d0;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
 
     .line 14
     .line 15
@@ -390,7 +418,7 @@
     .end array-data
 .end method
 
-.method public static synthetic k(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;FLandroid/animation/ValueAnimator;)V
+.method public static synthetic i(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;FLandroid/animation/ValueAnimator;)V
     .locals 0
 
     .line 1
@@ -402,7 +430,7 @@
     return-void
 .end method
 
-.method static bridge synthetic l(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)F
+.method public static bridge synthetic j(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)F
     .locals 0
 
     .line 1
@@ -411,6 +439,28 @@
     .line 2
     .line 3
     return p0
+.end method
+
+.method public static bridge synthetic k(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/graphics/Rect;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mFakeTaskViewRect:Landroid/graphics/Rect;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static bridge synthetic l(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/animation/AnimatorListenerAdapter;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mResetTaskView:Landroid/animation/AnimatorListenerAdapter;
+
+    .line 2
+    .line 3
+    return-object p0
 .end method
 
 .method private synthetic lambda$createFingerDotSwipeUpAnimator$0(FLandroid/animation/ValueAnimator;)V
@@ -459,29 +509,7 @@
     return-void
 .end method
 
-.method static bridge synthetic m(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/graphics/Rect;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mFakeTaskViewRect:Landroid/graphics/Rect;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic n(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/animation/AnimatorListenerAdapter;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mResetTaskView:Landroid/animation/AnimatorListenerAdapter;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method static bridge synthetic o(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
+.method public static bridge synthetic m(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
     .locals 0
 
     .line 1
@@ -494,7 +522,7 @@
 
 
 # virtual methods
-.method animateFakeTaskViewHome(Landroid/graphics/PointF;Ljava/lang/Runnable;)V
+.method public animateFakeTaskViewHome(Landroid/graphics/PointF;Ljava/lang/Runnable;)V
     .locals 5
 
     .line 1
@@ -551,7 +579,7 @@
     move-result-object p1
 
     .line 28
-    new-instance v0, Lcom/android/launcher3/anim/V;
+    new-instance v0, Lcom/android/launcher3/anim/PendingAnimation;
 
     .line 29
     .line 30
@@ -559,7 +587,7 @@
 
     .line 31
     .line 32
-    invoke-direct {v0, v2, v3}, Lcom/android/launcher3/anim/V;-><init>(J)V
+    invoke-direct {v0, v2, v3}, Lcom/android/launcher3/anim/PendingAnimation;-><init>(J)V
 
     .line 33
     .line 34
@@ -571,11 +599,11 @@
     const/4 v3, 0x0
 
     .line 38
-    sget-object v4, LJ0/h;->C:Landroid/view/animation/Interpolator;
+    sget-object v4, Lcom/android/app/animation/Interpolators;->ACCELERATE:Landroid/view/animation/Interpolator;
 
     .line 39
     .line 40
-    invoke-virtual {v0, v2, v3, v4}, Lcom/android/launcher3/anim/f;->c(Landroid/view/View;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+    invoke-virtual {v0, v2, v3, v4}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->setViewAlpha(Landroid/view/View;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     .line 41
     .line 42
@@ -602,7 +630,7 @@
     .line 53
     .line 54
     .line 55
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 56
     .line 57
@@ -612,7 +640,7 @@
 
     .line 59
     .line 60
-    invoke-static {p2}, Lcom/android/launcher3/anim/h;->c(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
+    invoke-static {p2}, Lcom/android/launcher3/anim/AnimatorListeners;->forSuccessCallback(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
 
     .line 61
     .line 62
@@ -620,13 +648,13 @@
     move-result-object p2
 
     .line 64
-    invoke-virtual {v0, p2}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, p2}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 65
     .line 66
     .line 67
     :cond_1
-    invoke-virtual {v0}, Lcom/android/launcher3/anim/V;->k()Landroid/animation/AnimatorSet;
+    invoke-virtual {v0}, Lcom/android/launcher3/anim/PendingAnimation;->buildAnim()Landroid/animation/AnimatorSet;
 
     .line 68
     .line 69
@@ -639,16 +667,16 @@
     .line 72
     .line 73
     .line 74
-    new-instance v0, Lcom/android/launcher3/m2;
+    new-instance v0, Lcom/android/launcher3/m4;
 
     .line 75
     .line 76
-    invoke-direct {v0, p2}, Lcom/android/launcher3/m2;-><init>(Landroid/animation/AnimatorSet;)V
+    invoke-direct {v0, p2}, Lcom/android/launcher3/m4;-><init>(Landroid/animation/AnimatorSet;)V
 
     .line 77
     .line 78
     .line 79
-    invoke-static {v0}, Lcom/android/launcher3/anim/h;->c(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
+    invoke-static {v0}, Lcom/android/launcher3/anim/AnimatorListeners;->forSuccessCallback(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
 
     .line 80
     .line 81
@@ -676,7 +704,7 @@
     return-void
 .end method
 
-.method protected createFingerDotHomeSwipeAnimator(F)Landroid/animation/Animator;
+.method public createFingerDotHomeSwipeAnimator(F)Landroid/animation/Animator;
     .locals 3
 
     .line 1
@@ -717,7 +745,7 @@
     return-object v0
 .end method
 
-.method protected createFingerDotOverviewSwipeAnimator(F)Landroid/animation/Animator;
+.method public createFingerDotOverviewSwipeAnimator(F)Landroid/animation/Animator;
     .locals 2
 
     .line 1
@@ -758,7 +786,7 @@
     return-object p1
 .end method
 
-.method fadeOutFakeTaskView(ZLjava/lang/Runnable;)V
+.method public fadeOutFakeTaskView(ZLjava/lang/Runnable;)V
     .locals 6
 
     const/4 v3, 0x1
@@ -779,18 +807,18 @@
     return-void
 .end method
 
-.method fadeOutFakeTaskView(ZZZLandroid/animation/ValueAnimator$AnimatorUpdateListener;Ljava/lang/Runnable;)V
+.method public fadeOutFakeTaskView(ZZZLandroid/animation/ValueAnimator$AnimatorUpdateListener;Ljava/lang/Runnable;)V
     .locals 10
 
     .line 2
     invoke-direct {p0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->cancelRunningAnimation()V
 
     .line 3
-    new-instance v0, Lcom/android/launcher3/anim/V;
+    new-instance v0, Lcom/android/launcher3/anim/PendingAnimation;
 
     const-wide/16 v1, 0x12c
 
-    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/anim/V;-><init>(J)V
+    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/anim/PendingAnimation;-><init>(J)V
 
     if-eqz p1, :cond_0
 
@@ -798,18 +826,18 @@
     iget-object p1, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mTaskViewSwipeUpAnimation:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;
 
     .line 5
-    invoke-virtual {p1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/d;
+    invoke-virtual {p1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/AnimatedFloat;
 
     move-result-object p1
 
-    sget-object v1, Lcom/android/launcher3/anim/d;->e:Landroid/util/FloatProperty;
+    sget-object v1, Lcom/android/launcher3/anim/AnimatedFloat;->VALUE:Landroid/util/FloatProperty;
 
     const/high16 v2, 0x3f800000    # 1.0f
 
-    sget-object v3, LJ0/h;->C:Landroid/view/animation/Interpolator;
+    sget-object v3, Lcom/android/app/animation/Interpolators;->ACCELERATE:Landroid/view/animation/Interpolator;
 
     .line 6
-    invoke-virtual {v0, p1, v1, v2, v3}, Lcom/android/launcher3/anim/f;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+    invoke-virtual {v0, p1, v1, v2, v3}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     .line 7
     new-instance v4, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$3;
@@ -826,7 +854,7 @@
 
     invoke-direct/range {v4 .. v9}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$3;-><init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;ZLjava/lang/Runnable;Landroid/animation/ValueAnimator$AnimatorUpdateListener;Z)V
 
-    invoke-virtual {v0, v4}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, v4}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     goto :goto_0
 
@@ -841,40 +869,40 @@
     iget-object p0, v5, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mTaskViewSwipeUpAnimation:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;
 
     .line 9
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/d;
+    invoke-virtual {p0}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/AnimatedFloat;
 
     move-result-object p0
 
-    sget-object p1, Lcom/android/launcher3/anim/d;->e:Landroid/util/FloatProperty;
+    sget-object p1, Lcom/android/launcher3/anim/AnimatedFloat;->VALUE:Landroid/util/FloatProperty;
 
     const/4 p2, 0x0
 
-    sget-object p3, LJ0/h;->C:Landroid/view/animation/Interpolator;
+    sget-object p3, Lcom/android/app/animation/Interpolators;->ACCELERATE:Landroid/view/animation/Interpolator;
 
     .line 10
-    invoke-virtual {v0, p0, p1, p2, p3}, Lcom/android/launcher3/anim/f;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+    invoke-virtual {v0, p0, p1, p2, p3}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     if-eqz v6, :cond_1
 
     .line 11
     iget-object p0, v5, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mResetTaskView:Landroid/animation/AnimatorListenerAdapter;
 
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     :cond_1
     if-eqz v7, :cond_2
 
     .line 12
-    invoke-static {v7}, Lcom/android/launcher3/anim/h;->c(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
+    invoke-static {v7}, Lcom/android/launcher3/anim/AnimatorListeners;->forSuccessCallback(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
 
     move-result-object p0
 
-    invoke-virtual {v0, p0}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, p0}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 13
     :cond_2
     :goto_0
-    invoke-virtual {v0}, Lcom/android/launcher3/anim/V;->k()Landroid/animation/AnimatorSet;
+    invoke-virtual {v0}, Lcom/android/launcher3/anim/PendingAnimation;->buildAnim()Landroid/animation/AnimatorSet;
 
     move-result-object p0
 
@@ -1037,7 +1065,7 @@
     return-void
 .end method
 
-.method resetFakeTaskView(Z)V
+.method public resetFakeTaskView(Z)V
     .locals 1
 
     const/4 v0, 0x1
@@ -1048,7 +1076,7 @@
     return-void
 .end method
 
-.method resetFakeTaskView(ZZ)V
+.method public resetFakeTaskView(ZZ)V
     .locals 5
 
     .line 2
@@ -1059,43 +1087,43 @@
     invoke-virtual {v0, v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
 
     .line 3
-    new-instance v0, Lcom/android/launcher3/anim/V;
+    new-instance v0, Lcom/android/launcher3/anim/PendingAnimation;
 
     const-wide/16 v1, 0x12c
 
-    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/anim/V;-><init>(J)V
+    invoke-direct {v0, v1, v2}, Lcom/android/launcher3/anim/PendingAnimation;-><init>(J)V
 
     .line 4
     iget-object v1, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mTaskViewSwipeUpAnimation:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;
 
     .line 5
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/d;
+    invoke-virtual {v1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/AnimatedFloat;
 
     move-result-object v1
 
-    sget-object v2, Lcom/android/launcher3/anim/d;->e:Landroid/util/FloatProperty;
+    sget-object v2, Lcom/android/launcher3/anim/AnimatedFloat;->VALUE:Landroid/util/FloatProperty;
 
-    sget-object v3, LJ0/h;->C:Landroid/view/animation/Interpolator;
+    sget-object v3, Lcom/android/app/animation/Interpolators;->ACCELERATE:Landroid/view/animation/Interpolator;
 
     const/4 v4, 0x0
 
     .line 6
-    invoke-virtual {v0, v1, v2, v4, v3}, Lcom/android/launcher3/anim/f;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+    invoke-virtual {v0, v1, v2, v4, v3}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     .line 7
     iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialController;->mFakeTaskView:Landroid/widget/FrameLayout;
 
     const/high16 v2, 0x3f800000    # 1.0f
 
-    invoke-virtual {v0, v1, v2, v3}, Lcom/android/launcher3/anim/f;->c(Landroid/view/View;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+    invoke-virtual {v0, v1, v2, v3}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->setViewAlpha(Landroid/view/View;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     .line 8
     iget-object v1, p0, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->mResetTaskView:Landroid/animation/AnimatorListenerAdapter;
 
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 9
-    invoke-virtual {v0}, Lcom/android/launcher3/anim/V;->k()Landroid/animation/AnimatorSet;
+    invoke-virtual {v0}, Lcom/android/launcher3/anim/PendingAnimation;->buildAnim()Landroid/animation/AnimatorSet;
 
     move-result-object v0
 
@@ -1118,7 +1146,7 @@
     return-void
 .end method
 
-.method resetFakeTaskViewFromOverview()V
+.method public resetFakeTaskViewFromOverview()V
     .locals 1
 
     .line 1
@@ -1133,7 +1161,7 @@
     return-void
 .end method
 
-.method resetTaskViews()V
+.method public resetTaskViews()V
     .locals 5
 
     .line 1

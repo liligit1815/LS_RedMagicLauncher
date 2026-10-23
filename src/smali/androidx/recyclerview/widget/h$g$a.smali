@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/h$g$a;
+.class public Landroidx/recyclerview/widget/h$g$a;
 .super Ljava/lang/Object;
 .source "ItemTouchHelper.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/recyclerview/widget/h$g;
+.field public final synthetic c:Landroidx/recyclerview/widget/h$g;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/h$g;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/h$g;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/h$g$a;->g:Landroidx/recyclerview/widget/h$g;
+    iput-object p1, p0, Landroidx/recyclerview/widget/h$g$a;->c:Landroidx/recyclerview/widget/h$g;
 
     .line 2
     .line 3
@@ -44,7 +44,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/recyclerview/widget/h$g$a;->g:Landroidx/recyclerview/widget/h$g;
+    iget-object p0, p0, Landroidx/recyclerview/widget/h$g$a;->c:Landroidx/recyclerview/widget/h$g;
 
     .line 2
     .line 3

@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceFragmentCompat$a;
+.class public Landroidx/preference/PreferenceFragmentCompat$a;
 .super Landroid/os/Handler;
 .source "PreferenceFragmentCompat.java"
 
@@ -9,17 +9,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/preference/PreferenceFragmentCompat;
+.field public final synthetic a:Landroidx/preference/PreferenceFragmentCompat;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/PreferenceFragmentCompat;Landroid/os/Looper;)V
+.method public constructor <init>(Landroidx/preference/PreferenceFragmentCompat;Landroid/os/Looper;)V
     .locals 0
 
     .line 1
@@ -60,7 +60,7 @@
 
     .line 8
     .line 9
-    invoke-virtual {p0}, Landroidx/preference/PreferenceFragmentCompat;->n()V
+    invoke-virtual {p0}, Landroidx/preference/PreferenceFragmentCompat;->bindPreferences()V
 
     .line 10
     .line 11

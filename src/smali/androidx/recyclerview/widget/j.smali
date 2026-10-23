@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/j;
+.class public Landroidx/recyclerview/widget/j;
 .super Ljava/lang/Object;
 .source "ItemTouchUIUtilImpl.java"
 
@@ -7,7 +7,7 @@
 
 
 # static fields
-.field static final a:Landroidx/recyclerview/widget/i;
+.field public static final a:Landroidx/recyclerview/widget/i;
 
 
 # direct methods
@@ -31,7 +31,7 @@
     return-void
 .end method
 
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -43,7 +43,7 @@
     return-void
 .end method
 
-.method private static e(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;)F
+.method public static e(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;)F
     .locals 5
 
     .line 1
@@ -82,7 +82,7 @@
 
     .line 16
     :cond_0
-    invoke-static {v3}, LJ/I;->r(Landroid/view/View;)F
+    invoke-static {v3}, Lz5/o0;->s(Landroid/view/View;)F
 
     .line 17
     .line 18
@@ -120,7 +120,7 @@
     .locals 2
 
     .line 1
-    sget p0, Ld0/c;->a:I
+    sget p0, Lg7/c;->a:I
 
     .line 2
     .line 3
@@ -152,7 +152,7 @@
     move-result v0
 
     .line 17
-    invoke-static {p1, v0}, LJ/I;->r0(Landroid/view/View;F)V
+    invoke-static {p1, v0}, Lz5/o0;->t0(Landroid/view/View;F)V
 
     .line 18
     .line 19
@@ -197,7 +197,7 @@
 
     .line 2
     .line 3
-    sget p0, Ld0/c;->a:I
+    sget p0, Lg7/c;->a:I
 
     .line 4
     .line 5
@@ -213,7 +213,7 @@
 
     .line 10
     .line 11
-    invoke-static {p3}, LJ/I;->r(Landroid/view/View;)F
+    invoke-static {p3}, Lz5/o0;->s(Landroid/view/View;)F
 
     .line 12
     .line 13
@@ -244,7 +244,7 @@
     add-float/2addr p2, p6
 
     .line 26
-    invoke-static {p3, p2}, LJ/I;->r0(Landroid/view/View;F)V
+    invoke-static {p3, p2}, Lz5/o0;->t0(Landroid/view/View;F)V
 
     .line 27
     .line 28

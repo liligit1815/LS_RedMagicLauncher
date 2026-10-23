@@ -163,10 +163,10 @@ public class NativeGestureTest {
             if(openMenuOnUp&&e.action==MotionEvent.ACTION_UP)onTaskMenuOpenResult(actionMenuRecents.get(),true);
             return true;}}
     static class TextView extends View {}
-    static class TaskViewIcon {void setContentAlpha(float alpha){} View asView(){return null;}}
+    static class IconAppChipView {void setContentAlpha(float alpha){} View asView(){return null;}}
     static class TaskContainer {
         final View snapshot=new View();
-        TaskViewIcon getIconView(){return null;}
+        IconAppChipView getIconView(){return null;}
         View getSnapshotView(){return snapshot;}View getTitleView(){return null;}
     }
     static class Metrics {float density=resourceDensity;}
@@ -1146,24 +1146,23 @@ public class NativeGestureTest {
     'ORBIT_COMPOSITION', 'orbitComposition();' if 'float orbitPrimary(' in source else '')
 
 # Verify the production binding runs before OEM setup can sample cached cards.
-recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
 start = recents.split('.method public onGestureAnimationStart(', 1)[1].split('.end method', 1)[0]
 assert start.index('->onAppGestureStart(') < start.index('sput-boolean'), 'gesture hook must precede OEM setup'
 
-task_source=(ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+task_source=(ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
 long_press=task_source.split('.method public performLongClick()Z',1)[1].split('.end method',1)[0]
 assert '->onTaskActionsLongPress(' in long_press and 'showTaskMenu' not in long_press
-for name in ('setIcon$lambda$64$lambda$63','setTaskMenuClickListener$lambda$104'):
+for name in ('setIcon$lambda$60$lambda$59','setTaskMenuClickListener$lambda$99'):
     body=task_source.split('.method private static final '+name,1)[1].split('.end method',1)[0]
     assert body.index('->onTaskActionsLongPress(')<body.index('->showTaskMenu(')
-for name in ('showTaskMenuWithContainer$lambda$82','showTaskMenuWithContainer$lambda$83'):
-    assert '->onTaskMenuClosed(' not in task_source.split('.method private static final '+name,1)[1].split('.end method',1)[0], 'closing start must not restore headers'
-menu_source=(ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskMenuView.smali').read_text(encoding='utf-8')
-for name in ('closeComplete(Z)', 'closeComplete$lambda$10('):
+assert '->onTaskMenuClosed(' not in task_source, 'native menu closing must defer restoration to actual detachment'
+menu_source=(ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskMenuView.smali').read_text(encoding='utf-8')
+for name in ('closeComplete(Z)', 'closeComplete$lambda$14('):
     body=menu_source.split(' '+name,1)[1].split('.end method',1)[0]
     assert body.index('->removeView(')<body.index('->onTaskMenuDetached('), 'restore must follow actual menu removal'
 body=task_source.split('.method private final showTaskMenuWithContainer(',1)[1].split('.end method',1)[0]
-assert body.count('->onTaskMenuOpenResult(')==2, 'both OEM menu variants must report success or failure'
+assert body.count('->onTaskMenuOpenResult(')==1, 'both OEM menu variants must report success or failure'
 body=recents.split('.method public dispatchTouchEvent(',1)[1].split('.end method',1)[0]
 assert body.index('->dispatchInlineActionTouch(')<body.index('invoke-super')
 if 'boolean dispatchOrbitTouch(' in source:

@@ -40,9 +40,7 @@ local.properties
 *.apk.idsig
 *.apk.sha256
 !/original.apk
-!/tooling/framework-res-NX809J.apk
 !/framework/cache/1.apk
-!/baselines/launcher-260005.apk
 *-source.zip
 *-source.zip.sha256
 .DS_Store

@@ -60,7 +60,7 @@
     return-void
 .end method
 
-.method static bridge synthetic a(Lcom/android/quickstep/interaction/AnimatedTaskbarView;Landroid/animation/Animator;)V
+.method public static bridge synthetic a(Lcom/android/quickstep/interaction/AnimatedTaskbarView;Landroid/animation/Animator;)V
     .locals 0
 
     .line 1
@@ -124,31 +124,31 @@
     int-to-float p3, p3
 
     .line 24
-    const/4 v2, 0x0
+    const/4 v2, 0x2
 
     .line 25
-    const/4 v3, 0x2
+    new-array v3, v2, [F
 
     .line 26
-    new-array v4, v3, [F
-
     .line 27
+    const/4 v4, 0x0
+
     .line 28
-    const/4 v5, 0x0
+    aput p3, v3, v4
 
     .line 29
-    aput p3, v4, v5
-
     .line 30
-    .line 31
     const/4 p3, 0x1
 
+    .line 31
+    const/4 v5, 0x0
+
     .line 32
-    aput v2, v4, p3
+    aput v5, v3, p3
 
     .line 33
     .line 34
-    invoke-static {p1, v1, v4}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {p1, v1, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 35
     .line 36
@@ -170,10 +170,10 @@
     .line 44
     .line 45
     .line 46
-    move-result v4
+    move-result v3
 
     .line 47
-    add-int/2addr p4, v4
+    add-int/2addr p4, v3
 
     .line 48
     invoke-virtual {p0}, Landroid/view/ViewGroup;->getLeft()I
@@ -181,7 +181,7 @@
     .line 49
     .line 50
     .line 51
-    move-result v4
+    move-result v3
 
     .line 52
     invoke-virtual {p1}, Landroid/view/View;->getLeft()I
@@ -192,28 +192,28 @@
     move-result v6
 
     .line 56
-    add-int/2addr v4, v6
+    add-int/2addr v3, v6
 
     .line 57
-    sub-int/2addr p4, v4
+    sub-int/2addr p4, v3
 
     .line 58
     int-to-float p4, p4
 
     .line 59
-    new-array v4, v3, [F
+    new-array v3, v2, [F
 
     .line 60
     .line 61
-    aput p4, v4, v5
+    aput p4, v3, v4
 
     .line 62
     .line 63
-    aput v2, v4, p3
+    aput v5, v3, p3
 
     .line 64
     .line 65
-    invoke-static {p1, v1, v4}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {p1, v1, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 66
     .line 67
@@ -246,32 +246,32 @@
     .line 80
     .line 81
     .line 82
-    move-result v2
+    move-result v3
 
     .line 83
-    int-to-float v2, v2
+    int-to-float v3, v3
 
     .line 84
-    div-float/2addr v1, v2
+    div-float/2addr v1, v3
 
     .line 85
-    const/high16 v2, 0x3f800000    # 1.0f
+    new-array v3, v2, [F
 
     .line 86
     .line 87
-    new-array v4, v3, [F
+    aput v1, v3, v4
 
     .line 88
     .line 89
-    aput v1, v4, v5
+    const/high16 v1, 0x3f800000    # 1.0f
 
     .line 90
     .line 91
-    aput v2, v4, p3
+    aput v1, v3, p3
 
     .line 92
     .line 93
-    invoke-static {p1, p4, v4}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {p1, p4, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 94
     .line 95
@@ -304,28 +304,28 @@
     .line 108
     .line 109
     .line 110
-    move-result v1
+    move-result v3
 
     .line 111
-    int-to-float v1, v1
+    int-to-float v3, v3
 
     .line 112
-    div-float/2addr p2, v1
+    div-float/2addr p2, v3
 
     .line 113
-    new-array v1, v3, [F
+    new-array v3, v2, [F
 
     .line 114
     .line 115
-    aput p2, v1, v5
+    aput p2, v3, v4
 
     .line 116
     .line 117
-    aput v2, v1, p3
+    aput v1, v3, p3
 
     .line 118
     .line 119
-    invoke-static {p1, p4, v1}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {p1, p4, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 120
     .line 121
@@ -342,7 +342,7 @@
 
     .line 127
     .line 128
-    new-array p3, v3, [F
+    new-array p3, v2, [F
 
     .line 129
     .line 130
@@ -394,7 +394,6 @@
     .line 156
     return-object p2
 
-    .line 157
     :array_0
     .array-data 4
         0x0
@@ -455,31 +454,31 @@
     int-to-float p3, p3
 
     .line 24
-    const/4 v2, 0x0
+    const/4 v2, 0x2
 
     .line 25
-    const/4 v3, 0x2
+    new-array v3, v2, [F
 
     .line 26
-    new-array v4, v3, [F
-
     .line 27
+    const/4 v4, 0x0
+
     .line 28
     const/4 v5, 0x0
 
     .line 29
-    aput v2, v4, v5
+    aput v5, v3, v4
 
     .line 30
     .line 31
     const/4 v6, 0x1
 
     .line 32
-    aput p3, v4, v6
+    aput p3, v3, v6
 
     .line 33
     .line 34
-    invoke-static {p1, v1, v4}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {p1, v1, v3}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 35
     .line 36
@@ -520,10 +519,10 @@
     .line 53
     .line 54
     .line 55
-    move-result v4
+    move-result v3
 
     .line 56
-    add-int/2addr v1, v4
+    add-int/2addr v1, v3
 
     .line 57
     sub-int/2addr p4, v1
@@ -532,11 +531,11 @@
     int-to-float p4, p4
 
     .line 59
-    new-array v1, v3, [F
+    new-array v1, v2, [F
 
     .line 60
     .line 61
-    aput v2, v1, v5
+    aput v5, v1, v4
 
     .line 62
     .line 63
@@ -586,23 +585,23 @@
     div-float/2addr p4, v1
 
     .line 85
-    const/high16 v1, 0x3f800000    # 1.0f
+    new-array v1, v2, [F
 
     .line 86
     .line 87
-    new-array v2, v3, [F
+    const/high16 v3, 0x3f800000    # 1.0f
 
     .line 88
     .line 89
-    aput v1, v2, v5
+    aput v3, v1, v4
 
     .line 90
     .line 91
-    aput p4, v2, v6
+    aput p4, v1, v6
 
     .line 92
     .line 93
-    invoke-static {p1, p3, v2}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {p1, p3, v1}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 94
     .line 95
@@ -644,11 +643,11 @@
     div-float/2addr p2, p4
 
     .line 113
-    new-array p4, v3, [F
+    new-array p4, v2, [F
 
     .line 114
     .line 115
-    aput v1, p4, v5
+    aput v3, p4, v4
 
     .line 116
     .line 117
@@ -673,7 +672,7 @@
 
     .line 127
     .line 128
-    new-array p3, v3, [F
+    new-array p3, v2, [F
 
     .line 129
     .line 130
@@ -725,7 +724,6 @@
     .line 156
     return-object p2
 
-    .line 157
     :array_0
     .array-data 4
         0x3f800000    # 1.0f
@@ -867,7 +865,7 @@
 
     .line 46
     .line 47
-    const v4, 0x7f0b02ec
+    const v4, 0x7f0b030a
 
     .line 48
     .line 49
@@ -897,7 +895,7 @@
 
     .line 62
     .line 63
-    const v4, 0x7f0b02ed
+    const v4, 0x7f0b030b
 
     .line 64
     .line 65
@@ -927,7 +925,7 @@
 
     .line 78
     .line 79
-    const v4, 0x7f0b02ee
+    const v4, 0x7f0b030c
 
     .line 80
     .line 81
@@ -957,7 +955,7 @@
 
     .line 94
     .line 95
-    const v4, 0x7f0b02ef
+    const v4, 0x7f0b030d
 
     .line 96
     .line 97
@@ -987,7 +985,7 @@
 
     .line 110
     .line 111
-    const v4, 0x7f0b02f0
+    const v4, 0x7f0b030e
 
     .line 112
     .line 113
@@ -1162,7 +1160,7 @@
 
     .line 46
     .line 47
-    const v4, 0x7f0b02ec
+    const v4, 0x7f0b030a
 
     .line 48
     .line 49
@@ -1192,7 +1190,7 @@
 
     .line 62
     .line 63
-    const v4, 0x7f0b02ed
+    const v4, 0x7f0b030b
 
     .line 64
     .line 65
@@ -1222,7 +1220,7 @@
 
     .line 78
     .line 79
-    const v4, 0x7f0b02ee
+    const v4, 0x7f0b030c
 
     .line 80
     .line 81
@@ -1252,7 +1250,7 @@
 
     .line 94
     .line 95
-    const v4, 0x7f0b02ef
+    const v4, 0x7f0b030d
 
     .line 96
     .line 97
@@ -1282,7 +1280,7 @@
 
     .line 110
     .line 111
-    const v4, 0x7f0b02f0
+    const v4, 0x7f0b030e
 
     .line 112
     .line 113
@@ -1365,7 +1363,7 @@
     .end array-data
 .end method
 
-.method protected onFinishInflate()V
+.method public onFinishInflate()V
     .locals 1
 
     .line 1
@@ -1374,7 +1372,7 @@
     .line 2
     .line 3
     .line 4
-    const v0, 0x7f0b05d0
+    const v0, 0x7f0b0617
 
     .line 5
     .line 6
@@ -1391,7 +1389,7 @@
 
     .line 12
     .line 13
-    const v0, 0x7f0b0306
+    const v0, 0x7f0b0324
 
     .line 14
     .line 15
@@ -1408,7 +1406,7 @@
 
     .line 21
     .line 22
-    const v0, 0x7f0b05cf
+    const v0, 0x7f0b0616
 
     .line 23
     .line 24
@@ -1425,7 +1423,7 @@
 
     .line 30
     .line 31
-    const v0, 0x7f0b05d5
+    const v0, 0x7f0b061e
 
     .line 32
     .line 33
@@ -1442,7 +1440,7 @@
 
     .line 39
     .line 40
-    const v0, 0x7f0b05d6
+    const v0, 0x7f0b061f
 
     .line 41
     .line 42
@@ -1459,7 +1457,7 @@
 
     .line 48
     .line 49
-    const v0, 0x7f0b05d7
+    const v0, 0x7f0b0620
 
     .line 50
     .line 51
@@ -1476,7 +1474,7 @@
 
     .line 57
     .line 58
-    const v0, 0x7f0b05d8
+    const v0, 0x7f0b0621
 
     .line 59
     .line 60
@@ -1493,7 +1491,7 @@
 
     .line 66
     .line 67
-    const v0, 0x7f0b05d9
+    const v0, 0x7f0b0622
 
     .line 68
     .line 69

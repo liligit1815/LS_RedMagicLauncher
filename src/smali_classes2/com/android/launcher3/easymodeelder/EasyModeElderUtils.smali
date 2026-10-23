@@ -1,0 +1,22 @@
+.class public Lcom/android/launcher3/easymodeelder/EasyModeElderUtils;
+.super Ljava/lang/Object;
+.source "EasyModeElderUtils.java"
+
+
+# direct methods
+.method public static isSoftbankElder()Z
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    return v0
+.end method
+
+.method public static startCallContactPage(Landroid/content/Context;Ljava/lang/String;)V
+    .locals 0
+
+    .line 1
+    return-void
+.end method

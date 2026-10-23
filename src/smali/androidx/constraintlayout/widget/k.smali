@@ -13,13 +13,13 @@
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:I
+.field public b:I
 
-.field c:I
+.field public c:I
 
-.field private d:Landroid/util/SparseArray;
+.field public d:Landroid/util/SparseArray;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/util/SparseArray<",
@@ -68,414 +68,12 @@
 
     .line 17
     .line 18
-    invoke-direct {p0, p1, p2}, Landroidx/constraintlayout/widget/k;->b(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
+    invoke-virtual {p0, p1, p2}, Landroidx/constraintlayout/widget/k;->b(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
 
     .line 19
     .line 20
     .line 21
     return-void
-.end method
-
-.method private b(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
-    .locals 10
-
-    .line 1
-    const-string v0, "Error parsing XML resource"
-
-    .line 2
-    .line 3
-    const-string v1, "ConstraintLayoutStates"
-
-    .line 4
-    .line 5
-    invoke-static {p2}, Landroid/util/Xml;->asAttributeSet(Lorg/xmlpull/v1/XmlPullParser;)Landroid/util/AttributeSet;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object v2
-
-    .line 9
-    sget-object v3, Landroidx/constraintlayout/widget/i;->U8:[I
-
-    .line 10
-    .line 11
-    invoke-virtual {p1, v2, v3}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[I)Landroid/content/res/TypedArray;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v2
-
-    .line 15
-    invoke-virtual {v2}, Landroid/content/res/TypedArray;->getIndexCount()I
-
-    .line 16
-    .line 17
-    .line 18
-    move-result v3
-
-    .line 19
-    const/4 v4, 0x0
-
-    .line 20
-    move v5, v4
-
-    .line 21
-    :goto_0
-    if-ge v5, v3, :cond_1
-
-    .line 22
-    .line 23
-    invoke-virtual {v2, v5}, Landroid/content/res/TypedArray;->getIndex(I)I
-
-    .line 24
-    .line 25
-    .line 26
-    move-result v6
-
-    .line 27
-    sget v7, Landroidx/constraintlayout/widget/i;->V8:I
-
-    .line 28
-    .line 29
-    if-ne v6, v7, :cond_0
-
-    .line 30
-    .line 31
-    iget v7, p0, Landroidx/constraintlayout/widget/k;->a:I
-
-    .line 32
-    .line 33
-    invoke-virtual {v2, v6, v7}, Landroid/content/res/TypedArray;->getResourceId(II)I
-
-    .line 34
-    .line 35
-    .line 36
-    move-result v6
-
-    .line 37
-    iput v6, p0, Landroidx/constraintlayout/widget/k;->a:I
-
-    .line 38
-    .line 39
-    :cond_0
-    add-int/lit8 v5, v5, 0x1
-
-    .line 40
-    .line 41
-    goto :goto_0
-
-    .line 42
-    :cond_1
-    invoke-virtual {v2}, Landroid/content/res/TypedArray;->recycle()V
-
-    .line 43
-    .line 44
-    .line 45
-    :try_start_0
-    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->getEventType()I
-
-    .line 46
-    .line 47
-    .line 48
-    move-result v2
-    :try_end_0
-    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 49
-    const/4 v3, 0x0
-
-    .line 50
-    :goto_1
-    const/4 v5, 0x1
-
-    .line 51
-    if-eq v2, v5, :cond_8
-
-    .line 52
-    .line 53
-    const-string v6, "StateSet"
-
-    .line 54
-    .line 55
-    const/4 v7, 0x3
-
-    .line 56
-    const/4 v8, 0x2
-
-    .line 57
-    if-eq v2, v8, :cond_3
-
-    .line 58
-    .line 59
-    if-eq v2, v7, :cond_2
-
-    .line 60
-    .line 61
-    goto/16 :goto_4
-
-    .line 62
-    .line 63
-    :cond_2
-    :try_start_1
-    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->getName()Ljava/lang/String;
-
-    .line 64
-    .line 65
-    .line 66
-    move-result-object v2
-
-    .line 67
-    invoke-virtual {v6, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 68
-    .line 69
-    .line 70
-    move-result v2
-
-    .line 71
-    if-eqz v2, :cond_7
-
-    .line 72
-    .line 73
-    goto/16 :goto_7
-
-    .line 74
-    .line 75
-    :catch_0
-    move-exception p0
-
-    .line 76
-    goto :goto_5
-
-    .line 77
-    :catch_1
-    move-exception p0
-
-    .line 78
-    goto :goto_6
-
-    .line 79
-    :cond_3
-    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->getName()Ljava/lang/String;
-
-    .line 80
-    .line 81
-    .line 82
-    move-result-object v2
-
-    .line 83
-    invoke-virtual {v2}, Ljava/lang/String;->hashCode()I
-
-    .line 84
-    .line 85
-    .line 86
-    move-result v9
-
-    .line 87
-    sparse-switch v9, :sswitch_data_0
-
-    .line 88
-    .line 89
-    .line 90
-    goto :goto_2
-
-    .line 91
-    :sswitch_0
-    const-string v5, "Variant"
-
-    .line 92
-    .line 93
-    invoke-virtual {v2, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 94
-    .line 95
-    .line 96
-    move-result v2
-
-    .line 97
-    if-eqz v2, :cond_4
-
-    .line 98
-    .line 99
-    move v5, v7
-
-    .line 100
-    goto :goto_3
-
-    .line 101
-    :sswitch_1
-    invoke-virtual {v2, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 102
-    .line 103
-    .line 104
-    move-result v2
-
-    .line 105
-    if-eqz v2, :cond_4
-
-    .line 106
-    .line 107
-    goto :goto_3
-
-    .line 108
-    :sswitch_2
-    const-string v5, "LayoutDescription"
-
-    .line 109
-    .line 110
-    invoke-virtual {v2, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 111
-    .line 112
-    .line 113
-    move-result v2
-
-    .line 114
-    if-eqz v2, :cond_4
-
-    .line 115
-    .line 116
-    move v5, v4
-
-    .line 117
-    goto :goto_3
-
-    .line 118
-    :sswitch_3
-    const-string v5, "State"
-
-    .line 119
-    .line 120
-    invoke-virtual {v2, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    .line 121
-    .line 122
-    .line 123
-    move-result v2
-
-    .line 124
-    if-eqz v2, :cond_4
-
-    .line 125
-    .line 126
-    move v5, v8
-
-    .line 127
-    goto :goto_3
-
-    .line 128
-    :cond_4
-    :goto_2
-    const/4 v5, -0x1
-
-    .line 129
-    :goto_3
-    if-eq v5, v8, :cond_6
-
-    .line 130
-    .line 131
-    if-eq v5, v7, :cond_5
-
-    .line 132
-    .line 133
-    goto :goto_4
-
-    .line 134
-    :cond_5
-    new-instance v2, Landroidx/constraintlayout/widget/k$b;
-
-    .line 135
-    .line 136
-    invoke-direct {v2, p1, p2}, Landroidx/constraintlayout/widget/k$b;-><init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
-
-    .line 137
-    .line 138
-    .line 139
-    if-eqz v3, :cond_7
-
-    .line 140
-    .line 141
-    invoke-virtual {v3, v2}, Landroidx/constraintlayout/widget/k$a;->a(Landroidx/constraintlayout/widget/k$b;)V
-
-    .line 142
-    .line 143
-    .line 144
-    goto :goto_4
-
-    .line 145
-    :cond_6
-    new-instance v3, Landroidx/constraintlayout/widget/k$a;
-
-    .line 146
-    .line 147
-    invoke-direct {v3, p1, p2}, Landroidx/constraintlayout/widget/k$a;-><init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
-
-    .line 148
-    .line 149
-    .line 150
-    iget-object v2, p0, Landroidx/constraintlayout/widget/k;->d:Landroid/util/SparseArray;
-
-    .line 151
-    .line 152
-    iget v5, v3, Landroidx/constraintlayout/widget/k$a;->a:I
-
-    .line 153
-    .line 154
-    invoke-virtual {v2, v5, v3}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
-
-    .line 155
-    .line 156
-    .line 157
-    :cond_7
-    :goto_4
-    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->next()I
-
-    .line 158
-    .line 159
-    .line 160
-    move-result v2
-    :try_end_1
-    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_1 .. :try_end_1} :catch_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
-
-    .line 161
-    goto :goto_1
-
-    .line 162
-    :goto_5
-    invoke-static {v1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 163
-    .line 164
-    .line 165
-    goto :goto_7
-
-    .line 166
-    :goto_6
-    invoke-static {v1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 167
-    .line 168
-    .line 169
-    :cond_8
-    :goto_7
-    return-void
-
-    .line 170
-    nop
-
-    .line 171
-    :sswitch_data_0
-    .sparse-switch
-        0x4c7d471 -> :sswitch_3
-        0x4d92b252 -> :sswitch_2
-        0x526c4e31 -> :sswitch_1
-        0x7155a865 -> :sswitch_0
-    .end sparse-switch
 .end method
 
 
@@ -692,6 +290,361 @@
     .line 92
     .line 93
     return p0
+.end method
+
+.method public final b(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
+    .locals 7
+
+    .line 1
+    const-string v0, "Error parsing XML resource"
+
+    .line 2
+    .line 3
+    const-string v1, "ConstraintLayoutStates"
+
+    .line 4
+    .line 5
+    invoke-static {p2}, Landroid/util/Xml;->asAttributeSet(Lorg/xmlpull/v1/XmlPullParser;)Landroid/util/AttributeSet;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object v2
+
+    .line 9
+    sget-object v3, Landroidx/constraintlayout/widget/i;->U8:[I
+
+    .line 10
+    .line 11
+    invoke-virtual {p1, v2, v3}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[I)Landroid/content/res/TypedArray;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object v2
+
+    .line 15
+    invoke-virtual {v2}, Landroid/content/res/TypedArray;->getIndexCount()I
+
+    .line 16
+    .line 17
+    .line 18
+    move-result v3
+
+    .line 19
+    const/4 v4, 0x0
+
+    .line 20
+    :goto_0
+    if-ge v4, v3, :cond_1
+
+    .line 21
+    .line 22
+    invoke-virtual {v2, v4}, Landroid/content/res/TypedArray;->getIndex(I)I
+
+    .line 23
+    .line 24
+    .line 25
+    move-result v5
+
+    .line 26
+    sget v6, Landroidx/constraintlayout/widget/i;->V8:I
+
+    .line 27
+    .line 28
+    if-ne v5, v6, :cond_0
+
+    .line 29
+    .line 30
+    iget v6, p0, Landroidx/constraintlayout/widget/k;->a:I
+
+    .line 31
+    .line 32
+    invoke-virtual {v2, v5, v6}, Landroid/content/res/TypedArray;->getResourceId(II)I
+
+    .line 33
+    .line 34
+    .line 35
+    move-result v5
+
+    .line 36
+    iput v5, p0, Landroidx/constraintlayout/widget/k;->a:I
+
+    .line 37
+    .line 38
+    :cond_0
+    add-int/lit8 v4, v4, 0x1
+
+    .line 39
+    .line 40
+    goto :goto_0
+
+    .line 41
+    :cond_1
+    invoke-virtual {v2}, Landroid/content/res/TypedArray;->recycle()V
+
+    .line 42
+    .line 43
+    .line 44
+    :try_start_0
+    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->getEventType()I
+
+    .line 45
+    .line 46
+    .line 47
+    move-result v2
+    :try_end_0
+    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_0 .. :try_end_0} :catch_1
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 48
+    const/4 v3, 0x0
+
+    .line 49
+    :goto_1
+    const/4 v4, 0x1
+
+    .line 50
+    if-eq v2, v4, :cond_5
+
+    .line 51
+    .line 52
+    const/4 v4, 0x2
+
+    .line 53
+    const-string v5, "StateSet"
+
+    .line 54
+    .line 55
+    if-eq v2, v4, :cond_3
+
+    .line 56
+    .line 57
+    const/4 v4, 0x3
+
+    .line 58
+    if-eq v2, v4, :cond_2
+
+    .line 59
+    .line 60
+    goto :goto_2
+
+    .line 61
+    :cond_2
+    :try_start_1
+    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->getName()Ljava/lang/String;
+
+    .line 62
+    .line 63
+    .line 64
+    move-result-object v2
+
+    .line 65
+    invoke-virtual {v5, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    .line 66
+    .line 67
+    .line 68
+    move-result v2
+
+    .line 69
+    if-eqz v2, :cond_4
+
+    .line 70
+    .line 71
+    goto :goto_5
+
+    .line 72
+    :catch_0
+    move-exception p0
+
+    .line 73
+    goto :goto_3
+
+    .line 74
+    :catch_1
+    move-exception p0
+
+    .line 75
+    goto :goto_4
+
+    .line 76
+    :cond_3
+    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->getName()Ljava/lang/String;
+
+    .line 77
+    .line 78
+    .line 79
+    move-result-object v2
+
+    .line 80
+    invoke-virtual {v2}, Ljava/lang/String;->hashCode()I
+
+    .line 81
+    .line 82
+    .line 83
+    move-result v4
+
+    .line 84
+    sparse-switch v4, :sswitch_data_0
+
+    .line 85
+    .line 86
+    .line 87
+    goto :goto_2
+
+    .line 88
+    :sswitch_0
+    const-string v4, "Variant"
+
+    .line 89
+    .line 90
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    .line 91
+    .line 92
+    .line 93
+    move-result v2
+
+    .line 94
+    if-eqz v2, :cond_4
+
+    .line 95
+    .line 96
+    new-instance v2, Landroidx/constraintlayout/widget/k$b;
+
+    .line 97
+    .line 98
+    invoke-direct {v2, p1, p2}, Landroidx/constraintlayout/widget/k$b;-><init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
+
+    .line 99
+    .line 100
+    .line 101
+    if-eqz v3, :cond_4
+
+    .line 102
+    .line 103
+    invoke-virtual {v3, v2}, Landroidx/constraintlayout/widget/k$a;->a(Landroidx/constraintlayout/widget/k$b;)V
+
+    .line 104
+    .line 105
+    .line 106
+    goto :goto_2
+
+    .line 107
+    :sswitch_1
+    invoke-virtual {v2, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    .line 108
+    .line 109
+    .line 110
+    move-result v2
+
+    .line 111
+    goto :goto_2
+
+    .line 112
+    :sswitch_2
+    const-string v4, "LayoutDescription"
+
+    .line 113
+    .line 114
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    .line 115
+    .line 116
+    .line 117
+    move-result v2
+
+    .line 118
+    goto :goto_2
+
+    .line 119
+    :sswitch_3
+    const-string v4, "State"
+
+    .line 120
+    .line 121
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    .line 122
+    .line 123
+    .line 124
+    move-result v2
+
+    .line 125
+    if-eqz v2, :cond_4
+
+    .line 126
+    .line 127
+    new-instance v3, Landroidx/constraintlayout/widget/k$a;
+
+    .line 128
+    .line 129
+    invoke-direct {v3, p1, p2}, Landroidx/constraintlayout/widget/k$a;-><init>(Landroid/content/Context;Lorg/xmlpull/v1/XmlPullParser;)V
+
+    .line 130
+    .line 131
+    .line 132
+    iget-object v2, p0, Landroidx/constraintlayout/widget/k;->d:Landroid/util/SparseArray;
+
+    .line 133
+    .line 134
+    iget v4, v3, Landroidx/constraintlayout/widget/k$a;->a:I
+
+    .line 135
+    .line 136
+    invoke-virtual {v2, v4, v3}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
+
+    .line 137
+    .line 138
+    .line 139
+    :cond_4
+    :goto_2
+    invoke-interface {p2}, Lorg/xmlpull/v1/XmlPullParser;->next()I
+
+    .line 140
+    .line 141
+    .line 142
+    move-result v2
+    :try_end_1
+    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_1 .. :try_end_1} :catch_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+
+    .line 143
+    goto :goto_1
+
+    .line 144
+    :goto_3
+    invoke-static {v1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 145
+    .line 146
+    .line 147
+    goto :goto_5
+
+    .line 148
+    :goto_4
+    invoke-static {v1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 149
+    .line 150
+    .line 151
+    :cond_5
+    :goto_5
+    return-void
+
+    .line 152
+    nop
+
+    .line 153
+    :sswitch_data_0
+    .sparse-switch
+        0x4c7d471 -> :sswitch_3
+        0x4d92b252 -> :sswitch_2
+        0x526c4e31 -> :sswitch_1
+        0x7155a865 -> :sswitch_0
+    .end sparse-switch
 .end method
 
 .method public c(III)I

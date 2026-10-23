@@ -15,21 +15,21 @@
 
 
 # instance fields
-.field private A:Ljava/lang/CharSequence;
+.field public c:Landroidx/preference/DialogPreference;
 
-.field private B:I
+.field public m:Ljava/lang/CharSequence;
 
-.field private C:Landroid/graphics/drawable/BitmapDrawable;
+.field public n:Ljava/lang/CharSequence;
 
-.field private D:I
+.field public o:Ljava/lang/CharSequence;
 
-.field private w:Landroidx/preference/DialogPreference;
+.field public p:Ljava/lang/CharSequence;
 
-.field private x:Ljava/lang/CharSequence;
+.field public q:I
 
-.field private y:Ljava/lang/CharSequence;
+.field public r:Landroid/graphics/drawable/BitmapDrawable;
 
-.field private z:Ljava/lang/CharSequence;
+.field public s:I
 
 
 # direct methods
@@ -45,33 +45,13 @@
     return-void
 .end method
 
-.method private I(Landroid/app/Dialog;)V
-    .locals 0
-
-    .line 1
-    invoke-virtual {p1}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    invoke-static {p0}, Landroidx/preference/PreferenceDialogFragmentCompat$a;->a(Landroid/view/Window;)V
-
-    .line 6
-    .line 7
-    .line 8
-    return-void
-.end method
-
 
 # virtual methods
-.method public C()Landroidx/preference/DialogPreference;
+.method public g()Landroidx/preference/DialogPreference;
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 2
     .line 3
@@ -111,7 +91,7 @@
 
     .line 20
     .line 21
-    invoke-interface {v1, v0}, Landroidx/preference/DialogPreference$a;->c(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+    invoke-interface {v1, v0}, Landroidx/preference/DialogPreference$a;->findPreference(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
 
     .line 22
     .line 23
@@ -123,19 +103,19 @@
 
     .line 26
     .line 27
-    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 28
     .line 29
     :cond_0
-    iget-object p0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object p0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 30
     .line 31
     return-object p0
 .end method
 
-.method protected D()Z
+.method public h()Z
     .locals 0
 
     .line 1
@@ -145,7 +125,7 @@
     return p0
 .end method
 
-.method protected E(Landroid/view/View;)V
+.method public j(Landroid/view/View;)V
     .locals 1
 
     .line 1
@@ -166,7 +146,7 @@
 
     .line 9
     .line 10
-    iget-object p0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->A:Ljava/lang/CharSequence;
+    iget-object p0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->p:Ljava/lang/CharSequence;
 
     .line 11
     .line 12
@@ -236,11 +216,11 @@
     return-void
 .end method
 
-.method protected F(Landroid/content/Context;)Landroid/view/View;
+.method public k(Landroid/content/Context;)Landroid/view/View;
     .locals 1
 
     .line 1
-    iget p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->B:I
+    iget p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->q:I
 
     .line 2
     .line 3
@@ -274,13 +254,33 @@
     return-object p0
 .end method
 
-.method public abstract G(Z)V
+.method public abstract l(Z)V
 .end method
 
-.method protected H(Landroidx/appcompat/app/b$a;)V
+.method public m(Landroidx/appcompat/app/a$a;)V
     .locals 0
 
     .line 1
+    return-void
+.end method
+
+.method public final n(Landroid/app/Dialog;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p0
+
+    .line 5
+    invoke-static {p0}, Landroidx/preference/PreferenceDialogFragmentCompat$a;->a(Landroid/view/Window;)V
+
+    .line 6
+    .line 7
+    .line 8
     return-void
 .end method
 
@@ -288,7 +288,7 @@
     .locals 0
 
     .line 1
-    iput p2, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->D:I
+    iput p2, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->s:I
 
     .line 2
     .line 3
@@ -351,7 +351,7 @@
 
     .line 26
     .line 27
-    invoke-interface {v0, v1}, Landroidx/preference/DialogPreference$a;->c(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
+    invoke-interface {v0, v1}, Landroidx/preference/DialogPreference$a;->findPreference(Ljava/lang/CharSequence;)Landroidx/preference/Preference;
 
     .line 28
     .line 29
@@ -363,11 +363,11 @@
 
     .line 32
     .line 33
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 34
     .line 35
-    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->X0()Ljava/lang/CharSequence;
+    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->e()Ljava/lang/CharSequence;
 
     .line 36
     .line 37
@@ -375,15 +375,15 @@
     move-result-object p1
 
     .line 39
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->x:Ljava/lang/CharSequence;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->m:Ljava/lang/CharSequence;
 
     .line 40
     .line 41
-    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 42
     .line 43
-    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->Z0()Ljava/lang/CharSequence;
+    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->i()Ljava/lang/CharSequence;
 
     .line 44
     .line 45
@@ -391,15 +391,15 @@
     move-result-object p1
 
     .line 47
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->y:Ljava/lang/CharSequence;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->n:Ljava/lang/CharSequence;
 
     .line 48
     .line 49
-    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 50
     .line 51
-    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->Y0()Ljava/lang/CharSequence;
+    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->h()Ljava/lang/CharSequence;
 
     .line 52
     .line 53
@@ -407,15 +407,15 @@
     move-result-object p1
 
     .line 55
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->z:Ljava/lang/CharSequence;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->o:Ljava/lang/CharSequence;
 
     .line 56
     .line 57
-    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 58
     .line 59
-    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->W0()Ljava/lang/CharSequence;
+    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->d()Ljava/lang/CharSequence;
 
     .line 60
     .line 61
@@ -423,15 +423,15 @@
     move-result-object p1
 
     .line 63
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->A:Ljava/lang/CharSequence;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->p:Ljava/lang/CharSequence;
 
     .line 64
     .line 65
-    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 66
     .line 67
-    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->V0()I
+    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->b()I
 
     .line 68
     .line 69
@@ -439,15 +439,15 @@
     move-result p1
 
     .line 71
-    iput p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->B:I
+    iput p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->q:I
 
     .line 72
     .line 73
-    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->w:Landroidx/preference/DialogPreference;
+    iget-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->c:Landroidx/preference/DialogPreference;
 
     .line 74
     .line 75
-    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->U0()Landroid/graphics/drawable/Drawable;
+    invoke-virtual {p1}, Landroidx/preference/DialogPreference;->a()Landroid/graphics/drawable/Drawable;
 
     .line 76
     .line 77
@@ -551,7 +551,7 @@
     .line 126
     .line 127
     .line 128
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->C:Landroid/graphics/drawable/BitmapDrawable;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->r:Landroid/graphics/drawable/BitmapDrawable;
 
     .line 129
     .line 130
@@ -564,7 +564,7 @@
 
     .line 132
     .line 133
-    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->C:Landroid/graphics/drawable/BitmapDrawable;
+    iput-object p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->r:Landroid/graphics/drawable/BitmapDrawable;
 
     .line 134
     .line 135
@@ -584,7 +584,7 @@
     move-result-object v0
 
     .line 142
-    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->x:Ljava/lang/CharSequence;
+    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->m:Ljava/lang/CharSequence;
 
     .line 143
     .line 144
@@ -600,7 +600,7 @@
     move-result-object v0
 
     .line 150
-    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->y:Ljava/lang/CharSequence;
+    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->n:Ljava/lang/CharSequence;
 
     .line 151
     .line 152
@@ -616,7 +616,7 @@
     move-result-object v0
 
     .line 158
-    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->z:Ljava/lang/CharSequence;
+    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->o:Ljava/lang/CharSequence;
 
     .line 159
     .line 160
@@ -632,7 +632,7 @@
     move-result-object v0
 
     .line 166
-    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->A:Ljava/lang/CharSequence;
+    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->p:Ljava/lang/CharSequence;
 
     .line 167
     .line 168
@@ -648,7 +648,7 @@
     move-result v0
 
     .line 174
-    iput v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->B:I
+    iput v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->q:I
 
     .line 175
     .line 176
@@ -689,7 +689,7 @@
     .line 193
     .line 194
     .line 195
-    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->C:Landroid/graphics/drawable/BitmapDrawable;
+    iput-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->r:Landroid/graphics/drawable/BitmapDrawable;
 
     .line 196
     .line 197
@@ -714,6 +714,160 @@
     throw p0
 .end method
 
+.method public onCreateDialog(Landroid/os/Bundle;)Landroid/app/Dialog;
+    .locals 1
+
+    .line 1
+    const/4 p1, -0x2
+
+    .line 2
+    iput p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->s:I
+
+    .line 3
+    .line 4
+    new-instance p1, Landroidx/appcompat/app/a$a;
+
+    .line 5
+    .line 6
+    invoke-virtual {p0}, Landroidx/fragment/app/n;->requireContext()Landroid/content/Context;
+
+    .line 7
+    .line 8
+    .line 9
+    move-result-object v0
+
+    .line 10
+    invoke-direct {p1, v0}, Landroidx/appcompat/app/a$a;-><init>(Landroid/content/Context;)V
+
+    .line 11
+    .line 12
+    .line 13
+    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->m:Ljava/lang/CharSequence;
+
+    .line 14
+    .line 15
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/a$a;->p(Ljava/lang/CharSequence;)Landroidx/appcompat/app/a$a;
+
+    .line 16
+    .line 17
+    .line 18
+    move-result-object p1
+
+    .line 19
+    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->r:Landroid/graphics/drawable/BitmapDrawable;
+
+    .line 20
+    .line 21
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/a$a;->e(Landroid/graphics/drawable/Drawable;)Landroidx/appcompat/app/a$a;
+
+    .line 22
+    .line 23
+    .line 24
+    move-result-object p1
+
+    .line 25
+    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->n:Ljava/lang/CharSequence;
+
+    .line 26
+    .line 27
+    invoke-virtual {p1, v0, p0}, Landroidx/appcompat/app/a$a;->m(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/a$a;
+
+    .line 28
+    .line 29
+    .line 30
+    move-result-object p1
+
+    .line 31
+    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->o:Ljava/lang/CharSequence;
+
+    .line 32
+    .line 33
+    invoke-virtual {p1, v0, p0}, Landroidx/appcompat/app/a$a;->i(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/a$a;
+
+    .line 34
+    .line 35
+    .line 36
+    move-result-object p1
+
+    .line 37
+    invoke-virtual {p0}, Landroidx/fragment/app/n;->requireContext()Landroid/content/Context;
+
+    .line 38
+    .line 39
+    .line 40
+    move-result-object v0
+
+    .line 41
+    invoke-virtual {p0, v0}, Landroidx/preference/PreferenceDialogFragmentCompat;->k(Landroid/content/Context;)Landroid/view/View;
+
+    .line 42
+    .line 43
+    .line 44
+    move-result-object v0
+
+    .line 45
+    if-eqz v0, :cond_0
+
+    .line 46
+    .line 47
+    invoke-virtual {p0, v0}, Landroidx/preference/PreferenceDialogFragmentCompat;->j(Landroid/view/View;)V
+
+    .line 48
+    .line 49
+    .line 50
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/a$a;->r(Landroid/view/View;)Landroidx/appcompat/app/a$a;
+
+    .line 51
+    .line 52
+    .line 53
+    goto :goto_0
+
+    .line 54
+    :cond_0
+    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->p:Ljava/lang/CharSequence;
+
+    .line 55
+    .line 56
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/a$a;->f(Ljava/lang/CharSequence;)Landroidx/appcompat/app/a$a;
+
+    .line 57
+    .line 58
+    .line 59
+    :goto_0
+    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceDialogFragmentCompat;->m(Landroidx/appcompat/app/a$a;)V
+
+    .line 60
+    .line 61
+    .line 62
+    invoke-virtual {p1}, Landroidx/appcompat/app/a$a;->a()Landroidx/appcompat/app/a;
+
+    .line 63
+    .line 64
+    .line 65
+    move-result-object p1
+
+    .line 66
+    invoke-virtual {p0}, Landroidx/preference/PreferenceDialogFragmentCompat;->h()Z
+
+    .line 67
+    .line 68
+    .line 69
+    move-result v0
+
+    .line 70
+    if-eqz v0, :cond_1
+
+    .line 71
+    .line 72
+    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceDialogFragmentCompat;->n(Landroid/app/Dialog;)V
+
+    .line 73
+    .line 74
+    .line 75
+    :cond_1
+    return-object p1
+.end method
+
 .method public onDismiss(Landroid/content/DialogInterface;)V
     .locals 1
 
@@ -723,7 +877,7 @@
     .line 2
     .line 3
     .line 4
-    iget p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->D:I
+    iget p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->s:I
 
     .line 5
     .line 6
@@ -745,7 +899,7 @@
 
     .line 12
     :goto_0
-    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceDialogFragmentCompat;->G(Z)V
+    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceDialogFragmentCompat;->l(Z)V
 
     .line 13
     .line 14
@@ -766,7 +920,7 @@
 
     .line 5
     .line 6
-    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->x:Ljava/lang/CharSequence;
+    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->m:Ljava/lang/CharSequence;
 
     .line 7
     .line 8
@@ -779,7 +933,7 @@
 
     .line 12
     .line 13
-    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->y:Ljava/lang/CharSequence;
+    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->n:Ljava/lang/CharSequence;
 
     .line 14
     .line 15
@@ -792,7 +946,7 @@
 
     .line 19
     .line 20
-    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->z:Ljava/lang/CharSequence;
+    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->o:Ljava/lang/CharSequence;
 
     .line 21
     .line 22
@@ -805,7 +959,7 @@
 
     .line 26
     .line 27
-    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->A:Ljava/lang/CharSequence;
+    iget-object v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->p:Ljava/lang/CharSequence;
 
     .line 28
     .line 29
@@ -818,7 +972,7 @@
 
     .line 33
     .line 34
-    iget v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->B:I
+    iget v1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->q:I
 
     .line 35
     .line 36
@@ -827,7 +981,7 @@
     .line 37
     .line 38
     .line 39
-    iget-object p0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->C:Landroid/graphics/drawable/BitmapDrawable;
+    iget-object p0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->r:Landroid/graphics/drawable/BitmapDrawable;
 
     .line 40
     .line 41
@@ -854,158 +1008,4 @@
     .line 52
     :cond_0
     return-void
-.end method
-
-.method public u(Landroid/os/Bundle;)Landroid/app/Dialog;
-    .locals 1
-
-    .line 1
-    const/4 p1, -0x2
-
-    .line 2
-    iput p1, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->D:I
-
-    .line 3
-    .line 4
-    new-instance p1, Landroidx/appcompat/app/b$a;
-
-    .line 5
-    .line 6
-    invoke-virtual {p0}, Landroidx/fragment/app/n;->requireContext()Landroid/content/Context;
-
-    .line 7
-    .line 8
-    .line 9
-    move-result-object v0
-
-    .line 10
-    invoke-direct {p1, v0}, Landroidx/appcompat/app/b$a;-><init>(Landroid/content/Context;)V
-
-    .line 11
-    .line 12
-    .line 13
-    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->x:Ljava/lang/CharSequence;
-
-    .line 14
-    .line 15
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/b$a;->p(Ljava/lang/CharSequence;)Landroidx/appcompat/app/b$a;
-
-    .line 16
-    .line 17
-    .line 18
-    move-result-object p1
-
-    .line 19
-    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->C:Landroid/graphics/drawable/BitmapDrawable;
-
-    .line 20
-    .line 21
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/b$a;->e(Landroid/graphics/drawable/Drawable;)Landroidx/appcompat/app/b$a;
-
-    .line 22
-    .line 23
-    .line 24
-    move-result-object p1
-
-    .line 25
-    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->y:Ljava/lang/CharSequence;
-
-    .line 26
-    .line 27
-    invoke-virtual {p1, v0, p0}, Landroidx/appcompat/app/b$a;->m(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/b$a;
-
-    .line 28
-    .line 29
-    .line 30
-    move-result-object p1
-
-    .line 31
-    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->z:Ljava/lang/CharSequence;
-
-    .line 32
-    .line 33
-    invoke-virtual {p1, v0, p0}, Landroidx/appcompat/app/b$a;->i(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/b$a;
-
-    .line 34
-    .line 35
-    .line 36
-    move-result-object p1
-
-    .line 37
-    invoke-virtual {p0}, Landroidx/fragment/app/n;->requireContext()Landroid/content/Context;
-
-    .line 38
-    .line 39
-    .line 40
-    move-result-object v0
-
-    .line 41
-    invoke-virtual {p0, v0}, Landroidx/preference/PreferenceDialogFragmentCompat;->F(Landroid/content/Context;)Landroid/view/View;
-
-    .line 42
-    .line 43
-    .line 44
-    move-result-object v0
-
-    .line 45
-    if-eqz v0, :cond_0
-
-    .line 46
-    .line 47
-    invoke-virtual {p0, v0}, Landroidx/preference/PreferenceDialogFragmentCompat;->E(Landroid/view/View;)V
-
-    .line 48
-    .line 49
-    .line 50
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/b$a;->r(Landroid/view/View;)Landroidx/appcompat/app/b$a;
-
-    .line 51
-    .line 52
-    .line 53
-    goto :goto_0
-
-    .line 54
-    :cond_0
-    iget-object v0, p0, Landroidx/preference/PreferenceDialogFragmentCompat;->A:Ljava/lang/CharSequence;
-
-    .line 55
-    .line 56
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/b$a;->f(Ljava/lang/CharSequence;)Landroidx/appcompat/app/b$a;
-
-    .line 57
-    .line 58
-    .line 59
-    :goto_0
-    invoke-virtual {p0, p1}, Landroidx/preference/PreferenceDialogFragmentCompat;->H(Landroidx/appcompat/app/b$a;)V
-
-    .line 60
-    .line 61
-    .line 62
-    invoke-virtual {p1}, Landroidx/appcompat/app/b$a;->a()Landroidx/appcompat/app/b;
-
-    .line 63
-    .line 64
-    .line 65
-    move-result-object p1
-
-    .line 66
-    invoke-virtual {p0}, Landroidx/preference/PreferenceDialogFragmentCompat;->D()Z
-
-    .line 67
-    .line 68
-    .line 69
-    move-result v0
-
-    .line 70
-    if-eqz v0, :cond_1
-
-    .line 71
-    .line 72
-    invoke-direct {p0, p1}, Landroidx/preference/PreferenceDialogFragmentCompat;->I(Landroid/app/Dialog;)V
-
-    .line 73
-    .line 74
-    .line 75
-    :cond_1
-    return-object p1
 .end method

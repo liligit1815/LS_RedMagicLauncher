@@ -1,17 +1,19 @@
-.class public final synthetic LA1/f;
+.class public final synthetic La1/f;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/os/Handler$Callback;
+.implements Lkotlin/jvm/functions/Function2;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/launcher3/notification/NotificationListener;
+.field public final synthetic c:La1/i;
+
+.field public final synthetic m:La1/j;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/launcher3/notification/NotificationListener;)V
+.method public synthetic constructor <init>(La1/i;La1/j;)V
     .locals 0
 
     .line 1
@@ -20,30 +22,62 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, LA1/f;->g:Lcom/android/launcher3/notification/NotificationListener;
+    iput-object p1, p0, La1/f;->c:La1/i;
 
     .line 5
     .line 6
+    iput-object p2, p0, La1/f;->m:La1/j;
+
+    .line 7
+    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final handleMessage(Landroid/os/Message;)Z
-    .locals 0
+.method public final invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
 
     .line 1
-    iget-object p0, p0, LA1/f;->g:Lcom/android/launcher3/notification/NotificationListener;
+    iget-object v0, p0, La1/f;->c:La1/i;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Lcom/android/launcher3/notification/NotificationListener;->h(Lcom/android/launcher3/notification/NotificationListener;Landroid/os/Message;)Z
+    iget-object p0, p0, La1/f;->m:La1/j;
 
     .line 4
     .line 5
-    .line 6
-    move-result p0
+    check-cast p1, Ljava/lang/Integer;
 
+    .line 6
     .line 7
-    return p0
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+
+    .line 8
+    .line 9
+    .line 10
+    move-result p1
+
+    .line 11
+    check-cast p2, Ljava/lang/Integer;
+
+    .line 12
+    .line 13
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
+
+    .line 14
+    .line 15
+    .line 16
+    move-result p2
+
+    .line 17
+    invoke-static {v0, p0, p1, p2}, La1/i;->b(La1/i;La1/j;II)Lkotlin/Unit;
+
+    .line 18
+    .line 19
+    .line 20
+    move-result-object p0
+
+    .line 21
+    return-object p0
 .end method

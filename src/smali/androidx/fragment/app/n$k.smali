@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/n$k;
+.class public Landroidx/fragment/app/n$k;
 .super Ljava/lang/Object;
 .source "Fragment.java"
 
@@ -9,27 +9,27 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "k"
 .end annotation
 
 
 # instance fields
-.field a:Landroid/view/View;
+.field public a:Landroid/view/View;
 
-.field b:Z
+.field public b:Z
 
-.field c:I
+.field public c:I
 
-.field d:I
+.field public d:I
 
-.field e:I
+.field public e:I
 
-.field f:I
+.field public f:I
 
-.field g:I
+.field public g:I
 
-.field h:Ljava/util/ArrayList;
+.field public h:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/ArrayList<",
@@ -39,7 +39,7 @@
     .end annotation
 .end field
 
-.field i:Ljava/util/ArrayList;
+.field public i:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/ArrayList<",
@@ -49,35 +49,35 @@
     .end annotation
 .end field
 
-.field j:Ljava/lang/Object;
+.field public j:Ljava/lang/Object;
 
-.field k:Ljava/lang/Object;
+.field public k:Ljava/lang/Object;
 
-.field l:Ljava/lang/Object;
+.field public l:Ljava/lang/Object;
 
-.field m:Ljava/lang/Object;
+.field public m:Ljava/lang/Object;
 
-.field n:Ljava/lang/Object;
+.field public n:Ljava/lang/Object;
 
-.field o:Ljava/lang/Object;
+.field public o:Ljava/lang/Object;
 
-.field p:Ljava/lang/Boolean;
+.field public p:Ljava/lang/Boolean;
 
-.field q:Ljava/lang/Boolean;
+.field public q:Ljava/lang/Boolean;
 
-.field r:Landroidx/core/app/r;
+.field public r:Lo5/t;
 
-.field s:Landroidx/core/app/r;
+.field public s:Lo5/t;
 
-.field t:F
+.field public t:F
 
-.field u:Landroid/view/View;
+.field public u:Landroid/view/View;
 
-.field v:Z
+.field public v:Z
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 2
 
     .line 1
@@ -117,11 +117,11 @@
 
     .line 18
     .line 19
-    iput-object v0, p0, Landroidx/fragment/app/n$k;->r:Landroidx/core/app/r;
+    iput-object v0, p0, Landroidx/fragment/app/n$k;->r:Lo5/t;
 
     .line 20
     .line 21
-    iput-object v0, p0, Landroidx/fragment/app/n$k;->s:Landroidx/core/app/r;
+    iput-object v0, p0, Landroidx/fragment/app/n$k;->s:Lo5/t;
 
     .line 22
     .line 23

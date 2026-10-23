@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceFragment$a;
+.class public Landroidx/preference/PreferenceFragment$a;
 .super Landroid/os/Handler;
 .source "PreferenceFragment.java"
 
@@ -9,17 +9,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/preference/PreferenceFragment;
+.field public final synthetic a:Landroidx/preference/PreferenceFragment;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/PreferenceFragment;)V
+.method public constructor <init>(Landroidx/preference/PreferenceFragment;)V
     .locals 0
 
     .line 1

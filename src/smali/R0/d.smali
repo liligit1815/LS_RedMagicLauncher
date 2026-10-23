@@ -1,9 +1,9 @@
-.class public final synthetic LR0/d;
+.class public final synthetic Lr0/d;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lu4/l;
+.implements Lkotlin/jvm/functions/Function0;
 
 
 # direct methods
@@ -21,21 +21,17 @@
 
 
 # virtual methods
-.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
+.method public final invoke()Ljava/lang/Object;
     .locals 0
 
     .line 1
-    check-cast p1, Lcom/android/launcher3/model/data/d;
+    invoke-static {}, Lr0/i;->a()Lkotlin/Unit;
 
     .line 2
     .line 3
-    invoke-static {p1}, LR0/k;->d(Lcom/android/launcher3/model/data/d;)Lh4/t;
-
     .line 4
-    .line 5
-    .line 6
     move-result-object p0
 
-    .line 7
+    .line 5
     return-object p0
 .end method

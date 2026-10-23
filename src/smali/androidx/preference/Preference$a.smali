@@ -1,4 +1,4 @@
-.class Landroidx/preference/Preference$a;
+.class public Landroidx/preference/Preference$a;
 .super Ljava/lang/Object;
 .source "Preference.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/preference/Preference;
+.field public final synthetic c:Landroidx/preference/Preference;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/Preference;)V
+.method public constructor <init>(Landroidx/preference/Preference;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/Preference$a;->g:Landroidx/preference/Preference;
+    iput-object p1, p0, Landroidx/preference/Preference$a;->c:Landroidx/preference/Preference;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/preference/Preference$a;->g:Landroidx/preference/Preference;
+    iget-object p0, p0, Landroidx/preference/Preference$a;->c:Landroidx/preference/Preference;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->j0(Landroid/view/View;)V
+    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->performClick(Landroid/view/View;)V
 
     .line 4
     .line 5

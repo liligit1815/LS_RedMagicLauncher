@@ -4,25 +4,19 @@
 
 
 # instance fields
-.field final mColorOnSurfaceBack:I
+.field final mColorContainerBack:I
 
-.field final mColorOnSurfaceHome:I
+.field final mColorContainerHome:I
 
-.field final mColorOnSurfaceOverview:I
+.field final mColorContainerOverview:I
 
-.field final mColorSecondaryBack:I
+.field final mColorOnContainerBack:I
 
-.field final mColorSecondaryHome:I
+.field final mColorOnContainerHome:I
 
-.field final mColorSecondaryOverview:I
-
-.field final mColorSurfaceBack:I
+.field final mColorOnContainerOverview:I
 
 .field final mColorSurfaceContainer:I
-
-.field final mColorSurfaceHome:I
-
-.field final mColorSurfaceOverview:I
 
 
 # direct methods
@@ -66,14 +60,14 @@
     invoke-direct {p0, p1, p2, p3, p4}, Landroid/widget/RelativeLayout;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
 
     .line 5
-    sget-object v0, Lcom/android/launcher3/x5;->D2:[I
+    sget-object v0, Lcom/android/launcher3/R$styleable;->RootSandboxLayout:[I
 
     invoke-virtual {p1, p2, v0, p3, p4}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
     move-result-object p2
 
     .line 6
-    invoke-static {p1}, Lcom/android/launcher3/N5;->x(Landroid/content/Context;)Z
+    invoke-static {p1}, Lcom/android/launcher3/Utilities;->isDarkTheme(Landroid/content/Context;)Z
 
     move-result p1
 
@@ -99,7 +93,7 @@
     move p3, p4
 
     :goto_1
-    const/4 p1, 0x7
+    const/4 p1, 0x6
 
     .line 7
     invoke-virtual {p2, p1, v0}, Landroid/content/res/TypedArray;->getColor(II)I
@@ -111,87 +105,58 @@
     const/4 p1, 0x1
 
     .line 8
-    invoke-virtual {p2, p1, p3}, Landroid/content/res/TypedArray;->getColor(II)I
-
-    move-result p1
-
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnSurfaceHome:I
-
-    const/16 p1, 0x8
-
-    .line 9
     invoke-virtual {p2, p1, v0}, Landroid/content/res/TypedArray;->getColor(II)I
 
     move-result p1
 
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSurfaceHome:I
+    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerHome:I
 
     const/4 p1, 0x4
 
-    const p4, -0x777778
-
-    .line 10
-    invoke-virtual {p2, p1, p4}, Landroid/content/res/TypedArray;->getColor(II)I
+    .line 9
+    invoke-virtual {p2, p1, p3}, Landroid/content/res/TypedArray;->getColor(II)I
 
     move-result p1
 
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSecondaryHome:I
+    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnContainerHome:I
 
     const/4 p1, 0x0
+
+    .line 10
+    invoke-virtual {p2, p1, v0}, Landroid/content/res/TypedArray;->getColor(II)I
+
+    move-result p1
+
+    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerBack:I
+
+    const/4 p1, 0x3
 
     .line 11
     invoke-virtual {p2, p1, p3}, Landroid/content/res/TypedArray;->getColor(II)I
 
     move-result p1
 
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnSurfaceBack:I
+    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnContainerBack:I
 
-    const/4 p1, 0x6
+    const/4 p1, 0x2
 
     .line 12
     invoke-virtual {p2, p1, v0}, Landroid/content/res/TypedArray;->getColor(II)I
 
     move-result p1
 
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSurfaceBack:I
+    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerOverview:I
 
-    const/4 p1, 0x3
+    const/4 p1, 0x5
 
     .line 13
-    invoke-virtual {p2, p1, p4}, Landroid/content/res/TypedArray;->getColor(II)I
-
-    move-result p1
-
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSecondaryBack:I
-
-    const/4 p1, 0x2
-
-    .line 14
     invoke-virtual {p2, p1, p3}, Landroid/content/res/TypedArray;->getColor(II)I
 
     move-result p1
 
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnSurfaceOverview:I
+    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnContainerOverview:I
 
-    const/16 p1, 0x9
-
-    .line 15
-    invoke-virtual {p2, p1, v0}, Landroid/content/res/TypedArray;->getColor(II)I
-
-    move-result p1
-
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSurfaceOverview:I
-
-    const/4 p1, 0x5
-
-    .line 16
-    invoke-virtual {p2, p1, p4}, Landroid/content/res/TypedArray;->getColor(II)I
-
-    move-result p1
-
-    iput p1, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSecondaryOverview:I
-
-    .line 17
+    .line 14
     invoke-virtual {p2}, Landroid/content/res/TypedArray;->recycle()V
 
     return-void
@@ -256,7 +221,7 @@
     .locals 0
 
     .line 1
-    invoke-static {p0}, Landroidx/fragment/app/F;->g0(Landroid/view/View;)Landroidx/fragment/app/n;
+    invoke-static {p0}, Landroidx/fragment/app/f0;->g0(Landroid/view/View;)Landroidx/fragment/app/n;
 
     .line 2
     .line 3

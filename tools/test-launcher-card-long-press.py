@@ -78,11 +78,11 @@ public class LongPressTest {
         float getTranslationZ(){return z;}float getZ(){return z;}boolean isEnabled(){return enabled;}
         Matrix getMatrix(){return matrix;}
     }
-    static class TaskViewIcon {View view;View asView(){return view;}}
+    static class IconAppChipView {View view;View asView(){return view;}}
     static class TaskContainer {
         View snapshot=new View(0,50,600,900),title=new View(40,0,200,40);
         View getSnapshotView(){return snapshot;}View getTitleView(){return title;}
-        TaskViewIcon getIconView(){return null;}
+        IconAppChipView getIconView(){return null;}
     }
     static class TaskView extends View {
         int id,cancels,platformLongCancels,posts;long due;
@@ -299,7 +299,7 @@ MEMBERS
 '''.replace('MEMBERS', members)
 
 if args.source.resolve() == (ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').resolve():
-    recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+    recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
     dispatch = recents.split('.method public dispatchTouchEvent(', 1)[1].split('.end method', 1)[0]
     assert dispatch.index('->dispatchInlineActionTouch(') < dispatch.index('->dispatchCardLongPressTouch(') < dispatch.index('invoke-super'), 'observer must run after actions and before pager interception'
     cancel = recents.split('.method public final cancelNativeStackTouch(', 1)[1].split('.end method', 1)[0]

@@ -84,7 +84,7 @@ with tempfile.TemporaryDirectory(prefix='stack-visual-continuity-') as folder:
     subprocess.run(['javac', '-encoding', 'UTF-8', '-d', folder, str(java)], check=True)
     subprocess.run(['java', '-cp', folder, 'StackVisualContinuity'], check=True)
 
-task_source = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+task_source = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
 
 
 def instructions(body):
@@ -169,7 +169,7 @@ class TaskClipMachine:
             elif op == 'goto':
                 pc = labels[operand]
             elif op == 'instance-of':
-                assert values[2] == 'Lcom/android/quickstep/views/TaskViewIcon;'
+                assert values[2] == 'Lcom/android/quickstep/views/IconAppChipView;'
                 registers[values[0]] = registers[values[1]] == 'icon'
             elif op.startswith('move-result'):
                 registers[operand] = result

@@ -3,15 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Consumer;
+.implements Lkotlin/jvm/functions/Function1;
 
 
 # instance fields
-.field public final synthetic a:La2/e;
+.field public final synthetic c:Lkotlin/jvm/functions/Function0;
 
 
 # direct methods
-.method public synthetic constructor <init>(La2/e;)V
+.method public synthetic constructor <init>(Lkotlin/jvm/functions/Function0;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, La2/d;->a:La2/e;
+    iput-object p1, p0, La2/d;->c:Lkotlin/jvm/functions/Function0;
 
     .line 5
     .line 6
@@ -29,22 +29,25 @@
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
+.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
     .line 1
-    iget-object p0, p0, La2/d;->a:La2/e;
+    iget-object p0, p0, La2/d;->c:Lkotlin/jvm/functions/Function0;
 
     .line 2
     .line 3
-    check-cast p1, Landroid/view/WindowManager;
+    check-cast p1, Lf3/z0;
 
     .line 4
     .line 5
-    invoke-static {p0, p1}, La2/e;->a(La2/e;Landroid/view/WindowManager;)V
+    invoke-static {p0, p1}, La2/k;->c(Lkotlin/jvm/functions/Function0;Lf3/z0;)Lkotlin/Unit;
 
     .line 6
     .line 7
     .line 8
-    return-void
+    move-result-object p0
+
+    .line 9
+    return-object p0
 .end method

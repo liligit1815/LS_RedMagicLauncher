@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "Proxy"
 .end annotation
 
@@ -22,7 +22,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroid/os/IBinder;)V
+.method public constructor <init>(Landroid/os/IBinder;)V
     .locals 0
 
     .line 1
@@ -94,7 +94,7 @@
     const/4 p1, 0x0
 
     .line 14
-    invoke-static {v0, p2, p1}, Landroid/support/v4/os/IResultReceiver2$_Parcel;->access$100(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
+    invoke-virtual {v0, p2, p1}, Landroid/os/Parcel;->writeTypedObject(Landroid/os/Parcelable;I)V
 
     .line 15
     .line 16

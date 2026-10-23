@@ -3,15 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/view/View$OnClickListener;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/OverviewGestureTutorialController;
+.field public final synthetic c:Lcom/android/quickstep/interaction/MenuFragment;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/MenuFragment;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/x;->g:Lcom/android/quickstep/interaction/OverviewGestureTutorialController;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/x;->c:Lcom/android/quickstep/interaction/MenuFragment;
 
     .line 5
     .line 6
@@ -29,15 +29,15 @@
 
 
 # virtual methods
-.method public final run()V
+.method public final onClick(Landroid/view/View;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/x;->g:Lcom/android/quickstep/interaction/OverviewGestureTutorialController;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/x;->c:Lcom/android/quickstep/interaction/MenuFragment;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/interaction/OverviewGestureTutorialController;->p(Lcom/android/quickstep/interaction/OverviewGestureTutorialController;)V
+    invoke-static {p0, p1}, Lcom/android/quickstep/interaction/MenuFragment;->h(Lcom/android/quickstep/interaction/MenuFragment;Landroid/view/View;)V
 
     .line 4
     .line 5

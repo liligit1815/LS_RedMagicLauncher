@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceFragment$b;
+.class public Landroidx/preference/PreferenceFragment$b;
 .super Ljava/lang/Object;
 .source "PreferenceFragment.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/preference/PreferenceFragment;
+.field public final synthetic c:Landroidx/preference/PreferenceFragment;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/PreferenceFragment;)V
+.method public constructor <init>(Landroidx/preference/PreferenceFragment;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/PreferenceFragment$b;->g:Landroidx/preference/PreferenceFragment;
+    iput-object p1, p0, Landroidx/preference/PreferenceFragment$b;->c:Landroidx/preference/PreferenceFragment;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/preference/PreferenceFragment$b;->g:Landroidx/preference/PreferenceFragment;
+    iget-object p0, p0, Landroidx/preference/PreferenceFragment$b;->c:Landroidx/preference/PreferenceFragment;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/preference/PreferenceFragment;->i:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p0, p0, Landroidx/preference/PreferenceFragment;->n:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 4
     .line 5

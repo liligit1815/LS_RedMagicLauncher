@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/v$a;
+.class public Landroidx/recyclerview/widget/v$a;
 .super Ljava/lang/Object;
 .source "ViewInfoStore.java"
 
@@ -9,16 +9,16 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # static fields
-.field static d:LI/e;
+.field public static d:Ly5/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "LI/e<",
+            "Ly5/e<",
             "Landroidx/recyclerview/widget/v$a;",
             ">;"
         }
@@ -27,11 +27,11 @@
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;
+.field public b:Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;
 
-.field c:Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;
+.field public c:Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;
 
 
 # direct methods
@@ -39,7 +39,7 @@
     .locals 2
 
     .line 1
-    new-instance v0, LI/f;
+    new-instance v0, Ly5/f;
 
     .line 2
     .line 3
@@ -47,19 +47,19 @@
 
     .line 4
     .line 5
-    invoke-direct {v0, v1}, LI/f;-><init>(I)V
+    invoke-direct {v0, v1}, Ly5/f;-><init>(I)V
 
     .line 6
     .line 7
     .line 8
-    sput-object v0, Landroidx/recyclerview/widget/v$a;->d:LI/e;
+    sput-object v0, Landroidx/recyclerview/widget/v$a;->d:Ly5/e;
 
     .line 9
     .line 10
     return-void
 .end method
 
-.method private constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -71,16 +71,16 @@
     return-void
 .end method
 
-.method static a()V
+.method public static a()V
     .locals 1
 
     .line 1
     :goto_0
-    sget-object v0, Landroidx/recyclerview/widget/v$a;->d:LI/e;
+    sget-object v0, Landroidx/recyclerview/widget/v$a;->d:Ly5/e;
 
     .line 2
     .line 3
-    invoke-interface {v0}, LI/e;->acquire()Ljava/lang/Object;
+    invoke-interface {v0}, Ly5/e;->acquire()Ljava/lang/Object;
 
     .line 4
     .line 5
@@ -99,15 +99,15 @@
     return-void
 .end method
 
-.method static b()Landroidx/recyclerview/widget/v$a;
+.method public static b()Landroidx/recyclerview/widget/v$a;
     .locals 1
 
     .line 1
-    sget-object v0, Landroidx/recyclerview/widget/v$a;->d:LI/e;
+    sget-object v0, Landroidx/recyclerview/widget/v$a;->d:Ly5/e;
 
     .line 2
     .line 3
-    invoke-interface {v0}, LI/e;->acquire()Ljava/lang/Object;
+    invoke-interface {v0}, Ly5/e;->acquire()Ljava/lang/Object;
 
     .line 4
     .line 5
@@ -136,7 +136,7 @@
     return-object v0
 .end method
 
-.method static c(Landroidx/recyclerview/widget/v$a;)V
+.method public static c(Landroidx/recyclerview/widget/v$a;)V
     .locals 1
 
     .line 1
@@ -158,11 +158,11 @@
 
     .line 8
     .line 9
-    sget-object v0, Landroidx/recyclerview/widget/v$a;->d:LI/e;
+    sget-object v0, Landroidx/recyclerview/widget/v$a;->d:Ly5/e;
 
     .line 10
     .line 11
-    invoke-interface {v0, p0}, LI/e;->release(Ljava/lang/Object;)Z
+    invoke-interface {v0, p0}, Ly5/e;->release(Ljava/lang/Object;)Z
 
     .line 12
     .line 13

@@ -1,4 +1,4 @@
-.class Landroidx/preference/ListPreference$a;
+.class public Landroidx/preference/ListPreference$a;
 .super Landroidx/preference/Preference$b;
 .source "ListPreference.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field g:Ljava/lang/String;
+.field public c:Ljava/lang/String;
 
 
 # direct methods
@@ -51,7 +51,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 0
 
     .line 1
@@ -62,12 +62,12 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Landroidx/preference/ListPreference$a;->g:Ljava/lang/String;
+    iput-object p1, p0, Landroidx/preference/ListPreference$a;->c:Ljava/lang/String;
 
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 3
@@ -87,7 +87,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/preference/ListPreference$a;->g:Ljava/lang/String;
+    iget-object p0, p0, Landroidx/preference/ListPreference$a;->c:Ljava/lang/String;
 
     .line 5
     .line 6

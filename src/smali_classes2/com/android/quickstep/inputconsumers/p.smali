@@ -3,19 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Lcom/android/quickstep/util/MotionPauseDetector$OnMotionPauseListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;
-
-.field public final synthetic h:Landroid/content/Context;
-
-.field public final synthetic i:Lcom/android/quickstep/GestureState;
+.field public final synthetic c:Lcom/android/quickstep/RecentsAnimationController;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;Landroid/content/Context;Lcom/android/quickstep/GestureState;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/RecentsAnimationController;)V
     .locals 0
 
     .line 1
@@ -24,43 +20,27 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/p;->g:Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/p;->c:Lcom/android/quickstep/RecentsAnimationController;
 
     .line 5
     .line 6
-    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/p;->h:Landroid/content/Context;
-
-    .line 7
-    .line 8
-    iput-object p3, p0, Lcom/android/quickstep/inputconsumers/p;->i:Lcom/android/quickstep/GestureState;
-
-    .line 9
-    .line 10
     return-void
 .end method
 
 
 # virtual methods
-.method public final onMotionPauseDetected()V
-    .locals 2
+.method public final run()V
+    .locals 0
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/p;->g:Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/p;->c:Lcom/android/quickstep/RecentsAnimationController;
 
     .line 2
     .line 3
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/p;->h:Landroid/content/Context;
+    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer$FinishImmediatelyHandler;->a(Lcom/android/quickstep/RecentsAnimationController;)V
 
     .line 4
     .line 5
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/p;->i:Lcom/android/quickstep/GestureState;
-
     .line 6
-    .line 7
-    invoke-static {v0, v1, p0}, Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;->a(Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;Landroid/content/Context;Lcom/android/quickstep/GestureState;)V
-
-    .line 8
-    .line 9
-    .line 10
     return-void
 .end method

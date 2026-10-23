@@ -153,7 +153,7 @@
     .line 28
     .line 29
     .line 30
-    invoke-static {}, LF/h;->c()Z
+    invoke-static {}, Lv5/j;->c()Z
 
     .line 31
     .line 32
@@ -493,7 +493,7 @@
     return-void
 .end method
 
-.method canRestoreState()Z
+.method public canRestoreState()Z
     .locals 3
 
     .line 1
@@ -565,7 +565,7 @@
 
     .line 1
     :try_start_0
-    invoke-static {}, LF/h;->c()Z
+    invoke-static {}, Lv5/j;->c()Z
 
     .line 2
     .line 3

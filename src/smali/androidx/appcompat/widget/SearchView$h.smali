@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SearchView$h;
+.class public Landroidx/appcompat/widget/SearchView$h;
 .super Ljava/lang/Object;
 .source "SearchView.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/widget/SearchView;
+.field public final synthetic c:Landroidx/appcompat/widget/SearchView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/SearchView;)V
+.method public constructor <init>(Landroidx/appcompat/widget/SearchView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$h;->g:Landroidx/appcompat/widget/SearchView;
+    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$h;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3
@@ -44,7 +44,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$h;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$h;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3

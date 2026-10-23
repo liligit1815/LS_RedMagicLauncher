@@ -1,17 +1,17 @@
-.class public final synthetic Lcom/android/quickstep/interaction/G;
+.class public final synthetic Lcom/android/quickstep/interaction/g;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/view/View$OnClickListener;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/TutorialFragment;
+.field public final synthetic c:Lcom/android/quickstep/interaction/AllSetActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/AllSetActivity;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/G;->g:Lcom/android/quickstep/interaction/TutorialFragment;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/g;->c:Lcom/android/quickstep/interaction/AllSetActivity;
 
     .line 5
     .line 6
@@ -29,15 +29,15 @@
 
 
 # virtual methods
-.method public final run()V
+.method public final onClick(Landroid/view/View;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/G;->g:Lcom/android/quickstep/interaction/TutorialFragment;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/g;->c:Lcom/android/quickstep/interaction/AllSetActivity;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Lcom/android/quickstep/interaction/TutorialFragment;->continueTutorial()V
+    invoke-static {p0, p1}, Lcom/android/quickstep/interaction/AllSetActivity;->i(Lcom/android/quickstep/interaction/AllSetActivity;Landroid/view/View;)V
 
     .line 4
     .line 5

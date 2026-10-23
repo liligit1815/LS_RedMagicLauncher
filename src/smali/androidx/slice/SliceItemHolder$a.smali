@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field private final a:Ljava/util/ArrayList;
+.field public final a:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/ArrayList<",
@@ -133,7 +133,7 @@
 
     .line 5
     .line 6
-    iput-object v0, p1, Landroidx/slice/SliceItemHolder;->a:Ll0/a;
+    iput-object v0, p1, Landroidx/slice/SliceItemHolder;->a:Lt7/c;
 
     .line 7
     .line 8

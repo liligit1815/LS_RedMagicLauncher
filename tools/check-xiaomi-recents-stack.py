@@ -62,7 +62,7 @@ def require_stack_only_sources() -> None:
 
 def main() -> int:
     require_stack_only_sources()
-    helper = (SRC / "smali_classes2/com/android/quickstep/views/LsNativeStack.smali").read_text(
+    helper = (SRC / "smali_classes4/com/android/quickstep/views/LsNativeStack.smali").read_text(
         encoding="utf-8"
     )
     helper_java = (
@@ -70,24 +70,24 @@ def main() -> int:
         / "helper-src/main/com/android/quickstep/views/LsNativeStack.java"
     ).read_text(encoding="utf-8")
     initial_commit = (
-        SRC / "smali_classes2/com/android/quickstep/views/LsNativeStack$InitialFrameCommit.smali"
+        SRC / "smali_classes4/com/android/quickstep/views/LsNativeStack$InitialFrameCommit.smali"
     ).read_text(encoding="utf-8")
-    recents = (SRC / "smali_classes2/com/android/quickstep/views/RecentsView.smali").read_text(
+    recents = (SRC / "smali_classes3/com/android/quickstep/views/RecentsView.smali").read_text(
         encoding="utf-8"
     )
-    task = (SRC / "smali_classes2/com/android/quickstep/views/TaskView.smali").read_text(
+    task = (SRC / "smali_classes3/com/android/quickstep/views/TaskView.smali").read_text(
         encoding="utf-8"
     )
     simulator = (
-        SRC / "smali_classes2/com/android/quickstep/util/TaskViewSimulator.smali"
+        SRC / "smali_classes3/com/android/quickstep/util/TaskViewSimulator.smali"
     ).read_text(encoding="utf-8")
     swipe_handler = (
-        SRC / "smali/com/android/quickstep/AbsSwipeUpHandler.smali"
+        SRC / "smali_classes2/com/android/quickstep/AbsSwipeUpHandler.smali"
     ).read_text(encoding="utf-8")
     config = (SRC / "res/values/recents_stack_config.xml").read_text(encoding="utf-8")
     dimens = (SRC / "res/values/dimens.xml").read_text(encoding="utf-8")
     style_activity = (
-        SRC / "smali/com/android/launcher3/settings/RecentAppStyleActivity.smali"
+        SRC / "smali_classes2/com/android/launcher3/settings/RecentAppStyleActivity.smali"
     ).read_text(encoding="utf-8")
     style_layout = (
         SRC / "res/layout/setting_recent_app_style_layout.xml"
@@ -135,7 +135,7 @@ def main() -> int:
     style_click = method(style_activity, ".method public onClick(Landroid/view/View;)V")
     require(
         style_click,
-        "const v1, 0x7f0b06c2",
+        "const v1, 0x7f0b071a",
         "stack-style card click is not handled",
     )
     require(
@@ -145,7 +145,7 @@ def main() -> int:
     )
     require(
         method(style_activity, ".method private s0(I)V"),
-        "RecentAppStyleActivity;->p0(I)V",
+        "RecentAppStyleActivity;->saveStateIntoPref(I)V",
         "style selection is not persisted",
     )
     preview = SRC / "res/drawable-xxxhdpi/pic_recentapp_stack_lispace_iceblue.png"
@@ -159,14 +159,14 @@ def main() -> int:
         )
 
     for resource_id in (
-        "0x7f0c0109",
-        "0x7f0c010a",
-        "0x7f0c010b",
-        "0x7f0c010c",
-        "0x7f0c010d",
-        "0x7f0c010e",
-        "0x7f0c010f",
-        "0x7f0c0110",
+        "0x7f0c0118",
+        "0x7f0c0119",
+        "0x7f0c011a",
+        "0x7f0c011b",
+        "0x7f0c011c",
+        "0x7f0c011d",
+        "0x7f0c011e",
+        "0x7f0c011f",
     ):
         require(helper, resource_id, f"helper missing configured resource {resource_id}")
 
@@ -558,7 +558,7 @@ def main() -> int:
     if "setCurrentPage(I)V" in initial_commit:
         raise AssertionError("initial-frame stabilizer fights the OEM page every frame")
 
-    scroll = method(recents, ".method protected onScrollChanged(IIII)V")
+    scroll = method(recents, ".method public onScrollChanged(IIII)V")
     require(
         scroll,
         "LsNativeStack;->onScrollChanged",
@@ -587,7 +587,7 @@ def main() -> int:
         raise AssertionError("chrome updates still toggle independently composed icons")
     if "native_stack_chrome_cached" in chrome:
         raise AssertionError("independently reset task icons can bypass chrome reconciliation")
-    dispatch_draw = method(recents, ".method protected dispatchDraw(Landroid/graphics/Canvas;)V")
+    dispatch_draw = method(recents, ".method public dispatchDraw(Landroid/graphics/Canvas;)V")
     require(
         dispatch_draw,
         "LsNativeStack;->beforeDispatchDraw",
@@ -610,7 +610,7 @@ def main() -> int:
     )
     page_scrolls = method(
         recents,
-        ".method protected getPageScrolls([IZLcom/android/launcher3/V4$c;)Z",
+        ".method public getPageScrolls([IZLcom/android/launcher3/PagedView$ComputePageScrollsLogic;)Z",
     )
     if "LsNativeStack" in page_scrolls:
         raise AssertionError("OEM page scroll array is modified by stack code")
@@ -636,18 +636,18 @@ def main() -> int:
         "queued Home reveal can steal a live/native gesture",
     )
     require(
-        recents,
-        "LsNativeStack;->prepareDismissedTask",
+        (STACK / "helper-src/main/com/android/quickstep/views/LsPlatform12.java").read_text(encoding="utf-8"),
+        "LsNativeStack.prepareDismissedTask",
         "dismissed task is not promoted above the deck",
     )
     require(
-        recents,
-        "LsNativeStack;->adjustDismissOffset",
+        (STACK / "helper-src/main/com/android/quickstep/views/LsPlatform12.java").read_text(encoding="utf-8"),
+        "LsNativeStack.adjustDismissOffset",
         "post-dismiss cards still use full-page reflow offsets",
     )
 
     dismiss_end = (
-        SRC / "smali_classes2/com/android/quickstep/views/RecentsView$23.smali"
+        SRC / "smali_classes4/com/android/quickstep/views/LsPlatform12.smali"
     ).read_text(encoding="utf-8")
     require(
         dismiss_end,
@@ -738,8 +738,8 @@ def main() -> int:
         "built helper smali is missing continuous viewport sampling",
     )
     require(
-        recents,
-        "needsDismissReflow(Lcom/android/quickstep/views/RecentsView;Landroid/view/View;)Z",
+        (STACK / "helper-src/main/com/android/quickstep/views/LsPlatform12.java").read_text(encoding="utf-8"),
+        "TaskView.DISMISS_SCALE.setValue(task, 1f + (scale - 1f) * current.progress)",
         "rounded-zero translation still bypasses scale-only dismissal reflow",
     )
     pager_event_java = helper_java[

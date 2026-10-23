@@ -18,7 +18,7 @@
 
 
 # virtual methods
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 6
 
     .line 1
@@ -91,7 +91,7 @@
     move-result-object v1
 
     .line 36
-    sget-object v2, Lf/j;->S2:[I
+    sget-object v2, Lk/j;->S2:[I
 
     .line 37
     .line 38
@@ -116,7 +116,7 @@
     move-result-object v1
 
     .line 49
-    sget v2, Lf/j;->T2:I
+    sget v2, Lk/j;->T2:I
 
     .line 50
     .line 51

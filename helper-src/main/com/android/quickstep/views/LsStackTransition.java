@@ -1,5 +1,7 @@
 package com.android.quickstep.views;
 
+import com.android.quickstep.task.thumbnail.TaskThumbnailView;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Matrix;
@@ -578,8 +580,8 @@ public final class LsStackTransition {
             // Base = parent/layout * property. Solve for animationMatrix in
             // parent/layout * animationMatrix * property = Desired.
             Matrix desired = new Matrix(transition.snapshotToBuffer);
-            TaskThumbnailViewDeprecated thumbnail = snapshot instanceof TaskThumbnailViewDeprecated
-                    ? (TaskThumbnailViewDeprecated) snapshot : null;
+            TaskThumbnailView thumbnail = snapshot instanceof TaskThumbnailView
+                    ? (TaskThumbnailView) snapshot : null;
             Matrix currentImage = thumbnail == null ? null : thumbnail.getThumbnailMatrix();
             boolean bitmapIdentity = thumbnail != null && thumbnail.getThumbnail() != null
                     && thumbnail.getThumbnail() == transition.snapshotBitmap.get();
@@ -630,15 +632,15 @@ public final class LsStackTransition {
      * the View's four corners alone cannot describe its displayed content. */
     private static void captureFanBitmap(Transition transition, View snapshot) {
         transition.diagnosticId = ++fanDiagnosticSequence;
-        fanDiagnostic(transition, "capture legacy=" + (snapshot instanceof TaskThumbnailViewDeprecated)
+        fanDiagnostic(transition, "capture legacy=" + (snapshot instanceof TaskThumbnailView)
                 + " type=" + snapshot.getClass().getName()
                 + " view=" + snapshot.getWidth() + "x" + snapshot.getHeight()
                 + " start=" + diagnosticMatrix(transition.snapshotStartMatrix));
-        if (!(snapshot instanceof TaskThumbnailViewDeprecated)) {
+        if (!(snapshot instanceof TaskThumbnailView)) {
             fanDiagnostic(transition, "capture_fallback=not_legacy");
             return;
         }
-        TaskThumbnailViewDeprecated thumbnail = (TaskThumbnailViewDeprecated) snapshot;
+        TaskThumbnailView thumbnail = (TaskThumbnailView) snapshot;
         Bitmap bitmap = thumbnail.getThumbnail();
         // Task.thumbnail can already hold a newer cache entry while this View
         // still draws its previous bitmap. Read the data that owns that image.

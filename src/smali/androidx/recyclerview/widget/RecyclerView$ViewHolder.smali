@@ -292,7 +292,7 @@
 
 
 # virtual methods
-.method addChangePayload(Ljava/lang/Object;)V
+.method public addChangePayload(Ljava/lang/Object;)V
     .locals 2
 
     .line 1
@@ -342,7 +342,7 @@
     return-void
 .end method
 
-.method addFlags(I)V
+.method public addFlags(I)V
     .locals 1
 
     .line 1
@@ -360,7 +360,7 @@
     return-void
 .end method
 
-.method clearOldPosition()V
+.method public clearOldPosition()V
     .locals 1
 
     .line 1
@@ -378,7 +378,7 @@
     return-void
 .end method
 
-.method clearPayload()V
+.method public clearPayload()V
     .locals 1
 
     .line 1
@@ -411,7 +411,7 @@
     return-void
 .end method
 
-.method clearReturnedFromScrapFlag()V
+.method public clearReturnedFromScrapFlag()V
     .locals 1
 
     .line 1
@@ -430,7 +430,7 @@
     return-void
 .end method
 
-.method clearTmpDetachFlag()V
+.method public clearTmpDetachFlag()V
     .locals 1
 
     .line 1
@@ -449,7 +449,7 @@
     return-void
 .end method
 
-.method doesTransientStatePreventRecycling()Z
+.method public doesTransientStatePreventRecycling()Z
     .locals 1
 
     .line 1
@@ -469,7 +469,7 @@
 
     .line 8
     .line 9
-    invoke-static {p0}, LJ/I;->L(Landroid/view/View;)Z
+    invoke-static {p0}, Lz5/o0;->M(Landroid/view/View;)Z
 
     .line 10
     .line 11
@@ -494,7 +494,7 @@
     return p0
 .end method
 
-.method flagRemovedAndOffsetPosition(IIZ)V
+.method public flagRemovedAndOffsetPosition(IIZ)V
     .locals 1
 
     .line 1
@@ -755,7 +755,7 @@
     return v0
 .end method
 
-.method getUnmodifiedPayloads()Ljava/util/List;
+.method public getUnmodifiedPayloads()Ljava/util/List;
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -827,7 +827,7 @@
     return-object p0
 .end method
 
-.method hasAnyOfTheFlags(I)Z
+.method public hasAnyOfTheFlags(I)Z
     .locals 0
 
     .line 1
@@ -855,7 +855,7 @@
     return p0
 .end method
 
-.method isAdapterPositionUnknown()Z
+.method public isAdapterPositionUnknown()Z
     .locals 1
 
     .line 1
@@ -901,7 +901,7 @@
     return p0
 .end method
 
-.method isAttachedToTransitionOverlay()Z
+.method public isAttachedToTransitionOverlay()Z
     .locals 1
 
     .line 1
@@ -954,7 +954,7 @@
     return p0
 .end method
 
-.method isBound()Z
+.method public isBound()Z
     .locals 1
 
     .line 1
@@ -982,7 +982,7 @@
     return p0
 .end method
 
-.method isInvalid()Z
+.method public isInvalid()Z
     .locals 0
 
     .line 1
@@ -1031,7 +1031,7 @@
 
     .line 8
     .line 9
-    invoke-static {p0}, LJ/I;->L(Landroid/view/View;)Z
+    invoke-static {p0}, Lz5/o0;->M(Landroid/view/View;)Z
 
     .line 10
     .line 11
@@ -1056,7 +1056,7 @@
     return p0
 .end method
 
-.method isRemoved()Z
+.method public isRemoved()Z
     .locals 0
 
     .line 1
@@ -1085,7 +1085,7 @@
     return p0
 .end method
 
-.method isScrap()Z
+.method public isScrap()Z
     .locals 0
 
     .line 1
@@ -1110,7 +1110,7 @@
     return p0
 .end method
 
-.method isTmpDetached()Z
+.method public isTmpDetached()Z
     .locals 0
 
     .line 1
@@ -1139,7 +1139,7 @@
     return p0
 .end method
 
-.method isUpdated()Z
+.method public isUpdated()Z
     .locals 0
 
     .line 1
@@ -1168,7 +1168,7 @@
     return p0
 .end method
 
-.method needsUpdate()Z
+.method public needsUpdate()Z
     .locals 0
 
     .line 1
@@ -1197,7 +1197,7 @@
     return p0
 .end method
 
-.method offsetPosition(IZ)V
+.method public offsetPosition(IZ)V
     .locals 2
 
     .line 1
@@ -1308,7 +1308,7 @@
     return-void
 .end method
 
-.method onEnteredHiddenState(Landroidx/recyclerview/widget/RecyclerView;)V
+.method public onEnteredHiddenState(Landroidx/recyclerview/widget/RecyclerView;)V
     .locals 2
 
     .line 1
@@ -1359,7 +1359,7 @@
     return-void
 .end method
 
-.method onLeftHiddenState(Landroidx/recyclerview/widget/RecyclerView;)V
+.method public onLeftHiddenState(Landroidx/recyclerview/widget/RecyclerView;)V
     .locals 1
 
     .line 1
@@ -1382,7 +1382,7 @@
     return-void
 .end method
 
-.method resetInternal()V
+.method public resetInternal()V
     .locals 4
 
     .line 1
@@ -1530,7 +1530,7 @@
     return-void
 .end method
 
-.method saveOldPosition()V
+.method public saveOldPosition()V
     .locals 2
 
     .line 1
@@ -1557,7 +1557,7 @@
     return-void
 .end method
 
-.method setFlags(II)V
+.method public setFlags(II)V
     .locals 2
 
     .line 1
@@ -1829,7 +1829,7 @@
     return-void
 .end method
 
-.method setScrapContainer(Landroidx/recyclerview/widget/RecyclerView$Recycler;Z)V
+.method public setScrapContainer(Landroidx/recyclerview/widget/RecyclerView$Recycler;Z)V
     .locals 0
 
     .line 1
@@ -1844,7 +1844,7 @@
     return-void
 .end method
 
-.method shouldBeKeptAsChild()Z
+.method public shouldBeKeptAsChild()Z
     .locals 0
 
     .line 1
@@ -1873,7 +1873,7 @@
     return p0
 .end method
 
-.method shouldIgnore()Z
+.method public shouldIgnore()Z
     .locals 0
 
     .line 1
@@ -1902,7 +1902,7 @@
     return p0
 .end method
 
-.method stopIgnoring()V
+.method public stopIgnoring()V
     .locals 1
 
     .line 1
@@ -2413,7 +2413,7 @@
     return-object p0
 .end method
 
-.method unScrap()V
+.method public unScrap()V
     .locals 1
 
     .line 1
@@ -2429,7 +2429,7 @@
     return-void
 .end method
 
-.method wasReturnedFromScrap()Z
+.method public wasReturnedFromScrap()Z
     .locals 0
 
     .line 1

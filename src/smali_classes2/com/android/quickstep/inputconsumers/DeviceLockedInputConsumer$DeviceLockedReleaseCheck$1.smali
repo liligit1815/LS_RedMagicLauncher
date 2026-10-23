@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -19,7 +19,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;)V
+.method public constructor <init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;)V
     .locals 0
 
     .line 1
@@ -53,7 +53,7 @@
     const/4 p1, 0x1
 
     .line 7
-    invoke-static {p0, p1}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;->access$100(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;Z)V
+    invoke-virtual {p0, p1}, Lcom/android/quickstep/SurfaceReleaseCheck;->setCanRelease(Z)V
 
     .line 8
     .line 9
@@ -77,7 +77,7 @@
     const/4 p1, 0x0
 
     .line 7
-    invoke-static {p0, p1}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;->access$000(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer$DeviceLockedReleaseCheck;Z)V
+    invoke-virtual {p0, p1}, Lcom/android/quickstep/SurfaceReleaseCheck;->setCanRelease(Z)V
 
     .line 8
     .line 9

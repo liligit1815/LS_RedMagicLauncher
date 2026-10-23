@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/AlertController$b$b;
+.class public Landroidx/appcompat/app/AlertController$b$b;
 .super Landroid/widget/CursorAdapter;
 .source "AlertController.java"
 
@@ -9,37 +9,37 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field private final g:I
+.field public final c:I
 
-.field private final h:I
+.field public final m:I
 
-.field final synthetic i:Landroidx/appcompat/app/AlertController$RecycleListView;
+.field public final synthetic n:Landroidx/appcompat/app/AlertController$RecycleListView;
 
-.field final synthetic j:Landroidx/appcompat/app/AlertController;
+.field public final synthetic o:Landroidx/appcompat/app/AlertController;
 
-.field final synthetic k:Landroidx/appcompat/app/AlertController$b;
+.field public final synthetic p:Landroidx/appcompat/app/AlertController$b;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/app/AlertController$b;Landroid/content/Context;Landroid/database/Cursor;ZLandroidx/appcompat/app/AlertController$RecycleListView;Landroidx/appcompat/app/AlertController;)V
+.method public constructor <init>(Landroidx/appcompat/app/AlertController$b;Landroid/content/Context;Landroid/database/Cursor;ZLandroidx/appcompat/app/AlertController$RecycleListView;Landroidx/appcompat/app/AlertController;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/app/AlertController$b$b;->k:Landroidx/appcompat/app/AlertController$b;
+    iput-object p1, p0, Landroidx/appcompat/app/AlertController$b$b;->p:Landroidx/appcompat/app/AlertController$b;
 
     .line 2
     .line 3
-    iput-object p5, p0, Landroidx/appcompat/app/AlertController$b$b;->i:Landroidx/appcompat/app/AlertController$RecycleListView;
+    iput-object p5, p0, Landroidx/appcompat/app/AlertController$b$b;->n:Landroidx/appcompat/app/AlertController$RecycleListView;
 
     .line 4
     .line 5
-    iput-object p6, p0, Landroidx/appcompat/app/AlertController$b$b;->j:Landroidx/appcompat/app/AlertController;
+    iput-object p6, p0, Landroidx/appcompat/app/AlertController$b$b;->o:Landroidx/appcompat/app/AlertController;
 
     .line 6
     .line 7
@@ -68,7 +68,7 @@
     move-result p3
 
     .line 20
-    iput p3, p0, Landroidx/appcompat/app/AlertController$b$b;->g:I
+    iput p3, p0, Landroidx/appcompat/app/AlertController$b$b;->c:I
 
     .line 21
     .line 22
@@ -84,7 +84,7 @@
     move-result p1
 
     .line 28
-    iput p1, p0, Landroidx/appcompat/app/AlertController$b$b;->h:I
+    iput p1, p0, Landroidx/appcompat/app/AlertController$b$b;->m:I
 
     .line 29
     .line 30
@@ -114,7 +114,7 @@
 
     .line 9
     .line 10
-    iget p2, p0, Landroidx/appcompat/app/AlertController$b$b;->g:I
+    iget p2, p0, Landroidx/appcompat/app/AlertController$b$b;->c:I
 
     .line 11
     .line 12
@@ -131,7 +131,7 @@
     .line 17
     .line 18
     .line 19
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$b;->i:Landroidx/appcompat/app/AlertController$RecycleListView;
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$b;->n:Landroidx/appcompat/app/AlertController$RecycleListView;
 
     .line 20
     .line 21
@@ -143,7 +143,7 @@
     move-result p2
 
     .line 25
-    iget p0, p0, Landroidx/appcompat/app/AlertController$b$b;->h:I
+    iget p0, p0, Landroidx/appcompat/app/AlertController$b$b;->m:I
 
     .line 26
     .line 27
@@ -182,7 +182,7 @@
     .locals 0
 
     .line 1
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$b;->k:Landroidx/appcompat/app/AlertController$b;
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$b;->p:Landroidx/appcompat/app/AlertController$b;
 
     .line 2
     .line 3
@@ -190,7 +190,7 @@
 
     .line 4
     .line 5
-    iget-object p0, p0, Landroidx/appcompat/app/AlertController$b$b;->j:Landroidx/appcompat/app/AlertController;
+    iget-object p0, p0, Landroidx/appcompat/app/AlertController$b$b;->o:Landroidx/appcompat/app/AlertController;
 
     .line 6
     .line 7

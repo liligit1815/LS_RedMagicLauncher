@@ -5,10 +5,10 @@ import argparse
 from pathlib import Path
 
 
-SCROLL_METHOD = ".method protected onScrollChanged(IIII)V"
+SCROLL_METHOD = ".method public onScrollChanged(IIII)V"
 OVERVIEW_METHOD = ".method public setOverviewStateEnabled(Z)V"
 PAGE_SCROLLS_METHOD = (
-    ".method protected getPageScrolls([IZLcom/android/launcher3/V4$c;)Z"
+    ".method public getPageScrolls([IZLcom/android/launcher3/PagedView$ComputePageScrollsLogic;)Z"
 )
 
 
@@ -52,12 +52,12 @@ def check(path: Path) -> None:
     required_calls = {
         "commitInitialPage": "initial page is not committed atomically",
         "obtainPagerEvent": "entry lock is not released before pager interaction",
-        "prepareDismissedTask": "dismissed card is not promoted above the deck",
-        "adjustDismissOffset": "dismiss reflow still uses full-page offsets",
         "onTaskVisualsReset": "pooled TaskView visuals are not recomposed safely",
     }
     for name, message in required_calls.items():
         require(source, f"LsNativeStack;->{name}", message)
+    require(source, "LsPlatform12;->beforeDraw", "OEM12 spring poses are not composed before drawing")
+    require(source, "LsPlatform12;->endDismiss", "OEM12 dismissal cleanup is not connected")
 
     forbidden = (
         "LsNativeStack;->rewritePageScrolls",

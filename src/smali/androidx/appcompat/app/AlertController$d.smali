@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/AlertController$d;
+.class public Landroidx/appcompat/app/AlertController$d;
 .super Landroid/widget/ArrayAdapter;
 .source "AlertController.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "d"
 .end annotation
 

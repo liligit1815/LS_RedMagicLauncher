@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/f$b;
+.class public Landroidx/recyclerview/widget/f$b;
 .super Landroidx/recyclerview/widget/RecyclerView$OnScrollListener;
 .source "FastScroller.java"
 
@@ -9,21 +9,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/recyclerview/widget/f;
+.field public final synthetic c:Landroidx/recyclerview/widget/f;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/f;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/f;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/f$b;->g:Landroidx/recyclerview/widget/f;
+    iput-object p1, p0, Landroidx/recyclerview/widget/f$b;->c:Landroidx/recyclerview/widget/f;
 
     .line 2
     .line 3
@@ -41,7 +41,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/recyclerview/widget/f$b;->g:Landroidx/recyclerview/widget/f;
+    iget-object p0, p0, Landroidx/recyclerview/widget/f$b;->c:Landroidx/recyclerview/widget/f;
 
     .line 2
     .line 3

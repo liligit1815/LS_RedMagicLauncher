@@ -1,4 +1,4 @@
-.class Landroidx/coordinatorlayout/widget/CoordinatorLayout$g;
+.class public Landroidx/coordinatorlayout/widget/CoordinatorLayout$g;
 .super Ljava/lang/Object;
 .source "CoordinatorLayout.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "g"
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+.field public final synthetic c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
 
 # direct methods
-.method constructor <init>(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
+.method public constructor <init>(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$g;->g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$g;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3
@@ -44,7 +44,7 @@
     .locals 1
 
     .line 1
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$g;->g:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$g;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3

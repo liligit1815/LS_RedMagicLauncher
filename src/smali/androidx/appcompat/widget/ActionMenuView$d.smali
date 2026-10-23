@@ -1,9 +1,9 @@
-.class Landroidx/appcompat/widget/ActionMenuView$d;
+.class public Landroidx/appcompat/widget/ActionMenuView$d;
 .super Ljava/lang/Object;
 .source "ActionMenuView.java"
 
 # interfaces
-.implements Landroidx/appcompat/view/menu/g$a;
+.implements Landroidx/appcompat/view/menu/e$a;
 
 
 # annotations
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "d"
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/widget/ActionMenuView;
+.field public final synthetic c:Landroidx/appcompat/widget/ActionMenuView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/ActionMenuView;)V
+.method public constructor <init>(Landroidx/appcompat/widget/ActionMenuView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionMenuView$d;->g:Landroidx/appcompat/widget/ActionMenuView;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionMenuView$d;->c:Landroidx/appcompat/widget/ActionMenuView;
 
     .line 2
     .line 3
@@ -40,15 +40,15 @@
 
 
 # virtual methods
-.method public a(Landroidx/appcompat/view/menu/g;Landroid/view/MenuItem;)Z
+.method public a(Landroidx/appcompat/view/menu/e;Landroid/view/MenuItem;)Z
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView$d;->g:Landroidx/appcompat/widget/ActionMenuView;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView$d;->c:Landroidx/appcompat/widget/ActionMenuView;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView;->G:Landroidx/appcompat/widget/ActionMenuView$e;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView;->L:Landroidx/appcompat/widget/ActionMenuView$e;
 
     .line 4
     .line 5
@@ -81,15 +81,15 @@
     return p0
 .end method
 
-.method public b(Landroidx/appcompat/view/menu/g;)V
+.method public b(Landroidx/appcompat/view/menu/e;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView$d;->g:Landroidx/appcompat/widget/ActionMenuView;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView$d;->c:Landroidx/appcompat/widget/ActionMenuView;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView;->B:Landroidx/appcompat/view/menu/g$a;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionMenuView;->G:Landroidx/appcompat/view/menu/e$a;
 
     .line 4
     .line 5
@@ -97,7 +97,7 @@
 
     .line 6
     .line 7
-    invoke-interface {p0, p1}, Landroidx/appcompat/view/menu/g$a;->b(Landroidx/appcompat/view/menu/g;)V
+    invoke-interface {p0, p1}, Landroidx/appcompat/view/menu/e$a;->b(Landroidx/appcompat/view/menu/e;)V
 
     .line 8
     .line 9

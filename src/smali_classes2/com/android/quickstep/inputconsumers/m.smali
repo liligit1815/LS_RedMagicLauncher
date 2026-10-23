@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;
+.field public final synthetic c:Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/m;->g:Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/m;->c:Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/m;->g:Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/m;->c:Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;->c(Lcom/android/quickstep/inputconsumers/ProgressDelegateInputConsumer;)V
+    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->a(Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;)V
 
     .line 4
     .line 5

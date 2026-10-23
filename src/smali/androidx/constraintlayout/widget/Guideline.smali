@@ -4,7 +4,7 @@
 
 
 # instance fields
-.field private g:Z
+.field public c:Z
 
 
 # direct methods
@@ -17,7 +17,7 @@
     const/4 p1, 0x1
 
     .line 2
-    iput-boolean p1, p0, Landroidx/constraintlayout/widget/Guideline;->g:Z
+    iput-boolean p1, p0, Landroidx/constraintlayout/widget/Guideline;->c:Z
 
     const/16 p1, 0x8
 
@@ -36,7 +36,7 @@
     const/4 p1, 0x1
 
     .line 5
-    iput-boolean p1, p0, Landroidx/constraintlayout/widget/Guideline;->g:Z
+    iput-boolean p1, p0, Landroidx/constraintlayout/widget/Guideline;->c:Z
 
     const/16 p1, 0x8
 
@@ -60,7 +60,7 @@
     return-void
 .end method
 
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 0
 
     .line 1
@@ -79,7 +79,7 @@
     .locals 0
 
     .line 1
-    iput-boolean p1, p0, Landroidx/constraintlayout/widget/Guideline;->g:Z
+    iput-boolean p1, p0, Landroidx/constraintlayout/widget/Guideline;->c:Z
 
     .line 2
     .line 3
@@ -102,7 +102,7 @@
 
     .line 6
     .line 7
-    iget-boolean v1, p0, Landroidx/constraintlayout/widget/Guideline;->g:Z
+    iget-boolean v1, p0, Landroidx/constraintlayout/widget/Guideline;->c:Z
 
     .line 8
     .line 9
@@ -150,7 +150,7 @@
 
     .line 6
     .line 7
-    iget-boolean v1, p0, Landroidx/constraintlayout/widget/Guideline;->g:Z
+    iget-boolean v1, p0, Landroidx/constraintlayout/widget/Guideline;->c:Z
 
     .line 8
     .line 9
@@ -198,7 +198,7 @@
 
     .line 6
     .line 7
-    iget-boolean v1, p0, Landroidx/constraintlayout/widget/Guideline;->g:Z
+    iget-boolean v1, p0, Landroidx/constraintlayout/widget/Guideline;->c:Z
 
     .line 8
     .line 9

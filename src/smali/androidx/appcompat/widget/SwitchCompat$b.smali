@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SwitchCompat$b;
+.class public Landroidx/appcompat/widget/SwitchCompat$b;
 .super Ljava/lang/Object;
 .source "SwitchCompat.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "b"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/animation/ObjectAnimator;Z)V
+.method public static a(Landroid/animation/ObjectAnimator;Z)V
     .locals 0
 
     .line 1

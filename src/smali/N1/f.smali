@@ -1,29 +1,26 @@
-.class public LN1/f;
+.class public final synthetic Ln1/f;
 .super Ljava/lang/Object;
-.source "ShortcutRequest.java"
+.source "R8$$SyntheticClass"
 
-
-# annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        LN1/f$a;
-    }
-.end annotation
+# interfaces
+.implements Lkotlin/jvm/functions/Function2;
 
 
 # instance fields
-.field private final a:Landroid/content/pm/LauncherApps$ShortcutQuery;
+.field public final synthetic c:Lx2/m;
 
-.field private final b:Landroid/content/Context;
+.field public final synthetic m:Le2/z3;
 
-.field private final c:Landroid/os/UserHandle;
+.field public final synthetic n:Lkotlin/jvm/functions/Function5;
 
-.field d:Z
+.field public final synthetic o:Lkotlin/jvm/functions/Function2;
+
+.field public final synthetic p:I
 
 
 # direct methods
-.method public constructor <init>(Landroid/content/Context;Landroid/os/UserHandle;)V
-    .locals 1
+.method public synthetic constructor <init>(Lx2/m;Le2/z3;Lkotlin/jvm/functions/Function5;Lkotlin/jvm/functions/Function2;I)V
+    .locals 0
 
     .line 1
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -31,251 +28,81 @@
     .line 2
     .line 3
     .line 4
-    new-instance v0, Landroid/content/pm/LauncherApps$ShortcutQuery;
+    iput-object p1, p0, Ln1/f;->c:Lx2/m;
 
     .line 5
     .line 6
-    invoke-direct {v0}, Landroid/content/pm/LauncherApps$ShortcutQuery;-><init>()V
+    iput-object p2, p0, Ln1/f;->m:Le2/z3;
 
     .line 7
     .line 8
+    iput-object p3, p0, Ln1/f;->n:Lkotlin/jvm/functions/Function5;
+
     .line 9
-    iput-object v0, p0, LN1/f;->a:Landroid/content/pm/LauncherApps$ShortcutQuery;
-
     .line 10
-    .line 11
-    const/4 v0, 0x0
+    iput-object p4, p0, Ln1/f;->o:Lkotlin/jvm/functions/Function2;
 
+    .line 11
     .line 12
-    iput-boolean v0, p0, LN1/f;->d:Z
+    iput p5, p0, Ln1/f;->p:I
 
     .line 13
     .line 14
-    iput-object p1, p0, LN1/f;->b:Landroid/content/Context;
-
-    .line 15
-    .line 16
-    iput-object p2, p0, LN1/f;->c:Landroid/os/UserHandle;
-
-    .line 17
-    .line 18
     return-void
 .end method
 
 
 # virtual methods
-.method public a(Ljava/lang/String;)LN1/f;
-    .locals 1
+.method public final invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 7
 
     .line 1
-    const/4 v0, 0x0
-
-    .line 2
-    invoke-virtual {p0, p1, v0}, LN1/f;->b(Ljava/lang/String;Ljava/util/List;)LN1/f;
-
-    .line 3
-    .line 4
-    .line 5
-    move-result-object p0
-
-    .line 6
-    return-object p0
-.end method
-
-.method public b(Ljava/lang/String;Ljava/util/List;)LN1/f;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/lang/String;",
-            "Ljava/util/List<",
-            "Ljava/lang/String;",
-            ">;)",
-            "LN1/f;"
-        }
-    .end annotation
-
-    .line 1
-    if-eqz p1, :cond_0
+    iget-object v0, p0, Ln1/f;->c:Lx2/m;
 
     .line 2
     .line 3
-    iget-object v0, p0, LN1/f;->a:Landroid/content/pm/LauncherApps$ShortcutQuery;
+    iget-object v1, p0, Ln1/f;->m:Le2/z3;
 
     .line 4
     .line 5
-    invoke-virtual {v0, p1}, Landroid/content/pm/LauncherApps$ShortcutQuery;->setPackage(Ljava/lang/String;)Landroid/content/pm/LauncherApps$ShortcutQuery;
+    iget-object v2, p0, Ln1/f;->n:Lkotlin/jvm/functions/Function5;
 
     .line 6
     .line 7
-    .line 8
-    iget-object p1, p0, LN1/f;->a:Landroid/content/pm/LauncherApps$ShortcutQuery;
+    iget-object v3, p0, Ln1/f;->o:Lkotlin/jvm/functions/Function2;
 
+    .line 8
     .line 9
+    iget v4, p0, Ln1/f;->p:I
+
     .line 10
-    invoke-virtual {p1, p2}, Landroid/content/pm/LauncherApps$ShortcutQuery;->setShortcutIds(Ljava/util/List;)Landroid/content/pm/LauncherApps$ShortcutQuery;
-
     .line 11
+    move-object v5, p1
+
     .line 12
+    check-cast v5, Le2/r;
+
     .line 13
-    :cond_0
-    return-object p0
-.end method
-
-.method public varargs c(Ljava/lang/String;[Ljava/lang/String;)LN1/f;
-    .locals 0
-
-    .line 1
-    invoke-static {p2}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p2
-
-    .line 5
-    invoke-virtual {p0, p1, p2}, LN1/f;->b(Ljava/lang/String;Ljava/util/List;)LN1/f;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    return-object p0
-.end method
-
-.method public d(I)LN1/f$a;
-    .locals 2
-
-    .line 1
-    iget-boolean v0, p0, LN1/f;->d:Z
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    sget-object p0, LN1/f$a;->h:LN1/f$a;
-
-    .line 6
-    .line 7
-    return-object p0
-
-    .line 8
-    :cond_0
-    iget-object v0, p0, LN1/f;->a:Landroid/content/pm/LauncherApps$ShortcutQuery;
-
-    .line 9
-    .line 10
-    invoke-virtual {v0, p1}, Landroid/content/pm/LauncherApps$ShortcutQuery;->setQueryFlags(I)Landroid/content/pm/LauncherApps$ShortcutQuery;
-
-    .line 11
-    .line 12
-    .line 13
-    :try_start_0
-    new-instance p1, LN1/f$a;
-
     .line 14
+    check-cast p2, Ljava/lang/Integer;
+
     .line 15
-    iget-object v0, p0, LN1/f;->b:Landroid/content/Context;
-
     .line 16
-    .line 17
-    const-class v1, Landroid/content/pm/LauncherApps;
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
 
+    .line 17
     .line 18
     .line 19
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/Class;)Ljava/lang/Object;
+    move-result v6
 
     .line 20
+    invoke-static/range {v0 .. v6}, Ln1/i;->a(Lx2/m;Le2/z3;Lkotlin/jvm/functions/Function5;Lkotlin/jvm/functions/Function2;ILe2/r;I)Lkotlin/Unit;
+
     .line 21
     .line 22
-    move-result-object v0
-
     .line 23
-    check-cast v0, Landroid/content/pm/LauncherApps;
-
-    .line 24
-    .line 25
-    iget-object v1, p0, LN1/f;->a:Landroid/content/pm/LauncherApps$ShortcutQuery;
-
-    .line 26
-    .line 27
-    iget-object p0, p0, LN1/f;->c:Landroid/os/UserHandle;
-
-    .line 28
-    .line 29
-    invoke-virtual {v0, v1, p0}, Landroid/content/pm/LauncherApps;->getShortcuts(Landroid/content/pm/LauncherApps$ShortcutQuery;Landroid/os/UserHandle;)Ljava/util/List;
-
-    .line 30
-    .line 31
-    .line 32
     move-result-object p0
 
-    .line 33
-    invoke-direct {p1, p0}, LN1/f$a;-><init>(Ljava/util/List;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 34
-    .line 35
-    .line 36
-    return-object p1
-
-    .line 37
-    :catch_0
-    move-exception p0
-
-    .line 38
-    const-string p1, "ShortcutRequest"
-
-    .line 39
-    .line 40
-    const-string v0, "Failed to query for shortcuts"
-
-    .line 41
-    .line 42
-    invoke-static {p1, v0, p0}, Lcom/android/launcher3/logging/b;->h(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Exception;)V
-
-    .line 43
-    .line 44
-    .line 45
-    sget-object p0, LN1/f$a;->h:LN1/f$a;
-
-    .line 46
-    .line 47
-    return-object p0
-.end method
-
-.method public e(Landroid/content/ComponentName;)LN1/f;
-    .locals 1
-
-    .line 1
-    if-nez p1, :cond_0
-
-    .line 2
-    .line 3
-    const/4 p1, 0x1
-
-    .line 4
-    iput-boolean p1, p0, LN1/f;->d:Z
-
-    .line 5
-    .line 6
-    return-object p0
-
-    .line 7
-    :cond_0
-    iget-object v0, p0, LN1/f;->a:Landroid/content/pm/LauncherApps$ShortcutQuery;
-
-    .line 8
-    .line 9
-    invoke-virtual {v0, p1}, Landroid/content/pm/LauncherApps$ShortcutQuery;->setActivity(Landroid/content/ComponentName;)Landroid/content/pm/LauncherApps$ShortcutQuery;
-
-    .line 10
-    .line 11
-    .line 12
+    .line 24
     return-object p0
 .end method

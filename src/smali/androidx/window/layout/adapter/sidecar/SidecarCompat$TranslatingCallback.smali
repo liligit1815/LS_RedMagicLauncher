@@ -16,9 +16,44 @@
     name = "TranslatingCallback"
 .end annotation
 
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000&\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0003\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\u0008\u0080\u0004\u0018\u00002\u00020\u0001B\u0007\u00a2\u0006\u0004\u0008\u0002\u0010\u0003J\u0010\u0010\u0004\u001a\u00020\u00052\u0006\u0010\u0006\u001a\u00020\u0007H\u0016J\u0018\u0010\u0008\u001a\u00020\u00052\u0006\u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000cH\u0016\u00a8\u0006\r"
+    }
+    d2 = {
+        "Landroidx/window/layout/adapter/sidecar/SidecarCompat$TranslatingCallback;",
+        "Landroidx/window/sidecar/SidecarInterface$SidecarCallback;",
+        "<init>",
+        "(Landroidx/window/layout/adapter/sidecar/SidecarCompat;)V",
+        "onDeviceStateChanged",
+        "",
+        "newDeviceState",
+        "Landroidx/window/sidecar/SidecarDeviceState;",
+        "onWindowLayoutChanged",
+        "windowToken",
+        "Landroid/os/IBinder;",
+        "newLayout",
+        "Landroidx/window/sidecar/SidecarWindowLayoutInfo;",
+        "window"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nSidecarCompat.kt\nKotlin\n*S Kotlin\n*F\n+ 1 SidecarCompat.kt\nandroidx/window/layout/adapter/sidecar/SidecarCompat$TranslatingCallback\n+ 2 _Collections.kt\nkotlin/collections/CollectionsKt___CollectionsKt\n*L\n1#1,427:1\n1869#2,2:428\n*S KotlinDebug\n*F\n+ 1 SidecarCompat.kt\nandroidx/window/layout/adapter/sidecar/SidecarCompat$TranslatingCallback\n*L\n331#1:428,2\n*E\n"
+    }
+.end annotation
+
 
 # instance fields
-.field final synthetic a:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
+.field public final synthetic a:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
 
 
 # direct methods
@@ -53,7 +88,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -78,120 +113,124 @@
     move-result-object v0
 
     .line 16
-    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$TranslatingCallback;->a:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
+    check-cast v0, Ljava/lang/Iterable;
 
     .line 17
     .line 18
-    invoke-interface {v0}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
+    iget-object p0, p0, Landroidx/window/layout/adapter/sidecar/SidecarCompat$TranslatingCallback;->a:Landroidx/window/layout/adapter/sidecar/SidecarCompat;
 
     .line 19
     .line 20
+    invoke-interface {v0}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
+
     .line 21
+    .line 22
+    .line 23
     move-result-object v0
 
-    .line 22
+    .line 24
     :cond_0
     :goto_0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
-    .line 23
-    .line 24
     .line 25
+    .line 26
+    .line 27
     move-result v1
 
-    .line 26
-    if-eqz v1, :cond_2
-
-    .line 27
     .line 28
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    if-eqz v1, :cond_2
 
     .line 29
     .line 30
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
     .line 31
+    .line 32
+    .line 33
     move-result-object v1
 
-    .line 32
-    check-cast v1, Landroid/app/Activity;
-
-    .line 33
     .line 34
-    sget-object v2, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->f:Landroidx/window/layout/adapter/sidecar/SidecarCompat$a;
+    check-cast v1, Landroid/app/Activity;
 
     .line 35
     .line 36
-    invoke-virtual {v2, v1}, Landroidx/window/layout/adapter/sidecar/SidecarCompat$a;->a(Landroid/app/Activity;)Landroid/os/IBinder;
+    sget-object v2, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->f:Landroidx/window/layout/adapter/sidecar/SidecarCompat$a;
 
     .line 37
     .line 38
+    invoke-virtual {v2, v1}, Landroidx/window/layout/adapter/sidecar/SidecarCompat$a;->a(Landroid/app/Activity;)Landroid/os/IBinder;
+
     .line 39
+    .line 40
+    .line 41
     move-result-object v2
 
-    .line 40
+    .line 42
     const/4 v3, 0x0
 
-    .line 41
-    if-eqz v2, :cond_1
-
-    .line 42
     .line 43
-    invoke-virtual {p0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->h()Landroidx/window/sidecar/SidecarInterface;
+    if-eqz v2, :cond_1
 
     .line 44
     .line 45
+    invoke-virtual {p0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->h()Landroidx/window/sidecar/SidecarInterface;
+
     .line 46
+    .line 47
+    .line 48
     move-result-object v4
 
-    .line 47
-    if-eqz v4, :cond_1
-
-    .line 48
     .line 49
-    invoke-interface {v4, v2}, Landroidx/window/sidecar/SidecarInterface;->getWindowLayoutInfo(Landroid/os/IBinder;)Landroidx/window/sidecar/SidecarWindowLayoutInfo;
+    if-eqz v4, :cond_1
 
     .line 50
     .line 51
+    invoke-interface {v4, v2}, Landroidx/window/sidecar/SidecarInterface;->getWindowLayoutInfo(Landroid/os/IBinder;)Landroidx/window/sidecar/SidecarWindowLayoutInfo;
+
     .line 52
+    .line 53
+    .line 54
     move-result-object v3
 
-    .line 53
+    .line 55
     :cond_1
     invoke-static {p0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->e(Landroidx/window/layout/adapter/sidecar/SidecarCompat;)Landroidx/window/layout/adapter/sidecar/SidecarCompat$b;
 
-    .line 54
-    .line 55
     .line 56
+    .line 57
+    .line 58
     move-result-object v2
 
-    .line 57
-    if-eqz v2, :cond_0
-
-    .line 58
     .line 59
-    invoke-static {p0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->f(Landroidx/window/layout/adapter/sidecar/SidecarCompat;)Ls0/a;
+    if-eqz v2, :cond_0
 
     .line 60
     .line 61
+    invoke-static {p0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->f(Landroidx/window/layout/adapter/sidecar/SidecarCompat;)Lc8/e;
+
     .line 62
+    .line 63
+    .line 64
     move-result-object v4
 
-    .line 63
-    invoke-virtual {v4, v3, p1}, Ls0/a;->f(Landroidx/window/sidecar/SidecarWindowLayoutInfo;Landroidx/window/sidecar/SidecarDeviceState;)Lp0/j;
-
-    .line 64
     .line 65
+    invoke-virtual {v4, v3, p1}, Lc8/e;->j(Landroidx/window/sidecar/SidecarWindowLayoutInfo;Landroidx/window/sidecar/SidecarDeviceState;)Lz7/v;
+
     .line 66
+    .line 67
+    .line 68
     move-result-object v3
 
-    .line 67
-    invoke-virtual {v2, v1, v3}, Landroidx/window/layout/adapter/sidecar/SidecarCompat$b;->a(Landroid/app/Activity;Lp0/j;)V
-
-    .line 68
     .line 69
+    invoke-virtual {v2, v1, v3}, Landroidx/window/layout/adapter/sidecar/SidecarCompat$b;->a(Landroid/app/Activity;Lz7/v;)V
+
     .line 70
+    .line 71
+    .line 72
     goto :goto_0
 
-    .line 71
+    .line 73
     :cond_2
     return-void
 .end method
@@ -204,7 +243,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -213,7 +252,7 @@
 
     .line 7
     .line 8
-    invoke-static {p2, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 9
     .line 10
@@ -267,7 +306,7 @@
 
     .line 34
     .line 35
-    invoke-static {v0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->f(Landroidx/window/layout/adapter/sidecar/SidecarCompat;)Ls0/a;
+    invoke-static {v0}, Landroidx/window/layout/adapter/sidecar/SidecarCompat;->f(Landroidx/window/layout/adapter/sidecar/SidecarCompat;)Lc8/e;
 
     .line 36
     .line 37
@@ -314,7 +353,7 @@
     .line 57
     .line 58
     :cond_2
-    invoke-virtual {v0, p2, v1}, Ls0/a;->f(Landroidx/window/sidecar/SidecarWindowLayoutInfo;Landroidx/window/sidecar/SidecarDeviceState;)Lp0/j;
+    invoke-virtual {v0, p2, v1}, Lc8/e;->j(Landroidx/window/sidecar/SidecarWindowLayoutInfo;Landroidx/window/sidecar/SidecarDeviceState;)Lz7/v;
 
     .line 59
     .line 60
@@ -338,7 +377,7 @@
 
     .line 69
     .line 70
-    invoke-virtual {p0, p1, p2}, Landroidx/window/layout/adapter/sidecar/SidecarCompat$b;->a(Landroid/app/Activity;Lp0/j;)V
+    invoke-virtual {p0, p1, p2}, Landroidx/window/layout/adapter/sidecar/SidecarCompat$b;->a(Landroid/app/Activity;Lz7/v;)V
 
     .line 71
     .line 72

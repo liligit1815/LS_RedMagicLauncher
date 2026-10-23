@@ -7,21 +7,21 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Landroidx/core/graphics/drawable/IconCompat$a;,
-        Landroidx/core/graphics/drawable/IconCompat$b;,
         Landroidx/core/graphics/drawable/IconCompat$d;,
+        Landroidx/core/graphics/drawable/IconCompat$b;,
         Landroidx/core/graphics/drawable/IconCompat$c;
     }
 .end annotation
 
 
 # static fields
-.field static final k:Landroid/graphics/PorterDuff$Mode;
+.field public static final k:Landroid/graphics/PorterDuff$Mode;
 
 
 # instance fields
 .field public a:I
 
-.field b:Ljava/lang/Object;
+.field public b:Ljava/lang/Object;
 
 .field public c:[B
 
@@ -33,7 +33,7 @@
 
 .field public g:Landroid/content/res/ColorStateList;
 
-.field h:Landroid/graphics/PorterDuff$Mode;
+.field public h:Landroid/graphics/PorterDuff$Mode;
 
 .field public i:Ljava/lang/String;
 
@@ -97,7 +97,7 @@
     return-void
 .end method
 
-.method constructor <init>(I)V
+.method public constructor <init>(I)V
     .locals 2
 
     .line 10
@@ -140,7 +140,7 @@
     .locals 2
 
     .line 1
-    invoke-static {p0}, LI/c;->c(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {p0}, Ly5/c;->d(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 2
     .line 3
@@ -168,7 +168,7 @@
     .locals 1
 
     .line 1
-    invoke-static {p0}, LI/c;->c(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {p0}, Ly5/c;->d(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 2
     .line 3
@@ -204,7 +204,7 @@
     .locals 2
 
     .line 1
-    invoke-static {p1}, LI/c;->c(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {p1}, Ly5/c;->d(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 2
     .line 3
@@ -298,7 +298,7 @@
     throw p0
 .end method
 
-.method static g(Landroid/content/Context;Ljava/lang/String;)Landroid/content/res/Resources;
+.method public static g(Landroid/content/Context;Ljava/lang/String;)Landroid/content/res/Resources;
     .locals 2
 
     .line 1
@@ -415,7 +415,7 @@
     return-object v1
 .end method
 
-.method private static o(I)Ljava/lang/String;
+.method public static o(I)Ljava/lang/String;
     .locals 0
 
     .line 1
@@ -1122,7 +1122,7 @@
     move-result-object p0
 
     .line 8
-    invoke-static {p0, p1}, Landroidx/core/graphics/drawable/IconCompat$a;->e(Landroid/graphics/drawable/Icon;Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
+    invoke-virtual {p0, p1}, Landroid/graphics/drawable/Icon;->loadDrawable(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
 
     .line 9
     .line 10
@@ -1614,7 +1614,7 @@
     .locals 0
 
     .line 1
-    invoke-static {p0, p1}, Landroidx/core/graphics/drawable/IconCompat$a;->f(Landroidx/core/graphics/drawable/IconCompat;Landroid/content/Context;)Landroid/graphics/drawable/Icon;
+    invoke-static {p0, p1}, Landroidx/core/graphics/drawable/IconCompat$a;->e(Landroidx/core/graphics/drawable/IconCompat;Landroid/content/Context;)Landroid/graphics/drawable/Icon;
 
     .line 2
     .line 3

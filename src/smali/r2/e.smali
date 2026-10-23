@@ -1,41 +1,31 @@
-.class public final synthetic Lr2/e;
+.class public interface abstract Lr2/e;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Ljava/util/function/ToIntFunction;
+.source "RetainObserver.kt"
 
 
-# direct methods
-.method public synthetic constructor <init>()V
-    .locals 0
-
-    .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u0003\u0008f\u0018\u00002\u00020\u0001J\u000f\u0010\u0003\u001a\u00020\u0002H&\u00a2\u0006\u0004\u0008\u0003\u0010\u0004\u00f8\u0001\u0000\u0082\u0002\u0006\n\u0004\u0008!0\u0001\u00a8\u0006\u0005\u00c0\u0006\u0001"
+    }
+    d2 = {
+        "Lr2/e;",
+        "",
+        "",
+        "a",
+        "()V",
+        "runtime-retain"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x1,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # virtual methods
-.method public final applyAsInt(Ljava/lang/Object;)I
-    .locals 0
-
-    .line 1
-    check-cast p1, Ljava/util/ArrayList;
-
-    .line 2
-    .line 3
-    invoke-static {p1}, Lr2/i;->d(Ljava/util/ArrayList;)I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    return p0
+.method public abstract a()V
 .end method

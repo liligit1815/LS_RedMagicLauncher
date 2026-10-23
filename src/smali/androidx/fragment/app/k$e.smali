@@ -13,41 +13,64 @@
     name = null
 .end annotation
 
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0017\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u0003*\u0001\u0000\u0008\n\u0018\u00002\u00020\u0001J\u0017\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0003\u001a\u00020\u0002H\u0016\u00a2\u0006\u0004\u0008\u0005\u0010\u0006\u00a8\u0006\u0007"
+    }
+    d2 = {
+        "androidx/fragment/app/k$e",
+        "Landroid/animation/AnimatorListenerAdapter;",
+        "Landroid/animation/Animator;",
+        "anim",
+        "",
+        "onAnimationEnd",
+        "(Landroid/animation/Animator;)V",
+        "fragment_release"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x8,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
 
 # instance fields
-.field final synthetic g:Landroidx/fragment/app/k;
+.field public final synthetic c:Landroidx/fragment/app/k;
 
-.field final synthetic h:Landroid/view/View;
+.field public final synthetic m:Landroid/view/View;
 
-.field final synthetic i:Z
+.field public final synthetic n:Z
 
-.field final synthetic j:Landroidx/fragment/app/W$c;
+.field public final synthetic o:Landroidx/fragment/app/v0$c;
 
-.field final synthetic k:Landroidx/fragment/app/k$a;
+.field public final synthetic p:Landroidx/fragment/app/k$a;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/k;Landroid/view/View;ZLandroidx/fragment/app/W$c;Landroidx/fragment/app/k$a;)V
+.method public constructor <init>(Landroidx/fragment/app/k;Landroid/view/View;ZLandroidx/fragment/app/v0$c;Landroidx/fragment/app/k$a;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/fragment/app/k$e;->g:Landroidx/fragment/app/k;
+    iput-object p1, p0, Landroidx/fragment/app/k$e;->c:Landroidx/fragment/app/k;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/fragment/app/k$e;->h:Landroid/view/View;
+    iput-object p2, p0, Landroidx/fragment/app/k$e;->m:Landroid/view/View;
 
     .line 4
     .line 5
-    iput-boolean p3, p0, Landroidx/fragment/app/k$e;->i:Z
+    iput-boolean p3, p0, Landroidx/fragment/app/k$e;->n:Z
 
     .line 6
     .line 7
-    iput-object p4, p0, Landroidx/fragment/app/k$e;->j:Landroidx/fragment/app/W$c;
+    iput-object p4, p0, Landroidx/fragment/app/k$e;->o:Landroidx/fragment/app/v0$c;
 
     .line 8
     .line 9
-    iput-object p5, p0, Landroidx/fragment/app/k$e;->k:Landroidx/fragment/app/k$a;
+    iput-object p5, p0, Landroidx/fragment/app/k$e;->p:Landroidx/fragment/app/k$a;
 
     .line 10
     .line 11
@@ -69,16 +92,16 @@
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    iget-object p1, p0, Landroidx/fragment/app/k$e;->g:Landroidx/fragment/app/k;
+    iget-object p1, p0, Landroidx/fragment/app/k$e;->c:Landroidx/fragment/app/k;
 
     .line 7
     .line 8
-    invoke-virtual {p1}, Landroidx/fragment/app/W;->q()Landroid/view/ViewGroup;
+    invoke-virtual {p1}, Landroidx/fragment/app/v0;->q()Landroid/view/ViewGroup;
 
     .line 9
     .line 10
@@ -86,7 +109,7 @@
     move-result-object p1
 
     .line 12
-    iget-object v0, p0, Landroidx/fragment/app/k$e;->h:Landroid/view/View;
+    iget-object v0, p0, Landroidx/fragment/app/k$e;->m:Landroid/view/View;
 
     .line 13
     .line 14
@@ -95,7 +118,7 @@
     .line 15
     .line 16
     .line 17
-    iget-boolean p1, p0, Landroidx/fragment/app/k$e;->i:Z
+    iget-boolean p1, p0, Landroidx/fragment/app/k$e;->n:Z
 
     .line 18
     .line 19
@@ -103,11 +126,11 @@
 
     .line 20
     .line 21
-    iget-object p1, p0, Landroidx/fragment/app/k$e;->j:Landroidx/fragment/app/W$c;
+    iget-object p1, p0, Landroidx/fragment/app/k$e;->o:Landroidx/fragment/app/v0$c;
 
     .line 22
     .line 23
-    invoke-virtual {p1}, Landroidx/fragment/app/W$c;->g()Landroidx/fragment/app/W$c$b;
+    invoke-virtual {p1}, Landroidx/fragment/app/v0$c;->g()Landroidx/fragment/app/v0$c$b;
 
     .line 24
     .line 25
@@ -115,7 +138,7 @@
     move-result-object p1
 
     .line 27
-    iget-object v0, p0, Landroidx/fragment/app/k$e;->h:Landroid/view/View;
+    iget-object v0, p0, Landroidx/fragment/app/k$e;->m:Landroid/view/View;
 
     .line 28
     .line 29
@@ -123,18 +146,18 @@
 
     .line 30
     .line 31
-    invoke-static {v0, v1}, Lkotlin/jvm/internal/o;->e(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 32
     .line 33
     .line 34
-    invoke-virtual {p1, v0}, Landroidx/fragment/app/W$c$b;->c(Landroid/view/View;)V
+    invoke-virtual {p1, v0}, Landroidx/fragment/app/v0$c$b;->b(Landroid/view/View;)V
 
     .line 35
     .line 36
     .line 37
     :cond_0
-    iget-object p1, p0, Landroidx/fragment/app/k$e;->k:Landroidx/fragment/app/k$a;
+    iget-object p1, p0, Landroidx/fragment/app/k$e;->p:Landroidx/fragment/app/k$a;
 
     .line 38
     .line 39
@@ -146,7 +169,7 @@
     const/4 p1, 0x2
 
     .line 43
-    invoke-static {p1}, Landroidx/fragment/app/F;->J0(I)Z
+    invoke-static {p1}, Landroidx/fragment/app/f0;->J0(I)Z
 
     .line 44
     .line 45
@@ -176,7 +199,7 @@
     .line 57
     .line 58
     .line 59
-    iget-object p0, p0, Landroidx/fragment/app/k$e;->j:Landroidx/fragment/app/W$c;
+    iget-object p0, p0, Landroidx/fragment/app/k$e;->o:Landroidx/fragment/app/v0$c;
 
     .line 60
     .line 61

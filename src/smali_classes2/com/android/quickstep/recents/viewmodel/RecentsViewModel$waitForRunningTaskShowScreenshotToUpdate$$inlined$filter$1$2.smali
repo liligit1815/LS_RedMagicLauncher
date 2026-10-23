@@ -3,12 +3,12 @@
 .source "Emitters.kt"
 
 # interfaces
-.implements LI4/e;
+.implements Lgi/g;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1;->collect(LI4/e;Ll4/d;)Ljava/lang/Object;
+    value = Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1;->collect(Lgi/g;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -22,21 +22,37 @@
         "Ljava/lang/Object;",
         ">",
         "Ljava/lang/Object;",
-        "LI4/e;"
+        "Lgi/g;"
+    }
+.end annotation
+
+.annotation runtime Lkotlin/Metadata;
+    k = 0x3
+    mv = {
+        0x2,
+        0x2,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+.annotation build Lkotlin/jvm/internal/SourceDebugExtension;
+    value = {
+        "SMAP\nEmitters.kt\nKotlin\n*S Kotlin\n*F\n+ 1 Emitters.kt\nkotlinx/coroutines/flow/FlowKt__EmittersKt$unsafeTransform$1$1\n+ 2 Transform.kt\nkotlinx/coroutines/flow/FlowKt__TransformKt\n+ 3 RecentsViewModel.kt\ncom/android/quickstep/recents/viewmodel/RecentsViewModel\n*L\n1#1,216:1\n18#2:217\n19#2:219\n79#3:218\n*E\n"
     }
 .end annotation
 
 
 # instance fields
-.field final synthetic $this_unsafeFlow:LI4/e;
+.field final synthetic $this_unsafeFlow:Lgi/g;
 
 
 # direct methods
-.method public constructor <init>(LI4/e;)V
+.method public constructor <init>(Lgi/g;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2;->$this_unsafeFlow:LI4/e;
+    iput-object p1, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2;->$this_unsafeFlow:Lgi/g;
 
     .line 2
     .line 3
@@ -50,7 +66,7 @@
 
 
 # virtual methods
-.method public final emit(Ljava/lang/Object;Ll4/d;)Ljava/lang/Object;
+.method public final emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
     .locals 4
 
     .line 1
@@ -100,7 +116,7 @@
 
     .line 21
     .line 22
-    invoke-direct {v0, p0, p2}, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;-><init>(Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2;Ll4/d;)V
+    invoke-direct {v0, p0, p2}, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;-><init>(Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2;Lkotlin/coroutines/Continuation;)V
 
     .line 23
     .line 24
@@ -110,7 +126,7 @@
 
     .line 26
     .line 27
-    invoke-static {}, Lm4/b;->e()Ljava/lang/Object;
+    invoke-static {}, Lkotlin/coroutines/intrinsics/IntrinsicsKt;->getCOROUTINE_SUSPENDED()Ljava/lang/Object;
 
     .line 28
     .line 29
@@ -133,84 +149,155 @@
 
     .line 37
     .line 38
-    invoke-static {p2}, Lh4/n;->b(Ljava/lang/Object;)V
+    iget-object p0, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->L$3:Ljava/lang/Object;
 
     .line 39
     .line 40
-    .line 41
-    goto :goto_1
+    check-cast p0, Lgi/g;
 
+    .line 41
     .line 42
-    :cond_1
-    new-instance p0, Ljava/lang/IllegalStateException;
+    iget-object p0, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->L$1:Ljava/lang/Object;
 
     .line 43
     .line 44
-    const-string p1, "call to \'resume\' before \'invoke\' with coroutine"
+    check-cast p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;
 
     .line 45
     .line 46
-    invoke-direct {p0, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+    invoke-static {p2}, Lkotlin/ResultKt;->throwOnFailure(Ljava/lang/Object;)V
 
     .line 47
     .line 48
     .line 49
-    throw p0
+    goto :goto_1
 
     .line 50
-    :cond_2
-    invoke-static {p2}, Lh4/n;->b(Ljava/lang/Object;)V
+    :cond_1
+    new-instance p0, Ljava/lang/IllegalStateException;
 
     .line 51
     .line 52
+    const-string p1, "call to \'resume\' before \'invoke\' with coroutine"
+
     .line 53
-    iget-object p0, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2;->$this_unsafeFlow:LI4/e;
-
     .line 54
+    invoke-direct {p0, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
     .line 55
-    move-object p2, p1
-
     .line 56
-    check-cast p2, Ljava/lang/Boolean;
-
     .line 57
+    throw p0
+
     .line 58
-    invoke-virtual {p2}, Ljava/lang/Boolean;->booleanValue()Z
+    :cond_2
+    invoke-static {p2}, Lkotlin/ResultKt;->throwOnFailure(Ljava/lang/Object;)V
 
     .line 59
     .line 60
     .line 61
-    move-result p2
+    iget-object p0, p0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2;->$this_unsafeFlow:Lgi/g;
 
     .line 62
-    if-eqz p2, :cond_3
-
     .line 63
+    move-object p2, p1
+
     .line 64
-    iput v3, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->label:I
+    check-cast p2, Ljava/lang/Boolean;
 
     .line 65
     .line 66
-    invoke-interface {p0, p1, v0}, LI4/e;->emit(Ljava/lang/Object;Ll4/d;)Ljava/lang/Object;
+    invoke-virtual {p2}, Ljava/lang/Boolean;->booleanValue()Z
 
     .line 67
     .line 68
     .line 69
-    move-result-object p0
+    move-result p2
 
     .line 70
-    if-ne p0, v1, :cond_3
+    if-eqz p2, :cond_3
 
     .line 71
     .line 72
-    return-object v1
+    invoke-static {p1}, Lkotlin/coroutines/jvm/internal/SpillingKt;->nullOutSpilledVariable(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 73
-    :cond_3
-    :goto_1
-    sget-object p0, Lh4/t;->a:Lh4/t;
-
     .line 74
     .line 75
+    move-result-object p2
+
+    .line 76
+    iput-object p2, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->L$0:Ljava/lang/Object;
+
+    .line 77
+    .line 78
+    invoke-static {v0}, Lkotlin/coroutines/jvm/internal/SpillingKt;->nullOutSpilledVariable(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 79
+    .line 80
+    .line 81
+    move-result-object p2
+
+    .line 82
+    iput-object p2, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->L$1:Ljava/lang/Object;
+
+    .line 83
+    .line 84
+    invoke-static {p1}, Lkotlin/coroutines/jvm/internal/SpillingKt;->nullOutSpilledVariable(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 85
+    .line 86
+    .line 87
+    move-result-object p2
+
+    .line 88
+    iput-object p2, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->L$2:Ljava/lang/Object;
+
+    .line 89
+    .line 90
+    invoke-static {p0}, Lkotlin/coroutines/jvm/internal/SpillingKt;->nullOutSpilledVariable(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 91
+    .line 92
+    .line 93
+    move-result-object p2
+
+    .line 94
+    iput-object p2, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->L$3:Ljava/lang/Object;
+
+    .line 95
+    .line 96
+    const/4 p2, 0x0
+
+    .line 97
+    iput p2, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->I$0:I
+
+    .line 98
+    .line 99
+    iput v3, v0, Lcom/android/quickstep/recents/viewmodel/RecentsViewModel$waitForRunningTaskShowScreenshotToUpdate$$inlined$filter$1$2$1;->label:I
+
+    .line 100
+    .line 101
+    invoke-interface {p0, p1, v0}, Lgi/g;->emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+    .line 102
+    .line 103
+    .line 104
+    move-result-object p0
+
+    .line 105
+    if-ne p0, v1, :cond_3
+
+    .line 106
+    .line 107
+    return-object v1
+
+    .line 108
+    :cond_3
+    :goto_1
+    sget-object p0, Lkotlin/Unit;->INSTANCE:Lkotlin/Unit;
+
+    .line 109
+    .line 110
     return-object p0
 .end method

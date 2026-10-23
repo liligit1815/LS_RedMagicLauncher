@@ -19,13 +19,13 @@
 
 .field public b:I
 
-.field c:F
+.field public c:F
 
-.field d:Z
+.field public d:Z
 
-.field e:I
+.field public e:I
 
-.field f:I
+.field public f:I
 
 
 # direct methods
@@ -57,7 +57,7 @@
     iput v0, p0, Landroidx/viewpager/widget/ViewPager$g;->c:F
 
     .line 5
-    sget-object v0, Landroidx/viewpager/widget/ViewPager;->l0:[I
+    sget-object v0, Landroidx/viewpager/widget/ViewPager;->LAYOUT_ATTRS:[I
 
     invoke-virtual {p1, p2, v0}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[I)Landroid/content/res/TypedArray;
 

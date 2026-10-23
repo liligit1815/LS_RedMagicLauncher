@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "RecyclerViewDataObserver"
 .end annotation
 
@@ -19,7 +19,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/RecyclerView;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/RecyclerView;)V
     .locals 0
 
     .line 1
@@ -340,7 +340,7 @@
     return-void
 .end method
 
-.method triggerUpdateProcessor()V
+.method public triggerUpdateProcessor()V
     .locals 1
 
     .line 1
@@ -368,7 +368,7 @@
 
     .line 12
     .line 13
-    invoke-static {p0, v0}, LJ/I;->a0(Landroid/view/View;Ljava/lang/Runnable;)V
+    invoke-static {p0, v0}, Lz5/o0;->c0(Landroid/view/View;Ljava/lang/Runnable;)V
 
     .line 14
     .line 15

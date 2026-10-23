@@ -1,17 +1,21 @@
-.class public final synthetic LN1/a;
+.class public final synthetic Ln1/a;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Lkotlin/jvm/functions/Function2;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/launcher3/popup/PopupContainerWithArrow;
+.field public final synthetic c:Ln1/c;
+
+.field public final synthetic m:Lkotlin/jvm/functions/Function0;
+
+.field public final synthetic n:I
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/launcher3/popup/PopupContainerWithArrow;)V
+.method public synthetic constructor <init>(Ln1/c;Lkotlin/jvm/functions/Function0;I)V
     .locals 0
 
     .line 1
@@ -20,27 +24,62 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, LN1/a;->g:Lcom/android/launcher3/popup/PopupContainerWithArrow;
+    iput-object p1, p0, Ln1/a;->c:Ln1/c;
 
     .line 5
     .line 6
+    iput-object p2, p0, Ln1/a;->m:Lkotlin/jvm/functions/Function0;
+
+    .line 7
+    .line 8
+    iput p3, p0, Ln1/a;->n:I
+
+    .line 9
+    .line 10
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
-    .locals 0
+.method public final invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 2
 
     .line 1
-    iget-object p0, p0, LN1/a;->g:Lcom/android/launcher3/popup/PopupContainerWithArrow;
+    iget-object v0, p0, Ln1/a;->c:Ln1/c;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Lcom/android/launcher3/shortcuts/DeepShortcutView;->c(Lcom/android/launcher3/popup/PopupContainerWithArrow;Landroid/view/View;)V
+    iget-object v1, p0, Ln1/a;->m:Lkotlin/jvm/functions/Function0;
 
     .line 4
     .line 5
+    iget p0, p0, Ln1/a;->n:I
+
     .line 6
-    return-void
+    .line 7
+    check-cast p1, Le2/r;
+
+    .line 8
+    .line 9
+    check-cast p2, Ljava/lang/Integer;
+
+    .line 10
+    .line 11
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
+
+    .line 12
+    .line 13
+    .line 14
+    move-result p2
+
+    .line 15
+    invoke-static {v0, v1, p0, p1, p2}, Ln1/c;->c(Ln1/c;Lkotlin/jvm/functions/Function0;ILe2/r;I)Lkotlin/Unit;
+
+    .line 16
+    .line 17
+    .line 18
+    move-result-object p0
+
+    .line 19
+    return-object p0
 .end method

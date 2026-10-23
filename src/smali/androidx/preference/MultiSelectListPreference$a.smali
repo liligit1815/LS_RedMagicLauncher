@@ -1,4 +1,4 @@
-.class Landroidx/preference/MultiSelectListPreference$a;
+.class public Landroidx/preference/MultiSelectListPreference$a;
 .super Landroidx/preference/Preference$b;
 .source "MultiSelectListPreference.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field g:Ljava/util/Set;
+.field public c:Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Set<",
@@ -59,7 +59,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 2
 
     .line 1
@@ -75,7 +75,7 @@
 
     invoke-direct {v1}, Ljava/util/HashSet;-><init>()V
 
-    iput-object v1, p0, Landroidx/preference/MultiSelectListPreference$a;->g:Ljava/util/Set;
+    iput-object v1, p0, Landroidx/preference/MultiSelectListPreference$a;->c:Ljava/util/Set;
 
     .line 4
     new-array v0, v0, [Ljava/lang/String;
@@ -84,14 +84,14 @@
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->readStringArray([Ljava/lang/String;)V
 
     .line 6
-    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference$a;->g:Ljava/util/Set;
+    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference$a;->c:Ljava/util/Set;
 
     invoke-static {p0, v0}, Ljava/util/Collections;->addAll(Ljava/util/Collection;[Ljava/lang/Object;)Z
 
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 7
@@ -111,7 +111,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object p2, p0, Landroidx/preference/MultiSelectListPreference$a;->g:Ljava/util/Set;
+    iget-object p2, p0, Landroidx/preference/MultiSelectListPreference$a;->c:Ljava/util/Set;
 
     .line 5
     .line 6
@@ -128,7 +128,7 @@
     .line 11
     .line 12
     .line 13
-    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference$a;->g:Ljava/util/Set;
+    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference$a;->c:Ljava/util/Set;
 
     .line 14
     .line 15

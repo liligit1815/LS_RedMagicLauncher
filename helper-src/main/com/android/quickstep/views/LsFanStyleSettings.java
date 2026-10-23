@@ -29,14 +29,14 @@ public final class LsFanStyleSettings {
     }
 
     public static void attach(Activity activity, View.OnClickListener listener) {
-        View stack = activity.findViewById(0x7f0b06c2);
+        View stack = activity.findViewById(0x7f0b071a);
         if (stack == null || !(stack.getParent() instanceof ViewGroup)) return;
         ViewGroup parent = (ViewGroup) stack.getParent();
         if (parent.findViewWithTag(CARD_TAG) != null) return;
-        View card = LayoutInflater.from(stack.getContext()).inflate(0x7f0e0285, parent, false);
-        TextView title = (TextView) card.findViewById(0x7f0b06c3);
-        RadioButton radio = (RadioButton) card.findViewById(0x7f0b06c4);
-        ImageView preview = (ImageView) card.findViewById(0x7f0b06c5);
+        View card = LayoutInflater.from(stack.getContext()).inflate(0x7f0e029b, parent, false);
+        TextView title = (TextView) card.findViewById(0x7f0b071b);
+        RadioButton radio = (RadioButton) card.findViewById(0x7f0b071c);
+        ImageView preview = (ImageView) card.findViewById(0x7f0b071d);
         clearTemplateIds(card);
         card.setTag(CARD_TAG);
         radio.setTag(RADIO_TAG);

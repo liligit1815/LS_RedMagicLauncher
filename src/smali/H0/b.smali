@@ -1,443 +1,962 @@
-.class public LH0/b;
+.class public Lh0/b;
 .super Ljava/lang/Object;
-.source "GammaEvaluator.java"
+.source "SafeIterableMap.java"
+
+# interfaces
+.implements Ljava/lang/Iterable;
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lh0/b$c;,
+        Lh0/b$f;,
+        Lh0/b$a;,
+        Lh0/b$b;,
+        Lh0/b$d;,
+        Lh0/b$e;
+    }
+.end annotation
+
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "<K:",
+        "Ljava/lang/Object;",
+        "V:",
+        "Ljava/lang/Object;",
+        ">",
+        "Ljava/lang/Object;",
+        "Ljava/lang/Iterable<",
+        "Ljava/util/Map$Entry<",
+        "TK;TV;>;>;"
+    }
+.end annotation
+
+
+# instance fields
+.field public c:Lh0/b$c;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lh0/b$c<",
+            "TK;TV;>;"
+        }
+    .end annotation
+.end field
+
+.field public m:Lh0/b$c;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lh0/b$c<",
+            "TK;TV;>;"
+        }
+    .end annotation
+.end field
+
+.field public final n:Ljava/util/WeakHashMap;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/WeakHashMap<",
+            "Lh0/b$f<",
+            "TK;TV;>;",
+            "Ljava/lang/Boolean;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field public o:I
 
 
 # direct methods
-.method private static a(F)F
+.method public constructor <init>()V
+    .locals 1
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    new-instance v0, Ljava/util/WeakHashMap;
+
+    .line 5
+    .line 6
+    invoke-direct {v0}, Ljava/util/WeakHashMap;-><init>()V
+
+    .line 7
+    .line 8
+    .line 9
+    iput-object v0, p0, Lh0/b;->n:Ljava/util/WeakHashMap;
+
+    .line 10
+    .line 11
+    const/4 v0, 0x0
+
+    .line 12
+    iput v0, p0, Lh0/b;->o:I
+
+    .line 13
+    .line 14
+    return-void
+.end method
+
+
+# virtual methods
+.method public descendingIterator()Ljava/util/Iterator;
+    .locals 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Iterator<",
+            "Ljava/util/Map$Entry<",
+            "TK;TV;>;>;"
+        }
+    .end annotation
+
+    .line 1
+    new-instance v0, Lh0/b$b;
+
+    .line 2
+    .line 3
+    iget-object v1, p0, Lh0/b;->m:Lh0/b$c;
+
+    .line 4
+    .line 5
+    iget-object v2, p0, Lh0/b;->c:Lh0/b$c;
+
+    .line 6
+    .line 7
+    invoke-direct {v0, v1, v2}, Lh0/b$b;-><init>(Lh0/b$c;Lh0/b$c;)V
+
+    .line 8
+    .line 9
+    .line 10
+    iget-object p0, p0, Lh0/b;->n:Ljava/util/WeakHashMap;
+
+    .line 11
+    .line 12
+    sget-object v1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+
+    .line 13
+    .line 14
+    invoke-virtual {p0, v0, v1}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 15
+    .line 16
+    .line 17
+    return-object v0
+.end method
+
+.method public e()Ljava/util/Map$Entry;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Map$Entry<",
+            "TK;TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    iget-object p0, p0, Lh0/b;->c:Lh0/b$c;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public equals(Ljava/lang/Object;)Z
     .locals 4
 
     .line 1
-    const v0, 0x3d25aee6    # 0.04045f
+    const/4 v0, 0x1
 
     .line 2
+    if-ne p1, p0, :cond_0
+
     .line 3
     .line 4
-    cmpg-float v0, p0, v0
+    return v0
 
     .line 5
-    .line 6
-    if-gtz v0, :cond_0
+    :cond_0
+    instance-of v1, p1, Lh0/b;
 
+    .line 6
     .line 7
+    const/4 v2, 0x0
+
     .line 8
-    const v0, 0x414eb852    # 12.92f
+    if-nez v1, :cond_1
 
     .line 9
     .line 10
+    return v2
+
     .line 11
-    div-float/2addr p0, v0
+    :cond_1
+    check-cast p1, Lh0/b;
 
     .line 12
-    return p0
-
     .line 13
-    :cond_0
-    const v0, 0x3d6147ae    # 0.055f
+    invoke-virtual {p0}, Lh0/b;->size()I
 
     .line 14
     .line 15
     .line 16
-    add-float/2addr p0, v0
+    move-result v1
 
     .line 17
-    const v0, 0x3f870a3d    # 1.055f
+    invoke-virtual {p1}, Lh0/b;->size()I
 
     .line 18
     .line 19
     .line 20
-    div-float/2addr p0, v0
+    move-result v3
 
     .line 21
-    float-to-double v0, p0
+    if-eq v1, v3, :cond_2
 
     .line 22
-    const-wide v2, 0x4003333340000000L    # 2.4000000953674316
-
     .line 23
+    return v2
+
     .line 24
+    :cond_2
+    invoke-virtual {p0}, Lh0/b;->iterator()Ljava/util/Iterator;
+
     .line 25
     .line 26
     .line 27
-    invoke-static {v0, v1, v2, v3}, Ljava/lang/Math;->pow(DD)D
+    move-result-object p0
 
     .line 28
-    .line 29
-    .line 30
-    move-result-wide v0
-
-    .line 31
-    double-to-float p0, v0
-
-    .line 32
-    return p0
-.end method
-
-.method private static b(F)F
-    .locals 4
-
-    .line 1
-    const v0, 0x3b4d2e1c    # 0.0031308f
-
-    .line 2
-    .line 3
-    .line 4
-    cmpg-float v0, p0, v0
-
-    .line 5
-    .line 6
-    if-gtz v0, :cond_0
-
-    .line 7
-    .line 8
-    const v0, 0x414eb852    # 12.92f
-
-    .line 9
-    .line 10
-    .line 11
-    mul-float/2addr p0, v0
-
-    .line 12
-    return p0
-
-    .line 13
-    :cond_0
-    float-to-double v0, p0
-
-    .line 14
-    const-wide v2, 0x3fdaaaaaa0000000L    # 0.4166666567325592
-
-    .line 15
-    .line 16
-    .line 17
-    .line 18
-    .line 19
-    invoke-static {v0, v1, v2, v3}, Ljava/lang/Math;->pow(DD)D
-
-    .line 20
-    .line 21
-    .line 22
-    move-result-wide v0
-
-    .line 23
-    const-wide v2, 0x3ff0e147a0000000L    # 1.0549999475479126
-
-    .line 24
-    .line 25
-    .line 26
-    .line 27
-    .line 28
-    mul-double/2addr v0, v2
+    invoke-virtual {p1}, Lh0/b;->iterator()Ljava/util/Iterator;
 
     .line 29
-    const-wide v2, 0x3fac28f5c0000000L    # 0.054999999701976776
-
     .line 30
     .line 31
+    move-result-object p1
+
     .line 32
+    :cond_3
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
     .line 33
     .line 34
-    sub-double/2addr v0, v2
-
     .line 35
-    double-to-float p0, v0
+    move-result v1
 
     .line 36
-    return p0
-.end method
-
-.method public static c(FII)I
-    .locals 7
-
-    .line 1
-    if-ne p1, p2, :cond_0
-
-    .line 2
-    .line 3
-    return p1
-
-    .line 4
-    :cond_0
-    shr-int/lit8 v0, p1, 0x18
-
-    .line 5
-    .line 6
-    and-int/lit16 v0, v0, 0xff
-
-    .line 7
-    .line 8
-    int-to-float v0, v0
-
-    .line 9
-    const/high16 v1, 0x437f0000    # 255.0f
-
-    .line 10
-    .line 11
-    div-float/2addr v0, v1
-
-    .line 12
-    shr-int/lit8 v2, p1, 0x10
-
-    .line 13
-    .line 14
-    and-int/lit16 v2, v2, 0xff
-
-    .line 15
-    .line 16
-    int-to-float v2, v2
-
-    .line 17
-    div-float/2addr v2, v1
-
-    .line 18
-    shr-int/lit8 v3, p1, 0x8
-
-    .line 19
-    .line 20
-    and-int/lit16 v3, v3, 0xff
-
-    .line 21
-    .line 22
-    int-to-float v3, v3
-
-    .line 23
-    div-float/2addr v3, v1
-
-    .line 24
-    and-int/lit16 p1, p1, 0xff
-
-    .line 25
-    .line 26
-    int-to-float p1, p1
-
-    .line 27
-    div-float/2addr p1, v1
-
-    .line 28
-    shr-int/lit8 v4, p2, 0x18
-
-    .line 29
-    .line 30
-    and-int/lit16 v4, v4, 0xff
-
-    .line 31
-    .line 32
-    int-to-float v4, v4
-
-    .line 33
-    div-float/2addr v4, v1
-
-    .line 34
-    shr-int/lit8 v5, p2, 0x10
-
-    .line 35
-    .line 36
-    and-int/lit16 v5, v5, 0xff
+    if-eqz v1, :cond_6
 
     .line 37
     .line 38
-    int-to-float v5, v5
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     .line 39
-    div-float/2addr v5, v1
-
     .line 40
-    shr-int/lit8 v6, p2, 0x8
-
     .line 41
+    move-result v1
+
     .line 42
-    and-int/lit16 v6, v6, 0xff
+    if-eqz v1, :cond_6
 
     .line 43
     .line 44
-    int-to-float v6, v6
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     .line 45
-    div-float/2addr v6, v1
-
     .line 46
-    and-int/lit16 p2, p2, 0xff
-
     .line 47
+    move-result-object v1
+
     .line 48
-    int-to-float p2, p2
+    check-cast v1, Ljava/util/Map$Entry;
 
     .line 49
-    div-float/2addr p2, v1
-
     .line 50
-    invoke-static {v2}, LH0/b;->a(F)F
+    invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     .line 51
     .line 52
     .line 53
-    move-result v2
+    move-result-object v3
 
     .line 54
-    invoke-static {v3}, LH0/b;->a(F)F
+    if-nez v1, :cond_4
 
     .line 55
     .line 56
-    .line 57
-    move-result v3
+    if-nez v3, :cond_5
 
+    .line 57
     .line 58
-    invoke-static {p1}, LH0/b;->a(F)F
+    :cond_4
+    if-eqz v1, :cond_3
 
     .line 59
     .line 60
-    .line 61
-    move-result p1
+    invoke-interface {v1, v3}, Ljava/util/Map$Entry;->equals(Ljava/lang/Object;)Z
 
+    .line 61
     .line 62
-    invoke-static {v5}, LH0/b;->a(F)F
+    .line 63
+    move-result v1
+
+    .line 64
+    if-nez v1, :cond_3
+
+    .line 65
+    .line 66
+    :cond_5
+    return v2
+
+    .line 67
+    :cond_6
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 68
+    .line 69
+    .line 70
+    move-result p0
+
+    .line 71
+    if-nez p0, :cond_7
+
+    .line 72
+    .line 73
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 74
+    .line 75
+    .line 76
+    move-result p0
+
+    .line 77
+    if-nez p0, :cond_7
+
+    .line 78
+    .line 79
+    return v0
+
+    .line 80
+    :cond_7
+    return v2
+.end method
+
+.method public h(Ljava/lang/Object;)Lh0/b$c;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(TK;)",
+            "Lh0/b$c<",
+            "TK;TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    iget-object p0, p0, Lh0/b;->c:Lh0/b$c;
+
+    .line 2
+    .line 3
+    :goto_0
+    if-eqz p0, :cond_1
+
+    .line 4
+    .line 5
+    iget-object v0, p0, Lh0/b$c;->c:Ljava/lang/Object;
+
+    .line 6
+    .line 7
+    invoke-virtual {v0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
+
+    .line 8
+    .line 9
+    .line 10
+    move-result v0
+
+    .line 11
+    if-eqz v0, :cond_0
+
+    .line 12
+    .line 13
+    goto :goto_1
+
+    .line 14
+    :cond_0
+    iget-object p0, p0, Lh0/b$c;->n:Lh0/b$c;
+
+    .line 15
+    .line 16
+    goto :goto_0
+
+    .line 17
+    :cond_1
+    :goto_1
+    return-object p0
+.end method
+
+.method public hashCode()I
+    .locals 2
+
+    .line 1
+    invoke-virtual {p0}, Lh0/b;->iterator()Ljava/util/Iterator;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p0
+
+    .line 5
+    const/4 v0, 0x0
+
+    .line 6
+    :goto_0
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result v1
+
+    .line 10
+    if-eqz v1, :cond_0
+
+    .line 11
+    .line 12
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    .line 13
+    .line 14
+    .line 15
+    move-result-object v1
+
+    .line 16
+    check-cast v1, Ljava/util/Map$Entry;
+
+    .line 17
+    .line 18
+    invoke-interface {v1}, Ljava/util/Map$Entry;->hashCode()I
+
+    .line 19
+    .line 20
+    .line 21
+    move-result v1
+
+    .line 22
+    add-int/2addr v0, v1
+
+    .line 23
+    goto :goto_0
+
+    .line 24
+    :cond_0
+    return v0
+.end method
+
+.method public i()Lh0/b$d;
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Lh0/b<",
+            "TK;TV;>.d;"
+        }
+    .end annotation
+
+    .line 1
+    new-instance v0, Lh0/b$d;
+
+    .line 2
+    .line 3
+    invoke-direct {v0, p0}, Lh0/b$d;-><init>(Lh0/b;)V
+
+    .line 4
+    .line 5
+    .line 6
+    iget-object p0, p0, Lh0/b;->n:Ljava/util/WeakHashMap;
+
+    .line 7
+    .line 8
+    sget-object v1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+
+    .line 9
+    .line 10
+    invoke-virtual {p0, v0, v1}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 11
+    .line 12
+    .line 13
+    return-object v0
+.end method
+
+.method public iterator()Ljava/util/Iterator;
+    .locals 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Iterator<",
+            "Ljava/util/Map$Entry<",
+            "TK;TV;>;>;"
+        }
+    .end annotation
+
+    .line 1
+    new-instance v0, Lh0/b$a;
+
+    .line 2
+    .line 3
+    iget-object v1, p0, Lh0/b;->c:Lh0/b$c;
+
+    .line 4
+    .line 5
+    iget-object v2, p0, Lh0/b;->m:Lh0/b$c;
+
+    .line 6
+    .line 7
+    invoke-direct {v0, v1, v2}, Lh0/b$a;-><init>(Lh0/b$c;Lh0/b$c;)V
+
+    .line 8
+    .line 9
+    .line 10
+    iget-object p0, p0, Lh0/b;->n:Ljava/util/WeakHashMap;
+
+    .line 11
+    .line 12
+    sget-object v1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+
+    .line 13
+    .line 14
+    invoke-virtual {p0, v0, v1}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 15
+    .line 16
+    .line 17
+    return-object v0
+.end method
+
+.method public j()Ljava/util/Map$Entry;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Map$Entry<",
+            "TK;TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    iget-object p0, p0, Lh0/b;->m:Lh0/b$c;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public l(Ljava/lang/Object;Ljava/lang/Object;)Lh0/b$c;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(TK;TV;)",
+            "Lh0/b$c<",
+            "TK;TV;>;"
+        }
+    .end annotation
+
+    .line 1
+    new-instance v0, Lh0/b$c;
+
+    .line 2
+    .line 3
+    invoke-direct {v0, p1, p2}, Lh0/b$c;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 4
+    .line 5
+    .line 6
+    iget p1, p0, Lh0/b;->o:I
+
+    .line 7
+    .line 8
+    add-int/lit8 p1, p1, 0x1
+
+    .line 9
+    .line 10
+    iput p1, p0, Lh0/b;->o:I
+
+    .line 11
+    .line 12
+    iget-object p1, p0, Lh0/b;->m:Lh0/b$c;
+
+    .line 13
+    .line 14
+    if-nez p1, :cond_0
+
+    .line 15
+    .line 16
+    iput-object v0, p0, Lh0/b;->c:Lh0/b$c;
+
+    .line 17
+    .line 18
+    iput-object v0, p0, Lh0/b;->m:Lh0/b$c;
+
+    .line 19
+    .line 20
+    return-object v0
+
+    .line 21
+    :cond_0
+    iput-object v0, p1, Lh0/b$c;->n:Lh0/b$c;
+
+    .line 22
+    .line 23
+    iput-object p1, v0, Lh0/b$c;->o:Lh0/b$c;
+
+    .line 24
+    .line 25
+    iput-object v0, p0, Lh0/b;->m:Lh0/b$c;
+
+    .line 26
+    .line 27
+    return-object v0
+.end method
+
+.method public n(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(TK;TV;)TV;"
+        }
+    .end annotation
+
+    .line 1
+    invoke-virtual {p0, p1}, Lh0/b;->h(Ljava/lang/Object;)Lh0/b$c;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object v0
+
+    .line 5
+    if-eqz v0, :cond_0
+
+    .line 6
+    .line 7
+    iget-object p0, v0, Lh0/b$c;->m:Ljava/lang/Object;
+
+    .line 8
+    .line 9
+    return-object p0
+
+    .line 10
+    :cond_0
+    invoke-virtual {p0, p1, p2}, Lh0/b;->l(Ljava/lang/Object;Ljava/lang/Object;)Lh0/b$c;
+
+    .line 11
+    .line 12
+    .line 13
+    const/4 p0, 0x0
+
+    .line 14
+    return-object p0
+.end method
+
+.method public o(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(TK;)TV;"
+        }
+    .end annotation
+
+    .line 1
+    invoke-virtual {p0, p1}, Lh0/b;->h(Ljava/lang/Object;)Lh0/b$c;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p1
+
+    .line 5
+    const/4 v0, 0x0
+
+    .line 6
+    if-nez p1, :cond_0
+
+    .line 7
+    .line 8
+    return-object v0
+
+    .line 9
+    :cond_0
+    iget v1, p0, Lh0/b;->o:I
+
+    .line 10
+    .line 11
+    add-int/lit8 v1, v1, -0x1
+
+    .line 12
+    .line 13
+    iput v1, p0, Lh0/b;->o:I
+
+    .line 14
+    .line 15
+    iget-object v1, p0, Lh0/b;->n:Ljava/util/WeakHashMap;
+
+    .line 16
+    .line 17
+    invoke-virtual {v1}, Ljava/util/WeakHashMap;->isEmpty()Z
+
+    .line 18
+    .line 19
+    .line 20
+    move-result v1
+
+    .line 21
+    if-nez v1, :cond_1
+
+    .line 22
+    .line 23
+    iget-object v1, p0, Lh0/b;->n:Ljava/util/WeakHashMap;
+
+    .line 24
+    .line 25
+    invoke-virtual {v1}, Ljava/util/WeakHashMap;->keySet()Ljava/util/Set;
+
+    .line 26
+    .line 27
+    .line 28
+    move-result-object v1
+
+    .line 29
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    .line 30
+    .line 31
+    .line 32
+    move-result-object v1
+
+    .line 33
+    :goto_0
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 34
+    .line 35
+    .line 36
+    move-result v2
+
+    .line 37
+    if-eqz v2, :cond_1
+
+    .line 38
+    .line 39
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    .line 40
+    .line 41
+    .line 42
+    move-result-object v2
+
+    .line 43
+    check-cast v2, Lh0/b$f;
+
+    .line 44
+    .line 45
+    invoke-virtual {v2, p1}, Lh0/b$f;->a(Lh0/b$c;)V
+
+    .line 46
+    .line 47
+    .line 48
+    goto :goto_0
+
+    .line 49
+    :cond_1
+    iget-object v1, p1, Lh0/b$c;->o:Lh0/b$c;
+
+    .line 50
+    .line 51
+    if-eqz v1, :cond_2
+
+    .line 52
+    .line 53
+    iget-object v2, p1, Lh0/b$c;->n:Lh0/b$c;
+
+    .line 54
+    .line 55
+    iput-object v2, v1, Lh0/b$c;->n:Lh0/b$c;
+
+    .line 56
+    .line 57
+    goto :goto_1
+
+    .line 58
+    :cond_2
+    iget-object v2, p1, Lh0/b$c;->n:Lh0/b$c;
+
+    .line 59
+    .line 60
+    iput-object v2, p0, Lh0/b;->c:Lh0/b$c;
+
+    .line 61
+    .line 62
+    :goto_1
+    iget-object v2, p1, Lh0/b$c;->n:Lh0/b$c;
 
     .line 63
     .line 64
-    .line 65
-    move-result v5
+    if-eqz v2, :cond_3
 
+    .line 65
     .line 66
-    invoke-static {v6}, LH0/b;->a(F)F
+    iput-object v1, v2, Lh0/b$c;->o:Lh0/b$c;
 
     .line 67
     .line 68
+    goto :goto_2
+
     .line 69
-    move-result v6
+    :cond_3
+    iput-object v1, p0, Lh0/b;->m:Lh0/b$c;
 
     .line 70
-    invoke-static {p2}, LH0/b;->a(F)F
-
     .line 71
+    :goto_2
+    iput-object v0, p1, Lh0/b$c;->n:Lh0/b$c;
+
     .line 72
     .line 73
-    move-result p2
+    iput-object v0, p1, Lh0/b$c;->o:Lh0/b$c;
 
     .line 74
-    sub-float/2addr v4, v0
-
     .line 75
-    mul-float/2addr v4, p0
+    iget-object p0, p1, Lh0/b$c;->m:Ljava/lang/Object;
 
     .line 76
-    add-float/2addr v0, v4
-
     .line 77
-    sub-float/2addr v5, v2
+    return-object p0
+.end method
 
-    .line 78
-    mul-float/2addr v5, p0
+.method public size()I
+    .locals 0
 
-    .line 79
-    add-float/2addr v2, v5
+    .line 1
+    iget p0, p0, Lh0/b;->o:I
 
-    .line 80
-    sub-float/2addr v6, v3
-
-    .line 81
-    mul-float/2addr v6, p0
-
-    .line 82
-    add-float/2addr v3, v6
-
-    .line 83
-    sub-float/2addr p2, p1
-
-    .line 84
-    mul-float/2addr p0, p2
-
-    .line 85
-    add-float/2addr p1, p0
-
-    .line 86
-    mul-float/2addr v0, v1
-
-    .line 87
-    invoke-static {v2}, LH0/b;->b(F)F
-
-    .line 88
-    .line 89
-    .line 90
-    move-result p0
-
-    .line 91
-    mul-float/2addr p0, v1
-
-    .line 92
-    invoke-static {v3}, LH0/b;->b(F)F
-
-    .line 93
-    .line 94
-    .line 95
-    move-result p2
-
-    .line 96
-    mul-float/2addr p2, v1
-
-    .line 97
-    invoke-static {p1}, LH0/b;->b(F)F
-
-    .line 98
-    .line 99
-    .line 100
-    move-result p1
-
-    .line 101
-    mul-float/2addr p1, v1
-
-    .line 102
-    invoke-static {v0}, Ljava/lang/Math;->round(F)I
-
-    .line 103
-    .line 104
-    .line 105
-    move-result v0
-
-    .line 106
-    shl-int/lit8 v0, v0, 0x18
-
-    .line 107
-    .line 108
-    invoke-static {p0}, Ljava/lang/Math;->round(F)I
-
-    .line 109
-    .line 110
-    .line 111
-    move-result p0
-
-    .line 112
-    shl-int/lit8 p0, p0, 0x10
-
-    .line 113
-    .line 114
-    or-int/2addr p0, v0
-
-    .line 115
-    invoke-static {p2}, Ljava/lang/Math;->round(F)I
-
-    .line 116
-    .line 117
-    .line 118
-    move-result p2
-
-    .line 119
-    shl-int/lit8 p2, p2, 0x8
-
-    .line 120
-    .line 121
-    or-int/2addr p0, p2
-
-    .line 122
-    invoke-static {p1}, Ljava/lang/Math;->round(F)I
-
-    .line 123
-    .line 124
-    .line 125
-    move-result p1
-
-    .line 126
-    or-int/2addr p0, p1
-
-    .line 127
+    .line 2
+    .line 3
     return p0
+.end method
+
+.method public toString()Ljava/lang/String;
+    .locals 2
+
+    .line 1
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    const-string v1, "["
+
+    .line 7
+    .line 8
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 9
+    .line 10
+    .line 11
+    invoke-virtual {p0}, Lh0/b;->iterator()Ljava/util/Iterator;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object p0
+
+    .line 15
+    :cond_0
+    :goto_0
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 16
+    .line 17
+    .line 18
+    move-result v1
+
+    .line 19
+    if-eqz v1, :cond_1
+
+    .line 20
+    .line 21
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    .line 22
+    .line 23
+    .line 24
+    move-result-object v1
+
+    .line 25
+    check-cast v1, Ljava/util/Map$Entry;
+
+    .line 26
+    .line 27
+    invoke-virtual {v1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    .line 28
+    .line 29
+    .line 30
+    move-result-object v1
+
+    .line 31
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 32
+    .line 33
+    .line 34
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 35
+    .line 36
+    .line 37
+    move-result v1
+
+    .line 38
+    if-eqz v1, :cond_0
+
+    .line 39
+    .line 40
+    const-string v1, ", "
+
+    .line 41
+    .line 42
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 43
+    .line 44
+    .line 45
+    goto :goto_0
+
+    .line 46
+    :cond_1
+    const-string p0, "]"
+
+    .line 47
+    .line 48
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 49
+    .line 50
+    .line 51
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 52
+    .line 53
+    .line 54
+    move-result-object p0
+
+    .line 55
+    return-object p0
 .end method

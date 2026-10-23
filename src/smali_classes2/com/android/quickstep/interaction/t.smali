@@ -3,15 +3,11 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
-
-
-# instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/MenuFragment;
+.implements Landroid/view/View$OnApplyWindowInsetsListener;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/MenuFragment;)V
+.method public synthetic constructor <init>()V
     .locals 0
 
     .line 1
@@ -20,27 +16,22 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/t;->g:Lcom/android/quickstep/interaction/MenuFragment;
-
-    .line 5
-    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
+.method public final onApplyWindowInsets(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/t;->g:Lcom/android/quickstep/interaction/MenuFragment;
+    invoke-static {p1, p2}, Lcom/android/quickstep/interaction/GestureSandboxActivity;->x(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Lcom/android/quickstep/interaction/MenuFragment;->o(Lcom/android/quickstep/interaction/MenuFragment;Landroid/view/View;)V
-
     .line 4
+    move-result-object p0
+
     .line 5
-    .line 6
-    return-void
+    return-object p0
 .end method

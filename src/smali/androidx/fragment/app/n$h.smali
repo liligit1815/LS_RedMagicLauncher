@@ -1,38 +1,38 @@
-.class Landroidx/fragment/app/n$h;
+.class public Landroidx/fragment/app/n$h;
 .super Ljava/lang/Object;
 .source "Fragment.java"
 
 # interfaces
-.implements Lm/a;
+.implements Li0/a;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Landroidx/fragment/app/n;->registerForActivityResult(Ld/a;Lc/b;)Lc/c;
+    value = Landroidx/fragment/app/n;->registerForActivityResult(Li/a;Lh/b;)Lh/c;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lm/a<",
+        "Li0/a<",
         "Ljava/lang/Void;",
-        "Lc/d;",
+        "Lh/f;",
         ">;"
     }
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/fragment/app/n;
+.field public final synthetic a:Landroidx/fragment/app/n;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/n;)V
+.method public constructor <init>(Landroidx/fragment/app/n;)V
     .locals 0
 
     .line 1
@@ -50,7 +50,7 @@
 
 
 # virtual methods
-.method public a(Ljava/lang/Void;)Lc/d;
+.method public a(Ljava/lang/Void;)Lh/f;
     .locals 1
 
     .line 1
@@ -62,7 +62,7 @@
 
     .line 4
     .line 5
-    instance-of v0, p1, Lc/e;
+    instance-of v0, p1, Lh/g;
 
     .line 6
     .line 7
@@ -70,11 +70,11 @@
 
     .line 8
     .line 9
-    check-cast p1, Lc/e;
+    check-cast p1, Lh/g;
 
     .line 10
     .line 11
-    invoke-interface {p1}, Lc/e;->getActivityResultRegistry()Lc/d;
+    invoke-interface {p1}, Lh/g;->getActivityResultRegistry()Lh/f;
 
     .line 12
     .line 13
@@ -94,7 +94,7 @@
     move-result-object p0
 
     .line 20
-    invoke-virtual {p0}, Landroidx/activity/h;->getActivityResultRegistry()Lc/d;
+    invoke-virtual {p0}, Ld/p;->getActivityResultRegistry()Lh/f;
 
     .line 21
     .line 22
@@ -113,7 +113,7 @@
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/fragment/app/n$h;->a(Ljava/lang/Void;)Lc/d;
+    invoke-virtual {p0, p1}, Landroidx/fragment/app/n$h;->a(Ljava/lang/Void;)Lh/f;
 
     .line 4
     .line 5

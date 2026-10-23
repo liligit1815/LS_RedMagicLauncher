@@ -24,7 +24,7 @@
     return-void
 .end method
 
-.method static a(Ljava/lang/Object;)Ljava/lang/Object;
+.method public static a(Ljava/lang/Object;)Ljava/lang/Object;
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {

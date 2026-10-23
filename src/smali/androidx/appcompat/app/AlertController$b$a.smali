@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/AlertController$b$a;
+.class public Landroidx/appcompat/app/AlertController$b$a;
 .super Landroid/widget/ArrayAdapter;
 .source "AlertController.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -23,21 +23,21 @@
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/app/AlertController$RecycleListView;
+.field public final synthetic c:Landroidx/appcompat/app/AlertController$RecycleListView;
 
-.field final synthetic h:Landroidx/appcompat/app/AlertController$b;
+.field public final synthetic m:Landroidx/appcompat/app/AlertController$b;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/app/AlertController$b;Landroid/content/Context;II[Ljava/lang/CharSequence;Landroidx/appcompat/app/AlertController$RecycleListView;)V
+.method public constructor <init>(Landroidx/appcompat/app/AlertController$b;Landroid/content/Context;II[Ljava/lang/CharSequence;Landroidx/appcompat/app/AlertController$RecycleListView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/app/AlertController$b$a;->h:Landroidx/appcompat/app/AlertController$b;
+    iput-object p1, p0, Landroidx/appcompat/app/AlertController$b$a;->m:Landroidx/appcompat/app/AlertController$b;
 
     .line 2
     .line 3
-    iput-object p6, p0, Landroidx/appcompat/app/AlertController$b$a;->g:Landroidx/appcompat/app/AlertController$RecycleListView;
+    iput-object p6, p0, Landroidx/appcompat/app/AlertController$b$a;->c:Landroidx/appcompat/app/AlertController$RecycleListView;
 
     .line 4
     .line 5
@@ -63,7 +63,7 @@
     move-result-object p2
 
     .line 5
-    iget-object p3, p0, Landroidx/appcompat/app/AlertController$b$a;->h:Landroidx/appcompat/app/AlertController$b;
+    iget-object p3, p0, Landroidx/appcompat/app/AlertController$b$a;->m:Landroidx/appcompat/app/AlertController$b;
 
     .line 6
     .line 7
@@ -83,7 +83,7 @@
 
     .line 14
     .line 15
-    iget-object p0, p0, Landroidx/appcompat/app/AlertController$b$a;->g:Landroidx/appcompat/app/AlertController$RecycleListView;
+    iget-object p0, p0, Landroidx/appcompat/app/AlertController$b$a;->c:Landroidx/appcompat/app/AlertController$RecycleListView;
 
     .line 16
     .line 17

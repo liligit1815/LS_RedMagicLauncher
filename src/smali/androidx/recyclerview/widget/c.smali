@@ -7,15 +7,15 @@
 
 
 # instance fields
-.field final a:Landroidx/recyclerview/widget/m;
+.field public final a:Landroidx/recyclerview/widget/m;
 
-.field b:I
+.field public b:I
 
-.field c:I
+.field public c:I
 
-.field d:I
+.field public d:I
 
-.field e:Ljava/lang/Object;
+.field public e:Ljava/lang/Object;
 
 
 # direct methods

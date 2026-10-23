@@ -1,9 +1,9 @@
-.class Landroidx/coordinatorlayout/widget/CoordinatorLayout$a;
+.class public Landroidx/coordinatorlayout/widget/CoordinatorLayout$a;
 .super Ljava/lang/Object;
 .source "CoordinatorLayout.java"
 
 # interfaces
-.implements LJ/x;
+.implements Lz5/b0;
 
 
 # annotations
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+.field public final synthetic c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
 
 # direct methods
-.method constructor <init>(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
+.method public constructor <init>(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$a;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iput-object p1, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$a;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3
@@ -40,15 +40,15 @@
 
 
 # virtual methods
-.method public a(Landroid/view/View;LJ/Y;)LJ/Y;
+.method public onApplyWindowInsets(Landroid/view/View;Lz5/d1;)Lz5/d1;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$a;->a:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
+    iget-object p0, p0, Landroidx/coordinatorlayout/widget/CoordinatorLayout$a;->c:Landroidx/coordinatorlayout/widget/CoordinatorLayout;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p2}, Landroidx/coordinatorlayout/widget/CoordinatorLayout;->W(LJ/Y;)LJ/Y;
+    invoke-virtual {p0, p2}, Landroidx/coordinatorlayout/widget/CoordinatorLayout;->W(Lz5/d1;)Lz5/d1;
 
     .line 4
     .line 5

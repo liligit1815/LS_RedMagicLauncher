@@ -3,9 +3,9 @@
 .source "ActionBarOverlayLayout.java"
 
 # interfaces
-.implements Landroidx/appcompat/widget/F;
-.implements LJ/u;
-.implements LJ/v;
+.implements Ls/e0;
+.implements Lz5/y;
+.implements Lz5/z;
 
 
 # annotations
@@ -24,71 +24,71 @@
 
 
 # static fields
-.field static final L:[I
+.field public static final Q:[I
 
 
 # instance fields
-.field private A:LJ/Y;
+.field public final A:Landroid/graphics/Rect;
 
-.field private B:LJ/Y;
+.field public final B:Landroid/graphics/Rect;
 
-.field private C:LJ/Y;
+.field public final C:Landroid/graphics/Rect;
 
-.field private D:LJ/Y;
+.field public final D:Landroid/graphics/Rect;
 
-.field private E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+.field public final E:Landroid/graphics/Rect;
 
-.field private F:Landroid/widget/OverScroller;
+.field public F:Lz5/d1;
 
-.field G:Landroid/view/ViewPropertyAnimator;
+.field public G:Lz5/d1;
 
-.field final H:Landroid/animation/AnimatorListenerAdapter;
+.field public H:Lz5/d1;
 
-.field private final I:Ljava/lang/Runnable;
+.field public I:Lz5/d1;
 
-.field private final J:Ljava/lang/Runnable;
+.field public J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
-.field private final K:LJ/w;
+.field public K:Landroid/widget/OverScroller;
 
-.field private g:I
+.field public L:Landroid/view/ViewPropertyAnimator;
 
-.field private h:I
+.field public final M:Landroid/animation/AnimatorListenerAdapter;
 
-.field private i:Landroidx/appcompat/widget/ContentFrameLayout;
+.field public final N:Ljava/lang/Runnable;
 
-.field j:Landroidx/appcompat/widget/ActionBarContainer;
+.field public final O:Ljava/lang/Runnable;
 
-.field private k:Landroidx/appcompat/widget/G;
+.field public final P:Lz5/a0;
 
-.field private l:Landroid/graphics/drawable/Drawable;
+.field public c:I
 
-.field private m:Z
+.field public m:I
 
-.field private n:Z
+.field public n:Landroidx/appcompat/widget/ContentFrameLayout;
 
-.field private o:Z
+.field public o:Landroidx/appcompat/widget/ActionBarContainer;
 
-.field private p:Z
+.field public p:Ls/f0;
 
-.field q:Z
+.field public q:Landroid/graphics/drawable/Drawable;
 
-.field private r:I
+.field public r:Z
 
-.field private s:I
+.field public s:Z
 
-.field private final t:Landroid/graphics/Rect;
+.field public t:Z
 
-.field private final u:Landroid/graphics/Rect;
+.field public u:Z
 
-.field private final v:Landroid/graphics/Rect;
+.field public v:Z
 
-.field private final w:Landroid/graphics/Rect;
+.field public w:I
 
-.field private final x:Landroid/graphics/Rect;
+.field public x:I
 
-.field private final y:Landroid/graphics/Rect;
+.field public final y:Landroid/graphics/Rect;
 
-.field private final z:Landroid/graphics/Rect;
+.field public final z:Landroid/graphics/Rect;
 
 
 # direct methods
@@ -96,7 +96,7 @@
     .locals 2
 
     .line 1
-    sget v0, Lf/a;->b:I
+    sget v0, Lk/a;->b:I
 
     .line 2
     .line 3
@@ -113,7 +113,7 @@
     move-result-object v0
 
     .line 10
-    sput-object v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->L:[I
+    sput-object v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->Q:[I
 
     .line 11
     .line 12
@@ -132,7 +132,7 @@
     const/4 p2, 0x0
 
     .line 5
-    iput p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->h:I
+    iput p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m:I
 
     .line 6
     .line 7
@@ -145,7 +145,7 @@
     .line 10
     .line 11
     .line 12
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
 
     .line 13
     .line 14
@@ -158,7 +158,7 @@
     .line 17
     .line 18
     .line 19
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->z:Landroid/graphics/Rect;
 
     .line 20
     .line 21
@@ -171,7 +171,7 @@
     .line 24
     .line 25
     .line 26
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->v:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:Landroid/graphics/Rect;
 
     .line 27
     .line 28
@@ -184,7 +184,7 @@
     .line 31
     .line 32
     .line 33
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->w:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->B:Landroid/graphics/Rect;
 
     .line 34
     .line 35
@@ -197,7 +197,7 @@
     .line 38
     .line 39
     .line 40
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->x:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:Landroid/graphics/Rect;
 
     .line 41
     .line 42
@@ -210,7 +210,7 @@
     .line 45
     .line 46
     .line 47
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->D:Landroid/graphics/Rect;
 
     .line 48
     .line 49
@@ -223,27 +223,27 @@
     .line 52
     .line 53
     .line 54
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->z:Landroid/graphics/Rect;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroid/graphics/Rect;
 
     .line 55
     .line 56
-    sget-object p2, LJ/Y;->b:LJ/Y;
+    sget-object p2, Lz5/d1;->b:Lz5/d1;
 
     .line 57
     .line 58
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:LJ/Y;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Lz5/d1;
 
     .line 59
     .line 60
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->B:LJ/Y;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->G:Lz5/d1;
 
     .line 61
     .line 62
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 63
     .line 64
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->D:LJ/Y;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Lz5/d1;
 
     .line 65
     .line 66
@@ -256,7 +256,7 @@
     .line 69
     .line 70
     .line 71
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Landroid/animation/AnimatorListenerAdapter;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->M:Landroid/animation/AnimatorListenerAdapter;
 
     .line 72
     .line 73
@@ -269,7 +269,7 @@
     .line 76
     .line 77
     .line 78
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Ljava/lang/Runnable;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->N:Ljava/lang/Runnable;
 
     .line 79
     .line 80
@@ -282,32 +282,72 @@
     .line 83
     .line 84
     .line 85
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Ljava/lang/Runnable;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->O:Ljava/lang/Runnable;
 
     .line 86
     .line 87
-    invoke-direct {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n(Landroid/content/Context;)V
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n(Landroid/content/Context;)V
 
     .line 88
     .line 89
     .line 90
-    new-instance p1, LJ/w;
+    new-instance p1, Lz5/a0;
 
     .line 91
     .line 92
-    invoke-direct {p1, p0}, LJ/w;-><init>(Landroid/view/ViewGroup;)V
+    invoke-direct {p1, p0}, Lz5/a0;-><init>(Landroid/view/ViewGroup;)V
 
     .line 93
     .line 94
     .line 95
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->K:LJ/w;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->P:Lz5/a0;
 
     .line 96
     .line 97
     return-void
 .end method
 
-.method private e()V
+
+# virtual methods
+.method public a(Landroid/view/Menu;Landroidx/appcompat/view/menu/i$a;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0, p1, p2}, Ls/f0;->a(Landroid/view/Menu;Landroidx/appcompat/view/menu/i$a;)V
+
+    .line 7
+    .line 8
+    .line 9
+    return-void
+.end method
+
+.method public b(Landroid/view/View;Landroid/view/View;II)V
+    .locals 0
+
+    .line 1
+    if-nez p4, :cond_0
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1, p2, p3}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onNestedScrollAccepted(Landroid/view/View;Landroid/view/View;I)V
+
+    .line 4
+    .line 5
+    .line 6
+    :cond_0
+    return-void
+.end method
+
+.method public final c()V
     .locals 0
 
     .line 1
@@ -316,7 +356,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Ljava/lang/Runnable;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->O:Ljava/lang/Runnable;
 
     .line 5
     .line 6
@@ -328,7 +368,234 @@
     return-void
 .end method
 
-.method private i(Landroid/view/View;Landroid/graphics/Rect;ZZZZ)Z
+.method public canShowOverflowMenu()Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ls/f0;->canShowOverflowMenu()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result p0
+
+    .line 10
+    return p0
+.end method
+
+.method public checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
+    .locals 0
+
+    .line 1
+    instance-of p0, p1, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+
+    .line 2
+    .line 3
+    return p0
+.end method
+
+.method public d(Landroid/view/View;I)V
+    .locals 0
+
+    .line 1
+    if-nez p2, :cond_0
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onStopNestedScroll(Landroid/view/View;)V
+
+    .line 4
+    .line 5
+    .line 6
+    :cond_0
+    return-void
+.end method
+
+.method public dismissPopups()V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ls/f0;->dismissPopupMenus()V
+
+    .line 7
+    .line 8
+    .line 9
+    return-void
+.end method
+
+.method public draw(Landroid/graphics/Canvas;)V
+    .locals 5
+
+    .line 1
+    invoke-super {p0, p1}, Landroid/view/ViewGroup;->draw(Landroid/graphics/Canvas;)V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Landroid/graphics/drawable/Drawable;
+
+    .line 5
+    .line 6
+    if-eqz v0, :cond_1
+
+    .line 7
+    .line 8
+    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:Z
+
+    .line 9
+    .line 10
+    if-nez v0, :cond_1
+
+    .line 11
+    .line 12
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
+
+    .line 13
+    .line 14
+    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getVisibility()I
+
+    .line 15
+    .line 16
+    .line 17
+    move-result v0
+
+    .line 18
+    const/4 v1, 0x0
+
+    .line 19
+    if-nez v0, :cond_0
+
+    .line 20
+    .line 21
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
+
+    .line 22
+    .line 23
+    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getBottom()I
+
+    .line 24
+    .line 25
+    .line 26
+    move-result v0
+
+    .line 27
+    int-to-float v0, v0
+
+    .line 28
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
+
+    .line 29
+    .line 30
+    invoke-virtual {v2}, Landroid/widget/FrameLayout;->getTranslationY()F
+
+    .line 31
+    .line 32
+    .line 33
+    move-result v2
+
+    .line 34
+    add-float/2addr v0, v2
+
+    .line 35
+    const/high16 v2, 0x3f000000    # 0.5f
+
+    .line 36
+    .line 37
+    add-float/2addr v0, v2
+
+    .line 38
+    float-to-int v0, v0
+
+    .line 39
+    goto :goto_0
+
+    .line 40
+    :cond_0
+    move v0, v1
+
+    .line 41
+    :goto_0
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Landroid/graphics/drawable/Drawable;
+
+    .line 42
+    .line 43
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getWidth()I
+
+    .line 44
+    .line 45
+    .line 46
+    move-result v3
+
+    .line 47
+    iget-object v4, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Landroid/graphics/drawable/Drawable;
+
+    .line 48
+    .line 49
+    invoke-virtual {v4}, Landroid/graphics/drawable/Drawable;->getIntrinsicHeight()I
+
+    .line 50
+    .line 51
+    .line 52
+    move-result v4
+
+    .line 53
+    add-int/2addr v4, v0
+
+    .line 54
+    invoke-virtual {v2, v1, v0, v3, v4}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+
+    .line 55
+    .line 56
+    .line 57
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Landroid/graphics/drawable/Drawable;
+
+    .line 58
+    .line 59
+    invoke-virtual {p0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
+
+    .line 60
+    .line 61
+    .line 62
+    :cond_1
+    return-void
+.end method
+
+.method public e(Landroid/view/View;II[II)V
+    .locals 0
+
+    .line 1
+    if-nez p5, :cond_0
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1, p2, p3, p4}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onNestedPreScroll(Landroid/view/View;II[I)V
+
+    .line 4
+    .line 5
+    .line 6
+    :cond_0
+    return-void
+.end method
+
+.method public final f(Landroid/view/View;Landroid/graphics/Rect;ZZZZ)Z
     .locals 1
 
     .line 1
@@ -453,11 +720,82 @@
     return p3
 .end method
 
-.method private l(Landroid/view/View;)Landroidx/appcompat/widget/G;
-    .locals 2
+.method public fitSystemWindows(Landroid/graphics/Rect;)Z
+    .locals 0
 
     .line 1
-    instance-of p0, p1, Landroidx/appcompat/widget/G;
+    invoke-super {p0, p1}, Landroid/view/ViewGroup;->fitSystemWindows(Landroid/graphics/Rect;)Z
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p0
+
+    .line 5
+    return p0
+.end method
+
+.method public g()Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+    .locals 1
+
+    .line 1
+    new-instance p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+
+    .line 2
+    .line 3
+    const/4 v0, -0x1
+
+    .line 4
+    invoke-direct {p0, v0, v0}, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;-><init>(II)V
+
+    .line 5
+    .line 6
+    .line 7
+    return-object p0
+.end method
+
+.method public bridge synthetic generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->g()Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object p0
+
+    .line 5
+    return-object p0
+.end method
+
+.method public bridge synthetic generateLayoutParams(Landroid/util/AttributeSet;)Landroid/view/ViewGroup$LayoutParams;
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i(Landroid/util/AttributeSet;)Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
+    .locals 0
+
+    .line 2
+    new-instance p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+
+    invoke-direct {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
+
+    return-object p0
+.end method
+
+.method public getActionBarHideOffset()I
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 2
     .line 3
@@ -465,7 +803,316 @@
 
     .line 4
     .line 5
-    check-cast p1, Landroidx/appcompat/widget/G;
+    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getTranslationY()F
+
+    .line 6
+    .line 7
+    .line 8
+    move-result p0
+
+    .line 9
+    float-to-int p0, p0
+
+    .line 10
+    neg-int p0, p0
+
+    .line 11
+    return p0
+
+    .line 12
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 13
+    return p0
+.end method
+
+.method public getNestedScrollAxes()I
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->P:Lz5/a0;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Lz5/a0;->a()I
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p0
+
+    .line 7
+    return p0
+.end method
+
+.method public getTitle()Ljava/lang/CharSequence;
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ls/f0;->getTitle()Ljava/lang/CharSequence;
+
+    .line 7
+    .line 8
+    .line 9
+    move-result-object p0
+
+    .line 10
+    return-object p0
+.end method
+
+.method public h(Landroid/view/View;IIIII[I)V
+    .locals 0
+
+    .line 1
+    invoke-virtual/range {p0 .. p6}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j(Landroid/view/View;IIIII)V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public hideOverflowMenu()Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ls/f0;->hideOverflowMenu()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result p0
+
+    .line 10
+    return p0
+.end method
+
+.method public i(Landroid/util/AttributeSet;)Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+    .locals 1
+
+    .line 1
+    new-instance v0, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    invoke-direct {v0, p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+
+    .line 8
+    .line 9
+    .line 10
+    return-object v0
+.end method
+
+.method public initFeature(I)V
+    .locals 1
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    const/4 v0, 0x2
+
+    .line 5
+    if-eq p1, v0, :cond_2
+
+    .line 6
+    .line 7
+    const/4 v0, 0x5
+
+    .line 8
+    if-eq p1, v0, :cond_1
+
+    .line 9
+    .line 10
+    const/16 v0, 0x6d
+
+    .line 11
+    .line 12
+    if-eq p1, v0, :cond_0
+
+    .line 13
+    .line 14
+    return-void
+
+    .line 15
+    :cond_0
+    const/4 p1, 0x1
+
+    .line 16
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->setOverlayMode(Z)V
+
+    .line 17
+    .line 18
+    .line 19
+    return-void
+
+    .line 20
+    :cond_1
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 21
+    .line 22
+    invoke-interface {p0}, Ls/f0;->initIndeterminateProgress()V
+
+    .line 23
+    .line 24
+    .line 25
+    return-void
+
+    .line 26
+    :cond_2
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 27
+    .line 28
+    invoke-interface {p0}, Ls/f0;->initProgress()V
+
+    .line 29
+    .line 30
+    .line 31
+    return-void
+.end method
+
+.method public isOverflowMenuShowPending()Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ls/f0;->isOverflowMenuShowPending()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result p0
+
+    .line 10
+    return p0
+.end method
+
+.method public isOverflowMenuShowing()Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ls/f0;->isOverflowMenuShowing()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result p0
+
+    .line 10
+    return p0
+.end method
+
+.method public j(Landroid/view/View;IIIII)V
+    .locals 0
+
+    .line 1
+    if-nez p6, :cond_0
+
+    .line 2
+    .line 3
+    invoke-virtual/range {p0 .. p5}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onNestedScroll(Landroid/view/View;IIII)V
+
+    .line 4
+    .line 5
+    .line 6
+    :cond_0
+    return-void
+.end method
+
+.method public k(Landroid/view/View;Landroid/view/View;II)Z
+    .locals 0
+
+    .line 1
+    if-nez p4, :cond_0
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, p1, p2, p3}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onStartNestedScroll(Landroid/view/View;Landroid/view/View;I)Z
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p0
+
+    .line 7
+    if-eqz p0, :cond_0
+
+    .line 8
+    .line 9
+    const/4 p0, 0x1
+
+    .line 10
+    return p0
+
+    .line 11
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 12
+    return p0
+.end method
+
+.method public final l(Landroid/view/View;)Ls/f0;
+    .locals 2
+
+    .line 1
+    instance-of p0, p1, Ls/f0;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    check-cast p1, Ls/f0;
 
     .line 6
     .line 7
@@ -485,7 +1132,7 @@
 
     .line 13
     .line 14
-    invoke-virtual {p1}, Landroidx/appcompat/widget/Toolbar;->getWrapper()Landroidx/appcompat/widget/G;
+    invoke-virtual {p1}, Landroidx/appcompat/widget/Toolbar;->getWrapper()Ls/f0;
 
     .line 15
     .line 16
@@ -556,7 +1203,46 @@
     throw p0
 .end method
 
-.method private n(Landroid/content/Context;)V
+.method public m()V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->N:Ljava/lang/Runnable;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeCallbacks(Ljava/lang/Runnable;)Z
+
+    .line 4
+    .line 5
+    .line 6
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->O:Ljava/lang/Runnable;
+
+    .line 7
+    .line 8
+    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeCallbacks(Ljava/lang/Runnable;)Z
+
+    .line 9
+    .line 10
+    .line 11
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->L:Landroid/view/ViewPropertyAnimator;
+
+    .line 12
+    .line 13
+    if-eqz p0, :cond_0
+
+    .line 14
+    .line 15
+    invoke-virtual {p0}, Landroid/view/ViewPropertyAnimator;->cancel()V
+
+    .line 16
+    .line 17
+    .line 18
+    :cond_0
+    return-void
+.end method
+
+.method public final n(Landroid/content/Context;)V
     .locals 4
 
     .line 1
@@ -576,7 +1262,7 @@
     move-result-object v0
 
     .line 9
-    sget-object v1, Landroidx/appcompat/widget/ActionBarOverlayLayout;->L:[I
+    sget-object v1, Landroidx/appcompat/widget/ActionBarOverlayLayout;->Q:[I
 
     .line 10
     .line 11
@@ -599,7 +1285,7 @@
     move-result v2
 
     .line 20
-    iput v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->g:I
+    iput v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->c:I
 
     .line 21
     .line 22
@@ -614,7 +1300,7 @@
     move-result-object v3
 
     .line 27
-    iput-object v3, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l:Landroid/graphics/drawable/Drawable;
+    iput-object v3, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Landroid/graphics/drawable/Drawable;
 
     .line 28
     .line 29
@@ -667,7 +1353,7 @@
 
     .line 51
     :cond_1
-    iput-boolean v1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m:Z
+    iput-boolean v1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:Z
 
     .line 52
     .line 53
@@ -680,848 +1366,10 @@
     .line 56
     .line 57
     .line 58
-    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Landroid/widget/OverScroller;
+    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->K:Landroid/widget/OverScroller;
 
     .line 59
     .line 60
-    return-void
-.end method
-
-.method private p()V
-    .locals 3
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Ljava/lang/Runnable;
-
-    .line 5
-    .line 6
-    const-wide/16 v1, 0x258
-
-    .line 7
-    .line 8
-    invoke-virtual {p0, v0, v1, v2}, Landroid/view/ViewGroup;->postDelayed(Ljava/lang/Runnable;J)Z
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method private q()V
-    .locals 3
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Ljava/lang/Runnable;
-
-    .line 5
-    .line 6
-    const-wide/16 v1, 0x258
-
-    .line 7
-    .line 8
-    invoke-virtual {p0, v0, v1, v2}, Landroid/view/ViewGroup;->postDelayed(Ljava/lang/Runnable;J)Z
-
-    .line 9
-    .line 10
-    .line 11
-    return-void
-.end method
-
-.method private s()V
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Ljava/lang/Runnable;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Ljava/lang/Runnable;->run()V
-
-    .line 7
-    .line 8
-    .line 9
-    return-void
-.end method
-
-.method private t(F)Z
-    .locals 9
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Landroid/widget/OverScroller;
-
-    .line 2
-    .line 3
-    float-to-int v4, p1
-
-    .line 4
-    const/high16 v7, -0x80000000
-
-    .line 5
-    .line 6
-    const v8, 0x7fffffff
-
-    .line 7
-    .line 8
-    .line 9
-    const/4 v1, 0x0
-
-    .line 10
-    const/4 v2, 0x0
-
-    .line 11
-    const/4 v3, 0x0
-
-    .line 12
-    const/4 v5, 0x0
-
-    .line 13
-    const/4 v6, 0x0
-
-    .line 14
-    invoke-virtual/range {v0 .. v8}, Landroid/widget/OverScroller;->fling(IIIIIIII)V
-
-    .line 15
-    .line 16
-    .line 17
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Landroid/widget/OverScroller;
-
-    .line 18
-    .line 19
-    invoke-virtual {p1}, Landroid/widget/OverScroller;->getFinalY()I
-
-    .line 20
-    .line 21
-    .line 22
-    move-result p1
-
-    .line 23
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
-
-    .line 24
-    .line 25
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getHeight()I
-
-    .line 26
-    .line 27
-    .line 28
-    move-result p0
-
-    .line 29
-    if-le p1, p0, :cond_0
-
-    .line 30
-    .line 31
-    const/4 p0, 0x1
-
-    .line 32
-    return p0
-
-    .line 33
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 34
-    return p0
-.end method
-
-
-# virtual methods
-.method public a(Landroid/view/Menu;Landroidx/appcompat/view/menu/m$a;)V
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0, p1, p2}, Landroidx/appcompat/widget/G;->a(Landroid/view/Menu;Landroidx/appcompat/view/menu/m$a;)V
-
-    .line 7
-    .line 8
-    .line 9
-    return-void
-.end method
-
-.method public b(Landroid/view/View;Landroid/view/View;II)V
-    .locals 0
-
-    .line 1
-    if-nez p4, :cond_0
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1, p2, p3}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onNestedScrollAccepted(Landroid/view/View;Landroid/view/View;I)V
-
-    .line 4
-    .line 5
-    .line 6
-    :cond_0
-    return-void
-.end method
-
-.method public c(Landroid/view/View;I)V
-    .locals 0
-
-    .line 1
-    if-nez p2, :cond_0
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onStopNestedScroll(Landroid/view/View;)V
-
-    .line 4
-    .line 5
-    .line 6
-    :cond_0
-    return-void
-.end method
-
-.method public canShowOverflowMenu()Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->canShowOverflowMenu()Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result p0
-
-    .line 10
-    return p0
-.end method
-
-.method protected checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
-    .locals 0
-
-    .line 1
-    instance-of p0, p1, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-
-    .line 2
-    .line 3
-    return p0
-.end method
-
-.method public d(Landroid/view/View;II[II)V
-    .locals 0
-
-    .line 1
-    if-nez p5, :cond_0
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1, p2, p3, p4}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onNestedPreScroll(Landroid/view/View;II[I)V
-
-    .line 4
-    .line 5
-    .line 6
-    :cond_0
-    return-void
-.end method
-
-.method public dismissPopups()V
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->dismissPopupMenus()V
-
-    .line 7
-    .line 8
-    .line 9
-    return-void
-.end method
-
-.method public draw(Landroid/graphics/Canvas;)V
-    .locals 5
-
-    .line 1
-    invoke-super {p0, p1}, Landroid/view/ViewGroup;->draw(Landroid/graphics/Canvas;)V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l:Landroid/graphics/drawable/Drawable;
-
-    .line 5
-    .line 6
-    if-eqz v0, :cond_1
-
-    .line 7
-    .line 8
-    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m:Z
-
-    .line 9
-    .line 10
-    if-nez v0, :cond_1
-
-    .line 11
-    .line 12
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
-
-    .line 13
-    .line 14
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getVisibility()I
-
-    .line 15
-    .line 16
-    .line 17
-    move-result v0
-
-    .line 18
-    const/4 v1, 0x0
-
-    .line 19
-    if-nez v0, :cond_0
-
-    .line 20
-    .line 21
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
-
-    .line 22
-    .line 23
-    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getBottom()I
-
-    .line 24
-    .line 25
-    .line 26
-    move-result v0
-
-    .line 27
-    int-to-float v0, v0
-
-    .line 28
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
-
-    .line 29
-    .line 30
-    invoke-virtual {v2}, Landroid/widget/FrameLayout;->getTranslationY()F
-
-    .line 31
-    .line 32
-    .line 33
-    move-result v2
-
-    .line 34
-    add-float/2addr v0, v2
-
-    .line 35
-    const/high16 v2, 0x3f000000    # 0.5f
-
-    .line 36
-    .line 37
-    add-float/2addr v0, v2
-
-    .line 38
-    float-to-int v0, v0
-
-    .line 39
-    goto :goto_0
-
-    .line 40
-    :cond_0
-    move v0, v1
-
-    .line 41
-    :goto_0
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l:Landroid/graphics/drawable/Drawable;
-
-    .line 42
-    .line 43
-    invoke-virtual {p0}, Landroid/view/ViewGroup;->getWidth()I
-
-    .line 44
-    .line 45
-    .line 46
-    move-result v3
-
-    .line 47
-    iget-object v4, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l:Landroid/graphics/drawable/Drawable;
-
-    .line 48
-    .line 49
-    invoke-virtual {v4}, Landroid/graphics/drawable/Drawable;->getIntrinsicHeight()I
-
-    .line 50
-    .line 51
-    .line 52
-    move-result v4
-
-    .line 53
-    add-int/2addr v4, v0
-
-    .line 54
-    invoke-virtual {v2, v1, v0, v3, v4}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
-
-    .line 55
-    .line 56
-    .line 57
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l:Landroid/graphics/drawable/Drawable;
-
-    .line 58
-    .line 59
-    invoke-virtual {p0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
-
-    .line 60
-    .line 61
-    .line 62
-    :cond_1
-    return-void
-.end method
-
-.method public f(Landroid/view/View;IIIII[I)V
-    .locals 0
-
-    .line 1
-    invoke-virtual/range {p0 .. p6}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->g(Landroid/view/View;IIIII)V
-
-    .line 2
-    .line 3
-    .line 4
-    return-void
-.end method
-
-.method protected fitSystemWindows(Landroid/graphics/Rect;)Z
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Landroid/view/ViewGroup;->fitSystemWindows(Landroid/graphics/Rect;)Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
-.end method
-
-.method public g(Landroid/view/View;IIIII)V
-    .locals 0
-
-    .line 1
-    if-nez p6, :cond_0
-
-    .line 2
-    .line 3
-    invoke-virtual/range {p0 .. p5}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onNestedScroll(Landroid/view/View;IIII)V
-
-    .line 4
-    .line 5
-    .line 6
-    :cond_0
-    return-void
-.end method
-
-.method protected bridge synthetic generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j()Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-
-    .line 2
-    .line 3
-    .line 4
-    move-result-object p0
-
-    .line 5
-    return-object p0
-.end method
-
-.method public bridge synthetic generateLayoutParams(Landroid/util/AttributeSet;)Landroid/view/ViewGroup$LayoutParams;
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k(Landroid/util/AttributeSet;)Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-
-    move-result-object p0
-
-    return-object p0
-.end method
-
-.method protected generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
-    .locals 0
-
-    .line 2
-    new-instance p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-
-    invoke-direct {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
-
-    return-object p0
-.end method
-
-.method public getActionBarHideOffset()I
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getTranslationY()F
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
-
-    .line 9
-    float-to-int p0, p0
-
-    .line 10
-    neg-int p0, p0
-
-    .line 11
-    return p0
-
-    .line 12
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 13
-    return p0
-.end method
-
-.method public getNestedScrollAxes()I
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->K:LJ/w;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, LJ/w;->a()I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    return p0
-.end method
-
-.method public getTitle()Ljava/lang/CharSequence;
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->getTitle()Ljava/lang/CharSequence;
-
-    .line 7
-    .line 8
-    .line 9
-    move-result-object p0
-
-    .line 10
-    return-object p0
-.end method
-
-.method public h(Landroid/view/View;Landroid/view/View;II)Z
-    .locals 0
-
-    .line 1
-    if-nez p4, :cond_0
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1, p2, p3}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->onStartNestedScroll(Landroid/view/View;Landroid/view/View;I)Z
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
-    if-eqz p0, :cond_0
-
-    .line 8
-    .line 9
-    const/4 p0, 0x1
-
-    .line 10
-    return p0
-
-    .line 11
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 12
-    return p0
-.end method
-
-.method public hideOverflowMenu()Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->hideOverflowMenu()Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result p0
-
-    .line 10
-    return p0
-.end method
-
-.method public initFeature(I)V
-    .locals 1
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    const/4 v0, 0x2
-
-    .line 5
-    if-eq p1, v0, :cond_2
-
-    .line 6
-    .line 7
-    const/4 v0, 0x5
-
-    .line 8
-    if-eq p1, v0, :cond_1
-
-    .line 9
-    .line 10
-    const/16 v0, 0x6d
-
-    .line 11
-    .line 12
-    if-eq p1, v0, :cond_0
-
-    .line 13
-    .line 14
-    return-void
-
-    .line 15
-    :cond_0
-    const/4 p1, 0x1
-
-    .line 16
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->setOverlayMode(Z)V
-
-    .line 17
-    .line 18
-    .line 19
-    return-void
-
-    .line 20
-    :cond_1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 21
-    .line 22
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->initIndeterminateProgress()V
-
-    .line 23
-    .line 24
-    .line 25
-    return-void
-
-    .line 26
-    :cond_2
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 27
-    .line 28
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->initProgress()V
-
-    .line 29
-    .line 30
-    .line 31
-    return-void
-.end method
-
-.method public isOverflowMenuShowPending()Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->isOverflowMenuShowPending()Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result p0
-
-    .line 10
-    return p0
-.end method
-
-.method public isOverflowMenuShowing()Z
-    .locals 0
-
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
-
-    .line 5
-    .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->isOverflowMenuShowing()Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result p0
-
-    .line 10
-    return p0
-.end method
-
-.method protected j()Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-    .locals 1
-
-    .line 1
-    new-instance p0, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-
-    .line 2
-    .line 3
-    const/4 v0, -0x1
-
-    .line 4
-    invoke-direct {p0, v0, v0}, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;-><init>(II)V
-
-    .line 5
-    .line 6
-    .line 7
-    return-object p0
-.end method
-
-.method public k(Landroid/util/AttributeSet;)Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-    .locals 1
-
-    .line 1
-    new-instance v0, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object p0
-
-    .line 7
-    invoke-direct {v0, p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout$e;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-
-    .line 8
-    .line 9
-    .line 10
-    return-object v0
-.end method
-
-.method m()V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Ljava/lang/Runnable;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeCallbacks(Ljava/lang/Runnable;)Z
-
-    .line 4
-    .line 5
-    .line 6
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Ljava/lang/Runnable;
-
-    .line 7
-    .line 8
-    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeCallbacks(Ljava/lang/Runnable;)Z
-
-    .line 9
-    .line 10
-    .line 11
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->G:Landroid/view/ViewPropertyAnimator;
-
-    .line 12
-    .line 13
-    if-eqz p0, :cond_0
-
-    .line 14
-    .line 15
-    invoke-virtual {p0}, Landroid/view/ViewPropertyAnimator;->cancel()V
-
-    .line 16
-    .line 17
-    .line 18
-    :cond_0
     return-void
 .end method
 
@@ -1529,7 +1377,7 @@
     .locals 0
 
     .line 1
-    iget-boolean p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Z
+    iget-boolean p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s:Z
 
     .line 2
     .line 3
@@ -1545,7 +1393,7 @@
     .line 2
     .line 3
     .line 4
-    invoke-static {p1, p0}, LJ/Y;->w(Landroid/view/WindowInsets;Landroid/view/View;)LJ/Y;
+    invoke-static {p1, p0}, Lz5/d1;->F(Landroid/view/WindowInsets;Landroid/view/View;)Lz5/d1;
 
     .line 5
     .line 6
@@ -1557,7 +1405,7 @@
 
     .line 9
     .line 10
-    invoke-virtual {p1}, LJ/Y;->j()I
+    invoke-virtual {p1}, Lz5/d1;->l()I
 
     .line 11
     .line 12
@@ -1565,7 +1413,7 @@
     move-result v0
 
     .line 14
-    invoke-virtual {p1}, LJ/Y;->l()I
+    invoke-virtual {p1}, Lz5/d1;->n()I
 
     .line 15
     .line 16
@@ -1573,7 +1421,7 @@
     move-result v1
 
     .line 18
-    invoke-virtual {p1}, LJ/Y;->k()I
+    invoke-virtual {p1}, Lz5/d1;->m()I
 
     .line 19
     .line 20
@@ -1581,7 +1429,7 @@
     move-result v3
 
     .line 22
-    invoke-virtual {p1}, LJ/Y;->i()I
+    invoke-virtual {p1}, Lz5/d1;->k()I
 
     .line 23
     .line 24
@@ -1594,7 +1442,7 @@
     .line 27
     .line 28
     .line 29
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 30
     .line 31
@@ -1613,7 +1461,7 @@
     move-object v0, p0
 
     .line 36
-    invoke-direct/range {v0 .. v6}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i(Landroid/view/View;Landroid/graphics/Rect;ZZZZ)Z
+    invoke-virtual/range {v0 .. v6}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->f(Landroid/view/View;Landroid/graphics/Rect;ZZZZ)Z
 
     .line 37
     .line 38
@@ -1621,16 +1469,16 @@
     move-result p0
 
     .line 40
-    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Landroid/graphics/Rect;
+    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
 
     .line 41
     .line 42
-    invoke-static {v0, p1, v1}, LJ/I;->e(Landroid/view/View;LJ/Y;Landroid/graphics/Rect;)LJ/Y;
+    invoke-static {v0, p1, v1}, Lz5/o0;->f(Landroid/view/View;Lz5/d1;Landroid/graphics/Rect;)Lz5/d1;
 
     .line 43
     .line 44
     .line 45
-    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Landroid/graphics/Rect;
+    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
 
     .line 46
     .line 47
@@ -1650,7 +1498,7 @@
 
     .line 54
     .line 55
-    invoke-virtual {p1, v2, v3, v4, v1}, LJ/Y;->m(IIII)LJ/Y;
+    invoke-virtual {p1, v2, v3, v4, v1}, Lz5/d1;->q(IIII)Lz5/d1;
 
     .line 56
     .line 57
@@ -1658,15 +1506,15 @@
     move-result-object v1
 
     .line 59
-    iput-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:LJ/Y;
+    iput-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Lz5/d1;
 
     .line 60
     .line 61
-    iget-object v2, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->B:LJ/Y;
+    iget-object v2, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->G:Lz5/d1;
 
     .line 62
     .line 63
-    invoke-virtual {v2, v1}, LJ/Y;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v2, v1}, Lz5/d1;->equals(Ljava/lang/Object;)Z
 
     .line 64
     .line 65
@@ -1681,11 +1529,11 @@
 
     .line 69
     .line 70
-    iget-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:LJ/Y;
+    iget-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Lz5/d1;
 
     .line 71
     .line 72
-    iput-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->B:LJ/Y;
+    iput-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->G:Lz5/d1;
 
     .line 73
     .line 74
@@ -1693,11 +1541,11 @@
 
     .line 75
     :cond_0
-    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Landroid/graphics/Rect;
+    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->z:Landroid/graphics/Rect;
 
     .line 76
     .line 77
-    iget-object v3, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Landroid/graphics/Rect;
+    iget-object v3, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
 
     .line 78
     .line 79
@@ -1713,11 +1561,11 @@
 
     .line 84
     .line 85
-    iget-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Landroid/graphics/Rect;
+    iget-object p0, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->z:Landroid/graphics/Rect;
 
     .line 86
     .line 87
-    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Landroid/graphics/Rect;
+    iget-object v1, v0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
 
     .line 88
     .line 89
@@ -1744,7 +1592,7 @@
     .line 98
     .line 99
     :cond_2
-    invoke-virtual {p1}, LJ/Y;->a()LJ/Y;
+    invoke-virtual {p1}, Lz5/d1;->a()Lz5/d1;
 
     .line 100
     .line 101
@@ -1752,7 +1600,7 @@
     move-result-object p0
 
     .line 103
-    invoke-virtual {p0}, LJ/Y;->c()LJ/Y;
+    invoke-virtual {p0}, Lz5/d1;->c()Lz5/d1;
 
     .line 104
     .line 105
@@ -1760,7 +1608,7 @@
     move-result-object p0
 
     .line 107
-    invoke-virtual {p0}, LJ/Y;->b()LJ/Y;
+    invoke-virtual {p0}, Lz5/d1;->b()Lz5/d1;
 
     .line 108
     .line 109
@@ -1768,7 +1616,7 @@
     move-result-object p0
 
     .line 111
-    invoke-virtual {p0}, LJ/Y;->u()Landroid/view/WindowInsets;
+    invoke-virtual {p0}, Lz5/d1;->D()Landroid/view/WindowInsets;
 
     .line 112
     .line 113
@@ -1779,7 +1627,7 @@
     return-object p0
 .end method
 
-.method protected onConfigurationChanged(Landroid/content/res/Configuration;)V
+.method public onConfigurationChanged(Landroid/content/res/Configuration;)V
     .locals 0
 
     .line 1
@@ -1796,12 +1644,12 @@
     move-result-object p1
 
     .line 8
-    invoke-direct {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n(Landroid/content/Context;)V
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n(Landroid/content/Context;)V
 
     .line 9
     .line 10
     .line 11
-    invoke-static {p0}, LJ/I;->f0(Landroid/view/View;)V
+    invoke-static {p0}, Lz5/o0;->h0(Landroid/view/View;)V
 
     .line 12
     .line 13
@@ -1809,7 +1657,7 @@
     return-void
 .end method
 
-.method protected onDetachedFromWindow()V
+.method public onDetachedFromWindow()V
     .locals 0
 
     .line 1
@@ -1826,7 +1674,7 @@
     return-void
 .end method
 
-.method protected onLayout(ZIIII)V
+.method public onLayout(ZIIII)V
     .locals 4
 
     .line 1
@@ -1951,7 +1799,7 @@
     return-void
 .end method
 
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 13
 
     .line 1
@@ -1960,7 +1808,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 5
     .line 6
@@ -1987,7 +1835,7 @@
     move-object v6, v0
 
     .line 15
-    iget-object p0, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object p0, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 16
     .line 17
@@ -2003,7 +1851,7 @@
 
     .line 22
     .line 23
-    iget-object p1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object p1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 24
     .line 25
@@ -2040,7 +1888,7 @@
     move-result p1
 
     .line 40
-    iget-object v0, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v0, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 41
     .line 42
@@ -2074,7 +1922,7 @@
     move-result p0
 
     .line 56
-    iget-object v0, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v0, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 57
     .line 58
@@ -2094,7 +1942,7 @@
     move-result v0
 
     .line 66
-    invoke-static {v6}, LJ/I;->H(Landroid/view/View;)I
+    invoke-static {v6}, Lz5/o0;->I(Landroid/view/View;)I
 
     .line 67
     .line 68
@@ -2125,11 +1973,11 @@
 
     .line 78
     .line 79
-    iget v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->g:I
+    iget v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->c:I
 
     .line 80
     .line 81
-    iget-boolean v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Z
+    iget-boolean v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Z
 
     .line 82
     .line 83
@@ -2137,7 +1985,7 @@
 
     .line 84
     .line 85
-    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 86
     .line 87
@@ -2153,7 +2001,7 @@
 
     .line 92
     .line 93
-    iget v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->g:I
+    iget v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->c:I
 
     .line 94
     .line 95
@@ -2164,7 +2012,7 @@
 
     .line 97
     :cond_1
-    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 98
     .line 99
@@ -2184,7 +2032,7 @@
 
     .line 106
     .line 107
-    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 108
     .line 109
@@ -2205,11 +2053,11 @@
     .line 115
     :cond_3
     :goto_1
-    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->v:Landroid/graphics/Rect;
+    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:Landroid/graphics/Rect;
 
     .line 116
     .line 117
-    iget-object v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Landroid/graphics/Rect;
+    iget-object v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->y:Landroid/graphics/Rect;
 
     .line 118
     .line 119
@@ -2218,15 +2066,15 @@
     .line 120
     .line 121
     .line 122
-    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:LJ/Y;
+    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->F:Lz5/d1;
 
     .line 123
     .line 124
-    iput-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iput-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 125
     .line 126
-    iget-boolean v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Z
+    iget-boolean v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s:Z
 
     .line 127
     .line 128
@@ -2238,7 +2086,7 @@
 
     .line 131
     .line 132
-    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->v:Landroid/graphics/Rect;
+    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:Landroid/graphics/Rect;
 
     .line 133
     .line 134
@@ -2261,7 +2109,7 @@
 
     .line 142
     .line 143
-    invoke-virtual {v5, p2, v3, p2, p2}, LJ/Y;->m(IIII)LJ/Y;
+    invoke-virtual {v5, p2, v3, p2, p2}, Lz5/d1;->q(IIII)Lz5/d1;
 
     .line 144
     .line 145
@@ -2269,7 +2117,7 @@
     move-result-object p2
 
     .line 147
-    iput-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iput-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 148
     .line 149
@@ -2277,7 +2125,7 @@
 
     .line 150
     :cond_4
-    invoke-virtual {v5}, LJ/Y;->j()I
+    invoke-virtual {v5}, Lz5/d1;->l()I
 
     .line 151
     .line 152
@@ -2285,11 +2133,11 @@
     move-result p2
 
     .line 154
-    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 155
     .line 156
-    invoke-virtual {v1}, LJ/Y;->l()I
+    invoke-virtual {v1}, Lz5/d1;->n()I
 
     .line 157
     .line 158
@@ -2300,11 +2148,11 @@
     add-int/2addr v1, v3
 
     .line 161
-    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 162
     .line 163
-    invoke-virtual {v3}, LJ/Y;->k()I
+    invoke-virtual {v3}, Lz5/d1;->m()I
 
     .line 164
     .line 165
@@ -2312,11 +2160,11 @@
     move-result v3
 
     .line 167
-    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iget-object v5, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 168
     .line 169
-    invoke-virtual {v5}, LJ/Y;->i()I
+    invoke-virtual {v5}, Lz5/d1;->k()I
 
     .line 170
     .line 171
@@ -2324,7 +2172,7 @@
     move-result v5
 
     .line 173
-    invoke-static {p2, v1, v3, v5}, LB/b;->b(IIII)LB/b;
+    invoke-static {p2, v1, v3, v5}, Lr5/b;->b(IIII)Lr5/b;
 
     .line 174
     .line 175
@@ -2332,20 +2180,20 @@
     move-result-object p2
 
     .line 177
-    new-instance v1, LJ/Y$a;
+    new-instance v1, Lz5/d1$a;
 
     .line 178
     .line 179
-    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iget-object v3, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 180
     .line 181
-    invoke-direct {v1, v3}, LJ/Y$a;-><init>(LJ/Y;)V
+    invoke-direct {v1, v3}, Lz5/d1$a;-><init>(Lz5/d1;)V
 
     .line 182
     .line 183
     .line 184
-    invoke-virtual {v1, p2}, LJ/Y$a;->c(LB/b;)LJ/Y$a;
+    invoke-virtual {v1, p2}, Lz5/d1$a;->c(Lr5/b;)Lz5/d1$a;
 
     .line 185
     .line 186
@@ -2353,7 +2201,7 @@
     move-result-object p2
 
     .line 188
-    invoke-virtual {p2}, LJ/Y$a;->a()LJ/Y;
+    invoke-virtual {p2}, Lz5/d1$a;->a()Lz5/d1;
 
     .line 189
     .line 190
@@ -2361,16 +2209,16 @@
     move-result-object p2
 
     .line 192
-    iput-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iput-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 193
     .line 194
     :goto_2
-    iget-object v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 195
     .line 196
-    iget-object v8, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->v:Landroid/graphics/Rect;
+    iget-object v8, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->A:Landroid/graphics/Rect;
 
     .line 197
     .line 198
@@ -2386,20 +2234,20 @@
     const/4 v10, 0x1
 
     .line 202
-    invoke-direct/range {v6 .. v12}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i(Landroid/view/View;Landroid/graphics/Rect;ZZZZ)Z
+    invoke-virtual/range {v6 .. v12}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->f(Landroid/view/View;Landroid/graphics/Rect;ZZZZ)Z
 
     .line 203
     .line 204
     .line 205
-    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->D:LJ/Y;
+    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Lz5/d1;
 
     .line 206
     .line 207
-    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 208
     .line 209
-    invoke-virtual {p2, v1}, LJ/Y;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p2, v1}, Lz5/d1;->equals(Ljava/lang/Object;)Z
 
     .line 210
     .line 211
@@ -2411,25 +2259,25 @@
 
     .line 214
     .line 215
-    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->C:LJ/Y;
+    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->H:Lz5/d1;
 
     .line 216
     .line 217
-    iput-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->D:LJ/Y;
+    iput-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->I:Lz5/d1;
 
     .line 218
     .line 219
-    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 220
     .line 221
-    invoke-static {v1, p2}, LJ/I;->f(Landroid/view/View;LJ/Y;)LJ/Y;
+    invoke-static {v1, p2}, Lz5/o0;->g(Landroid/view/View;Lz5/d1;)Lz5/d1;
 
     .line 222
     .line 223
     .line 224
     :cond_5
-    iget-object v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object v7, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 225
     .line 226
@@ -2450,7 +2298,7 @@
     .line 231
     .line 232
     .line 233
-    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 234
     .line 235
@@ -2466,7 +2314,7 @@
 
     .line 240
     .line 241
-    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 242
     .line 243
@@ -2500,7 +2348,7 @@
     move-result p1
 
     .line 257
-    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object v1, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 258
     .line 259
@@ -2534,7 +2382,7 @@
     move-result p0
 
     .line 273
-    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object p2, v6, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 274
     .line 275
@@ -2662,7 +2510,7 @@
     .locals 0
 
     .line 1
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Z
 
     .line 2
     .line 3
@@ -2678,7 +2526,7 @@
 
     .line 8
     :cond_0
-    invoke-direct {p0, p3}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t(F)Z
+    invoke-virtual {p0, p3}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t(F)Z
 
     .line 9
     .line 10
@@ -2690,7 +2538,7 @@
 
     .line 13
     .line 14
-    invoke-direct {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->e()V
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->c()V
 
     .line 15
     .line 16
@@ -2699,7 +2547,7 @@
 
     .line 18
     :cond_1
-    invoke-direct {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s()V
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s()V
 
     .line 19
     .line 20
@@ -2708,7 +2556,7 @@
     const/4 p1, 0x1
 
     .line 22
-    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->v:Z
 
     .line 23
     .line 24
@@ -2744,14 +2592,14 @@
     .locals 0
 
     .line 1
-    iget p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:I
+    iget p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->w:I
 
     .line 2
     .line 3
     add-int/2addr p1, p3
 
     .line 4
-    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:I
+    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->w:I
 
     .line 5
     .line 6
@@ -2767,11 +2615,11 @@
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->K:LJ/w;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->P:Lz5/a0;
 
     .line 2
     .line 3
-    invoke-virtual {v0, p1, p2, p3}, LJ/w;->b(Landroid/view/View;Landroid/view/View;I)V
+    invoke-virtual {v0, p1, p2, p3}, Lz5/a0;->b(Landroid/view/View;Landroid/view/View;I)V
 
     .line 4
     .line 5
@@ -2784,7 +2632,7 @@
     move-result p1
 
     .line 10
-    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:I
+    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->w:I
 
     .line 11
     .line 12
@@ -2793,7 +2641,7 @@
     .line 13
     .line 14
     .line 15
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 16
     .line 17
@@ -2822,7 +2670,7 @@
 
     .line 4
     .line 5
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 6
     .line 7
@@ -2842,7 +2690,7 @@
 
     .line 14
     :cond_0
-    iget-boolean p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Z
+    iget-boolean p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Z
 
     .line 15
     .line 16
@@ -2861,7 +2709,7 @@
     .locals 1
 
     .line 1
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Z
 
     .line 2
     .line 3
@@ -2869,7 +2717,7 @@
 
     .line 4
     .line 5
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->v:Z
 
     .line 6
     .line 7
@@ -2877,11 +2725,11 @@
 
     .line 8
     .line 9
-    iget p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:I
+    iget p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->w:I
 
     .line 10
     .line 11
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 12
     .line 13
@@ -2897,7 +2745,7 @@
 
     .line 18
     .line 19
-    invoke-direct {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q()V
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->q()V
 
     .line 20
     .line 21
@@ -2906,14 +2754,14 @@
 
     .line 23
     :cond_0
-    invoke-direct {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p()V
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p()V
 
     .line 24
     .line 25
     .line 26
     :cond_1
     :goto_0
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 27
     .line 28
@@ -2946,14 +2794,14 @@
     .line 5
     .line 6
     .line 7
-    iget v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s:I
+    iget v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->x:I
 
     .line 8
     .line 9
     xor-int/2addr v0, p1
 
     .line 10
-    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s:I
+    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->x:I
 
     .line 11
     .line 12
@@ -2994,7 +2842,7 @@
 
     .line 26
     :cond_1
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 27
     .line 28
@@ -3023,7 +2871,7 @@
 
     .line 40
     :cond_2
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 41
     .line 42
@@ -3037,7 +2885,7 @@
     .line 46
     :cond_3
     :goto_1
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 47
     .line 48
@@ -3056,7 +2904,7 @@
 
     .line 54
     .line 55
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 56
     .line 57
@@ -3064,7 +2912,7 @@
 
     .line 58
     .line 59
-    invoke-static {p0}, LJ/I;->f0(Landroid/view/View;)V
+    invoke-static {p0}, Lz5/o0;->h0(Landroid/view/View;)V
 
     .line 60
     .line 61
@@ -3073,7 +2921,7 @@
     return-void
 .end method
 
-.method protected onWindowVisibilityChanged(I)V
+.method public onWindowVisibilityChanged(I)V
     .locals 0
 
     .line 1
@@ -3082,11 +2930,11 @@
     .line 2
     .line 3
     .line 4
-    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->h:I
+    iput p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m:I
 
     .line 5
     .line 6
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 7
     .line 8
@@ -3103,11 +2951,61 @@
     return-void
 .end method
 
-.method r()V
+.method public final p()V
+    .locals 3
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->O:Ljava/lang/Runnable;
+
+    .line 5
+    .line 6
+    const-wide/16 v1, 0x258
+
+    .line 7
+    .line 8
+    invoke-virtual {p0, v0, v1, v2}, Landroid/view/ViewGroup;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 9
+    .line 10
+    .line 11
+    return-void
+.end method
+
+.method public final q()V
+    .locals 3
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->N:Ljava/lang/Runnable;
+
+    .line 5
+    .line 6
+    const-wide/16 v1, 0x258
+
+    .line 7
+    .line 8
+    invoke-virtual {p0, v0, v1, v2}, Landroid/view/ViewGroup;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 9
+    .line 10
+    .line 11
+    return-void
+.end method
+
+.method public r()V
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 2
     .line 3
@@ -3115,7 +3013,7 @@
 
     .line 4
     .line 5
-    sget v0, Lf/f;->b:I
+    sget v0, Lk/f;->b:I
 
     .line 6
     .line 7
@@ -3131,11 +3029,11 @@
 
     .line 12
     .line 13
-    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->i:Landroidx/appcompat/widget/ContentFrameLayout;
+    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Landroidx/appcompat/widget/ContentFrameLayout;
 
     .line 14
     .line 15
-    sget v0, Lf/f;->c:I
+    sget v0, Lk/f;->c:I
 
     .line 16
     .line 17
@@ -3151,11 +3049,11 @@
 
     .line 22
     .line 23
-    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 24
     .line 25
-    sget v0, Lf/f;->a:I
+    sget v0, Lk/f;->a:I
 
     .line 26
     .line 27
@@ -3167,7 +3065,7 @@
     move-result-object v0
 
     .line 31
-    invoke-direct {p0, v0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l(Landroid/view/View;)Landroidx/appcompat/widget/G;
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->l(Landroid/view/View;)Ls/f0;
 
     .line 32
     .line 33
@@ -3175,11 +3073,32 @@
     move-result-object v0
 
     .line 35
-    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
     .line 36
     .line 37
     :cond_0
+    return-void
+.end method
+
+.method public final s()V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m()V
+
+    .line 2
+    .line 3
+    .line 4
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->N:Ljava/lang/Runnable;
+
+    .line 5
+    .line 6
+    invoke-interface {p0}, Ljava/lang/Runnable;->run()V
+
+    .line 7
+    .line 8
+    .line 9
     return-void
 .end method
 
@@ -3192,7 +3111,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 5
     .line 6
@@ -3223,7 +3142,7 @@
     move-result p1
 
     .line 19
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->j:Landroidx/appcompat/widget/ActionBarContainer;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
 
     .line 20
     .line 21
@@ -3245,7 +3164,7 @@
     .locals 1
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 2
     .line 3
@@ -3261,11 +3180,11 @@
 
     .line 8
     .line 9
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->E:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->J:Landroidx/appcompat/widget/ActionBarOverlayLayout$d;
 
     .line 10
     .line 11
-    iget v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->h:I
+    iget v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m:I
 
     .line 12
     .line 13
@@ -3274,7 +3193,7 @@
     .line 14
     .line 15
     .line 16
-    iget p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s:I
+    iget p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->x:I
 
     .line 17
     .line 18
@@ -3287,7 +3206,7 @@
     .line 21
     .line 22
     .line 23
-    invoke-static {p0}, LJ/I;->f0(Landroid/view/View;)V
+    invoke-static {p0}, Lz5/o0;->h0(Landroid/view/View;)V
 
     .line 24
     .line 25
@@ -3300,7 +3219,7 @@
     .locals 0
 
     .line 1
-    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->t:Z
 
     .line 2
     .line 3
@@ -3311,7 +3230,7 @@
     .locals 1
 
     .line 1
-    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Z
 
     .line 2
     .line 3
@@ -3319,7 +3238,7 @@
 
     .line 4
     .line 5
-    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->u:Z
 
     .line 6
     .line 7
@@ -3351,9 +3270,9 @@
     invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
 
     .line 2
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
-    invoke-interface {p0, p1}, Landroidx/appcompat/widget/G;->setIcon(I)V
+    invoke-interface {p0, p1}, Ls/f0;->setIcon(I)V
 
     return-void
 .end method
@@ -3365,9 +3284,9 @@
     invoke-virtual {p0}, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r()V
 
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
-    invoke-interface {p0, p1}, Landroidx/appcompat/widget/G;->setIcon(Landroid/graphics/drawable/Drawable;)V
+    invoke-interface {p0, p1}, Ls/f0;->setIcon(Landroid/graphics/drawable/Drawable;)V
 
     return-void
 .end method
@@ -3381,11 +3300,11 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
     .line 5
     .line 6
-    invoke-interface {p0, p1}, Landroidx/appcompat/widget/G;->setLogo(I)V
+    invoke-interface {p0, p1}, Ls/f0;->setLogo(I)V
 
     .line 7
     .line 8
@@ -3402,11 +3321,11 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
     .line 5
     .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->setMenuPrepared()V
+    invoke-interface {p0}, Ls/f0;->setMenuPrepared()V
 
     .line 7
     .line 8
@@ -3418,7 +3337,7 @@
     .locals 1
 
     .line 1
-    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->n:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->s:Z
 
     .line 2
     .line 3
@@ -3465,7 +3384,7 @@
 
     .line 22
     :goto_0
-    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->m:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->r:Z
 
     .line 23
     .line 24
@@ -3495,11 +3414,11 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
     .line 5
     .line 6
-    invoke-interface {p0, p1}, Landroidx/appcompat/widget/G;->setWindowCallback(Landroid/view/Window$Callback;)V
+    invoke-interface {p0, p1}, Ls/f0;->setWindowCallback(Landroid/view/Window$Callback;)V
 
     .line 7
     .line 8
@@ -3516,11 +3435,11 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
     .line 5
     .line 6
-    invoke-interface {p0, p1}, Landroidx/appcompat/widget/G;->setWindowTitle(Ljava/lang/CharSequence;)V
+    invoke-interface {p0, p1}, Ls/f0;->setWindowTitle(Ljava/lang/CharSequence;)V
 
     .line 7
     .line 8
@@ -3547,11 +3466,11 @@
     .line 2
     .line 3
     .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->k:Landroidx/appcompat/widget/G;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->p:Ls/f0;
 
     .line 5
     .line 6
-    invoke-interface {p0}, Landroidx/appcompat/widget/G;->showOverflowMenu()Z
+    invoke-interface {p0}, Ls/f0;->showOverflowMenu()Z
 
     .line 7
     .line 8
@@ -3559,5 +3478,86 @@
     move-result p0
 
     .line 10
+    return p0
+.end method
+
+.method public final t(F)Z
+    .locals 9
+
+    .line 1
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->K:Landroid/widget/OverScroller;
+
+    .line 2
+    .line 3
+    float-to-int v4, p1
+
+    .line 4
+    const/high16 v7, -0x80000000
+
+    .line 5
+    .line 6
+    const v8, 0x7fffffff
+
+    .line 7
+    .line 8
+    .line 9
+    const/4 v1, 0x0
+
+    .line 10
+    const/4 v2, 0x0
+
+    .line 11
+    const/4 v3, 0x0
+
+    .line 12
+    const/4 v5, 0x0
+
+    .line 13
+    const/4 v6, 0x0
+
+    .line 14
+    invoke-virtual/range {v0 .. v8}, Landroid/widget/OverScroller;->fling(IIIIIIII)V
+
+    .line 15
+    .line 16
+    .line 17
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->K:Landroid/widget/OverScroller;
+
+    .line 18
+    .line 19
+    invoke-virtual {p1}, Landroid/widget/OverScroller;->getFinalY()I
+
+    .line 20
+    .line 21
+    .line 22
+    move-result p1
+
+    .line 23
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarOverlayLayout;->o:Landroidx/appcompat/widget/ActionBarContainer;
+
+    .line 24
+    .line 25
+    invoke-virtual {p0}, Landroid/widget/FrameLayout;->getHeight()I
+
+    .line 26
+    .line 27
+    .line 28
+    move-result p0
+
+    .line 29
+    if-le p1, p0, :cond_0
+
+    .line 30
+    .line 31
+    const/4 p0, 0x1
+
+    .line 32
+    return p0
+
+    .line 33
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 34
     return p0
 .end method

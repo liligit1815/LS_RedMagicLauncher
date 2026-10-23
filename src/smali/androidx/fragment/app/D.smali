@@ -1,17 +1,21 @@
-.class public final synthetic Landroidx/fragment/app/D;
+.class public final synthetic Landroidx/fragment/app/d;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements LI/a;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
-.field public final synthetic a:Landroidx/fragment/app/F;
+.field public final synthetic c:Ljava/util/List;
+
+.field public final synthetic m:Landroidx/fragment/app/v0$c;
+
+.field public final synthetic n:Landroidx/fragment/app/k;
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroidx/fragment/app/F;)V
+.method public synthetic constructor <init>(Ljava/util/List;Landroidx/fragment/app/v0$c;Landroidx/fragment/app/k;)V
     .locals 0
 
     .line 1
@@ -20,31 +24,43 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/fragment/app/D;->a:Landroidx/fragment/app/F;
+    iput-object p1, p0, Landroidx/fragment/app/d;->c:Ljava/util/List;
 
     .line 5
     .line 6
+    iput-object p2, p0, Landroidx/fragment/app/d;->m:Landroidx/fragment/app/v0$c;
+
+    .line 7
+    .line 8
+    iput-object p3, p0, Landroidx/fragment/app/d;->n:Landroidx/fragment/app/k;
+
+    .line 9
+    .line 10
     return-void
 .end method
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
-    .locals 0
+.method public final run()V
+    .locals 2
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/D;->a:Landroidx/fragment/app/F;
+    iget-object v0, p0, Landroidx/fragment/app/d;->c:Ljava/util/List;
 
     .line 2
     .line 3
-    check-cast p1, Landroidx/core/app/p;
+    iget-object v1, p0, Landroidx/fragment/app/d;->m:Landroidx/fragment/app/v0$c;
 
     .line 4
     .line 5
-    invoke-static {p0, p1}, Landroidx/fragment/app/F;->c(Landroidx/fragment/app/F;Landroidx/core/app/p;)V
+    iget-object p0, p0, Landroidx/fragment/app/d;->n:Landroidx/fragment/app/k;
 
     .line 6
     .line 7
+    invoke-static {v0, v1, p0}, Landroidx/fragment/app/k;->w(Ljava/util/List;Landroidx/fragment/app/v0$c;Landroidx/fragment/app/k;)V
+
     .line 8
+    .line 9
+    .line 10
     return-void
 .end method

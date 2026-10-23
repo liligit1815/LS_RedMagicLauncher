@@ -5,5 +5,5 @@
         <TextView android:textAppearance="?android:textAppearanceListItem" android:ellipsize="marquee" android:id="@android:id/text1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="1" />
         <TextView android:textAppearance="?android:textAppearanceListItemSecondary" android:ellipsize="marquee" android:id="@android:id/text2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="1" />
     </LinearLayout>
-    <RadioButtonZTE android:gravity="center_vertical" android:id="@android:id/progressContainer" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <RadioButtonZTE android:gravity="center_vertical" android:id="@*android:id/rew" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 </LinearLayout>

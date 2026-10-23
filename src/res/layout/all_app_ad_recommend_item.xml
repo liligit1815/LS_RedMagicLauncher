@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.huanju.ssp.sdk.normal.NativeAdNotallView android:id="@id/native_ad_view" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_gravity="center|top" android:id="@id/native_ad_render_view" android:focusable="true" android:clickable="true" android:clipChildren="false" android:clipToPadding="false" style="@style/BaseIcon.AllApps">
+        <FrameLayout android:id="@id/icon_constraint" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+            <androidx.cardview.widget.CardView android:id="@id/cardview" android:layout_width="match_parent" android:layout_height="match_parent" app:cardBackgroundColor="@android:color/transparent" app:cardCornerRadius="10.0dp" app:cardElevation="0.0dp" app:cardMaxElevation="0.0dp" app:cardPreventCornerOverlap="false" app:cardUseCompatPadding="false">
+                <ImageView android:id="@id/icon" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop" android:contentDescription="@string/app_icons_title" />
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+        <ImageView android:id="@id/download_tip" android:layout_width="16.0dp" android:layout_height="16.0dp" android:layout_marginTop="-15.0dp" android:src="@drawable/ic_app_recommend_download" android:contentDescription="@string/app_icons_title" android:layout_marginStart="-15.0dp" app:layout_constraintStart_toEndOf="@id/icon_constraint" app:layout_constraintTop_toBottomOf="@id/icon_constraint" />
+        <TextView android:textColor="?android:textColorSecondary" android:ellipsize="end" android:gravity="center_horizontal" android:id="@id/name" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:lines="2" android:shadowRadius="0.0" android:defaultFocusHighlightEnabled="false" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/icon_constraint" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View android:id="@id/common_repository_click_view" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" />
+</com.huanju.ssp.sdk.normal.NativeAdNotallView>

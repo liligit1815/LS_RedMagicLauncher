@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/y$a;
+.class public Landroidx/fragment/app/y$a;
 .super Ljava/lang/Object;
 .source "FragmentLayoutInflaterFactory.java"
 
@@ -12,19 +12,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/fragment/app/L;
+.field public final synthetic c:Landroidx/fragment/app/l0;
 
-.field final synthetic h:Landroidx/fragment/app/y;
+.field public final synthetic m:Landroidx/fragment/app/y;
 
 
 # direct methods
-.method constructor <init>(Landroidx/fragment/app/y;Landroidx/fragment/app/L;)V
+.method public constructor <init>(Landroidx/fragment/app/y;Landroidx/fragment/app/l0;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -33,11 +33,11 @@
     .end annotation
 
     .line 1
-    iput-object p1, p0, Landroidx/fragment/app/y$a;->h:Landroidx/fragment/app/y;
+    iput-object p1, p0, Landroidx/fragment/app/y$a;->m:Landroidx/fragment/app/y;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/fragment/app/y$a;->g:Landroidx/fragment/app/L;
+    iput-object p2, p0, Landroidx/fragment/app/y$a;->c:Landroidx/fragment/app/l0;
 
     .line 4
     .line 5
@@ -55,11 +55,11 @@
     .locals 1
 
     .line 1
-    iget-object p1, p0, Landroidx/fragment/app/y$a;->g:Landroidx/fragment/app/L;
+    iget-object p1, p0, Landroidx/fragment/app/y$a;->c:Landroidx/fragment/app/l0;
 
     .line 2
     .line 3
-    invoke-virtual {p1}, Landroidx/fragment/app/L;->k()Landroidx/fragment/app/n;
+    invoke-virtual {p1}, Landroidx/fragment/app/l0;->k()Landroidx/fragment/app/n;
 
     .line 4
     .line 5
@@ -67,11 +67,11 @@
     move-result-object p1
 
     .line 7
-    iget-object v0, p0, Landroidx/fragment/app/y$a;->g:Landroidx/fragment/app/L;
+    iget-object v0, p0, Landroidx/fragment/app/y$a;->c:Landroidx/fragment/app/l0;
 
     .line 8
     .line 9
-    invoke-virtual {v0}, Landroidx/fragment/app/L;->m()V
+    invoke-virtual {v0}, Landroidx/fragment/app/l0;->m()V
 
     .line 10
     .line 11
@@ -92,15 +92,15 @@
 
     .line 19
     .line 20
-    iget-object p0, p0, Landroidx/fragment/app/y$a;->h:Landroidx/fragment/app/y;
+    iget-object p0, p0, Landroidx/fragment/app/y$a;->m:Landroidx/fragment/app/y;
 
     .line 21
     .line 22
-    iget-object p0, p0, Landroidx/fragment/app/y;->g:Landroidx/fragment/app/F;
+    iget-object p0, p0, Landroidx/fragment/app/y;->c:Landroidx/fragment/app/f0;
 
     .line 23
     .line 24
-    invoke-static {p1, p0}, Landroidx/fragment/app/W;->r(Landroid/view/ViewGroup;Landroidx/fragment/app/F;)Landroidx/fragment/app/W;
+    invoke-static {p1, p0}, Landroidx/fragment/app/v0;->r(Landroid/view/ViewGroup;Landroidx/fragment/app/f0;)Landroidx/fragment/app/v0;
 
     .line 25
     .line 26
@@ -108,7 +108,7 @@
     move-result-object p0
 
     .line 28
-    invoke-virtual {p0}, Landroidx/fragment/app/W;->n()V
+    invoke-virtual {p0}, Landroidx/fragment/app/v0;->n()V
 
     .line 29
     .line 30

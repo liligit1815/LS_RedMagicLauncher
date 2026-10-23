@@ -1,4 +1,4 @@
-.class Landroidx/preference/EditTextPreferenceDialogFragmentCompat$a;
+.class public Landroidx/preference/EditTextPreferenceDialogFragmentCompat$a;
 .super Ljava/lang/Object;
 .source "EditTextPreferenceDialogFragmentCompat.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/preference/EditTextPreferenceDialogFragmentCompat;
+.field public final synthetic c:Landroidx/preference/EditTextPreferenceDialogFragmentCompat;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/EditTextPreferenceDialogFragmentCompat;)V
+.method public constructor <init>(Landroidx/preference/EditTextPreferenceDialogFragmentCompat;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragmentCompat$a;->g:Landroidx/preference/EditTextPreferenceDialogFragmentCompat;
+    iput-object p1, p0, Landroidx/preference/EditTextPreferenceDialogFragmentCompat$a;->c:Landroidx/preference/EditTextPreferenceDialogFragmentCompat;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/preference/EditTextPreferenceDialogFragmentCompat$a;->g:Landroidx/preference/EditTextPreferenceDialogFragmentCompat;
+    iget-object p0, p0, Landroidx/preference/EditTextPreferenceDialogFragmentCompat$a;->c:Landroidx/preference/EditTextPreferenceDialogFragmentCompat;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/preference/EditTextPreferenceDialogFragmentCompat;->M()V
+    invoke-virtual {p0}, Landroidx/preference/EditTextPreferenceDialogFragmentCompat;->r()V
 
     .line 4
     .line 5

@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "BgDrawable"
 .end annotation
 
@@ -39,7 +39,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroid/content/Context;)V
+.method public constructor <init>(Landroid/content/Context;)V
     .locals 10
 
     .line 1
@@ -131,7 +131,7 @@
     const/4 v1, 0x0
 
     .line 47
-    invoke-static {p1, v1}, LB/a;->r(II)I
+    invoke-static {p1, v1}, Lr5/a;->y(II)I
 
     .line 48
     .line 49
@@ -236,7 +236,7 @@
 
     .line 14
     :cond_0
-    sget-object v5, LJ0/h;->q:Landroid/view/animation/Interpolator;
+    sget-object v5, Lcom/android/app/animation/Interpolators;->LINEAR:Landroid/view/animation/Interpolator;
 
     .line 15
     .line 16
@@ -254,7 +254,7 @@
 
     .line 21
     .line 22
-    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/N5;->J(FFFFFLandroid/view/animation/Interpolator;)F
+    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/Utilities;->mapBoundToRange(FFFFFLandroid/view/animation/Interpolator;)F
 
     .line 23
     .line 24
@@ -305,7 +305,7 @@
 
     .line 46
     .line 47
-    invoke-static {v0, v4, v6}, Lcom/android/launcher3/N5;->L(FFF)F
+    invoke-static {v0, v4, v6}, Lcom/android/launcher3/Utilities;->mapRange(FFF)F
 
     .line 48
     .line 49
@@ -323,7 +323,7 @@
     div-float/2addr v1, v6
 
     .line 55
-    invoke-static {v0, v4, v1}, Lcom/android/launcher3/N5;->L(FFF)F
+    invoke-static {v0, v4, v1}, Lcom/android/launcher3/Utilities;->mapRange(FFF)F
 
     .line 56
     .line 57
@@ -392,7 +392,7 @@
 
     .line 89
     .line 90
-    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/N5;->J(FFFFFLandroid/view/animation/Interpolator;)F
+    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/Utilities;->mapBoundToRange(FFFFFLandroid/view/animation/Interpolator;)F
 
     .line 91
     .line 92

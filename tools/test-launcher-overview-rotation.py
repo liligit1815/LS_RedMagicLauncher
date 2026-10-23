@@ -6,8 +6,8 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
-touch = (ROOT / 'src/smali/com/android/quickstep/RotationTouchHelper.smali').read_text(encoding='utf-8')
+recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+touch = (ROOT / 'src/smali_classes2/com/android/quickstep/RotationTouchHelper.smali').read_text(encoding='utf-8')
 
 
 def method(source, name):
@@ -63,7 +63,7 @@ def run(name, *args):
                 result = values[0]['rotation']
             elif target == 'getContext':
                 result = 'context'
-            elif target == 'a':
+            elif target == 'get':
                 result = 'proxy'
             elif target == 'notifyPrioritizedRotation':
                 notifications.append(values[1])

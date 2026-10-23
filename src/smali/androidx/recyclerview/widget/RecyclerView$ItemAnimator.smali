@@ -114,7 +114,7 @@
     return-void
 .end method
 
-.method static buildAdapterChangeFlagsForAnimations(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)I
+.method public static buildAdapterChangeFlagsForAnimations(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)I
     .locals 4
 
     .line 1
@@ -533,7 +533,7 @@
     return-void
 .end method
 
-.method setListener(Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemAnimatorListener;)V
+.method public setListener(Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemAnimatorListener;)V
     .locals 0
 
     .line 1

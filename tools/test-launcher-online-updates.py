@@ -57,12 +57,12 @@ public class UpdateEntryTest {
   static class Resources {
     static class Metrics {float density=2f;}
     Metrics getDisplayMetrics(){return new Metrics();}
-    int getDimensionPixelSize(int id){if(id!=0x7f0709ab)throw new AssertionError("wrong bottom inset");return 24;}
+    int getDimensionPixelSize(int id){if(id!=0x7f070a17)throw new AssertionError("wrong bottom inset");return 24;}
   }
   static class Activity extends Context {
     View stack;boolean finishing,destroyed;
     Activity(boolean night){super(night);}
-    View findViewById(int id){return id==0x7f0b06c2?stack:null;}
+    View findViewById(int id){return id==0x7f0b071a?stack:null;}
     Resources getResources(){return new Resources();}
     boolean isFinishing(){return finishing;}boolean isDestroyed(){return destroyed;}
   }
@@ -107,14 +107,14 @@ public class UpdateEntryTest {
     Context context;LayoutInflater(Context context){this.context=context;}
     static LayoutInflater from(Context context){return new LayoutInflater(context);}
     View inflate(int id,ViewGroup parent,boolean attached){
-      if(id!=0x7f0e0285||attached)throw new AssertionError("wrong native template");
-      LinearLayout card=new LinearLayout(context);card.id=0x7f0b06c2;
+      if(id!=0x7f0e029b||attached)throw new AssertionError("wrong native template");
+      LinearLayout card=new LinearLayout(context);card.id=0x7f0b071a;
       LinearLayout.LayoutParams cp=new LinearLayout.LayoutParams(-1,-2);cp.topMargin=24;card.params=cp;
       LinearLayout row=new LinearLayout(context);LinearLayout.LayoutParams rp=new LinearLayout.LayoutParams(-2,-2);
       rp.topMargin=30;rp.bottomMargin=28;row.params=rp;
-      TextView title=new TextView(context);title.id=0x7f0b06c3;row.addView(title);
-      View radio=new View(context);radio.id=0x7f0b06c4;row.addView(radio);card.addView(row);
-      View preview=new View(context);preview.id=0x7f0b06c5;card.addView(preview);return card;
+      TextView title=new TextView(context);title.id=0x7f0b071b;row.addView(title);
+      View radio=new View(context);radio.id=0x7f0b071c;row.addView(radio);card.addView(row);
+      View preview=new View(context);preview.id=0x7f0b071d;card.addView(preview);return card;
     }
   }
   static void initialize(Activity activity){initializations++;}
@@ -126,7 +126,7 @@ public class UpdateEntryTest {
     for(boolean night:new boolean[]{false,true}){
       Activity activity=new Activity(night);attachRecentStyles(activity);require(initializations==manualChecks);
       View detached=new View(activity);activity.stack=detached;attachRecentStyles(activity);require(detached.parent==null);
-      LinearLayout parent=new LinearLayout(activity);View stack=new View(activity);stack.id=0x7f0b06c2;
+      LinearLayout parent=new LinearLayout(activity);View stack=new View(activity);stack.id=0x7f0b071a;
       parent.addView(stack);activity.stack=stack;View fan=new View(activity);parent.addView(fan);
       int initial=initializations;attachRecentStyles(activity);require(initializations==initial+1);
       require(parent.children.size()==3&&parent.children.get(1)==fan);
@@ -136,7 +136,7 @@ public class UpdateEntryTest {
       ViewGroup row=(ViewGroup)entry.children.get(0);require(row.children.size()==1&&row.params.width==-1);
       TextView title=(TextView)row.children.get(0);require(title.text.equals("检测更新")&&title.id==View.NO_ID&&title.gravity==Gravity.CENTER);
       require(title.color==(night?0xffeeeeee:0xff111111)&&title.font.equals("system_medium"));
-      require(entry.findViewById(0x7f0b06c4)==null&&entry.findViewById(0x7f0b06c5)==null);
+      require(entry.findViewById(0x7f0b071c)==null&&entry.findViewById(0x7f0b071d)==null);
       attachRecentStyles(activity);require(parent.children.size()==3&&initializations==initial+1);
       int manual=manualChecks;entry.listener.onClick(entry);require(manualChecks==manual+1&&foreground.get()==activity);
       activity.finishing=true;entry.listener.onClick(entry);require(manualChecks==manual+1);activity.finishing=false;
@@ -156,7 +156,7 @@ public class UpdateEntryTest {
         self.assertEqual(template.get("{" + ANDROID + "}background"), "@drawable/card_bg")
         title = template.find(".//TextView")
         self.assertEqual(title.get("{" + ANDROID + "}textColor"), "@color/setting_activity_text_color")
-        fragment = (ROOT / "src/smali/com/android/launcher3/settings/SettingsActivityMFV$LauncherSettingsFragment.smali").read_text("utf-8")
+        fragment = (ROOT / "src/smali_classes2/com/android/launcher3/settings/SettingsActivityMFV$LauncherSettingsFragment.smali").read_text("utf-8")
         self.assertNotIn("LsOnlineUpdates;->attachSettings", fragment)
         self.assertIn('name.equals("com.android.launcher3.settings.RecentAppStyleActivity")', source)
 

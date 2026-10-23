@@ -1,83 +1,172 @@
-.class Landroidx/appcompat/widget/C$b;
-.super Ljava/lang/Object;
-.source "AppCompatTextHelper.java"
-
-# interfaces
-.implements Ljava/lang/Runnable;
+.class public Landroidx/appcompat/widget/c$b;
+.super Landroid/widget/BaseAdapter;
+.source "ScrollingTabContainerView.java"
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Landroidx/appcompat/widget/C;->n(Ljava/lang/ref/WeakReference;Landroid/graphics/Typeface;)V
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/appcompat/widget/c;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
-    name = null
+    accessFlags = 0x1
+    name = "b"
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroid/widget/TextView;
-
-.field final synthetic h:Landroid/graphics/Typeface;
-
-.field final synthetic i:I
-
-.field final synthetic j:Landroidx/appcompat/widget/C;
+.field public final synthetic c:Landroidx/appcompat/widget/c;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/C;Landroid/widget/TextView;Landroid/graphics/Typeface;I)V
+.method public constructor <init>(Landroidx/appcompat/widget/c;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/C$b;->j:Landroidx/appcompat/widget/C;
+    iput-object p1, p0, Landroidx/appcompat/widget/c$b;->c:Landroidx/appcompat/widget/c;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/appcompat/widget/C$b;->g:Landroid/widget/TextView;
+    invoke-direct {p0}, Landroid/widget/BaseAdapter;-><init>()V
 
     .line 4
     .line 5
-    iput-object p3, p0, Landroidx/appcompat/widget/C$b;->h:Landroid/graphics/Typeface;
-
     .line 6
-    .line 7
-    iput p4, p0, Landroidx/appcompat/widget/C$b;->i:I
-
-    .line 8
-    .line 9
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 10
-    .line 11
-    .line 12
     return-void
 .end method
 
 
 # virtual methods
-.method public run()V
-    .locals 2
+.method public getCount()I
+    .locals 0
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/C$b;->g:Landroid/widget/TextView;
+    iget-object p0, p0, Landroidx/appcompat/widget/c$b;->c:Landroidx/appcompat/widget/c;
 
     .line 2
     .line 3
-    iget-object v1, p0, Landroidx/appcompat/widget/C$b;->h:Landroid/graphics/Typeface;
+    iget-object p0, p0, Landroidx/appcompat/widget/c;->n:Landroidx/appcompat/widget/b;
 
     .line 4
     .line 5
-    iget p0, p0, Landroidx/appcompat/widget/C$b;->i:I
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getChildCount()I
 
     .line 6
     .line 7
-    invoke-virtual {v0, v1, p0}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;I)V
-
     .line 8
+    move-result p0
+
     .line 9
+    return p0
+.end method
+
+.method public getItem(I)Ljava/lang/Object;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/widget/c$b;->c:Landroidx/appcompat/widget/c;
+
+    .line 2
+    .line 3
+    iget-object p0, p0, Landroidx/appcompat/widget/c;->n:Landroidx/appcompat/widget/b;
+
+    .line 4
+    .line 5
+    invoke-virtual {p0, p1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object p0
+
+    .line 9
+    check-cast p0, Landroidx/appcompat/widget/c$d;
+
     .line 10
-    return-void
+    .line 11
+    invoke-virtual {p0}, Landroidx/appcompat/widget/c$d;->b()Ll/a$c;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object p0
+
+    .line 15
+    return-object p0
+.end method
+
+.method public getItemId(I)J
+    .locals 0
+
+    .line 1
+    int-to-long p0, p1
+
+    .line 2
+    return-wide p0
+.end method
+
+.method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+    .locals 0
+
+    .line 1
+    if-nez p2, :cond_0
+
+    .line 2
+    .line 3
+    iget-object p2, p0, Landroidx/appcompat/widget/c$b;->c:Landroidx/appcompat/widget/c;
+
+    .line 4
+    .line 5
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/c$b;->getItem(I)Ljava/lang/Object;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object p0
+
+    .line 9
+    check-cast p0, Ll/a$c;
+
+    .line 10
+    .line 11
+    const/4 p1, 0x1
+
+    .line 12
+    invoke-virtual {p2, p0, p1}, Landroidx/appcompat/widget/c;->c(Ll/a$c;Z)Landroidx/appcompat/widget/c$d;
+
+    .line 13
+    .line 14
+    .line 15
+    move-result-object p0
+
+    .line 16
+    return-object p0
+
+    .line 17
+    :cond_0
+    move-object p3, p2
+
+    .line 18
+    check-cast p3, Landroidx/appcompat/widget/c$d;
+
+    .line 19
+    .line 20
+    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/c$b;->getItem(I)Ljava/lang/Object;
+
+    .line 21
+    .line 22
+    .line 23
+    move-result-object p0
+
+    .line 24
+    check-cast p0, Ll/a$c;
+
+    .line 25
+    .line 26
+    invoke-virtual {p3, p0}, Landroidx/appcompat/widget/c$d;->a(Ll/a$c;)V
+
+    .line 27
+    .line 28
+    .line 29
+    return-object p2
 .end method

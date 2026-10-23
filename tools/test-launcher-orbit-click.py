@@ -85,12 +85,12 @@ public class OrbitClickTest {
         float getTranslationZ(){return z;}float getZ(){return z+elevation;}
         boolean isEnabled(){return enabled;}Matrix getMatrix(){return matrix;}
     }
-    static class TaskViewIcon {View view=new View(0,0,30,35);View asView(){return view;}}
+    static class IconAppChipView {View view=new View(0,0,30,35);View asView(){return view;}}
     static class TaskContainer {
         View snapshot=new View(0,80,500,700),title=new View(40,0,120,35);
-        TaskViewIcon icon=new TaskViewIcon();
+        IconAppChipView icon=new IconAppChipView();
         View getSnapshotView(){return snapshot;}View getTitleView(){return title;}
-        TaskViewIcon getIconView(){return icon;}
+        IconAppChipView getIconView(){return icon;}
     }
     static class TaskView extends View {
         int id,posts,cancels,downs,ups;long due,tapDue;
@@ -323,7 +323,7 @@ MEMBERS
 '''.replace('MEMBERS', members)
 
 if args.source.resolve() == (ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').resolve():
-    task = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
+    task = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text(encoding='utf-8')
     dispatch = task.split('.method public dispatchTouchEvent(', 1)[1].split('.end method', 1)[0]
     assert dispatch.index('->shouldDispatchOrbitCardTouch(') < dispatch.index('->onCardTouch(') < dispatch.index('invoke-super'), 'orbit DOWN gate must run before long-press and OEM dispatch'
     prefix = dispatch.split('->onCardTouch(', 1)[0]

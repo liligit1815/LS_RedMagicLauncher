@@ -1,66 +1,20 @@
-.class public final LK/c;
+.class public final Lk/c;
 .super Ljava/lang/Object;
-.source "AccessibilityManagerCompat.java"
 
 
-# annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        LK/c$b;,
-        LK/c$a;
-    }
-.end annotation
+# static fields
+.field public static final a:I = 0x7f060009
 
+.field public static final b:I = 0x7f06000a
 
-# direct methods
-.method public static a(Landroid/view/accessibility/AccessibilityManager;LK/c$a;)Z
-    .locals 1
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
+.field public static final c:I = 0x7f060017
 
-    .line 1
-    new-instance v0, LK/c$b;
+.field public static final d:I = 0x7f060018
 
-    .line 2
-    .line 3
-    invoke-direct {v0, p1}, LK/c$b;-><init>(LK/c$a;)V
+.field public static final e:I = 0x7f060019
 
-    .line 4
-    .line 5
-    .line 6
-    invoke-virtual {p0, v0}, Landroid/view/accessibility/AccessibilityManager;->addTouchExplorationStateChangeListener(Landroid/view/accessibility/AccessibilityManager$TouchExplorationStateChangeListener;)Z
+.field public static final f:I = 0x7f06001a
 
-    .line 7
-    .line 8
-    .line 9
-    move-result p0
+.field public static final g:I = 0x7f06001b
 
-    .line 10
-    return p0
-.end method
-
-.method public static b(Landroid/view/accessibility/AccessibilityManager;LK/c$a;)Z
-    .locals 1
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
-
-    .line 1
-    new-instance v0, LK/c$b;
-
-    .line 2
-    .line 3
-    invoke-direct {v0, p1}, LK/c$b;-><init>(LK/c$a;)V
-
-    .line 4
-    .line 5
-    .line 6
-    invoke-virtual {p0, v0}, Landroid/view/accessibility/AccessibilityManager;->removeTouchExplorationStateChangeListener(Landroid/view/accessibility/AccessibilityManager$TouchExplorationStateChangeListener;)Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result p0
-
-    .line 10
-    return p0
-.end method
+.field public static final h:I = 0x7f06001c

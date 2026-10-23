@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -22,7 +22,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment;)V
     .locals 0
 
     .line 1
@@ -80,16 +80,16 @@
 
     .line 2
     .line 3
-    new-instance v1, Lcom/android/quickstep/interaction/Q;
+    new-instance v1, Lcom/android/quickstep/interaction/q0;
 
     .line 4
     .line 5
-    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/Q;-><init>(Lcom/android/quickstep/interaction/TutorialFragment$3;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/q0;-><init>(Lcom/android/quickstep/interaction/TutorialFragment$3;)V
 
     .line 6
     .line 7
     .line 8
-    invoke-static {v0, v1}, Lcom/android/quickstep/interaction/TutorialFragment;->o(Lcom/android/quickstep/interaction/TutorialFragment;Ljava/lang/Runnable;)V
+    invoke-static {v0, v1}, Lcom/android/quickstep/interaction/TutorialFragment;->j(Lcom/android/quickstep/interaction/TutorialFragment;Ljava/lang/Runnable;)V
 
     .line 9
     .line 10

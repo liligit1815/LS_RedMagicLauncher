@@ -1,0 +1,50 @@
+.class public Lcom/android/launcher3/widget/model/WidgetListSpaceEntry;
+.super Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;
+.source "WidgetListSpaceEntry.java"
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 3
+
+    .line 1
+    new-instance v0, Lcom/android/launcher3/model/data/PackageItemInfo;
+
+    .line 2
+    .line 3
+    invoke-static {}, Landroid/os/Process;->myUserHandle()Landroid/os/UserHandle;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object v1
+
+    .line 7
+    const-string v2, ""
+
+    .line 8
+    .line 9
+    invoke-direct {v0, v2, v1}, Lcom/android/launcher3/model/data/PackageItemInfo;-><init>(Ljava/lang/String;Landroid/os/UserHandle;)V
+
+    .line 10
+    .line 11
+    .line 12
+    sget-object v1, Ljava/util/Collections;->EMPTY_LIST:Ljava/util/List;
+
+    .line 13
+    .line 14
+    invoke-direct {p0, v0, v2, v1}, Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;-><init>(Lcom/android/launcher3/model/data/PackageItemInfo;Ljava/lang/String;Ljava/util/List;)V
+
+    .line 15
+    .line 16
+    .line 17
+    iget-object p0, p0, Lcom/android/launcher3/widget/model/WidgetsListBaseEntry;->mPkgItem:Lcom/android/launcher3/model/data/PackageItemInfo;
+
+    .line 18
+    .line 19
+    iput-object v2, p0, Lcom/android/launcher3/model/data/ItemInfo;->title:Ljava/lang/CharSequence;
+
+    .line 20
+    .line 21
+    return-void
+.end method

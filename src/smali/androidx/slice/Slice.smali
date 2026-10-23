@@ -3,7 +3,7 @@
 .source "Slice.java"
 
 # interfaces
-.implements Ll0/a;
+.implements Lt7/c;
 
 
 # annotations
@@ -15,19 +15,19 @@
 
 
 # static fields
-.field static final e:[Ljava/lang/String;
+.field public static final e:[Ljava/lang/String;
 
-.field static final f:[Landroidx/slice/SliceItem;
+.field public static final f:[Landroidx/slice/SliceItem;
 
 
 # instance fields
-.field a:Landroidx/slice/SliceSpec;
+.field public a:Landroidx/slice/SliceSpec;
 
-.field b:[Landroidx/slice/SliceItem;
+.field public b:[Landroidx/slice/SliceItem;
 
-.field c:[Ljava/lang/String;
+.field public c:[Ljava/lang/String;
 
-.field d:Ljava/lang/String;
+.field public d:Ljava/lang/String;
 
 
 # direct methods
@@ -84,7 +84,7 @@
     return-void
 .end method
 
-.method constructor <init>(Ljava/util/ArrayList;[Ljava/lang/String;Landroid/net/Uri;Landroidx/slice/SliceSpec;)V
+.method public constructor <init>(Ljava/util/ArrayList;[Ljava/lang/String;Landroid/net/Uri;Landroidx/slice/SliceSpec;)V
     .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -332,7 +332,7 @@
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Landroidx/slice/a;->a([Ljava/lang/Object;Ljava/lang/Object;)Z
+    invoke-static {p0, p1}, Lk7/a;->a([Ljava/lang/Object;Ljava/lang/Object;)Z
 
     .line 4
     .line 5
@@ -383,7 +383,7 @@
 
     .line 17
     .line 18
-    invoke-static {v3, v1, v2}, Landroidx/slice/a;->b(Ljava/lang/Class;[Ljava/lang/Object;Ljava/lang/Object;)[Ljava/lang/Object;
+    invoke-static {v3, v1, v2}, Lk7/a;->b(Ljava/lang/Class;[Ljava/lang/Object;Ljava/lang/Object;)[Ljava/lang/Object;
 
     .line 19
     .line 20

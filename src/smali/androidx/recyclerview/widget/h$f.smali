@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/h$f;
+.class public Landroidx/recyclerview/widget/h$f;
 .super Landroid/view/GestureDetector$SimpleOnGestureListener;
 .source "ItemTouchHelper.java"
 
@@ -9,23 +9,23 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "f"
 .end annotation
 
 
 # instance fields
-.field private g:Z
+.field public c:Z
 
-.field final synthetic h:Landroidx/recyclerview/widget/h;
+.field public final synthetic m:Landroidx/recyclerview/widget/h;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/h;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/h;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iput-object p1, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 2
     .line 3
@@ -37,7 +37,7 @@
     const/4 p1, 0x1
 
     .line 7
-    iput-boolean p1, p0, Landroidx/recyclerview/widget/h$f;->g:Z
+    iput-boolean p1, p0, Landroidx/recyclerview/widget/h$f;->c:Z
 
     .line 8
     .line 9
@@ -46,14 +46,14 @@
 
 
 # virtual methods
-.method a()V
+.method public a()V
     .locals 1
 
     .line 1
     const/4 v0, 0x0
 
     .line 2
-    iput-boolean v0, p0, Landroidx/recyclerview/widget/h$f;->g:Z
+    iput-boolean v0, p0, Landroidx/recyclerview/widget/h$f;->c:Z
 
     .line 3
     .line 4
@@ -74,7 +74,7 @@
     .locals 3
 
     .line 1
-    iget-boolean v0, p0, Landroidx/recyclerview/widget/h$f;->g:Z
+    iget-boolean v0, p0, Landroidx/recyclerview/widget/h$f;->c:Z
 
     .line 2
     .line 3
@@ -86,7 +86,7 @@
 
     .line 6
     :cond_0
-    iget-object v0, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iget-object v0, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 7
     .line 8
@@ -102,11 +102,11 @@
 
     .line 13
     .line 14
-    iget-object v1, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iget-object v1, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 15
     .line 16
-    iget-object v1, v1, Landroidx/recyclerview/widget/h;->x:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object v1, v1, Landroidx/recyclerview/widget/h;->C:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 17
     .line 18
@@ -122,15 +122,15 @@
 
     .line 23
     .line 24
-    iget-object v1, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iget-object v1, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 25
     .line 26
-    iget-object v2, v1, Landroidx/recyclerview/widget/h;->s:Landroidx/recyclerview/widget/h$e;
+    iget-object v2, v1, Landroidx/recyclerview/widget/h;->x:Landroidx/recyclerview/widget/h$e;
 
     .line 27
     .line 28
-    iget-object v1, v1, Landroidx/recyclerview/widget/h;->x:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object v1, v1, Landroidx/recyclerview/widget/h;->C:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 29
     .line 30
@@ -161,11 +161,11 @@
     move-result v1
 
     .line 42
-    iget-object v2, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iget-object v2, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 43
     .line 44
-    iget v2, v2, Landroidx/recyclerview/widget/h;->r:I
+    iget v2, v2, Landroidx/recyclerview/widget/h;->w:I
 
     .line 45
     .line 46
@@ -197,30 +197,30 @@
     move-result p1
 
     .line 60
-    iget-object v1, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iget-object v1, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 61
     .line 62
-    iput v2, v1, Landroidx/recyclerview/widget/h;->j:F
+    iput v2, v1, Landroidx/recyclerview/widget/h;->o:F
 
     .line 63
     .line 64
-    iput p1, v1, Landroidx/recyclerview/widget/h;->k:F
+    iput p1, v1, Landroidx/recyclerview/widget/h;->p:F
 
     .line 65
     .line 66
     const/4 p1, 0x0
 
     .line 67
-    iput p1, v1, Landroidx/recyclerview/widget/h;->o:F
+    iput p1, v1, Landroidx/recyclerview/widget/h;->t:F
 
     .line 68
     .line 69
-    iput p1, v1, Landroidx/recyclerview/widget/h;->n:F
+    iput p1, v1, Landroidx/recyclerview/widget/h;->s:F
 
     .line 70
     .line 71
-    iget-object p1, v1, Landroidx/recyclerview/widget/h;->s:Landroidx/recyclerview/widget/h$e;
+    iget-object p1, v1, Landroidx/recyclerview/widget/h;->x:Landroidx/recyclerview/widget/h$e;
 
     .line 72
     .line 73
@@ -236,7 +236,7 @@
 
     .line 78
     .line 79
-    iget-object p0, p0, Landroidx/recyclerview/widget/h$f;->h:Landroidx/recyclerview/widget/h;
+    iget-object p0, p0, Landroidx/recyclerview/widget/h$f;->m:Landroidx/recyclerview/widget/h;
 
     .line 80
     .line 81

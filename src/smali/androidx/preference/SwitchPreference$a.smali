@@ -1,4 +1,4 @@
-.class Landroidx/preference/SwitchPreference$a;
+.class public Landroidx/preference/SwitchPreference$a;
 .super Ljava/lang/Object;
 .source "SwitchPreference.java"
 
@@ -12,17 +12,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "a"
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/preference/SwitchPreference;
+.field public final synthetic a:Landroidx/preference/SwitchPreference;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/SwitchPreference;)V
+.method public constructor <init>(Landroidx/preference/SwitchPreference;)V
     .locals 0
 
     .line 1
@@ -56,7 +56,7 @@
     move-result-object v1
 
     .line 7
-    invoke-virtual {v0, v1}, Landroidx/preference/Preference;->c(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v1}, Landroidx/preference/Preference;->callChangeListener(Ljava/lang/Object;)Z
 
     .line 8
     .line 9
@@ -85,7 +85,7 @@
 
     .line 20
     .line 21
-    invoke-virtual {p0, p2}, Landroidx/preference/TwoStatePreference;->V0(Z)V
+    invoke-virtual {p0, p2}, Landroidx/preference/TwoStatePreference;->setChecked(Z)V
 
     .line 22
     .line 23

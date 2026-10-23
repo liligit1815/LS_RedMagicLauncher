@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract e(Ljava/lang/String;)I
+.method public abstract getPreferenceAdapterPosition(Ljava/lang/String;)I
 .end method

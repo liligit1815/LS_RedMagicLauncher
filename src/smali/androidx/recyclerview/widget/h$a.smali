@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/h$a;
+.class public Landroidx/recyclerview/widget/h$a;
 .super Ljava/lang/Object;
 .source "ItemTouchHelper.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/recyclerview/widget/h;
+.field public final synthetic c:Landroidx/recyclerview/widget/h;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/h;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/h;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/recyclerview/widget/h$a;->g:Landroidx/recyclerview/widget/h;
+    iput-object p1, p0, Landroidx/recyclerview/widget/h$a;->c:Landroidx/recyclerview/widget/h;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->g:Landroidx/recyclerview/widget/h;
+    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->c:Landroidx/recyclerview/widget/h;
 
     .line 2
     .line 3
-    iget-object v1, v0, Landroidx/recyclerview/widget/h;->i:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+    iget-object v1, v0, Landroidx/recyclerview/widget/h;->n:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
     .line 4
     .line 5
@@ -68,11 +68,11 @@
 
     .line 12
     .line 13
-    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->g:Landroidx/recyclerview/widget/h;
+    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->c:Landroidx/recyclerview/widget/h;
 
     .line 14
     .line 15
-    iget-object v1, v0, Landroidx/recyclerview/widget/h;->i:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+    iget-object v1, v0, Landroidx/recyclerview/widget/h;->n:Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
 
     .line 16
     .line 17
@@ -86,15 +86,15 @@
     .line 21
     .line 22
     :cond_0
-    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->g:Landroidx/recyclerview/widget/h;
+    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->c:Landroidx/recyclerview/widget/h;
 
     .line 23
     .line 24
-    iget-object v1, v0, Landroidx/recyclerview/widget/h;->x:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object v1, v0, Landroidx/recyclerview/widget/h;->C:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 25
     .line 26
-    iget-object v0, v0, Landroidx/recyclerview/widget/h;->y:Ljava/lang/Runnable;
+    iget-object v0, v0, Landroidx/recyclerview/widget/h;->D:Ljava/lang/Runnable;
 
     .line 27
     .line 28
@@ -103,15 +103,15 @@
     .line 29
     .line 30
     .line 31
-    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->g:Landroidx/recyclerview/widget/h;
+    iget-object v0, p0, Landroidx/recyclerview/widget/h$a;->c:Landroidx/recyclerview/widget/h;
 
     .line 32
     .line 33
-    iget-object v0, v0, Landroidx/recyclerview/widget/h;->x:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object v0, v0, Landroidx/recyclerview/widget/h;->C:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 34
     .line 35
-    invoke-static {v0, p0}, LJ/I;->a0(Landroid/view/View;Ljava/lang/Runnable;)V
+    invoke-static {v0, p0}, Lz5/o0;->c0(Landroid/view/View;Ljava/lang/Runnable;)V
 
     .line 36
     .line 37

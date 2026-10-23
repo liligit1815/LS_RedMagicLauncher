@@ -1,0 +1,897 @@
+.class public final Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+.super Lcom/google/protobuf/y;
+.source "LauncherAtom.java"
+
+# interfaces
+.implements Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainerOrBuilder;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/launcher3/logger/LauncherAtom;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "AllAppsContainer"
+.end annotation
+
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;,
+        Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;
+    }
+.end annotation
+
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Lcom/google/protobuf/y<",
+        "Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;",
+        "Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;",
+        ">;",
+        "Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainerOrBuilder;"
+    }
+.end annotation
+
+
+# static fields
+.field private static final DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+.field private static volatile PARSER:Lcom/google/protobuf/a1; = null
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lcom/google/protobuf/a1<",
+            "Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field public static final TASKBAR_CONTAINER_FIELD_NUMBER:I = 0x1
+
+
+# instance fields
+.field private parentContainerCase_:I
+
+.field private parentContainer_:Ljava/lang/Object;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 2
+
+    .line 1
+    new-instance v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    sput-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 7
+    .line 8
+    const-class v1, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 9
+    .line 10
+    invoke-static {v1, v0}, Lcom/google/protobuf/y;->registerDefaultInstance(Ljava/lang/Class;Lcom/google/protobuf/y;)V
+
+    .line 11
+    .line 12
+    .line 13
+    return-void
+.end method
+
+.method private constructor <init>()V
+    .locals 1
+
+    .line 1
+    invoke-direct {p0}, Lcom/google/protobuf/y;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    const/4 v0, 0x0
+
+    .line 5
+    iput v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 6
+    .line 7
+    return-void
+.end method
+
+.method public static bridge synthetic a(Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->clearParentContainer()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public static bridge synthetic b(Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->clearTaskbarContainer()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public static bridge synthetic c(Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->mergeTaskbarContainer(Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method private clearParentContainer()V
+    .locals 1
+
+    .line 1
+    const/4 v0, 0x0
+
+    .line 2
+    iput v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 3
+    .line 4
+    const/4 v0, 0x0
+
+    .line 5
+    iput-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 6
+    .line 7
+    return-void
+.end method
+
+.method private clearTaskbarContainer()V
+    .locals 2
+
+    .line 1
+    iget v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 2
+    .line 3
+    const/4 v1, 0x1
+
+    .line 4
+    if-ne v0, v1, :cond_0
+
+    .line 5
+    .line 6
+    const/4 v0, 0x0
+
+    .line 7
+    iput v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 8
+    .line 9
+    const/4 v0, 0x0
+
+    .line 10
+    iput-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 11
+    .line 12
+    :cond_0
+    return-void
+.end method
+
+.method public static bridge synthetic d(Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->setTaskbarContainer(Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public static bridge synthetic e()Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+
+    .line 1
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 2
+    .line 3
+    return-object v0
+.end method
+
+.method public static getDefaultInstance()Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+
+    .line 1
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 2
+    .line 3
+    return-object v0
+.end method
+
+.method private mergeTaskbarContainer(Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)V
+    .locals 3
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iget v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 5
+    .line 6
+    const/4 v1, 0x1
+
+    .line 7
+    if-ne v0, v1, :cond_0
+
+    .line 8
+    .line 9
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 10
+    .line 11
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;->getDefaultInstance()Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object v2
+
+    .line 15
+    if-eq v0, v2, :cond_0
+
+    .line 16
+    .line 17
+    iget-object v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 18
+    .line 19
+    check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;
+
+    .line 20
+    .line 21
+    invoke-static {v0}, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;->newBuilder(Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer$Builder;
+
+    .line 22
+    .line 23
+    .line 24
+    move-result-object v0
+
+    .line 25
+    invoke-virtual {v0, p1}, Lcom/google/protobuf/y$a;->mergeFrom(Lcom/google/protobuf/y;)Lcom/google/protobuf/y$a;
+
+    .line 26
+    .line 27
+    .line 28
+    move-result-object p1
+
+    .line 29
+    check-cast p1, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer$Builder;
+
+    .line 30
+    .line 31
+    invoke-virtual {p1}, Lcom/google/protobuf/y$a;->buildPartial()Lcom/google/protobuf/y;
+
+    .line 32
+    .line 33
+    .line 34
+    move-result-object p1
+
+    .line 35
+    iput-object p1, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 36
+    .line 37
+    goto :goto_0
+
+    .line 38
+    :cond_0
+    iput-object p1, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 39
+    .line 40
+    :goto_0
+    iput v1, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 41
+    .line 42
+    return-void
+.end method
+
+.method public static newBuilder()Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;
+    .locals 1
+
+    .line 1
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-virtual {v0}, Lcom/google/protobuf/y;->createBuilder()Lcom/google/protobuf/y$a;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;
+
+    return-object v0
+.end method
+
+.method public static newBuilder(Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;
+    .locals 1
+
+    .line 2
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-virtual {v0, p0}, Lcom/google/protobuf/y;->createBuilder(Lcom/google/protobuf/y;)Lcom/google/protobuf/y$a;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;
+
+    return-object p0
+.end method
+
+.method public static parseDelimitedFrom(Ljava/io/InputStream;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 1
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseDelimitedFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseDelimitedFrom(Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 2
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseDelimitedFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Lcom/google/protobuf/h;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 3
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/h;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Lcom/google/protobuf/h;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 4
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/h;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Lcom/google/protobuf/i;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 9
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/i;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Lcom/google/protobuf/i;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 10
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Lcom/google/protobuf/i;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Ljava/io/InputStream;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 7
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 8
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/io/InputStream;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Ljava/nio/ByteBuffer;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 1
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/nio/ByteBuffer;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom(Ljava/nio/ByteBuffer;Lcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 2
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;Ljava/nio/ByteBuffer;Lcom/google/protobuf/p;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom([B)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 5
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;[B)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parseFrom([BLcom/google/protobuf/p;)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 6
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    invoke-static {v0, p0, p1}, Lcom/google/protobuf/y;->parseFrom(Lcom/google/protobuf/y;[BLcom/google/protobuf/p;)Lcom/google/protobuf/y;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    return-object p0
+.end method
+
+.method public static parser()Lcom/google/protobuf/a1;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Lcom/google/protobuf/a1<",
+            "Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;",
+            ">;"
+        }
+    .end annotation
+
+    .line 1
+    sget-object v0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 2
+    .line 3
+    invoke-virtual {v0}, Lcom/google/protobuf/y;->getParserForType()Lcom/google/protobuf/a1;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object v0
+
+    .line 7
+    return-object v0
+.end method
+
+.method private setTaskbarContainer(Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 5
+    .line 6
+    const/4 p1, 0x1
+
+    .line 7
+    iput p1, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 8
+    .line 9
+    return-void
+.end method
+
+
+# virtual methods
+.method public final dynamicMethod(Lcom/google/protobuf/y$f;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 0
+
+    .line 1
+    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$1;->$SwitchMap$com$google$protobuf$GeneratedMessageLite$MethodToInvoke:[I
+
+    .line 2
+    .line 3
+    invoke-virtual {p1}, Ljava/lang/Enum;->ordinal()I
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p1
+
+    .line 7
+    aget p0, p0, p1
+
+    .line 8
+    .line 9
+    const/4 p1, 0x0
+
+    .line 10
+    packed-switch p0, :pswitch_data_0
+
+    .line 11
+    .line 12
+    .line 13
+    throw p1
+
+    .line 14
+    :pswitch_0
+    const/4 p0, 0x1
+
+    .line 15
+    invoke-static {p0}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
+
+    .line 16
+    .line 17
+    .line 18
+    move-result-object p0
+
+    .line 19
+    return-object p0
+
+    .line 20
+    :pswitch_1
+    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->PARSER:Lcom/google/protobuf/a1;
+
+    .line 21
+    .line 22
+    if-nez p0, :cond_1
+
+    .line 23
+    .line 24
+    const-class p1, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 25
+    .line 26
+    monitor-enter p1
+
+    .line 27
+    :try_start_0
+    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->PARSER:Lcom/google/protobuf/a1;
+
+    .line 28
+    .line 29
+    if-nez p0, :cond_0
+
+    .line 30
+    .line 31
+    new-instance p0, Lcom/google/protobuf/y$b;
+
+    .line 32
+    .line 33
+    sget-object p2, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 34
+    .line 35
+    invoke-direct {p0, p2}, Lcom/google/protobuf/y$b;-><init>(Lcom/google/protobuf/y;)V
+
+    .line 36
+    .line 37
+    .line 38
+    sput-object p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->PARSER:Lcom/google/protobuf/a1;
+
+    .line 39
+    .line 40
+    goto :goto_0
+
+    .line 41
+    :catchall_0
+    move-exception p0
+
+    .line 42
+    goto :goto_1
+
+    .line 43
+    :cond_0
+    :goto_0
+    monitor-exit p1
+
+    .line 44
+    return-object p0
+
+    .line 45
+    :goto_1
+    monitor-exit p1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 46
+    throw p0
+
+    .line 47
+    :cond_1
+    return-object p0
+
+    .line 48
+    :pswitch_2
+    sget-object p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 49
+    .line 50
+    return-object p0
+
+    .line 51
+    :pswitch_3
+    const-string p0, "parentContainer_"
+
+    .line 52
+    .line 53
+    const-string p1, "parentContainerCase_"
+
+    .line 54
+    .line 55
+    const-class p2, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;
+
+    .line 56
+    .line 57
+    filled-new-array {p0, p1, p2}, [Ljava/lang/Object;
+
+    .line 58
+    .line 59
+    .line 60
+    move-result-object p0
+
+    .line 61
+    const-string p1, "\u0001\u0001\u0001\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001<\u0000"
+
+    .line 62
+    .line 63
+    sget-object p2, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->DEFAULT_INSTANCE:Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 64
+    .line 65
+    invoke-static {p2, p1, p0}, Lcom/google/protobuf/y;->newMessageInfo(Lcom/google/protobuf/s0;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 66
+    .line 67
+    .line 68
+    move-result-object p0
+
+    .line 69
+    return-object p0
+
+    .line 70
+    :pswitch_4
+    new-instance p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;
+
+    .line 71
+    .line 72
+    invoke-direct {p0, p1}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$Builder;-><init>(Lcom/android/launcher3/logger/a;)V
+
+    .line 73
+    .line 74
+    .line 75
+    return-object p0
+
+    .line 76
+    :pswitch_5
+    new-instance p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;
+
+    .line 77
+    .line 78
+    invoke-direct {p0}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;-><init>()V
+
+    .line 79
+    .line 80
+    .line 81
+    return-object p0
+
+    .line 82
+    nop
+
+    .line 83
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_5
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
+.end method
+
+.method public getParentContainerCase()Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
+    .locals 0
+
+    .line 1
+    iget p0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 2
+    .line 3
+    invoke-static {p0}, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;->forNumber(I)Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer$ParentContainerCase;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    return-object p0
+.end method
+
+.method public getTaskbarContainer()Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;
+    .locals 2
+
+    .line 1
+    iget v0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 2
+    .line 3
+    const/4 v1, 0x1
+
+    .line 4
+    if-ne v0, v1, :cond_0
+
+    .line 5
+    .line 6
+    iget-object p0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainer_:Ljava/lang/Object;
+
+    .line 7
+    .line 8
+    check-cast p0, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;
+
+    .line 9
+    .line 10
+    return-object p0
+
+    .line 11
+    :cond_0
+    invoke-static {}, Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;->getDefaultInstance()Lcom/android/launcher3/logger/LauncherAtom$TaskBarContainer;
+
+    .line 12
+    .line 13
+    .line 14
+    move-result-object p0
+
+    .line 15
+    return-object p0
+.end method
+
+.method public hasTaskbarContainer()Z
+    .locals 1
+
+    .line 1
+    iget p0, p0, Lcom/android/launcher3/logger/LauncherAtom$AllAppsContainer;->parentContainerCase_:I
+
+    .line 2
+    .line 3
+    const/4 v0, 0x1
+
+    .line 4
+    if-ne p0, v0, :cond_0
+
+    .line 5
+    .line 6
+    return v0
+
+    .line 7
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 8
+    return p0
+.end method

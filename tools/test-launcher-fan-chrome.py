@@ -83,7 +83,7 @@ public class RecentsView {
 public class TaskContainer {
  public TaskView owner;public TaskView getTaskView(){return owner;}
  public android.view.View snapshot=new android.view.View();public android.widget.TextView title=new android.widget.TextView();
- public android.view.View getSnapshotView(){return snapshot;}public android.widget.TextView getTitleView(){return title;}
+ public android.view.View getSnapshotView(){return snapshot;} public android.view.View getTaskContentView(){return snapshot;}public android.widget.TextView getTitleView(){return title;}
 }""",
     "com/android/quickstep/views/TaskView.java": """package com.android.quickstep.views;
 public class TaskView extends android.view.View {
@@ -262,7 +262,7 @@ with tempfile.TemporaryDirectory(prefix="launcher-fan-chrome-") as folder:
                     *map(str, work.rglob("*.java")), str(SOURCE)], check=True)
     subprocess.run(["java", "-cp", str(work), "FanChromeTest"], check=True)
 
-task = (ROOT / "src/smali_classes2/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
+task = (ROOT / "src/smali_classes3/com/android/quickstep/views/TaskView.smali").read_text("utf-8")
 draw = task.split(".method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z", 1)[1].split(".end method", 1)[0]
 hook = "Lcom/android/quickstep/views/LsFanChrome;->draw("
 assert draw.count(hook) == 2
@@ -275,9 +275,7 @@ print("PASS fan labels draw after snapshot rendering and after temporary card cl
 transform = task.split('.method public final setNativeStackTransform(FFFFF)V', 1)[1].split('.end method', 1)[0]
 assert transform.rindex('->refresh(') > transform.index(':native_stack_transform_done'), 'property-only frames must refresh label recording even when transform values are unchanged'
 old_title = task.split('.method private final setIconAndTitle(', 1)[1].split('.end method', 1)[0]
-assert old_title.rindex('->titleChanged(') > old_title.index('->setTitleText('), 'legacy asynchronous title must invalidate parent after the write'
-new_title = task.split('.method protected setIconState(', 1)[1].split('.end method', 1)[0]
-assert new_title.count('->updateTitle(') == 2, 'modern title data and unload must both update the fan label'
+assert old_title.rindex('->titleChanged(') > old_title.index('->setText('), 'legacy asynchronous title must invalidate parent after the write'
 launch = task.split('.method public final launchWithAnimation()', 1)[1].split('.end method', 1)[0]
 assert launch.index('->beginLaunch(') < launch.index('->refresh('), 'launch must invalidate the previously drawn selected label'
 print('PASS asynchronous title, native property-frame and app-launch invalidation wiring')

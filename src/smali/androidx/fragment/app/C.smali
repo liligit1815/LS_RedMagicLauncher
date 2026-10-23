@@ -1,18 +1,76 @@
-.class public final synthetic Landroidx/fragment/app/C;
+.class public Landroidx/fragment/app/c;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
+.source "BackStackState.java"
 
 # interfaces
-.implements LI/a;
+.implements Landroid/os/Parcelable;
+
+
+# annotations
+.annotation build Landroid/annotation/SuppressLint;
+    value = {
+        "BanParcelableUsage"
+    }
+.end annotation
+
+
+# static fields
+.field public static final CREATOR:Landroid/os/Parcelable$Creator;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Landroid/os/Parcelable$Creator<",
+            "Landroidx/fragment/app/c;",
+            ">;"
+        }
+    .end annotation
+.end field
 
 
 # instance fields
-.field public final synthetic a:Landroidx/fragment/app/F;
+.field public final c:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Ljava/lang/String;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field public final m:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Landroidx/fragment/app/b;",
+            ">;"
+        }
+    .end annotation
+.end field
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroidx/fragment/app/F;)V
-    .locals 0
+.method static constructor <clinit>()V
+    .locals 1
+
+    .line 1
+    new-instance v0, Landroidx/fragment/app/c$a;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Landroidx/fragment/app/c$a;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    sput-object v0, Landroidx/fragment/app/c;->CREATOR:Landroid/os/Parcelable$Creator;
+
+    .line 7
+    .line 8
+    return-void
+.end method
+
+.method public constructor <init>(Landroid/os/Parcel;)V
+    .locals 1
 
     .line 1
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,31 +78,70 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/fragment/app/C;->a:Landroidx/fragment/app/F;
+    invoke-virtual {p1}, Landroid/os/Parcel;->createStringArrayList()Ljava/util/ArrayList;
 
     .line 5
     .line 6
+    .line 7
+    move-result-object v0
+
+    .line 8
+    iput-object v0, p0, Landroidx/fragment/app/c;->c:Ljava/util/List;
+
+    .line 9
+    .line 10
+    sget-object v0, Landroidx/fragment/app/b;->CREATOR:Landroid/os/Parcelable$Creator;
+
+    .line 11
+    .line 12
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
+
+    .line 13
+    .line 14
+    .line 15
+    move-result-object p1
+
+    .line 16
+    iput-object p1, p0, Landroidx/fragment/app/c;->m:Ljava/util/List;
+
+    .line 17
+    .line 18
     return-void
 .end method
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
+.method public describeContents()I
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/C;->a:Landroidx/fragment/app/F;
+    const/4 p0, 0x0
+
+    .line 2
+    return p0
+.end method
+
+.method public writeToParcel(Landroid/os/Parcel;I)V
+    .locals 0
+
+    .line 1
+    iget-object p2, p0, Landroidx/fragment/app/c;->c:Ljava/util/List;
 
     .line 2
     .line 3
-    check-cast p1, Landroidx/core/app/f;
+    invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeStringList(Ljava/util/List;)V
 
     .line 4
     .line 5
-    invoke-static {p0, p1}, Landroidx/fragment/app/F;->d(Landroidx/fragment/app/F;Landroidx/core/app/f;)V
-
     .line 6
+    iget-object p0, p0, Landroidx/fragment/app/c;->m:Ljava/util/List;
+
     .line 7
     .line 8
+    invoke-virtual {p1, p0}, Landroid/os/Parcel;->writeTypedList(Ljava/util/List;)V
+
+    .line 9
+    .line 10
+    .line 11
     return-void
 .end method

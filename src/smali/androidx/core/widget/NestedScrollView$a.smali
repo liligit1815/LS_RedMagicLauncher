@@ -1,5 +1,5 @@
-.class Landroidx/core/widget/NestedScrollView$a;
-.super LJ/a;
+.class public Landroidx/core/widget/NestedScrollView$a;
+.super Lz5/a;
 .source "NestedScrollView.java"
 
 
@@ -9,17 +9,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
-    invoke-direct {p0}, LJ/a;-><init>()V
+    invoke-direct {p0}, Lz5/a;-><init>()V
 
     .line 2
     .line 3
@@ -29,11 +29,11 @@
 
 
 # virtual methods
-.method public f(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
+.method public onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
     .locals 0
 
     .line 1
-    invoke-super {p0, p1, p2}, LJ/a;->f(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
+    invoke-super {p0, p1, p2}, Lz5/a;->onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
 
     .line 2
     .line 3
@@ -121,7 +121,7 @@
     move-result p0
 
     .line 45
-    invoke-static {p2, p0}, LK/f;->f(Landroid/view/accessibility/AccessibilityRecord;I)V
+    invoke-static {p2, p0}, La6/f;->f(Landroid/view/accessibility/AccessibilityRecord;I)V
 
     .line 46
     .line 47
@@ -134,7 +134,7 @@
     move-result p0
 
     .line 52
-    invoke-static {p2, p0}, LK/f;->h(Landroid/view/accessibility/AccessibilityRecord;I)V
+    invoke-static {p2, p0}, La6/f;->h(Landroid/view/accessibility/AccessibilityRecord;I)V
 
     .line 53
     .line 54
@@ -142,11 +142,11 @@
     return-void
 .end method
 
-.method public g(Landroid/view/View;LK/d;)V
+.method public onInitializeAccessibilityNodeInfo(Landroid/view/View;La6/d;)V
     .locals 1
 
     .line 1
-    invoke-super {p0, p1, p2}, LJ/a;->g(Landroid/view/View;LK/d;)V
+    invoke-super {p0, p1, p2}, Lz5/a;->onInitializeAccessibilityNodeInfo(Landroid/view/View;La6/d;)V
 
     .line 2
     .line 3
@@ -167,7 +167,7 @@
     move-result-object p0
 
     .line 12
-    invoke-virtual {p2, p0}, LK/d;->i0(Ljava/lang/CharSequence;)V
+    invoke-virtual {p2, p0}, La6/d;->q0(Ljava/lang/CharSequence;)V
 
     .line 13
     .line 14
@@ -199,7 +199,7 @@
     const/4 v0, 0x1
 
     .line 28
-    invoke-virtual {p2, v0}, LK/d;->F0(Z)V
+    invoke-virtual {p2, v0}, La6/d;->U0(Z)V
 
     .line 29
     .line 30
@@ -216,20 +216,20 @@
 
     .line 36
     .line 37
-    sget-object v0, LK/d$a;->r:LK/d$a;
+    sget-object v0, La6/d$a;->r:La6/d$a;
 
     .line 38
     .line 39
-    invoke-virtual {p2, v0}, LK/d;->b(LK/d$a;)V
+    invoke-virtual {p2, v0}, La6/d;->b(La6/d$a;)V
 
     .line 40
     .line 41
     .line 42
-    sget-object v0, LK/d$a;->C:LK/d$a;
+    sget-object v0, La6/d$a;->C:La6/d$a;
 
     .line 43
     .line 44
-    invoke-virtual {p2, v0}, LK/d;->b(LK/d$a;)V
+    invoke-virtual {p2, v0}, La6/d;->b(La6/d$a;)V
 
     .line 45
     .line 46
@@ -247,20 +247,20 @@
 
     .line 52
     .line 53
-    sget-object p0, LK/d$a;->q:LK/d$a;
+    sget-object p0, La6/d$a;->q:La6/d$a;
 
     .line 54
     .line 55
-    invoke-virtual {p2, p0}, LK/d;->b(LK/d$a;)V
+    invoke-virtual {p2, p0}, La6/d;->b(La6/d$a;)V
 
     .line 56
     .line 57
     .line 58
-    sget-object p0, LK/d$a;->E:LK/d$a;
+    sget-object p0, La6/d$a;->E:La6/d$a;
 
     .line 59
     .line 60
-    invoke-virtual {p2, p0}, LK/d;->b(LK/d$a;)V
+    invoke-virtual {p2, p0}, La6/d;->b(La6/d$a;)V
 
     .line 61
     .line 62
@@ -269,11 +269,11 @@
     return-void
 .end method
 
-.method public j(Landroid/view/View;ILandroid/os/Bundle;)Z
+.method public performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
     .locals 3
 
     .line 1
-    invoke-super {p0, p1, p2, p3}, LJ/a;->j(Landroid/view/View;ILandroid/os/Bundle;)Z
+    invoke-super {p0, p1, p2, p3}, Lz5/a;->performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
 
     .line 2
     .line 3
@@ -464,7 +464,7 @@
 
     .line 91
     .line 92
-    invoke-virtual {p1, v0, p0, p3}, Landroidx/core/widget/NestedScrollView;->W(IIZ)V
+    invoke-virtual {p1, v0, p0, p3}, Landroidx/core/widget/NestedScrollView;->X(IIZ)V
 
     .line 93
     .line 94
@@ -538,7 +538,7 @@
 
     .line 125
     .line 126
-    invoke-virtual {p1, v0, p0, p3}, Landroidx/core/widget/NestedScrollView;->W(IIZ)V
+    invoke-virtual {p1, v0, p0, p3}, Landroidx/core/widget/NestedScrollView;->X(IIZ)V
 
     .line 127
     .line 128

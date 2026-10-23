@@ -157,7 +157,7 @@ public final class LsOrbitPager {
         state.preloadPage = page;
         state.loading = true;
         try {
-            recents.loadVisibleTaskData(7);
+            recents.loadVisibleTaskData();
         } finally {
             state.loading = false;
         }

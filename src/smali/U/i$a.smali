@@ -1,14 +1,11 @@
-.class public final LU/i$a;
-.super Ljava/lang/Object;
-.source "Comparisons.kt"
-
-# interfaces
-.implements Ljava/util/Comparator;
+.class public final Lu/i$a;
+.super Lkotlin/coroutines/jvm/internal/ContinuationImpl;
+.source "AppSearchUtils.kt"
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = LU/i;->a(Ljava/util/List;Ljava/util/List;)Ljava/util/List;
+    value = Lu/i;->a(Landroid/content/Context;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -16,23 +13,51 @@
     name = null
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "<T:",
-        "Ljava/lang/Object;",
-        ">",
-        "Ljava/lang/Object;",
-        "Ljava/util/Comparator;"
+.annotation runtime Lkotlin/Metadata;
+    k = 0x3
+    mv = {
+        0x2,
+        0x1,
+        0x0
     }
+    xi = 0x30
+.end annotation
+
+.annotation runtime Lkotlin/coroutines/jvm/internal/DebugMetadata;
+    c = "androidx.appfunctions.internal.AppSearchUtilsKt"
+    f = "AppSearchUtils.kt"
+    i = {}
+    l = {
+        0x2a
+    }
+    m = "createSearchSession"
+    n = {}
+    s = {}
+    v = 0x1
 .end annotation
 
 
+# instance fields
+.field public synthetic c:Ljava/lang/Object;
+
+.field public m:I
+
+
 # direct methods
-.method public constructor <init>()V
+.method public constructor <init>(Lkotlin/coroutines/Continuation;)V
     .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lkotlin/coroutines/Continuation<",
+            "-",
+            "Lu/i$a;",
+            ">;)V"
+        }
+    .end annotation
 
     .line 1
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0, p1}, Lkotlin/coroutines/jvm/internal/ContinuationImpl;-><init>(Lkotlin/coroutines/Continuation;)V
 
     .line 2
     .line 3
@@ -42,62 +67,39 @@
 
 
 # virtual methods
-.method public final compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(TT;TT;)I"
-        }
-    .end annotation
+.method public final invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
 
     .line 1
-    check-cast p1, LU/e;
+    iput-object p1, p0, Lu/i$a;->c:Ljava/lang/Object;
 
     .line 2
     .line 3
-    invoke-virtual {p1}, LU/e;->a()F
+    iget p1, p0, Lu/i$a;->m:I
 
     .line 4
     .line 5
-    .line 6
-    move-result p0
+    const/high16 v0, -0x80000000
 
+    .line 6
     .line 7
-    invoke-static {p0}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+    or-int/2addr p1, v0
 
     .line 8
+    iput p1, p0, Lu/i$a;->m:I
+
     .line 9
     .line 10
-    move-result-object p0
+    const/4 p1, 0x0
 
     .line 11
-    check-cast p2, LU/e;
+    invoke-static {p1, p0}, Lu/i;->a(Landroid/content/Context;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 
     .line 12
     .line 13
-    invoke-virtual {p2}, LU/e;->a()F
-
     .line 14
+    move-result-object p0
+
     .line 15
-    .line 16
-    move-result p1
-
-    .line 17
-    invoke-static {p1}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
-
-    .line 18
-    .line 19
-    .line 20
-    move-result-object p1
-
-    .line 21
-    invoke-static {p0, p1}, Lk4/a;->b(Ljava/lang/Comparable;Ljava/lang/Comparable;)I
-
-    .line 22
-    .line 23
-    .line 24
-    move-result p0
-
-    .line 25
-    return p0
+    return-object p0
 .end method

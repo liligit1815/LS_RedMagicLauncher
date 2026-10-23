@@ -4,15 +4,15 @@
 
 
 # instance fields
-.field protected final a:Landroidx/recyclerview/widget/RecyclerView$LayoutManager;
+.field public final a:Landroidx/recyclerview/widget/RecyclerView$LayoutManager;
 
-.field private b:I
+.field public b:I
 
-.field final c:Landroid/graphics/Rect;
+.field public final c:Landroid/graphics/Rect;
 
 
 # direct methods
-.method private constructor <init>(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
     .locals 1
 
     .line 2
@@ -36,7 +36,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Landroidx/recyclerview/widget/o$a;)V
+.method public synthetic constructor <init>(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Landroidx/recyclerview/widget/o$a;)V
     .locals 0
 
     .line 1

@@ -3,15 +3,17 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Consumer;
+.implements Lkotlin/jvm/functions/Function0;
 
 
 # instance fields
-.field public final synthetic a:Lcom/android/quickstep/recents/data/TasksRepository;
+.field public final synthetic c:Lcom/android/quickstep/recents/data/TasksRepository;
+
+.field public final synthetic m:Lcom/android/systemui/shared/recents/model/Task;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/recents/data/TasksRepository;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/recents/data/TasksRepository;Lcom/android/systemui/shared/recents/model/Task;)V
     .locals 0
 
     .line 1
@@ -20,31 +22,38 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/recents/data/e;->a:Lcom/android/quickstep/recents/data/TasksRepository;
+    iput-object p1, p0, Lcom/android/quickstep/recents/data/e;->c:Lcom/android/quickstep/recents/data/TasksRepository;
 
     .line 5
     .line 6
+    iput-object p2, p0, Lcom/android/quickstep/recents/data/e;->m:Lcom/android/systemui/shared/recents/model/Task;
+
+    .line 7
+    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final accept(Ljava/lang/Object;)V
-    .locals 0
+.method public final invoke()Ljava/lang/Object;
+    .locals 1
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/recents/data/e;->a:Lcom/android/quickstep/recents/data/TasksRepository;
+    iget-object v0, p0, Lcom/android/quickstep/recents/data/e;->c:Lcom/android/quickstep/recents/data/TasksRepository;
 
     .line 2
     .line 3
-    check-cast p1, Ljava/util/List;
+    iget-object p0, p0, Lcom/android/quickstep/recents/data/e;->m:Lcom/android/systemui/shared/recents/model/Task;
 
     .line 4
     .line 5
-    invoke-static {p0, p1}, Lcom/android/quickstep/recents/data/TasksRepository;->a(Lcom/android/quickstep/recents/data/TasksRepository;Ljava/util/List;)V
+    invoke-static {v0, p0}, Lcom/android/quickstep/recents/data/TasksRepository;->b(Lcom/android/quickstep/recents/data/TasksRepository;Lcom/android/systemui/shared/recents/model/Task;)Lkotlin/Unit;
 
     .line 6
     .line 7
     .line 8
-    return-void
+    move-result-object p0
+
+    .line 9
+    return-object p0
 .end method

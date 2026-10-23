@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "SkipButtonAccessibilityDelegate"
 .end annotation
 
@@ -30,7 +30,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/android/quickstep/interaction/AllSetActivity;Lcom/android/quickstep/interaction/j;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/AllSetActivity;Lcom/android/quickstep/interaction/m;)V
     .locals 0
 
     .line 1
@@ -113,34 +113,42 @@
     const/4 p3, 0x0
 
     .line 19
-    invoke-static {p1, p3, p2}, Lcom/android/quickstep/OverviewComponentObserver;->startHomeIntentSafely(Landroid/content/Context;Landroid/os/Bundle;Ljava/lang/String;)V
+    invoke-virtual {p1}, Landroid/app/Activity;->getDisplayId()I
 
     .line 20
     .line 21
     .line 22
-    iget-object p0, p0, Lcom/android/quickstep/interaction/AllSetActivity$SkipButtonAccessibilityDelegate;->this$0:Lcom/android/quickstep/interaction/AllSetActivity;
+    move-result v0
 
     .line 23
-    .line 24
-    invoke-virtual {p0}, Landroid/app/Activity;->finish()V
+    invoke-static {p1, p3, p2, v0}, Lcom/android/quickstep/OverviewComponentObserver;->startHomeIntentSafely(Landroid/content/Context;Landroid/os/Bundle;Ljava/lang/String;I)V
 
+    .line 24
     .line 25
     .line 26
-    .line 27
-    const/4 p0, 0x1
+    iget-object p0, p0, Lcom/android/quickstep/interaction/AllSetActivity$SkipButtonAccessibilityDelegate;->this$0:Lcom/android/quickstep/interaction/AllSetActivity;
 
+    .line 27
     .line 28
-    return p0
+    invoke-virtual {p0}, Landroid/app/Activity;->finish()V
 
     .line 29
+    .line 30
+    .line 31
+    const/4 p0, 0x1
+
+    .line 32
+    return p0
+
+    .line 33
     :cond_0
     invoke-super {p0, p1, p2, p3}, Landroid/view/View$AccessibilityDelegate;->performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
 
-    .line 30
-    .line 31
-    .line 32
+    .line 34
+    .line 35
+    .line 36
     move-result p0
 
-    .line 33
+    .line 37
     return p0
 .end method

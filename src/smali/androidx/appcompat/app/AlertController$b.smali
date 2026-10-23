@@ -168,7 +168,335 @@
     return-void
 .end method
 
-.method private b(Landroidx/appcompat/app/AlertController;)V
+
+# virtual methods
+.method public a(Landroidx/appcompat/app/AlertController;)V
+    .locals 13
+
+    .line 1
+    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->g:Landroid/view/View;
+
+    .line 2
+    .line 3
+    if-eqz v0, :cond_0
+
+    .line 4
+    .line 5
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->k(Landroid/view/View;)V
+
+    .line 6
+    .line 7
+    .line 8
+    goto :goto_0
+
+    .line 9
+    :cond_0
+    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->f:Ljava/lang/CharSequence;
+
+    .line 10
+    .line 11
+    if-eqz v0, :cond_1
+
+    .line 12
+    .line 13
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->p(Ljava/lang/CharSequence;)V
+
+    .line 14
+    .line 15
+    .line 16
+    :cond_1
+    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->d:Landroid/graphics/drawable/Drawable;
+
+    .line 17
+    .line 18
+    if-eqz v0, :cond_2
+
+    .line 19
+    .line 20
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->m(Landroid/graphics/drawable/Drawable;)V
+
+    .line 21
+    .line 22
+    .line 23
+    :cond_2
+    iget v0, p0, Landroidx/appcompat/app/AlertController$b;->c:I
+
+    .line 24
+    .line 25
+    if-eqz v0, :cond_3
+
+    .line 26
+    .line 27
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->l(I)V
+
+    .line 28
+    .line 29
+    .line 30
+    :cond_3
+    iget v0, p0, Landroidx/appcompat/app/AlertController$b;->e:I
+
+    .line 31
+    .line 32
+    if-eqz v0, :cond_4
+
+    .line 33
+    .line 34
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->c(I)I
+
+    .line 35
+    .line 36
+    .line 37
+    move-result v0
+
+    .line 38
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->l(I)V
+
+    .line 39
+    .line 40
+    .line 41
+    :cond_4
+    :goto_0
+    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->h:Ljava/lang/CharSequence;
+
+    .line 42
+    .line 43
+    if-eqz v0, :cond_5
+
+    .line 44
+    .line 45
+    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->n(Ljava/lang/CharSequence;)V
+
+    .line 46
+    .line 47
+    .line 48
+    :cond_5
+    iget-object v3, p0, Landroidx/appcompat/app/AlertController$b;->i:Ljava/lang/CharSequence;
+
+    .line 49
+    .line 50
+    if-nez v3, :cond_7
+
+    .line 51
+    .line 52
+    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->j:Landroid/graphics/drawable/Drawable;
+
+    .line 53
+    .line 54
+    if-eqz v0, :cond_6
+
+    .line 55
+    .line 56
+    goto :goto_1
+
+    .line 57
+    :cond_6
+    move-object v7, p1
+
+    .line 58
+    goto :goto_2
+
+    .line 59
+    :cond_7
+    :goto_1
+    iget-object v4, p0, Landroidx/appcompat/app/AlertController$b;->k:Landroid/content/DialogInterface$OnClickListener;
+
+    .line 60
+    .line 61
+    const/4 v5, 0x0
+
+    .line 62
+    iget-object v6, p0, Landroidx/appcompat/app/AlertController$b;->j:Landroid/graphics/drawable/Drawable;
+
+    .line 63
+    .line 64
+    const/4 v2, -0x1
+
+    .line 65
+    move-object v1, p1
+
+    .line 66
+    invoke-virtual/range {v1 .. v6}, Landroidx/appcompat/app/AlertController;->j(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;Landroid/os/Message;Landroid/graphics/drawable/Drawable;)V
+
+    .line 67
+    .line 68
+    .line 69
+    move-object v7, v1
+
+    .line 70
+    :goto_2
+    iget-object v9, p0, Landroidx/appcompat/app/AlertController$b;->l:Ljava/lang/CharSequence;
+
+    .line 71
+    .line 72
+    if-nez v9, :cond_8
+
+    .line 73
+    .line 74
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->m:Landroid/graphics/drawable/Drawable;
+
+    .line 75
+    .line 76
+    if-eqz p1, :cond_9
+
+    .line 77
+    .line 78
+    :cond_8
+    iget-object v10, p0, Landroidx/appcompat/app/AlertController$b;->n:Landroid/content/DialogInterface$OnClickListener;
+
+    .line 79
+    .line 80
+    const/4 v11, 0x0
+
+    .line 81
+    iget-object v12, p0, Landroidx/appcompat/app/AlertController$b;->m:Landroid/graphics/drawable/Drawable;
+
+    .line 82
+    .line 83
+    const/4 v8, -0x2
+
+    .line 84
+    invoke-virtual/range {v7 .. v12}, Landroidx/appcompat/app/AlertController;->j(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;Landroid/os/Message;Landroid/graphics/drawable/Drawable;)V
+
+    .line 85
+    .line 86
+    .line 87
+    :cond_9
+    iget-object v9, p0, Landroidx/appcompat/app/AlertController$b;->o:Ljava/lang/CharSequence;
+
+    .line 88
+    .line 89
+    if-nez v9, :cond_a
+
+    .line 90
+    .line 91
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->p:Landroid/graphics/drawable/Drawable;
+
+    .line 92
+    .line 93
+    if-eqz p1, :cond_b
+
+    .line 94
+    .line 95
+    :cond_a
+    iget-object v10, p0, Landroidx/appcompat/app/AlertController$b;->q:Landroid/content/DialogInterface$OnClickListener;
+
+    .line 96
+    .line 97
+    const/4 v11, 0x0
+
+    .line 98
+    iget-object v12, p0, Landroidx/appcompat/app/AlertController$b;->p:Landroid/graphics/drawable/Drawable;
+
+    .line 99
+    .line 100
+    const/4 v8, -0x3
+
+    .line 101
+    invoke-virtual/range {v7 .. v12}, Landroidx/appcompat/app/AlertController;->j(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;Landroid/os/Message;Landroid/graphics/drawable/Drawable;)V
+
+    .line 102
+    .line 103
+    .line 104
+    :cond_b
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->v:[Ljava/lang/CharSequence;
+
+    .line 105
+    .line 106
+    if-nez p1, :cond_c
+
+    .line 107
+    .line 108
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->K:Landroid/database/Cursor;
+
+    .line 109
+    .line 110
+    if-nez p1, :cond_c
+
+    .line 111
+    .line 112
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->w:Landroid/widget/ListAdapter;
+
+    .line 113
+    .line 114
+    if-eqz p1, :cond_d
+
+    .line 115
+    .line 116
+    :cond_c
+    invoke-virtual {p0, v7}, Landroidx/appcompat/app/AlertController$b;->b(Landroidx/appcompat/app/AlertController;)V
+
+    .line 117
+    .line 118
+    .line 119
+    :cond_d
+    iget-object v8, p0, Landroidx/appcompat/app/AlertController$b;->z:Landroid/view/View;
+
+    .line 120
+    .line 121
+    if-eqz v8, :cond_f
+
+    .line 122
+    .line 123
+    iget-boolean p1, p0, Landroidx/appcompat/app/AlertController$b;->E:Z
+
+    .line 124
+    .line 125
+    if-eqz p1, :cond_e
+
+    .line 126
+    .line 127
+    iget v9, p0, Landroidx/appcompat/app/AlertController$b;->A:I
+
+    .line 128
+    .line 129
+    iget v10, p0, Landroidx/appcompat/app/AlertController$b;->B:I
+
+    .line 130
+    .line 131
+    iget v11, p0, Landroidx/appcompat/app/AlertController$b;->C:I
+
+    .line 132
+    .line 133
+    iget v12, p0, Landroidx/appcompat/app/AlertController$b;->D:I
+
+    .line 134
+    .line 135
+    invoke-virtual/range {v7 .. v12}, Landroidx/appcompat/app/AlertController;->s(Landroid/view/View;IIII)V
+
+    .line 136
+    .line 137
+    .line 138
+    return-void
+
+    .line 139
+    :cond_e
+    invoke-virtual {v7, v8}, Landroidx/appcompat/app/AlertController;->r(Landroid/view/View;)V
+
+    .line 140
+    .line 141
+    .line 142
+    return-void
+
+    .line 143
+    :cond_f
+    iget p0, p0, Landroidx/appcompat/app/AlertController$b;->y:I
+
+    .line 144
+    .line 145
+    if-eqz p0, :cond_10
+
+    .line 146
+    .line 147
+    invoke-virtual {v7, p0}, Landroidx/appcompat/app/AlertController;->q(I)V
+
+    .line 148
+    .line 149
+    .line 150
+    :cond_10
+    return-void
+.end method
+
+.method public final b(Landroidx/appcompat/app/AlertController;)V
     .locals 14
 
     .line 1
@@ -528,333 +856,5 @@
 
     .line 165
     .line 166
-    return-void
-.end method
-
-
-# virtual methods
-.method public a(Landroidx/appcompat/app/AlertController;)V
-    .locals 13
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->g:Landroid/view/View;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->k(Landroid/view/View;)V
-
-    .line 6
-    .line 7
-    .line 8
-    goto :goto_0
-
-    .line 9
-    :cond_0
-    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->f:Ljava/lang/CharSequence;
-
-    .line 10
-    .line 11
-    if-eqz v0, :cond_1
-
-    .line 12
-    .line 13
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->p(Ljava/lang/CharSequence;)V
-
-    .line 14
-    .line 15
-    .line 16
-    :cond_1
-    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->d:Landroid/graphics/drawable/Drawable;
-
-    .line 17
-    .line 18
-    if-eqz v0, :cond_2
-
-    .line 19
-    .line 20
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->m(Landroid/graphics/drawable/Drawable;)V
-
-    .line 21
-    .line 22
-    .line 23
-    :cond_2
-    iget v0, p0, Landroidx/appcompat/app/AlertController$b;->c:I
-
-    .line 24
-    .line 25
-    if-eqz v0, :cond_3
-
-    .line 26
-    .line 27
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->l(I)V
-
-    .line 28
-    .line 29
-    .line 30
-    :cond_3
-    iget v0, p0, Landroidx/appcompat/app/AlertController$b;->e:I
-
-    .line 31
-    .line 32
-    if-eqz v0, :cond_4
-
-    .line 33
-    .line 34
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->c(I)I
-
-    .line 35
-    .line 36
-    .line 37
-    move-result v0
-
-    .line 38
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->l(I)V
-
-    .line 39
-    .line 40
-    .line 41
-    :cond_4
-    :goto_0
-    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->h:Ljava/lang/CharSequence;
-
-    .line 42
-    .line 43
-    if-eqz v0, :cond_5
-
-    .line 44
-    .line 45
-    invoke-virtual {p1, v0}, Landroidx/appcompat/app/AlertController;->n(Ljava/lang/CharSequence;)V
-
-    .line 46
-    .line 47
-    .line 48
-    :cond_5
-    iget-object v3, p0, Landroidx/appcompat/app/AlertController$b;->i:Ljava/lang/CharSequence;
-
-    .line 49
-    .line 50
-    if-nez v3, :cond_7
-
-    .line 51
-    .line 52
-    iget-object v0, p0, Landroidx/appcompat/app/AlertController$b;->j:Landroid/graphics/drawable/Drawable;
-
-    .line 53
-    .line 54
-    if-eqz v0, :cond_6
-
-    .line 55
-    .line 56
-    goto :goto_1
-
-    .line 57
-    :cond_6
-    move-object v7, p1
-
-    .line 58
-    goto :goto_2
-
-    .line 59
-    :cond_7
-    :goto_1
-    iget-object v4, p0, Landroidx/appcompat/app/AlertController$b;->k:Landroid/content/DialogInterface$OnClickListener;
-
-    .line 60
-    .line 61
-    const/4 v5, 0x0
-
-    .line 62
-    iget-object v6, p0, Landroidx/appcompat/app/AlertController$b;->j:Landroid/graphics/drawable/Drawable;
-
-    .line 63
-    .line 64
-    const/4 v2, -0x1
-
-    .line 65
-    move-object v1, p1
-
-    .line 66
-    invoke-virtual/range {v1 .. v6}, Landroidx/appcompat/app/AlertController;->j(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;Landroid/os/Message;Landroid/graphics/drawable/Drawable;)V
-
-    .line 67
-    .line 68
-    .line 69
-    move-object v7, v1
-
-    .line 70
-    :goto_2
-    iget-object v9, p0, Landroidx/appcompat/app/AlertController$b;->l:Ljava/lang/CharSequence;
-
-    .line 71
-    .line 72
-    if-nez v9, :cond_8
-
-    .line 73
-    .line 74
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->m:Landroid/graphics/drawable/Drawable;
-
-    .line 75
-    .line 76
-    if-eqz p1, :cond_9
-
-    .line 77
-    .line 78
-    :cond_8
-    iget-object v10, p0, Landroidx/appcompat/app/AlertController$b;->n:Landroid/content/DialogInterface$OnClickListener;
-
-    .line 79
-    .line 80
-    const/4 v11, 0x0
-
-    .line 81
-    iget-object v12, p0, Landroidx/appcompat/app/AlertController$b;->m:Landroid/graphics/drawable/Drawable;
-
-    .line 82
-    .line 83
-    const/4 v8, -0x2
-
-    .line 84
-    invoke-virtual/range {v7 .. v12}, Landroidx/appcompat/app/AlertController;->j(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;Landroid/os/Message;Landroid/graphics/drawable/Drawable;)V
-
-    .line 85
-    .line 86
-    .line 87
-    :cond_9
-    iget-object v9, p0, Landroidx/appcompat/app/AlertController$b;->o:Ljava/lang/CharSequence;
-
-    .line 88
-    .line 89
-    if-nez v9, :cond_a
-
-    .line 90
-    .line 91
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->p:Landroid/graphics/drawable/Drawable;
-
-    .line 92
-    .line 93
-    if-eqz p1, :cond_b
-
-    .line 94
-    .line 95
-    :cond_a
-    iget-object v10, p0, Landroidx/appcompat/app/AlertController$b;->q:Landroid/content/DialogInterface$OnClickListener;
-
-    .line 96
-    .line 97
-    const/4 v11, 0x0
-
-    .line 98
-    iget-object v12, p0, Landroidx/appcompat/app/AlertController$b;->p:Landroid/graphics/drawable/Drawable;
-
-    .line 99
-    .line 100
-    const/4 v8, -0x3
-
-    .line 101
-    invoke-virtual/range {v7 .. v12}, Landroidx/appcompat/app/AlertController;->j(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;Landroid/os/Message;Landroid/graphics/drawable/Drawable;)V
-
-    .line 102
-    .line 103
-    .line 104
-    :cond_b
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->v:[Ljava/lang/CharSequence;
-
-    .line 105
-    .line 106
-    if-nez p1, :cond_c
-
-    .line 107
-    .line 108
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->K:Landroid/database/Cursor;
-
-    .line 109
-    .line 110
-    if-nez p1, :cond_c
-
-    .line 111
-    .line 112
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b;->w:Landroid/widget/ListAdapter;
-
-    .line 113
-    .line 114
-    if-eqz p1, :cond_d
-
-    .line 115
-    .line 116
-    :cond_c
-    invoke-direct {p0, v7}, Landroidx/appcompat/app/AlertController$b;->b(Landroidx/appcompat/app/AlertController;)V
-
-    .line 117
-    .line 118
-    .line 119
-    :cond_d
-    iget-object v8, p0, Landroidx/appcompat/app/AlertController$b;->z:Landroid/view/View;
-
-    .line 120
-    .line 121
-    if-eqz v8, :cond_f
-
-    .line 122
-    .line 123
-    iget-boolean p1, p0, Landroidx/appcompat/app/AlertController$b;->E:Z
-
-    .line 124
-    .line 125
-    if-eqz p1, :cond_e
-
-    .line 126
-    .line 127
-    iget v9, p0, Landroidx/appcompat/app/AlertController$b;->A:I
-
-    .line 128
-    .line 129
-    iget v10, p0, Landroidx/appcompat/app/AlertController$b;->B:I
-
-    .line 130
-    .line 131
-    iget v11, p0, Landroidx/appcompat/app/AlertController$b;->C:I
-
-    .line 132
-    .line 133
-    iget v12, p0, Landroidx/appcompat/app/AlertController$b;->D:I
-
-    .line 134
-    .line 135
-    invoke-virtual/range {v7 .. v12}, Landroidx/appcompat/app/AlertController;->s(Landroid/view/View;IIII)V
-
-    .line 136
-    .line 137
-    .line 138
-    return-void
-
-    .line 139
-    :cond_e
-    invoke-virtual {v7, v8}, Landroidx/appcompat/app/AlertController;->r(Landroid/view/View;)V
-
-    .line 140
-    .line 141
-    .line 142
-    return-void
-
-    .line 143
-    :cond_f
-    iget p0, p0, Landroidx/appcompat/app/AlertController$b;->y:I
-
-    .line 144
-    .line 145
-    if-eqz p0, :cond_10
-
-    .line 146
-    .line 147
-    invoke-virtual {v7, p0}, Landroidx/appcompat/app/AlertController;->q(I)V
-
-    .line 148
-    .line 149
-    .line 150
-    :cond_10
     return-void
 .end method

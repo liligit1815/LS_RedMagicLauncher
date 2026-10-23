@@ -1,10 +1,32 @@
-.class public final LL0/e;
+.class public final Ll0/e;
 .super Ljava/lang/Object;
-.source "SettingsAwareViewCapture.kt"
+.source "CollectionPlatformUtils.jvm.kt"
+
+
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u000c\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0003\u0008\u00c0\u0002\u0018\u00002\u00020\u0001B\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003\u00a8\u0006\u0004"
+    }
+    d2 = {
+        "Ll0/e;",
+        "",
+        "<init>",
+        "()V",
+        "collection"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x9,
+        0x0
+    }
+    xi = 0x30
+.end annotation
 
 
 # static fields
-.field private static final a:Ljava/lang/String;
+.field public static final a:Ll0/e;
 
 
 # direct methods
@@ -12,32 +34,30 @@
     .locals 1
 
     .line 1
-    const-class v0, LL0/d;
+    new-instance v0, Ll0/e;
 
     .line 2
     .line 3
-    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+    invoke-direct {v0}, Ll0/e;-><init>()V
 
     .line 4
     .line 5
     .line 6
-    move-result-object v0
+    sput-object v0, Ll0/e;->a:Ll0/e;
 
     .line 7
-    sput-object v0, LL0/e;->a:Ljava/lang/String;
-
     .line 8
-    .line 9
     return-void
 .end method
 
-.method public static final synthetic a()Ljava/lang/String;
-    .locals 1
+.method public constructor <init>()V
+    .locals 0
 
     .line 1
-    sget-object v0, LL0/e;->a:Ljava/lang/String;
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 2
     .line 3
-    return-object v0
+    .line 4
+    return-void
 .end method

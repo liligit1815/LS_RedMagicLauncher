@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/arrow_toast_text_size" android:textColor="?arrowTipTextColor" android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/text" android:background="@drawable/arrow_toast_rounded_background" android:layout_width="wrap_content" android:layout_height="wrap_content" android:elevation="@dimen/arrow_toast_elevation" android:paddingHorizontal="@dimen/taskbar_tooltip_horizontal_padding" android:paddingVertical="@dimen/taskbar_tooltip_vertical_padding" />
+    <View android:id="@id/arrow" android:layout_width="@dimen/arrow_toast_arrow_width" android:layout_height="@dimen/arrow_toast_arrow_height" android:elevation="@dimen/arrow_toast_elevation" />
+</merge>

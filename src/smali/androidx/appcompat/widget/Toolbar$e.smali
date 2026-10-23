@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/Toolbar$e;
+.class public Landroidx/appcompat/widget/Toolbar$e;
 .super Ljava/lang/Object;
 .source "Toolbar.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "e"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/view/View;)Landroid/window/OnBackInvokedDispatcher;
+.method public static a(Landroid/view/View;)Landroid/window/OnBackInvokedDispatcher;
     .locals 0
 
     .line 1
@@ -30,7 +30,7 @@
     return-object p0
 .end method
 
-.method static b(Ljava/lang/Runnable;)Landroid/window/OnBackInvokedCallback;
+.method public static b(Ljava/lang/Runnable;)Landroid/window/OnBackInvokedCallback;
     .locals 1
 
     .line 1
@@ -39,11 +39,11 @@
     .line 2
     .line 3
     .line 4
-    new-instance v0, Landroidx/appcompat/widget/d0;
+    new-instance v0, Ls/z0;
 
     .line 5
     .line 6
-    invoke-direct {v0, p0}, Landroidx/appcompat/widget/d0;-><init>(Ljava/lang/Runnable;)V
+    invoke-direct {v0, p0}, Ls/z0;-><init>(Ljava/lang/Runnable;)V
 
     .line 7
     .line 8
@@ -51,7 +51,7 @@
     return-object v0
 .end method
 
-.method static c(Ljava/lang/Object;Ljava/lang/Object;)V
+.method public static c(Ljava/lang/Object;Ljava/lang/Object;)V
     .locals 1
 
     .line 1
@@ -76,7 +76,7 @@
     return-void
 .end method
 
-.method static d(Ljava/lang/Object;Ljava/lang/Object;)V
+.method public static d(Ljava/lang/Object;Ljava/lang/Object;)V
     .locals 0
 
     .line 1

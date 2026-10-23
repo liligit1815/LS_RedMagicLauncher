@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/u$a;
+.class public Landroidx/recyclerview/widget/u$a;
 .super Ljava/lang/Object;
 .source "ViewBoundsCheck.java"
 
@@ -9,25 +9,25 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:I
+.field public b:I
 
-.field c:I
+.field public c:I
 
-.field d:I
+.field public d:I
 
-.field e:I
+.field public e:I
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 1
 
     .line 1
@@ -48,7 +48,7 @@
 
 
 # virtual methods
-.method a(I)V
+.method public a(I)V
     .locals 1
 
     .line 1
@@ -66,7 +66,7 @@
     return-void
 .end method
 
-.method b()Z
+.method public b()Z
     .locals 4
 
     .line 1
@@ -247,7 +247,7 @@
     return p0
 .end method
 
-.method c(II)I
+.method public c(II)I
     .locals 0
 
     .line 1
@@ -279,7 +279,7 @@
     return p0
 .end method
 
-.method d()V
+.method public d()V
     .locals 1
 
     .line 1
@@ -293,7 +293,7 @@
     return-void
 .end method
 
-.method e(IIII)V
+.method public e(IIII)V
     .locals 0
 
     .line 1

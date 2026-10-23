@@ -1,5 +1,5 @@
 .class public Landroidx/appcompat/widget/Toolbar$g;
-.super Landroidx/appcompat/app/a$a;
+.super Ll/a$a;
 .source "Toolbar.java"
 
 
@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field b:I
+.field public b:I
 
 
 # direct methods
@@ -23,7 +23,7 @@
     .locals 0
 
     .line 3
-    invoke-direct {p0, p1, p2}, Landroidx/appcompat/app/a$a;-><init>(II)V
+    invoke-direct {p0, p1, p2}, Ll/a$a;-><init>(II)V
 
     const/4 p1, 0x0
 
@@ -33,7 +33,7 @@
     const p1, 0x800013
 
     .line 5
-    iput p1, p0, Landroidx/appcompat/app/a$a;->a:I
+    iput p1, p0, Ll/a$a;->a:I
 
     return-void
 .end method
@@ -42,7 +42,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/appcompat/app/a$a;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+    invoke-direct {p0, p1, p2}, Ll/a$a;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
     const/4 p1, 0x0
 
@@ -56,7 +56,7 @@
     .locals 0
 
     .line 14
-    invoke-direct {p0, p1}, Landroidx/appcompat/app/a$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-direct {p0, p1}, Ll/a$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
 
     const/4 p1, 0x0
 
@@ -70,7 +70,7 @@
     .locals 1
 
     .line 11
-    invoke-direct {p0, p1}, Landroidx/appcompat/app/a$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-direct {p0, p1}, Ll/a$a;-><init>(Landroid/view/ViewGroup$LayoutParams;)V
 
     const/4 v0, 0x0
 
@@ -83,25 +83,11 @@
     return-void
 .end method
 
-.method public constructor <init>(Landroidx/appcompat/app/a$a;)V
-    .locals 0
-
-    .line 9
-    invoke-direct {p0, p1}, Landroidx/appcompat/app/a$a;-><init>(Landroidx/appcompat/app/a$a;)V
-
-    const/4 p1, 0x0
-
-    .line 10
-    iput p1, p0, Landroidx/appcompat/widget/Toolbar$g;->b:I
-
-    return-void
-.end method
-
 .method public constructor <init>(Landroidx/appcompat/widget/Toolbar$g;)V
     .locals 1
 
     .line 6
-    invoke-direct {p0, p1}, Landroidx/appcompat/app/a$a;-><init>(Landroidx/appcompat/app/a$a;)V
+    invoke-direct {p0, p1}, Ll/a$a;-><init>(Ll/a$a;)V
 
     const/4 v0, 0x0
 
@@ -116,9 +102,23 @@
     return-void
 .end method
 
+.method public constructor <init>(Ll/a$a;)V
+    .locals 0
+
+    .line 9
+    invoke-direct {p0, p1}, Ll/a$a;-><init>(Ll/a$a;)V
+
+    const/4 p1, 0x0
+
+    .line 10
+    iput p1, p0, Landroidx/appcompat/widget/Toolbar$g;->b:I
+
+    return-void
+.end method
+
 
 # virtual methods
-.method a(Landroid/view/ViewGroup$MarginLayoutParams;)V
+.method public a(Landroid/view/ViewGroup$MarginLayoutParams;)V
     .locals 1
 
     .line 1

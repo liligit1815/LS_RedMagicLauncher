@@ -26,7 +26,7 @@
 
 
 # virtual methods
-.method createController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)Lcom/android/quickstep/interaction/TutorialController;
+.method public createController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)Lcom/android/quickstep/interaction/TutorialController;
     .locals 1
 
     .line 1
@@ -42,7 +42,7 @@
     return-object v0
 .end method
 
-.method protected createGestureAnimation()Landroid/animation/Animator;
+.method public createGestureAnimation()Landroid/animation/Animator;
     .locals 5
 
     .line 1
@@ -215,7 +215,7 @@
     return-object v0
 .end method
 
-.method getControllerClass()Ljava/lang/Class;
+.method public getControllerClass()Ljava/lang/Class;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -235,7 +235,7 @@
     return-object p0
 .end method
 
-.method getDefaultTutorialType()Lcom/android/quickstep/interaction/TutorialController$TutorialType;
+.method public getDefaultTutorialType()Lcom/android/quickstep/interaction/TutorialController$TutorialType;
     .locals 0
 
     .line 1
@@ -246,11 +246,11 @@
     return-object p0
 .end method
 
-.method getEdgeAnimationResId()Ljava/lang/Integer;
+.method public getEdgeAnimationResId()Ljava/lang/Integer;
     .locals 0
 
     .line 1
-    const p0, 0x7f080c32
+    const p0, 0x7f080c6d
 
     .line 2
     .line 3
@@ -296,11 +296,11 @@
     return p0
 .end method
 
-.method logTutorialStepCompleted(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public logTutorialStepCompleted(Lcom/android/launcher3/logging/StatsLogManager;)V
     .locals 0
 
     .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 2
     .line 3
@@ -308,11 +308,11 @@
     move-result-object p0
 
     .line 5
-    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$e;->p2:Lcom/android/launcher3/logging/StatsLogManager$e;
+    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_GESTURE_TUTORIAL_HOME_STEP_COMPLETED:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 6
     .line 7
-    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 8
     .line 9
@@ -320,11 +320,11 @@
     return-void
 .end method
 
-.method logTutorialStepShown(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public logTutorialStepShown(Lcom/android/launcher3/logging/StatsLogManager;)V
     .locals 0
 
     .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 2
     .line 3
@@ -332,11 +332,11 @@
     move-result-object p0
 
     .line 5
-    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$e;->m2:Lcom/android/launcher3/logging/StatsLogManager$e;
+    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_GESTURE_TUTORIAL_HOME_STEP_SHOWN:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 6
     .line 7
-    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 8
     .line 9

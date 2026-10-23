@@ -1,30 +1,30 @@
-.class Landroidx/recyclerview/widget/k;
+.class public Landroidx/recyclerview/widget/k;
 .super Ljava/lang/Object;
 .source "LayoutState.java"
 
 
 # instance fields
-.field a:Z
+.field public a:Z
 
-.field b:I
+.field public b:I
 
-.field c:I
+.field public c:I
 
-.field d:I
+.field public d:I
 
-.field e:I
+.field public e:I
 
-.field f:I
+.field public f:I
 
-.field g:I
+.field public g:I
 
-.field h:Z
+.field public h:Z
 
-.field i:Z
+.field public i:Z
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 1
 
     .line 1
@@ -56,7 +56,7 @@
 
 
 # virtual methods
-.method a(Landroidx/recyclerview/widget/RecyclerView$State;)Z
+.method public a(Landroidx/recyclerview/widget/RecyclerView$State;)Z
     .locals 0
 
     .line 1
@@ -93,7 +93,7 @@
     return p0
 .end method
 
-.method b(Landroidx/recyclerview/widget/RecyclerView$Recycler;)Landroid/view/View;
+.method public b(Landroidx/recyclerview/widget/RecyclerView$Recycler;)Landroid/view/View;
     .locals 2
 
     .line 1

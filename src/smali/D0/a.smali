@@ -1,17 +1,10 @@
-.class public final synthetic LD0/a;
+.class public abstract Ld0/a;
 .super Ljava/lang/Object;
-.source "R8$$SyntheticClass"
-
-# interfaces
-.implements Ly0/a$b;
-
-
-# instance fields
-.field public final synthetic a:LD0/b;
+.source "AbstractSafeParcelable.java"
 
 
 # direct methods
-.method public synthetic constructor <init>(LD0/b;)V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -20,27 +13,17 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, LD0/a;->a:LD0/b;
-
-    .line 5
-    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final a()V
+.method public final describeContents()I
     .locals 0
 
     .line 1
-    iget-object p0, p0, LD0/a;->a:LD0/b;
+    const/4 p0, 0x0
 
     .line 2
-    .line 3
-    invoke-static {p0}, LD0/b;->h(LD0/b;)V
-
-    .line 4
-    .line 5
-    .line 6
-    return-void
+    return p0
 .end method

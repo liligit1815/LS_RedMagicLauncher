@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -21,7 +21,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialFragment;F)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/OverviewGestureTutorialFragment;F)V
     .locals 0
 
     .line 1

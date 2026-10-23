@@ -298,7 +298,7 @@
     return p0
 .end method
 
-.method protected normalize(Landroid/graphics/PointF;)V
+.method public normalize(Landroid/graphics/PointF;)V
     .locals 2
 
     .line 1
@@ -358,7 +358,7 @@
     return-void
 .end method
 
-.method onAnimation(II)V
+.method public onAnimation(II)V
     .locals 6
 
     .line 1
@@ -650,7 +650,7 @@
     return-void
 .end method
 
-.method protected onChildAttachedToWindow(Landroid/view/View;)V
+.method public onChildAttachedToWindow(Landroid/view/View;)V
     .locals 2
 
     .line 1
@@ -703,16 +703,16 @@
     return-void
 .end method
 
-.method protected abstract onSeekTargetStep(IILandroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+.method public abstract onSeekTargetStep(IILandroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
 .end method
 
-.method protected abstract onStart()V
+.method public abstract onStart()V
 .end method
 
-.method protected abstract onStop()V
+.method public abstract onStop()V
 .end method
 
-.method protected abstract onTargetFound(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
+.method public abstract onTargetFound(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;Landroidx/recyclerview/widget/RecyclerView$SmoothScroller$Action;)V
 .end method
 
 .method public setTargetPosition(I)V
@@ -726,7 +726,7 @@
     return-void
 .end method
 
-.method start(Landroidx/recyclerview/widget/RecyclerView;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+.method public start(Landroidx/recyclerview/widget/RecyclerView;Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
     .locals 2
 
     .line 1
@@ -943,7 +943,7 @@
     throw p0
 .end method
 
-.method protected final stop()V
+.method public final stop()V
     .locals 3
 
     .line 1

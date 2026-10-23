@@ -1,18 +1,18 @@
-.class Landroidx/fragment/app/s$a;
+.class public Landroidx/fragment/app/s$a;
 .super Landroidx/fragment/app/x;
 .source "FragmentActivity.java"
 
 # interfaces
-.implements Lz/b;
-.implements Lz/c;
-.implements Landroidx/core/app/m;
-.implements Landroidx/core/app/n;
-.implements LW/p;
-.implements Landroidx/activity/r;
-.implements Lc/e;
-.implements Le0/f;
-.implements Landroidx/fragment/app/J;
-.implements LJ/l;
+.implements Lp5/b;
+.implements Lp5/c;
+.implements Lo5/m;
+.implements Lo5/n;
+.implements Lq6/t;
+.implements Ld/k0;
+.implements Lh/g;
+.implements Lh7/i;
+.implements Landroidx/fragment/app/j0;
+.implements Lz5/o;
 
 
 # annotations
@@ -21,7 +21,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "a"
 .end annotation
 
@@ -30,22 +30,22 @@
         "Landroidx/fragment/app/x<",
         "Landroidx/fragment/app/s;",
         ">;",
-        "Lz/b;",
-        "Lz/c;",
-        "Landroidx/core/app/m;",
-        "Landroidx/core/app/n;",
-        "LW/p;",
-        "Landroidx/activity/r;",
-        "Lc/e;",
-        "Le0/f;",
-        "Landroidx/fragment/app/J;",
-        "LJ/l;"
+        "Lp5/b;",
+        "Lp5/c;",
+        "Lo5/m;",
+        "Lo5/n;",
+        "Lq6/t;",
+        "Ld/k0;",
+        "Lh/g;",
+        "Lh7/i;",
+        "Landroidx/fragment/app/j0;",
+        "Lz5/o;"
     }
 .end annotation
 
 
 # instance fields
-.field final synthetic l:Landroidx/fragment/app/s;
+.field public final synthetic q:Landroidx/fragment/app/s;
 
 
 # direct methods
@@ -53,7 +53,7 @@
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iput-object p1, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -67,11 +67,11 @@
 
 
 # virtual methods
-.method public a(Landroidx/fragment/app/F;Landroidx/fragment/app/n;)V
+.method public a(Landroidx/fragment/app/f0;Landroidx/fragment/app/n;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -83,15 +83,15 @@
     return-void
 .end method
 
-.method public addMenuProvider(LJ/q;)V
+.method public addMenuProvider(Lz5/t;)V
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->addMenuProvider(LJ/q;)V
+    invoke-virtual {p0, p1}, Ld/p;->addMenuProvider(Lz5/t;)V
 
     .line 4
     .line 5
@@ -99,23 +99,23 @@
     return-void
 .end method
 
-.method public addOnConfigurationChangedListener(LI/a;)V
+.method public addOnConfigurationChangedListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
+            "Ly5/a<",
             "Landroid/content/res/Configuration;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->addOnConfigurationChangedListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->addOnConfigurationChangedListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -123,23 +123,23 @@
     return-void
 .end method
 
-.method public addOnMultiWindowModeChangedListener(LI/a;)V
+.method public addOnMultiWindowModeChangedListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
-            "Landroidx/core/app/f;",
+            "Ly5/a<",
+            "Lo5/f;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->addOnMultiWindowModeChangedListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->addOnMultiWindowModeChangedListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -147,23 +147,23 @@
     return-void
 .end method
 
-.method public addOnPictureInPictureModeChangedListener(LI/a;)V
+.method public addOnPictureInPictureModeChangedListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
-            "Landroidx/core/app/p;",
+            "Ly5/a<",
+            "Lo5/p;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->addOnPictureInPictureModeChangedListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->addOnPictureInPictureModeChangedListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -171,23 +171,23 @@
     return-void
 .end method
 
-.method public addOnTrimMemoryListener(LI/a;)V
+.method public addOnTrimMemoryListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
+            "Ly5/a<",
             "Ljava/lang/Integer;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->addOnTrimMemoryListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->addOnTrimMemoryListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -195,11 +195,11 @@
     return-void
 .end method
 
-.method public c(I)Landroid/view/View;
+.method public f(I)Landroid/view/View;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -214,11 +214,11 @@
     return-object p0
 .end method
 
-.method public d()Z
+.method public g()Z
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -259,15 +259,15 @@
     return p0
 .end method
 
-.method public getActivityResultRegistry()Lc/d;
+.method public getActivityResultRegistry()Lh/f;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/activity/h;->getActivityResultRegistry()Lc/d;
+    invoke-virtual {p0}, Ld/p;->getActivityResultRegistry()Lh/f;
 
     .line 4
     .line 5
@@ -278,49 +278,30 @@
     return-object p0
 .end method
 
-.method public getLifecycle()Landroidx/lifecycle/g;
+.method public getLifecycle()Landroidx/lifecycle/h;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/fragment/app/s;->mFragmentLifecycleRegistry:Landroidx/lifecycle/i;
+    iget-object p0, p0, Landroidx/fragment/app/s;->mFragmentLifecycleRegistry:Landroidx/lifecycle/LifecycleRegistry;
 
     .line 4
     .line 5
     return-object p0
 .end method
 
-.method public getOnBackPressedDispatcher()Landroidx/activity/p;
+.method public getOnBackPressedDispatcher()Ld/i0;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/activity/h;->getOnBackPressedDispatcher()Landroidx/activity/p;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object p0
-
-    .line 7
-    return-object p0
-.end method
-
-.method public getSavedStateRegistry()Le0/d;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroidx/activity/h;->getSavedStateRegistry()Le0/d;
+    invoke-virtual {p0}, Ld/p;->getOnBackPressedDispatcher()Ld/i0;
 
     .line 4
     .line 5
@@ -331,15 +312,15 @@
     return-object p0
 .end method
 
-.method public getViewModelStore()LW/o;
+.method public getSavedStateRegistry()Lh7/f;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/activity/h;->getViewModelStore()LW/o;
+    invoke-virtual {p0}, Ld/p;->getSavedStateRegistry()Lh7/f;
 
     .line 4
     .line 5
@@ -350,11 +331,30 @@
     return-object p0
 .end method
 
-.method public j(Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V
+.method public getViewModelStore()Lq6/s;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Ld/p;->getViewModelStore()Lq6/s;
+
+    .line 4
+    .line 5
+    .line 6
+    move-result-object p0
+
+    .line 7
+    return-object p0
+.end method
+
+.method public l(Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -366,11 +366,11 @@
     return-void
 .end method
 
-.method public bridge synthetic k()Ljava/lang/Object;
+.method public bridge synthetic m()Ljava/lang/Object;
     .locals 0
 
     .line 1
-    invoke-virtual {p0}, Landroidx/fragment/app/s$a;->t()Landroidx/fragment/app/s;
+    invoke-virtual {p0}, Landroidx/fragment/app/s$a;->u()Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -381,11 +381,11 @@
     return-object p0
 .end method
 
-.method public l()Landroid/view/LayoutInflater;
+.method public n()Landroid/view/LayoutInflater;
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object v0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
@@ -397,7 +397,7 @@
     move-result-object v0
 
     .line 7
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 8
     .line 9
@@ -412,15 +412,15 @@
     return-object p0
 .end method
 
-.method public o(Ljava/lang/String;)Z
+.method public p(Ljava/lang/String;)Z
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Landroidx/core/app/a;->s(Landroid/app/Activity;Ljava/lang/String;)Z
+    invoke-static {p0, p1}, Lo5/a;->v(Landroid/app/Activity;Ljava/lang/String;)Z
 
     .line 4
     .line 5
@@ -431,27 +431,15 @@
     return p0
 .end method
 
-.method public r()V
+.method public removeMenuProvider(Lz5/t;)V
     .locals 0
 
     .line 1
-    invoke-virtual {p0}, Landroidx/fragment/app/s$a;->s()V
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    .line 4
-    return-void
-.end method
-
-.method public removeMenuProvider(LJ/q;)V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->removeMenuProvider(LJ/q;)V
+    invoke-virtual {p0, p1}, Ld/p;->removeMenuProvider(Lz5/t;)V
 
     .line 4
     .line 5
@@ -459,23 +447,23 @@
     return-void
 .end method
 
-.method public removeOnConfigurationChangedListener(LI/a;)V
+.method public removeOnConfigurationChangedListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
+            "Ly5/a<",
             "Landroid/content/res/Configuration;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->removeOnConfigurationChangedListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->removeOnConfigurationChangedListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -483,23 +471,23 @@
     return-void
 .end method
 
-.method public removeOnMultiWindowModeChangedListener(LI/a;)V
+.method public removeOnMultiWindowModeChangedListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
-            "Landroidx/core/app/f;",
+            "Ly5/a<",
+            "Lo5/f;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->removeOnMultiWindowModeChangedListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->removeOnMultiWindowModeChangedListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -507,23 +495,23 @@
     return-void
 .end method
 
-.method public removeOnPictureInPictureModeChangedListener(LI/a;)V
+.method public removeOnPictureInPictureModeChangedListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
-            "Landroidx/core/app/p;",
+            "Ly5/a<",
+            "Lo5/p;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->removeOnPictureInPictureModeChangedListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->removeOnPictureInPictureModeChangedListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -531,23 +519,23 @@
     return-void
 .end method
 
-.method public removeOnTrimMemoryListener(LI/a;)V
+.method public removeOnTrimMemoryListener(Ly5/a;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LI/a<",
+            "Ly5/a<",
             "Ljava/lang/Integer;",
             ">;)V"
         }
     .end annotation
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/activity/h;->removeOnTrimMemoryListener(LI/a;)V
+    invoke-virtual {p0, p1}, Ld/p;->removeOnTrimMemoryListener(Ly5/a;)V
 
     .line 4
     .line 5
@@ -559,11 +547,23 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    invoke-virtual {p0}, Landroidx/fragment/app/s$a;->t()V
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/activity/h;->invalidateMenu()V
+    .line 4
+    return-void
+.end method
+
+.method public t()V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Ld/p;->invalidateMenu()V
 
     .line 4
     .line 5
@@ -571,11 +571,11 @@
     return-void
 .end method
 
-.method public t()Landroidx/fragment/app/s;
+.method public u()Landroidx/fragment/app/s;
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/fragment/app/s$a;->l:Landroidx/fragment/app/s;
+    iget-object p0, p0, Landroidx/fragment/app/s$a;->q:Landroidx/fragment/app/s;
 
     .line 2
     .line 3

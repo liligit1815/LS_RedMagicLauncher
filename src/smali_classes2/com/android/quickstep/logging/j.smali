@@ -3,11 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Function;
+.implements Lcom/android/launcher3/logging/StatsLogManager$EventEnum;
+
+
+# instance fields
+.field public final synthetic c:I
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(I)V
     .locals 0
 
     .line 1
@@ -16,20 +20,24 @@
     .line 2
     .line 3
     .line 4
+    iput p1, p0, Lcom/android/quickstep/logging/j;->c:I
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final apply(Ljava/lang/Object;)Ljava/lang/Object;
+.method public final getId()I
     .locals 0
 
     .line 1
-    check-cast p1, Lcom/android/launcher3/logger/LauncherAtom$Attribute;
+    iget p0, p0, Lcom/android/quickstep/logging/j;->c:I
 
     .line 2
     .line 3
-    invoke-virtual {p1}, Lcom/android/launcher3/logger/LauncherAtom$Attribute;->getNumber()I
+    invoke-static {p0}, Lcom/android/quickstep/logging/SettingsChangeLogger;->h(I)I
 
     .line 4
     .line 5
@@ -37,13 +45,5 @@
     move-result p0
 
     .line 7
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    .line 8
-    .line 9
-    .line 10
-    move-result-object p0
-
-    .line 11
-    return-object p0
+    return p0
 .end method

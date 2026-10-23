@@ -1,4 +1,4 @@
-.class Landroidx/lifecycle/k$b;
+.class public Landroidx/lifecycle/k$b;
 .super Landroidx/lifecycle/k$d;
 .source "LiveData.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "b"
 .end annotation
 
@@ -22,26 +22,26 @@
 
 
 # instance fields
-.field final synthetic k:Landroidx/lifecycle/k;
+.field public final synthetic p:Landroidx/lifecycle/k;
 
 
 # direct methods
-.method constructor <init>(Landroidx/lifecycle/k;LW/i;)V
+.method public constructor <init>(Landroidx/lifecycle/k;Lq6/l;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LW/i<",
+            "Lq6/l<",
             "-TT;>;)V"
         }
     .end annotation
 
     .line 1
-    iput-object p1, p0, Landroidx/lifecycle/k$b;->k:Landroidx/lifecycle/k;
+    iput-object p1, p0, Landroidx/lifecycle/k$b;->p:Landroidx/lifecycle/k;
 
     .line 2
     .line 3
-    invoke-direct {p0, p1, p2}, Landroidx/lifecycle/k$d;-><init>(Landroidx/lifecycle/k;LW/i;)V
+    invoke-direct {p0, p1, p2}, Landroidx/lifecycle/k$d;-><init>(Landroidx/lifecycle/k;Lq6/l;)V
 
     .line 4
     .line 5
@@ -51,7 +51,7 @@
 
 
 # virtual methods
-.method d()Z
+.method public c()Z
     .locals 0
 
     .line 1

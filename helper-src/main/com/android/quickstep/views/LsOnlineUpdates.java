@@ -83,7 +83,7 @@ public final class LsOnlineUpdates {
 
     public static void attachRecentStyles(Activity activity) {
         try {
-            View stack = activity.findViewById(0x7f0b06c2);
+            View stack = activity.findViewById(0x7f0b071a);
             if (stack == null || !(stack.getParent() instanceof ViewGroup)) return;
             ViewGroup parent = (ViewGroup) stack.getParent();
             if (parent.findViewWithTag(KEY) != null) return;
@@ -91,8 +91,8 @@ public final class LsOnlineUpdates {
             // Reuse the page's own themed card, title font and day/night text
             // treatment instead of introducing a separate button palette.
             LinearLayout entry = (LinearLayout) LayoutInflater.from(stack.getContext())
-                    .inflate(0x7f0e0285, parent, false);
-            TextView title = (TextView) entry.findViewById(0x7f0b06c3);
+                    .inflate(0x7f0e029b, parent, false);
+            TextView title = (TextView) entry.findViewById(0x7f0b071b);
             ViewGroup row = (ViewGroup) title.getParent();
             row.removeAllViews();
             entry.removeAllViews();
@@ -111,7 +111,7 @@ public final class LsOnlineUpdates {
             entry.setMinimumHeight(Math.round(48f * activity.getResources().getDisplayMetrics().density));
             entry.setOnClickListener(new SettingClick(activity));
             LinearLayout.LayoutParams entryParams = (LinearLayout.LayoutParams) entry.getLayoutParams();
-            entryParams.bottomMargin = activity.getResources().getDimensionPixelSize(0x7f0709ab);
+            entryParams.bottomMargin = activity.getResources().getDimensionPixelSize(0x7f070a17);
             entry.setLayoutParams(entryParams);
             parent.addView(entry);
         } catch (Exception error) { /* Keep OEM settings usable if its lifecycle is changing. */ }

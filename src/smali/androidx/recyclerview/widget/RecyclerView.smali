@@ -3,7 +3,7 @@
 .source "RecyclerView.java"
 
 # interfaces
-.implements LJ/s;
+.implements Lz5/v;
 
 
 # annotations
@@ -148,9 +148,9 @@
 
 .field mDataSetHasChangedAfterLayout:Z
 
-.field mDifferentialMotionFlingController:LJ/e;
+.field mDifferentialMotionFlingController:Lz5/e;
 
-.field private final mDifferentialMotionFlingTarget:LJ/f;
+.field private final mDifferentialMotionFlingTarget:Lz5/f;
 
 .field mDispatchItemsChangedEvent:Z
 
@@ -314,7 +314,7 @@
 
 .field private mScrollState:I
 
-.field private mScrollingChildHelper:LJ/t;
+.field private mScrollingChildHelper:Lz5/x;
 
 .field final mState:Landroidx/recyclerview/widget/RecyclerView$State;
 
@@ -487,7 +487,7 @@
     .locals 1
 
     .line 2
-    sget v0, Ld0/a;->a:I
+    sget v0, Lg7/a;->a:I
 
     invoke-direct {p0, p1, p2, v0}, Landroidx/recyclerview/widget/RecyclerView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
@@ -721,19 +721,19 @@
 
     invoke-direct {v4, p0}, Landroidx/recyclerview/widget/RecyclerView$5;-><init>(Landroidx/recyclerview/widget/RecyclerView;)V
 
-    iput-object v4, p0, Landroidx/recyclerview/widget/RecyclerView;->mDifferentialMotionFlingTarget:LJ/f;
+    iput-object v4, p0, Landroidx/recyclerview/widget/RecyclerView;->mDifferentialMotionFlingTarget:Lz5/f;
 
     .line 43
-    new-instance v6, LJ/e;
+    new-instance v6, Lz5/e;
 
     .line 44
     invoke-virtual {p0}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
 
     move-result-object v10
 
-    invoke-direct {v6, v10, v4}, LJ/e;-><init>(Landroid/content/Context;LJ/f;)V
+    invoke-direct {v6, v10, v4}, Lz5/e;-><init>(Landroid/content/Context;Lz5/f;)V
 
-    iput-object v6, p0, Landroidx/recyclerview/widget/RecyclerView;->mDifferentialMotionFlingController:LJ/e;
+    iput-object v6, p0, Landroidx/recyclerview/widget/RecyclerView;->mDifferentialMotionFlingController:Lz5/e;
 
     .line 45
     invoke-virtual {p0, v9}, Landroid/view/ViewGroup;->setScrollContainer(Z)V
@@ -754,14 +754,14 @@
     iput v6, p0, Landroidx/recyclerview/widget/RecyclerView;->mTouchSlop:I
 
     .line 49
-    invoke-static {v4, p1}, LJ/L;->e(Landroid/view/ViewConfiguration;Landroid/content/Context;)F
+    invoke-static {v4, p1}, Lz5/r0;->e(Landroid/view/ViewConfiguration;Landroid/content/Context;)F
 
     move-result v6
 
     iput v6, p0, Landroidx/recyclerview/widget/RecyclerView;->mScaledHorizontalScrollFactor:F
 
     .line 50
-    invoke-static {v4, p1}, LJ/L;->h(Landroid/view/ViewConfiguration;Landroid/content/Context;)F
+    invoke-static {v4, p1}, Lz5/r0;->h(Landroid/view/ViewConfiguration;Landroid/content/Context;)F
 
     move-result v6
 
@@ -875,7 +875,7 @@
     invoke-virtual {p0, v2}, Landroidx/recyclerview/widget/RecyclerView;->setAccessibilityDelegateCompat(Landroidx/recyclerview/widget/q;)V
 
     .line 65
-    sget-object v2, Ld0/d;->a:[I
+    sget-object v2, Lg7/d;->a:[I
 
     invoke-virtual {p1, p2, v2, p3, v7}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
@@ -892,17 +892,17 @@
     move v5, p3
 
     .line 66
-    invoke-static/range {v0 .. v6}, LJ/I;->h0(Landroid/view/View;Landroid/content/Context;[ILandroid/util/AttributeSet;Landroid/content/res/TypedArray;II)V
+    invoke-static/range {v0 .. v6}, Lz5/o0;->j0(Landroid/view/View;Landroid/content/Context;[ILandroid/util/AttributeSet;Landroid/content/res/TypedArray;II)V
 
     .line 67
-    sget v1, Ld0/d;->j:I
+    sget v1, Lg7/d;->j:I
 
     invoke-virtual {v4, v1}, Landroid/content/res/TypedArray;->getString(I)Ljava/lang/String;
 
     move-result-object v2
 
     .line 68
-    sget v1, Ld0/d;->d:I
+    sget v1, Lg7/d;->d:I
 
     invoke-virtual {v4, v1, v8}, Landroid/content/res/TypedArray;->getInt(II)I
 
@@ -917,7 +917,7 @@
 
     .line 70
     :cond_3
-    sget v1, Ld0/d;->c:I
+    sget v1, Lg7/d;->c:I
 
     invoke-virtual {v4, v1, v9}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
 
@@ -926,7 +926,7 @@
     iput-boolean v1, p0, Landroidx/recyclerview/widget/RecyclerView;->mClipToPadding:Z
 
     .line 71
-    sget v1, Ld0/d;->e:I
+    sget v1, Lg7/d;->e:I
 
     invoke-virtual {v4, v1, v7}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
 
@@ -937,7 +937,7 @@
     if-eqz v1, :cond_4
 
     .line 72
-    sget v1, Ld0/d;->h:I
+    sget v1, Lg7/d;->h:I
 
     .line 73
     invoke-virtual {v4, v1}, Landroid/content/res/TypedArray;->getDrawable(I)Landroid/graphics/drawable/Drawable;
@@ -947,7 +947,7 @@
     check-cast v1, Landroid/graphics/drawable/StateListDrawable;
 
     .line 74
-    sget v3, Ld0/d;->i:I
+    sget v3, Lg7/d;->i:I
 
     .line 75
     invoke-virtual {v4, v3}, Landroid/content/res/TypedArray;->getDrawable(I)Landroid/graphics/drawable/Drawable;
@@ -955,7 +955,7 @@
     move-result-object v3
 
     .line 76
-    sget v5, Ld0/d;->f:I
+    sget v5, Lg7/d;->f:I
 
     .line 77
     invoke-virtual {v4, v5}, Landroid/content/res/TypedArray;->getDrawable(I)Landroid/graphics/drawable/Drawable;
@@ -965,7 +965,7 @@
     check-cast v5, Landroid/graphics/drawable/StateListDrawable;
 
     .line 78
-    sget v6, Ld0/d;->g:I
+    sget v6, Lg7/d;->g:I
 
     .line 79
     invoke-virtual {v4, v6}, Landroid/content/res/TypedArray;->getDrawable(I)Landroid/graphics/drawable/Drawable;
@@ -1014,16 +1014,10 @@
 
     const/4 v6, 0x0
 
-    move-object v0, p0
-
-    move-object v1, p1
-
-    move-object v3, p2
-
     move v5, p3
 
     .line 85
-    invoke-static/range {v0 .. v6}, LJ/I;->h0(Landroid/view/View;Landroid/content/Context;[ILandroid/util/AttributeSet;Landroid/content/res/TypedArray;II)V
+    invoke-static/range {v0 .. v6}, Lz5/o0;->j0(Landroid/view/View;Landroid/content/Context;[ILandroid/util/AttributeSet;Landroid/content/res/TypedArray;II)V
 
     .line 86
     invoke-virtual {v4, v7, v9}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
@@ -1037,12 +1031,12 @@
     invoke-virtual {p0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setNestedScrollingEnabled(Z)V
 
     .line 89
-    invoke-static {p0, v9}, LN/a;->d(Landroid/view/View;Z)V
+    invoke-static {p0, v9}, Lg6/a;->h(Landroid/view/View;Z)V
 
     return-void
 .end method
 
-.method static synthetic access$000(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
+.method public static synthetic access$000(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
     .locals 0
 
     .line 1
@@ -1054,7 +1048,7 @@
     return-void
 .end method
 
-.method static synthetic access$100(Landroidx/recyclerview/widget/RecyclerView;I)V
+.method public static synthetic access$100(Landroidx/recyclerview/widget/RecyclerView;I)V
     .locals 0
 
     .line 1
@@ -1066,7 +1060,7 @@
     return-void
 .end method
 
-.method static synthetic access$200(Landroidx/recyclerview/widget/RecyclerView;)Z
+.method public static synthetic access$200(Landroidx/recyclerview/widget/RecyclerView;)Z
     .locals 0
 
     .line 1
@@ -1081,7 +1075,7 @@
     return p0
 .end method
 
-.method static synthetic access$300(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
+.method public static synthetic access$300(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
     .locals 0
 
     .line 1
@@ -1093,7 +1087,7 @@
     return-void
 .end method
 
-.method static synthetic access$400(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;)V
+.method public static synthetic access$400(Landroidx/recyclerview/widget/RecyclerView;Landroid/view/View;)V
     .locals 0
 
     .line 1
@@ -1105,7 +1099,7 @@
     return-void
 .end method
 
-.method static synthetic access$500(Landroidx/recyclerview/widget/RecyclerView;II)V
+.method public static synthetic access$500(Landroidx/recyclerview/widget/RecyclerView;II)V
     .locals 0
 
     .line 1
@@ -1342,7 +1336,7 @@
     return-void
 .end method
 
-.method static clearNestedRecyclerViewIfNotNested(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
+.method public static clearNestedRecyclerViewIfNotNested(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
     .locals 3
 
     .line 1
@@ -1449,7 +1443,7 @@
 
     .line 9
     .line 10
-    invoke-static {p2}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p2}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 11
     .line 12
@@ -1489,7 +1483,7 @@
     div-float/2addr p4, v1
 
     .line 26
-    invoke-static {p2, p3, p0}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {p2, p3, p0}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 27
     .line 28
@@ -1533,7 +1527,7 @@
 
     .line 45
     .line 46
-    invoke-static {p3}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p3}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 47
     .line 48
@@ -1564,7 +1558,7 @@
     div-float/2addr p4, v1
 
     .line 59
-    invoke-static {p3, p2, p0}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {p3, p2, p0}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 60
     .line 61
@@ -1825,16 +1819,15 @@
     move-exception p1
 
     .line 93
-    :try_start_2
-    new-array p4, v2, [Ljava/lang/Class;
+    const/4 v5, 0x0
 
     .line 94
-    .line 95
-    invoke-virtual {v1, p4}, Ljava/lang/Class;->getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+    :try_start_2
+    invoke-virtual {v1, v5}, Ljava/lang/Class;->getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
+    .line 95
     .line 96
     .line 97
-    .line 98
     move-result-object v4
     :try_end_2
     .catch Ljava/lang/NoSuchMethodException; {:try_start_2 .. :try_end_2} :catch_6
@@ -1844,100 +1837,97 @@
     .catch Ljava/lang/IllegalAccessException; {:try_start_2 .. :try_end_2} :catch_1
     .catch Ljava/lang/ClassCastException; {:try_start_2 .. :try_end_2} :catch_0
 
-    .line 99
-    const/4 v5, 0x0
-
-    .line 100
+    .line 98
     :goto_1
     :try_start_3
     invoke-virtual {v4, v3}, Ljava/lang/reflect/Constructor;->setAccessible(Z)V
 
+    .line 99
+    .line 100
     .line 101
-    .line 102
-    .line 103
     invoke-virtual {v4, v5}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
+    .line 102
+    .line 103
     .line 104
-    .line 105
-    .line 106
     move-result-object p1
 
-    .line 107
+    .line 105
     check-cast p1, Landroidx/recyclerview/widget/RecyclerView$LayoutManager;
+
+    .line 106
+    .line 107
+    invoke-virtual {p0, p1}, Landroidx/recyclerview/widget/RecyclerView;->setLayoutManager(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
 
     .line 108
     .line 109
-    invoke-virtual {p0, p1}, Landroidx/recyclerview/widget/RecyclerView;->setLayoutManager(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
-
     .line 110
-    .line 111
-    .line 112
     goto/16 :goto_7
 
-    .line 113
-    .line 114
+    .line 111
+    .line 112
     :catch_6
     move-exception p0
 
-    .line 115
+    .line 113
     invoke-virtual {p0, p1}, Ljava/lang/NoSuchMethodException;->initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
 
+    .line 114
+    .line 115
     .line 116
+    new-instance p1, Ljava/lang/IllegalStateException;
+
     .line 117
     .line 118
-    new-instance p1, Ljava/lang/IllegalStateException;
+    new-instance p4, Ljava/lang/StringBuilder;
 
     .line 119
     .line 120
-    new-instance p4, Ljava/lang/StringBuilder;
+    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 121
     .line 122
-    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 123
-    .line 124
-    .line 125
     invoke-interface {p3}, Landroid/util/AttributeSet;->getPositionDescription()Ljava/lang/String;
 
+    .line 124
+    .line 125
     .line 126
-    .line 127
-    .line 128
     move-result-object p5
 
-    .line 129
+    .line 127
     invoke-virtual {p4, p5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 128
+    .line 129
     .line 130
+    const-string p5, ": Error creating LayoutManager "
+
     .line 131
     .line 132
-    const-string p5, ": Error creating LayoutManager "
+    invoke-virtual {p4, p5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 133
     .line 134
-    invoke-virtual {p4, p5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     .line 135
-    .line 136
-    .line 137
     invoke-virtual {p4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 136
+    .line 137
     .line 138
-    .line 139
-    .line 140
     invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    .line 139
+    .line 140
     .line 141
-    .line 142
-    .line 143
     move-result-object p4
 
-    .line 144
+    .line 142
     invoke-direct {p1, p4, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
+    .line 143
+    .line 144
     .line 145
-    .line 146
-    .line 147
     throw p1
     :try_end_3
     .catch Ljava/lang/ClassNotFoundException; {:try_start_3 .. :try_end_3} :catch_4
@@ -1946,284 +1936,284 @@
     .catch Ljava/lang/IllegalAccessException; {:try_start_3 .. :try_end_3} :catch_1
     .catch Ljava/lang/ClassCastException; {:try_start_3 .. :try_end_3} :catch_0
 
-    .line 148
+    .line 146
     :goto_2
     new-instance p1, Ljava/lang/IllegalStateException;
 
+    .line 147
+    .line 148
+    new-instance p4, Ljava/lang/StringBuilder;
+
     .line 149
     .line 150
-    new-instance p4, Ljava/lang/StringBuilder;
+    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 151
     .line 152
-    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 153
-    .line 154
-    .line 155
     invoke-interface {p3}, Landroid/util/AttributeSet;->getPositionDescription()Ljava/lang/String;
 
+    .line 154
+    .line 155
     .line 156
-    .line 157
-    .line 158
     move-result-object p3
 
-    .line 159
+    .line 157
     invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 158
+    .line 159
     .line 160
+    const-string p3, ": Class is not a LayoutManager "
+
     .line 161
     .line 162
-    const-string p3, ": Class is not a LayoutManager "
+    invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 163
     .line 164
-    invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     .line 165
-    .line 166
-    .line 167
     invoke-virtual {p4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 166
+    .line 167
     .line 168
-    .line 169
-    .line 170
     invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    .line 169
+    .line 170
     .line 171
-    .line 172
-    .line 173
     move-result-object p2
 
-    .line 174
+    .line 172
     invoke-direct {p1, p2, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
+    .line 173
+    .line 174
     .line 175
-    .line 176
-    .line 177
     throw p1
 
-    .line 178
+    .line 176
     :goto_3
     new-instance p1, Ljava/lang/IllegalStateException;
 
+    .line 177
+    .line 178
+    new-instance p4, Ljava/lang/StringBuilder;
+
     .line 179
     .line 180
-    new-instance p4, Ljava/lang/StringBuilder;
+    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 181
     .line 182
-    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 183
-    .line 184
-    .line 185
     invoke-interface {p3}, Landroid/util/AttributeSet;->getPositionDescription()Ljava/lang/String;
 
+    .line 184
+    .line 185
     .line 186
-    .line 187
-    .line 188
     move-result-object p3
 
-    .line 189
+    .line 187
     invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 188
+    .line 189
     .line 190
+    const-string p3, ": Cannot access non-public constructor "
+
     .line 191
     .line 192
-    const-string p3, ": Cannot access non-public constructor "
+    invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 193
     .line 194
-    invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     .line 195
-    .line 196
-    .line 197
     invoke-virtual {p4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 196
+    .line 197
     .line 198
-    .line 199
-    .line 200
     invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    .line 199
+    .line 200
     .line 201
-    .line 202
-    .line 203
     move-result-object p2
 
-    .line 204
+    .line 202
     invoke-direct {p1, p2, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
+    .line 203
+    .line 204
     .line 205
-    .line 206
-    .line 207
     throw p1
 
-    .line 208
+    .line 206
     :goto_4
     new-instance p1, Ljava/lang/IllegalStateException;
 
+    .line 207
+    .line 208
+    new-instance p4, Ljava/lang/StringBuilder;
+
     .line 209
     .line 210
-    new-instance p4, Ljava/lang/StringBuilder;
+    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 211
     .line 212
-    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 213
-    .line 214
-    .line 215
     invoke-interface {p3}, Landroid/util/AttributeSet;->getPositionDescription()Ljava/lang/String;
 
+    .line 214
+    .line 215
     .line 216
-    .line 217
-    .line 218
     move-result-object p3
 
-    .line 219
+    .line 217
     invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 218
+    .line 219
     .line 220
-    .line 221
-    .line 222
     invoke-virtual {p4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 221
+    .line 222
     .line 223
-    .line 224
-    .line 225
     invoke-virtual {p4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 224
+    .line 225
     .line 226
-    .line 227
-    .line 228
     invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    .line 227
+    .line 228
     .line 229
-    .line 230
-    .line 231
     move-result-object p2
 
-    .line 232
+    .line 230
     invoke-direct {p1, p2, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
+    .line 231
+    .line 232
     .line 233
-    .line 234
-    .line 235
     throw p1
 
-    .line 236
+    .line 234
     :goto_5
     new-instance p1, Ljava/lang/IllegalStateException;
 
+    .line 235
+    .line 236
+    new-instance p4, Ljava/lang/StringBuilder;
+
     .line 237
     .line 238
-    new-instance p4, Ljava/lang/StringBuilder;
+    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 239
     .line 240
-    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 241
-    .line 242
-    .line 243
     invoke-interface {p3}, Landroid/util/AttributeSet;->getPositionDescription()Ljava/lang/String;
 
+    .line 242
+    .line 243
     .line 244
-    .line 245
-    .line 246
     move-result-object p3
 
-    .line 247
+    .line 245
     invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 246
+    .line 247
     .line 248
-    .line 249
-    .line 250
     invoke-virtual {p4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 249
+    .line 250
     .line 251
-    .line 252
-    .line 253
     invoke-virtual {p4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 252
+    .line 253
     .line 254
-    .line 255
-    .line 256
     invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    .line 255
+    .line 256
     .line 257
-    .line 258
-    .line 259
     move-result-object p2
 
-    .line 260
+    .line 258
     invoke-direct {p1, p2, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
+    .line 259
+    .line 260
     .line 261
-    .line 262
-    .line 263
     throw p1
 
-    .line 264
+    .line 262
     :goto_6
     new-instance p1, Ljava/lang/IllegalStateException;
 
+    .line 263
+    .line 264
+    new-instance p4, Ljava/lang/StringBuilder;
+
     .line 265
     .line 266
-    new-instance p4, Ljava/lang/StringBuilder;
+    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 267
     .line 268
-    invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
-
     .line 269
-    .line 270
-    .line 271
     invoke-interface {p3}, Landroid/util/AttributeSet;->getPositionDescription()Ljava/lang/String;
 
+    .line 270
+    .line 271
     .line 272
-    .line 273
-    .line 274
     move-result-object p3
 
-    .line 275
+    .line 273
     invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 274
+    .line 275
     .line 276
+    const-string p3, ": Unable to find LayoutManager "
+
     .line 277
     .line 278
-    const-string p3, ": Unable to find LayoutManager "
+    invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 279
     .line 280
-    invoke-virtual {p4, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
     .line 281
-    .line 282
-    .line 283
     invoke-virtual {p4, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    .line 282
+    .line 283
     .line 284
-    .line 285
-    .line 286
     invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    .line 285
+    .line 286
     .line 287
-    .line 288
-    .line 289
     move-result-object p2
 
-    .line 290
+    .line 288
     invoke-direct {p1, p2, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
 
+    .line 289
+    .line 290
     .line 291
-    .line 292
-    .line 293
     throw p1
 
-    .line 294
+    .line 292
     :cond_1
     :goto_7
     return-void
@@ -2328,7 +2318,7 @@
     .line 21
     .line 22
     .line 23
-    invoke-static {v1, v0}, LK/b;->c(Landroid/view/accessibility/AccessibilityEvent;I)V
+    invoke-static {v1, v0}, La6/b;->d(Landroid/view/accessibility/AccessibilityEvent;I)V
 
     .line 24
     .line 25
@@ -3957,7 +3947,7 @@
     return-void
 .end method
 
-.method static findNestedRecyclerView(Landroid/view/View;)Landroidx/recyclerview/widget/RecyclerView;
+.method public static findNestedRecyclerView(Landroid/view/View;)Landroidx/recyclerview/widget/RecyclerView;
     .locals 4
 
     .line 1
@@ -4292,7 +4282,7 @@
 
     if-eqz v3, :cond_8
 
-    invoke-static {v3}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v3}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     move-result v3
 
@@ -4336,7 +4326,7 @@
 
     if-eqz v3, :cond_9
 
-    invoke-static {v3}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v3}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     move-result v3
 
@@ -4375,7 +4365,7 @@
 
     if-eqz v4, :cond_b
 
-    invoke-static {v4}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v4}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     move-result v4
 
@@ -4417,7 +4407,7 @@
 
     if-eqz v4, :cond_c
 
-    invoke-static {v4}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v4}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     move-result v4
 
@@ -4585,7 +4575,7 @@
     return v1
 .end method
 
-.method static getChildViewHolderInt(Landroid/view/View;)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.method public static getChildViewHolderInt(Landroid/view/View;)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
     .locals 0
 
     .line 1
@@ -4619,7 +4609,7 @@
     return-object p0
 .end method
 
-.method static getDecoratedBoundsWithMarginsInt(Landroid/view/View;Landroid/graphics/Rect;)V
+.method public static getDecoratedBoundsWithMarginsInt(Landroid/view/View;Landroid/graphics/Rect;)V
     .locals 6
 
     .line 1
@@ -4960,11 +4950,11 @@
     return-object p0
 .end method
 
-.method private getScrollingChildHelper()LJ/t;
+.method private getScrollingChildHelper()Lz5/x;
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/recyclerview/widget/RecyclerView;->mScrollingChildHelper:LJ/t;
+    iget-object v0, p0, Landroidx/recyclerview/widget/RecyclerView;->mScrollingChildHelper:Lz5/x;
 
     .line 2
     .line 3
@@ -4972,21 +4962,21 @@
 
     .line 4
     .line 5
-    new-instance v0, LJ/t;
+    new-instance v0, Lz5/x;
 
     .line 6
     .line 7
-    invoke-direct {v0, p0}, LJ/t;-><init>(Landroid/view/View;)V
+    invoke-direct {v0, p0}, Lz5/x;-><init>(Landroid/view/View;)V
 
     .line 8
     .line 9
     .line 10
-    iput-object v0, p0, Landroidx/recyclerview/widget/RecyclerView;->mScrollingChildHelper:LJ/t;
+    iput-object v0, p0, Landroidx/recyclerview/widget/RecyclerView;->mScrollingChildHelper:Lz5/x;
 
     .line 11
     .line 12
     :cond_0
-    iget-object p0, p0, Landroidx/recyclerview/widget/RecyclerView;->mScrollingChildHelper:LJ/t;
+    iget-object p0, p0, Landroidx/recyclerview/widget/RecyclerView;->mScrollingChildHelper:Lz5/x;
 
     .line 13
     .line 14
@@ -5504,7 +5494,7 @@
     .end annotation
 
     .line 1
-    invoke-static {p0}, LJ/I;->u(Landroid/view/View;)I
+    invoke-static {p0}, Lz5/o0;->v(Landroid/view/View;)I
 
     .line 2
     .line 3
@@ -5520,7 +5510,7 @@
 
     .line 8
     .line 9
-    invoke-static {p0, v0}, LJ/I;->v0(Landroid/view/View;I)V
+    invoke-static {p0, v0}, Lz5/o0;->x0(Landroid/view/View;I)V
 
     .line 10
     .line 11
@@ -6860,7 +6850,7 @@
 
     .line 28
     .line 29
-    invoke-static {v1, v4, p3}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v1, v4, p3}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 30
     .line 31
@@ -6919,7 +6909,7 @@
     div-float/2addr p3, v5
 
     .line 56
-    invoke-static {v1, v4, p3}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v1, v4, p3}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 57
     .line 58
@@ -6980,7 +6970,7 @@
     div-float/2addr p1, v2
 
     .line 83
-    invoke-static {p3, v1, p1}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {p3, v1, p1}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 84
     .line 85
@@ -7038,7 +7028,7 @@
     sub-float/2addr v2, p1
 
     .line 110
-    invoke-static {p3, v1, v2}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {p3, v1, v2}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 111
     .line 112
@@ -7595,7 +7585,7 @@
 
     .line 18
     .line 19
-    invoke-static {v0}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v0}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 20
     .line 21
@@ -7653,7 +7643,7 @@
     sub-float/2addr v2, p2
 
     .line 46
-    invoke-static {v0, p1, v2}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, p1, v2}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 47
     .line 48
@@ -7668,7 +7658,7 @@
 
     .line 52
     .line 53
-    invoke-static {p2}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p2}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 54
     .line 55
@@ -7715,7 +7705,7 @@
 
     .line 74
     .line 75
-    invoke-static {v0}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v0}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 76
     .line 77
@@ -7763,7 +7753,7 @@
 
     .line 97
     .line 98
-    invoke-static {v0, p1, p2}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, p1, p2}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 99
     .line 100
@@ -7775,7 +7765,7 @@
 
     .line 103
     .line 104
-    invoke-static {p2}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p2}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 105
     .line 106
@@ -7883,7 +7873,7 @@
 
     .line 18
     .line 19
-    invoke-static {v0}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v0}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 20
     .line 21
@@ -7934,7 +7924,7 @@
     neg-float p1, p1
 
     .line 43
-    invoke-static {v0, p1, p2}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, p1, p2}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 44
     .line 45
@@ -7949,7 +7939,7 @@
 
     .line 49
     .line 50
-    invoke-static {p2}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p2}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 51
     .line 52
@@ -7996,7 +7986,7 @@
 
     .line 71
     .line 72
-    invoke-static {v0}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v0}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 73
     .line 74
@@ -8051,7 +8041,7 @@
     sub-float/2addr v2, p2
 
     .line 98
-    invoke-static {v0, p1, v2}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, p1, v2}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 99
     .line 100
@@ -8063,7 +8053,7 @@
 
     .line 103
     .line 104
-    invoke-static {p2}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p2}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 105
     .line 106
@@ -8776,7 +8766,7 @@
 
     .line 5
     :cond_0
-    invoke-static {p1}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {p1}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 6
     .line 7
@@ -8889,7 +8879,7 @@
 
     .line 9
     .line 10
-    invoke-static {v0}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v0}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 11
     .line 12
@@ -8947,7 +8937,7 @@
 
     .line 37
     .line 38
-    invoke-static {v0, v4, v5}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, v4, v5}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 39
     .line 40
@@ -8971,7 +8961,7 @@
 
     .line 47
     .line 48
-    invoke-static {v5}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v5}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 49
     .line 50
@@ -9025,7 +9015,7 @@
     div-float/2addr v5, v6
 
     .line 74
-    invoke-static {v0, v4, v5}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, v4, v5}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 75
     .line 76
@@ -9042,7 +9032,7 @@
 
     .line 81
     .line 82
-    invoke-static {v5}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v5}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 83
     .line 84
@@ -9096,7 +9086,7 @@
     div-float/2addr v2, v5
 
     .line 108
-    invoke-static {v0, v4, v2}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, v4, v2}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 109
     .line 110
@@ -9113,7 +9103,7 @@
 
     .line 115
     .line 116
-    invoke-static {v2}, Landroidx/core/widget/d;->c(Landroid/widget/EdgeEffect;)F
+    invoke-static {v2}, Le6/d;->c(Landroid/widget/EdgeEffect;)F
 
     .line 117
     .line 118
@@ -9170,7 +9160,7 @@
     sub-float/2addr v1, p1
 
     .line 143
-    invoke-static {v0, v4, v1}, Landroidx/core/widget/d;->i(Landroid/widget/EdgeEffect;FF)F
+    invoke-static {v0, v4, v1}, Le6/d;->i(Landroid/widget/EdgeEffect;FF)F
 
     .line 144
     .line 145
@@ -9214,7 +9204,7 @@
 
 
 # virtual methods
-.method absorbGlows(II)V
+.method public absorbGlows(II)V
     .locals 2
 
     .line 1
@@ -9626,7 +9616,7 @@
 
     .line 7
     .line 8
-    invoke-static {v0, v1}, LI/h;->b(ZLjava/lang/Object;)V
+    invoke-static {v0, v1}, Ly5/h;->b(ZLjava/lang/Object;)V
 
     .line 9
     .line 10
@@ -9643,7 +9633,7 @@
     return-void
 .end method
 
-.method animateAppearance(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;)V
+.method public animateAppearance(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;)V
     .locals 1
 
     .line 1
@@ -9680,7 +9670,7 @@
     return-void
 .end method
 
-.method animateDisappearance(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;)V
+.method public animateDisappearance(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;)V
     .locals 1
 
     .line 1
@@ -9722,7 +9712,7 @@
     return-void
 .end method
 
-.method assertInLayoutOrScroll(Ljava/lang/String;)V
+.method public assertInLayoutOrScroll(Ljava/lang/String;)V
     .locals 2
 
     .line 1
@@ -9845,7 +9835,7 @@
     return-void
 .end method
 
-.method assertNotInLayoutOrScroll(Ljava/lang/String;)V
+.method public assertNotInLayoutOrScroll(Ljava/lang/String;)V
     .locals 2
 
     .line 1
@@ -10003,7 +9993,7 @@
     return-void
 .end method
 
-.method canReuseUpdatedViewHolder(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Z
+.method public canReuseUpdatedViewHolder(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Z
     .locals 1
 
     .line 1
@@ -10053,7 +10043,7 @@
     return p0
 .end method
 
-.method protected checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
+.method public checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
     .locals 1
 
     .line 1
@@ -10098,7 +10088,7 @@
     return p0
 .end method
 
-.method clearOldPositions()V
+.method public clearOldPositions()V
     .locals 4
 
     .line 1
@@ -10546,7 +10536,7 @@
     return v1
 .end method
 
-.method considerReleasingGlowsOnScroll(II)V
+.method public considerReleasingGlowsOnScroll(II)V
     .locals 2
 
     .line 1
@@ -10763,7 +10753,7 @@
     return-void
 .end method
 
-.method consumeFlingInHorizontalStretch(I)I
+.method public consumeFlingInHorizontalStretch(I)I
     .locals 3
 
     .line 1
@@ -10794,7 +10784,7 @@
     return p0
 .end method
 
-.method consumeFlingInVerticalStretch(I)I
+.method public consumeFlingInVerticalStretch(I)I
     .locals 3
 
     .line 1
@@ -10825,7 +10815,7 @@
     return p0
 .end method
 
-.method consumePendingUpdateOperations()V
+.method public consumePendingUpdateOperations()V
     .locals 3
 
     .line 1
@@ -11058,7 +11048,7 @@
     return-void
 .end method
 
-.method defaultOnMeasure(II)V
+.method public defaultOnMeasure(II)V
     .locals 2
 
     .line 1
@@ -11081,7 +11071,7 @@
     add-int/2addr v0, v1
 
     .line 10
-    invoke-static {p0}, LJ/I;->x(Landroid/view/View;)I
+    invoke-static {p0}, Lz5/o0;->y(Landroid/view/View;)I
 
     .line 11
     .line 12
@@ -11116,7 +11106,7 @@
     add-int/2addr v0, v1
 
     .line 27
-    invoke-static {p0}, LJ/I;->w(Landroid/view/View;)I
+    invoke-static {p0}, Lz5/o0;->x(Landroid/view/View;)I
 
     .line 28
     .line 29
@@ -11140,7 +11130,7 @@
     return-void
 .end method
 
-.method dispatchChildAttached(Landroid/view/View;)V
+.method public dispatchChildAttached(Landroid/view/View;)V
     .locals 2
 
     .line 1
@@ -11232,7 +11222,7 @@
     return-void
 .end method
 
-.method dispatchChildDetached(Landroid/view/View;)V
+.method public dispatchChildDetached(Landroid/view/View;)V
     .locals 2
 
     .line 1
@@ -11684,7 +11674,7 @@
     return v2
 .end method
 
-.method dispatchLayout()V
+.method public dispatchLayout()V
     .locals 4
 
     .line 1
@@ -11960,7 +11950,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     .line 2
     .line 3
@@ -11968,7 +11958,7 @@
     move-result-object p0
 
     .line 5
-    invoke-virtual {p0, p1, p2, p3}, LJ/t;->a(FFZ)Z
+    invoke-virtual {p0, p1, p2, p3}, Lz5/x;->a(FFZ)Z
 
     .line 6
     .line 7
@@ -11983,7 +11973,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     .line 2
     .line 3
@@ -11991,7 +11981,7 @@
     move-result-object p0
 
     .line 5
-    invoke-virtual {p0, p1, p2}, LJ/t;->b(FF)Z
+    invoke-virtual {p0, p1, p2}, Lz5/x;->b(FF)Z
 
     .line 6
     .line 7
@@ -12006,11 +11996,11 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0, p1, p2, p3, p4}, LJ/t;->c(II[I[I)Z
+    invoke-virtual {p0, p1, p2, p3, p4}, Lz5/x;->c(II[I[I)Z
 
     move-result p0
 
@@ -12021,11 +12011,11 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual/range {p0 .. p5}, LJ/t;->d(II[I[II)Z
+    invoke-virtual/range {p0 .. p5}, Lz5/x;->d(II[I[II)Z
 
     move-result p0
 
@@ -12036,11 +12026,11 @@
     .locals 0
 
     .line 3
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual/range {p0 .. p7}, LJ/t;->e(IIII[II[I)V
+    invoke-virtual/range {p0 .. p7}, Lz5/x;->e(IIII[II[I)V
 
     return-void
 .end method
@@ -12049,11 +12039,11 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual/range {p0 .. p5}, LJ/t;->f(IIII[I)Z
+    invoke-virtual/range {p0 .. p5}, Lz5/x;->f(IIII[I)Z
 
     move-result p0
 
@@ -12064,18 +12054,18 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual/range {p0 .. p6}, LJ/t;->g(IIII[II)Z
+    invoke-virtual/range {p0 .. p6}, Lz5/x;->g(IIII[II)Z
 
     move-result p0
 
     return p0
 .end method
 
-.method dispatchOnScrollStateChanged(I)V
+.method public dispatchOnScrollStateChanged(I)V
     .locals 2
 
     .line 1
@@ -12169,7 +12159,7 @@
     return-void
 .end method
 
-.method dispatchOnScrolled(II)V
+.method public dispatchOnScrolled(II)V
     .locals 4
 
     .line 1
@@ -12302,7 +12292,7 @@
     return-void
 .end method
 
-.method dispatchPendingImportantForAccessibilityChanges()V
+.method public dispatchPendingImportantForAccessibilityChanges()V
     .locals 5
 
     .line 1
@@ -12436,7 +12426,7 @@
     return p0
 .end method
 
-.method protected dispatchRestoreInstanceState(Landroid/util/SparseArray;)V
+.method public dispatchRestoreInstanceState(Landroid/util/SparseArray;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -12456,7 +12446,7 @@
     return-void
 .end method
 
-.method protected dispatchSaveInstanceState(Landroid/util/SparseArray;)V
+.method public dispatchSaveInstanceState(Landroid/util/SparseArray;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -13152,7 +13142,7 @@
     return p0
 .end method
 
-.method ensureBottomGlow()V
+.method public ensureBottomGlow()V
     .locals 4
 
     .line 1
@@ -13288,7 +13278,7 @@
     return-void
 .end method
 
-.method ensureLeftGlow()V
+.method public ensureLeftGlow()V
     .locals 4
 
     .line 1
@@ -13424,7 +13414,7 @@
     return-void
 .end method
 
-.method ensureRightGlow()V
+.method public ensureRightGlow()V
     .locals 4
 
     .line 1
@@ -13560,7 +13550,7 @@
     return-void
 .end method
 
-.method ensureTopGlow()V
+.method public ensureTopGlow()V
     .locals 4
 
     .line 1
@@ -13696,7 +13686,7 @@
     return-void
 .end method
 
-.method exceptionLabel()Ljava/lang/String;
+.method public exceptionLabel()Ljava/lang/String;
     .locals 2
 
     .line 1
@@ -13800,7 +13790,7 @@
     return-object p0
 .end method
 
-.method final fillRemainingScrollValues(Landroidx/recyclerview/widget/RecyclerView$State;)V
+.method public final fillRemainingScrollValues(Landroidx/recyclerview/widget/RecyclerView$State;)V
     .locals 2
 
     .line 1
@@ -14456,7 +14446,7 @@
     return-object p0
 .end method
 
-.method findViewHolderForPosition(IZ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.method public findViewHolderForPosition(IZ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
     .locals 5
 
     .line 2
@@ -14556,7 +14546,7 @@
     return p0
 .end method
 
-.method flingNoThresholdCheck(II)Z
+.method public flingNoThresholdCheck(II)Z
     .locals 2
 
     .line 1
@@ -15061,7 +15051,7 @@
     return-object p0
 .end method
 
-.method protected generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+.method public generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
     .locals 3
 
     .line 1
@@ -15182,7 +15172,7 @@
     throw p1
 .end method
 
-.method protected generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
+.method public generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
     .locals 2
 
     .line 4
@@ -15246,7 +15236,7 @@
     return-object p0
 .end method
 
-.method getAdapterPositionInRecyclerView(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)I
+.method public getAdapterPositionInRecyclerView(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)I
     .locals 1
 
     .line 1
@@ -15344,7 +15334,7 @@
     return p0
 .end method
 
-.method getChangedHolderKey(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)J
+.method public getChangedHolderKey(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)J
     .locals 0
 
     .line 1
@@ -15420,7 +15410,7 @@
     return p0
 .end method
 
-.method protected getChildDrawingOrder(II)I
+.method public getChildDrawingOrder(II)I
     .locals 1
 
     .line 1
@@ -15716,7 +15706,7 @@
     return-object p0
 .end method
 
-.method getItemDecorInsetsForChild(Landroid/view/View;)Landroid/graphics/Rect;
+.method public getItemDecorInsetsForChild(Landroid/view/View;)Landroid/graphics/Rect;
     .locals 8
 
     .line 1
@@ -16086,7 +16076,7 @@
     return p0
 .end method
 
-.method getNanoTime()J
+.method public getNanoTime()J
     .locals 2
 
     .line 1
@@ -16184,11 +16174,11 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0}, LJ/t;->k()Z
+    invoke-virtual {p0}, Lz5/x;->k()Z
 
     move-result p0
 
@@ -16199,11 +16189,11 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0, p1}, LJ/t;->l(I)Z
+    invoke-virtual {p0, p1}, Lz5/x;->l(I)Z
 
     move-result p0
 
@@ -16264,7 +16254,7 @@
     return p0
 .end method
 
-.method initAdapterManager()V
+.method public initAdapterManager()V
     .locals 2
 
     .line 1
@@ -16293,7 +16283,7 @@
     return-void
 .end method
 
-.method initFastScroller(Landroid/graphics/drawable/StateListDrawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/StateListDrawable;Landroid/graphics/drawable/Drawable;)V
+.method public initFastScroller(Landroid/graphics/drawable/StateListDrawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/StateListDrawable;Landroid/graphics/drawable/Drawable;)V
     .locals 10
 
     .line 1
@@ -16333,7 +16323,7 @@
 
     .line 18
     .line 19
-    sget v2, Ld0/b;->a:I
+    sget v2, Lg7/b;->a:I
 
     .line 20
     .line 21
@@ -16345,7 +16335,7 @@
     move-result v7
 
     .line 25
-    sget v2, Ld0/b;->c:I
+    sget v2, Lg7/b;->c:I
 
     .line 26
     .line 27
@@ -16357,7 +16347,7 @@
     move-result v8
 
     .line 31
-    sget v2, Ld0/b;->b:I
+    sget v2, Lg7/b;->b:I
 
     .line 32
     .line 33
@@ -16447,7 +16437,7 @@
     throw p0
 .end method
 
-.method invalidateGlows()V
+.method public invalidateGlows()V
     .locals 1
 
     .line 1
@@ -16528,7 +16518,7 @@
     return-void
 .end method
 
-.method isAccessibilityEnabled()Z
+.method public isAccessibilityEnabled()Z
     .locals 0
 
     .line 1
@@ -16670,7 +16660,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     .line 2
     .line 3
@@ -16678,7 +16668,7 @@
     move-result-object p0
 
     .line 5
-    invoke-virtual {p0}, LJ/t;->m()Z
+    invoke-virtual {p0}, Lz5/x;->m()Z
 
     .line 6
     .line 7
@@ -16689,7 +16679,7 @@
     return p0
 .end method
 
-.method jumpToPositionForSmoothScroller(I)V
+.method public jumpToPositionForSmoothScroller(I)V
     .locals 1
 
     .line 1
@@ -16730,7 +16720,7 @@
     return-void
 .end method
 
-.method markItemDecorInsetsDirty()V
+.method public markItemDecorInsetsDirty()V
     .locals 4
 
     .line 1
@@ -16805,7 +16795,7 @@
     return-void
 .end method
 
-.method markKnownViewsInvalid()V
+.method public markKnownViewsInvalid()V
     .locals 4
 
     .line 1
@@ -17021,7 +17011,7 @@
     return-void
 .end method
 
-.method offsetPositionRecordsForInsert(II)V
+.method public offsetPositionRecordsForInsert(II)V
     .locals 6
 
     .line 1
@@ -17218,7 +17208,7 @@
     return-void
 .end method
 
-.method offsetPositionRecordsForMove(II)V
+.method public offsetPositionRecordsForMove(II)V
     .locals 10
 
     .line 1
@@ -17440,7 +17430,7 @@
     return-void
 .end method
 
-.method offsetPositionRecordsForRemove(IIZ)V
+.method public offsetPositionRecordsForRemove(IIZ)V
     .locals 9
 
     .line 1
@@ -17730,7 +17720,7 @@
     return-void
 .end method
 
-.method protected onAttachedToWindow()V
+.method public onAttachedToWindow()V
     .locals 5
 
     .line 1
@@ -17820,7 +17810,7 @@
 
     .line 41
     .line 42
-    sget-object v0, Landroidx/recyclerview/widget/g;->k:Ljava/lang/ThreadLocal;
+    sget-object v0, Landroidx/recyclerview/widget/g;->p:Ljava/lang/ThreadLocal;
 
     .line 43
     .line 44
@@ -17857,7 +17847,7 @@
 
     .line 60
     .line 61
-    invoke-static {p0}, LJ/I;->q(Landroid/view/View;)Landroid/view/Display;
+    invoke-static {p0}, Lz5/o0;->r(Landroid/view/View;)Landroid/view/Display;
 
     .line 62
     .line 63
@@ -17925,7 +17915,7 @@
     float-to-long v3, v3
 
     .line 93
-    iput-wide v3, v2, Landroidx/recyclerview/widget/g;->i:J
+    iput-wide v3, v2, Landroidx/recyclerview/widget/g;->n:J
 
     .line 94
     .line 95
@@ -17962,7 +17952,7 @@
     return-void
 .end method
 
-.method protected onDetachedFromWindow()V
+.method public onDetachedFromWindow()V
     .locals 2
 
     .line 1
@@ -18051,7 +18041,7 @@
     .line 44
     .line 45
     .line 46
-    invoke-static {p0}, LN/a;->b(Landroid/view/ViewGroup;)V
+    invoke-static {p0}, Lg6/a;->c(Landroid/view/ViewGroup;)V
 
     .line 47
     .line 48
@@ -18153,7 +18143,7 @@
     return-void
 .end method
 
-.method onEnterLayoutOrScroll()V
+.method public onEnterLayoutOrScroll()V
     .locals 1
 
     .line 1
@@ -18172,7 +18162,7 @@
     return-void
 .end method
 
-.method onExitLayoutOrScroll()V
+.method public onExitLayoutOrScroll()V
     .locals 1
 
     const/4 v0, 0x1
@@ -18183,7 +18173,7 @@
     return-void
 .end method
 
-.method onExitLayoutOrScroll(Z)V
+.method public onExitLayoutOrScroll(Z)V
     .locals 2
 
     .line 2
@@ -18627,11 +18617,11 @@
 
     .line 162
     .line 163
-    iget-object p0, v7, Landroidx/recyclerview/widget/RecyclerView;->mDifferentialMotionFlingController:LJ/e;
+    iget-object p0, v7, Landroidx/recyclerview/widget/RecyclerView;->mDifferentialMotionFlingController:Lz5/e;
 
     .line 164
     .line 165
-    invoke-virtual {p0, p1, v0}, LJ/e;->g(Landroid/view/MotionEvent;I)V
+    invoke-virtual {p0, p1, v0}, Lz5/e;->g(Landroid/view/MotionEvent;I)V
 
     .line 166
     .line 167
@@ -19261,7 +19251,7 @@
     return v1
 .end method
 
-.method protected onLayout(ZIIII)V
+.method public onLayout(ZIIII)V
     .locals 0
 
     .line 1
@@ -19294,7 +19284,7 @@
     return-void
 .end method
 
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 7
 
     .line 1
@@ -19782,7 +19772,7 @@
     return-void
 .end method
 
-.method protected onRequestFocusInDescendants(ILandroid/graphics/Rect;)Z
+.method public onRequestFocusInDescendants(ILandroid/graphics/Rect;)Z
     .locals 1
 
     .line 1
@@ -19816,7 +19806,7 @@
     return p0
 .end method
 
-.method protected onRestoreInstanceState(Landroid/os/Parcelable;)V
+.method public onRestoreInstanceState(Landroid/os/Parcelable;)V
     .locals 1
 
     .line 1
@@ -19845,7 +19835,7 @@
 
     .line 12
     .line 13
-    invoke-virtual {p1}, Landroidx/customview/view/a;->getSuperState()Landroid/os/Parcelable;
+    invoke-virtual {p1}, Lh6/a;->getSuperState()Landroid/os/Parcelable;
 
     .line 14
     .line 15
@@ -19866,7 +19856,7 @@
     return-void
 .end method
 
-.method protected onSaveInstanceState()Landroid/os/Parcelable;
+.method public onSaveInstanceState()Landroid/os/Parcelable;
     .locals 2
 
     .line 1
@@ -19952,7 +19942,7 @@
     return-void
 .end method
 
-.method protected onSizeChanged(IIII)V
+.method public onSizeChanged(IIII)V
     .locals 0
 
     .line 1
@@ -21053,7 +21043,7 @@
     return v7
 .end method
 
-.method postAnimationRunner()V
+.method public postAnimationRunner()V
     .locals 1
 
     .line 1
@@ -21077,7 +21067,7 @@
 
     .line 10
     .line 11
-    invoke-static {p0, v0}, LJ/I;->a0(Landroid/view/View;Ljava/lang/Runnable;)V
+    invoke-static {p0, v0}, Lz5/o0;->c0(Landroid/view/View;Ljava/lang/Runnable;)V
 
     .line 12
     .line 13
@@ -21093,7 +21083,7 @@
     return-void
 .end method
 
-.method processDataSetCompletelyChanged(Z)V
+.method public processDataSetCompletelyChanged(Z)V
     .locals 1
 
     .line 1
@@ -21123,7 +21113,7 @@
     return-void
 .end method
 
-.method recordAnimationInfoIfBouncedHiddenView(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;)V
+.method public recordAnimationInfoIfBouncedHiddenView(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Landroidx/recyclerview/widget/RecyclerView$ItemAnimator$ItemHolderInfo;)V
     .locals 3
 
     .line 1
@@ -21217,7 +21207,7 @@
     return-void
 .end method
 
-.method removeAndRecycleViews()V
+.method public removeAndRecycleViews()V
     .locals 2
 
     .line 1
@@ -21278,7 +21268,7 @@
     return-void
 .end method
 
-.method removeAnimatingView(Landroid/view/View;)Z
+.method public removeAnimatingView(Landroid/view/View;)Z
     .locals 3
 
     .line 1
@@ -21404,7 +21394,7 @@
     return v0
 .end method
 
-.method protected removeDetachedView(Landroid/view/View;Z)V
+.method public removeDetachedView(Landroid/view/View;Z)V
     .locals 2
 
     .line 1
@@ -21868,7 +21858,7 @@
     return-void
 .end method
 
-.method repositionShadowingViews()V
+.method public repositionShadowingViews()V
     .locals 7
 
     .line 1
@@ -22169,7 +22159,7 @@
     return-void
 .end method
 
-.method saveOldPositions()V
+.method public saveOldPositions()V
     .locals 5
 
     .line 1
@@ -22447,7 +22437,7 @@
     return-void
 .end method
 
-.method scrollByInternal(IILandroid/view/MotionEvent;I)Z
+.method public scrollByInternal(IILandroid/view/MotionEvent;I)Z
     .locals 16
 
     .line 1
@@ -22721,7 +22711,7 @@
 
     .line 123
     .line 124
-    invoke-static {v10, v6}, LJ/r;->i(Landroid/view/MotionEvent;I)Z
+    invoke-static {v10, v6}, Lz5/u;->i(Landroid/view/MotionEvent;I)Z
 
     .line 125
     .line 126
@@ -22764,7 +22754,7 @@
 
     .line 144
     .line 145
-    invoke-static {v10, v3}, LJ/r;->i(Landroid/view/MotionEvent;I)Z
+    invoke-static {v10, v3}, Lz5/u;->i(Landroid/view/MotionEvent;I)Z
 
     .line 146
     .line 147
@@ -22845,7 +22835,7 @@
     return v11
 .end method
 
-.method scrollStep(II[I)V
+.method public scrollStep(II[I)V
     .locals 4
 
     .line 1
@@ -23098,7 +23088,7 @@
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, LJ/I;->j0(Landroid/view/View;LJ/a;)V
+    invoke-static {p0, p1}, Lz5/o0;->l0(Landroid/view/View;Lz5/a;)V
 
     .line 4
     .line 5
@@ -23182,7 +23172,7 @@
     return-void
 .end method
 
-.method setChildImportantForAccessibilityInternal(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;I)Z
+.method public setChildImportantForAccessibilityInternal(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;I)Z
     .locals 1
 
     .line 1
@@ -23281,7 +23271,7 @@
     .locals 0
 
     .line 1
-    invoke-static {p1}, LI/h;->f(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {p1}, Ly5/h;->f(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 2
     .line 3
@@ -23701,7 +23691,7 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     .line 2
     .line 3
@@ -23709,7 +23699,7 @@
     move-result-object p0
 
     .line 5
-    invoke-virtual {p0, p1}, LJ/t;->n(Z)V
+    invoke-virtual {p0, p1}, Lz5/x;->n(Z)V
 
     .line 6
     .line 7
@@ -23781,7 +23771,7 @@
     return-void
 .end method
 
-.method setScrollState(I)V
+.method public setScrollState(I)V
     .locals 3
 
     .line 1
@@ -24030,7 +24020,7 @@
     return-void
 .end method
 
-.method shouldDeferAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)Z
+.method public shouldDeferAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)Z
     .locals 2
 
     .line 1
@@ -24053,7 +24043,7 @@
 
     .line 9
     .line 10
-    invoke-static {p1}, LK/b;->b(Landroid/view/accessibility/AccessibilityEvent;)I
+    invoke-static {p1}, La6/b;->b(Landroid/view/accessibility/AccessibilityEvent;)I
 
     .line 11
     .line 12
@@ -24145,7 +24135,7 @@
     return-void
 .end method
 
-.method smoothScrollBy(IILandroid/view/animation/Interpolator;IZ)V
+.method public smoothScrollBy(IILandroid/view/animation/Interpolator;IZ)V
     .locals 2
 
     .line 4
@@ -24302,7 +24292,7 @@
     return-void
 .end method
 
-.method startInterceptRequestLayout()V
+.method public startInterceptRequestLayout()V
     .locals 2
 
     .line 1
@@ -24347,11 +24337,11 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0, p1}, LJ/t;->p(I)Z
+    invoke-virtual {p0, p1}, Lz5/x;->p(I)Z
 
     move-result p0
 
@@ -24362,18 +24352,18 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0, p1, p2}, LJ/t;->q(II)Z
+    invoke-virtual {p0, p1, p2}, Lz5/x;->q(II)Z
 
     move-result p0
 
     return p0
 .end method
 
-.method stopInterceptRequestLayout(Z)V
+.method public stopInterceptRequestLayout(Z)V
     .locals 3
 
     .line 1
@@ -24558,11 +24548,11 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0}, LJ/t;->r()V
+    invoke-virtual {p0}, Lz5/x;->r()V
 
     return-void
 .end method
@@ -24571,11 +24561,11 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()LJ/t;
+    invoke-direct {p0}, Landroidx/recyclerview/widget/RecyclerView;->getScrollingChildHelper()Lz5/x;
 
     move-result-object p0
 
-    invoke-virtual {p0, p1}, LJ/t;->s(I)V
+    invoke-virtual {p0, p1}, Lz5/x;->s(I)V
 
     return-void
 .end method
@@ -24759,7 +24749,7 @@
     return-void
 .end method
 
-.method viewRangeUpdate(IILjava/lang/Object;)V
+.method public viewRangeUpdate(IILjava/lang/Object;)V
     .locals 6
 
     .line 1

@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;ZLjava/lang/Runnable;Landroid/animation/ValueAnimator$AnimatorUpdateListener;Z)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;ZLjava/lang/Runnable;Landroid/animation/ValueAnimator$AnimatorUpdateListener;Z)V
     .locals 0
 
     .line 1
@@ -65,7 +65,7 @@
     .locals 3
 
     .line 1
-    new-instance p1, Lcom/android/launcher3/anim/V;
+    new-instance p1, Lcom/android/launcher3/anim/PendingAnimation;
 
     .line 2
     .line 3
@@ -73,7 +73,7 @@
 
     .line 4
     .line 5
-    invoke-direct {p1, v0, v1}, Lcom/android/launcher3/anim/V;-><init>(J)V
+    invoke-direct {p1, v0, v1}, Lcom/android/launcher3/anim/PendingAnimation;-><init>(J)V
 
     .line 6
     .line 7
@@ -86,7 +86,7 @@
 
     .line 11
     .line 12
-    invoke-virtual {p2}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/d;
+    invoke-virtual {p2}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->getCurrentShift()Lcom/android/launcher3/anim/AnimatedFloat;
 
     .line 13
     .line 14
@@ -94,18 +94,18 @@
     move-result-object p2
 
     .line 16
-    sget-object v0, Lcom/android/launcher3/anim/d;->e:Landroid/util/FloatProperty;
+    sget-object v0, Lcom/android/launcher3/anim/AnimatedFloat;->VALUE:Landroid/util/FloatProperty;
 
     .line 17
     .line 18
     const/4 v1, 0x0
 
     .line 19
-    sget-object v2, LJ0/h;->C:Landroid/view/animation/Interpolator;
+    sget-object v2, Lcom/android/app/animation/Interpolators;->ACCELERATE:Landroid/view/animation/Interpolator;
 
     .line 20
     .line 21
-    invoke-virtual {p1, p2, v0, v1, v2}, Lcom/android/launcher3/anim/f;->b(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
+    invoke-virtual {p1, p2, v0, v1, v2}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->setFloat(Ljava/lang/Object;Landroid/util/FloatProperty;FLandroid/animation/TimeInterpolator;)Landroid/animation/Animator;
 
     .line 22
     .line 23
@@ -122,7 +122,7 @@
 
     .line 29
     .line 30
-    invoke-static {p2}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->n(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/animation/AnimatorListenerAdapter;
+    invoke-static {p2}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->l(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;)Landroid/animation/AnimatorListenerAdapter;
 
     .line 31
     .line 32
@@ -130,7 +130,7 @@
     move-result-object p2
 
     .line 34
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 35
     .line 36
@@ -144,7 +144,7 @@
 
     .line 40
     .line 41
-    invoke-static {p2}, Lcom/android/launcher3/anim/h;->c(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
+    invoke-static {p2}, Lcom/android/launcher3/anim/AnimatorListeners;->forSuccessCallback(Ljava/lang/Runnable;)Landroid/animation/Animator$AnimatorListener;
 
     .line 42
     .line 43
@@ -152,7 +152,7 @@
     move-result-object p2
 
     .line 45
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/anim/f;->g(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 46
     .line 47
@@ -166,13 +166,13 @@
 
     .line 51
     .line 52
-    invoke-virtual {p1, p2}, Lcom/android/launcher3/anim/f;->i(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+    invoke-virtual {p1, p2}, Lcom/android/launcher3/anim/AnimatedPropertySetter;->addOnFrameListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
     .line 53
     .line 54
     .line 55
     :cond_2
-    invoke-virtual {p1}, Lcom/android/launcher3/anim/V;->k()Landroid/animation/AnimatorSet;
+    invoke-virtual {p1}, Lcom/android/launcher3/anim/PendingAnimation;->buildAnim()Landroid/animation/AnimatorSet;
 
     .line 56
     .line 57

@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/MenuFragment;
+.field public final synthetic c:Lcom/android/quickstep/interaction/MenuFragment;
 
 
 # direct methods
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/w;->g:Lcom/android/quickstep/interaction/MenuFragment;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/w;->c:Lcom/android/quickstep/interaction/MenuFragment;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/w;->g:Lcom/android/quickstep/interaction/MenuFragment;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/w;->c:Lcom/android/quickstep/interaction/MenuFragment;
 
     .line 2
     .line 3
-    invoke-static {p0, p1}, Lcom/android/quickstep/interaction/MenuFragment;->l(Lcom/android/quickstep/interaction/MenuFragment;Landroid/view/View;)V
+    invoke-static {p0, p1}, Lcom/android/quickstep/interaction/MenuFragment;->k(Lcom/android/quickstep/interaction/MenuFragment;Landroid/view/View;)V
 
     .line 4
     .line 5

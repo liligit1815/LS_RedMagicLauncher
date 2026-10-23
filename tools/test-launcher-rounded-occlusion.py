@@ -47,7 +47,7 @@ public class RoundedOcclusionTest {
         void transformMatrixToLocal(Matrix m){try{m.a.preConcatenate(global.createInverse());}catch(Exception e){throw new RuntimeException(e);}}
     }
     static class FullscreenDrawParams {float radius=40;float getCurrentCornerRadius(){return radius;}}
-    static class TaskContainer {View snapshot=new View();View getSnapshotView(){return snapshot;}}
+    static class TaskContainer {View snapshot=new View();View getSnapshotView(){return snapshot;} View getTaskContentView(){return snapshot;}}
     static class TaskView extends View {
         float clip=-1;int invalidations;FullscreenDrawParams params=new FullscreenDrawParams();
         List<TaskContainer> containers=new ArrayList<>(Arrays.asList(new TaskContainer()));
@@ -153,7 +153,7 @@ with tempfile.TemporaryDirectory(prefix='launcher-rounded-') as folder:
 
 native = (ROOT / 'helper-src/main/com/android/quickstep/views/LsNativeStack.java').read_text('utf-8')
 assert native.index('LsStackOcclusion.update(recents)') > native.index('task.setNativeStackTransform(\n                        stackX')
-task = (ROOT / 'src/smali_classes2/com/android/quickstep/views/TaskView.smali').read_text('utf-8')
+task = (ROOT / 'src/smali_classes3/com/android/quickstep/views/TaskView.smali').read_text('utf-8')
 draw = task.split('.method protected drawChild(', 1)[1].split('.end method', 1)[0]
 assert draw.index('LsStackOcclusion;->clip(') < draw.index('clipRect(FFFF)')
 assert 'if-nez v0, :native_stack_draw_shaped' in draw

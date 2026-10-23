@@ -1,0 +1,116 @@
+{
+  "lock_or_unlock_home_screen_layout": {
+    "type": "function",
+    "function": {
+      "name": "lock_or_unlock_home_screen_layout",
+      "description": "锁定或解锁桌面布局",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "String",
+            "description": "返回值仅从以下两个中选择：LOCK，UNLOCK"
+          }
+        },
+        "required":[
+          "action"
+        ]
+      }
+    },
+    "sdk": {
+      "implement": "broadcast",
+      "broadcast_intent":"com.android.launcher3.aitools.LockLayout",
+      "executor": "com.android.launcher3.aitools.LockLayoutExecutor"
+    },
+    "filter": {
+      "role": "tool",
+      "region": [
+        "CN",
+        "US"
+      ],
+      "language": [
+        "cn",
+        "en"
+      ],
+      "run_when_screen_locked": false,
+      "run_in_background": false,
+      "merge_response_card": false
+    }
+  },
+
+  "switch_launcher_mode": {
+    "type": "function",
+    "function": {
+      "name": "switch_launcher_mode",
+      "description": "切换桌面模式，桌面模式包括：标准模式、抽屉模式、简易模式、关爱模式",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "String",
+            "description":"需要执行的动作是打开还是关闭，返回值从以下选择：ON、OFF"
+          },
+          "launcherMode": {
+            "type":"string",
+            "description":"需要切换的模式名称，返回值从以下选择：标准模式、抽屉模式、简易模式、关爱模式"
+          }
+        },
+        "required":[
+          "action",
+          "launcherMode"
+        ]
+      }
+    },
+    "sdk": {
+      "implement": "broadcast",
+      "broadcast_intent":"com.android.launcher3.aitools.SwitchLauncherMode",
+      "executor":"com.android.launcher3.aitools.SwitchLauncherModeExecutor"
+    },
+    "filter": {
+      "role": "tool",
+      "region": [
+        "CN",
+        "US"
+      ],
+      "language": [
+        "cn",
+        "en"
+      ],
+      "run_when_screen_locked": false,
+      "run_in_background": false,
+      "merge_response_card": false
+    }
+  },
+
+  "arrange_launcher_screen": {
+    "type": "function",
+    "function": {
+      "name": "arrange_launcher_screen",
+      "description": "打开桌面设置",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required":[]
+      }
+    },
+    "sdk": {
+      "implement": "broadcast",
+      "broadcast_intent":"com.android.launcher3.aitools.ArrangeLauncherScreen",
+      "executor":"com.android.launcher3.aitools.ArrangeLauncherScreenExecutor"
+    },
+    "filter": {
+      "role": "tool",
+      "region": [
+        "CN",
+        "US"
+      ],
+      "language": [
+        "cn",
+        "en"
+      ],
+      "run_when_screen_locked": false,
+      "run_in_background": false,
+      "merge_response_card": false
+    }
+  }
+}

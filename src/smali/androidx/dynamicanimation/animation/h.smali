@@ -4,7 +4,7 @@
 
 
 # instance fields
-.field private a:F
+.field public a:F
 
 
 # direct methods

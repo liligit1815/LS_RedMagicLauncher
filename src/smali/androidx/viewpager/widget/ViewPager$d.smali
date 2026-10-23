@@ -1,34 +1,34 @@
-.class Landroidx/viewpager/widget/ViewPager$d;
+.class public Landroidx/viewpager/widget/ViewPager$d;
 .super Ljava/lang/Object;
 .source "ViewPager.java"
 
 # interfaces
-.implements LJ/x;
+.implements Lz5/b0;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Landroidx/viewpager/widget/ViewPager;->u()V
+    value = Landroidx/viewpager/widget/ViewPager;->initViewPager()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field private final a:Landroid/graphics/Rect;
+.field public final c:Landroid/graphics/Rect;
 
-.field final synthetic b:Landroidx/viewpager/widget/ViewPager;
+.field public final synthetic m:Landroidx/viewpager/widget/ViewPager;
 
 
 # direct methods
-.method constructor <init>(Landroidx/viewpager/widget/ViewPager;)V
+.method public constructor <init>(Landroidx/viewpager/widget/ViewPager;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/viewpager/widget/ViewPager$d;->b:Landroidx/viewpager/widget/ViewPager;
+    iput-object p1, p0, Landroidx/viewpager/widget/ViewPager$d;->m:Landroidx/viewpager/widget/ViewPager;
 
     .line 2
     .line 3
@@ -46,7 +46,7 @@
     .line 9
     .line 10
     .line 11
-    iput-object p1, p0, Landroidx/viewpager/widget/ViewPager$d;->a:Landroid/graphics/Rect;
+    iput-object p1, p0, Landroidx/viewpager/widget/ViewPager$d;->c:Landroid/graphics/Rect;
 
     .line 12
     .line 13
@@ -55,11 +55,11 @@
 
 
 # virtual methods
-.method public a(Landroid/view/View;LJ/Y;)LJ/Y;
+.method public onApplyWindowInsets(Landroid/view/View;Lz5/d1;)Lz5/d1;
     .locals 5
 
     .line 1
-    invoke-static {p1, p2}, LJ/I;->V(Landroid/view/View;LJ/Y;)LJ/Y;
+    invoke-static {p1, p2}, Lz5/o0;->W(Landroid/view/View;Lz5/d1;)Lz5/d1;
 
     .line 2
     .line 3
@@ -67,7 +67,7 @@
     move-result-object p1
 
     .line 5
-    invoke-virtual {p1}, LJ/Y;->o()Z
+    invoke-virtual {p1}, Lz5/d1;->s()Z
 
     .line 6
     .line 7
@@ -83,11 +83,11 @@
 
     .line 12
     :cond_0
-    iget-object p2, p0, Landroidx/viewpager/widget/ViewPager$d;->a:Landroid/graphics/Rect;
+    iget-object p2, p0, Landroidx/viewpager/widget/ViewPager$d;->c:Landroid/graphics/Rect;
 
     .line 13
     .line 14
-    invoke-virtual {p1}, LJ/Y;->j()I
+    invoke-virtual {p1}, Lz5/d1;->l()I
 
     .line 15
     .line 16
@@ -99,7 +99,7 @@
 
     .line 19
     .line 20
-    invoke-virtual {p1}, LJ/Y;->l()I
+    invoke-virtual {p1}, Lz5/d1;->n()I
 
     .line 21
     .line 22
@@ -111,7 +111,7 @@
 
     .line 25
     .line 26
-    invoke-virtual {p1}, LJ/Y;->k()I
+    invoke-virtual {p1}, Lz5/d1;->m()I
 
     .line 27
     .line 28
@@ -123,7 +123,7 @@
 
     .line 31
     .line 32
-    invoke-virtual {p1}, LJ/Y;->i()I
+    invoke-virtual {p1}, Lz5/d1;->k()I
 
     .line 33
     .line 34
@@ -135,7 +135,7 @@
 
     .line 37
     .line 38
-    iget-object v0, p0, Landroidx/viewpager/widget/ViewPager$d;->b:Landroidx/viewpager/widget/ViewPager;
+    iget-object v0, p0, Landroidx/viewpager/widget/ViewPager$d;->m:Landroidx/viewpager/widget/ViewPager;
 
     .line 39
     .line 40
@@ -155,7 +155,7 @@
 
     .line 46
     .line 47
-    iget-object v2, p0, Landroidx/viewpager/widget/ViewPager$d;->b:Landroidx/viewpager/widget/ViewPager;
+    iget-object v2, p0, Landroidx/viewpager/widget/ViewPager$d;->m:Landroidx/viewpager/widget/ViewPager;
 
     .line 48
     .line 49
@@ -167,7 +167,7 @@
     move-result-object v2
 
     .line 53
-    invoke-static {v2, p1}, LJ/I;->f(Landroid/view/View;LJ/Y;)LJ/Y;
+    invoke-static {v2, p1}, Lz5/o0;->g(Landroid/view/View;Lz5/d1;)Lz5/d1;
 
     .line 54
     .line 55
@@ -175,7 +175,7 @@
     move-result-object v2
 
     .line 57
-    invoke-virtual {v2}, LJ/Y;->j()I
+    invoke-virtual {v2}, Lz5/d1;->l()I
 
     .line 58
     .line 59
@@ -199,7 +199,7 @@
 
     .line 68
     .line 69
-    invoke-virtual {v2}, LJ/Y;->l()I
+    invoke-virtual {v2}, Lz5/d1;->n()I
 
     .line 70
     .line 71
@@ -223,7 +223,7 @@
 
     .line 80
     .line 81
-    invoke-virtual {v2}, LJ/Y;->k()I
+    invoke-virtual {v2}, Lz5/d1;->m()I
 
     .line 82
     .line 83
@@ -247,7 +247,7 @@
 
     .line 92
     .line 93
-    invoke-virtual {v2}, LJ/Y;->i()I
+    invoke-virtual {v2}, Lz5/d1;->k()I
 
     .line 94
     .line 95
@@ -295,7 +295,7 @@
 
     .line 115
     .line 116
-    invoke-virtual {p1, p0, v0, v1, p2}, LJ/Y;->q(IIII)LJ/Y;
+    invoke-virtual {p1, p0, v0, v1, p2}, Lz5/d1;->v(IIII)Lz5/d1;
 
     .line 117
     .line 118

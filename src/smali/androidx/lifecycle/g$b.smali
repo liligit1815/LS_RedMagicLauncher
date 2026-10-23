@@ -1,295 +1,128 @@
-.class public final enum Landroidx/lifecycle/g$b;
-.super Ljava/lang/Enum;
-.source "Lifecycle.kt"
+.class public final Landroidx/lifecycle/g$b;
+.super Ljava/lang/Object;
+.source "LegacySavedStateHandleController.android.kt"
+
+# interfaces
+.implements Landroidx/lifecycle/i;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Landroidx/lifecycle/g;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Landroidx/lifecycle/g;->c(Lh7/f;Landroidx/lifecycle/h;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x4019
-    name = "b"
+    accessFlags = 0x19
+    name = null
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "Ljava/lang/Enum<",
-        "Landroidx/lifecycle/g$b;",
-        ">;"
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u001d\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\u0008\u0003*\u0001\u0000\u0008\n\u0018\u00002\u00020\u0001J\u001f\u0010\u0007\u001a\u00020\u00062\u0006\u0010\u0003\u001a\u00020\u00022\u0006\u0010\u0005\u001a\u00020\u0004H\u0016\u00a2\u0006\u0004\u0008\u0007\u0010\u0008\u00a8\u0006\t"
     }
+    d2 = {
+        "androidx/lifecycle/g$b",
+        "Landroidx/lifecycle/i;",
+        "Lq6/f;",
+        "source",
+        "Landroidx/lifecycle/h$a;",
+        "event",
+        "",
+        "C",
+        "(Lq6/f;Landroidx/lifecycle/h$a;)V",
+        "lifecycle-viewmodel-savedstate"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x0,
+        0x0
+    }
+    xi = 0x30
 .end annotation
 
 
-# static fields
-.field public static final enum g:Landroidx/lifecycle/g$b;
+# instance fields
+.field public final synthetic c:Landroidx/lifecycle/h;
 
-.field public static final enum h:Landroidx/lifecycle/g$b;
-
-.field public static final enum i:Landroidx/lifecycle/g$b;
-
-.field public static final enum j:Landroidx/lifecycle/g$b;
-
-.field public static final enum k:Landroidx/lifecycle/g$b;
-
-.field private static final synthetic l:[Landroidx/lifecycle/g$b;
+.field public final synthetic m:Lh7/f;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 3
-
-    .line 1
-    new-instance v0, Landroidx/lifecycle/g$b;
-
-    .line 2
-    .line 3
-    const-string v1, "DESTROYED"
-
-    .line 4
-    .line 5
-    const/4 v2, 0x0
-
-    .line 6
-    invoke-direct {v0, v1, v2}, Landroidx/lifecycle/g$b;-><init>(Ljava/lang/String;I)V
-
-    .line 7
-    .line 8
-    .line 9
-    sput-object v0, Landroidx/lifecycle/g$b;->g:Landroidx/lifecycle/g$b;
-
-    .line 10
-    .line 11
-    new-instance v0, Landroidx/lifecycle/g$b;
-
-    .line 12
-    .line 13
-    const-string v1, "INITIALIZED"
-
-    .line 14
-    .line 15
-    const/4 v2, 0x1
-
-    .line 16
-    invoke-direct {v0, v1, v2}, Landroidx/lifecycle/g$b;-><init>(Ljava/lang/String;I)V
-
-    .line 17
-    .line 18
-    .line 19
-    sput-object v0, Landroidx/lifecycle/g$b;->h:Landroidx/lifecycle/g$b;
-
-    .line 20
-    .line 21
-    new-instance v0, Landroidx/lifecycle/g$b;
-
-    .line 22
-    .line 23
-    const-string v1, "CREATED"
-
-    .line 24
-    .line 25
-    const/4 v2, 0x2
-
-    .line 26
-    invoke-direct {v0, v1, v2}, Landroidx/lifecycle/g$b;-><init>(Ljava/lang/String;I)V
-
-    .line 27
-    .line 28
-    .line 29
-    sput-object v0, Landroidx/lifecycle/g$b;->i:Landroidx/lifecycle/g$b;
-
-    .line 30
-    .line 31
-    new-instance v0, Landroidx/lifecycle/g$b;
-
-    .line 32
-    .line 33
-    const-string v1, "STARTED"
-
-    .line 34
-    .line 35
-    const/4 v2, 0x3
-
-    .line 36
-    invoke-direct {v0, v1, v2}, Landroidx/lifecycle/g$b;-><init>(Ljava/lang/String;I)V
-
-    .line 37
-    .line 38
-    .line 39
-    sput-object v0, Landroidx/lifecycle/g$b;->j:Landroidx/lifecycle/g$b;
-
-    .line 40
-    .line 41
-    new-instance v0, Landroidx/lifecycle/g$b;
-
-    .line 42
-    .line 43
-    const-string v1, "RESUMED"
-
-    .line 44
-    .line 45
-    const/4 v2, 0x4
-
-    .line 46
-    invoke-direct {v0, v1, v2}, Landroidx/lifecycle/g$b;-><init>(Ljava/lang/String;I)V
-
-    .line 47
-    .line 48
-    .line 49
-    sput-object v0, Landroidx/lifecycle/g$b;->k:Landroidx/lifecycle/g$b;
-
-    .line 50
-    .line 51
-    invoke-static {}, Landroidx/lifecycle/g$b;->a()[Landroidx/lifecycle/g$b;
-
-    .line 52
-    .line 53
-    .line 54
-    move-result-object v0
-
-    .line 55
-    sput-object v0, Landroidx/lifecycle/g$b;->l:[Landroidx/lifecycle/g$b;
-
-    .line 56
-    .line 57
-    return-void
-.end method
-
-.method private constructor <init>(Ljava/lang/String;I)V
+.method public constructor <init>(Landroidx/lifecycle/h;Lh7/f;)V
     .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()V"
-        }
-    .end annotation
 
     .line 1
-    invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+    iput-object p1, p0, Landroidx/lifecycle/g$b;->c:Landroidx/lifecycle/h;
 
     .line 2
     .line 3
+    iput-object p2, p0, Landroidx/lifecycle/g$b;->m:Lh7/f;
+
     .line 4
+    .line 5
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 6
+    .line 7
+    .line 8
     return-void
-.end method
-
-.method private static final synthetic a()[Landroidx/lifecycle/g$b;
-    .locals 5
-
-    .line 1
-    sget-object v0, Landroidx/lifecycle/g$b;->g:Landroidx/lifecycle/g$b;
-
-    .line 2
-    .line 3
-    sget-object v1, Landroidx/lifecycle/g$b;->h:Landroidx/lifecycle/g$b;
-
-    .line 4
-    .line 5
-    sget-object v2, Landroidx/lifecycle/g$b;->i:Landroidx/lifecycle/g$b;
-
-    .line 6
-    .line 7
-    sget-object v3, Landroidx/lifecycle/g$b;->j:Landroidx/lifecycle/g$b;
-
-    .line 8
-    .line 9
-    sget-object v4, Landroidx/lifecycle/g$b;->k:Landroidx/lifecycle/g$b;
-
-    .line 10
-    .line 11
-    filled-new-array {v0, v1, v2, v3, v4}, [Landroidx/lifecycle/g$b;
-
-    .line 12
-    .line 13
-    .line 14
-    move-result-object v0
-
-    .line 15
-    return-object v0
-.end method
-
-.method public static valueOf(Ljava/lang/String;)Landroidx/lifecycle/g$b;
-    .locals 1
-
-    .line 1
-    const-class v0, Landroidx/lifecycle/g$b;
-
-    .line 2
-    .line 3
-    invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object p0
-
-    .line 7
-    check-cast p0, Landroidx/lifecycle/g$b;
-
-    .line 8
-    .line 9
-    return-object p0
-.end method
-
-.method public static values()[Landroidx/lifecycle/g$b;
-    .locals 1
-
-    .line 1
-    sget-object v0, Landroidx/lifecycle/g$b;->l:[Landroidx/lifecycle/g$b;
-
-    .line 2
-    .line 3
-    invoke-virtual {v0}, [Ljava/lang/Object;->clone()Ljava/lang/Object;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
-
-    .line 7
-    check-cast v0, [Landroidx/lifecycle/g$b;
-
-    .line 8
-    .line 9
-    return-object v0
 .end method
 
 
 # virtual methods
-.method public final c(Landroidx/lifecycle/g$b;)Z
+.method public C(Lq6/f;Landroidx/lifecycle/h$a;)V
     .locals 1
 
     .line 1
-    const-string v0, "state"
+    const-string v0, "source"
 
     .line 2
     .line 3
-    invoke-static {p1, v0}, Lkotlin/jvm/internal/o;->f(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
     .line 6
-    invoke-virtual {p0, p1}, Ljava/lang/Enum;->compareTo(Ljava/lang/Enum;)I
+    const-string p1, "event"
 
     .line 7
     .line 8
+    invoke-static {p2, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
     .line 9
-    move-result p0
-
     .line 10
-    if-ltz p0, :cond_0
-
     .line 11
-    .line 12
-    const/4 p0, 0x1
+    sget-object p1, Landroidx/lifecycle/h$a;->ON_START:Landroidx/lifecycle/h$a;
 
+    .line 12
     .line 13
-    return p0
+    if-ne p2, p1, :cond_0
 
     .line 14
-    :cond_0
-    const/4 p0, 0x0
-
     .line 15
-    return p0
+    iget-object p1, p0, Landroidx/lifecycle/g$b;->c:Landroidx/lifecycle/h;
+
+    .line 16
+    .line 17
+    invoke-virtual {p1, p0}, Landroidx/lifecycle/h;->removeObserver(Lq6/e;)V
+
+    .line 18
+    .line 19
+    .line 20
+    iget-object p0, p0, Landroidx/lifecycle/g$b;->m:Lh7/f;
+
+    .line 21
+    .line 22
+    const-class p1, Landroidx/lifecycle/g$a;
+
+    .line 23
+    .line 24
+    invoke-virtual {p0, p1}, Lh7/f;->d(Ljava/lang/Class;)V
+
+    .line 25
+    .line 26
+    .line 27
+    :cond_0
+    return-void
 .end method

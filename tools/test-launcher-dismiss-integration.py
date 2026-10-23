@@ -1,116 +1,75 @@
-#!/usr/bin/env python3
-"""Execute the real Smali reflow gate with mocked geometry result values.
-
-Checks the OEM lock-gesture boundary and a rounded-zero translation with a
-nonzero scale change. Geometry itself is covered by the Java harness.
-"""
-import argparse
-from itertools import product
+"""Execute OEM12 spring adaptation with production transaction/lifecycle methods."""
 from pathlib import Path
 import re
+import subprocess
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT = ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali"
-
-
-def check_lock_cleanup(path):
-    source = path.read_text(encoding="utf-8")
-    body = source.split(".method public accept(Ljava/lang/Boolean;)V", 1)[1].split(".end method", 1)[0]
-    # The lock/cancel outcomes converge on this tail. Execute its actual
-    # register moves so a forwarded success Boolean cannot pass as false.
-    tail = re.split(r"(?m)^\s*:cond_3\s*$", body, maxsplit=1)[1]
-    registers = {"p0": "callback", "p1": "success_argument"}
-    events = []
-    for line in tail.splitlines():
-        line = line.split("#", 1)[0].strip()
-        if not line or line.startswith("."):
-            continue
-        if line.startswith("iget-object ") and "->this$0:" in line:
-            _, dest, obj, _ = line.split()
-            assert registers[obj.rstrip(",")] == "callback", line
-            registers[dest.rstrip(",")] = "recents"
-        elif line.startswith("const/4 "):
-            _, reg, value = line.replace(",", "").split()
-            registers[reg] = int(value, 16)
-        elif line.startswith("invoke-"):
-            args = [registers[r.strip()] for r in re.search(r"\{([^}]+)\}", line)[1].split(",")]
-            if "->resetTaskVisuals()" in line:
-                assert args == ["recents"]
-                events.append("reset_visuals")
-            elif "->E1(" in line:
-                assert args == ["recents", 0]
-                events.append("clear_oem_animation")
-            elif "->onDismissAnimationEnd(" in line:
-                assert args == ["recents", 0]
-                events.append("cancel_stack_transaction")
-            else:
-                raise AssertionError(line)
-        elif line == "return-void":
-            break
-        else:
-            raise AssertionError(f"Unsupported cleanup instruction: {line}")
-    assert events == ["reset_visuals", "clear_oem_animation", "cancel_stack_transaction"], events
-
-
-def evaluate(path, upward, native_offset, adjusted_offset, needs_reflow):
-    source = path.read_text(encoding="utf-8")
-    method = source.split(".method public createTaskDismissAnimation(", 1)[1].split(".end method", 1)[0]
-    code = [line.split("#", 1)[0].strip() for line in method.splitlines()]
-    code = [line for line in code if line and not line.startswith(".")]
-    labels = {line: i for i, line in enumerate(code) if line.startswith(":")}
-    pc = labels[":goto_23"]
-    registers = {"v0": "recents", "v5": "child", "p2": "dismissed",
-                 "v3": native_offset if upward else 0, "p9": upward}
-    calls, result = [], None
-    for _ in range(60):
-        line = code[pc]
-        pc += 1
-        if line == ":cond_32":
-            return False, calls
-        if line.startswith("if-nez p8,"):
-            return True, calls
-        if line.startswith(":"):
-            continue
-        if line.startswith("move-object/from16 "):
-            _, dest, src = line.replace(",", "").split()
-            registers[dest] = registers[src]
-        elif line.startswith("invoke-static "):
-            method_name = re.search(r"->(\w+)\(", line)[1]
-            calls.append(method_name)
-            if method_name == "adjustDismissOffset":
-                result = adjusted_offset
-            elif method_name == "needsDismissReflow":
-                result = needs_reflow
-            else:
-                raise AssertionError(line)
-        elif line.startswith("move-result "):
-            registers[line.split()[1]] = result
-        elif line.startswith(("if-eqz ", "if-nez ")):
-            op, reg, label = line.replace(",", "").split()
-            if (not registers[reg]) == (op == "if-eqz"):
-                pc = labels[label]
-        else:
-            raise AssertionError(f"Unsupported gate instruction: {line}")
-    raise AssertionError("Reflow gate did not terminate")
-
-
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--recents", type=Path, default=DEFAULT)
-    args = parser.parse_args()
-    check_lock_cleanup(args.recents.with_name("RecentsView$23.smali"))
-    cases = 0
-    for up, native, adjusted, needs in product((False, True), (-500, 0, 500), (-24, 0, 24), (False, True)):
-        animate, calls = evaluate(args.recents, up, native, adjusted, needs)
-        assert animate == (up and (adjusted != 0 or needs)), (up, native, adjusted, needs, animate, calls)
-        if not up:
-            assert not calls, f"Downward lock gesture invoked stack geometry: {calls}"
-        else:
-            expected = ["adjustDismissOffset"] + (["needsDismissReflow"] if adjusted == 0 else [])
-            assert calls == expected, (calls, expected)
-        cases += 1
-    print(f"PASS {cases} Smali gates and lock cleanup: no downward reflow; zero-offset scale change reaches animator")
-
-
-if __name__ == "__main__":
-    main()
+source = (ROOT / "helper-src/main/com/android/quickstep/views/LsPlatform12.java").read_text("utf-8")
+members = []
+for name in ("beginDismiss", "springFrame", "beforeDraw", "reflowTarget", "endDismiss"):
+    match = re.search(r"^    (?:public|private) static [^\n]+ " + name + r"\(.*?^    }", source, re.M | re.S)
+    assert match, name
+    members.append(match[0])
+members.append(re.search(r"^    private static final class Dismiss \{.*?^    }", source, re.M | re.S)[0])
+members.append(re.search(r"^    private static boolean finite[^\n]+", source, re.M)[0])
+harness = r'''
+import java.util.*; import java.lang.ref.WeakReference;
+public class SpringPortTest {
+ static WeakHashMap<RecentsView,Dismiss> dismissals=new WeakHashMap<>();
+ static class Pair<A,B>{A a;B b;Pair(A a,B b){this.a=a;this.b=b;}}
+ static class Property {void setValue(TaskView task,float value){task.offset=value;}}
+ static class TaskView {
+  int[] ids={12};float offset,scale=1;static Property DISMISS_SCALE=new Property(){void setValue(TaskView t,float v){t.scale=v;}};
+  int[] getTaskIds(){return ids;}Property getPrimaryDismissTranslationProperty(){return new Property();}
+ }
+ static class RecentsView {
+  int style=3,frames;ArrayList<TaskView> tasks=new ArrayList<>();
+  boolean isNativeStackStyle(){return style>=3&&style<=5;}boolean isOrbitStyle(){return style==4;}boolean isFanStyle(){return style==5;}
+  int indexOfChild(TaskView t){return tasks.indexOf(t);}int getTaskViewCount(){return tasks.size();}
+  TaskView getTaskViewAt(int i){return tasks.get(i);}void postInvalidateOnAnimation(){frames++;}
+ }
+ static class LsNativeStack {
+  static int captures,prepares,ends;static boolean removed;
+  static void recordDismissedTask(RecentsView r,TaskView t){captures++;}
+  static void prepareDismissedTask(RecentsView r,TaskView t){prepares++;}
+  static float adjustDismissOffset(RecentsView r,TaskView t,TaskView leaving,int fallback){return 40;}
+  static float getDismissReflowScale(RecentsView r,TaskView t){return 1.2f;}
+  static void onDismissAnimationEnd(RecentsView r,boolean success){ends++;removed=success;}
+ }
+ static class LsOrbitReflow {static float p;static void springFrame(RecentsView r,TaskView t,float v){p=v;}}
+ static class LsFanReflow {static float p;static void springFrame(RecentsView r,TaskView t,float v){p=v;}}
+ MEMBERS
+ static void check(boolean value){if(!value)throw new AssertionError();}
+ public static void main(String[] args){
+  RecentsView r=new RecentsView();TaskView leaving=new TaskView(),rear=new TaskView();r.tasks.add(leaving);r.tasks.add(rear);
+  for(int style=1;style<=2;style++){r.style=style;beginDismiss(r,leaving,true);check(dismissals.isEmpty()&&reflowTarget(r)==null);}
+  r.style=3;beginDismiss(r,leaving,false);check(dismissals.isEmpty());
+  beginDismiss(r,leaving,true);beginDismiss(r,leaving,true);check(LsNativeStack.captures==1&&LsNativeStack.prepares==1);
+  springFrame(r,leaving,true,-25,-100);beforeDraw(r);check(rear.offset==10&&Math.abs(rear.scale-1.05f)<.0001f);
+  check(LsOrbitReflow.p==.25f&&LsFanReflow.p==.25f);
+  springFrame(r,leaving,true,-200,-100);beforeDraw(r);check(rear.offset==40);
+  springFrame(r,leaving,true,Float.NaN,-100);check(dismissals.get(r).progress==1);
+  endDismiss(r);check(!LsNativeStack.removed&&dismissals.isEmpty());
+  for(int style=3;style<=5;style++){
+   r.style=style;beginDismiss(r,leaving,true);springFrame(r,leaving,true,-50,-100);
+   Pair<Float,Float> target=reflowTarget(r);check(target.a==0&&target.b==0);
+   r.tasks.remove(leaving);endDismiss(r);check(LsNativeStack.removed);r.tasks.add(0,leaving);
+  }
+  beginDismiss(r,leaving,true);leaving.ids=new int[]{99};springFrame(r,leaving,true,1,1);check(dismissals.get(r).progress==0);
+  endDismiss(r);check(!LsNativeStack.removed);int ends=LsNativeStack.ends;endDismiss(r);check(ends==LsNativeStack.ends);
+  System.out.println("PASS OEM12 native spring progress, reflow, cancellation, identity reuse and standard/grid isolation");
+ }
+}
+'''.replace("MEMBERS", "\n".join(members))
+with tempfile.TemporaryDirectory(prefix="launcher-oem12-spring-") as directory:
+    path = Path(directory) / "SpringPortTest.java"; path.write_text(harness, encoding="utf-8")
+    subprocess.run(["javac", "-encoding", "UTF-8", "-d", directory, str(path)], check=True)
+    subprocess.run(["java", "-cp", directory, "SpringPortTest"], check=True)
+native = (ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsDismissUtils.smali").read_text("utf-8")
+for call in ("LsPlatform12;->beginDismiss", "LsPlatform12;->springFrame", "LsPlatform12;->reflowTarget", "LsPlatform12;->dismissProperty"):
+    assert call in native, call
+recents = (ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsView.smali").read_text("utf-8")
+assert "LsPlatform12;->endDismiss" in recents
+draw = re.search(r"^\.method public dispatchDraw\(.*?^\.end method", recents, re.M | re.S)[0]
+assert draw.index("LsPlatform12;->beforeDraw") < draw.index("LsNativeStack;->beforeDispatchDraw")

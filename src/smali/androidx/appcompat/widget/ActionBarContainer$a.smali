@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/ActionBarContainer$a;
+.class public Landroidx/appcompat/widget/ActionBarContainer$a;
 .super Ljava/lang/Object;
 .source "ActionBarContainer.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 

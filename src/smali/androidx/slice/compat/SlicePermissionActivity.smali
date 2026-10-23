@@ -8,13 +8,13 @@
 
 
 # instance fields
-.field private g:Landroid/net/Uri;
+.field public c:Landroid/net/Uri;
 
-.field private h:Ljava/lang/String;
+.field public m:Ljava/lang/String;
 
-.field private i:Ljava/lang/String;
+.field public n:Ljava/lang/String;
 
-.field private j:Landroidx/appcompat/app/b;
+.field public o:Landroidx/appcompat/app/a;
 
 
 # direct methods
@@ -30,7 +30,9 @@
     return-void
 .end method
 
-.method private a(Landroid/content/pm/PackageManager;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
+
+# virtual methods
+.method public final a(Landroid/content/pm/PackageManager;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
     .locals 5
 
     .line 1
@@ -291,8 +293,6 @@
     return-object p0
 .end method
 
-
-# virtual methods
 .method public onClick(Landroid/content/DialogInterface;I)V
     .locals 2
 
@@ -312,11 +312,11 @@
     move-result-object p1
 
     .line 8
-    iget-object p2, p0, Landroidx/slice/compat/SlicePermissionActivity;->h:Ljava/lang/String;
+    iget-object p2, p0, Landroidx/slice/compat/SlicePermissionActivity;->m:Ljava/lang/String;
 
     .line 9
     .line 10
-    iget-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->g:Landroid/net/Uri;
+    iget-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->c:Landroid/net/Uri;
 
     .line 11
     .line 12
@@ -348,7 +348,7 @@
     move-result-object v0
 
     .line 26
-    invoke-static {p0, p1, p2, v0}, Lg0/a;->b(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Landroid/net/Uri;)V
+    invoke-static {p0, p1, p2, v0}, Ll7/a;->b(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Landroid/net/Uri;)V
 
     .line 27
     .line 28
@@ -362,7 +362,7 @@
     return-void
 .end method
 
-.method protected onCreate(Landroid/os/Bundle;)V
+.method public onCreate(Landroid/os/Bundle;)V
     .locals 4
 
     .line 1
@@ -395,7 +395,7 @@
 
     .line 15
     .line 16
-    iput-object p1, p0, Landroidx/slice/compat/SlicePermissionActivity;->g:Landroid/net/Uri;
+    iput-object p1, p0, Landroidx/slice/compat/SlicePermissionActivity;->c:Landroid/net/Uri;
 
     .line 17
     .line 18
@@ -419,7 +419,7 @@
     move-result-object p1
 
     .line 28
-    iput-object p1, p0, Landroidx/slice/compat/SlicePermissionActivity;->h:Ljava/lang/String;
+    iput-object p1, p0, Landroidx/slice/compat/SlicePermissionActivity;->m:Ljava/lang/String;
 
     .line 29
     .line 30
@@ -443,7 +443,7 @@
     move-result-object p1
 
     .line 40
-    iput-object p1, p0, Landroidx/slice/compat/SlicePermissionActivity;->i:Ljava/lang/String;
+    iput-object p1, p0, Landroidx/slice/compat/SlicePermissionActivity;->n:Ljava/lang/String;
 
     .line 41
     .line 42
@@ -456,7 +456,7 @@
     move-result-object p1
 
     .line 46
-    invoke-static {}, LH/a;->c()LH/a;
+    invoke-static {}, Lx5/a;->c()Lx5/a;
 
     .line 47
     .line 48
@@ -464,7 +464,7 @@
     move-result-object v0
 
     .line 50
-    iget-object v1, p0, Landroidx/slice/compat/SlicePermissionActivity;->h:Ljava/lang/String;
+    iget-object v1, p0, Landroidx/slice/compat/SlicePermissionActivity;->m:Ljava/lang/String;
 
     .line 51
     .line 52
@@ -479,7 +479,7 @@
     move-result-object v1
 
     .line 57
-    invoke-direct {p0, p1, v1}, Landroidx/slice/compat/SlicePermissionActivity;->a(Landroid/content/pm/PackageManager;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
+    invoke-virtual {p0, p1, v1}, Landroidx/slice/compat/SlicePermissionActivity;->a(Landroid/content/pm/PackageManager;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
 
     .line 58
     .line 59
@@ -495,7 +495,7 @@
     move-result-object v1
 
     .line 65
-    invoke-virtual {v0, v1}, LH/a;->j(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v0, v1}, Lx5/a;->j(Ljava/lang/String;)Ljava/lang/String;
 
     .line 66
     .line 67
@@ -503,7 +503,7 @@
     move-result-object v0
 
     .line 69
-    invoke-static {}, LH/a;->c()LH/a;
+    invoke-static {}, Lx5/a;->c()Lx5/a;
 
     .line 70
     .line 71
@@ -511,7 +511,7 @@
     move-result-object v1
 
     .line 73
-    iget-object v3, p0, Landroidx/slice/compat/SlicePermissionActivity;->i:Ljava/lang/String;
+    iget-object v3, p0, Landroidx/slice/compat/SlicePermissionActivity;->n:Ljava/lang/String;
 
     .line 74
     .line 75
@@ -523,7 +523,7 @@
     move-result-object v2
 
     .line 79
-    invoke-direct {p0, p1, v2}, Landroidx/slice/compat/SlicePermissionActivity;->a(Landroid/content/pm/PackageManager;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
+    invoke-virtual {p0, p1, v2}, Landroidx/slice/compat/SlicePermissionActivity;->a(Landroid/content/pm/PackageManager;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
 
     .line 80
     .line 81
@@ -539,7 +539,7 @@
     move-result-object p1
 
     .line 87
-    invoke-virtual {v1, p1}, LH/a;->j(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v1, p1}, Lx5/a;->j(Ljava/lang/String;)Ljava/lang/String;
 
     .line 88
     .line 89
@@ -547,16 +547,16 @@
     move-result-object p1
 
     .line 91
-    new-instance v1, Landroidx/appcompat/app/b$a;
+    new-instance v1, Landroidx/appcompat/app/a$a;
 
     .line 92
     .line 93
-    invoke-direct {v1, p0}, Landroidx/appcompat/app/b$a;-><init>(Landroid/content/Context;)V
+    invoke-direct {v1, p0}, Landroidx/appcompat/app/a$a;-><init>(Landroid/content/Context;)V
 
     .line 94
     .line 95
     .line 96
-    sget v2, Lh0/c;->e:I
+    sget v2, Lm7/c;->e:I
 
     .line 97
     .line 98
@@ -576,7 +576,7 @@
     move-result-object v0
 
     .line 106
-    invoke-virtual {v1, v0}, Landroidx/appcompat/app/b$a;->p(Ljava/lang/CharSequence;)Landroidx/appcompat/app/b$a;
+    invoke-virtual {v1, v0}, Landroidx/appcompat/app/a$a;->p(Ljava/lang/CharSequence;)Landroidx/appcompat/app/a$a;
 
     .line 107
     .line 108
@@ -584,11 +584,11 @@
     move-result-object v0
 
     .line 110
-    sget v1, Lh0/b;->a:I
+    sget v1, Lm7/b;->a:I
 
     .line 111
     .line 112
-    invoke-virtual {v0, v1}, Landroidx/appcompat/app/b$a;->q(I)Landroidx/appcompat/app/b$a;
+    invoke-virtual {v0, v1}, Landroidx/appcompat/app/a$a;->q(I)Landroidx/appcompat/app/a$a;
 
     .line 113
     .line 114
@@ -596,11 +596,11 @@
     move-result-object v0
 
     .line 116
-    sget v1, Lh0/c;->b:I
+    sget v1, Lm7/c;->b:I
 
     .line 117
     .line 118
-    invoke-virtual {v0, v1, p0}, Landroidx/appcompat/app/b$a;->h(ILandroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/b$a;
+    invoke-virtual {v0, v1, p0}, Landroidx/appcompat/app/a$a;->h(ILandroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/a$a;
 
     .line 119
     .line 120
@@ -608,11 +608,11 @@
     move-result-object v0
 
     .line 122
-    sget v1, Lh0/c;->a:I
+    sget v1, Lm7/c;->a:I
 
     .line 123
     .line 124
-    invoke-virtual {v0, v1, p0}, Landroidx/appcompat/app/b$a;->l(ILandroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/b$a;
+    invoke-virtual {v0, v1, p0}, Landroidx/appcompat/app/a$a;->l(ILandroid/content/DialogInterface$OnClickListener;)Landroidx/appcompat/app/a$a;
 
     .line 125
     .line 126
@@ -620,7 +620,7 @@
     move-result-object v0
 
     .line 128
-    invoke-virtual {v0, p0}, Landroidx/appcompat/app/b$a;->j(Landroid/content/DialogInterface$OnDismissListener;)Landroidx/appcompat/app/b$a;
+    invoke-virtual {v0, p0}, Landroidx/appcompat/app/a$a;->j(Landroid/content/DialogInterface$OnDismissListener;)Landroidx/appcompat/app/a$a;
 
     .line 129
     .line 130
@@ -628,7 +628,7 @@
     move-result-object v0
 
     .line 132
-    invoke-virtual {v0}, Landroidx/appcompat/app/b$a;->s()Landroidx/appcompat/app/b;
+    invoke-virtual {v0}, Landroidx/appcompat/app/a$a;->s()Landroidx/appcompat/app/a;
 
     .line 133
     .line 134
@@ -636,7 +636,7 @@
     move-result-object v0
 
     .line 136
-    iput-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->j:Landroidx/appcompat/app/b;
+    iput-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->o:Landroidx/appcompat/app/a;
 
     .line 137
     .line 138
@@ -656,7 +656,7 @@
     move-result-object v0
 
     .line 146
-    sget v1, Lh0/a;->a:I
+    sget v1, Lm7/a;->a:I
 
     .line 147
     .line 148
@@ -672,7 +672,7 @@
 
     .line 153
     .line 154
-    sget v1, Lh0/c;->c:I
+    sget v1, Lm7/c;->c:I
 
     .line 155
     .line 156
@@ -697,7 +697,7 @@
     .line 165
     .line 166
     .line 167
-    iget-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->j:Landroidx/appcompat/app/b;
+    iget-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->o:Landroidx/appcompat/app/a;
 
     .line 168
     .line 169
@@ -717,7 +717,7 @@
     move-result-object v0
 
     .line 177
-    sget v1, Lh0/a;->b:I
+    sget v1, Lm7/a;->b:I
 
     .line 178
     .line 179
@@ -733,7 +733,7 @@
 
     .line 184
     .line 185
-    sget v1, Lh0/c;->d:I
+    sget v1, Lm7/c;->d:I
 
     .line 186
     .line 187
@@ -797,7 +797,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->j:Landroidx/appcompat/app/b;
+    iget-object v0, p0, Landroidx/slice/compat/SlicePermissionActivity;->o:Landroidx/appcompat/app/a;
 
     .line 5
     .line 6
@@ -817,7 +817,7 @@
 
     .line 13
     .line 14
-    iget-object p0, p0, Landroidx/slice/compat/SlicePermissionActivity;->j:Landroidx/appcompat/app/b;
+    iget-object p0, p0, Landroidx/slice/compat/SlicePermissionActivity;->o:Landroidx/appcompat/app/a;
 
     .line 15
     .line 16

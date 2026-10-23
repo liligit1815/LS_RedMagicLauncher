@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;
+.field public final synthetic c:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/i;->g:Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/i;->c:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/i;->g:Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/i;->c:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->a(Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;)V
+    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->c(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
 
     .line 4
     .line 5

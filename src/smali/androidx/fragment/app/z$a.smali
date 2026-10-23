@@ -1,4 +1,4 @@
-.class final Landroidx/fragment/app/z$a;
+.class public final Landroidx/fragment/app/z$a;
 .super Ljava/lang/Object;
 .source "FragmentLifecycleCallbacksDispatcher.java"
 
@@ -9,10 +9,10 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
+    accessFlags = 0x19
     name = "a"
 .end annotation
 
 
 # instance fields
-.field final a:Z
+.field public final a:Z

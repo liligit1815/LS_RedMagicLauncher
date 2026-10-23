@@ -10,7 +10,7 @@
     <item android:top="@dimen/all_apps_tabs_focus_border" android:bottom="@dimen/all_apps_tabs_focus_border" android:start="@dimen/all_apps_tabs_focus_border" android:end="@dimen/all_apps_tabs_focus_border">
         <shape android:shape="rectangle">
             <corners android:radius="13.0dp" />
-            <solid android:color="@color/materialColorSurfaceBright" />
+            <solid android:color="?allAppsUnselectedTab" />
             <stroke android:width="@dimen/all_apps_tabs_focus_padding" android:color="@color/materialColorSurfaceDim" />
         </shape>
     </item>

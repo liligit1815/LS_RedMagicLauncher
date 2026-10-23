@@ -12,11 +12,11 @@
 
 
 # instance fields
-.field private c0:[Ljava/lang/CharSequence;
+.field public r:[Ljava/lang/CharSequence;
 
-.field private d0:[Ljava/lang/CharSequence;
+.field public s:[Ljava/lang/CharSequence;
 
-.field private e0:Ljava/util/Set;
+.field public t:Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Set<",
@@ -32,11 +32,11 @@
     .locals 2
 
     .line 8
-    sget v0, Landroidx/preference/i;->b:I
+    sget v0, Le7/g;->b:I
 
     const v1, 0x1010091
 
-    invoke-static {p1, v0, v1}, LA/l;->a(Landroid/content/Context;II)I
+    invoke-static {p1, v0, v1}, Lq5/l;->a(Landroid/content/Context;II)I
 
     move-result v0
 
@@ -67,36 +67,36 @@
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    iput-object v0, p0, Landroidx/preference/MultiSelectListPreference;->e0:Ljava/util/Set;
+    iput-object v0, p0, Landroidx/preference/MultiSelectListPreference;->t:Ljava/util/Set;
 
     .line 3
-    sget-object v0, Landroidx/preference/q;->E:[I
+    sget-object v0, Le7/o;->E:[I
 
     invoke-virtual {p1, p2, v0, p3, p4}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
     move-result-object p1
 
     .line 4
-    sget p2, Landroidx/preference/q;->H:I
+    sget p2, Le7/o;->H:I
 
-    sget p3, Landroidx/preference/q;->F:I
+    sget p3, Le7/o;->F:I
 
-    invoke-static {p1, p2, p3}, LA/l;->o(Landroid/content/res/TypedArray;II)[Ljava/lang/CharSequence;
+    invoke-static {p1, p2, p3}, Lq5/l;->o(Landroid/content/res/TypedArray;II)[Ljava/lang/CharSequence;
 
     move-result-object p2
 
-    iput-object p2, p0, Landroidx/preference/MultiSelectListPreference;->c0:[Ljava/lang/CharSequence;
+    iput-object p2, p0, Landroidx/preference/MultiSelectListPreference;->r:[Ljava/lang/CharSequence;
 
     .line 5
-    sget p2, Landroidx/preference/q;->I:I
+    sget p2, Le7/o;->I:I
 
-    sget p3, Landroidx/preference/q;->G:I
+    sget p3, Le7/o;->G:I
 
-    invoke-static {p1, p2, p3}, LA/l;->o(Landroid/content/res/TypedArray;II)[Ljava/lang/CharSequence;
+    invoke-static {p1, p2, p3}, Lq5/l;->o(Landroid/content/res/TypedArray;II)[Ljava/lang/CharSequence;
 
     move-result-object p2
 
-    iput-object p2, p0, Landroidx/preference/MultiSelectListPreference;->d0:[Ljava/lang/CharSequence;
+    iput-object p2, p0, Landroidx/preference/MultiSelectListPreference;->s:[Ljava/lang/CharSequence;
 
     .line 6
     invoke-virtual {p1}, Landroid/content/res/TypedArray;->recycle()V
@@ -106,7 +106,91 @@
 
 
 # virtual methods
-.method protected a0(Landroid/content/res/TypedArray;I)Ljava/lang/Object;
+.method public j()[Ljava/lang/CharSequence;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference;->r:[Ljava/lang/CharSequence;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public l()[Ljava/lang/CharSequence;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference;->s:[Ljava/lang/CharSequence;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public n()Ljava/util/Set;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Set<",
+            "Ljava/lang/String;",
+            ">;"
+        }
+    .end annotation
+
+    .line 1
+    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference;->t:Ljava/util/Set;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public o(Ljava/util/Set;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/Set<",
+            "Ljava/lang/String;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 1
+    iget-object v0, p0, Landroidx/preference/MultiSelectListPreference;->t:Ljava/util/Set;
+
+    .line 2
+    .line 3
+    invoke-interface {v0}, Ljava/util/Set;->clear()V
+
+    .line 4
+    .line 5
+    .line 6
+    iget-object v0, p0, Landroidx/preference/MultiSelectListPreference;->t:Ljava/util/Set;
+
+    .line 7
+    .line 8
+    invoke-interface {v0, p1}, Ljava/util/Set;->addAll(Ljava/util/Collection;)Z
+
+    .line 9
+    .line 10
+    .line 11
+    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->persistStringSet(Ljava/util/Set;)Z
+
+    .line 12
+    .line 13
+    .line 14
+    invoke-virtual {p0}, Landroidx/preference/Preference;->notifyChanged()V
+
+    .line 15
+    .line 16
+    .line 17
+    return-void
+.end method
+
+.method public onGetDefaultValue(Landroid/content/res/TypedArray;I)Ljava/lang/Object;
     .locals 2
 
     .line 1
@@ -166,91 +250,7 @@
     return-object p1
 .end method
 
-.method public a1()[Ljava/lang/CharSequence;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference;->c0:[Ljava/lang/CharSequence;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method public b1()[Ljava/lang/CharSequence;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference;->d0:[Ljava/lang/CharSequence;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method public c1()Ljava/util/Set;
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ljava/util/Set<",
-            "Ljava/lang/String;",
-            ">;"
-        }
-    .end annotation
-
-    .line 1
-    iget-object p0, p0, Landroidx/preference/MultiSelectListPreference;->e0:Ljava/util/Set;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method public d1(Ljava/util/Set;)V
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/Set<",
-            "Ljava/lang/String;",
-            ">;)V"
-        }
-    .end annotation
-
-    .line 1
-    iget-object v0, p0, Landroidx/preference/MultiSelectListPreference;->e0:Ljava/util/Set;
-
-    .line 2
-    .line 3
-    invoke-interface {v0}, Ljava/util/Set;->clear()V
-
-    .line 4
-    .line 5
-    .line 6
-    iget-object v0, p0, Landroidx/preference/MultiSelectListPreference;->e0:Ljava/util/Set;
-
-    .line 7
-    .line 8
-    invoke-interface {v0, p1}, Ljava/util/Set;->addAll(Ljava/util/Collection;)Z
-
-    .line 9
-    .line 10
-    .line 11
-    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->n0(Ljava/util/Set;)Z
-
-    .line 12
-    .line 13
-    .line 14
-    invoke-virtual {p0}, Landroidx/preference/Preference;->Q()V
-
-    .line 15
-    .line 16
-    .line 17
-    return-void
-.end method
-
-.method protected e0(Landroid/os/Parcelable;)V
+.method public onRestoreInstanceState(Landroid/os/Parcelable;)V
     .locals 2
 
     .line 1
@@ -298,16 +298,16 @@
     move-result-object v0
 
     .line 22
-    invoke-super {p0, v0}, Landroidx/preference/Preference;->e0(Landroid/os/Parcelable;)V
+    invoke-super {p0, v0}, Landroidx/preference/Preference;->onRestoreInstanceState(Landroid/os/Parcelable;)V
 
     .line 23
     .line 24
     .line 25
-    iget-object p1, p1, Landroidx/preference/MultiSelectListPreference$a;->g:Ljava/util/Set;
+    iget-object p1, p1, Landroidx/preference/MultiSelectListPreference$a;->c:Ljava/util/Set;
 
     .line 26
     .line 27
-    invoke-virtual {p0, p1}, Landroidx/preference/MultiSelectListPreference;->d1(Ljava/util/Set;)V
+    invoke-virtual {p0, p1}, Landroidx/preference/MultiSelectListPreference;->o(Ljava/util/Set;)V
 
     .line 28
     .line 29
@@ -317,7 +317,7 @@
     .line 31
     :cond_1
     :goto_0
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->e0(Landroid/os/Parcelable;)V
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->onRestoreInstanceState(Landroid/os/Parcelable;)V
 
     .line 32
     .line 33
@@ -325,11 +325,11 @@
     return-void
 .end method
 
-.method protected f0()Landroid/os/Parcelable;
+.method public onSaveInstanceState()Landroid/os/Parcelable;
     .locals 2
 
     .line 1
-    invoke-super {p0}, Landroidx/preference/Preference;->f0()Landroid/os/Parcelable;
+    invoke-super {p0}, Landroidx/preference/Preference;->onSaveInstanceState()Landroid/os/Parcelable;
 
     .line 2
     .line 3
@@ -337,7 +337,7 @@
     move-result-object v0
 
     .line 5
-    invoke-virtual {p0}, Landroidx/preference/Preference;->N()Z
+    invoke-virtual {p0}, Landroidx/preference/Preference;->isPersistent()Z
 
     .line 6
     .line 7
@@ -362,7 +362,7 @@
     .line 15
     .line 16
     .line 17
-    invoke-virtual {p0}, Landroidx/preference/MultiSelectListPreference;->c1()Ljava/util/Set;
+    invoke-virtual {p0}, Landroidx/preference/MultiSelectListPreference;->n()Ljava/util/Set;
 
     .line 18
     .line 19
@@ -370,14 +370,14 @@
     move-result-object p0
 
     .line 21
-    iput-object p0, v1, Landroidx/preference/MultiSelectListPreference$a;->g:Ljava/util/Set;
+    iput-object p0, v1, Landroidx/preference/MultiSelectListPreference$a;->c:Ljava/util/Set;
 
     .line 22
     .line 23
     return-object v1
 .end method
 
-.method protected g0(Ljava/lang/Object;)V
+.method public onSetInitialValue(Ljava/lang/Object;)V
     .locals 0
 
     .line 1
@@ -385,7 +385,7 @@
 
     .line 2
     .line 3
-    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->C(Ljava/util/Set;)Ljava/util/Set;
+    invoke-virtual {p0, p1}, Landroidx/preference/Preference;->getPersistedStringSet(Ljava/util/Set;)Ljava/util/Set;
 
     .line 4
     .line 5
@@ -393,7 +393,7 @@
     move-result-object p1
 
     .line 7
-    invoke-virtual {p0, p1}, Landroidx/preference/MultiSelectListPreference;->d1(Ljava/util/Set;)V
+    invoke-virtual {p0, p1}, Landroidx/preference/MultiSelectListPreference;->o(Ljava/util/Set;)V
 
     .line 8
     .line 9

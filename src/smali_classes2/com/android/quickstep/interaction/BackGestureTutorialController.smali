@@ -10,8 +10,8 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
-    .locals 7
+.method public constructor <init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
+    .locals 4
 
     .line 1
     invoke-direct {p0, p1, p2}, Lcom/android/quickstep/interaction/TutorialController;-><init>(Lcom/android/quickstep/interaction/TutorialFragment;Lcom/android/quickstep/interaction/TutorialController$TutorialType;)V
@@ -27,7 +27,7 @@
 
     .line 7
     .line 8
-    iget v0, v0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnSurfaceBack:I
+    iget v0, v0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerBack:I
 
     .line 9
     .line 10
@@ -36,152 +36,120 @@
     .line 11
     .line 12
     .line 13
-    move-result-object v2
+    move-result-object v0
 
     .line 14
-    iget-object v0, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
+    iget-object v1, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
 
     .line 15
     .line 16
-    iget v0, v0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSurfaceBack:I
+    iget v1, v1, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnContainerBack:I
 
     .line 17
     .line 18
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     .line 19
     .line 20
     .line 21
-    move-result-object v4
+    move-result-object v1
 
     .line 22
-    iget-object v0, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
+    const-string v2, ".tertiaryContainer"
 
     .line 23
     .line 24
-    iget v0, v0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSecondaryBack:I
+    const-string v3, ".onTertiaryContainer"
 
     .line 25
     .line 26
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v2, v0, v3, v1}, Ljava/util/Map;->of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
 
     .line 27
     .line 28
     .line 29
-    move-result-object v6
+    move-result-object v0
 
     .line 30
-    const-string v1, ".onSurfaceBack"
+    invoke-static {p2, v0}, Lcom/android/quickstep/util/LottieAnimationColorUtils;->updateToArgbColors(Lcom/airbnb/lottie/LottieAnimationView;Ljava/util/Map;)V
 
     .line 31
     .line 32
-    const-string v3, ".surfaceBack"
-
     .line 33
+    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mAnimatedGestureDemonstration:Lcom/airbnb/lottie/LottieAnimationView;
+
     .line 34
-    const-string v5, ".secondaryBack"
-
     .line 35
-    .line 36
-    invoke-static/range {v1 .. v6}, Ljava/util/Map;->of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+    iget-object v0, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
 
+    .line 36
     .line 37
+    iget v0, v0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerBack:I
+
     .line 38
     .line 39
-    move-result-object v0
+    invoke-virtual {p2, v0}, Landroid/widget/ImageView;->setBackgroundColor(I)V
 
     .line 40
-    invoke-static {p2, v0}, Lcom/android/quickstep/util/LottieAnimationColorUtils;->updateToArgbColors(Lcom/airbnb/lottie/LottieAnimationView;Ljava/util/Map;)V
-
     .line 41
     .line 42
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
+
     .line 43
-    iget-object p2, p0, Lcom/android/quickstep/interaction/TutorialController;->mCheckmarkAnimation:Lcom/airbnb/lottie/LottieAnimationView;
-
     .line 44
+    iget-object p2, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
+
     .line 45
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
-
     .line 46
-    .line 47
-    invoke-static {p0}, Lcom/android/launcher3/N5;->x(Landroid/content/Context;)Z
+    iget p2, p2, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerBack:I
 
+    .line 47
     .line 48
+    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
     .line 49
     .line 50
-    move-result p0
-
     .line 51
-    if-eqz p0, :cond_0
+    move-result-object p2
 
     .line 52
+    iget-object p1, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
+
     .line 53
-    iget-object p0, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
-
     .line 54
+    iget p1, p1, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnContainerBack:I
+
     .line 55
-    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnSurfaceBack:I
-
     .line 56
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
     .line 57
-    goto :goto_0
-
     .line 58
-    :cond_0
-    iget-object p0, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
-
     .line 59
+    move-result-object p1
+
     .line 60
-    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSecondaryBack:I
+    const-string v0, ".onCheckmarkContainer"
 
     .line 61
     .line 62
-    :goto_0
-    invoke-static {p0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    const-string v1, ".checkmarkContainer"
 
     .line 63
     .line 64
+    invoke-static {v0, p2, v1, p1}, Ljava/util/Map;->of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+
     .line 65
-    move-result-object p0
-
     .line 66
-    iget-object p1, p1, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
-
     .line 67
+    move-result-object p1
+
     .line 68
-    iget p1, p1, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSurfaceBack:I
+    invoke-static {p0, p1}, Lcom/android/quickstep/util/LottieAnimationColorUtils;->updateToArgbColors(Lcom/airbnb/lottie/LottieAnimationView;Ljava/util/Map;)V
 
     .line 69
     .line 70
-    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
     .line 71
-    .line 72
-    .line 73
-    move-result-object p1
-
-    .line 74
-    const-string v0, ".checkmark"
-
-    .line 75
-    .line 76
-    const-string v1, ".checkmarkBackground"
-
-    .line 77
-    .line 78
-    invoke-static {v0, p0, v1, p1}, Ljava/util/Map;->of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
-
-    .line 79
-    .line 80
-    .line 81
-    move-result-object p0
-
-    .line 82
-    invoke-static {p2, p0}, Lcom/android/quickstep/util/LottieAnimationColorUtils;->updateToArgbColors(Lcom/airbnb/lottie/LottieAnimationView;Ljava/util/Map;)V
-
-    .line 83
-    .line 84
-    .line 85
     return-void
 .end method
 
@@ -219,7 +187,7 @@
 
     .line 16
     :pswitch_0
-    const p1, 0x7f1400bd
+    const p1, 0x7f1400ef
 
     .line 17
     .line 18
@@ -233,7 +201,7 @@
 
     .line 23
     :pswitch_1
-    const p1, 0x7f1400be
+    const p1, 0x7f1400f0
 
     .line 24
     .line 25
@@ -247,7 +215,7 @@
 
     .line 30
     :pswitch_2
-    const p1, 0x7f1400b9
+    const p1, 0x7f1400eb
 
     .line 31
     .line 32
@@ -321,53 +289,21 @@
 
 # virtual methods
 .method public getDoneButtonColor()I
-    .locals 1
+    .locals 0
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialController;->mContext:Landroid/content/Context;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
 
     .line 2
     .line 3
-    invoke-static {v0}, Lcom/android/launcher3/N5;->x(Landroid/content/Context;)Z
+    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
 
     .line 4
     .line 5
+    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnContainerBack:I
+
     .line 6
-    move-result v0
-
     .line 7
-    if-eqz v0, :cond_0
-
-    .line 8
-    .line 9
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
-
-    .line 10
-    .line 11
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
-
-    .line 12
-    .line 13
-    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorOnSurfaceBack:I
-
-    .line 14
-    .line 15
-    return p0
-
-    .line 16
-    :cond_0
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialController;->mTutorialFragment:Lcom/android/quickstep/interaction/TutorialFragment;
-
-    .line 17
-    .line 18
-    iget-object p0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
-
-    .line 19
-    .line 20
-    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSecondaryBack:I
-
-    .line 21
-    .line 22
     return p0
 .end method
 
@@ -375,7 +311,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f1502d0
+    const p0, 0x7f1502e7
 
     .line 2
     .line 3
@@ -383,7 +319,7 @@
     return p0
 .end method
 
-.method protected getExitingAppColor()I
+.method public getExitingAppColor()I
     .locals 0
 
     .line 1
@@ -395,14 +331,14 @@
 
     .line 4
     .line 5
-    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorSurfaceBack:I
+    iget p0, p0, Lcom/android/quickstep/interaction/RootSandboxLayout;->mColorContainerBack:I
 
     .line 6
     .line 7
     return p0
 .end method
 
-.method protected getFakeLauncherColor()I
+.method public getFakeLauncherColor()I
     .locals 0
 
     .line 1
@@ -421,7 +357,7 @@
     return p0
 .end method
 
-.method protected getGestureLottieAnimationId()I
+.method public getGestureLottieAnimationId()I
     .locals 1
 
     .line 1
@@ -487,7 +423,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f1400c3
+    const p0, 0x7f1400f5
 
     .line 2
     .line 3
@@ -499,7 +435,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f1400c4
+    const p0, 0x7f1400f6
 
     .line 2
     .line 3
@@ -507,11 +443,11 @@
     return p0
 .end method
 
-.method getMockAppTaskCurrentPageLayoutResId()I
+.method public getMockAppTaskCurrentPageLayoutResId()I
     .locals 0
 
     .line 1
-    const p0, 0x7f0e0074
+    const p0, 0x7f0e0079
 
     .line 2
     .line 3
@@ -519,7 +455,7 @@
     return p0
 .end method
 
-.method protected getMockAppTaskLayoutResId()I
+.method public getMockAppTaskLayoutResId()I
     .locals 0
 
     .line 1
@@ -534,11 +470,23 @@
     return p0
 .end method
 
-.method getMockAppTaskPreviousPageLayoutResId()I
+.method public getMockAppTaskPreviousPageLayoutResId()I
     .locals 0
 
     .line 1
-    const p0, 0x7f0e0074
+    const p0, 0x7f0e0079
+
+    .line 2
+    .line 3
+    .line 4
+    return p0
+.end method
+
+.method public getSubtitleTextAppearance()I
+    .locals 0
+
+    .line 1
+    const p0, 0x7f150301
 
     .line 2
     .line 3
@@ -566,7 +514,7 @@
 
     .line 8
     .line 9
-    const p0, 0x7f1400bc
+    const p0, 0x7f1400ee
 
     .line 10
     .line 11
@@ -575,7 +523,7 @@
 
     .line 13
     :cond_0
-    const p0, 0x7f1400ba
+    const p0, 0x7f1400ec
 
     .line 14
     .line 15
@@ -587,7 +535,19 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f1401d6
+    const p0, 0x7f140225
+
+    .line 2
+    .line 3
+    .line 4
+    return p0
+.end method
+
+.method public getSuccessSubtitleTextAppearance()I
+    .locals 0
+
+    .line 1
+    const p0, 0x7f150304
 
     .line 2
     .line 3
@@ -599,7 +559,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f1502e3
+    const p0, 0x7f1502f9
 
     .line 2
     .line 3
@@ -611,7 +571,7 @@
     .locals 0
 
     .line 1
-    const p0, 0x7f1502e0
+    const p0, 0x7f1502f6
 
     .line 2
     .line 3
@@ -759,7 +719,7 @@
     move-result v0
 
     .line 15
-    sget-object v5, LJ0/h;->I:Landroid/view/animation/Interpolator;
+    sget-object v5, Lcom/android/app/animation/Interpolators;->DECELERATE:Landroid/view/animation/Interpolator;
 
     .line 16
     .line 17
@@ -779,7 +739,7 @@
     .line 23
     .line 24
     .line 25
-    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/N5;->J(FFFFFLandroid/view/animation/Interpolator;)F
+    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/Utilities;->mapBoundToRange(FFFFFLandroid/view/animation/Interpolator;)F
 
     .line 26
     .line 27
@@ -888,7 +848,7 @@
 
     .line 77
     .line 78
-    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/N5;->J(FFFFFLandroid/view/animation/Interpolator;)F
+    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/Utilities;->mapBoundToRange(FFFFFLandroid/view/animation/Interpolator;)F
 
     .line 79
     .line 80
@@ -930,7 +890,7 @@
 
     .line 95
     .line 96
-    sget-object v5, LJ0/h;->d:Landroid/view/animation/Interpolator;
+    sget-object v5, Lcom/android/app/animation/Interpolators;->EMPHASIZED_DECELERATE:Landroid/view/animation/Interpolator;
 
     .line 97
     .line 98
@@ -941,7 +901,7 @@
 
     .line 100
     .line 101
-    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/N5;->J(FFFFFLandroid/view/animation/Interpolator;)F
+    invoke-static/range {v0 .. v5}, Lcom/android/launcher3/Utilities;->mapBoundToRange(FFFFFLandroid/view/animation/Interpolator;)F
 
     .line 102
     .line 103
@@ -1066,7 +1026,7 @@
 
     .line 44
     .line 45
-    const p1, 0x7f1400bd
+    const p1, 0x7f1400ef
 
     .line 46
     .line 47
@@ -1080,7 +1040,7 @@
 
     .line 52
     :cond_2
-    const p1, 0x7f1400be
+    const p1, 0x7f1400f0
 
     .line 53
     .line 54

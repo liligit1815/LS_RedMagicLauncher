@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/StaggeredGridLayoutManager$b;
+.class public Landroidx/recyclerview/widget/StaggeredGridLayoutManager$b;
 .super Ljava/lang/Object;
 .source "StaggeredGridLayoutManager.java"
 
@@ -9,29 +9,29 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "b"
 .end annotation
 
 
 # instance fields
-.field a:I
+.field public a:I
 
-.field b:I
+.field public b:I
 
-.field c:Z
+.field public c:Z
 
-.field d:Z
+.field public d:Z
 
-.field e:Z
+.field public e:Z
 
-.field f:[I
+.field public f:[I
 
-.field final synthetic g:Landroidx/recyclerview/widget/StaggeredGridLayoutManager;
+.field public final synthetic g:Landroidx/recyclerview/widget/StaggeredGridLayoutManager;
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/StaggeredGridLayoutManager;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/StaggeredGridLayoutManager;)V
     .locals 0
 
     .line 1
@@ -54,7 +54,7 @@
 
 
 # virtual methods
-.method a()V
+.method public a()V
     .locals 1
 
     .line 1
@@ -70,7 +70,7 @@
 
     .line 6
     .line 7
-    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->c:Landroidx/recyclerview/widget/o;
+    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->mPrimaryOrientation:Landroidx/recyclerview/widget/o;
 
     .line 8
     .line 9
@@ -90,7 +90,7 @@
 
     .line 15
     .line 16
-    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->c:Landroidx/recyclerview/widget/o;
+    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->mPrimaryOrientation:Landroidx/recyclerview/widget/o;
 
     .line 17
     .line 18
@@ -110,7 +110,7 @@
     return-void
 .end method
 
-.method b(I)V
+.method public b(I)V
     .locals 1
 
     .line 1
@@ -126,7 +126,7 @@
 
     .line 6
     .line 7
-    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->c:Landroidx/recyclerview/widget/o;
+    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->mPrimaryOrientation:Landroidx/recyclerview/widget/o;
 
     .line 8
     .line 9
@@ -153,7 +153,7 @@
 
     .line 18
     .line 19
-    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->c:Landroidx/recyclerview/widget/o;
+    iget-object v0, v0, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->mPrimaryOrientation:Landroidx/recyclerview/widget/o;
 
     .line 20
     .line 21
@@ -175,7 +175,7 @@
     return-void
 .end method
 
-.method c()V
+.method public c()V
     .locals 2
 
     .line 1
@@ -226,7 +226,7 @@
     return-void
 .end method
 
-.method d([Landroidx/recyclerview/widget/StaggeredGridLayoutManager$f;)V
+.method public d([Landroidx/recyclerview/widget/StaggeredGridLayoutManager$f;)V
     .locals 5
 
     .line 1
@@ -253,7 +253,7 @@
 
     .line 10
     .line 11
-    iget-object v1, v1, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->b:[Landroidx/recyclerview/widget/StaggeredGridLayoutManager$f;
+    iget-object v1, v1, Landroidx/recyclerview/widget/StaggeredGridLayoutManager;->mSpans:[Landroidx/recyclerview/widget/StaggeredGridLayoutManager$f;
 
     .line 12
     .line 13

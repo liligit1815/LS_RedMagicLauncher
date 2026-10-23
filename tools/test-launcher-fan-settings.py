@@ -51,11 +51,11 @@ public class ViewGroup extends View {
 public class LayoutInflater {
     public static LayoutInflater from(android.content.Context c){return new LayoutInflater();}
     public View inflate(int layout,ViewGroup parent,boolean attach){
-        if(layout!=0x7f0e0285||attach)throw new AssertionError("unexpected template");
-        ViewGroup card=new ViewGroup();card.id=0x7f0b06c2;
-        View title=new android.widget.TextView();title.id=0x7f0b06c3;card.addView(title);
-        View radio=new android.widget.RadioButton();radio.id=0x7f0b06c4;card.addView(radio);
-        View image=new android.widget.ImageView();image.id=0x7f0b06c5;card.addView(image);return card;
+        if(layout!=0x7f0e029b||attach)throw new AssertionError("unexpected template");
+        ViewGroup card=new ViewGroup();card.id=0x7f0b071a;
+        View title=new android.widget.TextView();title.id=0x7f0b071b;card.addView(title);
+        View radio=new android.widget.RadioButton();radio.id=0x7f0b071c;card.addView(radio);
+        View image=new android.widget.ImageView();image.id=0x7f0b071d;card.addView(image);return card;
     }
 }""",
     "android/widget/TextView.java": "package android.widget; public class TextView extends android.view.View {public CharSequence text;public void setText(CharSequence v){text=v;}}",
@@ -145,13 +145,13 @@ public final class FanSettingsTest {
     }
     public static void main(String[] args)throws Exception{
         Activity a=new Activity();ViewGroup parent=new ViewGroup();a.root.addView(parent);
-        ViewGroup original=new ViewGroup();original.id=0x7f0b06c2;parent.addView(original);
-        ImageView stackImage=new ImageView();stackImage.id=0x7f0b06c5;original.addView(stackImage);
+        ViewGroup original=new ViewGroup();original.id=0x7f0b071a;parent.addView(original);
+        ImageView stackImage=new ImageView();stackImage.id=0x7f0b071d;original.addView(stackImage);
         View.OnClickListener listener=v->{check(LsFanStyleSettings.isFanCard(v),"click lost fan identity");clicks++;};
         LsFanStyleSettings.attach(a,listener);LsFanStyleSettings.attach(a,listener);
         check(parent.getChildCount()==2,"duplicate selector");
         ViewGroup card=(ViewGroup)parent.getChildAt(1);
-        check(a.findViewById(0x7f0b06c2)==original,"existing stack ID shadowed");
+        check(a.findViewById(0x7f0b071a)==original,"existing stack ID shadowed");
         check(card.id==View.NO_ID,"fan reused template ID");
         for(View child:card.children)check(child.id==View.NO_ID,"descendant reused template ID");
         TextView title=(TextView)card.getChildAt(0);RadioButton radio=(RadioButton)card.getChildAt(1);
@@ -247,6 +247,16 @@ with tempfile.TemporaryDirectory(prefix="launcher-fan-settings-") as folder:
 # Both selectors inherit the actual stack template, including OEM radio and
 # night-mode container resources; they replace only the preview illustration.
 android = "{http://schemas.android.com/apk/res/android}"
+settings_page = ET.parse(ROOT / "src/res/layout/setting_recent_app_style_layout.xml").getroot()
+parents = {child: parent for parent in settings_page.iter() for child in parent}
+stack_includes = [node for node in settings_page.iter("include")
+                  if node.get("layout") == "@layout/recent_style_stack_card"]
+assert len(stack_includes) == 1
+style_list = parents[stack_includes[0]]
+assert style_list.get(android + "orientation") == "vertical"
+assert {node.get(android + "id") for node in style_list} >= {
+    "@id/normal_style_card", "@id/grid_style_card"}
+assert style_list[-1] is stack_includes[0]
 template = ET.parse(ROOT / "src/res/layout/recent_style_stack_card.xml").getroot()
 assert template.get(android + "background") == "@drawable/card_bg"
 preview_node = template.find("ImageView")
@@ -261,8 +271,8 @@ for folder in ("values", "values-night"):
     assert colors.find("color[@name='mfv_common_card_bg_color']") is not None
 print("PASS shared OEM selector template, dimensions, radio and day/night container resources")
 
-recents = (ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali").read_text("utf-8")
-controller = (ROOT / "src/smali/com/android/launcher3/uioverrides/touchcontrollers/K.smali").read_text("utf-8")
+recents = (ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsView.smali").read_text("utf-8")
+controller = (ROOT / "src/smali_classes2/com/android/launcher3/uioverrides/touchcontrollers/TaskViewDismissTouchController.smali").read_text("utf-8")
 
 
 def method(text, name):

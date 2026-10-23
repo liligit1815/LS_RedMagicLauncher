@@ -1,4 +1,4 @@
-.class final enum Lcom/airbnb/lottie/LottieAnimationView$d;
+.class public final enum Lcom/airbnb/lottie/LottieAnimationView$d;
 .super Ljava/lang/Enum;
 .source "LottieAnimationView.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x401a
+    accessFlags = 0x4019
     name = "d"
 .end annotation
 
@@ -23,19 +23,19 @@
 
 
 # static fields
-.field public static final enum g:Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final enum c:Lcom/airbnb/lottie/LottieAnimationView$d;
 
-.field public static final enum h:Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final enum m:Lcom/airbnb/lottie/LottieAnimationView$d;
 
-.field public static final enum i:Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final enum n:Lcom/airbnb/lottie/LottieAnimationView$d;
 
-.field public static final enum j:Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final enum o:Lcom/airbnb/lottie/LottieAnimationView$d;
 
-.field public static final enum k:Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final enum p:Lcom/airbnb/lottie/LottieAnimationView$d;
 
-.field public static final enum l:Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final enum q:Lcom/airbnb/lottie/LottieAnimationView$d;
 
-.field private static final synthetic m:[Lcom/airbnb/lottie/LottieAnimationView$d;
+.field public static final synthetic r:[Lcom/airbnb/lottie/LottieAnimationView$d;
 
 
 # direct methods
@@ -59,7 +59,7 @@
     .line 7
     .line 8
     .line 9
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->g:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->c:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 10
     .line 11
@@ -79,7 +79,7 @@
     .line 17
     .line 18
     .line 19
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->h:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->m:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 20
     .line 21
@@ -99,7 +99,7 @@
     .line 27
     .line 28
     .line 29
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->i:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->n:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 30
     .line 31
@@ -119,7 +119,7 @@
     .line 37
     .line 38
     .line 39
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->j:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->o:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 40
     .line 41
@@ -139,7 +139,7 @@
     .line 47
     .line 48
     .line 49
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->k:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->p:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 50
     .line 51
@@ -159,7 +159,7 @@
     .line 57
     .line 58
     .line 59
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->l:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->q:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 60
     .line 61
@@ -171,14 +171,14 @@
     move-result-object v0
 
     .line 65
-    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->m:[Lcom/airbnb/lottie/LottieAnimationView$d;
+    sput-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->r:[Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 66
     .line 67
     return-void
 .end method
 
-.method private constructor <init>(Ljava/lang/String;I)V
+.method public constructor <init>(Ljava/lang/String;I)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -195,31 +195,31 @@
     return-void
 .end method
 
-.method private static synthetic a()[Lcom/airbnb/lottie/LottieAnimationView$d;
+.method public static synthetic a()[Lcom/airbnb/lottie/LottieAnimationView$d;
     .locals 6
 
     .line 1
-    sget-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->g:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->c:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 2
     .line 3
-    sget-object v1, Lcom/airbnb/lottie/LottieAnimationView$d;->h:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v1, Lcom/airbnb/lottie/LottieAnimationView$d;->m:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 4
     .line 5
-    sget-object v2, Lcom/airbnb/lottie/LottieAnimationView$d;->i:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v2, Lcom/airbnb/lottie/LottieAnimationView$d;->n:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 6
     .line 7
-    sget-object v3, Lcom/airbnb/lottie/LottieAnimationView$d;->j:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v3, Lcom/airbnb/lottie/LottieAnimationView$d;->o:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 8
     .line 9
-    sget-object v4, Lcom/airbnb/lottie/LottieAnimationView$d;->k:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v4, Lcom/airbnb/lottie/LottieAnimationView$d;->p:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 10
     .line 11
-    sget-object v5, Lcom/airbnb/lottie/LottieAnimationView$d;->l:Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v5, Lcom/airbnb/lottie/LottieAnimationView$d;->q:Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 12
     .line 13
@@ -261,7 +261,7 @@
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->m:[Lcom/airbnb/lottie/LottieAnimationView$d;
+    sget-object v0, Lcom/airbnb/lottie/LottieAnimationView$d;->r:[Lcom/airbnb/lottie/LottieAnimationView$d;
 
     .line 2
     .line 3

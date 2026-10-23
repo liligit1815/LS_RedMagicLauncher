@@ -1,4 +1,4 @@
-.class Lcom/airbnb/lottie/LottieAnimationView$c;
+.class public Lcom/airbnb/lottie/LottieAnimationView$c;
 .super Landroid/view/View$BaseSavedState;
 .source "LottieAnimationView.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "c"
 .end annotation
 
@@ -27,19 +27,19 @@
 
 
 # instance fields
-.field g:Ljava/lang/String;
+.field public c:Ljava/lang/String;
 
-.field h:I
+.field public m:I
 
-.field i:F
+.field public n:F
 
-.field j:Z
+.field public o:Z
 
-.field k:Ljava/lang/String;
+.field public p:Ljava/lang/String;
 
-.field l:I
+.field public q:I
 
-.field m:I
+.field public r:I
 
 
 # direct methods
@@ -63,7 +63,7 @@
     return-void
 .end method
 
-.method private constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 2
 
     .line 3
@@ -74,14 +74,14 @@
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->g:Ljava/lang/String;
+    iput-object v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->c:Ljava/lang/String;
 
     .line 5
     invoke-virtual {p1}, Landroid/os/Parcel;->readFloat()F
 
     move-result v0
 
-    iput v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->i:F
+    iput v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->n:F
 
     .line 6
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
@@ -98,33 +98,33 @@
     const/4 v1, 0x0
 
     :goto_0
-    iput-boolean v1, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->j:Z
+    iput-boolean v1, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->o:Z
 
     .line 7
     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->k:Ljava/lang/String;
+    iput-object v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->p:Ljava/lang/String;
 
     .line 8
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
-    iput v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->l:I
+    iput v0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->q:I
 
     .line 9
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
 
-    iput p1, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->m:I
+    iput p1, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->r:I
 
     return-void
 .end method
 
-.method synthetic constructor <init>(Landroid/os/Parcel;Lcom/airbnb/lottie/LottieAnimationView$a;)V
+.method public synthetic constructor <init>(Landroid/os/Parcel;Lcom/airbnb/lottie/LottieAnimationView$a;)V
     .locals 0
 
     .line 1
@@ -133,7 +133,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 2
@@ -153,7 +153,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->g:Ljava/lang/String;
+    iget-object p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->c:Ljava/lang/String;
 
     .line 5
     .line 6
@@ -162,7 +162,7 @@
     .line 7
     .line 8
     .line 9
-    iget p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->i:F
+    iget p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->n:F
 
     .line 10
     .line 11
@@ -171,7 +171,7 @@
     .line 12
     .line 13
     .line 14
-    iget-boolean p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->j:Z
+    iget-boolean p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->o:Z
 
     .line 15
     .line 16
@@ -180,7 +180,7 @@
     .line 17
     .line 18
     .line 19
-    iget-object p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->k:Ljava/lang/String;
+    iget-object p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->p:Ljava/lang/String;
 
     .line 20
     .line 21
@@ -189,7 +189,7 @@
     .line 22
     .line 23
     .line 24
-    iget p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->l:I
+    iget p2, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->q:I
 
     .line 25
     .line 26
@@ -198,7 +198,7 @@
     .line 27
     .line 28
     .line 29
-    iget p0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->m:I
+    iget p0, p0, Lcom/airbnb/lottie/LottieAnimationView$c;->r:I
 
     .line 30
     .line 31

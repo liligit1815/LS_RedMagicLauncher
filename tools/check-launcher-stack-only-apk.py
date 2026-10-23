@@ -37,10 +37,15 @@ FAN_CHROME_CLASS = "Lcom/android/quickstep/views/LsFanChrome"
 UPDATE_CLASS = "Lcom/android/quickstep/views/LsOnlineUpdates"
 UPDATE_PROTOCOL_CLASS = "Lcom/android/quickstep/views/LsUpdateProtocol"
 UPDATE_PROVIDER_CLASS = "Lcom/android/quickstep/views/LsUpdateFileProvider"
+PLATFORM12_CLASS = "Lcom/android/quickstep/views/LsPlatform12"
+THUMBNAIL12_CLASS = "Lcom/android/quickstep/views/LsThumbnailRenderer"
 HELPER_ROOTS = (STACK_CLASS, ACTION_CLASS, TRANSITION_CLASS, OCCLUSION_CLASS,
                 ORBIT_GEOMETRY_CLASS, ORBIT_REFLOW_CLASS, ORBIT_SETTINGS_CLASS, ORBIT_PAGER_CLASS,
                 FAN_GEOMETRY_CLASS, FAN_REFLOW_CLASS, FAN_SETTINGS_CLASS, FAN_PAGER_CLASS,
-                FAN_CHROME_CLASS, UPDATE_CLASS, UPDATE_PROTOCOL_CLASS, UPDATE_PROVIDER_CLASS)
+                FAN_CHROME_CLASS, UPDATE_CLASS, UPDATE_PROTOCOL_CLASS, UPDATE_PROVIDER_CLASS,
+                PLATFORM12_CLASS, THUMBNAIL12_CLASS)
+RELEASE_270001_CLASSES = {PLATFORM12_CLASS + suffix + ";" for suffix in ("", "$Dismiss")} | {
+    THUMBNAIL12_CLASS + suffix + ";" for suffix in ("", "$Frame", "$1")}
 RELEASE_260027_CLASSES = {UPDATE_PROTOCOL_CLASS + ";", UPDATE_PROVIDER_CLASS + ";"} | {
     UPDATE_CLASS + suffix + ";" for suffix in (
         "", "$1", "$Release", "$SettingClick", "$Dismiss", "$Choice", "$Worker", "$Ui", "$Lifecycle")
@@ -154,7 +159,11 @@ def parse_dex(raw: bytes, name: str) -> dict:
                           for item in range(parameter_count)]
         protos.append("(" + "".join(parameters) + ")" + types[result_type])
 
-    field_count, _ = table(80, 8)
+    field_count, field_offset = table(80, 8)
+    field_refs = []
+    for index in range(field_count):
+        owner, kind, field_name = struct.unpack_from("<HHI", raw, field_offset + index * 8)
+        field_refs.append((types[owner], strings[field_name], types[kind]))
     method_count, method_offset = table(88, 8)
     methods = []
     for index in range(method_count):
@@ -164,12 +173,18 @@ def parse_dex(raw: bytes, name: str) -> dict:
     class_count, class_offset = table(96, 32)
     classes: set[str] = set()
     superclasses: dict[str, str] = {}
+    interfaces = {}
+    declared_fields = {}
     declared: dict[Method, dict] = {}
     for index in range(class_count):
         definition = struct.unpack_from("<8I", raw, class_offset + index * 32)
         owner = types[definition[0]]
         ensure(owner not in classes, f"{name}: duplicate class {owner}")
         classes.add(owner)
+        if definition[3]:
+            count = struct.unpack_from("<I", raw, definition[3])[0]
+            interfaces[owner] = [types[struct.unpack_from("<H", raw, definition[3] + 4 + j * 2)[0]]
+                                 for j in range(count)]
         if definition[2] != 0xffffffff:
             ensure(definition[2] < len(types), f"{name}: superclass type index out of bounds")
             superclasses[owner] = types[definition[2]]
@@ -184,9 +199,10 @@ def parse_dex(raw: bytes, name: str) -> dict:
             field_index = 0
             for _ in range(count):
                 delta, offset = uleb128(raw, offset)
-                _, offset = uleb128(raw, offset)
+                access, offset = uleb128(raw, offset)
                 field_index += delta
                 ensure(field_index < field_count, f"{name}: class_data field index out of bounds")
+                declared_fields[field_refs[field_index]] = {"dex": name, "accessFlags": access}
         for count in sizes[2:]:
             method_index = 0
             for _ in range(count):
@@ -204,7 +220,8 @@ def parse_dex(raw: bytes, name: str) -> dict:
                        f"{name}: native/abstract/code declaration mismatch for {key}")
                 declared[key] = {"dex": name, "accessFlags": access, "codeOffset": code_offset}
 
-    return {"name": name, "classes": classes, "superclasses": superclasses,
+    return {"name": name, "classes": classes, "superclasses": superclasses, "interfaces": interfaces,
+            "field_references": set(field_refs), "declared_fields": declared_fields,
             "methods": set(methods), "declared": declared,
             "forbidden": [{"dex": name, "marker": match.group(), "string": value}
                           for value in strings if (match := FORBIDDEN_PATTERN.search(value))],
@@ -233,6 +250,7 @@ def load_apk(path: Path) -> dict:
     declared: dict[Method, dict] = {}
     references: set[Method] = set()
     superclasses: dict[str, str] = {}
+    interfaces, declared_fields, field_references = {}, {}, set()
     forbidden = []
     for index in indexes:
         ensure(not classes.intersection(index["classes"]), f"{path}: class duplicated across DEX files")
@@ -240,10 +258,14 @@ def load_apk(path: Path) -> dict:
         declared.update(index["declared"])
         references.update(index["methods"])
         superclasses.update(index["superclasses"])
+        interfaces.update(index["interfaces"])
+        declared_fields.update(index["declared_fields"])
+        field_references.update(index["field_references"])
         forbidden.extend(index["forbidden"])
     return {"path": str(path), "sha256": file_sha256(path), "classes": classes,
             "declared": declared, "references": references, "superclasses": superclasses,
-            "forbidden": forbidden,
+            "forbidden": forbidden, "interfaces": interfaces,
+            "declared_fields": declared_fields, "field_references": field_references,
             "dex": [{"name": item["name"], **item["counts"]} for item in indexes],
             "manifest": manifest}
 
@@ -453,6 +475,8 @@ def compare(original: dict, modified: dict, expected: dict) -> dict:
         expected_classes.update(RELEASE_260027_CLASSES)
     if expected["versionCode"] >= 260029:
         expected_classes.update(RELEASE_260029_CLASSES)
+    if expected["versionCode"] >= 270001:
+        expected_classes.update(RELEASE_270001_CLASSES)
     if expected["versionCode"] < 260015:
         expected_classes.discard(STACK_CLASS + "$ActionReveal;")
     if expected["versionCode"] < 260014:

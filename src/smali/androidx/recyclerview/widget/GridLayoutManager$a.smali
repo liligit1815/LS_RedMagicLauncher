@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/GridLayoutManager$a;
+.class public Landroidx/recyclerview/widget/GridLayoutManager$a;
 .super Ljava/lang/Object;
 .source "GridLayoutManager.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/view/View;)Z
+.method public static a(Landroid/view/View;)Z
     .locals 0
 
     .line 1

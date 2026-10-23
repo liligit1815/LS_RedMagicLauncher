@@ -1,0 +1,56 @@
+.class public final synthetic Lge/f;
+.super Ljava/lang/Object;
+.source "R8$$SyntheticClass"
+
+# interfaces
+.implements Ln5/d$c;
+
+
+# instance fields
+.field public final synthetic a:Landroid/view/View;
+
+.field public final synthetic b:Ln5/z;
+
+
+# direct methods
+.method public synthetic constructor <init>(Landroid/view/View;Ln5/z;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    iput-object p1, p0, Lge/f;->a:Landroid/view/View;
+
+    .line 5
+    .line 6
+    iput-object p2, p0, Lge/f;->b:Ln5/z;
+
+    .line 7
+    .line 8
+    return-void
+.end method
+
+
+# virtual methods
+.method public final a(Ln5/d;)V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Lge/f;->a:Landroid/view/View;
+
+    .line 2
+    .line 3
+    iget-object p0, p0, Lge/f;->b:Ln5/z;
+
+    .line 4
+    .line 5
+    invoke-static {v0, p0, p1}, Lcom/android/wm/shell/shared/bubbles/DropTargetManager;->a(Landroid/view/View;Ln5/z;Ln5/d;)V
+
+    .line 6
+    .line 7
+    .line 8
+    return-void
+.end method

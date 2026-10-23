@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.launcher3.AppWidgetResizeFrame android:padding="0.0dp" android:layout_width="match_parent" android:layout_height="match_parent"
+<com.android.launcher3.AppWidgetResizeFrame android:padding="0.0dp" android:layout_width="match_parent" android:layout_height="match_parent" android:elevation="1.0dp"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
         <ImageView android:layout_gravity="center" android:id="@id/widget_resize_frame" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_margin="@dimen/resize_frame_margin" android:src="@drawable/widget_resize_frame" android:tint="?workspaceAccentColor" />

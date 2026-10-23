@@ -72,6 +72,88 @@
     return-void
 .end method
 
+.method public static synthetic a()V
+    .locals 3
+
+    .line 1
+    :try_start_0
+    invoke-static {}, Landroid/app/ActivityManager;->getService()Landroid/app/IActivityManager;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object v0
+
+    .line 5
+    const-string v1, "gestureNav"
+
+    .line 6
+    .line 7
+    invoke-interface {v0, v1}, Landroid/app/IActivityManager;->closeSystemDialogs(Ljava/lang/String;)V
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 8
+    .line 9
+    .line 10
+    return-void
+
+    .line 11
+    :catch_0
+    move-exception v0
+
+    .line 12
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    .line 13
+    .line 14
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 15
+    .line 16
+    .line 17
+    const-string v2, "Exception calling closeSystemDialogs "
+
+    .line 18
+    .line 19
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 20
+    .line 21
+    .line 22
+    invoke-virtual {v0}, Landroid/os/RemoteException;->getMessage()Ljava/lang/String;
+
+    .line 23
+    .line 24
+    .line 25
+    move-result-object v0
+
+    .line 26
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 27
+    .line 28
+    .line 29
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 30
+    .line 31
+    .line 32
+    move-result-object v0
+
+    .line 33
+    const-string v1, "SysUiOverlayInputConsumer"
+
+    .line 34
+    .line 35
+    invoke-static {v1, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 36
+    .line 37
+    .line 38
+    return-void
+.end method
+
 
 # virtual methods
 .method public allowInterceptByParent()Z
@@ -139,81 +221,24 @@
     .locals 0
 
     .line 1
-    :try_start_0
-    invoke-static {}, Landroid/app/ActivityManager;->getService()Landroid/app/IActivityManager;
+    sget-object p0, Lcom/android/launcher3/util/Executors;->UI_HELPER_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
     .line 2
     .line 3
-    .line 4
-    move-result-object p0
+    new-instance p1, Lcom/android/quickstep/inputconsumers/u;
 
+    .line 4
     .line 5
-    const-string p1, "gestureNav"
+    invoke-direct {p1}, Lcom/android/quickstep/inputconsumers/u;-><init>()V
 
     .line 6
     .line 7
-    invoke-interface {p0, p1}, Landroid/app/IActivityManager;->closeSystemDialogs(Ljava/lang/String;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
     .line 8
+    invoke-virtual {p0, p1}, Lcom/android/launcher3/util/LooperExecutor;->execute(Ljava/lang/Runnable;)V
+
     .line 9
     .line 10
-    return-void
-
     .line 11
-    :catch_0
-    move-exception p0
-
-    .line 12
-    new-instance p1, Ljava/lang/StringBuilder;
-
-    .line 13
-    .line 14
-    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 15
-    .line 16
-    .line 17
-    const-string p2, "Exception calling closeSystemDialogs "
-
-    .line 18
-    .line 19
-    invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 20
-    .line 21
-    .line 22
-    invoke-virtual {p0}, Landroid/os/RemoteException;->getMessage()Ljava/lang/String;
-
-    .line 23
-    .line 24
-    .line 25
-    move-result-object p0
-
-    .line 26
-    invoke-virtual {p1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 27
-    .line 28
-    .line 29
-    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 30
-    .line 31
-    .line 32
-    move-result-object p0
-
-    .line 33
-    const-string p1, "SysUiOverlayInputConsumer"
-
-    .line 34
-    .line 35
-    invoke-static {p1, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 36
-    .line 37
-    .line 38
     return-void
 .end method
 
@@ -237,7 +262,7 @@
 
     .line 8
     .line 9
-    invoke-static {v0, v1}, Lcom/android/launcher3/testing/K;->a(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {v0, v1}, Lcom/android/launcher3/testing/TestLogging;->recordEvent(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 10
     .line 11

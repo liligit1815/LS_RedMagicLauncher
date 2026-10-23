@@ -2,10 +2,13 @@
 <resources>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
+    <integer name="add_desktop_button_fade_delay">33</integer>
+    <integer name="add_desktop_button_fade_duration">50</integer>
+    <integer name="add_item_aty_orientation">@integer/screen_orientation_portrait</integer>
     <integer name="ai_bubble_widget_bubble_default_size_count">10</integer>
     <integer name="ai_bubble_widget_bubble_min_size_count">1</integer>
     <integer name="all_apps_bubble_text_padding_bottom">56</integer>
-    <integer name="all_apps_bubble_text_padding_bottom_land">12</integer>
+    <integer name="all_apps_bubble_text_padding_bottom_land">13</integer>
     <integer name="all_apps_bubble_text_padding_top">0</integer>
     <integer name="all_apps_cell_height">170</integer>
     <integer name="all_apps_cell_height_land">126</integer>
@@ -105,6 +108,7 @@
     <integer name="custom_snackbar_text_max_lines">2</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
     <integer name="design_tab_indicator_anim_duration_ms">300</integer>
+    <integer name="desktop_layout_max_rows">5</integer>
     <integer name="folder_batch_btn_layout_padding_bottom">63</integer>
     <integer name="folder_batch_btn_layout_padding_bottom_land">45</integer>
     <integer name="folder_batch_btn_layout_padding_bottom_land_no_button">56</integer>
@@ -142,6 +146,7 @@
     <integer name="gs_search_edit_max_length">256</integer>
     <integer name="help_margin_bottom_no_nav">72</integer>
     <integer name="hide_password_duration">320</integer>
+    <integer name="home_screen_files_folder_icon_path_intrinsic_size">24</integer>
     <integer name="icon_arrange_topbar_margin_scaled_celllayout">22</integer>
     <integer name="icon_arrange_topbar_margin_scaled_celllayout_land">22</integer>
     <integer name="icon_arrange_topbar_margin_status_bar">0</integer>
@@ -175,6 +180,7 @@
     <integer name="m3_sys_shape_corner_large_corner_family">0</integer>
     <integer name="m3_sys_shape_corner_medium_corner_family">0</integer>
     <integer name="m3_sys_shape_corner_small_corner_family">0</integer>
+    <integer name="m3c_window_layout_in_display_cutout_mode">3</integer>
     <integer name="material_motion_duration_long_1">300</integer>
     <integer name="material_motion_duration_long_2">350</integer>
     <integer name="material_motion_duration_medium_1">200</integer>
@@ -183,6 +189,7 @@
     <integer name="material_motion_duration_short_2">150</integer>
     <integer name="material_motion_path">0</integer>
     <integer name="max_depth_blur_radius">200</integer>
+    <integer name="max_launcher_memory_mb">300</integer>
     <integer name="menu_container_home_layout_margin_top">38</integer>
     <integer name="menu_container_home_layout_margin_top_land">10</integer>
     <integer name="menu_effect_icon_text_size">14</integer>
@@ -233,6 +240,11 @@
     <integer name="recentsTaskViewPoolSize_low">3</integer>
     <integer name="recentsThumbnailCacheSize">3</integer>
     <integer name="recentsThumbnailCacheSize_low">1</integer>
+    <integer name="screen_orientation_behind">3</integer>
+    <integer name="screen_orientation_landscape">0</integer>
+    <integer name="screen_orientation_portrait">1</integer>
+    <integer name="screen_orientation_unspecified">-1</integer>
+    <integer name="screen_orientation_user">2</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
     <integer name="switch_thumb_disable_alpha">0x80</integer>
@@ -249,13 +261,16 @@
     <integer name="task_focus_indcator_black_maxalpha">38</integer>
     <integer name="task_focus_indcator_white_maxalpha">64</integer>
     <integer name="taskbar_background_duration">80</integer>
+    <integer name="to_desktop_animation_duration_ms">336</integer>
     <integer name="widget_cell_add_button_font_weight">500</integer>
     <integer name="widget_cell_description_font_weight">400</integer>
     <integer name="widget_cell_dims_font_weight">400</integer>
     <integer name="widget_cell_title_font_weight">500</integer>
+    <integer name="widget_picker_error_text_label_font_weight">400</integer>
     <integer name="widget_picker_header_app_subtitle_font_weight">400</integer>
     <integer name="widget_picker_header_app_title_font_weight">500</integer>
     <integer name="widget_picker_header_selected_app_subtitle_font_weight">600</integer>
     <integer name="widget_picker_header_selected_app_title_font_weight">600</integer>
-    <integer name="widget_predictions_min_count">6</integer>
+    <integer name="widget_picker_search_bar_label_font_weight">400</integer>
+    <integer name="widget_picker_toolbar_tab_label_font_weight">500</integer>
 </resources>

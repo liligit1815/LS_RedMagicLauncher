@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private final B:Landroidx/dynamicanimation/animation/f$a;
+.field public final B:Landroidx/dynamicanimation/animation/f$a;
 
 
 # direct methods
@@ -55,7 +55,7 @@
 
     .line 10
     .line 11
-    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/e;->g()F
+    invoke-virtual {p0}, Landroidx/dynamicanimation/animation/e;->h()F
 
     .line 12
     .line 13
@@ -77,7 +77,7 @@
     .locals 0
 
     .line 1
-    invoke-super {p0, p1}, Landroidx/dynamicanimation/animation/e;->r(F)Landroidx/dynamicanimation/animation/e;
+    invoke-super {p0, p1}, Landroidx/dynamicanimation/animation/e;->o(F)Landroidx/dynamicanimation/animation/e;
 
     .line 2
     .line 3
@@ -85,7 +85,19 @@
     return-object p0
 .end method
 
-.method s(F)V
+.method public B(F)Landroidx/dynamicanimation/animation/f;
+    .locals 0
+
+    .line 1
+    invoke-super {p0, p1}, Landroidx/dynamicanimation/animation/e;->s(F)Landroidx/dynamicanimation/animation/e;
+
+    .line 2
+    .line 3
+    .line 4
+    return-object p0
+.end method
+
+.method public t(F)V
     .locals 0
 
     .line 1
@@ -101,7 +113,7 @@
     return-void
 .end method
 
-.method v(J)Z
+.method public w(J)Z
     .locals 3
 
     .line 1
@@ -184,7 +196,7 @@
 
     .line 38
     :cond_1
-    invoke-virtual {p0, p2, p1}, Landroidx/dynamicanimation/animation/f;->w(FF)Z
+    invoke-virtual {p0, p2, p1}, Landroidx/dynamicanimation/animation/f;->x(FF)Z
 
     .line 39
     .line 40
@@ -206,7 +218,7 @@
     return p0
 .end method
 
-.method w(FF)Z
+.method public x(FF)Z
     .locals 1
 
     .line 1
@@ -268,7 +280,7 @@
     return p0
 .end method
 
-.method public x(F)Landroidx/dynamicanimation/animation/f;
+.method public y(F)Landroidx/dynamicanimation/animation/f;
     .locals 1
 
     .line 1
@@ -310,18 +322,6 @@
     .line 18
     .line 19
     throw p0
-.end method
-
-.method public y(F)Landroidx/dynamicanimation/animation/f;
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Landroidx/dynamicanimation/animation/e;->m(F)Landroidx/dynamicanimation/animation/e;
-
-    .line 2
-    .line 3
-    .line 4
-    return-object p0
 .end method
 
 .method public z(F)Landroidx/dynamicanimation/animation/f;

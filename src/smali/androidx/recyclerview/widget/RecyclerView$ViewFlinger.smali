@@ -12,7 +12,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "ViewFlinger"
 .end annotation
 
@@ -34,7 +34,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroidx/recyclerview/widget/RecyclerView;)V
+.method public constructor <init>(Landroidx/recyclerview/widget/RecyclerView;)V
     .locals 2
 
     .line 1
@@ -224,7 +224,7 @@
 
     .line 7
     .line 8
-    invoke-static {v0, p0}, LJ/I;->a0(Landroid/view/View;Ljava/lang/Runnable;)V
+    invoke-static {v0, p0}, Lz5/o0;->c0(Landroid/view/View;Ljava/lang/Runnable;)V
 
     .line 9
     .line 10
@@ -350,7 +350,7 @@
     return-void
 .end method
 
-.method postOnAnimation()V
+.method public postOnAnimation()V
     .locals 1
 
     .line 1

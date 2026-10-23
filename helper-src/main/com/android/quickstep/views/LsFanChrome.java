@@ -62,7 +62,7 @@ public final class LsFanChrome {
         // Always record the label, even on a transparent entry frame. The
         // TaskView RenderNode applies its current alpha when replaying it.
         TaskContainer container = task.getTaskContainers().get(0);
-        if (container.getSnapshotView() != child) return;
+        if (container.getTaskContentView() != child) return;
         TextView title = container.getTitleView();
         if (title == null || title.getText() == null || title.getText().length() == 0) return;
         float alpha = LsNativeStack.fanLabelAlpha(task);

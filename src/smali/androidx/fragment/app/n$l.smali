@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/n$l;
+.class public Landroidx/fragment/app/n$l;
 .super Ljava/lang/Object;
 .source "Fragment.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "l"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/view/View;)V
+.method public static a(Landroid/view/View;)V
     .locals 0
 
     .line 1

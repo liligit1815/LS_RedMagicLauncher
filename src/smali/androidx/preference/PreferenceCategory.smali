@@ -19,11 +19,11 @@
     .locals 2
 
     .line 3
-    sget v0, Landroidx/preference/i;->e:I
+    sget v0, Le7/g;->e:I
 
     const v1, 0x101008c
 
-    invoke-static {p1, v0, v1}, LA/l;->a(Landroid/content/Context;II)I
+    invoke-static {p1, v0, v1}, Lq5/l;->a(Landroid/content/Context;II)I
 
     move-result v0
 
@@ -54,7 +54,7 @@
 
 
 # virtual methods
-.method public M()Z
+.method public isEnabled()Z
     .locals 0
 
     .line 1
@@ -64,30 +64,11 @@
     return p0
 .end method
 
-.method public P0()Z
+.method public onBindViewHolder(Le7/f;)V
     .locals 0
 
     .line 1
-    invoke-super {p0}, Landroidx/preference/Preference;->M()Z
-
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    xor-int/lit8 p0, p0, 0x1
-
-    .line 6
-    .line 7
-    return p0
-.end method
-
-.method public W(Landroidx/preference/h;)V
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Landroidx/preference/Preference;->W(Landroidx/preference/h;)V
+    invoke-super {p0, p1}, Landroidx/preference/Preference;->onBindViewHolder(Le7/f;)V
 
     .line 2
     .line 3
@@ -105,4 +86,23 @@
     .line 9
     .line 10
     return-void
+.end method
+
+.method public shouldDisableDependents()Z
+    .locals 0
+
+    .line 1
+    invoke-super {p0}, Landroidx/preference/Preference;->isEnabled()Z
+
+    .line 2
+    .line 3
+    .line 4
+    move-result p0
+
+    .line 5
+    xor-int/lit8 p0, p0, 0x1
+
+    .line 6
+    .line 7
+    return p0
 .end method

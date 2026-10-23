@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SearchView$k;
+.class public Landroidx/appcompat/widget/SearchView$k;
 .super Ljava/lang/Object;
 .source "SearchView.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "k"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/widget/AutoCompleteTextView;)V
+.method public static a(Landroid/widget/AutoCompleteTextView;)V
     .locals 0
 
     .line 1
@@ -27,7 +27,7 @@
     return-void
 .end method
 
-.method static b(Landroidx/appcompat/widget/SearchView$SearchAutoComplete;I)V
+.method public static b(Landroidx/appcompat/widget/SearchView$SearchAutoComplete;I)V
     .locals 0
 
     .line 1

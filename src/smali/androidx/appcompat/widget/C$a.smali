@@ -1,126 +1,123 @@
-.class Landroidx/appcompat/widget/C$a;
-.super LA/h$f;
-.source "AppCompatTextHelper.java"
+.class public Landroidx/appcompat/widget/c$a;
+.super Ljava/lang/Object;
+.source "ScrollingTabContainerView.java"
+
+# interfaces
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Landroidx/appcompat/widget/C;->C(Landroid/content/Context;Landroidx/appcompat/widget/a0;)V
+    value = Landroidx/appcompat/widget/c;->a(I)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic a:I
+.field public final synthetic c:Landroid/view/View;
 
-.field final synthetic b:I
-
-.field final synthetic c:Ljava/lang/ref/WeakReference;
-
-.field final synthetic d:Landroidx/appcompat/widget/C;
+.field public final synthetic m:Landroidx/appcompat/widget/c;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/C;IILjava/lang/ref/WeakReference;)V
+.method public constructor <init>(Landroidx/appcompat/widget/c;Landroid/view/View;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/C$a;->d:Landroidx/appcompat/widget/C;
+    iput-object p1, p0, Landroidx/appcompat/widget/c$a;->m:Landroidx/appcompat/widget/c;
 
     .line 2
     .line 3
-    iput p2, p0, Landroidx/appcompat/widget/C$a;->a:I
+    iput-object p2, p0, Landroidx/appcompat/widget/c$a;->c:Landroid/view/View;
 
     .line 4
     .line 5
-    iput p3, p0, Landroidx/appcompat/widget/C$a;->b:I
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 6
     .line 7
-    iput-object p4, p0, Landroidx/appcompat/widget/C$a;->c:Ljava/lang/ref/WeakReference;
-
     .line 8
-    .line 9
-    invoke-direct {p0}, LA/h$f;-><init>()V
-
-    .line 10
-    .line 11
-    .line 12
     return-void
 .end method
 
 
 # virtual methods
-.method public f(I)V
-    .locals 0
+.method public run()V
+    .locals 3
 
     .line 1
-    return-void
-.end method
-
-.method public g(Landroid/graphics/Typeface;)V
-    .locals 2
-
-    .line 1
-    iget v0, p0, Landroidx/appcompat/widget/C$a;->a:I
+    iget-object v0, p0, Landroidx/appcompat/widget/c$a;->c:Landroid/view/View;
 
     .line 2
     .line 3
-    const/4 v1, -0x1
+    invoke-virtual {v0}, Landroid/view/View;->getLeft()I
 
     .line 4
-    if-eq v0, v1, :cond_1
-
     .line 5
     .line 6
-    iget v1, p0, Landroidx/appcompat/widget/C$a;->b:I
+    move-result v0
 
     .line 7
+    iget-object v1, p0, Landroidx/appcompat/widget/c$a;->m:Landroidx/appcompat/widget/c;
+
     .line 8
-    and-int/lit8 v1, v1, 0x2
-
     .line 9
-    .line 10
-    if-eqz v1, :cond_0
+    invoke-virtual {v1}, Landroid/widget/HorizontalScrollView;->getWidth()I
 
+    .line 10
     .line 11
     .line 12
-    const/4 v1, 0x1
+    move-result v1
 
     .line 13
-    goto :goto_0
+    iget-object v2, p0, Landroidx/appcompat/widget/c$a;->c:Landroid/view/View;
 
     .line 14
-    :cond_0
-    const/4 v1, 0x0
-
     .line 15
-    :goto_0
-    invoke-static {p1, v0, v1}, Landroidx/appcompat/widget/C$f;->a(Landroid/graphics/Typeface;IZ)Landroid/graphics/Typeface;
+    invoke-virtual {v2}, Landroid/view/View;->getWidth()I
 
     .line 16
     .line 17
     .line 18
-    move-result-object p1
+    move-result v2
 
     .line 19
-    :cond_1
-    iget-object v0, p0, Landroidx/appcompat/widget/C$a;->d:Landroidx/appcompat/widget/C;
+    sub-int/2addr v1, v2
 
     .line 20
-    .line 21
-    iget-object p0, p0, Landroidx/appcompat/widget/C$a;->c:Ljava/lang/ref/WeakReference;
+    div-int/lit8 v1, v1, 0x2
 
+    .line 21
     .line 22
+    sub-int/2addr v0, v1
+
     .line 23
-    invoke-virtual {v0, p0, p1}, Landroidx/appcompat/widget/C;->n(Ljava/lang/ref/WeakReference;Landroid/graphics/Typeface;)V
+    iget-object v1, p0, Landroidx/appcompat/widget/c$a;->m:Landroidx/appcompat/widget/c;
 
     .line 24
     .line 25
+    const/4 v2, 0x0
+
     .line 26
+    invoke-virtual {v1, v0, v2}, Landroid/widget/HorizontalScrollView;->smoothScrollTo(II)V
+
+    .line 27
+    .line 28
+    .line 29
+    iget-object p0, p0, Landroidx/appcompat/widget/c$a;->m:Landroidx/appcompat/widget/c;
+
+    .line 30
+    .line 31
+    const/4 v0, 0x0
+
+    .line 32
+    iput-object v0, p0, Landroidx/appcompat/widget/c;->c:Ljava/lang/Runnable;
+
+    .line 33
+    .line 34
     return-void
 .end method

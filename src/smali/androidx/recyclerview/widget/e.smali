@@ -18,7 +18,7 @@
 
 
 # static fields
-.field private static final a:Ljava/util/Comparator;
+.field public static final a:Ljava/util/Comparator;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Comparator<",
@@ -50,7 +50,7 @@
     return-void
 .end method
 
-.method private static a(Landroidx/recyclerview/widget/e$g;Landroidx/recyclerview/widget/e$b;Landroidx/recyclerview/widget/e$c;Landroidx/recyclerview/widget/e$c;I)Landroidx/recyclerview/widget/e$h;
+.method public static a(Landroidx/recyclerview/widget/e$g;Landroidx/recyclerview/widget/e$b;Landroidx/recyclerview/widget/e$c;Landroidx/recyclerview/widget/e$c;I)Landroidx/recyclerview/widget/e$h;
     .locals 11
 
     .line 1
@@ -268,7 +268,7 @@
 
     .line 93
     .line 94
-    invoke-virtual {p1, v9, v10}, Landroidx/recyclerview/widget/e$b;->b(II)Z
+    invoke-virtual {p1, v9, v10}, Landroidx/recyclerview/widget/e$b;->areItemsTheSame(II)Z
 
     .line 95
     .line 96
@@ -376,7 +376,7 @@
     .locals 9
 
     .line 1
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/e$b;->e()I
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/e$b;->getOldListSize()I
 
     .line 2
     .line 3
@@ -384,7 +384,7 @@
     move-result v0
 
     .line 5
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/e$b;->d()I
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/e$b;->getNewListSize()I
 
     .line 6
     .line 7
@@ -728,7 +728,7 @@
     return-object v2
 .end method
 
-.method private static c(Landroidx/recyclerview/widget/e$g;Landroidx/recyclerview/widget/e$b;Landroidx/recyclerview/widget/e$c;Landroidx/recyclerview/widget/e$c;I)Landroidx/recyclerview/widget/e$h;
+.method public static c(Landroidx/recyclerview/widget/e$g;Landroidx/recyclerview/widget/e$b;Landroidx/recyclerview/widget/e$c;Landroidx/recyclerview/widget/e$c;I)Landroidx/recyclerview/widget/e$h;
     .locals 11
 
     .line 1
@@ -947,7 +947,7 @@
 
     .line 94
     .line 95
-    invoke-virtual {p1, v6, v7}, Landroidx/recyclerview/widget/e$b;->b(II)Z
+    invoke-virtual {p1, v6, v7}, Landroidx/recyclerview/widget/e$b;->areItemsTheSame(II)Z
 
     .line 96
     .line 97
@@ -1059,7 +1059,7 @@
     return-object p0
 .end method
 
-.method private static d(Landroidx/recyclerview/widget/e$g;Landroidx/recyclerview/widget/e$b;Landroidx/recyclerview/widget/e$c;Landroidx/recyclerview/widget/e$c;)Landroidx/recyclerview/widget/e$h;
+.method public static d(Landroidx/recyclerview/widget/e$g;Landroidx/recyclerview/widget/e$b;Landroidx/recyclerview/widget/e$c;Landroidx/recyclerview/widget/e$c;)Landroidx/recyclerview/widget/e$h;
     .locals 4
 
     .line 1

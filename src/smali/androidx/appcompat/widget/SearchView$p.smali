@@ -1,5 +1,5 @@
-.class Landroidx/appcompat/widget/SearchView$p;
-.super Landroidx/customview/view/a;
+.class public Landroidx/appcompat/widget/SearchView$p;
+.super Lh6/a;
 .source "SearchView.java"
 
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "p"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field g:Z
+.field public c:Z
 
 
 # direct methods
@@ -55,7 +55,7 @@
     .locals 0
 
     .line 2
-    invoke-direct {p0, p1, p2}, Landroidx/customview/view/a;-><init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
+    invoke-direct {p0, p1, p2}, Lh6/a;-><init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
 
     const/4 p2, 0x0
 
@@ -70,16 +70,16 @@
 
     move-result p1
 
-    iput-boolean p1, p0, Landroidx/appcompat/widget/SearchView$p;->g:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/SearchView$p;->c:Z
 
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;)V
+.method public constructor <init>(Landroid/os/Parcelable;)V
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1}, Landroidx/customview/view/a;-><init>(Landroid/os/Parcelable;)V
+    invoke-direct {p0, p1}, Lh6/a;-><init>(Landroid/os/Parcelable;)V
 
     return-void
 .end method
@@ -138,7 +138,7 @@
     .line 25
     .line 26
     .line 27
-    iget-boolean p0, p0, Landroidx/appcompat/widget/SearchView$p;->g:Z
+    iget-boolean p0, p0, Landroidx/appcompat/widget/SearchView$p;->c:Z
 
     .line 28
     .line 29
@@ -171,12 +171,12 @@
     .locals 0
 
     .line 1
-    invoke-super {p0, p1, p2}, Landroidx/customview/view/a;->writeToParcel(Landroid/os/Parcel;I)V
+    invoke-super {p0, p1, p2}, Lh6/a;->writeToParcel(Landroid/os/Parcel;I)V
 
     .line 2
     .line 3
     .line 4
-    iget-boolean p0, p0, Landroidx/appcompat/widget/SearchView$p;->g:Z
+    iget-boolean p0, p0, Landroidx/appcompat/widget/SearchView$p;->c:Z
 
     .line 5
     .line 6

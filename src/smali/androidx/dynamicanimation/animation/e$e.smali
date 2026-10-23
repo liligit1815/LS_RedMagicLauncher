@@ -1,4 +1,4 @@
-.class Landroidx/dynamicanimation/animation/e$e;
+.class public Landroidx/dynamicanimation/animation/e$e;
 .super Landroidx/dynamicanimation/animation/e$s;
 .source "DynamicAnimation.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # direct methods
-.method constructor <init>(Ljava/lang/String;)V
+.method public constructor <init>(Ljava/lang/String;)V
     .locals 1
 
     .line 1
@@ -32,37 +32,17 @@
 
 
 # virtual methods
-.method public a(Landroid/view/View;)F
+.method public getValue(Landroid/view/View;)F
     .locals 0
 
-    .line 1
+    .line 2
     invoke-virtual {p1}, Landroid/view/View;->getScrollY()I
 
-    .line 2
-    .line 3
-    .line 4
     move-result p0
 
-    .line 5
     int-to-float p0, p0
 
-    .line 6
     return p0
-.end method
-
-.method public b(Landroid/view/View;F)V
-    .locals 0
-
-    .line 1
-    float-to-int p0, p2
-
-    .line 2
-    invoke-virtual {p1, p0}, Landroid/view/View;->setScrollY(I)V
-
-    .line 3
-    .line 4
-    .line 5
-    return-void
 .end method
 
 .method public bridge synthetic getValue(Ljava/lang/Object;)F
@@ -71,17 +51,22 @@
     .line 1
     check-cast p1, Landroid/view/View;
 
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1}, Landroidx/dynamicanimation/animation/e$e;->a(Landroid/view/View;)F
+    invoke-virtual {p0, p1}, Landroidx/dynamicanimation/animation/e$e;->getValue(Landroid/view/View;)F
 
-    .line 4
-    .line 5
-    .line 6
     move-result p0
 
-    .line 7
     return p0
+.end method
+
+.method public setValue(Landroid/view/View;F)V
+    .locals 0
+
+    float-to-int p0, p2
+
+    .line 2
+    invoke-virtual {p1, p0}, Landroid/view/View;->setScrollY(I)V
+
+    return-void
 .end method
 
 .method public bridge synthetic setValue(Ljava/lang/Object;F)V
@@ -90,12 +75,7 @@
     .line 1
     check-cast p1, Landroid/view/View;
 
-    .line 2
-    .line 3
-    invoke-virtual {p0, p1, p2}, Landroidx/dynamicanimation/animation/e$e;->b(Landroid/view/View;F)V
+    invoke-virtual {p0, p1, p2}, Landroidx/dynamicanimation/animation/e$e;->setValue(Landroid/view/View;F)V
 
-    .line 4
-    .line 5
-    .line 6
     return-void
 .end method

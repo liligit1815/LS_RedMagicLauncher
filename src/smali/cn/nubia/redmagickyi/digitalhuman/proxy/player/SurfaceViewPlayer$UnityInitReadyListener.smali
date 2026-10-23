@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "UnityInitReadyListener"
 .end annotation
 
@@ -53,7 +53,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$1;)V
+.method public synthetic constructor <init>(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$1;)V
     .locals 0
 
     .line 3
@@ -62,7 +62,7 @@
     return-void
 .end method
 
-.method static synthetic access$500(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)Ljava/util/concurrent/atomic/AtomicReference;
+.method public static synthetic access$500(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)Ljava/util/concurrent/atomic/AtomicReference;
     .locals 0
 
     .line 1
@@ -73,7 +73,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$600(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)Landroid/os/Handler;
+.method public static synthetic access$600(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)Landroid/os/Handler;
     .locals 0
 
     .line 1
@@ -84,7 +84,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$700(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)V
+.method public static synthetic access$700(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)V
     .locals 0
 
     .line 1
@@ -96,7 +96,7 @@
     return-void
 .end method
 
-.method static synthetic access$800(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)V
+.method public static synthetic access$800(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer$UnityInitReadyListener;)V
     .locals 0
 
     .line 1
@@ -405,7 +405,7 @@
     move-result-object v0
 
     .line 33
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_3
 
     .line 34
     .line 35
@@ -504,7 +504,6 @@
     .line 80
     .line 81
     .line 82
-    :cond_4
     return-void
 .end method
 

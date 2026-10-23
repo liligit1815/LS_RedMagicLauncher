@@ -1,4 +1,4 @@
-.class Landroidx/profileinstaller/a;
+.class public Landroidx/profileinstaller/a;
 .super Ljava/lang/Object;
 .source "BenchmarkOperation.java"
 
@@ -13,7 +13,7 @@
 
 
 # direct methods
-.method static a(Ljava/io/File;)Z
+.method public static a(Ljava/io/File;)Z
     .locals 6
 
     .line 1
@@ -116,7 +116,7 @@
     return v1
 .end method
 
-.method static b(Landroid/content/Context;Landroidx/profileinstaller/ProfileInstallReceiver$a;)V
+.method public static b(Landroid/content/Context;Landroidx/profileinstaller/ProfileInstallReceiver$a;)V
     .locals 2
 
     .line 1

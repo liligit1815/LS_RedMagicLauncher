@@ -204,7 +204,7 @@
 
     .line 28
     :cond_1
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->n()LJ/a;
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->a()Lz5/a;
 
     .line 29
     .line 30
@@ -227,13 +227,13 @@
 
     .line 38
     .line 39
-    invoke-virtual {v0, p1}, Landroidx/recyclerview/widget/q$a;->o(Landroid/view/View;)V
+    invoke-virtual {v0, p1}, Landroidx/recyclerview/widget/q$a;->b(Landroid/view/View;)V
 
     .line 40
     .line 41
     .line 42
     :cond_2
-    invoke-static {p1, p0}, LJ/I;->j0(Landroid/view/View;LJ/a;)V
+    invoke-static {p1, p0}, Lz5/o0;->l0(Landroid/view/View;Lz5/a;)V
 
     .line 43
     .line 44
@@ -666,7 +666,7 @@
 
 
 # virtual methods
-.method addViewHolderToRecycledViewPool(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Z)V
+.method public addViewHolderToRecycledViewPool(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Z)V
     .locals 4
 
     .line 1
@@ -694,7 +694,7 @@
 
     .line 12
     .line 13
-    invoke-virtual {v1}, Landroidx/recyclerview/widget/q;->n()LJ/a;
+    invoke-virtual {v1}, Landroidx/recyclerview/widget/q;->a()Lz5/a;
 
     .line 14
     .line 15
@@ -714,7 +714,7 @@
 
     .line 22
     .line 23
-    invoke-virtual {v1, v0}, Landroidx/recyclerview/widget/q$a;->n(Landroid/view/View;)LJ/a;
+    invoke-virtual {v1, v0}, Landroidx/recyclerview/widget/q$a;->a(Landroid/view/View;)Lz5/a;
 
     .line 24
     .line 25
@@ -730,7 +730,7 @@
 
     .line 29
     :goto_0
-    invoke-static {v0, v1}, LJ/I;->j0(Landroid/view/View;LJ/a;)V
+    invoke-static {v0, v1}, Lz5/o0;->l0(Landroid/view/View;Lz5/a;)V
 
     .line 30
     .line 31
@@ -1172,7 +1172,7 @@
     return-void
 .end method
 
-.method clearOldPositions()V
+.method public clearOldPositions()V
     .locals 4
 
     .line 1
@@ -1330,7 +1330,7 @@
     return-void
 .end method
 
-.method clearScrap()V
+.method public clearScrap()V
     .locals 1
 
     .line 1
@@ -1522,7 +1522,7 @@
     throw v0
 .end method
 
-.method dispatchViewRecycled(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
+.method public dispatchViewRecycled(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
     .locals 3
 
     .line 1
@@ -1693,7 +1693,7 @@
     return-void
 .end method
 
-.method getChangedScrapViewForPosition(I)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.method public getChangedScrapViewForPosition(I)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
     .locals 9
 
     .line 1
@@ -1942,7 +1942,7 @@
     return-object v1
 .end method
 
-.method getRecycledViewPool()Landroidx/recyclerview/widget/RecyclerView$RecycledViewPool;
+.method public getRecycledViewPool()Landroidx/recyclerview/widget/RecyclerView$RecycledViewPool;
     .locals 1
 
     .line 1
@@ -1980,7 +1980,7 @@
     return-object p0
 .end method
 
-.method getScrapCount()I
+.method public getScrapCount()I
     .locals 0
 
     .line 1
@@ -2018,7 +2018,7 @@
     return-object p0
 .end method
 
-.method getScrapOrCachedViewForId(JIZ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.method public getScrapOrCachedViewForId(JIZ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
     .locals 5
 
     .line 1
@@ -2326,7 +2326,7 @@
     return-object v1
 .end method
 
-.method getScrapOrHiddenOrCachedHolderForPosition(IZ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.method public getScrapOrHiddenOrCachedHolderForPosition(IZ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
     .locals 5
 
     .line 1
@@ -2779,7 +2779,7 @@
     return-object p0
 .end method
 
-.method getScrapViewAt(I)Landroid/view/View;
+.method public getScrapViewAt(I)Landroid/view/View;
     .locals 0
 
     .line 1
@@ -2819,7 +2819,7 @@
     return-object p0
 .end method
 
-.method getViewForPosition(IZ)Landroid/view/View;
+.method public getViewForPosition(IZ)Landroid/view/View;
     .locals 2
 
     const-wide v0, 0x7fffffffffffffffL
@@ -2834,7 +2834,7 @@
     return-object p0
 .end method
 
-.method markItemDecorInsetsDirty()V
+.method public markItemDecorInsetsDirty()V
     .locals 4
 
     .line 1
@@ -2913,7 +2913,7 @@
     return-void
 .end method
 
-.method markKnownViewsInvalid()V
+.method public markKnownViewsInvalid()V
     .locals 4
 
     .line 1
@@ -3023,7 +3023,7 @@
     return-void
 .end method
 
-.method offsetPositionRecordsForInsert(II)V
+.method public offsetPositionRecordsForInsert(II)V
     .locals 6
 
     .line 1
@@ -3179,7 +3179,7 @@
     return-void
 .end method
 
-.method offsetPositionRecordsForMove(II)V
+.method public offsetPositionRecordsForMove(II)V
     .locals 9
 
     .line 1
@@ -3367,7 +3367,7 @@
     return-void
 .end method
 
-.method offsetPositionRecordsForRemove(IIZ)V
+.method public offsetPositionRecordsForRemove(IIZ)V
     .locals 5
 
     .line 1
@@ -3551,7 +3551,7 @@
     return-void
 .end method
 
-.method onAdapterChanged(Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
+.method public onAdapterChanged(Landroidx/recyclerview/widget/RecyclerView$Adapter;Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3598,7 +3598,7 @@
     return-void
 .end method
 
-.method onAttachedToWindow()V
+.method public onAttachedToWindow()V
     .locals 0
 
     .line 1
@@ -3610,7 +3610,7 @@
     return-void
 .end method
 
-.method onDetachedFromWindow()V
+.method public onDetachedFromWindow()V
     .locals 2
 
     .line 1
@@ -3654,7 +3654,7 @@
 
     .line 19
     .line 20
-    invoke-static {v1}, LN/a;->a(Landroid/view/View;)V
+    invoke-static {v1}, Lg6/a;->b(Landroid/view/View;)V
 
     .line 21
     .line 22
@@ -3683,7 +3683,7 @@
     return-void
 .end method
 
-.method quickRecycleScrapView(Landroid/view/View;)V
+.method public quickRecycleScrapView(Landroid/view/View;)V
     .locals 1
 
     .line 1
@@ -3722,7 +3722,7 @@
     return-void
 .end method
 
-.method recycleAndClearCachedViews()V
+.method public recycleAndClearCachedViews()V
     .locals 1
 
     .line 1
@@ -3794,7 +3794,7 @@
     return-void
 .end method
 
-.method recycleCachedViewAt(I)V
+.method public recycleCachedViewAt(I)V
     .locals 4
 
     .line 1
@@ -4051,7 +4051,7 @@
     return-void
 .end method
 
-.method recycleViewHolderInternal(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
+.method public recycleViewHolderInternal(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
     .locals 6
 
     .line 1
@@ -4577,7 +4577,7 @@
 
     .line 247
     .line 248
-    invoke-static {p0}, LN/a;->a(Landroid/view/View;)V
+    invoke-static {p0}, Lg6/a;->b(Landroid/view/View;)V
 
     .line 249
     .line 250
@@ -4818,7 +4818,7 @@
     throw v0
 .end method
 
-.method scrapView(Landroid/view/View;)V
+.method public scrapView(Landroid/view/View;)V
     .locals 2
 
     .line 1
@@ -5047,7 +5047,7 @@
     return-void
 .end method
 
-.method setRecycledViewPool(Landroidx/recyclerview/widget/RecyclerView$RecycledViewPool;)V
+.method public setRecycledViewPool(Landroidx/recyclerview/widget/RecyclerView$RecycledViewPool;)V
     .locals 1
 
     .line 1
@@ -5120,7 +5120,7 @@
     return-void
 .end method
 
-.method setViewCacheExtension(Landroidx/recyclerview/widget/RecyclerView$ViewCacheExtension;)V
+.method public setViewCacheExtension(Landroidx/recyclerview/widget/RecyclerView$ViewCacheExtension;)V
     .locals 0
 
     .line 1
@@ -5147,7 +5147,7 @@
     return-void
 .end method
 
-.method tryGetViewHolderForPositionByDeadline(IZJ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+.method public tryGetViewHolderForPositionByDeadline(IZJ)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
     .locals 16
 
     .line 1
@@ -6551,7 +6551,7 @@
     throw v1
 .end method
 
-.method unscrapView(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
+.method public unscrapView(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)V
     .locals 1
 
     .line 1
@@ -6608,7 +6608,7 @@
     return-void
 .end method
 
-.method updateViewCacheSize()V
+.method public updateViewCacheSize()V
     .locals 3
 
     .line 1
@@ -6704,7 +6704,7 @@
     return-void
 .end method
 
-.method validateViewHolderForOffsetPosition(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Z
+.method public validateViewHolderForOffsetPosition(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Z
     .locals 5
 
     .line 1
@@ -7047,7 +7047,7 @@
     throw v0
 .end method
 
-.method viewRangeUpdate(II)V
+.method public viewRangeUpdate(II)V
     .locals 3
 
     .line 1

@@ -1,0 +1,366 @@
+.class public final Lcom/android/launcher3/shapes/ShapesProvider;
+.super Ljava/lang/Object;
+.source "ShapesProvider.kt"
+
+
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0018\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0008\u0005\u0008\u00c7\u0002\u0018\u00002\u00020\u0001B\t\u0008\u0002\u00a2\u0006\u0004\u0008\u0002\u0010\u0003R\u001d\u0010\u0006\u001a\u0008\u0012\u0004\u0012\u00020\u00050\u00048\u0006\u00a2\u0006\u000c\n\u0004\u0008\u0006\u0010\u0007\u001a\u0004\u0008\u0008\u0010\t\u00a8\u0006\n"
+    }
+    d2 = {
+        "Lcom/android/launcher3/shapes/ShapesProvider;",
+        "",
+        "<init>",
+        "()V",
+        "",
+        "Lcom/android/launcher3/shapes/IconShapeModel;",
+        "iconShapes",
+        "[Lcom/android/launcher3/shapes/IconShapeModel;",
+        "getIconShapes",
+        "()[Lcom/android/launcher3/shapes/IconShapeModel;",
+        "Launcher_aospWithQuickstepInternalMiFavorRelease"
+    }
+    k = 0x1
+    mv = {
+        0x2,
+        0x2,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+
+# static fields
+.field public static final $stable:I
+
+.field public static final INSTANCE:Lcom/android/launcher3/shapes/ShapesProvider;
+
+.field public static final iconShapes:[Lcom/android/launcher3/shapes/IconShapeModel;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 14
+
+    .line 1
+    new-instance v0, Lcom/android/launcher3/shapes/ShapesProvider;
+
+    .line 2
+    .line 3
+    invoke-direct {v0}, Lcom/android/launcher3/shapes/ShapesProvider;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    sput-object v0, Lcom/android/launcher3/shapes/ShapesProvider;->INSTANCE:Lcom/android/launcher3/shapes/ShapesProvider;
+
+    .line 7
+    .line 8
+    invoke-static {}, Lcom/android/launcher3/Flags;->enableLauncherIconShapes()Z
+
+    .line 9
+    .line 10
+    .line 11
+    move-result v0
+
+    .line 12
+    const/4 v1, 0x1
+
+    .line 13
+    const/4 v2, 0x0
+
+    .line 14
+    if-eqz v0, :cond_0
+
+    .line 15
+    .line 16
+    const/4 v0, 0x5
+
+    .line 17
+    new-array v0, v0, [Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 18
+    .line 19
+    new-instance v3, Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 20
+    .line 21
+    const/16 v9, 0x18
+
+    .line 22
+    .line 23
+    const/4 v10, 0x0
+
+    .line 24
+    const-string v4, "circle"
+
+    .line 25
+    .line 26
+    const v5, 0x7f140129
+
+    .line 27
+    .line 28
+    .line 29
+    const-string v6, "M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"
+
+    .line 30
+    .line 31
+    const/4 v7, 0x0
+
+    .line 32
+    const/4 v8, 0x0
+
+    .line 33
+    invoke-direct/range {v3 .. v10}, Lcom/android/launcher3/shapes/IconShapeModel;-><init>(Ljava/lang/String;ILjava/lang/String;FFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+
+    .line 34
+    .line 35
+    .line 36
+    aput-object v3, v0, v2
+
+    .line 37
+    .line 38
+    new-instance v4, Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 39
+    .line 40
+    const v8, 0x3eaaaaab
+
+    .line 41
+    .line 42
+    .line 43
+    const v9, 0x418aa3d7    # 17.33f
+
+    .line 44
+    .line 45
+    .line 46
+    const-string/jumbo v5, "square"
+
+    .line 47
+    .line 48
+    .line 49
+    const v6, 0x7f1404da
+
+    .line 50
+    .line 51
+    .line 52
+    const-string v7, "M53.689 0.82 L53.689 .82 C67.434 .82 74.306 .82 79.758 2.978 87.649 6.103 93.897 12.351 97.022 20.242 99.18 25.694 99.18 32.566 99.18 46.311 V53.689 C99.18 67.434 99.18 74.306 97.022 79.758 93.897 87.649 87.649 93.897 79.758 97.022 74.306 99.18 67.434 99.18 53.689 99.18 H46.311 C32.566 99.18 25.694 99.18 20.242 97.022 12.351 93.897 6.103 87.649 2.978 79.758 .82 74.306 .82 67.434 .82 53.689 L.82 46.311 C.82 32.566 .82 25.694 2.978 20.242 6.103 12.351 12.351 6.103 20.242 2.978 25.694 .82 32.566 .82 46.311 .82Z"
+
+    .line 53
+    .line 54
+    invoke-direct/range {v4 .. v9}, Lcom/android/launcher3/shapes/IconShapeModel;-><init>(Ljava/lang/String;ILjava/lang/String;FF)V
+
+    .line 55
+    .line 56
+    .line 57
+    aput-object v4, v0, v1
+
+    .line 58
+    .line 59
+    new-instance v5, Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 60
+    .line 61
+    const v9, 0x3eaaaaab
+
+    .line 62
+    .line 63
+    .line 64
+    const/high16 v10, 0x41580000    # 13.5f
+
+    .line 65
+    .line 66
+    const-string v6, "four_sided_cookie"
+
+    .line 67
+    .line 68
+    const v7, 0x7f140215
+
+    .line 69
+    .line 70
+    .line 71
+    const-string v8, "M39.888,4.517C46.338 7.319 53.662 7.319 60.112 4.517L63.605 3C84.733 -6.176 106.176 15.268 97 36.395L95.483 39.888C92.681 46.338 92.681 53.662 95.483 60.112L97 63.605C106.176 84.732 84.733 106.176 63.605 97L60.112 95.483C53.662 92.681 46.338 92.681 39.888 95.483L36.395 97C15.267 106.176 -6.176 84.732 3 63.605L4.517 60.112C7.319 53.662 7.319 46.338 4.517 39.888L3 36.395C -6.176 15.268 15.267 -6.176 36.395 3Z"
+
+    .line 72
+    .line 73
+    invoke-direct/range {v5 .. v10}, Lcom/android/launcher3/shapes/IconShapeModel;-><init>(Ljava/lang/String;ILjava/lang/String;FF)V
+
+    .line 74
+    .line 75
+    .line 76
+    const/4 v1, 0x2
+
+    .line 77
+    aput-object v5, v0, v1
+
+    .line 78
+    .line 79
+    new-instance v6, Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 80
+    .line 81
+    const/16 v12, 0x18
+
+    .line 82
+    .line 83
+    const/4 v13, 0x0
+
+    .line 84
+    const-string/jumbo v7, "seven_sided_cookie"
+
+    .line 85
+    .line 86
+    .line 87
+    const v8, 0x7f14049f
+
+    .line 88
+    .line 89
+    .line 90
+    const-string v9, "M 35.209 6.878 C 36.326 5.895 36.884 5.404 37.397 5.006 C 44.82 -0.742 55.18 -0.742 62.603 5.006 C 63.116 5.404 63.674 5.895 64.791 6.878 C 65.164 7.207 65.351 7.371 65.539 7.529 C 68.167 9.734 71.303 11.248 74.663 11.932 C 74.902 11.981 75.147 12.025 75.637 12.113 C 77.1 12.375 77.831 12.506 78.461 12.66 C 87.573 14.893 94.032 23.011 94.176 32.412 C 94.186 33.062 94.151 33.805 94.08 35.293 C 94.057 35.791 94.045 36.04 94.039 36.285 C 93.958 39.72 94.732 43.121 96.293 46.18 C 96.404 46.399 96.522 46.618 96.759 47.056 C 97.467 48.366 97.821 49.021 98.093 49.611 C 102.032 58.143 99.727 68.266 92.484 74.24 C 91.983 74.653 91.381 75.089 90.177 75.961 C 89.774 76.254 89.572 76.4 89.377 76.548 C 86.647 78.626 84.477 81.353 83.063 84.483 C 82.962 84.707 82.865 84.936 82.671 85.395 C 82.091 86.766 81.8 87.451 81.51 88.033 C 77.31 96.44 67.977 100.945 58.801 98.994 C 58.166 98.859 57.451 98.659 56.019 98.259 C 55.54 98.125 55.3 98.058 55.063 97.998 C 51.74 97.154 48.26 97.154 44.937 97.998 C 44.699 98.058 44.46 98.125 43.981 98.259 C 42.549 98.659 41.834 98.859 41.199 98.994 C 32.023 100.945 22.69 96.44 18.49 88.033 C 18.2 87.451 17.909 86.766 17.329 85.395 C 17.135 84.936 17.038 84.707 16.937 84.483 C 15.523 81.353 13.353 78.626 10.623 76.548 C 10.428 76.4 10.226 76.254 9.823 75.961 C 8.619 75.089 8.017 74.653 7.516 74.24 C 0.273 68.266 -2.032 58.143 1.907 49.611 C 2.179 49.021 2.533 48.366 3.241 47.056 C 3.478 46.618 3.596 46.399 3.707 46.18 C 5.268 43.121 6.042 39.72 5.961 36.285 C 5.955 36.04 5.943 35.791 5.92 35.293 C 5.849 33.805 5.814 33.062 5.824 32.412 C 5.968 23.011 12.427 14.893 21.539 12.66 C 22.169 12.506 22.9 12.375 24.363 12.113 C 24.853 12.025 25.098 11.981 25.337 11.932 C 28.697 11.248 31.833 9.734 34.461 7.529 C 34.649 7.371 34.836 7.207 35.209 6.878 Z"
+
+    .line 91
+    .line 92
+    const/4 v10, 0x0
+
+    .line 93
+    const/4 v11, 0x0
+
+    .line 94
+    invoke-direct/range {v6 .. v13}, Lcom/android/launcher3/shapes/IconShapeModel;-><init>(Ljava/lang/String;ILjava/lang/String;FFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+
+    .line 95
+    .line 96
+    .line 97
+    const/4 v1, 0x3
+
+    .line 98
+    aput-object v6, v0, v1
+
+    .line 99
+    .line 100
+    new-instance v7, Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 101
+    .line 102
+    const/high16 v11, 0x3e800000    # 0.25f
+
+    .line 103
+    .line 104
+    const v12, 0x40f9999a    # 7.8f
+
+    .line 105
+    .line 106
+    .line 107
+    const-string v8, "arch"
+
+    .line 108
+    .line 109
+    const v9, 0x7f1400de
+
+    .line 110
+    .line 111
+    .line 112
+    const-string v10, "M50 0C77.614 0 100 22.386 100 50C100 85.471 100 86.476 99.9 87.321 99.116 93.916 93.916 99.116 87.321 99.9 86.476 100 85.471 100 83.46 100H16.54C14.529 100 13.524 100 12.679 99.9 6.084 99.116 .884 93.916 .1 87.321 0 86.476 0 85.471 0 83.46L0 50C0 22.386 22.386 0 50 0Z"
+
+    .line 113
+    .line 114
+    invoke-direct/range {v7 .. v12}, Lcom/android/launcher3/shapes/IconShapeModel;-><init>(Ljava/lang/String;ILjava/lang/String;FF)V
+
+    .line 115
+    .line 116
+    .line 117
+    const/4 v1, 0x4
+
+    .line 118
+    aput-object v7, v0, v1
+
+    .line 119
+    .line 120
+    goto :goto_0
+
+    .line 121
+    :cond_0
+    new-array v0, v1, [Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 122
+    .line 123
+    new-instance v3, Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 124
+    .line 125
+    const/16 v9, 0x18
+
+    .line 126
+    .line 127
+    const/4 v10, 0x0
+
+    .line 128
+    const-string v4, "circle"
+
+    .line 129
+    .line 130
+    const v5, 0x7f140129
+
+    .line 131
+    .line 132
+    .line 133
+    const-string v6, "M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"
+
+    .line 134
+    .line 135
+    const/4 v7, 0x0
+
+    .line 136
+    const/4 v8, 0x0
+
+    .line 137
+    invoke-direct/range {v3 .. v10}, Lcom/android/launcher3/shapes/IconShapeModel;-><init>(Ljava/lang/String;ILjava/lang/String;FFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+
+    .line 138
+    .line 139
+    .line 140
+    aput-object v3, v0, v2
+
+    .line 141
+    .line 142
+    :goto_0
+    sput-object v0, Lcom/android/launcher3/shapes/ShapesProvider;->iconShapes:[Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 143
+    .line 144
+    const/16 v0, 0x8
+
+    .line 145
+    .line 146
+    sput v0, Lcom/android/launcher3/shapes/ShapesProvider;->$stable:I
+
+    .line 147
+    .line 148
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+
+# virtual methods
+.method public final getIconShapes()[Lcom/android/launcher3/shapes/IconShapeModel;
+    .locals 0
+
+    .line 1
+    sget-object p0, Lcom/android/launcher3/shapes/ShapesProvider;->iconShapes:[Lcom/android/launcher3/shapes/IconShapeModel;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method

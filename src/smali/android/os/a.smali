@@ -7,13 +7,13 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/launcher3/util/o3;
+.field public final synthetic c:Lcom/android/launcher3/util/WeakCleanupSet;
 
-.field public final synthetic h:Landroid/os/BinderUtils$LifecycleBinderWrapper;
+.field public final synthetic m:Landroid/os/BinderUtils$LifecycleBinderWrapper;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/launcher3/util/o3;Landroid/os/BinderUtils$LifecycleBinderWrapper;)V
+.method public synthetic constructor <init>(Lcom/android/launcher3/util/WeakCleanupSet;Landroid/os/BinderUtils$LifecycleBinderWrapper;)V
     .locals 0
 
     .line 1
@@ -22,11 +22,11 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroid/os/a;->g:Lcom/android/launcher3/util/o3;
+    iput-object p1, p0, Landroid/os/a;->c:Lcom/android/launcher3/util/WeakCleanupSet;
 
     .line 5
     .line 6
-    iput-object p2, p0, Landroid/os/a;->h:Landroid/os/BinderUtils$LifecycleBinderWrapper;
+    iput-object p2, p0, Landroid/os/a;->m:Landroid/os/BinderUtils$LifecycleBinderWrapper;
 
     .line 7
     .line 8
@@ -39,15 +39,15 @@
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroid/os/a;->g:Lcom/android/launcher3/util/o3;
+    iget-object v0, p0, Landroid/os/a;->c:Lcom/android/launcher3/util/WeakCleanupSet;
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroid/os/a;->h:Landroid/os/BinderUtils$LifecycleBinderWrapper;
+    iget-object p0, p0, Landroid/os/a;->m:Landroid/os/BinderUtils$LifecycleBinderWrapper;
 
     .line 4
     .line 5
-    invoke-static {v0, p0}, Landroid/os/BinderUtils$LifecycleBinderWrapper;->a(Lcom/android/launcher3/util/o3;Landroid/os/BinderUtils$LifecycleBinderWrapper;)V
+    invoke-static {v0, p0}, Landroid/os/BinderUtils$LifecycleBinderWrapper;->a(Lcom/android/launcher3/util/WeakCleanupSet;Landroid/os/BinderUtils$LifecycleBinderWrapper;)V
 
     .line 6
     .line 7

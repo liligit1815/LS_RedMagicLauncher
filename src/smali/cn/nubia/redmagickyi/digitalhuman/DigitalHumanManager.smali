@@ -243,7 +243,7 @@
     throw p0
 .end method
 
-.method static synthetic access$000()Ljava/util/concurrent/atomic/AtomicReference;
+.method public static synthetic access$000()Ljava/util/concurrent/atomic/AtomicReference;
     .locals 1
 
     .line 1
@@ -254,7 +254,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$100()Ljava/util/concurrent/atomic/AtomicReference;
+.method public static synthetic access$100()Ljava/util/concurrent/atomic/AtomicReference;
     .locals 1
 
     .line 1
@@ -265,7 +265,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$200()Ljava/util/concurrent/atomic/AtomicReference;
+.method public static synthetic access$200()Ljava/util/concurrent/atomic/AtomicReference;
     .locals 1
 
     .line 1
@@ -276,7 +276,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$300()Ljava/util/concurrent/atomic/AtomicReference;
+.method public static synthetic access$300()Ljava/util/concurrent/atomic/AtomicReference;
     .locals 1
 
     .line 1
@@ -287,7 +287,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$400()V
+.method public static synthetic access$400()V
     .locals 0
 
     .line 1
@@ -299,7 +299,7 @@
     return-void
 .end method
 
-.method static synthetic access$500(Z)Lcn/nubia/redmagickyi/digitalhuman/IDigitalHumanService;
+.method public static synthetic access$500(Z)Lcn/nubia/redmagickyi/digitalhuman/IDigitalHumanService;
     .locals 0
 
     .line 1

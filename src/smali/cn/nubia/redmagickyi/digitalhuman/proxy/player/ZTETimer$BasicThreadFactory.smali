@@ -107,7 +107,7 @@
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/ZTETimer$BasicThreadFactory$Builder;Lcn/nubia/redmagickyi/digitalhuman/proxy/player/ZTETimer$1;)V
+.method public synthetic constructor <init>(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/ZTETimer$BasicThreadFactory$Builder;Lcn/nubia/redmagickyi/digitalhuman/proxy/player/ZTETimer$1;)V
     .locals 0
 
     .line 1

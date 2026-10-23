@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract d(Landroidx/preference/Preference;Ljava/lang/Object;)Z
+.method public abstract onPreferenceChange(Landroidx/preference/Preference;Ljava/lang/Object;)Z
 .end method

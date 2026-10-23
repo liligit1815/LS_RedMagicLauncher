@@ -1,4 +1,4 @@
-.class interface abstract Landroidx/recyclerview/widget/n$a;
+.class public interface abstract Landroidx/recyclerview/widget/n$a;
 .super Ljava/lang/Object;
 .source "OpReorderer.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x608
+    accessFlags = 0x609
     name = "a"
 .end annotation
 

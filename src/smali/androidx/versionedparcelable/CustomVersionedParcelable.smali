@@ -3,7 +3,7 @@
 .source "CustomVersionedParcelable.java"
 
 # interfaces
-.implements Ll0/a;
+.implements Lt7/c;
 
 
 # direct methods

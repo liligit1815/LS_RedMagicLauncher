@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SearchView$g;
+.class public Landroidx/appcompat/widget/SearchView$g;
 .super Ljava/lang/Object;
 .source "SearchView.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/widget/SearchView;
+.field public final synthetic c:Landroidx/appcompat/widget/SearchView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/SearchView;)V
+.method public constructor <init>(Landroidx/appcompat/widget/SearchView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$g;->g:Landroidx/appcompat/widget/SearchView;
+    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$g;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 3
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$g;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$g;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3
-    iget-object v1, v0, Landroidx/appcompat/widget/SearchView;->i0:Landroid/app/SearchableInfo;
+    iget-object v1, v0, Landroidx/appcompat/widget/SearchView;->n0:Landroid/app/SearchableInfo;
 
     .line 4
     .line 5
@@ -63,7 +63,7 @@
 
     .line 9
     :cond_0
-    iget-object v0, v0, Landroidx/appcompat/widget/SearchView;->v:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
+    iget-object v0, v0, Landroidx/appcompat/widget/SearchView;->A:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
 
     .line 10
     .line 11
@@ -79,11 +79,11 @@
 
     .line 16
     .line 17
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$g;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$g;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 18
     .line 19
-    iget-object v0, v0, Landroidx/appcompat/widget/SearchView;->v:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
+    iget-object v0, v0, Landroidx/appcompat/widget/SearchView;->A:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
 
     .line 20
     .line 21
@@ -102,7 +102,7 @@
 
     .line 27
     .line 28
-    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$g;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$g;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 29
     .line 30
@@ -118,11 +118,11 @@
 
     .line 35
     :cond_1
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$g;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView$g;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 36
     .line 37
-    iget-object v0, v0, Landroidx/appcompat/widget/SearchView;->v:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
+    iget-object v0, v0, Landroidx/appcompat/widget/SearchView;->A:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
 
     .line 38
     .line 39
@@ -178,11 +178,11 @@
     .line 63
     .line 64
     .line 65
-    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$g;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$g;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 66
     .line 67
-    iget-object p1, p0, Landroidx/appcompat/widget/SearchView;->v:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
+    iget-object p1, p0, Landroidx/appcompat/widget/SearchView;->A:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
 
     .line 68
     .line 69

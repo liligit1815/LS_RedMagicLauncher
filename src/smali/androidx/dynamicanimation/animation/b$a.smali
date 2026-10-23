@@ -1,4 +1,4 @@
-.class synthetic Landroidx/dynamicanimation/animation/b$a;
+.class public synthetic Landroidx/dynamicanimation/animation/b$a;
 .super Ljava/lang/Object;
 .source "AnimationHandler.java"
 
@@ -9,6 +9,6 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1008
+    accessFlags = 0x1009
     name = null
 .end annotation

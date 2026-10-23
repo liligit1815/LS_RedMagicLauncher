@@ -12,25 +12,25 @@
 
 
 # instance fields
-.field private g:Z
+.field public c:Z
 
-.field private h:Landroid/view/View;
+.field public m:Landroid/view/View;
 
-.field private i:Landroid/view/View;
+.field public n:Landroid/view/View;
 
-.field private j:Landroid/view/View;
+.field public o:Landroid/view/View;
 
-.field k:Landroid/graphics/drawable/Drawable;
+.field public p:Landroid/graphics/drawable/Drawable;
 
-.field l:Landroid/graphics/drawable/Drawable;
+.field public q:Landroid/graphics/drawable/Drawable;
 
-.field m:Landroid/graphics/drawable/Drawable;
+.field public r:Landroid/graphics/drawable/Drawable;
 
-.field n:Z
+.field public s:Z
 
-.field o:Z
+.field public t:Z
 
-.field private p:I
+.field public u:I
 
 
 # direct methods
@@ -43,21 +43,21 @@
     .line 2
     .line 3
     .line 4
-    new-instance v0, Landroidx/appcompat/widget/b;
+    new-instance v0, Ls/b;
 
     .line 5
     .line 6
-    invoke-direct {v0, p0}, Landroidx/appcompat/widget/b;-><init>(Landroidx/appcompat/widget/ActionBarContainer;)V
+    invoke-direct {v0, p0}, Ls/b;-><init>(Landroidx/appcompat/widget/ActionBarContainer;)V
 
     .line 7
     .line 8
     .line 9
-    invoke-static {p0, v0}, LJ/I;->n0(Landroid/view/View;Landroid/graphics/drawable/Drawable;)V
+    invoke-static {p0, v0}, Lz5/o0;->p0(Landroid/view/View;Landroid/graphics/drawable/Drawable;)V
 
     .line 10
     .line 11
     .line 12
-    sget-object v0, Lf/j;->a:[I
+    sget-object v0, Lk/j;->a:[I
 
     .line 13
     .line 14
@@ -69,7 +69,7 @@
     move-result-object p1
 
     .line 18
-    sget p2, Lf/j;->b:I
+    sget p2, Lk/j;->b:I
 
     .line 19
     .line 20
@@ -81,11 +81,11 @@
     move-result-object p2
 
     .line 24
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 25
     .line 26
-    sget p2, Lf/j;->d:I
+    sget p2, Lk/j;->d:I
 
     .line 27
     .line 28
@@ -97,11 +97,11 @@
     move-result-object p2
 
     .line 32
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 33
     .line 34
-    sget p2, Lf/j;->j:I
+    sget p2, Lk/j;->j:I
 
     .line 35
     .line 36
@@ -116,7 +116,7 @@
     move-result p2
 
     .line 41
-    iput p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:I
+    iput p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->u:I
 
     .line 42
     .line 43
@@ -128,7 +128,7 @@
     move-result p2
 
     .line 47
-    sget v0, Lf/f;->G:I
+    sget v0, Lk/f;->G:I
 
     .line 48
     .line 49
@@ -139,11 +139,11 @@
 
     .line 51
     .line 52
-    iput-boolean v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iput-boolean v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 53
     .line 54
-    sget p2, Lf/j;->c:I
+    sget p2, Lk/j;->c:I
 
     .line 55
     .line 56
@@ -155,7 +155,7 @@
     move-result-object p2
 
     .line 60
-    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iput-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 61
     .line 62
@@ -165,7 +165,7 @@
     .line 63
     .line 64
     .line 65
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 66
     .line 67
@@ -176,7 +176,7 @@
 
     .line 69
     .line 70
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 71
     .line 72
@@ -195,7 +195,7 @@
 
     .line 77
     :cond_2
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 78
     .line 79
@@ -203,7 +203,7 @@
 
     .line 80
     .line 81
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 82
     .line 83
@@ -220,7 +220,9 @@
     return-void
 .end method
 
-.method private a(Landroid/view/View;)I
+
+# virtual methods
+.method public final a(Landroid/view/View;)I
     .locals 1
 
     .line 1
@@ -261,7 +263,7 @@
     return p1
 .end method
 
-.method private b(Landroid/view/View;)Z
+.method public final b(Landroid/view/View;)Z
     .locals 1
 
     .line 1
@@ -315,9 +317,7 @@
     return p0
 .end method
 
-
-# virtual methods
-.method protected drawableStateChanged()V
+.method public drawableStateChanged()V
     .locals 2
 
     .line 1
@@ -326,7 +326,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 5
     .line 6
@@ -346,7 +346,7 @@
 
     .line 13
     .line 14
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 15
     .line 16
@@ -364,7 +364,7 @@
     .line 22
     .line 23
     :cond_0
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 24
     .line 25
@@ -384,7 +384,7 @@
 
     .line 32
     .line 33
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 34
     .line 35
@@ -402,7 +402,7 @@
     .line 41
     .line 42
     :cond_1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 43
     .line 44
@@ -422,7 +422,7 @@
 
     .line 51
     .line 52
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 53
     .line 54
@@ -447,7 +447,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 2
     .line 3
@@ -463,7 +463,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 5
     .line 6
@@ -477,7 +477,7 @@
     .line 10
     .line 11
     :cond_0
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 12
     .line 13
@@ -491,7 +491,7 @@
     .line 17
     .line 18
     :cond_1
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 19
     .line 20
@@ -517,7 +517,7 @@
     .line 2
     .line 3
     .line 4
-    sget v0, Lf/f;->a:I
+    sget v0, Lk/f;->a:I
 
     .line 5
     .line 6
@@ -529,11 +529,11 @@
     move-result-object v0
 
     .line 10
-    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 11
     .line 12
-    sget v0, Lf/f;->f:I
+    sget v0, Lk/f;->f:I
 
     .line 13
     .line 14
@@ -545,7 +545,7 @@
     move-result-object v0
 
     .line 18
-    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iput-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 19
     .line 20
@@ -571,7 +571,7 @@
     .locals 1
 
     .line 1
-    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->g:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->c:Z
 
     .line 2
     .line 3
@@ -618,7 +618,7 @@
     .line 2
     .line 3
     .line 4
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 5
     .line 6
@@ -723,7 +723,7 @@
     .line 51
     .line 52
     :cond_1
-    iget-boolean p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 53
     .line 54
@@ -731,7 +731,7 @@
 
     .line 55
     .line 56
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 57
     .line 58
@@ -773,7 +773,7 @@
     .line 75
     .line 76
     :cond_3
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 77
     .line 78
@@ -781,7 +781,7 @@
 
     .line 79
     .line 80
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 81
     .line 82
@@ -797,11 +797,11 @@
 
     .line 87
     .line 88
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 89
     .line 90
-    iget-object p3, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object p3, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 91
     .line 92
@@ -813,7 +813,7 @@
     move-result p3
 
     .line 96
-    iget-object p4, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object p4, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 97
     .line 98
@@ -825,7 +825,7 @@
     move-result p4
 
     .line 102
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 103
     .line 104
@@ -837,7 +837,7 @@
     move-result v0
 
     .line 108
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 109
     .line 110
@@ -858,7 +858,7 @@
 
     .line 118
     :cond_4
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 119
     .line 120
@@ -878,11 +878,11 @@
 
     .line 127
     .line 128
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 129
     .line 130
-    iget-object p3, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object p3, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 131
     .line 132
@@ -894,7 +894,7 @@
     move-result p3
 
     .line 136
-    iget-object p4, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object p4, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 137
     .line 138
@@ -906,7 +906,7 @@
     move-result p4
 
     .line 142
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 143
     .line 144
@@ -918,7 +918,7 @@
     move-result v0
 
     .line 148
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 149
     .line 150
@@ -939,7 +939,7 @@
 
     .line 158
     :cond_5
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 159
     .line 160
@@ -953,7 +953,7 @@
 
     .line 164
     :cond_6
-    iput-boolean v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Z
+    iput-boolean v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->t:Z
 
     .line 165
     .line 166
@@ -961,7 +961,7 @@
 
     .line 167
     .line 168
-    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object p2, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 169
     .line 170
@@ -1024,7 +1024,7 @@
     .locals 3
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 2
     .line 3
@@ -1048,7 +1048,7 @@
 
     .line 12
     .line 13
-    iget v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:I
+    iget v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->u:I
 
     .line 14
     .line 15
@@ -1086,7 +1086,7 @@
     .line 30
     .line 31
     .line 32
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 33
     .line 34
@@ -1106,7 +1106,7 @@
     move-result p1
 
     .line 41
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 42
     .line 43
@@ -1138,11 +1138,11 @@
 
     .line 56
     .line 57
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 58
     .line 59
-    invoke-direct {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->b(Landroid/view/View;)Z
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->b(Landroid/view/View;)Z
 
     .line 60
     .line 61
@@ -1154,11 +1154,11 @@
 
     .line 64
     .line 65
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 66
     .line 67
-    invoke-direct {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->a(Landroid/view/View;)I
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->a(Landroid/view/View;)I
 
     .line 68
     .line 69
@@ -1170,11 +1170,11 @@
 
     .line 72
     :cond_2
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 73
     .line 74
-    invoke-direct {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->b(Landroid/view/View;)Z
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->b(Landroid/view/View;)Z
 
     .line 75
     .line 76
@@ -1186,11 +1186,11 @@
 
     .line 79
     .line 80
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->j:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Landroid/view/View;
 
     .line 81
     .line 82
-    invoke-direct {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->a(Landroid/view/View;)I
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/ActionBarContainer;->a(Landroid/view/View;)I
 
     .line 83
     .line 84
@@ -1236,11 +1236,11 @@
     move-result p2
 
     .line 102
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 103
     .line 104
-    invoke-direct {p0, v1}, Landroidx/appcompat/widget/ActionBarContainer;->a(Landroid/view/View;)I
+    invoke-virtual {p0, v1}, Landroidx/appcompat/widget/ActionBarContainer;->a(Landroid/view/View;)I
 
     .line 105
     .line 106
@@ -1288,7 +1288,7 @@
     .locals 4
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 2
     .line 3
@@ -1304,7 +1304,7 @@
     .line 7
     .line 8
     .line 9
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 10
     .line 11
@@ -1314,7 +1314,7 @@
     .line 13
     .line 14
     :cond_0
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 15
     .line 16
@@ -1327,7 +1327,7 @@
     .line 19
     .line 20
     .line 21
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 22
     .line 23
@@ -1335,7 +1335,7 @@
 
     .line 24
     .line 25
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 26
     .line 27
@@ -1347,7 +1347,7 @@
     move-result p1
 
     .line 31
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 32
     .line 33
@@ -1359,7 +1359,7 @@
     move-result v1
 
     .line 37
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 38
     .line 39
@@ -1371,7 +1371,7 @@
     move-result v2
 
     .line 43
-    iget-object v3, p0, Landroidx/appcompat/widget/ActionBarContainer;->i:Landroid/view/View;
+    iget-object v3, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Landroid/view/View;
 
     .line 44
     .line 45
@@ -1389,7 +1389,7 @@
     .line 51
     .line 52
     :cond_1
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 53
     .line 54
@@ -1403,7 +1403,7 @@
 
     .line 57
     .line 58
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 59
     .line 60
@@ -1419,7 +1419,7 @@
 
     .line 64
     :cond_2
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 65
     .line 66
@@ -1427,7 +1427,7 @@
 
     .line 67
     .line 68
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 69
     .line 70
@@ -1462,7 +1462,7 @@
     .locals 3
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 2
     .line 3
@@ -1478,7 +1478,7 @@
     .line 7
     .line 8
     .line 9
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 10
     .line 11
@@ -1488,7 +1488,7 @@
     .line 13
     .line 14
     :cond_0
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 15
     .line 16
@@ -1504,7 +1504,7 @@
     .line 20
     .line 21
     .line 22
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 23
     .line 24
@@ -1512,7 +1512,7 @@
 
     .line 25
     .line 26
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 27
     .line 28
@@ -1542,7 +1542,7 @@
     .line 40
     .line 41
     :cond_1
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 42
     .line 43
@@ -1553,7 +1553,7 @@
 
     .line 45
     .line 46
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 47
     .line 48
@@ -1569,7 +1569,7 @@
 
     .line 52
     :cond_2
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 53
     .line 54
@@ -1577,7 +1577,7 @@
 
     .line 55
     .line 56
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 57
     .line 58
@@ -1612,7 +1612,7 @@
     .locals 4
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 2
     .line 3
@@ -1628,7 +1628,7 @@
     .line 7
     .line 8
     .line 9
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 10
     .line 11
@@ -1638,7 +1638,7 @@
     .line 13
     .line 14
     :cond_0
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 15
     .line 16
@@ -1651,7 +1651,7 @@
     .line 19
     .line 20
     .line 21
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->t:Z
 
     .line 22
     .line 23
@@ -1659,7 +1659,7 @@
 
     .line 24
     .line 25
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 26
     .line 27
@@ -1667,7 +1667,7 @@
 
     .line 28
     .line 29
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 30
     .line 31
@@ -1679,7 +1679,7 @@
     move-result v0
 
     .line 35
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 36
     .line 37
@@ -1691,7 +1691,7 @@
     move-result v1
 
     .line 41
-    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v2, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 42
     .line 43
@@ -1703,7 +1703,7 @@
     move-result v2
 
     .line 47
-    iget-object v3, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v3, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 48
     .line 49
@@ -1721,7 +1721,7 @@
     .line 55
     .line 56
     :cond_1
-    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 57
     .line 58
@@ -1735,7 +1735,7 @@
 
     .line 61
     .line 62
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 63
     .line 64
@@ -1751,7 +1751,7 @@
 
     .line 68
     :cond_2
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 69
     .line 70
@@ -1759,7 +1759,7 @@
 
     .line 71
     .line 72
-    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 73
     .line 74
@@ -1790,11 +1790,11 @@
     return-void
 .end method
 
-.method public setTabContainer(Landroidx/appcompat/widget/T;)V
+.method public setTabContainer(Landroidx/appcompat/widget/c;)V
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 2
     .line 3
@@ -1808,7 +1808,7 @@
     .line 7
     .line 8
     :cond_0
-    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->h:Landroid/view/View;
+    iput-object p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/view/View;
 
     .line 9
     .line 10
@@ -1846,7 +1846,7 @@
     const/4 p0, 0x0
 
     .line 26
-    invoke-virtual {p1, p0}, Landroidx/appcompat/widget/T;->setAllowCollapse(Z)V
+    invoke-virtual {p1, p0}, Landroidx/appcompat/widget/c;->setAllowCollapse(Z)V
 
     .line 27
     .line 28
@@ -1859,7 +1859,7 @@
     .locals 0
 
     .line 1
-    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->g:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/ActionBarContainer;->c:Z
 
     .line 2
     .line 3
@@ -1915,7 +1915,7 @@
 
     .line 10
     :goto_0
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 11
     .line 12
@@ -1929,7 +1929,7 @@
     .line 16
     .line 17
     :cond_1
-    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v1, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 18
     .line 19
@@ -1943,7 +1943,7 @@
     .line 23
     .line 24
     :cond_2
-    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object p0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 25
     .line 26
@@ -1987,11 +1987,11 @@
     return-object p0
 .end method
 
-.method protected verifyDrawable(Landroid/graphics/drawable/Drawable;)Z
+.method public verifyDrawable(Landroid/graphics/drawable/Drawable;)Z
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->k:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->p:Landroid/graphics/drawable/Drawable;
 
     .line 2
     .line 3
@@ -1999,7 +1999,7 @@
 
     .line 4
     .line 5
-    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 6
     .line 7
@@ -2008,7 +2008,7 @@
     .line 8
     .line 9
     :cond_0
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->l:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->q:Landroid/graphics/drawable/Drawable;
 
     .line 10
     .line 11
@@ -2016,7 +2016,7 @@
 
     .line 12
     .line 13
-    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->o:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->t:Z
 
     .line 14
     .line 15
@@ -2025,7 +2025,7 @@
     .line 16
     .line 17
     :cond_1
-    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->m:Landroid/graphics/drawable/Drawable;
+    iget-object v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->r:Landroid/graphics/drawable/Drawable;
 
     .line 18
     .line 19
@@ -2033,7 +2033,7 @@
 
     .line 20
     .line 21
-    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->n:Z
+    iget-boolean v0, p0, Landroidx/appcompat/widget/ActionBarContainer;->s:Z
 
     .line 22
     .line 23

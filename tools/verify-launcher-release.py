@@ -3,7 +3,7 @@
 
 The previous APK is a reviewed baseline, not a source of expected version values.
 The certificate must be supplied explicitly; a valid but different signer fails.
-This release gate intentionally forbids changes to prior resources/native payload.
+The first OEM12 port is checked against its pinned OEM resource identities and payload.
 """
 from __future__ import annotations
 
@@ -21,6 +21,8 @@ import time
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+OEM12_SHA256 = "729db6038d223f127e6305672fed454756488931f824aa36d3f62db9339a4488"
+OEM12_CERTIFICATE = "85fe217eaf539fc32bdf12d74d432c348b0bd0fddffd0ba79e89889b195bb19b"
 
 
 def require(condition, message):
@@ -77,6 +79,13 @@ def checker_module():
     return module
 
 
+def local_module(filename):
+    spec = importlib.util.spec_from_file_location(filename.replace("-", "_"), ROOT / "tools" / filename)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def verify(args, report):
     paths = [args.apk, args.previous, args.unsigned_reference, args.original, args.version_source]
     require(all(path.is_file() for path in paths), "All APK inputs and authoritative version source must exist")
@@ -96,10 +105,12 @@ def verify(args, report):
                                "sha256": sha256(path.read_bytes())}
                         for name, path in zip(("release", "previous", "unsigned", "original", "version_source"), paths)}
     report["expected_certificate_sha256"] = expected_cert
+    require(sha256(args.original.read_bytes()) == OEM12_SHA256, "Original input is not the pinned OEM12 APK")
     for label, apk in (("previous", args.previous), ("release", args.apk)):
         output = run(["java", "-jar", apksigner, "verify", "--verbose", "--print-certs", apk], report)
         fingerprints = re.findall(r"(?m)^Signer #\d+ certificate SHA-256 digest: ([0-9a-fA-F]+)\s*$", output)
-        require(len(fingerprints) == 1 and fingerprints[0].lower() == expected_cert,
+        wanted = OEM12_CERTIFICATE if label == "previous" and apk.resolve() == args.original.resolve() else expected_cert
+        require(len(fingerprints) == 1 and fingerprints[0].lower() == wanted,
                 f"{label} signer does not exactly match the expected single certificate")
         report["checks"][label + "_signature"] = {"pass": True, "certificate_sha256": fingerprints[0].lower()}
     run([zipalign, "-c", "-P", "16", "-v", "4", args.unsigned_reference], report)
@@ -115,11 +126,9 @@ def verify(args, report):
     previous, unsigned, release = (payload(path) for path in (args.previous, args.unsigned_reference, args.apk))
     checks = {
         "signed_payload_matches_unsigned": compare_payloads(unsigned, release),
-        "previous_resources_preserved": compare_payloads(previous, release,
-                                                          lambda name: name.startswith("res/") or name == "resources.arsc"),
-        "previous_native_libraries_preserved": compare_payloads(previous, release,
-                                                                 lambda name: name.startswith("lib/") and name.endswith(".so")),
-        "previous_assets_preserved": compare_payloads(previous, release, lambda name: name.startswith("assets/")),
+        "oem12_resources_native_assets_preserved": local_module("check-launcher-oem12-payload.py").compare(args.original, args.apk),
+        "oem12_new_member_references_resolve": local_module("check-launcher-oem12-links.py").check(
+            original, modified, sdk / "platforms/android-36/android.jar"),
     }
     report["checks"].update(checks)
     require(all(item["pass"] for item in checks.values()), "Signed payload or reviewed resource/native/asset baseline differs")

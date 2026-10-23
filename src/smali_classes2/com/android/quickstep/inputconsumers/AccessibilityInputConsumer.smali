@@ -30,7 +30,7 @@
 
 
 # direct methods
-.method public constructor <init>(Landroid/content/Context;ILcom/android/quickstep/RecentsAnimationDeviceState;Lcom/android/quickstep/InputConsumer;Lcom/android/systemui/shared/system/InputMonitorCompat;)V
+.method public constructor <init>(Landroid/content/Context;ILcom/android/quickstep/RecentsAnimationDeviceState;Lcom/android/quickstep/InputConsumer;Lcom/android/systemui/shared/system/InputMonitorCompat;Lcom/android/quickstep/RotationTouchHelper;)V
     .locals 0
 
     .line 1
@@ -114,42 +114,26 @@
 
     .line 40
     .line 41
-    sget-object p2, Lcom/android/quickstep/RotationTouchHelper;->INSTANCE:Lcom/android/launcher3/util/I;
+    iput-object p6, p0, Lcom/android/quickstep/inputconsumers/AccessibilityInputConsumer;->mRotationHelper:Lcom/android/quickstep/RotationTouchHelper;
 
     .line 42
     .line 43
-    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    new-instance p2, Lcom/android/quickstep/util/MotionPauseDetector;
 
     .line 44
     .line 45
+    const/4 p3, 0x0
+
     .line 46
-    move-result-object p2
+    invoke-direct {p2, p1, p3}, Lcom/android/quickstep/util/MotionPauseDetector;-><init>(Landroid/content/Context;Z)V
 
     .line 47
-    check-cast p2, Lcom/android/quickstep/RotationTouchHelper;
-
     .line 48
     .line 49
-    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/AccessibilityInputConsumer;->mRotationHelper:Lcom/android/quickstep/RotationTouchHelper;
+    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/AccessibilityInputConsumer;->mMotionPauseDetector:Lcom/android/quickstep/util/MotionPauseDetector;
 
     .line 50
     .line 51
-    new-instance p2, Lcom/android/quickstep/util/MotionPauseDetector;
-
-    .line 52
-    .line 53
-    const/4 p3, 0x0
-
-    .line 54
-    invoke-direct {p2, p1, p3}, Lcom/android/quickstep/util/MotionPauseDetector;-><init>(Landroid/content/Context;Z)V
-
-    .line 55
-    .line 56
-    .line 57
-    iput-object p2, p0, Lcom/android/quickstep/inputconsumers/AccessibilityInputConsumer;->mMotionPauseDetector:Lcom/android/quickstep/util/MotionPauseDetector;
-
-    .line 58
-    .line 59
     return-void
 .end method
 
@@ -192,7 +176,7 @@
 
 
 # virtual methods
-.method protected getDelegatorName()Ljava/lang/String;
+.method public getDelegatorName()Ljava/lang/String;
     .locals 0
 
     .line 1
@@ -589,7 +573,7 @@
 
     .line 171
     .line 172
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 173
     .line 174
@@ -597,7 +581,7 @@
 
     .line 175
     .line 176
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 177
     .line 178
@@ -713,7 +697,7 @@
     .line 230
     .line 231
     :cond_a
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 232
     .line 233
@@ -721,7 +705,7 @@
 
     .line 234
     .line 235
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 236
     .line 237

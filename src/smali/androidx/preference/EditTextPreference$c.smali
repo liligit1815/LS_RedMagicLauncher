@@ -27,11 +27,11 @@
 
 
 # static fields
-.field private static a:Landroidx/preference/EditTextPreference$c;
+.field public static a:Landroidx/preference/EditTextPreference$c;
 
 
 # direct methods
-.method private constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -101,7 +101,7 @@
     .locals 0
 
     .line 1
-    invoke-virtual {p1}, Landroidx/preference/EditTextPreference;->b1()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/preference/EditTextPreference;->l()Ljava/lang/String;
 
     .line 2
     .line 3
@@ -121,7 +121,7 @@
 
     .line 10
     .line 11
-    invoke-virtual {p1}, Landroidx/preference/Preference;->k()Landroid/content/Context;
+    invoke-virtual {p1}, Landroidx/preference/Preference;->getContext()Landroid/content/Context;
 
     .line 12
     .line 13
@@ -129,7 +129,7 @@
     move-result-object p0
 
     .line 15
-    sget p1, Landroidx/preference/o;->c:I
+    sget p1, Le7/m;->c:I
 
     .line 16
     .line 17
@@ -145,7 +145,7 @@
 
     .line 22
     :cond_0
-    invoke-virtual {p1}, Landroidx/preference/EditTextPreference;->b1()Ljava/lang/String;
+    invoke-virtual {p1}, Landroidx/preference/EditTextPreference;->l()Ljava/lang/String;
 
     .line 23
     .line 24

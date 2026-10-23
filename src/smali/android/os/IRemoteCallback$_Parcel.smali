@@ -27,7 +27,7 @@
     return-void
 .end method
 
-.method static bridge synthetic a(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
+.method public static bridge synthetic a(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
     .locals 0
 
     .line 1
@@ -42,7 +42,7 @@
     return-object p0
 .end method
 
-.method static bridge synthetic b(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
+.method public static bridge synthetic b(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
     .locals 0
 
     .line 1

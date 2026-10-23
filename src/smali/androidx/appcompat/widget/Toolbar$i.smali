@@ -1,5 +1,5 @@
 .class public Landroidx/appcompat/widget/Toolbar$i;
-.super Landroidx/customview/view/a;
+.super Lh6/a;
 .source "Toolbar.java"
 
 
@@ -27,9 +27,9 @@
 
 
 # instance fields
-.field g:I
+.field public c:I
 
-.field h:Z
+.field public m:Z
 
 
 # direct methods
@@ -57,14 +57,14 @@
     .locals 0
 
     .line 1
-    invoke-direct {p0, p1, p2}, Landroidx/customview/view/a;-><init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
+    invoke-direct {p0, p1, p2}, Lh6/a;-><init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
 
     .line 2
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result p2
 
-    iput p2, p0, Landroidx/appcompat/widget/Toolbar$i;->g:I
+    iput p2, p0, Landroidx/appcompat/widget/Toolbar$i;->c:I
 
     .line 3
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
@@ -81,7 +81,7 @@
     const/4 p1, 0x0
 
     :goto_0
-    iput-boolean p1, p0, Landroidx/appcompat/widget/Toolbar$i;->h:Z
+    iput-boolean p1, p0, Landroidx/appcompat/widget/Toolbar$i;->m:Z
 
     return-void
 .end method
@@ -90,7 +90,7 @@
     .locals 0
 
     .line 4
-    invoke-direct {p0, p1}, Landroidx/customview/view/a;-><init>(Landroid/os/Parcelable;)V
+    invoke-direct {p0, p1}, Lh6/a;-><init>(Landroid/os/Parcelable;)V
 
     return-void
 .end method
@@ -101,12 +101,12 @@
     .locals 0
 
     .line 1
-    invoke-super {p0, p1, p2}, Landroidx/customview/view/a;->writeToParcel(Landroid/os/Parcel;I)V
+    invoke-super {p0, p1, p2}, Lh6/a;->writeToParcel(Landroid/os/Parcel;I)V
 
     .line 2
     .line 3
     .line 4
-    iget p2, p0, Landroidx/appcompat/widget/Toolbar$i;->g:I
+    iget p2, p0, Landroidx/appcompat/widget/Toolbar$i;->c:I
 
     .line 5
     .line 6
@@ -115,7 +115,7 @@
     .line 7
     .line 8
     .line 9
-    iget-boolean p0, p0, Landroidx/appcompat/widget/Toolbar$i;->h:Z
+    iget-boolean p0, p0, Landroidx/appcompat/widget/Toolbar$i;->m:Z
 
     .line 10
     .line 11

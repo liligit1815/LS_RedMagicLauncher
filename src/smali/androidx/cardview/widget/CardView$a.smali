@@ -1,9 +1,9 @@
-.class Landroidx/cardview/widget/CardView$a;
+.class public Landroidx/cardview/widget/CardView$a;
 .super Ljava/lang/Object;
 .source "CardView.java"
 
 # interfaces
-.implements Landroidx/cardview/widget/b;
+.implements Lk0/b;
 
 
 # annotations
@@ -12,19 +12,19 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field private a:Landroid/graphics/drawable/Drawable;
+.field public a:Landroid/graphics/drawable/Drawable;
 
-.field final synthetic b:Landroidx/cardview/widget/CardView;
+.field public final synthetic b:Landroidx/cardview/widget/CardView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/cardview/widget/CardView;)V
+.method public constructor <init>(Landroidx/cardview/widget/CardView;)V
     .locals 0
 
     .line 1
@@ -50,7 +50,7 @@
 
     .line 2
     .line 3
-    iget-object v0, v0, Landroidx/cardview/widget/CardView;->l:Landroid/graphics/Rect;
+    iget-object v0, v0, Landroidx/cardview/widget/CardView;->q:Landroid/graphics/Rect;
 
     .line 4
     .line 5
@@ -63,7 +63,7 @@
 
     .line 9
     .line 10
-    iget-object v0, p0, Landroidx/cardview/widget/CardView;->k:Landroid/graphics/Rect;
+    iget-object v0, p0, Landroidx/cardview/widget/CardView;->p:Landroid/graphics/Rect;
 
     .line 11
     .line 12

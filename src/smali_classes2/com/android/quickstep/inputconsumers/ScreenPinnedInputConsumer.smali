@@ -50,7 +50,7 @@
     move-result-object v0
 
     .line 14
-    const v1, 0x7f070852
+    const v1, 0x7f0708a9
 
     .line 15
     .line 16
@@ -83,11 +83,11 @@
 
     .line 30
     .line 31
-    new-instance v1, Lcom/android/quickstep/inputconsumers/p;
+    new-instance v1, Lcom/android/quickstep/inputconsumers/t;
 
     .line 32
     .line 33
-    invoke-direct {v1, p0, p1, p2}, Lcom/android/quickstep/inputconsumers/p;-><init>(Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;Landroid/content/Context;Lcom/android/quickstep/GestureState;)V
+    invoke-direct {v1, p0, p1, p2}, Lcom/android/quickstep/inputconsumers/t;-><init>(Lcom/android/quickstep/inputconsumers/ScreenPinnedInputConsumer;Landroid/content/Context;Lcom/android/quickstep/GestureState;)V
 
     .line 34
     .line 35
@@ -116,11 +116,11 @@
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/quickstep/SystemUiProxy;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 2
     .line 3
-    invoke-virtual {v0, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 4
     .line 5

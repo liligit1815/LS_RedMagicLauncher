@@ -239,19 +239,20 @@
 
     .line 41
     .line 42
-    const-string v1, "verticalTranslation"
+    const-string/jumbo v1, "verticalTranslation"
 
     .line 43
     .line 44
+    .line 45
     invoke-direct {v0, v1}, Lcom/android/quickstep/interaction/EdgeBackGesturePanel$4;-><init>(Ljava/lang/String;)V
 
-    .line 45
     .line 46
     .line 47
+    .line 48
     sput-object v0, Lcom/android/quickstep/interaction/EdgeBackGesturePanel;->CURRENT_VERTICAL_TRANSLATION:Landroidx/dynamicanimation/animation/g;
 
-    .line 48
     .line 49
+    .line 50
     return-void
 .end method
 
@@ -473,7 +474,7 @@
     .line 111
     .line 112
     .line 113
-    sget-object v2, LJ0/h;->r:Landroid/view/animation/Interpolator;
+    sget-object v2, Lcom/android/app/animation/Interpolators;->FAST_OUT_SLOW_IN:Landroid/view/animation/Interpolator;
 
     .line 114
     .line 115
@@ -482,11 +483,11 @@
     .line 116
     .line 117
     .line 118
-    new-instance v2, Lcom/android/quickstep/interaction/l;
+    new-instance v2, Lcom/android/quickstep/interaction/o;
 
     .line 119
     .line 120
-    invoke-direct {v2, p0}, Lcom/android/quickstep/interaction/l;-><init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
+    invoke-direct {v2, p0}, Lcom/android/quickstep/interaction/o;-><init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
 
     .line 121
     .line 122
@@ -596,7 +597,7 @@
 
     .line 177
     .line 178
-    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
 
     .line 179
     .line 180
@@ -604,7 +605,7 @@
     move-result-object v1
 
     .line 182
-    invoke-virtual {v1, v4}, Landroidx/dynamicanimation/animation/e;->m(F)Landroidx/dynamicanimation/animation/e;
+    invoke-virtual {v1, v4}, Landroidx/dynamicanimation/animation/e;->n(F)Landroidx/dynamicanimation/animation/e;
 
     .line 183
     .line 184
@@ -692,7 +693,7 @@
 
     .line 227
     .line 228
-    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
 
     .line 229
     .line 230
@@ -739,7 +740,7 @@
     move-result-object v2
 
     .line 253
-    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
 
     .line 254
     .line 255
@@ -764,7 +765,7 @@
 
     .line 265
     .line 266
-    const v1, 0x7f06021d
+    const v1, 0x7f060233
 
     .line 267
     .line 268
@@ -808,7 +809,7 @@
 
     .line 289
     .line 290
-    invoke-static {v1, p1, v0}, Lc2/a;->b(Ljava/lang/String;Landroid/content/res/Resources;I)I
+    invoke-static {v1, p1, v0}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getDimenByName(Ljava/lang/String;Landroid/content/res/Resources;I)I
 
     .line 291
     .line 292
@@ -999,7 +1000,7 @@
 
     .line 9
     .line 10
-    invoke-virtual {v0}, Landroidx/dynamicanimation/animation/e;->h()Z
+    invoke-virtual {v0}, Landroidx/dynamicanimation/animation/e;->i()Z
 
     .line 11
     .line 12
@@ -1040,7 +1041,7 @@
     return-void
 .end method
 
-.method static bridge synthetic d(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)F
+.method public static bridge synthetic d(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)F
     .locals 0
 
     .line 1
@@ -1069,7 +1070,7 @@
     return p0
 .end method
 
-.method static bridge synthetic e(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)F
+.method public static bridge synthetic e(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)F
     .locals 0
 
     .line 1
@@ -1084,7 +1085,7 @@
     return p0
 .end method
 
-.method static bridge synthetic f(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)F
+.method public static bridge synthetic f(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)F
     .locals 0
 
     .line 1
@@ -1099,7 +1100,7 @@
     return p0
 .end method
 
-.method static bridge synthetic g(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;F)V
+.method public static bridge synthetic g(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;F)V
     .locals 0
 
     .line 1
@@ -1170,7 +1171,7 @@
     return p0
 .end method
 
-.method static bridge synthetic h(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;F)V
+.method public static bridge synthetic h(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;F)V
     .locals 0
 
     .line 1
@@ -1336,7 +1337,7 @@
 
     .line 71
     .line 72
-    sget-object v2, Lcom/android/launcher3/util/V2;->e:Lcom/android/launcher3/util/I;
+    sget-object v2, Lcom/android/launcher3/util/VibratorWrapper;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 73
     .line 74
@@ -1348,7 +1349,7 @@
     move-result-object v6
 
     .line 78
-    invoke-virtual {v2, v6}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v2, v6}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 79
     .line 80
@@ -1356,15 +1357,15 @@
     move-result-object v2
 
     .line 82
-    check-cast v2, Lcom/android/launcher3/util/V2;
+    check-cast v2, Lcom/android/launcher3/util/VibratorWrapper;
 
     .line 83
     .line 84
-    sget-object v6, Lcom/android/launcher3/util/V2;->g:Landroid/os/VibrationEffect;
+    sget-object v6, Lcom/android/launcher3/util/VibratorWrapper;->EFFECT_CLICK:Landroid/os/VibrationEffect;
 
     .line 85
     .line 86
-    invoke-virtual {v2, v6}, Lcom/android/launcher3/util/V2;->n(Landroid/os/VibrationEffect;)V
+    invoke-virtual {v2, v6}, Lcom/android/launcher3/util/VibratorWrapper;->vibrate(Landroid/os/VibrationEffect;)V
 
     .line 87
     .line 88
@@ -1428,7 +1429,7 @@
     div-float/2addr v1, v6
 
     .line 117
-    invoke-static {v1, v4, v3}, LE/a;->a(FFF)F
+    invoke-static {v1, v4, v3}, Lu5/a;->a(FFF)F
 
     .line 118
     .line 119
@@ -1476,7 +1477,7 @@
     div-float/2addr v1, v2
 
     .line 138
-    invoke-static {v1, v4, v3}, LE/a;->a(FFF)F
+    invoke-static {v1, v4, v3}, Lu5/a;->a(FFF)F
 
     .line 139
     .line 140
@@ -1854,7 +1855,7 @@
     div-float/2addr v1, v2
 
     .line 310
-    invoke-static {v1, v4, v3}, LE/a;->a(FFF)F
+    invoke-static {v1, v4, v3}, Lu5/a;->a(FFF)F
 
     .line 311
     .line 312
@@ -1896,7 +1897,7 @@
     return-void
 .end method
 
-.method static bridge synthetic i(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;F)V
+.method public static bridge synthetic i(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;F)V
     .locals 0
 
     .line 1
@@ -2006,7 +2007,7 @@
 
     .line 20
     .line 21
-    invoke-virtual {v2, v3}, Landroidx/dynamicanimation/animation/j;->B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+    invoke-virtual {v2, v3}, Landroidx/dynamicanimation/animation/j;->C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
 
     .line 22
     .line 23
@@ -2063,11 +2064,11 @@
     move-result-object v0
 
     .line 50
-    new-instance v1, Lcom/android/quickstep/interaction/n;
+    new-instance v1, Lcom/android/quickstep/interaction/q;
 
     .line 51
     .line 52
-    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/n;-><init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
+    invoke-direct {v1, p0}, Lcom/android/quickstep/interaction/q;-><init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
 
     .line 53
     .line 54
@@ -2125,7 +2126,7 @@
 
     .line 8
     .line 9
-    invoke-static {v1, v0, v2}, Lc2/a;->b(Ljava/lang/String;Landroid/content/res/Resources;I)I
+    invoke-static {v1, v0, v2}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getDimenByName(Ljava/lang/String;Landroid/content/res/Resources;I)I
 
     .line 10
     .line 11
@@ -2145,7 +2146,7 @@
 
     .line 18
     .line 19
-    invoke-static {v1, v0, v2}, Lc2/a;->b(Ljava/lang/String;Landroid/content/res/Resources;I)I
+    invoke-static {v1, v0, v2}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getDimenByName(Ljava/lang/String;Landroid/content/res/Resources;I)I
 
     .line 20
     .line 21
@@ -2165,7 +2166,7 @@
 
     .line 28
     .line 29
-    invoke-static {v1, v0, v2}, Lc2/a;->b(Ljava/lang/String;Landroid/content/res/Resources;I)I
+    invoke-static {v1, v0, v2}, Lcom/android/launcher3/testing/shared/ResourceUtils;->getDimenByName(Ljava/lang/String;Landroid/content/res/Resources;I)I
 
     .line 30
     .line 31
@@ -2306,7 +2307,7 @@
 
     .line 34
     .line 35
-    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+    invoke-virtual {v1, v2}, Landroidx/dynamicanimation/animation/j;->C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
 
     .line 36
     .line 37
@@ -2427,7 +2428,7 @@
 
     .line 16
     .line 17
-    invoke-virtual {p0, p1}, Landroidx/dynamicanimation/animation/j;->w(F)V
+    invoke-virtual {p0, p1}, Landroidx/dynamicanimation/animation/j;->x(F)V
 
     .line 18
     .line 19
@@ -2473,7 +2474,7 @@
 
     .line 16
     .line 17
-    invoke-virtual {p2, p1}, Landroidx/dynamicanimation/animation/j;->w(F)V
+    invoke-virtual {p2, p1}, Landroidx/dynamicanimation/animation/j;->x(F)V
 
     .line 18
     .line 19
@@ -2663,7 +2664,7 @@
     .line 54
     .line 55
     :goto_0
-    sget-object v0, Lcom/android/launcher3/util/V2;->e:Lcom/android/launcher3/util/I;
+    sget-object v0, Lcom/android/launcher3/util/VibratorWrapper;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 56
     .line 57
@@ -2675,7 +2676,7 @@
     move-result-object v1
 
     .line 61
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 62
     .line 63
@@ -2683,15 +2684,15 @@
     move-result-object v0
 
     .line 65
-    check-cast v0, Lcom/android/launcher3/util/V2;
+    check-cast v0, Lcom/android/launcher3/util/VibratorWrapper;
 
     .line 66
     .line 67
-    sget-object v1, Lcom/android/launcher3/util/V2;->g:Landroid/os/VibrationEffect;
+    sget-object v1, Lcom/android/launcher3/util/VibratorWrapper;->EFFECT_CLICK:Landroid/os/VibrationEffect;
 
     .line 68
     .line 69
-    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/V2;->n(Landroid/os/VibrationEffect;)V
+    invoke-virtual {v0, v1}, Lcom/android/launcher3/util/VibratorWrapper;->vibrate(Landroid/os/VibrationEffect;)V
 
     .line 70
     .line 71
@@ -2745,11 +2746,11 @@
     .line 94
     .line 95
     :cond_4
-    new-instance v0, Lcom/android/quickstep/interaction/m;
+    new-instance v0, Lcom/android/quickstep/interaction/p;
 
     .line 96
     .line 97
-    invoke-direct {v0, p0}, Lcom/android/quickstep/interaction/m;-><init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
+    invoke-direct {v0, p0}, Lcom/android/quickstep/interaction/p;-><init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
 
     .line 98
     .line 99
@@ -2758,7 +2759,7 @@
 
     .line 101
     .line 102
-    invoke-virtual {v1}, Landroidx/dynamicanimation/animation/e;->h()Z
+    invoke-virtual {v1}, Landroidx/dynamicanimation/animation/e;->i()Z
 
     .line 103
     .line 104
@@ -2878,7 +2879,7 @@
     .line 33
     .line 34
     :goto_1
-    invoke-virtual {p1, v0}, Landroidx/dynamicanimation/animation/j;->B(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
+    invoke-virtual {p1, v0}, Landroidx/dynamicanimation/animation/j;->C(Landroidx/dynamicanimation/animation/k;)Landroidx/dynamicanimation/animation/j;
 
     .line 35
     .line 36
@@ -2887,7 +2888,7 @@
 
     .line 38
     .line 39
-    invoke-virtual {p1, v2}, Landroidx/dynamicanimation/animation/j;->w(F)V
+    invoke-virtual {p1, v2}, Landroidx/dynamicanimation/animation/j;->x(F)V
 
     .line 40
     .line 41
@@ -3055,7 +3056,7 @@
     const/4 v1, 0x0
 
     .line 50
-    invoke-static {p1, v1, v0}, LE/a;->b(III)I
+    invoke-static {p1, v1, v0}, Lu5/a;->b(III)I
 
     .line 51
     .line 52
@@ -3076,7 +3077,7 @@
 
 
 # virtual methods
-.method getIsLeftPanel()Z
+.method public getIsLeftPanel()Z
     .locals 0
 
     .line 1
@@ -3097,7 +3098,7 @@
     return p0
 .end method
 
-.method protected onConfigurationChanged(Landroid/content/res/Configuration;)V
+.method public onConfigurationChanged(Landroid/content/res/Configuration;)V
     .locals 0
 
     .line 1
@@ -3119,7 +3120,7 @@
     return-void
 .end method
 
-.method onDestroy()V
+.method public onDestroy()V
     .locals 1
 
     .line 1
@@ -3148,7 +3149,7 @@
     return-void
 .end method
 
-.method protected onDraw(Landroid/graphics/Canvas;)V
+.method public onDraw(Landroid/graphics/Canvas;)V
     .locals 3
 
     .line 1
@@ -3296,7 +3297,7 @@
     return-void
 .end method
 
-.method protected onLayout(ZIIII)V
+.method public onLayout(ZIIII)V
     .locals 0
 
     .line 1
@@ -3330,7 +3331,7 @@
     return-void
 .end method
 
-.method onMotionEvent(Landroid/view/MotionEvent;)V
+.method public onMotionEvent(Landroid/view/MotionEvent;)V
     .locals 3
 
     .line 1
@@ -3532,7 +3533,7 @@
     return-void
 .end method
 
-.method setBackCallback(Lcom/android/quickstep/interaction/EdgeBackGesturePanel$BackCallback;)V
+.method public setBackCallback(Lcom/android/quickstep/interaction/EdgeBackGesturePanel$BackCallback;)V
     .locals 0
 
     .line 1
@@ -3543,7 +3544,7 @@
     return-void
 .end method
 
-.method setDisplaySize(Landroid/graphics/Point;)V
+.method public setDisplaySize(Landroid/graphics/Point;)V
     .locals 2
 
     .line 1
@@ -3591,7 +3592,7 @@
     return-void
 .end method
 
-.method setIsLeftPanel(Z)V
+.method public setIsLeftPanel(Z)V
     .locals 0
     .annotation build Landroid/annotation/SuppressLint;
         value = {

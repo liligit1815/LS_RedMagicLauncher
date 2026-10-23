@@ -74,7 +74,7 @@
     return-void
 .end method
 
-.method static synthetic access$100(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)V
+.method public static synthetic access$100(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)V
     .locals 0
 
     .line 1
@@ -86,7 +86,7 @@
     return-void
 .end method
 
-.method static synthetic access$200(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)Ljava/lang/Integer;
+.method public static synthetic access$200(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)Ljava/lang/Integer;
     .locals 0
 
     .line 1
@@ -97,7 +97,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$300(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)Landroid/view/SurfaceView;
+.method public static synthetic access$300(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)Landroid/view/SurfaceView;
     .locals 0
 
     .line 1
@@ -108,7 +108,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$400(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)Landroid/view/SurfaceView;
+.method public static synthetic access$400(Lcn/nubia/redmagickyi/digitalhuman/proxy/player/SurfaceViewPlayer;)Landroid/view/SurfaceView;
     .locals 0
 
     .line 1

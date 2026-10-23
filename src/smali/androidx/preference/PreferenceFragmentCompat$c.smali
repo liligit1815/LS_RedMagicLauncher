@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceFragmentCompat$c;
+.class public Landroidx/preference/PreferenceFragmentCompat$c;
 .super Landroidx/recyclerview/widget/RecyclerView$ItemDecoration;
 .source "PreferenceFragmentCompat.java"
 
@@ -9,27 +9,27 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "c"
 .end annotation
 
 
 # instance fields
-.field private g:Landroid/graphics/drawable/Drawable;
+.field public c:Landroid/graphics/drawable/Drawable;
 
-.field private h:I
+.field public m:I
 
-.field private i:Z
+.field public n:Z
 
-.field final synthetic j:Landroidx/preference/PreferenceFragmentCompat;
+.field public final synthetic o:Landroidx/preference/PreferenceFragmentCompat;
 
 
 # direct methods
-.method constructor <init>(Landroidx/preference/PreferenceFragmentCompat;)V
+.method public constructor <init>(Landroidx/preference/PreferenceFragmentCompat;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->j:Landroidx/preference/PreferenceFragmentCompat;
+    iput-object p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->o:Landroidx/preference/PreferenceFragmentCompat;
 
     .line 2
     .line 3
@@ -41,7 +41,7 @@
     const/4 p1, 0x1
 
     .line 7
-    iput-boolean p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->i:Z
+    iput-boolean p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->n:Z
 
     .line 8
     .line 9
@@ -60,7 +60,7 @@
     move-result-object v0
 
     .line 5
-    instance-of v1, v0, Landroidx/preference/h;
+    instance-of v1, v0, Le7/f;
 
     .line 6
     .line 7
@@ -71,11 +71,11 @@
 
     .line 9
     .line 10
-    check-cast v0, Landroidx/preference/h;
+    check-cast v0, Le7/f;
 
     .line 11
     .line 12
-    invoke-virtual {v0}, Landroidx/preference/h;->c()Z
+    invoke-virtual {v0}, Le7/f;->c()Z
 
     .line 13
     .line 14
@@ -87,7 +87,7 @@
 
     .line 17
     .line 18
-    iget-boolean p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->i:Z
+    iget-boolean p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->n:Z
 
     .line 19
     .line 20
@@ -136,7 +136,7 @@
     move-result-object p0
 
     .line 41
-    instance-of p1, p0, Landroidx/preference/h;
+    instance-of p1, p0, Le7/f;
 
     .line 42
     .line 43
@@ -144,11 +144,11 @@
 
     .line 44
     .line 45
-    check-cast p0, Landroidx/preference/h;
+    check-cast p0, Le7/f;
 
     .line 46
     .line 47
-    invoke-virtual {p0}, Landroidx/preference/h;->b()Z
+    invoke-virtual {p0}, Le7/f;->b()Z
 
     .line 48
     .line 49
@@ -181,7 +181,7 @@
     .locals 0
 
     .line 1
-    iput-boolean p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->i:Z
+    iput-boolean p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->n:Z
 
     .line 2
     .line 3
@@ -204,7 +204,7 @@
     move-result v0
 
     .line 7
-    iput v0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->h:I
+    iput v0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->m:I
 
     .line 8
     .line 9
@@ -215,20 +215,20 @@
     const/4 v0, 0x0
 
     .line 11
-    iput v0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->h:I
+    iput v0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->m:I
 
     .line 12
     .line 13
     :goto_0
-    iput-object p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->g:Landroid/graphics/drawable/Drawable;
+    iput-object p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->c:Landroid/graphics/drawable/Drawable;
 
     .line 14
     .line 15
-    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->j:Landroidx/preference/PreferenceFragmentCompat;
+    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->o:Landroidx/preference/PreferenceFragmentCompat;
 
     .line 16
     .line 17
-    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat;->i:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat;->mList:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 18
     .line 19
@@ -244,15 +244,15 @@
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->h:I
+    iput p1, p0, Landroidx/preference/PreferenceFragmentCompat$c;->m:I
 
     .line 2
     .line 3
-    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->j:Landroidx/preference/PreferenceFragmentCompat;
+    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->o:Landroidx/preference/PreferenceFragmentCompat;
 
     .line 4
     .line 5
-    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat;->i:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p0, p0, Landroidx/preference/PreferenceFragmentCompat;->mList:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 6
     .line 7
@@ -280,7 +280,7 @@
 
     .line 6
     .line 7
-    iget p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->h:I
+    iget p0, p0, Landroidx/preference/PreferenceFragmentCompat$c;->m:I
 
     .line 8
     .line 9
@@ -296,7 +296,7 @@
     .locals 6
 
     .line 1
-    iget-object p3, p0, Landroidx/preference/PreferenceFragmentCompat$c;->g:Landroid/graphics/drawable/Drawable;
+    iget-object p3, p0, Landroidx/preference/PreferenceFragmentCompat$c;->c:Landroid/graphics/drawable/Drawable;
 
     .line 2
     .line 3
@@ -377,11 +377,11 @@
     add-int/2addr v4, v3
 
     .line 38
-    iget-object v3, p0, Landroidx/preference/PreferenceFragmentCompat$c;->g:Landroid/graphics/drawable/Drawable;
+    iget-object v3, p0, Landroidx/preference/PreferenceFragmentCompat$c;->c:Landroid/graphics/drawable/Drawable;
 
     .line 39
     .line 40
-    iget v5, p0, Landroidx/preference/PreferenceFragmentCompat$c;->h:I
+    iget v5, p0, Landroidx/preference/PreferenceFragmentCompat$c;->m:I
 
     .line 41
     .line 42
@@ -393,7 +393,7 @@
     .line 44
     .line 45
     .line 46
-    iget-object v3, p0, Landroidx/preference/PreferenceFragmentCompat$c;->g:Landroid/graphics/drawable/Drawable;
+    iget-object v3, p0, Landroidx/preference/PreferenceFragmentCompat$c;->c:Landroid/graphics/drawable/Drawable;
 
     .line 47
     .line 48

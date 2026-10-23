@@ -1,12 +1,12 @@
 .class public Landroidx/slice/widget/MessageView;
-.super Landroidx/slice/widget/h;
+.super Landroidx/slice/widget/b;
 .source "MessageView.java"
 
 
 # instance fields
-.field private o:Landroid/widget/TextView;
+.field public t:Landroid/widget/TextView;
 
-.field private p:Landroid/widget/ImageView;
+.field public u:Landroid/widget/ImageView;
 
 
 # virtual methods
@@ -27,7 +27,7 @@
     return p0
 .end method
 
-.method protected onFinishInflate()V
+.method public onFinishInflate()V
     .locals 1
 
     .line 1
@@ -53,7 +53,7 @@
 
     .line 12
     .line 13
-    iput-object v0, p0, Landroidx/slice/widget/MessageView;->o:Landroid/widget/TextView;
+    iput-object v0, p0, Landroidx/slice/widget/MessageView;->t:Landroid/widget/TextView;
 
     .line 14
     .line 15
@@ -74,7 +74,7 @@
 
     .line 23
     .line 24
-    iput-object v0, p0, Landroidx/slice/widget/MessageView;->p:Landroid/widget/ImageView;
+    iput-object v0, p0, Landroidx/slice/widget/MessageView;->u:Landroid/widget/ImageView;
 
     .line 25
     .line 26

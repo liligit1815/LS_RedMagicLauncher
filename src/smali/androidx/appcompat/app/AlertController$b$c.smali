@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/app/AlertController$b$c;
+.class public Landroidx/appcompat/app/AlertController$b$c;
 .super Ljava/lang/Object;
 .source "AlertController.java"
 
@@ -12,27 +12,27 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/app/AlertController;
+.field public final synthetic c:Landroidx/appcompat/app/AlertController;
 
-.field final synthetic h:Landroidx/appcompat/app/AlertController$b;
+.field public final synthetic m:Landroidx/appcompat/app/AlertController$b;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/app/AlertController$b;Landroidx/appcompat/app/AlertController;)V
+.method public constructor <init>(Landroidx/appcompat/app/AlertController$b;Landroidx/appcompat/app/AlertController;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/app/AlertController$b$c;->h:Landroidx/appcompat/app/AlertController$b;
+    iput-object p1, p0, Landroidx/appcompat/app/AlertController$b$c;->m:Landroidx/appcompat/app/AlertController$b;
 
     .line 2
     .line 3
-    iput-object p2, p0, Landroidx/appcompat/app/AlertController$b$c;->g:Landroidx/appcompat/app/AlertController;
+    iput-object p2, p0, Landroidx/appcompat/app/AlertController$b$c;->c:Landroidx/appcompat/app/AlertController;
 
     .line 4
     .line 5
@@ -59,7 +59,7 @@
     .end annotation
 
     .line 1
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$c;->h:Landroidx/appcompat/app/AlertController$b;
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$c;->m:Landroidx/appcompat/app/AlertController$b;
 
     .line 2
     .line 3
@@ -67,11 +67,11 @@
 
     .line 4
     .line 5
-    iget-object p2, p0, Landroidx/appcompat/app/AlertController$b$c;->g:Landroidx/appcompat/app/AlertController;
+    iget-object p2, p0, Landroidx/appcompat/app/AlertController$b$c;->c:Landroidx/appcompat/app/AlertController;
 
     .line 6
     .line 7
-    iget-object p2, p2, Landroidx/appcompat/app/AlertController;->b:Landroidx/appcompat/app/j;
+    iget-object p2, p2, Landroidx/appcompat/app/AlertController;->b:Ll/i;
 
     .line 8
     .line 9
@@ -80,7 +80,7 @@
     .line 10
     .line 11
     .line 12
-    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$c;->h:Landroidx/appcompat/app/AlertController$b;
+    iget-object p1, p0, Landroidx/appcompat/app/AlertController$b$c;->m:Landroidx/appcompat/app/AlertController$b;
 
     .line 13
     .line 14
@@ -92,15 +92,15 @@
 
     .line 17
     .line 18
-    iget-object p0, p0, Landroidx/appcompat/app/AlertController$b$c;->g:Landroidx/appcompat/app/AlertController;
+    iget-object p0, p0, Landroidx/appcompat/app/AlertController$b$c;->c:Landroidx/appcompat/app/AlertController;
 
     .line 19
     .line 20
-    iget-object p0, p0, Landroidx/appcompat/app/AlertController;->b:Landroidx/appcompat/app/j;
+    iget-object p0, p0, Landroidx/appcompat/app/AlertController;->b:Ll/i;
 
     .line 21
     .line 22
-    invoke-virtual {p0}, Landroidx/appcompat/app/j;->dismiss()V
+    invoke-virtual {p0}, Ll/i;->dismiss()V
 
     .line 23
     .line 24

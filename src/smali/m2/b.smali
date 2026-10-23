@@ -3,11 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Predicate;
+.implements Lkotlin/jvm/functions/Function1;
+
+
+# instance fields
+.field public final synthetic c:Ljava/util/Collection;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Ljava/util/Collection;)V
     .locals 0
 
     .line 1
@@ -16,20 +20,24 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lm2/b;->c:Ljava/util/Collection;
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final test(Ljava/lang/Object;)Z
+.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
     .line 1
-    check-cast p1, Lz1/Z4;
+    iget-object p0, p0, Lm2/b;->c:Ljava/util/Collection;
 
     .line 2
     .line 3
-    invoke-static {p1}, Lm2/c;->a(Lz1/Z4;)Z
+    invoke-static {p0, p1}, Lm2/c;->h(Ljava/util/Collection;Ljava/lang/Object;)Z
 
     .line 4
     .line 5
@@ -37,5 +45,13 @@
     move-result p0
 
     .line 7
-    return p0
+    invoke-static {p0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p0
+
+    .line 11
+    return-object p0
 .end method

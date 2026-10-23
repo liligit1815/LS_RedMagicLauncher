@@ -4,7 +4,7 @@
 
 
 # instance fields
-.field private g:Landroidx/appcompat/widget/J;
+.field public c:Ls/i0;
 
 
 # direct methods
@@ -22,11 +22,11 @@
 
 
 # virtual methods
-.method protected fitSystemWindows(Landroid/graphics/Rect;)Z
+.method public fitSystemWindows(Landroid/graphics/Rect;)Z
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/FitWindowsFrameLayout;->g:Landroidx/appcompat/widget/J;
+    iget-object v0, p0, Landroidx/appcompat/widget/FitWindowsFrameLayout;->c:Ls/i0;
 
     .line 2
     .line 3
@@ -34,7 +34,7 @@
 
     .line 4
     .line 5
-    invoke-interface {v0, p1}, Landroidx/appcompat/widget/J;->a(Landroid/graphics/Rect;)V
+    invoke-interface {v0, p1}, Ls/i0;->a(Landroid/graphics/Rect;)V
 
     .line 6
     .line 7
@@ -51,11 +51,11 @@
     return p0
 .end method
 
-.method public setOnFitSystemWindowsListener(Landroidx/appcompat/widget/J;)V
+.method public setOnFitSystemWindowsListener(Ls/i0;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/FitWindowsFrameLayout;->g:Landroidx/appcompat/widget/J;
+    iput-object p1, p0, Landroidx/appcompat/widget/FitWindowsFrameLayout;->c:Ls/i0;
 
     .line 2
     .line 3

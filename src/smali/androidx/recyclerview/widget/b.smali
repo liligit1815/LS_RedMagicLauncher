@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field private final a:Landroidx/recyclerview/widget/RecyclerView$Adapter;
+.field public final a:Landroidx/recyclerview/widget/RecyclerView$Adapter;
 
 
 # direct methods

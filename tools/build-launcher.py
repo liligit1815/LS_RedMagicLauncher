@@ -21,8 +21,10 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CERTIFICATE = "4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb"
-DEFAULT_BASELINE = ROOT / "baselines/launcher-260005.apk"
-DEFAULT_BASELINE_SHA256 = "2b5ccc21b361b910214df27930370b246b0495d8997e79e457241584dfe365df"
+DEFAULT_BASELINE = ROOT / "original.apk"
+DEFAULT_BASELINE_SHA256 = "729db6038d223f127e6305672fed454756488931f824aa36d3f62db9339a4488"
+OEM_CERTIFICATE = "85fe217eaf539fc32bdf12d74d432c348b0bd0fddffd0ba79e89889b195bb19b"
+FRAMEWORK_SHA256 = "5dd984016ed5a5eb0eef866e2c6e8cd352e1427828ec23adb18005cf5648f3d7"
 SOURCE_TESTS = (
     "test-launcher-online-updates.py",
     "test-launcher-fan-settings.py",
@@ -144,7 +146,16 @@ def signing_configuration(path):
         raise ValueError("Cannot read valid local .signing/signing.local.json credentials") from None
 
 
+def filesystem_path(path):
+    """Keep long OEM-generated Kotlin names usable in Windows build copies."""
+    path = Path(path).resolve()
+    if os.name == "nt" and not str(path).startswith("\\\\?\\"):
+        return Path("\\\\?\\" + str(path))
+    return path
+
+
 def tree_hashes(base):
+    base = filesystem_path(base)
     return {path.relative_to(base).as_posix(): digest(path)
             for path in sorted(base.rglob("*"))
             if path.is_file() and path.relative_to(base).parts[0] != "build"
@@ -159,8 +170,8 @@ def helper_smali_sync(source, staged, source_hashes, staged_hashes, helper_class
         if source_hashes.get(name) == staged_hashes.get(name):
             continue
         is_helper = False
-        if name.startswith("smali_classes2/") and name.endswith(".smali"):
-            class_name = name[len("smali_classes2/"):-len(".smali")]
+        if name.startswith("smali_classes4/") and name.endswith(".smali"):
+            class_name = name[len("smali_classes4/"):-len(".smali")]
             is_helper = any(class_name == main or class_name.startswith(main + "$")
                             for main in helper_classes)
         # Apktool uses the host line separator. A Git checkout uses LF, but a
@@ -189,13 +200,13 @@ def baseline_input(apk):
     """Pin the bundled regression input; custom inputs still need signature/payload gates."""
     apk = apk.resolve()
     pinned = apk == DEFAULT_BASELINE.resolve()
-    require(apk.is_file(), "Bundled 260005 baseline is missing; restore baselines/launcher-260005.apk from Git"
+    require(apk.is_file(), "Pinned OEM12 input is missing; restore original.apk from this branch"
             if pinned else "Explicit --previous baseline APK is missing")
     actual_hash = digest(apk)
     require(not pinned or actual_hash == DEFAULT_BASELINE_SHA256,
-            "Bundled 260005 baseline SHA-256 mismatch; restore the reviewed file from Git")
+            "Pinned OEM12 SHA-256 mismatch; restore this branch's original.apk")
     return {"path": str(apk), "sha256": actual_hash,
-            "selection": "bundled_pinned_260005" if pinned else "explicit_custom",
+            "selection": "pinned_oem12" if pinned else "explicit_custom",
             "pinned_sha256": DEFAULT_BASELINE_SHA256 if pinned else None}
 
 
@@ -214,7 +225,10 @@ def build_release(args, build, report, expected):
                 sdk / "platforms/android-36/android.jar", ROOT / "framework/cache/1.apk", args.previous)),
             "Required local inputs, accepted APK, or Android SDK 36 / Build Tools 36.0.0 are missing")
     require(all(shutil.which(name) for name in ("java", "javac")), "JDK java and javac must be on PATH")
-    verify_previous(args.previous, args.expected_certificate_sha256, signer, build, report)
+    require(digest(original) == DEFAULT_BASELINE_SHA256, "OEM12 input SHA-256 mismatch")
+    require(digest(ROOT / "framework/cache/1.apk") == FRAMEWORK_SHA256, "Pinned framework input mismatch")
+    verify_previous(args.previous, OEM_CERTIFICATE if args.previous.resolve() == original.resolve()
+                    else args.expected_certificate_sha256, signer, build, report)
     signing = None
     if not args.unsigned:
         keytool = find_keytool()
@@ -240,16 +254,16 @@ def build_release(args, build, report, expected):
     for test in SOURCE_TESTS:
         run(test, [sys.executable, ROOT / "tools" / test], build, report)
     run("Check Recents Smali", [sys.executable, ROOT / "tools/check-launcher-recents-smali.py",
-        ROOT / "src/smali_classes2/com/android/quickstep/views/RecentsView.smali"], build, report)
+        ROOT / "src/smali_classes3/com/android/quickstep/views/RecentsView.smali"], build, report)
     work = build / "work"
     work.mkdir()
     staged = work / "src"
-    shutil.copytree(ROOT / "src", staged, ignore=lambda directory, names:
+    shutil.copytree(ROOT / "src", filesystem_path(staged), ignore=lambda directory, names:
                     [name for name in names if name == "__pycache__" or
                      (Path(directory) == ROOT / "src" and name == "build")])
     shutil.copytree(ROOT / "framework/cache", work / "framework-cache")
     run("Compile helper Java", [sys.executable, ROOT / "tools/build-launcher-helper.py", "--sdk", sdk,
-        "--destination", staged / "smali_classes2", "--work-dir", work / "helper"], build, report)
+        "--destination", staged / "smali_classes4", "--work-dir", work / "helper"], build, report)
     staged_hashes = tree_hashes(staged)
     helper_classes = {Path(name).with_suffix("").as_posix()
                       for name in helper_before if name.endswith(".java")}
@@ -260,23 +274,19 @@ def build_release(args, build, report, expected):
         ("launcher-raw-unsigned.apk", "launcher-resources-unsigned.apk", "launcher-aligned-unsigned.apk"))
     run("Force Apktool rebuild", ["java", "-jar", apktool, "b", "-f", staged,
         "-p", work / "framework-cache", "-o", raw], build, report)
-    run("Preserve OEM resources", [sys.executable, ROOT / "tools/preserve-launcher-oem-resources.py",
+    run("Preserve OEM resources", [sys.executable, ROOT / "tools/merge-launcher-oem12-resources.py",
         "--original", original, "--rebuilt", raw, "--output", preserved,
         "--report", build / "oem-resources.json", "--aapt2", aapt2], build, report)
     run("Align native ZIP members to 16KB", [zipalign, "-f", "-P", "16", "4", preserved, aligned], build, report)
     run("Check unsigned 16KB ZIP alignment", [zipalign, "-c", "-P", "16", "-v", "4", aligned], build, report)
     run("Check unsigned version and code boundary", [sys.executable, ROOT / "tools/check-launcher-stack-only-apk.py",
         "--apk", aligned, "--report", build / "unsigned-boundary.json"], build, report)
+    run("Resolve OEM12 DEX method and field references", [sys.executable,
+        ROOT / "tools/check-launcher-oem12-links.py", "--apk", aligned,
+        "--android-jar", sdk / "platforms/android-36/android.jar",
+        "--report", build / "oem12-links.json"], build, report)
     release_tool = load_tool("verify-launcher-release.py")
-    previous_payload, unsigned_payload = release_tool.payload(args.previous), release_tool.payload(aligned)
-    preserved_checks = {
-        "resources": release_tool.compare_payloads(previous_payload, unsigned_payload,
-                    lambda name: name == "resources.arsc" or name.startswith("res/")),
-        "native_libraries": release_tool.compare_payloads(previous_payload, unsigned_payload,
-                    lambda name: name.startswith("lib/") and name.endswith(".so")),
-        "assets": release_tool.compare_payloads(previous_payload, unsigned_payload,
-                    lambda name: name.startswith("assets/")),
-    }
+    preserved_checks = {"oem12_payload": load_tool("check-launcher-oem12-payload.py").compare(original, aligned)}
     write_json(build / "unsigned-baseline.json", preserved_checks)
     require(all(check["pass"] for check in preserved_checks.values()), "Unsigned resources/native/assets differ from accepted baseline")
     report["source_unchanged"] = source_before == tree_hashes(ROOT / "src") and helper_before == tree_hashes(ROOT / "helper-src/main")
@@ -286,7 +296,7 @@ def build_release(args, build, report, expected):
         report["status"] = "unsigned_verified"
         report["signed"] = False
     else:
-        artifact = build / f"LS_红魔桌面修改版-{expected['versionName']}-{expected['versionCode']}.apk"
+        artifact = build / f"堆叠桌面12-{expected['versionCode']}.apk"
         keystore, alias, env = signing
         run("Sign release with local key", ["java", "-jar", signer, "sign", "--ks", keystore,
             "--ks-key-alias", alias, "--ks-pass", "env:REDMAGIC_BUILD_STORE_PASSWORD",
@@ -307,7 +317,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sdk", type=Path, default=Path(os.environ.get("ANDROID_HOME") or os.environ.get("ANDROID_SDK_ROOT") or ""))
     parser.add_argument("--previous", type=Path, default=DEFAULT_BASELINE,
-                        help="Reviewed baseline APK; defaults to the SHA-256-pinned baselines/launcher-260005.apk. Custom inputs still require the expected signing certificate and payload checks")
+                        help="Optional prior same-series signed APK; first port defaults to this branch's SHA-256-pinned OEM12 original.apk")
     parser.add_argument("--unsigned", action="store_true", help="Build and verify an explicitly unsigned APK without reading private signing configuration")
     parser.add_argument("--expected-certificate-sha256", default=CERTIFICATE)
     args = parser.parse_args()

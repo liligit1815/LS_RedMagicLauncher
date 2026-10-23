@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -21,7 +21,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;J)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;J)V
     .locals 0
 
     .line 1
@@ -43,7 +43,7 @@
 
 
 # virtual methods
-.method public createActivityAnimationToHome()Lcom/android/launcher3/anim/q;
+.method public createActivityAnimationToHome()Lcom/android/launcher3/anim/AnimatorPlaybackController;
     .locals 3
 
     .line 1
@@ -60,7 +60,7 @@
 
     .line 7
     .line 8
-    invoke-static {v0, v1, v2}, Lcom/android/launcher3/anim/q;->z(Landroid/animation/AnimatorSet;J)Lcom/android/launcher3/anim/q;
+    invoke-static {v0, v1, v2}, Lcom/android/launcher3/anim/AnimatorPlaybackController;->wrap(Landroid/animation/AnimatorSet;J)Lcom/android/launcher3/anim/AnimatorPlaybackController;
 
     .line 9
     .line 10
@@ -79,7 +79,7 @@
 
     .line 2
     .line 3
-    invoke-static {v0}, Lcom/android/launcher3/N5;->i(F)I
+    invoke-static {v0}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
     .line 4
     .line 5
@@ -215,7 +215,7 @@
     const/4 v6, 0x0
 
     .line 18
-    invoke-static {p4}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->access$000(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;)Lcom/android/launcher3/h0;
+    invoke-static {p4}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;->access$000(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController$ViewSwipeUpAnimation;)Lcom/android/launcher3/DeviceProfile;
 
     .line 19
     .line 20
@@ -240,7 +240,7 @@
     move v5, p3
 
     .line 29
-    invoke-virtual/range {v1 .. v8}, Lcom/android/launcher3/views/ClipIconView;->k(Landroid/graphics/RectF;FFFZLandroid/view/View;Lcom/android/launcher3/h0;)V
+    invoke-virtual/range {v1 .. v8}, Lcom/android/launcher3/views/ClipIconView;->update(Landroid/graphics/RectF;FFFZLandroid/view/View;Lcom/android/launcher3/DeviceProfile;)V
 
     .line 30
     .line 31
@@ -298,7 +298,7 @@
     move-result p2
 
     .line 59
-    invoke-static {p1, p2, v3}, LB/a;->e(IIF)I
+    invoke-static {p1, p2, v3}, Lr5/a;->j(IIF)I
 
     .line 60
     .line 61

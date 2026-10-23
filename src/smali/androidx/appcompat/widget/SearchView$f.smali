@@ -1,4 +1,4 @@
-.class Landroidx/appcompat/widget/SearchView$f;
+.class public Landroidx/appcompat/widget/SearchView$f;
 .super Ljava/lang/Object;
 .source "SearchView.java"
 
@@ -12,21 +12,21 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
 
 # instance fields
-.field final synthetic g:Landroidx/appcompat/widget/SearchView;
+.field public final synthetic c:Landroidx/appcompat/widget/SearchView;
 
 
 # direct methods
-.method constructor <init>(Landroidx/appcompat/widget/SearchView;)V
+.method public constructor <init>(Landroidx/appcompat/widget/SearchView;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$f;->g:Landroidx/appcompat/widget/SearchView;
+    iput-object p1, p0, Landroidx/appcompat/widget/SearchView$f;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3
@@ -44,11 +44,11 @@
     .locals 1
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$f;->g:Landroidx/appcompat/widget/SearchView;
+    iget-object p0, p0, Landroidx/appcompat/widget/SearchView$f;->c:Landroidx/appcompat/widget/SearchView;
 
     .line 2
     .line 3
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->z:Landroid/widget/ImageView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->E:Landroid/widget/ImageView;
 
     .line 4
     .line 5
@@ -65,7 +65,7 @@
 
     .line 11
     :cond_0
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->B:Landroid/widget/ImageView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->G:Landroid/widget/ImageView;
 
     .line 12
     .line 13
@@ -82,7 +82,7 @@
 
     .line 19
     :cond_1
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->A:Landroid/widget/ImageView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->F:Landroid/widget/ImageView;
 
     .line 20
     .line 21
@@ -99,7 +99,7 @@
 
     .line 27
     :cond_2
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->C:Landroid/widget/ImageView;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->H:Landroid/widget/ImageView;
 
     .line 28
     .line 29
@@ -116,7 +116,7 @@
 
     .line 35
     :cond_3
-    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->v:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
+    iget-object v0, p0, Landroidx/appcompat/widget/SearchView;->A:Landroidx/appcompat/widget/SearchView$SearchAutoComplete;
 
     .line 36
     .line 37

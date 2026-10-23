@@ -3,11 +3,15 @@
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Function;
+.implements Ljava/util/function/BiConsumer;
+
+
+# instance fields
+.field public final synthetic a:Lcom/android/quickstep/logging/SettingsChangeLogger;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Lcom/android/quickstep/logging/SettingsChangeLogger;)V
     .locals 0
 
     .line 1
@@ -16,26 +20,43 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lcom/android/quickstep/logging/e;->a:Lcom/android/quickstep/logging/SettingsChangeLogger;
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final apply(Ljava/lang/Object;)Ljava/lang/Object;
+.method public final accept(Ljava/lang/Object;Ljava/lang/Object;)V
     .locals 0
 
     .line 1
-    check-cast p1, Lg1/c;
+    iget-object p0, p0, Lcom/android/quickstep/logging/e;->a:Lcom/android/quickstep/logging/SettingsChangeLogger;
 
     .line 2
     .line 3
-    invoke-interface {p1}, Lcom/android/quickstep/dagger/QuickstepBaseAppComponent;->getSettingsChangeLogger()Lcom/android/quickstep/logging/SettingsChangeLogger;
+    check-cast p1, Lcom/android/launcher3/display/LauncherDisplayInfo;
 
     .line 4
     .line 5
-    .line 6
-    move-result-object p0
+    check-cast p2, Ljava/lang/Integer;
 
+    .line 6
     .line 7
-    return-object p0
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
+
+    .line 8
+    .line 9
+    .line 10
+    move-result p2
+
+    .line 11
+    invoke-static {p0, p1, p2}, Lcom/android/quickstep/logging/SettingsChangeLogger;->g(Lcom/android/quickstep/logging/SettingsChangeLogger;Lcom/android/launcher3/display/LauncherDisplayInfo;I)V
+
+    .line 12
+    .line 13
+    .line 14
+    return-void
 .end method

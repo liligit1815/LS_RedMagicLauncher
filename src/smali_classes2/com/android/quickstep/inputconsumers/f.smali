@@ -7,11 +7,13 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
+.field public final synthetic c:Lcom/android/quickstep/inputconsumers/BubbleBarInputConsumer;
+
+.field public final synthetic m:F
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/inputconsumers/BubbleBarInputConsumer;F)V
     .locals 0
 
     .line 1
@@ -20,27 +22,35 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/f;->g:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
+    iput-object p1, p0, Lcom/android/quickstep/inputconsumers/f;->c:Lcom/android/quickstep/inputconsumers/BubbleBarInputConsumer;
 
     .line 5
     .line 6
+    iput p2, p0, Lcom/android/quickstep/inputconsumers/f;->m:F
+
+    .line 7
+    .line 8
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 0
+    .locals 1
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/f;->g:Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/f;->c:Lcom/android/quickstep/inputconsumers/BubbleBarInputConsumer;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;->d(Lcom/android/quickstep/inputconsumers/DeviceLockedInputConsumer;)V
+    iget p0, p0, Lcom/android/quickstep/inputconsumers/f;->m:F
 
     .line 4
     .line 5
+    invoke-static {v0, p0}, Lcom/android/quickstep/inputconsumers/BubbleBarInputConsumer;->a(Lcom/android/quickstep/inputconsumers/BubbleBarInputConsumer;F)V
+
     .line 6
+    .line 7
+    .line 8
     return-void
 .end method

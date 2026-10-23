@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.quickstep.fallback.FallbackActivityRecentsView android:id="@id/overview_panel" android:clipChildren="false" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="match_parent" android:outlineProvider="none"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

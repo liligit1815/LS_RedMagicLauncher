@@ -1,13 +1,17 @@
-.class public final synthetic LR1/l;
+.class public final synthetic Lr1/l;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/util/function/Predicate;
+.implements Lkotlin/jvm/functions/Function0;
+
+
+# instance fields
+.field public final synthetic c:Lr1/m;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
+.method public synthetic constructor <init>(Lr1/m;)V
     .locals 0
 
     .line 1
@@ -16,26 +20,30 @@
     .line 2
     .line 3
     .line 4
+    iput-object p1, p0, Lr1/l;->c:Lr1/m;
+
+    .line 5
+    .line 6
     return-void
 .end method
 
 
 # virtual methods
-.method public final test(Ljava/lang/Object;)Z
+.method public final invoke()Ljava/lang/Object;
     .locals 0
 
     .line 1
-    check-cast p1, Ljava/lang/String;
+    iget-object p0, p0, Lr1/l;->c:Lr1/m;
 
     .line 2
     .line 3
-    invoke-static {p1}, Ljava/util/Objects;->nonNull(Ljava/lang/Object;)Z
+    invoke-static {p0}, Lr1/m;->b(Lr1/m;)Lw3/a0;
 
     .line 4
     .line 5
     .line 6
-    move-result p0
+    move-result-object p0
 
     .line 7
-    return p0
+    return-object p0
 .end method

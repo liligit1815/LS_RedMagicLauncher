@@ -1,4 +1,4 @@
-.class Landroidx/fragment/app/t$a;
+.class public Landroidx/fragment/app/t$a;
 .super Ljava/lang/Object;
 .source "FragmentAnim.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
@@ -21,7 +21,7 @@
 
 
 # direct methods
-.method constructor <init>(Landroid/animation/Animator;)V
+.method public constructor <init>(Landroid/animation/Animator;)V
     .locals 1
 
     .line 5
@@ -50,7 +50,7 @@
     throw p0
 .end method
 
-.method constructor <init>(Landroid/view/animation/Animation;)V
+.method public constructor <init>(Landroid/view/animation/Animation;)V
     .locals 1
 
     .line 1

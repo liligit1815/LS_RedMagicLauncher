@@ -3,6 +3,6 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <shape android:shape="rectangle">
         <corners android:topLeftRadius="@dimen/mfvc_radius_dialog" android:topRightRadius="@dimen/mfvc_radius_dialog" android:bottomLeftRadius="0.0dp" android:bottomRightRadius="0.0dp" />
-        <solid android:color="@color/mfv_common_pop_bg" />
+        <solid android:color="@color/mfvc_bg_color" />
     </shape>
 </inset>

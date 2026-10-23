@@ -23,17 +23,17 @@
 
 
 # static fields
-.field static final k:Ljava/lang/Object;
+.field public static final k:Ljava/lang/Object;
 
 
 # instance fields
-.field final a:Ljava/lang/Object;
+.field public final a:Ljava/lang/Object;
 
-.field private b:Ll/b;
+.field public b:Lh0/b;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Ll/b<",
-            "LW/i<",
+            "Lh0/b<",
+            "Lq6/l<",
             "-TT;>;",
             "Landroidx/lifecycle/k<",
             "TT;>.d;>;"
@@ -41,21 +41,21 @@
     .end annotation
 .end field
 
-.field c:I
+.field public c:I
 
-.field private d:Z
+.field public d:Z
 
-.field private volatile e:Ljava/lang/Object;
+.field public volatile e:Ljava/lang/Object;
 
-.field volatile f:Ljava/lang/Object;
+.field public volatile f:Ljava/lang/Object;
 
-.field private g:I
+.field public g:I
 
-.field private h:Z
+.field public h:Z
 
-.field private i:Z
+.field public i:Z
 
-.field private final j:Ljava/lang/Runnable;
+.field public final j:Ljava/lang/Runnable;
 
 
 # direct methods
@@ -101,16 +101,16 @@
 
     .line 10
     .line 11
-    new-instance v0, Ll/b;
+    new-instance v0, Lh0/b;
 
     .line 12
     .line 13
-    invoke-direct {v0}, Ll/b;-><init>()V
+    invoke-direct {v0}, Lh0/b;-><init>()V
 
     .line 14
     .line 15
     .line 16
-    iput-object v0, p0, Landroidx/lifecycle/k;->b:Ll/b;
+    iput-object v0, p0, Landroidx/lifecycle/k;->b:Lh0/b;
 
     .line 17
     .line 18
@@ -156,11 +156,11 @@
     return-void
 .end method
 
-.method static a(Ljava/lang/String;)V
+.method public static a(Ljava/lang/String;)V
     .locals 3
 
     .line 1
-    invoke-static {}, Lk/c;->f()Lk/c;
+    invoke-static {}, Lg0/c;->f()Lg0/c;
 
     .line 2
     .line 3
@@ -168,7 +168,7 @@
     move-result-object v0
 
     .line 5
-    invoke-virtual {v0}, Lk/c;->b()Z
+    invoke-virtual {v0}, Lg0/c;->b()Z
 
     .line 6
     .line 7
@@ -236,93 +236,9 @@
     throw v0
 .end method
 
-.method private c(Landroidx/lifecycle/k$d;)V
-    .locals 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Landroidx/lifecycle/k<",
-            "TT;>.d;)V"
-        }
-    .end annotation
-
-    .line 1
-    iget-boolean v0, p1, Landroidx/lifecycle/k$d;->h:Z
-
-    .line 2
-    .line 3
-    if-nez v0, :cond_0
-
-    .line 4
-    .line 5
-    goto :goto_0
-
-    .line 6
-    :cond_0
-    invoke-virtual {p1}, Landroidx/lifecycle/k$d;->d()Z
-
-    .line 7
-    .line 8
-    .line 9
-    move-result v0
-
-    .line 10
-    if-nez v0, :cond_1
-
-    .line 11
-    .line 12
-    const/4 p0, 0x0
-
-    .line 13
-    invoke-virtual {p1, p0}, Landroidx/lifecycle/k$d;->a(Z)V
-
-    .line 14
-    .line 15
-    .line 16
-    return-void
-
-    .line 17
-    :cond_1
-    iget v0, p1, Landroidx/lifecycle/k$d;->i:I
-
-    .line 18
-    .line 19
-    iget v1, p0, Landroidx/lifecycle/k;->g:I
-
-    .line 20
-    .line 21
-    if-lt v0, v1, :cond_2
-
-    .line 22
-    .line 23
-    :goto_0
-    return-void
-
-    .line 24
-    :cond_2
-    iput v1, p1, Landroidx/lifecycle/k$d;->i:I
-
-    .line 25
-    .line 26
-    iget-object p1, p1, Landroidx/lifecycle/k$d;->g:LW/i;
-
-    .line 27
-    .line 28
-    iget-object p0, p0, Landroidx/lifecycle/k;->e:Ljava/lang/Object;
-
-    .line 29
-    .line 30
-    invoke-interface {p1, p0}, LW/i;->a(Ljava/lang/Object;)V
-
-    .line 31
-    .line 32
-    .line 33
-    return-void
-.end method
-
 
 # virtual methods
-.method b(I)V
+.method public b(I)V
     .locals 4
 
     .line 1
@@ -462,7 +378,91 @@
     throw p1
 .end method
 
-.method d(Landroidx/lifecycle/k$d;)V
+.method public final c(Landroidx/lifecycle/k$d;)V
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Landroidx/lifecycle/k<",
+            "TT;>.d;)V"
+        }
+    .end annotation
+
+    .line 1
+    iget-boolean v0, p1, Landroidx/lifecycle/k$d;->m:Z
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_0
+
+    .line 4
+    .line 5
+    goto :goto_0
+
+    .line 6
+    :cond_0
+    invoke-virtual {p1}, Landroidx/lifecycle/k$d;->c()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result v0
+
+    .line 10
+    if-nez v0, :cond_1
+
+    .line 11
+    .line 12
+    const/4 p0, 0x0
+
+    .line 13
+    invoke-virtual {p1, p0}, Landroidx/lifecycle/k$d;->a(Z)V
+
+    .line 14
+    .line 15
+    .line 16
+    return-void
+
+    .line 17
+    :cond_1
+    iget v0, p1, Landroidx/lifecycle/k$d;->n:I
+
+    .line 18
+    .line 19
+    iget v1, p0, Landroidx/lifecycle/k;->g:I
+
+    .line 20
+    .line 21
+    if-lt v0, v1, :cond_2
+
+    .line 22
+    .line 23
+    :goto_0
+    return-void
+
+    .line 24
+    :cond_2
+    iput v1, p1, Landroidx/lifecycle/k$d;->n:I
+
+    .line 25
+    .line 26
+    iget-object p1, p1, Landroidx/lifecycle/k$d;->c:Lq6/l;
+
+    .line 27
+    .line 28
+    iget-object p0, p0, Landroidx/lifecycle/k;->e:Ljava/lang/Object;
+
+    .line 29
+    .line 30
+    invoke-interface {p1, p0}, Lq6/l;->a(Ljava/lang/Object;)V
+
+    .line 31
+    .line 32
+    .line 33
+    return-void
+.end method
+
+.method public d(Landroidx/lifecycle/k$d;)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -508,7 +508,7 @@
 
     .line 15
     .line 16
-    invoke-direct {p0, p1}, Landroidx/lifecycle/k;->c(Landroidx/lifecycle/k$d;)V
+    invoke-virtual {p0, p1}, Landroidx/lifecycle/k;->c(Landroidx/lifecycle/k$d;)V
 
     .line 17
     .line 18
@@ -520,11 +520,11 @@
 
     .line 21
     :cond_2
-    iget-object v1, p0, Landroidx/lifecycle/k;->b:Ll/b;
+    iget-object v1, p0, Landroidx/lifecycle/k;->b:Lh0/b;
 
     .line 22
     .line 23
-    invoke-virtual {v1}, Ll/b;->j()Ll/b$d;
+    invoke-virtual {v1}, Lh0/b;->i()Lh0/b$d;
 
     .line 24
     .line 25
@@ -569,7 +569,7 @@
 
     .line 44
     .line 45
-    invoke-direct {p0, v2}, Landroidx/lifecycle/k;->c(Landroidx/lifecycle/k$d;)V
+    invoke-virtual {p0, v2}, Landroidx/lifecycle/k;->c(Landroidx/lifecycle/k$d;)V
 
     .line 46
     .line 47
@@ -599,12 +599,12 @@
     return-void
 .end method
 
-.method public e(LW/i;)V
+.method public e(Lq6/l;)V
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LW/i<",
+            "Lq6/l<",
             "-TT;>;)V"
         }
     .end annotation
@@ -623,16 +623,16 @@
 
     .line 7
     .line 8
-    invoke-direct {v0, p0, p1}, Landroidx/lifecycle/k$b;-><init>(Landroidx/lifecycle/k;LW/i;)V
+    invoke-direct {v0, p0, p1}, Landroidx/lifecycle/k$b;-><init>(Landroidx/lifecycle/k;Lq6/l;)V
 
     .line 9
     .line 10
     .line 11
-    iget-object p0, p0, Landroidx/lifecycle/k;->b:Ll/b;
+    iget-object p0, p0, Landroidx/lifecycle/k;->b:Lh0/b;
 
     .line 12
     .line 13
-    invoke-virtual {p0, p1, v0}, Ll/b;->o(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {p0, p1, v0}, Lh0/b;->n(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 14
     .line 15
@@ -688,26 +688,26 @@
     throw p0
 .end method
 
-.method protected f()V
+.method public f()V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method protected g()V
+.method public g()V
     .locals 0
 
     .line 1
     return-void
 .end method
 
-.method public h(LW/i;)V
+.method public h(Lq6/l;)V
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "LW/i<",
+            "Lq6/l<",
             "-TT;>;)V"
         }
     .end annotation
@@ -722,11 +722,11 @@
     .line 4
     .line 5
     .line 6
-    iget-object p0, p0, Landroidx/lifecycle/k;->b:Ll/b;
+    iget-object p0, p0, Landroidx/lifecycle/k;->b:Lh0/b;
 
     .line 7
     .line 8
-    invoke-virtual {p0, p1}, Ll/b;->p(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {p0, p1}, Lh0/b;->o(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 9
     .line 10
@@ -746,7 +746,7 @@
 
     .line 17
     :cond_0
-    invoke-virtual {p0}, Landroidx/lifecycle/k$d;->c()V
+    invoke-virtual {p0}, Landroidx/lifecycle/k$d;->b()V
 
     .line 18
     .line 19
@@ -762,7 +762,7 @@
     return-void
 .end method
 
-.method protected i(Ljava/lang/Object;)V
+.method public i(Ljava/lang/Object;)V
     .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {

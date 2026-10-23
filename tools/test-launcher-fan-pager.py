@@ -195,12 +195,13 @@ public final class RecentsView extends View {
         if(event.getActionMasked()!=MotionEvent.ACTION_CANCEL)throw new AssertionError("missing native CANCEL");
         cancels++;
     }
-    public void loadVisibleTaskData(int flags){
+    public void loadVisibleTaskData(){int flags=7;
         if(flags!=7)throw new AssertionError("incomplete thumbnail request");
         loads++;loadedPhase=LsFanPager.position(this,-99f,getTaskViewCount());
     }
     public void invalidate(){invalidations++;}
-    public void dismissTaskView(TaskView task,boolean animate,boolean remove){
+    public boolean canRemoveTaskView(TaskView task){for(TaskContainer c:task.getTaskContainers())if(Boolean.TRUE.equals(c.isLocked()))return false;return true;}
+    public void dismissTaskView(TaskView task,boolean remove){boolean animate=true;
         if(!animate||!remove)throw new AssertionError("wrong dismiss contract");
         if(Math.abs(task.nativeDismiss)<1)throw new AssertionError("dismiss lost handoff displacement");
         if(LsFanPager.dragOffset(this,task)!=0)throw new AssertionError("drag/native displacement double applied");

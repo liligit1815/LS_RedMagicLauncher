@@ -1,4 +1,4 @@
-.class Landroidx/constraintlayout/widget/ConstraintLayout$b$a;
+.class public Landroidx/constraintlayout/widget/ConstraintLayout$b$a;
 .super Ljava/lang/Object;
 .source "ConstraintLayout.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 

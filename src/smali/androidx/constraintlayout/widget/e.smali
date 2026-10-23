@@ -12,11 +12,11 @@
 
 
 # instance fields
-.field g:Landroidx/constraintlayout/widget/d;
+.field public c:Landroidx/constraintlayout/widget/d;
 
 
 # virtual methods
-.method protected a()Landroidx/constraintlayout/widget/e$a;
+.method public a()Landroidx/constraintlayout/widget/e$a;
     .locals 1
 
     .line 1
@@ -59,7 +59,7 @@
     return-object v0
 .end method
 
-.method protected bridge synthetic generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+.method public bridge synthetic generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
     .locals 0
 
     .line 1
@@ -85,7 +85,7 @@
     return-object p0
 .end method
 
-.method protected generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
+.method public generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
     .locals 0
 
     .line 2
@@ -100,7 +100,7 @@
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/constraintlayout/widget/e;->g:Landroidx/constraintlayout/widget/d;
+    iget-object v0, p0, Landroidx/constraintlayout/widget/e;->c:Landroidx/constraintlayout/widget/d;
 
     .line 2
     .line 3
@@ -117,12 +117,12 @@
     .line 8
     .line 9
     .line 10
-    iput-object v0, p0, Landroidx/constraintlayout/widget/e;->g:Landroidx/constraintlayout/widget/d;
+    iput-object v0, p0, Landroidx/constraintlayout/widget/e;->c:Landroidx/constraintlayout/widget/d;
 
     .line 11
     .line 12
     :cond_0
-    iget-object v0, p0, Landroidx/constraintlayout/widget/e;->g:Landroidx/constraintlayout/widget/d;
+    iget-object v0, p0, Landroidx/constraintlayout/widget/e;->c:Landroidx/constraintlayout/widget/d;
 
     .line 13
     .line 14
@@ -131,14 +131,14 @@
     .line 15
     .line 16
     .line 17
-    iget-object p0, p0, Landroidx/constraintlayout/widget/e;->g:Landroidx/constraintlayout/widget/d;
+    iget-object p0, p0, Landroidx/constraintlayout/widget/e;->c:Landroidx/constraintlayout/widget/d;
 
     .line 18
     .line 19
     return-object p0
 .end method
 
-.method protected onLayout(ZIIII)V
+.method public onLayout(ZIIII)V
     .locals 0
 
     .line 1

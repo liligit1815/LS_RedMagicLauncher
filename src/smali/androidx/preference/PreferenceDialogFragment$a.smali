@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceDialogFragment$a;
+.class public Landroidx/preference/PreferenceDialogFragment$a;
 .super Ljava/lang/Object;
 .source "PreferenceDialogFragment.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0xa
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # direct methods
-.method static a(Landroid/view/Window;)V
+.method public static a(Landroid/view/Window;)V
     .locals 1
 
     .line 1

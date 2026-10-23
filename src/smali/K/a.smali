@@ -1,81 +1,86 @@
-.class public final LK/a;
-.super Landroid/text/style/ClickableSpan;
-.source "AccessibilityClickableSpanCompat.java"
+.class public final Lk/a;
+.super Ljava/lang/Object;
 
 
-# instance fields
-.field private final g:I
+# static fields
+.field public static final A:I = 0x7f040278
 
-.field private final h:LK/d;
+.field public static final B:I = 0x7f040282
 
-.field private final i:I
+.field public static final C:I = 0x7f04038e
 
+.field public static final D:I = 0x7f04043e
 
-# direct methods
-.method public constructor <init>(ILK/d;I)V
-    .locals 0
+.field public static final E:I = 0x7f04043f
 
-    .line 1
-    invoke-direct {p0}, Landroid/text/style/ClickableSpan;-><init>()V
+.field public static final F:I = 0x7f04056f
 
-    .line 2
-    .line 3
-    .line 4
-    iput p1, p0, LK/a;->g:I
+.field public static final G:I = 0x7f0405d4
 
-    .line 5
-    .line 6
-    iput-object p2, p0, LK/a;->h:LK/d;
+.field public static final H:I = 0x7f0405d8
 
-    .line 7
-    .line 8
-    iput p3, p0, LK/a;->i:I
+.field public static final I:I = 0x7f040602
 
-    .line 9
-    .line 10
-    return-void
-.end method
+.field public static final J:I = 0x7f04060a
 
+.field public static final K:I = 0x7f040645
 
-# virtual methods
-.method public onClick(Landroid/view/View;)V
-    .locals 2
+.field public static final L:I = 0x7f040697
 
-    .line 1
-    new-instance p1, Landroid/os/Bundle;
+.field public static final M:I = 0x7f0406f3
 
-    .line 2
-    .line 3
-    invoke-direct {p1}, Landroid/os/Bundle;-><init>()V
+.field public static final N:I = 0x7f040743
 
-    .line 4
-    .line 5
-    .line 6
-    const-string v0, "ACCESSIBILITY_CLICKABLE_SPAN_ID"
+.field public static final O:I = 0x7f040744
 
-    .line 7
-    .line 8
-    iget v1, p0, LK/a;->g:I
+.field public static final a:I = 0x7f040008
 
-    .line 9
-    .line 10
-    invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+.field public static final b:I = 0x7f040009
 
-    .line 11
-    .line 12
-    .line 13
-    iget-object v0, p0, LK/a;->h:LK/d;
+.field public static final c:I = 0x7f04000b
 
-    .line 14
-    .line 15
-    iget p0, p0, LK/a;->i:I
+.field public static final d:I = 0x7f04000d
 
-    .line 16
-    .line 17
-    invoke-virtual {v0, p0, p1}, LK/d;->Z(ILandroid/os/Bundle;)Z
+.field public static final e:I = 0x7f04000e
 
-    .line 18
-    .line 19
-    .line 20
-    return-void
-.end method
+.field public static final f:I = 0x7f04000f
+
+.field public static final g:I = 0x7f040010
+
+.field public static final h:I = 0x7f040013
+
+.field public static final i:I = 0x7f040020
+
+.field public static final j:I = 0x7f040024
+
+.field public static final k:I = 0x7f040027
+
+.field public static final l:I = 0x7f040028
+
+.field public static final m:I = 0x7f04003d
+
+.field public static final n:I = 0x7f040040
+
+.field public static final o:I = 0x7f040042
+
+.field public static final p:I = 0x7f040097
+
+.field public static final q:I = 0x7f040106
+
+.field public static final r:I = 0x7f040132
+
+.field public static final s:I = 0x7f04013d
+
+.field public static final t:I = 0x7f040178
+
+.field public static final u:I = 0x7f04017a
+
+.field public static final v:I = 0x7f04017c
+
+.field public static final w:I = 0x7f04017d
+
+.field public static final x:I = 0x7f04017e
+
+.field public static final y:I = 0x7f0401b2
+
+.field public static final z:I = 0x7f040251

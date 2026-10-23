@@ -1,4 +1,4 @@
-.class public final synthetic Lcom/android/quickstep/interaction/Q;
+.class public final synthetic Lcom/android/quickstep/interaction/q;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/TutorialFragment$3;
+.field public final synthetic c:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/TutorialFragment$3;)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/Q;->g:Lcom/android/quickstep/interaction/TutorialFragment$3;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/q;->c:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/Q;->g:Lcom/android/quickstep/interaction/TutorialFragment$3;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/q;->c:Lcom/android/quickstep/interaction/EdgeBackGesturePanel;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/interaction/TutorialFragment$3;->a(Lcom/android/quickstep/interaction/TutorialFragment$3;)V
+    invoke-static {p0}, Lcom/android/quickstep/interaction/EdgeBackGesturePanel;->a(Lcom/android/quickstep/interaction/EdgeBackGesturePanel;)V
 
     .line 4
     .line 5

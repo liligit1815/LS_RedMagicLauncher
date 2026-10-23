@@ -1,18 +1,17 @@
-.class public LL1/a;
+.class public final synthetic Ll1/a;
 .super Ljava/lang/Object;
-.source "ClockStyleDataItem.java"
+.source "R8$$SyntheticClass"
+
+# interfaces
+.implements Lkotlin/jvm/functions/Function1;
 
 
 # instance fields
-.field private a:Z
-
-.field private b:I
-
-.field private c:I
+.field public final synthetic c:Ll1/k;
 
 
 # direct methods
-.method public constructor <init>(ZII)V
+.method public synthetic constructor <init>(Ll1/k;)V
     .locals 0
 
     .line 1
@@ -21,41 +20,34 @@
     .line 2
     .line 3
     .line 4
-    iput-boolean p1, p0, LL1/a;->a:Z
+    iput-object p1, p0, Ll1/a;->c:Ll1/k;
 
     .line 5
     .line 6
-    iput p2, p0, LL1/a;->b:I
-
-    .line 7
-    .line 8
-    iput p3, p0, LL1/a;->c:I
-
-    .line 9
-    .line 10
     return-void
 .end method
 
 
 # virtual methods
-.method public a()I
+.method public final invoke(Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
     .line 1
-    iget p0, p0, LL1/a;->c:I
+    iget-object p0, p0, Ll1/a;->c:Ll1/k;
 
     .line 2
     .line 3
-    return p0
-.end method
+    check-cast p1, Lkotlin/jvm/functions/Function0;
 
-.method public b()Z
-    .locals 0
+    .line 4
+    .line 5
+    invoke-static {p0, p1}, Ll1/k;->i(Ll1/k;Lkotlin/jvm/functions/Function0;)Lkotlin/Unit;
 
-    .line 1
-    iget-boolean p0, p0, LL1/a;->a:Z
+    .line 6
+    .line 7
+    .line 8
+    move-result-object p0
 
-    .line 2
-    .line 3
-    return p0
+    .line 9
+    return-object p0
 .end method

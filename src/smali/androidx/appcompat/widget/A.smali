@@ -1,1090 +1,1964 @@
-.class public Landroidx/appcompat/widget/A;
-.super Landroid/widget/Spinner;
-.source "AppCompatSpinner.java"
+.class public Landroidx/appcompat/widget/a;
+.super Landroidx/appcompat/view/menu/a;
+.source "ActionMenuPresenter.java"
+
+# interfaces
+.implements Lz5/b$a;
 
 
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroidx/appcompat/widget/A$c;,
-        Landroidx/appcompat/widget/A$d;,
-        Landroidx/appcompat/widget/A$e;,
-        Landroidx/appcompat/widget/A$h;,
-        Landroidx/appcompat/widget/A$f;,
-        Landroidx/appcompat/widget/A$j;,
-        Landroidx/appcompat/widget/A$g;,
-        Landroidx/appcompat/widget/A$i;
+        Landroidx/appcompat/widget/a$b;,
+        Landroidx/appcompat/widget/a$c;,
+        Landroidx/appcompat/widget/a$f;,
+        Landroidx/appcompat/widget/a$a;,
+        Landroidx/appcompat/widget/a$e;,
+        Landroidx/appcompat/widget/a$d;
     }
 .end annotation
 
 
-# static fields
-.field private static final o:[I
-    .annotation build Landroid/annotation/SuppressLint;
-        value = {
-            "ResourceType"
-        }
-    .end annotation
-.end field
-
-
 # instance fields
-.field private final g:Landroidx/appcompat/widget/e;
+.field public A:I
 
-.field private final h:Landroid/content/Context;
+.field public B:I
 
-.field private i:Landroidx/appcompat/widget/K;
+.field public C:I
 
-.field private j:Landroid/widget/SpinnerAdapter;
+.field public D:Z
 
-.field private final k:Z
+.field public E:Z
 
-.field private l:Landroidx/appcompat/widget/A$j;
+.field public F:Z
 
-.field m:I
+.field public G:Z
 
-.field final n:Landroid/graphics/Rect;
+.field public H:I
+
+.field public final I:Landroid/util/SparseBooleanArray;
+
+.field public J:Landroidx/appcompat/widget/a$e;
+
+.field public K:Landroidx/appcompat/widget/a$a;
+
+.field public L:Landroidx/appcompat/widget/a$c;
+
+.field public M:Landroidx/appcompat/widget/a$b;
+
+.field public final N:Landroidx/appcompat/widget/a$f;
+
+.field public O:I
+
+.field public v:Landroidx/appcompat/widget/a$d;
+
+.field public w:Landroid/graphics/drawable/Drawable;
+
+.field public x:Z
+
+.field public y:Z
+
+.field public z:Z
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 1
+.method public constructor <init>(Landroid/content/Context;)V
+    .locals 2
 
     .line 1
-    const v0, 0x10102f1
+    sget v0, Lk/g;->c:I
 
     .line 2
     .line 3
-    .line 4
-    filled-new-array {v0}, [I
+    sget v1, Lk/g;->b:I
 
+    .line 4
     .line 5
+    invoke-direct {p0, p1, v0, v1}, Landroidx/appcompat/view/menu/a;-><init>(Landroid/content/Context;II)V
+
     .line 6
     .line 7
-    move-result-object v0
-
     .line 8
-    sput-object v0, Landroidx/appcompat/widget/A;->o:[I
+    new-instance p1, Landroid/util/SparseBooleanArray;
 
     .line 9
     .line 10
-    return-void
-.end method
-
-.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .locals 1
-
-    .line 1
-    sget v0, Lf/a;->K:I
-
-    invoke-direct {p0, p1, p2, v0}, Landroidx/appcompat/widget/A;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
-
-    return-void
-.end method
-
-.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
-    .locals 1
-
-    const/4 v0, -0x1
-
-    .line 2
-    invoke-direct {p0, p1, p2, p3, v0}, Landroidx/appcompat/widget/A;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
-
-    return-void
-.end method
-
-.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
-    .locals 6
-
-    const/4 v5, 0x0
-
-    move-object v0, p0
-
-    move-object v1, p1
-
-    move-object v2, p2
-
-    move v3, p3
-
-    move v4, p4
-
-    .line 3
-    invoke-direct/range {v0 .. v5}, Landroidx/appcompat/widget/A;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;IILandroid/content/res/Resources$Theme;)V
-
-    return-void
-.end method
-
-.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;IILandroid/content/res/Resources$Theme;)V
-    .locals 6
-
-    .line 4
-    invoke-direct {p0, p1, p2, p3}, Landroid/widget/Spinner;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
-
-    .line 5
-    new-instance v0, Landroid/graphics/Rect;
-
-    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
-
-    iput-object v0, p0, Landroidx/appcompat/widget/A;->n:Landroid/graphics/Rect;
-
-    .line 6
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    invoke-static {p0, v0}, Landroidx/appcompat/widget/V;->a(Landroid/view/View;Landroid/content/Context;)V
-
-    .line 7
-    sget-object v0, Lf/j;->x2:[I
-
-    const/4 v1, 0x0
-
-    invoke-static {p1, p2, v0, p3, v1}, Landroidx/appcompat/widget/a0;->v(Landroid/content/Context;Landroid/util/AttributeSet;[III)Landroidx/appcompat/widget/a0;
-
-    move-result-object v0
-
-    .line 8
-    new-instance v2, Landroidx/appcompat/widget/e;
-
-    invoke-direct {v2, p0}, Landroidx/appcompat/widget/e;-><init>(Landroid/view/View;)V
-
-    iput-object v2, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    if-eqz p5, :cond_0
-
-    .line 9
-    new-instance v2, Landroidx/appcompat/view/d;
-
-    invoke-direct {v2, p1, p5}, Landroidx/appcompat/view/d;-><init>(Landroid/content/Context;Landroid/content/res/Resources$Theme;)V
-
-    iput-object v2, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    goto :goto_0
-
-    .line 10
-    :cond_0
-    sget p5, Lf/j;->C2:I
-
-    invoke-virtual {v0, p5, v1}, Landroidx/appcompat/widget/a0;->n(II)I
-
-    move-result p5
-
-    if-eqz p5, :cond_1
+    invoke-direct {p1}, Landroid/util/SparseBooleanArray;-><init>()V
 
     .line 11
-    new-instance v2, Landroidx/appcompat/view/d;
-
-    invoke-direct {v2, p1, p5}, Landroidx/appcompat/view/d;-><init>(Landroid/content/Context;I)V
-
-    iput-object v2, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    goto :goto_0
-
     .line 12
-    :cond_1
-    iput-object p1, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    :goto_0
-    const/4 p5, -0x1
-
-    const/4 v2, 0x0
-
-    if-ne p4, p5, :cond_4
-
     .line 13
-    :try_start_0
-    sget-object p5, Landroidx/appcompat/widget/A;->o:[I
-
-    invoke-virtual {p1, p2, p5, p3, v1}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
-
-    move-result-object p5
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    iput-object p1, p0, Landroidx/appcompat/widget/a;->I:Landroid/util/SparseBooleanArray;
 
     .line 14
-    :try_start_1
-    invoke-virtual {p5, v1}, Landroid/content/res/TypedArray;->hasValue(I)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_2
-
     .line 15
-    invoke-virtual {p5, v1, v1}, Landroid/content/res/TypedArray;->getInt(II)I
-
-    move-result p4
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    goto :goto_1
-
-    :catchall_0
-    move-exception p0
-
-    move-object v2, p5
-
-    goto :goto_3
-
-    :catch_0
-    move-exception v3
-
-    goto :goto_2
+    new-instance p1, Landroidx/appcompat/widget/a$f;
 
     .line 16
-    :cond_2
-    :goto_1
-    invoke-virtual {p5}, Landroid/content/res/TypedArray;->recycle()V
-
-    goto :goto_4
-
-    :catchall_1
-    move-exception p0
-
-    goto :goto_3
-
-    :catch_1
-    move-exception v3
-
-    move-object p5, v2
-
     .line 17
-    :goto_2
-    :try_start_2
-    const-string v4, "AppCompatSpinner"
-
-    const-string v5, "Could not read android:spinnerMode"
-
-    invoke-static {v4, v5, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
-
-    if-eqz p5, :cond_4
-
-    goto :goto_1
-
-    :goto_3
-    if-eqz v2, :cond_3
+    invoke-direct {p1, p0}, Landroidx/appcompat/widget/a$f;-><init>(Landroidx/appcompat/widget/a;)V
 
     .line 18
-    invoke-virtual {v2}, Landroid/content/res/TypedArray;->recycle()V
-
     .line 19
-    :cond_3
-    throw p0
-
-    :cond_4
-    :goto_4
-    const/4 p5, 0x1
-
-    if-eqz p4, :cond_6
-
-    if-eq p4, p5, :cond_5
-
-    goto :goto_5
-
     .line 20
-    :cond_5
-    new-instance p4, Landroidx/appcompat/widget/A$h;
-
-    iget-object v3, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    invoke-direct {p4, p0, v3, p2, p3}, Landroidx/appcompat/widget/A$h;-><init>(Landroidx/appcompat/widget/A;Landroid/content/Context;Landroid/util/AttributeSet;I)V
+    iput-object p1, p0, Landroidx/appcompat/widget/a;->N:Landroidx/appcompat/widget/a$f;
 
     .line 21
-    iget-object v3, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    sget-object v4, Lf/j;->x2:[I
-
-    invoke-static {v3, p2, v4, p3, v1}, Landroidx/appcompat/widget/a0;->v(Landroid/content/Context;Landroid/util/AttributeSet;[III)Landroidx/appcompat/widget/a0;
-
-    move-result-object v1
-
     .line 22
-    sget v3, Lf/j;->B2:I
-
-    const/4 v4, -0x2
-
-    invoke-virtual {v1, v3, v4}, Landroidx/appcompat/widget/a0;->m(II)I
-
-    move-result v3
-
-    iput v3, p0, Landroidx/appcompat/widget/A;->m:I
-
-    .line 23
-    sget v3, Lf/j;->z2:I
-
-    .line 24
-    invoke-virtual {v1, v3}, Landroidx/appcompat/widget/a0;->g(I)Landroid/graphics/drawable/Drawable;
-
-    move-result-object v3
-
-    .line 25
-    invoke-virtual {p4, v3}, Landroidx/appcompat/widget/M;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    .line 26
-    sget v3, Lf/j;->A2:I
-
-    invoke-virtual {v0, v3}, Landroidx/appcompat/widget/a0;->o(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {p4, v3}, Landroidx/appcompat/widget/A$h;->setPromptText(Ljava/lang/CharSequence;)V
-
-    .line 27
-    invoke-virtual {v1}, Landroidx/appcompat/widget/a0;->w()V
-
-    .line 28
-    iput-object p4, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 29
-    new-instance v1, Landroidx/appcompat/widget/A$a;
-
-    invoke-direct {v1, p0, p0, p4}, Landroidx/appcompat/widget/A$a;-><init>(Landroidx/appcompat/widget/A;Landroid/view/View;Landroidx/appcompat/widget/A$h;)V
-
-    iput-object v1, p0, Landroidx/appcompat/widget/A;->i:Landroidx/appcompat/widget/K;
-
-    goto :goto_5
-
-    .line 30
-    :cond_6
-    new-instance p4, Landroidx/appcompat/widget/A$f;
-
-    invoke-direct {p4, p0}, Landroidx/appcompat/widget/A$f;-><init>(Landroidx/appcompat/widget/A;)V
-
-    iput-object p4, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 31
-    sget v1, Lf/j;->A2:I
-
-    invoke-virtual {v0, v1}, Landroidx/appcompat/widget/a0;->o(I)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-interface {p4, v1}, Landroidx/appcompat/widget/A$j;->setPromptText(Ljava/lang/CharSequence;)V
-
-    .line 32
-    :goto_5
-    sget p4, Lf/j;->y2:I
-
-    invoke-virtual {v0, p4}, Landroidx/appcompat/widget/a0;->q(I)[Ljava/lang/CharSequence;
-
-    move-result-object p4
-
-    if-eqz p4, :cond_7
-
-    .line 33
-    new-instance v1, Landroid/widget/ArrayAdapter;
-
-    const v3, 0x1090008
-
-    invoke-direct {v1, p1, v3, p4}, Landroid/widget/ArrayAdapter;-><init>(Landroid/content/Context;I[Ljava/lang/Object;)V
-
-    .line 34
-    sget p1, Lf/g;->s:I
-
-    invoke-virtual {v1, p1}, Landroid/widget/ArrayAdapter;->setDropDownViewResource(I)V
-
-    .line 35
-    invoke-virtual {p0, v1}, Landroidx/appcompat/widget/A;->setAdapter(Landroid/widget/SpinnerAdapter;)V
-
-    .line 36
-    :cond_7
-    invoke-virtual {v0}, Landroidx/appcompat/widget/a0;->w()V
-
-    .line 37
-    iput-boolean p5, p0, Landroidx/appcompat/widget/A;->k:Z
-
-    .line 38
-    iget-object p1, p0, Landroidx/appcompat/widget/A;->j:Landroid/widget/SpinnerAdapter;
-
-    if-eqz p1, :cond_8
-
-    .line 39
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/A;->setAdapter(Landroid/widget/SpinnerAdapter;)V
-
-    .line 40
-    iput-object v2, p0, Landroidx/appcompat/widget/A;->j:Landroid/widget/SpinnerAdapter;
-
-    .line 41
-    :cond_8
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    invoke-virtual {p0, p2, p3}, Landroidx/appcompat/widget/e;->e(Landroid/util/AttributeSet;I)V
-
     return-void
+.end method
+
+.method public static synthetic p(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/e;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic q(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/e;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic r(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/j;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic s(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/e;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic t(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/e;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic u(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/e;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public static synthetic v(Landroidx/appcompat/widget/a;)Landroidx/appcompat/view/menu/j;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 2
+    .line 3
+    return-object p0
 .end method
 
 
 # virtual methods
-.method a(Landroid/widget/SpinnerAdapter;Landroid/graphics/drawable/Drawable;)I
-    .locals 10
+.method public A()Z
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/widget/a;->K:Landroidx/appcompat/widget/a$a;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    invoke-virtual {p0}, Landroidx/appcompat/view/menu/h;->b()V
+
+    .line 6
+    .line 7
+    .line 8
+    const/4 p0, 0x1
+
+    .line 9
+    return p0
+
+    .line 10
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 11
+    return p0
+.end method
+
+.method public B()Z
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->L:Landroidx/appcompat/widget/a$c;
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_1
+
+    .line 4
+    .line 5
+    invoke-virtual {p0}, Landroidx/appcompat/widget/a;->C()Z
+
+    .line 6
+    .line 7
+    .line 8
+    move-result p0
+
+    .line 9
+    if-eqz p0, :cond_0
+
+    .line 10
+    .line 11
+    goto :goto_0
+
+    .line 12
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 13
+    return p0
+
+    .line 14
+    :cond_1
+    :goto_0
+    const/4 p0, 0x1
+
+    .line 15
+    return p0
+.end method
+
+.method public C()Z
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/appcompat/widget/a;->J:Landroidx/appcompat/widget/a$e;
+
+    .line 2
+    .line 3
+    if-eqz p0, :cond_0
+
+    .line 4
+    .line 5
+    invoke-virtual {p0}, Landroidx/appcompat/view/menu/h;->d()Z
+
+    .line 6
+    .line 7
+    .line 8
+    move-result p0
+
+    .line 9
+    if-eqz p0, :cond_0
+
+    .line 10
+    .line 11
+    const/4 p0, 0x1
+
+    .line 12
+    return p0
+
+    .line 13
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 14
+    return p0
+.end method
+
+.method public D(Landroid/content/res/Configuration;)V
+    .locals 0
+
+    .line 1
+    iget-boolean p1, p0, Landroidx/appcompat/widget/a;->D:Z
+
+    .line 2
+    .line 3
+    if-nez p1, :cond_0
+
+    .line 4
+    .line 5
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->m:Landroid/content/Context;
+
+    .line 6
+    .line 7
+    invoke-static {p1}, Lq/a;->b(Landroid/content/Context;)Lq/a;
+
+    .line 8
+    .line 9
+    .line 10
+    move-result-object p1
+
+    .line 11
+    invoke-virtual {p1}, Lq/a;->d()I
+
+    .line 12
+    .line 13
+    .line 14
+    move-result p1
+
+    .line 15
+    iput p1, p0, Landroidx/appcompat/widget/a;->C:I
+
+    .line 16
+    .line 17
+    :cond_0
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 18
+    .line 19
+    if-eqz p0, :cond_1
+
+    .line 20
+    .line 21
+    const/4 p1, 0x1
+
+    .line 22
+    invoke-virtual {p0, p1}, Landroidx/appcompat/view/menu/e;->K(Z)V
+
+    .line 23
+    .line 24
+    .line 25
+    :cond_1
+    return-void
+.end method
+
+.method public E(Z)V
+    .locals 0
+
+    .line 1
+    iput-boolean p1, p0, Landroidx/appcompat/widget/a;->G:Z
+
+    .line 2
+    .line 3
+    return-void
+.end method
+
+.method public F(Landroidx/appcompat/widget/ActionMenuView;)V
+    .locals 0
+
+    .line 1
+    iput-object p1, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 2
+    .line 3
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 4
+    .line 5
+    invoke-virtual {p1, p0}, Landroidx/appcompat/widget/ActionMenuView;->a(Landroidx/appcompat/view/menu/e;)V
+
+    .line 6
+    .line 7
+    .line 8
+    return-void
+.end method
+
+.method public G(Landroid/graphics/drawable/Drawable;)V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 2
+    .line 3
+    if-eqz v0, :cond_0
+
+    .line 4
+    .line 5
+    invoke-virtual {v0, p1}, Ls/q;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+
+    .line 6
+    .line 7
+    .line 8
+    return-void
+
+    .line 9
+    :cond_0
+    const/4 v0, 0x1
+
+    .line 10
+    iput-boolean v0, p0, Landroidx/appcompat/widget/a;->x:Z
+
+    .line 11
+    .line 12
+    iput-object p1, p0, Landroidx/appcompat/widget/a;->w:Landroid/graphics/drawable/Drawable;
+
+    .line 13
+    .line 14
+    return-void
+.end method
+
+.method public H(Z)V
+    .locals 0
+
+    .line 1
+    iput-boolean p1, p0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 2
+    .line 3
+    const/4 p1, 0x1
+
+    .line 4
+    iput-boolean p1, p0, Landroidx/appcompat/widget/a;->z:Z
+
+    .line 5
+    .line 6
+    return-void
+.end method
+
+.method public I()Z
+    .locals 7
+
+    .line 1
+    iget-boolean v0, p0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 2
+    .line 3
+    if-eqz v0, :cond_0
+
+    .line 4
+    .line 5
+    invoke-virtual {p0}, Landroidx/appcompat/widget/a;->C()Z
+
+    .line 6
+    .line 7
+    .line 8
+    move-result v0
+
+    .line 9
+    if-nez v0, :cond_0
+
+    .line 10
+    .line 11
+    iget-object v0, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 12
+    .line 13
+    if-eqz v0, :cond_0
+
+    .line 14
+    .line 15
+    iget-object v1, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 16
+    .line 17
+    if-eqz v1, :cond_0
+
+    .line 18
+    .line 19
+    iget-object v1, p0, Landroidx/appcompat/widget/a;->L:Landroidx/appcompat/widget/a$c;
+
+    .line 20
+    .line 21
+    if-nez v1, :cond_0
+
+    .line 22
+    .line 23
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/e;->z()Ljava/util/ArrayList;
+
+    .line 24
+    .line 25
+    .line 26
+    move-result-object v0
+
+    .line 27
+    invoke-virtual {v0}, Ljava/util/ArrayList;->isEmpty()Z
+
+    .line 28
+    .line 29
+    .line 30
+    move-result v0
+
+    .line 31
+    if-nez v0, :cond_0
+
+    .line 32
+    .line 33
+    new-instance v1, Landroidx/appcompat/widget/a$e;
+
+    .line 34
+    .line 35
+    iget-object v3, p0, Landroidx/appcompat/view/menu/a;->m:Landroid/content/Context;
+
+    .line 36
+    .line 37
+    iget-object v4, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 38
+    .line 39
+    iget-object v5, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 40
+    .line 41
+    const/4 v6, 0x1
+
+    .line 42
+    move-object v2, p0
+
+    .line 43
+    invoke-direct/range {v1 .. v6}, Landroidx/appcompat/widget/a$e;-><init>(Landroidx/appcompat/widget/a;Landroid/content/Context;Landroidx/appcompat/view/menu/e;Landroid/view/View;Z)V
+
+    .line 44
+    .line 45
+    .line 46
+    new-instance p0, Landroidx/appcompat/widget/a$c;
+
+    .line 47
+    .line 48
+    invoke-direct {p0, v2, v1}, Landroidx/appcompat/widget/a$c;-><init>(Landroidx/appcompat/widget/a;Landroidx/appcompat/widget/a$e;)V
+
+    .line 49
+    .line 50
+    .line 51
+    iput-object p0, v2, Landroidx/appcompat/widget/a;->L:Landroidx/appcompat/widget/a$c;
+
+    .line 52
+    .line 53
+    iget-object v0, v2, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 54
+    .line 55
+    check-cast v0, Landroid/view/View;
+
+    .line 56
+    .line 57
+    invoke-virtual {v0, p0}, Landroid/view/View;->post(Ljava/lang/Runnable;)Z
+
+    .line 58
+    .line 59
+    .line 60
+    const/4 p0, 0x1
+
+    .line 61
+    return p0
+
+    .line 62
+    :cond_0
+    const/4 p0, 0x0
+
+    .line 63
+    return p0
+.end method
+
+.method public a(Landroidx/appcompat/view/menu/e;Z)V
+    .locals 0
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/a;->w()Z
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-super {p0, p1, p2}, Landroidx/appcompat/view/menu/a;->a(Landroidx/appcompat/view/menu/e;Z)V
+
+    .line 5
+    .line 6
+    .line 7
+    return-void
+.end method
+
+.method public d(Landroidx/appcompat/view/menu/l;)Z
+    .locals 7
+
+    .line 1
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/e;->hasVisibleItems()Z
+
+    .line 2
+    .line 3
+    .line 4
+    move-result v0
+
+    .line 5
+    const/4 v1, 0x0
+
+    .line 6
+    if-nez v0, :cond_0
+
+    .line 7
+    .line 8
+    return v1
+
+    .line 9
+    :cond_0
+    move-object v0, p1
+
+    .line 10
+    :goto_0
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/l;->e0()Landroid/view/Menu;
+
+    .line 11
+    .line 12
+    .line 13
+    move-result-object v2
+
+    .line 14
+    iget-object v3, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 15
+    .line 16
+    if-eq v2, v3, :cond_1
+
+    .line 17
+    .line 18
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/l;->e0()Landroid/view/Menu;
+
+    .line 19
+    .line 20
+    .line 21
+    move-result-object v0
+
+    .line 22
+    check-cast v0, Landroidx/appcompat/view/menu/l;
+
+    .line 23
+    .line 24
+    goto :goto_0
+
+    .line 25
+    :cond_1
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/l;->getItem()Landroid/view/MenuItem;
+
+    .line 26
+    .line 27
+    .line 28
+    move-result-object v0
+
+    .line 29
+    invoke-virtual {p0, v0}, Landroidx/appcompat/widget/a;->x(Landroid/view/MenuItem;)Landroid/view/View;
+
+    .line 30
+    .line 31
+    .line 32
+    move-result-object v0
+
+    .line 33
+    if-nez v0, :cond_2
+
+    .line 34
+    .line 35
+    return v1
+
+    .line 36
+    :cond_2
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/l;->getItem()Landroid/view/MenuItem;
+
+    .line 37
+    .line 38
+    .line 39
+    move-result-object v2
+
+    .line 40
+    invoke-interface {v2}, Landroid/view/MenuItem;->getItemId()I
+
+    .line 41
+    .line 42
+    .line 43
+    move-result v2
+
+    .line 44
+    iput v2, p0, Landroidx/appcompat/widget/a;->O:I
+
+    .line 45
+    .line 46
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/e;->size()I
+
+    .line 47
+    .line 48
+    .line 49
+    move-result v2
+
+    .line 50
+    move v3, v1
+
+    .line 51
+    :goto_1
+    const/4 v4, 0x1
+
+    .line 52
+    if-ge v3, v2, :cond_4
+
+    .line 53
+    .line 54
+    invoke-virtual {p1, v3}, Landroidx/appcompat/view/menu/e;->getItem(I)Landroid/view/MenuItem;
+
+    .line 55
+    .line 56
+    .line 57
+    move-result-object v5
+
+    .line 58
+    invoke-interface {v5}, Landroid/view/MenuItem;->isVisible()Z
+
+    .line 59
+    .line 60
+    .line 61
+    move-result v6
+
+    .line 62
+    if-eqz v6, :cond_3
+
+    .line 63
+    .line 64
+    invoke-interface {v5}, Landroid/view/MenuItem;->getIcon()Landroid/graphics/drawable/Drawable;
+
+    .line 65
+    .line 66
+    .line 67
+    move-result-object v5
+
+    .line 68
+    if-eqz v5, :cond_3
+
+    .line 69
+    .line 70
+    move v1, v4
+
+    .line 71
+    goto :goto_2
+
+    .line 72
+    :cond_3
+    add-int/lit8 v3, v3, 0x1
+
+    .line 73
+    .line 74
+    goto :goto_1
+
+    .line 75
+    :cond_4
+    :goto_2
+    new-instance v2, Landroidx/appcompat/widget/a$a;
+
+    .line 76
+    .line 77
+    iget-object v3, p0, Landroidx/appcompat/view/menu/a;->m:Landroid/content/Context;
+
+    .line 78
+    .line 79
+    invoke-direct {v2, p0, v3, p1, v0}, Landroidx/appcompat/widget/a$a;-><init>(Landroidx/appcompat/widget/a;Landroid/content/Context;Landroidx/appcompat/view/menu/l;Landroid/view/View;)V
+
+    .line 80
+    .line 81
+    .line 82
+    iput-object v2, p0, Landroidx/appcompat/widget/a;->K:Landroidx/appcompat/widget/a$a;
+
+    .line 83
+    .line 84
+    invoke-virtual {v2, v1}, Landroidx/appcompat/view/menu/h;->g(Z)V
+
+    .line 85
+    .line 86
+    .line 87
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->K:Landroidx/appcompat/widget/a$a;
+
+    .line 88
+    .line 89
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/h;->k()V
+
+    .line 90
+    .line 91
+    .line 92
+    invoke-super {p0, p1}, Landroidx/appcompat/view/menu/a;->d(Landroidx/appcompat/view/menu/l;)Z
+
+    .line 93
+    .line 94
+    .line 95
+    return v4
+.end method
+
+.method public f(Landroid/content/Context;Landroidx/appcompat/view/menu/e;)V
+    .locals 4
+
+    .line 1
+    invoke-super {p0, p1, p2}, Landroidx/appcompat/view/menu/a;->f(Landroid/content/Context;Landroidx/appcompat/view/menu/e;)V
+
+    .line 2
+    .line 3
+    .line 4
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    .line 5
+    .line 6
+    .line 7
+    move-result-object p2
+
+    .line 8
+    invoke-static {p1}, Lq/a;->b(Landroid/content/Context;)Lq/a;
+
+    .line 9
+    .line 10
+    .line 11
+    move-result-object p1
+
+    .line 12
+    iget-boolean v0, p0, Landroidx/appcompat/widget/a;->z:Z
+
+    .line 13
+    .line 14
+    if-nez v0, :cond_0
+
+    .line 15
+    .line 16
+    invoke-virtual {p1}, Lq/a;->h()Z
+
+    .line 17
+    .line 18
+    .line 19
+    move-result v0
+
+    .line 20
+    iput-boolean v0, p0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 21
+    .line 22
+    :cond_0
+    iget-boolean v0, p0, Landroidx/appcompat/widget/a;->F:Z
+
+    .line 23
+    .line 24
+    if-nez v0, :cond_1
+
+    .line 25
+    .line 26
+    invoke-virtual {p1}, Lq/a;->c()I
+
+    .line 27
+    .line 28
+    .line 29
+    move-result v0
+
+    .line 30
+    iput v0, p0, Landroidx/appcompat/widget/a;->A:I
+
+    .line 31
+    .line 32
+    :cond_1
+    iget-boolean v0, p0, Landroidx/appcompat/widget/a;->D:Z
+
+    .line 33
+    .line 34
+    if-nez v0, :cond_2
+
+    .line 35
+    .line 36
+    invoke-virtual {p1}, Lq/a;->d()I
+
+    .line 37
+    .line 38
+    .line 39
+    move-result p1
+
+    .line 40
+    iput p1, p0, Landroidx/appcompat/widget/a;->C:I
+
+    .line 41
+    .line 42
+    :cond_2
+    iget p1, p0, Landroidx/appcompat/widget/a;->A:I
+
+    .line 43
+    .line 44
+    iget-boolean v0, p0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 45
+    .line 46
+    const/4 v1, 0x0
+
+    .line 47
+    if-eqz v0, :cond_5
+
+    .line 48
+    .line 49
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 50
+    .line 51
+    if-nez v0, :cond_4
+
+    .line 52
+    .line 53
+    new-instance v0, Landroidx/appcompat/widget/a$d;
+
+    .line 54
+    .line 55
+    iget-object v2, p0, Landroidx/appcompat/view/menu/a;->c:Landroid/content/Context;
+
+    .line 56
+    .line 57
+    invoke-direct {v0, p0, v2}, Landroidx/appcompat/widget/a$d;-><init>(Landroidx/appcompat/widget/a;Landroid/content/Context;)V
+
+    .line 58
+    .line 59
+    .line 60
+    iput-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 61
+    .line 62
+    iget-boolean v2, p0, Landroidx/appcompat/widget/a;->x:Z
+
+    .line 63
+    .line 64
+    const/4 v3, 0x0
+
+    .line 65
+    if-eqz v2, :cond_3
+
+    .line 66
+    .line 67
+    iget-object v2, p0, Landroidx/appcompat/widget/a;->w:Landroid/graphics/drawable/Drawable;
+
+    .line 68
+    .line 69
+    invoke-virtual {v0, v2}, Ls/q;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+
+    .line 70
+    .line 71
+    .line 72
+    iput-object v1, p0, Landroidx/appcompat/widget/a;->w:Landroid/graphics/drawable/Drawable;
+
+    .line 73
+    .line 74
+    iput-boolean v3, p0, Landroidx/appcompat/widget/a;->x:Z
+
+    .line 75
+    .line 76
+    :cond_3
+    invoke-static {v3, v3}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
+
+    .line 77
+    .line 78
+    .line 79
+    move-result v0
+
+    .line 80
+    iget-object v1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 81
+    .line 82
+    invoke-virtual {v1, v0, v0}, Landroid/widget/ImageView;->measure(II)V
+
+    .line 83
+    .line 84
+    .line 85
+    :cond_4
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 86
+    .line 87
+    invoke-virtual {v0}, Landroid/widget/ImageView;->getMeasuredWidth()I
+
+    .line 88
+    .line 89
+    .line 90
+    move-result v0
+
+    .line 91
+    sub-int/2addr p1, v0
+
+    .line 92
+    goto :goto_0
+
+    .line 93
+    :cond_5
+    iput-object v1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 94
+    .line 95
+    :goto_0
+    iput p1, p0, Landroidx/appcompat/widget/a;->B:I
+
+    .line 96
+    .line 97
+    invoke-virtual {p2}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+
+    .line 98
+    .line 99
+    .line 100
+    move-result-object p1
+
+    .line 101
+    iget p1, p1, Landroid/util/DisplayMetrics;->density:F
+
+    .line 102
+    .line 103
+    const/high16 p2, 0x42600000    # 56.0f
+
+    .line 104
+    .line 105
+    mul-float/2addr p1, p2
+
+    .line 106
+    float-to-int p1, p1
+
+    .line 107
+    iput p1, p0, Landroidx/appcompat/widget/a;->H:I
+
+    .line 108
+    .line 109
+    return-void
+.end method
+
+.method public flagActionItems()Z
+    .locals 20
+
+    .line 1
+    move-object/from16 v0, p0
+
+    .line 2
+    .line 3
+    iget-object v1, v0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 4
+    .line 5
+    const/4 v2, 0x0
+
+    .line 6
+    const/4 v3, 0x0
+
+    .line 7
+    if-eqz v1, :cond_0
+
+    .line 8
+    .line 9
+    invoke-virtual {v1}, Landroidx/appcompat/view/menu/e;->E()Ljava/util/ArrayList;
+
+    .line 10
+    .line 11
+    .line 12
+    move-result-object v1
+
+    .line 13
+    invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
+
+    .line 14
+    .line 15
+    .line 16
+    move-result v4
+
+    .line 17
+    goto :goto_0
+
+    .line 18
+    :cond_0
+    move-object v1, v2
+
+    .line 19
+    move v4, v3
+
+    .line 20
+    :goto_0
+    iget v5, v0, Landroidx/appcompat/widget/a;->C:I
+
+    .line 21
+    .line 22
+    iget v6, v0, Landroidx/appcompat/widget/a;->B:I
+
+    .line 23
+    .line 24
+    invoke-static {v3, v3}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
+
+    .line 25
+    .line 26
+    .line 27
+    move-result v7
+
+    .line 28
+    iget-object v8, v0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 29
+    .line 30
+    check-cast v8, Landroid/view/ViewGroup;
+
+    .line 31
+    .line 32
+    move v9, v3
+
+    .line 33
+    move v10, v9
+
+    .line 34
+    move v11, v10
+
+    .line 35
+    move v12, v11
+
+    .line 36
+    :goto_1
+    if-ge v9, v4, :cond_4
+
+    .line 37
+    .line 38
+    invoke-virtual {v1, v9}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    .line 39
+    .line 40
+    .line 41
+    move-result-object v14
+
+    .line 42
+    check-cast v14, Landroidx/appcompat/view/menu/g;
+
+    .line 43
+    .line 44
+    invoke-virtual {v14}, Landroidx/appcompat/view/menu/g;->requiresActionButton()Z
+
+    .line 45
+    .line 46
+    .line 47
+    move-result v15
+
+    .line 48
+    if-eqz v15, :cond_1
+
+    .line 49
+    .line 50
+    add-int/lit8 v11, v11, 0x1
+
+    .line 51
+    .line 52
+    goto :goto_2
+
+    .line 53
+    :cond_1
+    invoke-virtual {v14}, Landroidx/appcompat/view/menu/g;->n()Z
+
+    .line 54
+    .line 55
+    .line 56
+    move-result v15
+
+    .line 57
+    if-eqz v15, :cond_2
+
+    .line 58
+    .line 59
+    add-int/lit8 v12, v12, 0x1
+
+    .line 60
+    .line 61
+    goto :goto_2
+
+    .line 62
+    :cond_2
+    const/4 v10, 0x1
+
+    .line 63
+    :goto_2
+    iget-boolean v13, v0, Landroidx/appcompat/widget/a;->G:Z
+
+    .line 64
+    .line 65
+    if-eqz v13, :cond_3
+
+    .line 66
+    .line 67
+    invoke-virtual {v14}, Landroidx/appcompat/view/menu/g;->isActionViewExpanded()Z
+
+    .line 68
+    .line 69
+    .line 70
+    move-result v13
+
+    .line 71
+    if-eqz v13, :cond_3
+
+    .line 72
+    .line 73
+    move v5, v3
+
+    .line 74
+    :cond_3
+    add-int/lit8 v9, v9, 0x1
+
+    .line 75
+    .line 76
+    goto :goto_1
+
+    .line 77
+    :cond_4
+    iget-boolean v9, v0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 78
+    .line 79
+    if-eqz v9, :cond_6
+
+    .line 80
+    .line 81
+    if-nez v10, :cond_5
+
+    .line 82
+    .line 83
+    add-int/2addr v12, v11
+
+    .line 84
+    if-le v12, v5, :cond_6
+
+    .line 85
+    .line 86
+    :cond_5
+    add-int/lit8 v5, v5, -0x1
+
+    .line 87
+    .line 88
+    :cond_6
+    sub-int/2addr v5, v11
+
+    .line 89
+    iget-object v9, v0, Landroidx/appcompat/widget/a;->I:Landroid/util/SparseBooleanArray;
+
+    .line 90
+    .line 91
+    invoke-virtual {v9}, Landroid/util/SparseBooleanArray;->clear()V
+
+    .line 92
+    .line 93
+    .line 94
+    iget-boolean v10, v0, Landroidx/appcompat/widget/a;->E:Z
+
+    .line 95
+    .line 96
+    if-eqz v10, :cond_7
+
+    .line 97
+    .line 98
+    iget v10, v0, Landroidx/appcompat/widget/a;->H:I
+
+    .line 99
+    .line 100
+    div-int v11, v6, v10
+
+    .line 101
+    .line 102
+    rem-int v12, v6, v10
+
+    .line 103
+    .line 104
+    div-int/2addr v12, v11
+
+    .line 105
+    add-int/2addr v10, v12
+
+    .line 106
+    goto :goto_3
+
+    .line 107
+    :cond_7
+    move v10, v3
+
+    .line 108
+    move v11, v10
+
+    .line 109
+    :goto_3
+    move v12, v3
+
+    .line 110
+    move v14, v12
+
+    .line 111
+    :goto_4
+    if-ge v12, v4, :cond_1b
+
+    .line 112
+    .line 113
+    invoke-virtual {v1, v12}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    .line 114
+    .line 115
+    .line 116
+    move-result-object v15
+
+    .line 117
+    check-cast v15, Landroidx/appcompat/view/menu/g;
+
+    .line 118
+    .line 119
+    invoke-virtual {v15}, Landroidx/appcompat/view/menu/g;->requiresActionButton()Z
+
+    .line 120
+    .line 121
+    .line 122
+    move-result v16
+
+    .line 123
+    if-eqz v16, :cond_b
+
+    .line 124
+    .line 125
+    invoke-virtual {v0, v15, v2, v8}, Landroidx/appcompat/widget/a;->l(Landroidx/appcompat/view/menu/g;Landroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+
+    .line 126
+    .line 127
+    .line 128
+    move-result-object v13
+
+    .line 129
+    iget-boolean v2, v0, Landroidx/appcompat/widget/a;->E:Z
+
+    .line 130
+    .line 131
+    if-eqz v2, :cond_8
+
+    .line 132
+    .line 133
+    invoke-static {v13, v10, v11, v7, v3}, Landroidx/appcompat/widget/ActionMenuView;->J(Landroid/view/View;IIII)I
+
+    .line 134
+    .line 135
+    .line 136
+    move-result v2
+
+    .line 137
+    sub-int/2addr v11, v2
+
+    .line 138
+    goto :goto_5
+
+    .line 139
+    :cond_8
+    invoke-virtual {v13, v7, v7}, Landroid/view/View;->measure(II)V
+
+    .line 140
+    .line 141
+    .line 142
+    :goto_5
+    invoke-virtual {v13}, Landroid/view/View;->getMeasuredWidth()I
+
+    .line 143
+    .line 144
+    .line 145
+    move-result v2
+
+    .line 146
+    sub-int/2addr v6, v2
+
+    .line 147
+    if-nez v14, :cond_9
+
+    .line 148
+    .line 149
+    move v14, v2
+
+    .line 150
+    :cond_9
+    invoke-virtual {v15}, Landroidx/appcompat/view/menu/g;->getGroupId()I
+
+    .line 151
+    .line 152
+    .line 153
+    move-result v2
+
+    .line 154
+    const/4 v13, 0x1
+
+    .line 155
+    if-eqz v2, :cond_a
+
+    .line 156
+    .line 157
+    invoke-virtual {v9, v2, v13}, Landroid/util/SparseBooleanArray;->put(IZ)V
+
+    .line 158
+    .line 159
+    .line 160
+    :cond_a
+    invoke-virtual {v15, v13}, Landroidx/appcompat/view/menu/g;->t(Z)V
+
+    .line 161
+    .line 162
+    .line 163
+    move v0, v3
+
+    .line 164
+    move/from16 v17, v4
+
+    .line 165
+    .line 166
+    goto/16 :goto_e
+
+    .line 167
+    .line 168
+    :cond_b
+    invoke-virtual {v15}, Landroidx/appcompat/view/menu/g;->n()Z
+
+    .line 169
+    .line 170
+    .line 171
+    move-result v2
+
+    .line 172
+    if-eqz v2, :cond_1a
+
+    .line 173
+    .line 174
+    invoke-virtual {v15}, Landroidx/appcompat/view/menu/g;->getGroupId()I
+
+    .line 175
+    .line 176
+    .line 177
+    move-result v2
+
+    .line 178
+    invoke-virtual {v9, v2}, Landroid/util/SparseBooleanArray;->get(I)Z
+
+    .line 179
+    .line 180
+    .line 181
+    move-result v13
+
+    .line 182
+    if-gtz v5, :cond_c
+
+    .line 183
+    .line 184
+    if-eqz v13, :cond_e
+
+    .line 185
+    .line 186
+    :cond_c
+    if-lez v6, :cond_e
+
+    .line 187
+    .line 188
+    iget-boolean v3, v0, Landroidx/appcompat/widget/a;->E:Z
+
+    .line 189
+    .line 190
+    if-eqz v3, :cond_d
+
+    .line 191
+    .line 192
+    if-lez v11, :cond_e
+
+    .line 193
+    .line 194
+    :cond_d
+    const/4 v3, 0x1
+
+    .line 195
+    goto :goto_6
+
+    .line 196
+    :cond_e
+    const/4 v3, 0x0
+
+    .line 197
+    :goto_6
+    move/from16 v18, v3
+
+    .line 198
+    .line 199
+    move/from16 v17, v4
+
+    .line 200
+    .line 201
+    if-eqz v3, :cond_14
+
+    .line 202
+    .line 203
+    const/4 v3, 0x0
+
+    .line 204
+    invoke-virtual {v0, v15, v3, v8}, Landroidx/appcompat/widget/a;->l(Landroidx/appcompat/view/menu/g;Landroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+
+    .line 205
+    .line 206
+    .line 207
+    move-result-object v4
+
+    .line 208
+    iget-boolean v3, v0, Landroidx/appcompat/widget/a;->E:Z
+
+    .line 209
+    .line 210
+    if-eqz v3, :cond_10
+
+    .line 211
+    .line 212
+    const/4 v3, 0x0
+
+    .line 213
+    invoke-static {v4, v10, v11, v7, v3}, Landroidx/appcompat/widget/ActionMenuView;->J(Landroid/view/View;IIII)I
+
+    .line 214
+    .line 215
+    .line 216
+    move-result v19
+
+    .line 217
+    sub-int v11, v11, v19
+
+    .line 218
+    .line 219
+    if-nez v19, :cond_f
+
+    .line 220
+    .line 221
+    const/16 v18, 0x0
+
+    .line 222
+    .line 223
+    :cond_f
+    :goto_7
+    move/from16 v3, v18
+
+    .line 224
+    .line 225
+    goto :goto_8
+
+    .line 226
+    :cond_10
+    invoke-virtual {v4, v7, v7}, Landroid/view/View;->measure(II)V
+
+    .line 227
+    .line 228
+    .line 229
+    goto :goto_7
+
+    .line 230
+    :goto_8
+    invoke-virtual {v4}, Landroid/view/View;->getMeasuredWidth()I
+
+    .line 231
+    .line 232
+    .line 233
+    move-result v4
+
+    .line 234
+    sub-int/2addr v6, v4
+
+    .line 235
+    if-nez v14, :cond_11
+
+    .line 236
+    .line 237
+    move v14, v4
+
+    .line 238
+    :cond_11
+    iget-boolean v4, v0, Landroidx/appcompat/widget/a;->E:Z
+
+    .line 239
+    .line 240
+    if-eqz v4, :cond_13
+
+    .line 241
+    .line 242
+    if-ltz v6, :cond_12
+
+    .line 243
+    .line 244
+    :goto_9
+    const/4 v4, 0x1
+
+    .line 245
+    goto :goto_a
+
+    .line 246
+    :cond_12
+    const/4 v4, 0x0
+
+    .line 247
+    :goto_a
+    and-int/2addr v3, v4
+
+    .line 248
+    goto :goto_b
+
+    .line 249
+    :cond_13
+    add-int v4, v6, v14
+
+    .line 250
+    .line 251
+    if-lez v4, :cond_12
+
+    .line 252
+    .line 253
+    goto :goto_9
+
+    .line 254
+    :cond_14
+    :goto_b
+    if-eqz v3, :cond_15
+
+    .line 255
+    .line 256
+    if-eqz v2, :cond_15
+
+    .line 257
+    .line 258
+    const/4 v4, 0x1
+
+    .line 259
+    invoke-virtual {v9, v2, v4}, Landroid/util/SparseBooleanArray;->put(IZ)V
+
+    .line 260
+    .line 261
+    .line 262
+    goto :goto_d
+
+    .line 263
+    :cond_15
+    if-eqz v13, :cond_18
+
+    .line 264
+    .line 265
+    const/4 v4, 0x0
+
+    .line 266
+    invoke-virtual {v9, v2, v4}, Landroid/util/SparseBooleanArray;->put(IZ)V
+
+    .line 267
+    .line 268
+    .line 269
+    const/4 v4, 0x0
+
+    .line 270
+    :goto_c
+    if-ge v4, v12, :cond_18
+
+    .line 271
+    .line 272
+    invoke-virtual {v1, v4}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    .line 273
+    .line 274
+    .line 275
+    move-result-object v13
+
+    .line 276
+    check-cast v13, Landroidx/appcompat/view/menu/g;
+
+    .line 277
+    .line 278
+    invoke-virtual {v13}, Landroidx/appcompat/view/menu/g;->getGroupId()I
+
+    .line 279
+    .line 280
+    .line 281
+    move-result v0
+
+    .line 282
+    if-ne v0, v2, :cond_17
+
+    .line 283
+    .line 284
+    invoke-virtual {v13}, Landroidx/appcompat/view/menu/g;->l()Z
+
+    .line 285
+    .line 286
+    .line 287
+    move-result v0
+
+    .line 288
+    if-eqz v0, :cond_16
+
+    .line 289
+    .line 290
+    add-int/lit8 v5, v5, 0x1
+
+    .line 291
+    .line 292
+    :cond_16
+    const/4 v0, 0x0
+
+    .line 293
+    invoke-virtual {v13, v0}, Landroidx/appcompat/view/menu/g;->t(Z)V
+
+    .line 294
+    .line 295
+    .line 296
+    :cond_17
+    add-int/lit8 v4, v4, 0x1
+
+    .line 297
+    .line 298
+    move-object/from16 v0, p0
+
+    .line 299
+    .line 300
+    goto :goto_c
+
+    .line 301
+    :cond_18
+    :goto_d
+    if-eqz v3, :cond_19
+
+    .line 302
+    .line 303
+    add-int/lit8 v5, v5, -0x1
+
+    .line 304
+    .line 305
+    :cond_19
+    invoke-virtual {v15, v3}, Landroidx/appcompat/view/menu/g;->t(Z)V
+
+    .line 306
+    .line 307
+    .line 308
+    const/4 v0, 0x0
+
+    .line 309
+    goto :goto_e
+
+    .line 310
+    :cond_1a
+    move v0, v3
+
+    .line 311
+    move/from16 v17, v4
+
+    .line 312
+    .line 313
+    invoke-virtual {v15, v0}, Landroidx/appcompat/view/menu/g;->t(Z)V
+
+    .line 314
+    .line 315
+    .line 316
+    :goto_e
+    add-int/lit8 v12, v12, 0x1
+
+    .line 317
+    .line 318
+    move v3, v0
+
+    .line 319
+    move/from16 v4, v17
+
+    .line 320
+    .line 321
+    const/4 v2, 0x0
+
+    .line 322
+    move-object/from16 v0, p0
+
+    .line 323
+    .line 324
+    goto/16 :goto_4
+
+    .line 325
+    .line 326
+    :cond_1b
+    const/16 v16, 0x1
+
+    .line 327
+    .line 328
+    return v16
+.end method
+
+.method public h(Landroidx/appcompat/view/menu/g;Landroidx/appcompat/view/menu/j$a;)V
+    .locals 1
 
     .line 1
     const/4 v0, 0x0
 
     .line 2
+    invoke-interface {p2, p1, v0}, Landroidx/appcompat/view/menu/j$a;->c(Landroidx/appcompat/view/menu/g;I)V
+
+    .line 3
+    .line 4
+    .line 5
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 6
+    .line 7
+    check-cast p1, Landroidx/appcompat/widget/ActionMenuView;
+
+    .line 8
+    .line 9
+    check-cast p2, Landroidx/appcompat/view/menu/ActionMenuItemView;
+
+    .line 10
+    .line 11
+    invoke-virtual {p2, p1}, Landroidx/appcompat/view/menu/ActionMenuItemView;->setItemInvoker(Landroidx/appcompat/view/menu/e$b;)V
+
+    .line 12
+    .line 13
+    .line 14
+    iget-object p1, p0, Landroidx/appcompat/widget/a;->M:Landroidx/appcompat/widget/a$b;
+
+    .line 15
+    .line 16
     if-nez p1, :cond_0
 
+    .line 17
+    .line 18
+    new-instance p1, Landroidx/appcompat/widget/a$b;
+
+    .line 19
+    .line 20
+    invoke-direct {p1, p0}, Landroidx/appcompat/widget/a$b;-><init>(Landroidx/appcompat/widget/a;)V
+
+    .line 21
+    .line 22
+    .line 23
+    iput-object p1, p0, Landroidx/appcompat/widget/a;->M:Landroidx/appcompat/widget/a$b;
+
+    .line 24
+    .line 25
+    :cond_0
+    iget-object p0, p0, Landroidx/appcompat/widget/a;->M:Landroidx/appcompat/widget/a$b;
+
+    .line 26
+    .line 27
+    invoke-virtual {p2, p0}, Landroidx/appcompat/view/menu/ActionMenuItemView;->setPopupCallback(Landroidx/appcompat/view/menu/ActionMenuItemView$b;)V
+
+    .line 28
+    .line 29
+    .line 30
+    return-void
+.end method
+
+.method public j(Landroid/view/ViewGroup;I)Z
+    .locals 2
+
+    .line 1
+    invoke-virtual {p1, p2}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+
+    .line 2
     .line 3
     .line 4
-    return v0
+    move-result-object v0
 
     .line 5
-    :cond_0
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getMeasuredWidth()I
+    iget-object v1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
 
     .line 6
     .line 7
-    .line 8
-    move-result v1
+    if-ne v0, v1, :cond_0
 
+    .line 8
     .line 9
-    invoke-static {v1, v0}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
+    const/4 p0, 0x0
 
     .line 10
+    return p0
+
     .line 11
+    :cond_0
+    invoke-super {p0, p1, p2}, Landroidx/appcompat/view/menu/a;->j(Landroid/view/ViewGroup;I)Z
+
     .line 12
+    .line 13
+    .line 14
+    move-result p0
+
+    .line 15
+    return p0
+.end method
+
+.method public l(Landroidx/appcompat/view/menu/g;Landroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+    .locals 2
+
+    .line 1
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/g;->getActionView()Landroid/view/View;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object v0
+
+    .line 5
+    if-eqz v0, :cond_0
+
+    .line 6
+    .line 7
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/g;->j()Z
+
+    .line 8
+    .line 9
+    .line 10
     move-result v1
 
+    .line 11
+    if-eqz v1, :cond_1
+
+    .line 12
     .line 13
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getMeasuredHeight()I
+    :cond_0
+    invoke-super {p0, p1, p2, p3}, Landroidx/appcompat/view/menu/a;->l(Landroidx/appcompat/view/menu/g;Landroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
 
     .line 14
     .line 15
     .line 16
-    move-result v2
+    move-result-object v0
 
     .line 17
-    invoke-static {v2, v0}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
-
-    .line 18
-    .line 19
-    .line 20
-    move-result v2
-
-    .line 21
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getSelectedItemPosition()I
-
-    .line 22
-    .line 23
-    .line 24
-    move-result v3
-
-    .line 25
-    invoke-static {v0, v3}, Ljava/lang/Math;->max(II)I
-
-    .line 26
-    .line 27
-    .line 28
-    move-result v3
-
-    .line 29
-    invoke-interface {p1}, Landroid/widget/SpinnerAdapter;->getCount()I
-
-    .line 30
-    .line 31
-    .line 32
-    move-result v4
-
-    .line 33
-    add-int/lit8 v5, v3, 0xf
-
-    .line 34
-    .line 35
-    invoke-static {v4, v5}, Ljava/lang/Math;->min(II)I
-
-    .line 36
-    .line 37
-    .line 38
-    move-result v4
-
-    .line 39
-    sub-int v5, v4, v3
-
-    .line 40
-    .line 41
-    rsub-int/lit8 v5, v5, 0xf
-
-    .line 42
-    .line 43
-    sub-int/2addr v3, v5
-
-    .line 44
-    invoke-static {v0, v3}, Ljava/lang/Math;->max(II)I
-
-    .line 45
-    .line 46
-    .line 47
-    move-result v3
-
-    .line 48
-    const/4 v5, 0x0
-
-    .line 49
-    move v6, v3
-
-    .line 50
-    move-object v7, v5
-
-    .line 51
-    move v3, v0
-
-    .line 52
-    :goto_0
-    if-ge v6, v4, :cond_3
-
-    .line 53
-    .line 54
-    invoke-interface {p1, v6}, Landroid/widget/SpinnerAdapter;->getItemViewType(I)I
-
-    .line 55
-    .line 56
-    .line 57
-    move-result v8
-
-    .line 58
-    if-eq v8, v0, :cond_1
-
-    .line 59
-    .line 60
-    move-object v7, v5
-
-    .line 61
-    move v0, v8
-
-    .line 62
     :cond_1
-    invoke-interface {p1, v6, v7, p0}, Landroid/widget/SpinnerAdapter;->getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/g;->isActionViewExpanded()Z
 
-    .line 63
-    .line 64
-    .line 65
-    move-result-object v7
-
-    .line 66
-    invoke-virtual {v7}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    .line 67
-    .line 68
-    .line 69
-    move-result-object v8
-
-    .line 70
-    if-nez v8, :cond_2
-
-    .line 71
-    .line 72
-    new-instance v8, Landroid/view/ViewGroup$LayoutParams;
-
-    .line 73
-    .line 74
-    const/4 v9, -0x2
-
-    .line 75
-    invoke-direct {v8, v9, v9}, Landroid/view/ViewGroup$LayoutParams;-><init>(II)V
-
-    .line 76
-    .line 77
-    .line 78
-    invoke-virtual {v7, v8}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 79
-    .line 80
-    .line 81
-    :cond_2
-    invoke-virtual {v7, v1, v2}, Landroid/view/View;->measure(II)V
-
-    .line 82
-    .line 83
-    .line 84
-    invoke-virtual {v7}, Landroid/view/View;->getMeasuredWidth()I
-
-    .line 85
-    .line 86
-    .line 87
-    move-result v8
-
-    .line 88
-    invoke-static {v3, v8}, Ljava/lang/Math;->max(II)I
-
-    .line 89
-    .line 90
-    .line 91
-    move-result v3
-
-    .line 92
-    add-int/lit8 v6, v6, 0x1
-
-    .line 93
-    .line 94
-    goto :goto_0
-
-    .line 95
-    :cond_3
-    if-eqz p2, :cond_4
-
-    .line 96
-    .line 97
-    iget-object p1, p0, Landroidx/appcompat/widget/A;->n:Landroid/graphics/Rect;
-
-    .line 98
-    .line 99
-    invoke-virtual {p2, p1}, Landroid/graphics/drawable/Drawable;->getPadding(Landroid/graphics/Rect;)Z
-
-    .line 100
-    .line 101
-    .line 102
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->n:Landroid/graphics/Rect;
-
-    .line 103
-    .line 104
-    iget p1, p0, Landroid/graphics/Rect;->left:I
-
-    .line 105
-    .line 106
-    iget p0, p0, Landroid/graphics/Rect;->right:I
-
-    .line 107
-    .line 108
-    add-int/2addr p1, p0
-
-    .line 109
-    add-int/2addr v3, p1
-
-    .line 110
-    :cond_4
-    return v3
-.end method
-
-.method b()V
-    .locals 2
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    invoke-static {p0}, Landroidx/appcompat/widget/A$d;->b(Landroid/view/View;)I
-
-    .line 4
-    .line 5
-    .line 6
-    move-result v1
-
-    .line 7
-    invoke-static {p0}, Landroidx/appcompat/widget/A$d;->a(Landroid/view/View;)I
-
-    .line 8
-    .line 9
-    .line 10
-    move-result p0
-
-    .line 11
-    invoke-interface {v0, v1, p0}, Landroidx/appcompat/widget/A$j;->show(II)V
-
-    .line 12
-    .line 13
-    .line 14
-    return-void
-.end method
-
-.method protected drawableStateChanged()V
-    .locals 0
-
-    .line 1
-    invoke-super {p0}, Landroid/widget/Spinner;->drawableStateChanged()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    .line 5
-    .line 6
-    if-eqz p0, :cond_0
-
-    .line 7
-    .line 8
-    invoke-virtual {p0}, Landroidx/appcompat/widget/e;->b()V
-
-    .line 9
-    .line 10
-    .line 11
-    :cond_0
-    return-void
-.end method
-
-.method public getDropDownHorizontalOffset()I
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0}, Landroidx/appcompat/widget/A$j;->getHorizontalOffset()I
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
-
-    .line 9
-    return p0
-
-    .line 10
-    :cond_0
-    invoke-super {p0}, Landroid/widget/Spinner;->getDropDownHorizontalOffset()I
-
-    .line 11
-    .line 12
-    .line 13
-    move-result p0
-
-    .line 14
-    return p0
-.end method
-
-.method public getDropDownVerticalOffset()I
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0}, Landroidx/appcompat/widget/A$j;->getVerticalOffset()I
-
-    .line 6
-    .line 7
-    .line 8
-    move-result p0
-
-    .line 9
-    return p0
-
-    .line 10
-    :cond_0
-    invoke-super {p0}, Landroid/widget/Spinner;->getDropDownVerticalOffset()I
-
-    .line 11
-    .line 12
-    .line 13
-    move-result p0
-
-    .line 14
-    return p0
-.end method
-
-.method public getDropDownWidth()I
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    iget p0, p0, Landroidx/appcompat/widget/A;->m:I
-
-    .line 6
-    .line 7
-    return p0
-
-    .line 8
-    :cond_0
-    invoke-super {p0}, Landroid/widget/Spinner;->getDropDownWidth()I
-
-    .line 9
-    .line 10
-    .line 11
-    move-result p0
-
-    .line 12
-    return p0
-.end method
-
-.method final getInternalPopup()Landroidx/appcompat/widget/A$j;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method public getPopupBackground()Landroid/graphics/drawable/Drawable;
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0}, Landroidx/appcompat/widget/A$j;->getBackground()Landroid/graphics/drawable/Drawable;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    return-object p0
-
-    .line 10
-    :cond_0
-    invoke-super {p0}, Landroid/widget/Spinner;->getPopupBackground()Landroid/graphics/drawable/Drawable;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object p0
-
-    .line 14
-    return-object p0
-.end method
-
-.method public getPopupContext()Landroid/content/Context;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method public getPrompt()Ljava/lang/CharSequence;
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0}, Landroidx/appcompat/widget/A$j;->getHintText()Ljava/lang/CharSequence;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    return-object p0
-
-    .line 10
-    :cond_0
-    invoke-super {p0}, Landroid/widget/Spinner;->getPrompt()Ljava/lang/CharSequence;
-
-    .line 11
-    .line 12
-    .line 13
-    move-result-object p0
-
-    .line 14
-    return-object p0
-.end method
-
-.method public getSupportBackgroundTintList()Landroid/content/res/ColorStateList;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroidx/appcompat/widget/e;->c()Landroid/content/res/ColorStateList;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    return-object p0
-
-    .line 10
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 11
-    return-object p0
-.end method
-
-.method public getSupportBackgroundTintMode()Landroid/graphics/PorterDuff$Mode;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0}, Landroidx/appcompat/widget/e;->d()Landroid/graphics/PorterDuff$Mode;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
-
-    .line 9
-    return-object p0
-
-    .line 10
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 11
-    return-object p0
-.end method
-
-.method protected onDetachedFromWindow()V
-    .locals 1
-
-    .line 1
-    invoke-super {p0}, Landroid/widget/Spinner;->onDetachedFromWindow()V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 5
-    .line 6
-    if-eqz v0, :cond_0
-
-    .line 7
-    .line 8
-    invoke-interface {v0}, Landroidx/appcompat/widget/A$j;->isShowing()Z
-
-    .line 9
-    .line 10
-    .line 11
-    move-result v0
-
-    .line 12
-    if-eqz v0, :cond_0
-
-    .line 13
-    .line 14
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 15
-    .line 16
-    invoke-interface {p0}, Landroidx/appcompat/widget/A$j;->dismiss()V
-
-    .line 17
     .line 18
     .line 19
-    :cond_0
-    return-void
-.end method
-
-.method protected onMeasure(II)V
-    .locals 2
-
-    .line 1
-    invoke-super {p0, p1, p2}, Landroid/widget/Spinner;->onMeasure(II)V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p2, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 5
-    .line 6
-    if-eqz p2, :cond_0
-
-    .line 7
-    .line 8
-    invoke-static {p1}, Landroid/view/View$MeasureSpec;->getMode(I)I
-
-    .line 9
-    .line 10
-    .line 11
-    move-result p2
-
-    .line 12
-    const/high16 v0, -0x80000000
-
-    .line 13
-    .line 14
-    if-ne p2, v0, :cond_0
-
-    .line 15
-    .line 16
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getMeasuredWidth()I
-
-    .line 17
-    .line 18
-    .line 19
-    move-result p2
-
     .line 20
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getAdapter()Landroid/widget/SpinnerAdapter;
+    move-result p0
 
     .line 21
+    if-eqz p0, :cond_2
+
     .line 22
     .line 23
-    move-result-object v0
+    const/16 p0, 0x8
 
     .line 24
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getBackground()Landroid/graphics/drawable/Drawable;
-
     .line 25
+    goto :goto_0
+
     .line 26
+    :cond_2
+    const/4 p0, 0x0
+
     .line 27
-    move-result-object v1
+    :goto_0
+    invoke-virtual {v0, p0}, Landroid/view/View;->setVisibility(I)V
 
     .line 28
-    invoke-virtual {p0, v0, v1}, Landroidx/appcompat/widget/A;->a(Landroid/widget/SpinnerAdapter;Landroid/graphics/drawable/Drawable;)I
-
     .line 29
     .line 30
-    .line 31
-    move-result v0
+    check-cast p3, Landroidx/appcompat/widget/ActionMenuView;
 
+    .line 31
     .line 32
-    invoke-static {p2, v0}, Ljava/lang/Math;->max(II)I
+    invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     .line 33
     .line 34
     .line 35
-    move-result p2
+    move-result-object p0
 
     .line 36
-    invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
+    invoke-virtual {p3, p0}, Landroidx/appcompat/widget/ActionMenuView;->checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
 
     .line 37
     .line 38
@@ -1092,394 +1966,537 @@
     move-result p1
 
     .line 40
-    invoke-static {p2, p1}, Ljava/lang/Math;->min(II)I
+    if-nez p1, :cond_3
 
     .line 41
     .line 42
+    invoke-virtual {p3, p0}, Landroidx/appcompat/widget/ActionMenuView;->C(Landroid/view/ViewGroup$LayoutParams;)Landroidx/appcompat/widget/ActionMenuView$c;
+
     .line 43
-    move-result p1
-
     .line 44
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getMeasuredHeight()I
-
     .line 45
+    move-result-object p0
+
     .line 46
+    invoke-virtual {v0, p0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
     .line 47
-    move-result p2
-
     .line 48
-    invoke-virtual {p0, p1, p2}, Landroid/widget/Spinner;->setMeasuredDimension(II)V
-
     .line 49
-    .line 50
-    .line 51
-    :cond_0
-    return-void
-.end method
-
-.method public onRestoreInstanceState(Landroid/os/Parcelable;)V
-    .locals 1
-
-    .line 1
-    check-cast p1, Landroidx/appcompat/widget/A$i;
-
-    .line 2
-    .line 3
-    invoke-virtual {p1}, Landroid/view/View$BaseSavedState;->getSuperState()Landroid/os/Parcelable;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v0
-
-    .line 7
-    invoke-super {p0, v0}, Landroid/widget/Spinner;->onRestoreInstanceState(Landroid/os/Parcelable;)V
-
-    .line 8
-    .line 9
-    .line 10
-    iget-boolean p1, p1, Landroidx/appcompat/widget/A$i;->g:Z
-
-    .line 11
-    .line 12
-    if-eqz p1, :cond_0
-
-    .line 13
-    .line 14
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
-
-    .line 15
-    .line 16
-    .line 17
-    move-result-object p1
-
-    .line 18
-    if-eqz p1, :cond_0
-
-    .line 19
-    .line 20
-    new-instance v0, Landroidx/appcompat/widget/A$b;
-
-    .line 21
-    .line 22
-    invoke-direct {v0, p0}, Landroidx/appcompat/widget/A$b;-><init>(Landroidx/appcompat/widget/A;)V
-
-    .line 23
-    .line 24
-    .line 25
-    invoke-virtual {p1, v0}, Landroid/view/ViewTreeObserver;->addOnGlobalLayoutListener(Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;)V
-
-    .line 26
-    .line 27
-    .line 28
-    :cond_0
-    return-void
-.end method
-
-.method public onSaveInstanceState()Landroid/os/Parcelable;
-    .locals 2
-
-    .line 1
-    new-instance v0, Landroidx/appcompat/widget/A$i;
-
-    .line 2
-    .line 3
-    invoke-super {p0}, Landroid/widget/Spinner;->onSaveInstanceState()Landroid/os/Parcelable;
-
-    .line 4
-    .line 5
-    .line 6
-    move-result-object v1
-
-    .line 7
-    invoke-direct {v0, v1}, Landroidx/appcompat/widget/A$i;-><init>(Landroid/os/Parcelable;)V
-
-    .line 8
-    .line 9
-    .line 10
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 11
-    .line 12
-    if-eqz p0, :cond_0
-
-    .line 13
-    .line 14
-    invoke-interface {p0}, Landroidx/appcompat/widget/A$j;->isShowing()Z
-
-    .line 15
-    .line 16
-    .line 17
-    move-result p0
-
-    .line 18
-    if-eqz p0, :cond_0
-
-    .line 19
-    .line 20
-    const/4 p0, 0x1
-
-    .line 21
-    goto :goto_0
-
-    .line 22
-    :cond_0
-    const/4 p0, 0x0
-
-    .line 23
-    :goto_0
-    iput-boolean p0, v0, Landroidx/appcompat/widget/A$i;->g:Z
-
-    .line 24
-    .line 25
+    :cond_3
     return-object v0
 .end method
 
-.method public onTouchEvent(Landroid/view/MotionEvent;)Z
+.method public m(Landroid/view/ViewGroup;)Landroidx/appcompat/view/menu/j;
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->i:Landroidx/appcompat/widget/K;
+    iget-object v0, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
 
     .line 2
     .line 3
-    if-eqz v0, :cond_0
+    invoke-super {p0, p1}, Landroidx/appcompat/view/menu/a;->m(Landroid/view/ViewGroup;)Landroidx/appcompat/view/menu/j;
 
     .line 4
     .line 5
-    invoke-virtual {v0, p0, p1}, Landroidx/appcompat/widget/K;->onTouch(Landroid/view/View;Landroid/view/MotionEvent;)Z
-
     .line 6
-    .line 7
-    .line 8
-    move-result v0
+    move-result-object p1
 
+    .line 7
+    if-eq v0, p1, :cond_0
+
+    .line 8
     .line 9
-    if-eqz v0, :cond_0
+    move-object v0, p1
 
     .line 10
-    .line 11
-    const/4 p0, 0x1
+    check-cast v0, Landroidx/appcompat/widget/ActionMenuView;
 
+    .line 11
     .line 12
-    return p0
+    invoke-virtual {v0, p0}, Landroidx/appcompat/widget/ActionMenuView;->setPresenter(Landroidx/appcompat/widget/a;)V
 
     .line 13
-    :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->onTouchEvent(Landroid/view/MotionEvent;)Z
-
     .line 14
     .line 15
-    .line 16
+    :cond_0
+    return-object p1
+.end method
+
+.method public o(ILandroidx/appcompat/view/menu/g;)Z
+    .locals 0
+
+    .line 1
+    invoke-virtual {p2}, Landroidx/appcompat/view/menu/g;->l()Z
+
+    .line 2
+    .line 3
+    .line 4
     move-result p0
 
-    .line 17
+    .line 5
     return p0
 .end method
 
-.method public performClick()Z
-    .locals 1
+.method public updateMenuView(Z)V
+    .locals 4
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
+    invoke-super {p0, p1}, Landroidx/appcompat/view/menu/a;->updateMenuView(Z)V
 
     .line 2
     .line 3
-    if-eqz v0, :cond_1
-
     .line 4
-    .line 5
-    invoke-interface {v0}, Landroidx/appcompat/widget/A$j;->isShowing()Z
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
 
+    .line 5
     .line 6
+    check-cast p1, Landroid/view/View;
+
     .line 7
     .line 8
-    move-result v0
+    invoke-virtual {p1}, Landroid/view/View;->requestLayout()V
 
     .line 9
-    if-nez v0, :cond_0
-
     .line 10
     .line 11
-    invoke-virtual {p0}, Landroidx/appcompat/widget/A;->b()V
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
 
     .line 12
     .line 13
+    const/4 v0, 0x0
+
     .line 14
-    :cond_0
-    const/4 p0, 0x1
+    if-eqz p1, :cond_1
 
     .line 15
-    return p0
-
     .line 16
-    :cond_1
-    invoke-super {p0}, Landroid/widget/Spinner;->performClick()Z
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/e;->s()Ljava/util/ArrayList;
 
     .line 17
     .line 18
     .line 19
-    move-result p0
+    move-result-object p1
 
     .line 20
+    invoke-virtual {p1}, Ljava/util/ArrayList;->size()I
+
+    .line 21
+    .line 22
+    .line 23
+    move-result v1
+
+    .line 24
+    move v2, v0
+
+    .line 25
+    :goto_0
+    if-ge v2, v1, :cond_1
+
+    .line 26
+    .line 27
+    invoke-virtual {p1, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    .line 28
+    .line 29
+    .line 30
+    move-result-object v3
+
+    .line 31
+    check-cast v3, Landroidx/appcompat/view/menu/g;
+
+    .line 32
+    .line 33
+    invoke-virtual {v3}, Landroidx/appcompat/view/menu/g;->b()Lz5/b;
+
+    .line 34
+    .line 35
+    .line 36
+    move-result-object v3
+
+    .line 37
+    if-eqz v3, :cond_0
+
+    .line 38
+    .line 39
+    invoke-virtual {v3, p0}, Lz5/b;->i(Lz5/b$a;)V
+
+    .line 40
+    .line 41
+    .line 42
+    :cond_0
+    add-int/lit8 v2, v2, 0x1
+
+    .line 43
+    .line 44
+    goto :goto_0
+
+    .line 45
+    :cond_1
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->n:Landroidx/appcompat/view/menu/e;
+
+    .line 46
+    .line 47
+    if-eqz p1, :cond_2
+
+    .line 48
+    .line 49
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/e;->z()Ljava/util/ArrayList;
+
+    .line 50
+    .line 51
+    .line 52
+    move-result-object p1
+
+    .line 53
+    goto :goto_1
+
+    .line 54
+    :cond_2
+    const/4 p1, 0x0
+
+    .line 55
+    :goto_1
+    iget-boolean v1, p0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 56
+    .line 57
+    if-eqz v1, :cond_4
+
+    .line 58
+    .line 59
+    if-eqz p1, :cond_4
+
+    .line 60
+    .line 61
+    invoke-virtual {p1}, Ljava/util/ArrayList;->size()I
+
+    .line 62
+    .line 63
+    .line 64
+    move-result v1
+
+    .line 65
+    const/4 v2, 0x1
+
+    .line 66
+    if-ne v1, v2, :cond_3
+
+    .line 67
+    .line 68
+    invoke-virtual {p1, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    .line 69
+    .line 70
+    .line 71
+    move-result-object p1
+
+    .line 72
+    check-cast p1, Landroidx/appcompat/view/menu/g;
+
+    .line 73
+    .line 74
+    invoke-virtual {p1}, Landroidx/appcompat/view/menu/g;->isActionViewExpanded()Z
+
+    .line 75
+    .line 76
+    .line 77
+    move-result p1
+
+    .line 78
+    xor-int/lit8 v0, p1, 0x1
+
+    .line 79
+    .line 80
+    goto :goto_2
+
+    .line 81
+    :cond_3
+    if-lez v1, :cond_4
+
+    .line 82
+    .line 83
+    move v0, v2
+
+    .line 84
+    :cond_4
+    :goto_2
+    if-eqz v0, :cond_7
+
+    .line 85
+    .line 86
+    iget-object p1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 87
+    .line 88
+    if-nez p1, :cond_5
+
+    .line 89
+    .line 90
+    new-instance p1, Landroidx/appcompat/widget/a$d;
+
+    .line 91
+    .line 92
+    iget-object v0, p0, Landroidx/appcompat/view/menu/a;->c:Landroid/content/Context;
+
+    .line 93
+    .line 94
+    invoke-direct {p1, p0, v0}, Landroidx/appcompat/widget/a$d;-><init>(Landroidx/appcompat/widget/a;Landroid/content/Context;)V
+
+    .line 95
+    .line 96
+    .line 97
+    iput-object p1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 98
+    .line 99
+    :cond_5
+    iget-object p1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 100
+    .line 101
+    invoke-virtual {p1}, Landroid/widget/ImageView;->getParent()Landroid/view/ViewParent;
+
+    .line 102
+    .line 103
+    .line 104
+    move-result-object p1
+
+    .line 105
+    check-cast p1, Landroid/view/ViewGroup;
+
+    .line 106
+    .line 107
+    iget-object v0, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 108
+    .line 109
+    if-eq p1, v0, :cond_8
+
+    .line 110
+    .line 111
+    if-eqz p1, :cond_6
+
+    .line 112
+    .line 113
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 114
+    .line 115
+    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
+
+    .line 116
+    .line 117
+    .line 118
+    :cond_6
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 119
+    .line 120
+    check-cast p1, Landroidx/appcompat/widget/ActionMenuView;
+
+    .line 121
+    .line 122
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 123
+    .line 124
+    invoke-virtual {p1}, Landroidx/appcompat/widget/ActionMenuView;->D()Landroidx/appcompat/widget/ActionMenuView$c;
+
+    .line 125
+    .line 126
+    .line 127
+    move-result-object v1
+
+    .line 128
+    invoke-virtual {p1, v0, v1}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 129
+    .line 130
+    .line 131
+    goto :goto_3
+
+    .line 132
+    :cond_7
+    iget-object p1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 133
+    .line 134
+    if-eqz p1, :cond_8
+
+    .line 135
+    .line 136
+    invoke-virtual {p1}, Landroid/widget/ImageView;->getParent()Landroid/view/ViewParent;
+
+    .line 137
+    .line 138
+    .line 139
+    move-result-object p1
+
+    .line 140
+    iget-object v0, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 141
+    .line 142
+    if-ne p1, v0, :cond_8
+
+    .line 143
+    .line 144
+    check-cast v0, Landroid/view/ViewGroup;
+
+    .line 145
+    .line 146
+    iget-object p1, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
+
+    .line 147
+    .line 148
+    invoke-virtual {v0, p1}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
+
+    .line 149
+    .line 150
+    .line 151
+    :cond_8
+    :goto_3
+    iget-object p1, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
+
+    .line 152
+    .line 153
+    check-cast p1, Landroidx/appcompat/widget/ActionMenuView;
+
+    .line 154
+    .line 155
+    iget-boolean p0, p0, Landroidx/appcompat/widget/a;->y:Z
+
+    .line 156
+    .line 157
+    invoke-virtual {p1, p0}, Landroidx/appcompat/widget/ActionMenuView;->setOverflowReserved(Z)V
+
+    .line 158
+    .line 159
+    .line 160
+    return-void
+.end method
+
+.method public w()Z
+    .locals 1
+
+    .line 1
+    invoke-virtual {p0}, Landroidx/appcompat/widget/a;->z()Z
+
+    .line 2
+    .line 3
+    .line 4
+    move-result v0
+
+    .line 5
+    invoke-virtual {p0}, Landroidx/appcompat/widget/a;->A()Z
+
+    .line 6
+    .line 7
+    .line 8
+    move-result p0
+
+    .line 9
+    or-int/2addr p0, v0
+
+    .line 10
     return p0
 .end method
 
-.method public bridge synthetic setAdapter(Landroid/widget/Adapter;)V
-    .locals 0
+.method public final x(Landroid/view/MenuItem;)Landroid/view/View;
+    .locals 5
 
     .line 1
-    check-cast p1, Landroid/widget/SpinnerAdapter;
-
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/A;->setAdapter(Landroid/widget/SpinnerAdapter;)V
-
-    return-void
-.end method
-
-.method public setAdapter(Landroid/widget/SpinnerAdapter;)V
-    .locals 2
-
-    .line 2
-    iget-boolean v0, p0, Landroidx/appcompat/widget/A;->k:Z
-
-    if-nez v0, :cond_0
-
-    .line 3
-    iput-object p1, p0, Landroidx/appcompat/widget/A;->j:Landroid/widget/SpinnerAdapter;
-
-    return-void
-
-    .line 4
-    :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setAdapter(Landroid/widget/SpinnerAdapter;)V
-
-    .line 5
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    if-eqz v0, :cond_2
-
-    .line 6
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->h:Landroid/content/Context;
-
-    if-nez v0, :cond_1
-
-    invoke-virtual {p0}, Landroid/widget/Spinner;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    .line 7
-    :cond_1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    new-instance v1, Landroidx/appcompat/widget/A$g;
-
-    invoke-virtual {v0}, Landroid/content/Context;->getTheme()Landroid/content/res/Resources$Theme;
-
-    move-result-object v0
-
-    invoke-direct {v1, p1, v0}, Landroidx/appcompat/widget/A$g;-><init>(Landroid/widget/SpinnerAdapter;Landroid/content/res/Resources$Theme;)V
-
-    invoke-interface {p0, v1}, Landroidx/appcompat/widget/A$j;->setAdapter(Landroid/widget/ListAdapter;)V
-
-    :cond_2
-    return-void
-.end method
-
-.method public setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+    iget-object p0, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
 
     .line 2
     .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
+    check-cast p0, Landroid/view/ViewGroup;
 
+    .line 4
     .line 5
+    const/4 v0, 0x0
+
     .line 6
-    if-eqz p0, :cond_0
+    if-nez p0, :cond_0
 
     .line 7
     .line 8
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/e;->f(Landroid/graphics/drawable/Drawable;)V
+    return-object v0
 
     .line 9
-    .line 10
-    .line 11
     :cond_0
-    return-void
-.end method
+    invoke-virtual {p0}, Landroid/view/ViewGroup;->getChildCount()I
 
-.method public setBackgroundResource(I)V
-    .locals 0
-
-    .line 1
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setBackgroundResource(I)V
-
-    .line 2
-    .line 3
-    .line 4
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    .line 5
-    .line 6
-    if-eqz p0, :cond_0
-
-    .line 7
-    .line 8
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/e;->g(I)V
-
-    .line 9
     .line 10
-    .line 11
-    :cond_0
-    return-void
-.end method
-
-.method public setDropDownHorizontalOffset(I)V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0, p1}, Landroidx/appcompat/widget/A$j;->b(I)V
-
-    .line 6
-    .line 7
-    .line 8
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 9
-    .line 10
-    invoke-interface {p0, p1}, Landroidx/appcompat/widget/A$j;->setHorizontalOffset(I)V
-
     .line 11
     .line 12
+    move-result v1
+
     .line 13
-    return-void
+    const/4 v2, 0x0
 
     .line 14
-    :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setDropDownHorizontalOffset(I)V
+    :goto_0
+    if-ge v2, v1, :cond_2
 
     .line 15
     .line 16
+    invoke-virtual {p0, v2}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+
     .line 17
-    return-void
+    .line 18
+    .line 19
+    move-result-object v3
+
+    .line 20
+    instance-of v4, v3, Landroidx/appcompat/view/menu/j$a;
+
+    .line 21
+    .line 22
+    if-eqz v4, :cond_1
+
+    .line 23
+    .line 24
+    move-object v4, v3
+
+    .line 25
+    check-cast v4, Landroidx/appcompat/view/menu/j$a;
+
+    .line 26
+    .line 27
+    invoke-interface {v4}, Landroidx/appcompat/view/menu/j$a;->getItemData()Landroidx/appcompat/view/menu/g;
+
+    .line 28
+    .line 29
+    .line 30
+    move-result-object v4
+
+    .line 31
+    if-ne v4, p1, :cond_1
+
+    .line 32
+    .line 33
+    return-object v3
+
+    .line 34
+    :cond_1
+    add-int/lit8 v2, v2, 0x1
+
+    .line 35
+    .line 36
+    goto :goto_0
+
+    .line 37
+    :cond_2
+    return-object v0
 .end method
 
-.method public setDropDownVerticalOffset(I)V
+.method public y()Landroid/graphics/drawable/Drawable;
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->v:Landroidx/appcompat/widget/a$d;
 
     .line 2
     .line 3
@@ -1487,175 +2504,102 @@
 
     .line 4
     .line 5
-    invoke-interface {v0, p1}, Landroidx/appcompat/widget/A$j;->setVerticalOffset(I)V
+    invoke-virtual {v0}, Landroid/widget/ImageView;->getDrawable()Landroid/graphics/drawable/Drawable;
 
     .line 6
     .line 7
     .line 8
-    return-void
+    move-result-object p0
 
     .line 9
-    :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setDropDownVerticalOffset(I)V
+    return-object p0
 
     .line 10
+    :cond_0
+    iget-boolean v0, p0, Landroidx/appcompat/widget/a;->x:Z
+
     .line 11
     .line 12
-    return-void
+    if-eqz v0, :cond_1
+
+    .line 13
+    .line 14
+    iget-object p0, p0, Landroidx/appcompat/widget/a;->w:Landroid/graphics/drawable/Drawable;
+
+    .line 15
+    .line 16
+    return-object p0
+
+    .line 17
+    :cond_1
+    const/4 p0, 0x0
+
+    .line 18
+    return-object p0
 .end method
 
-.method public setDropDownWidth(I)V
-    .locals 1
+.method public z()Z
+    .locals 3
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
+    iget-object v0, p0, Landroidx/appcompat/widget/a;->L:Landroidx/appcompat/widget/a$c;
 
     .line 2
     .line 3
+    const/4 v1, 0x1
+
+    .line 4
     if-eqz v0, :cond_0
 
-    .line 4
     .line 5
-    iput p1, p0, Landroidx/appcompat/widget/A;->m:I
-
     .line 6
-    .line 7
-    return-void
+    iget-object v2, p0, Landroidx/appcompat/view/menu/a;->t:Landroidx/appcompat/view/menu/j;
 
+    .line 7
     .line 8
-    :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setDropDownWidth(I)V
+    if-eqz v2, :cond_0
 
     .line 9
     .line 10
-    .line 11
-    return-void
-.end method
+    check-cast v2, Landroid/view/View;
 
-.method public setPopupBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0, p1}, Landroidx/appcompat/widget/A$j;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    .line 6
-    .line 7
-    .line 8
-    return-void
-
-    .line 9
-    :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setPopupBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    .line 10
     .line 11
     .line 12
-    return-void
-.end method
+    invoke-virtual {v2, v0}, Landroid/view/View;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-.method public setPopupBackgroundResource(I)V
-    .locals 1
+    .line 13
+    .line 14
+    .line 15
+    const/4 v0, 0x0
 
-    .line 1
-    invoke-virtual {p0}, Landroidx/appcompat/widget/A;->getPopupContext()Landroid/content/Context;
+    .line 16
+    iput-object v0, p0, Landroidx/appcompat/widget/a;->L:Landroidx/appcompat/widget/a$c;
 
-    .line 2
-    .line 3
-    .line 4
-    move-result-object v0
+    .line 17
+    .line 18
+    return v1
 
-    .line 5
-    invoke-static {v0, p1}, Lg/a;->b(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
-
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p1
-
-    .line 9
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/A;->setPopupBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    .line 10
-    .line 11
-    .line 12
-    return-void
-.end method
-
-.method public setPrompt(Ljava/lang/CharSequence;)V
-    .locals 1
-
-    .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/A;->l:Landroidx/appcompat/widget/A$j;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-interface {v0, p1}, Landroidx/appcompat/widget/A$j;->setPromptText(Ljava/lang/CharSequence;)V
-
-    .line 6
-    .line 7
-    .line 8
-    return-void
-
-    .line 9
+    .line 19
     :cond_0
-    invoke-super {p0, p1}, Landroid/widget/Spinner;->setPrompt(Ljava/lang/CharSequence;)V
+    iget-object p0, p0, Landroidx/appcompat/widget/a;->J:Landroidx/appcompat/widget/a$e;
 
-    .line 10
-    .line 11
-    .line 12
-    return-void
-.end method
+    .line 20
+    .line 21
+    if-eqz p0, :cond_1
 
-.method public setSupportBackgroundTintList(Landroid/content/res/ColorStateList;)V
-    .locals 0
+    .line 22
+    .line 23
+    invoke-virtual {p0}, Landroidx/appcompat/view/menu/h;->b()V
 
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
+    .line 24
+    .line 25
+    .line 26
+    return v1
 
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
+    .line 27
+    :cond_1
+    const/4 p0, 0x0
 
-    .line 4
-    .line 5
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/e;->i(Landroid/content/res/ColorStateList;)V
-
-    .line 6
-    .line 7
-    .line 8
-    :cond_0
-    return-void
-.end method
-
-.method public setSupportBackgroundTintMode(Landroid/graphics/PorterDuff$Mode;)V
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/A;->g:Landroidx/appcompat/widget/e;
-
-    .line 2
-    .line 3
-    if-eqz p0, :cond_0
-
-    .line 4
-    .line 5
-    invoke-virtual {p0, p1}, Landroidx/appcompat/widget/e;->j(Landroid/graphics/PorterDuff$Mode;)V
-
-    .line 6
-    .line 7
-    .line 8
-    :cond_0
-    return-void
+    .line 28
+    return p0
 .end method

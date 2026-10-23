@@ -1,4 +1,4 @@
-.class Landroidx/recyclerview/widget/LinearLayoutManager$a;
+.class public Landroidx/recyclerview/widget/LinearLayoutManager$a;
 .super Ljava/lang/Object;
 .source "LinearLayoutManager.java"
 
@@ -9,25 +9,25 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "a"
 .end annotation
 
 
 # instance fields
-.field a:Landroidx/recyclerview/widget/o;
+.field public a:Landroidx/recyclerview/widget/o;
 
-.field b:I
+.field public b:I
 
-.field c:I
+.field public c:I
 
-.field d:Z
+.field public d:Z
 
-.field e:Z
+.field public e:Z
 
 
 # direct methods
-.method constructor <init>()V
+.method public constructor <init>()V
     .locals 0
 
     .line 1
@@ -46,7 +46,7 @@
 
 
 # virtual methods
-.method a()V
+.method public a()V
     .locals 1
 
     .line 1
@@ -489,7 +489,7 @@
     return-void
 .end method
 
-.method d(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;)Z
+.method public d(Landroid/view/View;Landroidx/recyclerview/widget/RecyclerView$State;)Z
     .locals 0
 
     .line 1
@@ -562,7 +562,7 @@
     return p0
 .end method
 
-.method e()V
+.method public e()V
     .locals 1
 
     .line 1

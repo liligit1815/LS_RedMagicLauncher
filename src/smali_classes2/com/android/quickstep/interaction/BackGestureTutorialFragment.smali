@@ -26,7 +26,7 @@
 
 
 # virtual methods
-.method createController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)Lcom/android/quickstep/interaction/TutorialController;
+.method public createController(Lcom/android/quickstep/interaction/TutorialController$TutorialType;)Lcom/android/quickstep/interaction/TutorialController;
     .locals 1
 
     .line 1
@@ -42,58 +42,58 @@
     return-object v0
 .end method
 
-.method protected createGestureAnimation()Landroid/animation/Animator;
+.method public createGestureAnimation()Landroid/animation/Animator;
     .locals 7
 
     .line 1
-    const/4 v0, 0x2
+    iget-object v0, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mTutorialController:Lcom/android/quickstep/interaction/TutorialController;
 
     .line 2
-    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mTutorialController:Lcom/android/quickstep/interaction/TutorialController;
-
     .line 3
+    instance-of v1, v0, Lcom/android/quickstep/interaction/BackGestureTutorialController;
+
     .line 4
-    instance-of v2, v1, Lcom/android/quickstep/interaction/BackGestureTutorialController;
-
     .line 5
-    .line 6
-    if-nez v2, :cond_0
+    if-nez v1, :cond_0
 
+    .line 6
     .line 7
-    .line 8
     const/4 p0, 0x0
 
-    .line 9
+    .line 8
     return-object p0
 
-    .line 10
+    .line 9
     :cond_0
-    check-cast v1, Lcom/android/quickstep/interaction/BackGestureTutorialController;
+    check-cast v0, Lcom/android/quickstep/interaction/BackGestureTutorialController;
 
+    .line 10
     .line 11
+    iget-object v1, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
+
     .line 12
-    iget-object v2, p0, Lcom/android/quickstep/interaction/TutorialFragment;->mRootView:Lcom/android/quickstep/interaction/RootSandboxLayout;
-
     .line 13
-    .line 14
-    invoke-virtual {v2}, Landroid/widget/RelativeLayout;->getWidth()I
+    invoke-virtual {v1}, Landroid/widget/RelativeLayout;->getWidth()I
 
+    .line 14
     .line 15
     .line 16
+    move-result v1
+
     .line 17
-    move-result v2
+    const/4 v2, 0x2
 
     .line 18
-    div-int/2addr v2, v0
+    div-int/2addr v1, v2
 
     .line 19
-    neg-int v2, v2
+    neg-int v1, v1
 
     .line 20
-    int-to-float v2, v2
+    int-to-float v1, v1
 
     .line 21
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialController;->createFingerDotAppearanceAnimatorSet()Landroid/animation/AnimatorSet;
+    invoke-virtual {v0}, Lcom/android/quickstep/interaction/TutorialController;->createFingerDotAppearanceAnimatorSet()Landroid/animation/AnimatorSet;
 
     .line 22
     .line 23
@@ -105,7 +105,7 @@
 
     .line 26
     .line 27
-    invoke-direct {v4, p0, v2}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$1;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;F)V
+    invoke-direct {v4, p0, v1}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$1;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;F)V
 
     .line 28
     .line 29
@@ -123,45 +123,45 @@
 
     .line 36
     .line 37
-    new-array v0, v0, [F
+    new-array v2, v2, [F
 
     .line 38
     .line 39
     const/4 v6, 0x0
 
     .line 40
-    aput v2, v0, v6
+    aput v1, v2, v6
 
     .line 41
     .line 42
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
     .line 43
     const/4 v6, 0x1
 
     .line 44
-    aput v2, v0, v6
+    aput v1, v2, v6
 
     .line 45
     .line 46
-    invoke-static {v4, v5, v0}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
+    invoke-static {v4, v5, v2}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Landroid/util/Property;[F)Landroid/animation/ObjectAnimator;
 
     .line 47
     .line 48
     .line 49
-    move-result-object v0
+    move-result-object v1
 
     .line 50
     new-instance v2, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$2;
 
     .line 51
     .line 52
-    invoke-direct {v2, p0, v1}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$2;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/BackGestureTutorialController;)V
+    invoke-direct {v2, p0, v0}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$2;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/BackGestureTutorialController;)V
 
     .line 53
     .line 54
     .line 55
-    invoke-virtual {v0, v2}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v1, v2}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 56
     .line 57
@@ -170,12 +170,12 @@
 
     .line 59
     .line 60
-    invoke-virtual {v0, v4, v5}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+    invoke-virtual {v1, v4, v5}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
     .line 61
     .line 62
     .line 63
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialController;->createAnimationPause()Landroid/animation/Animator;
+    invoke-virtual {v0}, Lcom/android/quickstep/interaction/TutorialController;->createAnimationPause()Landroid/animation/Animator;
 
     .line 64
     .line 65
@@ -187,7 +187,7 @@
 
     .line 68
     .line 69
-    invoke-direct {v4, p0, v1}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$3;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/BackGestureTutorialController;)V
+    invoke-direct {v4, p0, v0}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$3;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/BackGestureTutorialController;)V
 
     .line 70
     .line 71
@@ -211,20 +211,20 @@
     .line 81
     .line 82
     .line 83
-    invoke-virtual {v4, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v4, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 84
     .line 85
     .line 86
-    invoke-virtual {v1}, Lcom/android/quickstep/interaction/TutorialController;->createFingerDotDisappearanceAnimatorSet()Landroid/animation/AnimatorSet;
+    invoke-virtual {v0}, Lcom/android/quickstep/interaction/TutorialController;->createFingerDotDisappearanceAnimatorSet()Landroid/animation/AnimatorSet;
 
     .line 87
     .line 88
     .line 89
-    move-result-object v0
+    move-result-object v1
 
     .line 90
-    invoke-virtual {v4, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v4, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 91
     .line 92
@@ -234,11 +234,11 @@
     .line 94
     .line 95
     .line 96
-    new-instance v0, Landroid/animation/AnimatorSet;
+    new-instance v1, Landroid/animation/AnimatorSet;
 
     .line 97
     .line 98
-    invoke-direct {v0}, Landroid/animation/AnimatorSet;-><init>()V
+    invoke-direct {v1}, Landroid/animation/AnimatorSet;-><init>()V
 
     .line 99
     .line 100
@@ -247,25 +247,25 @@
 
     .line 102
     .line 103
-    invoke-direct {v2, p0, v1}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$4;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/BackGestureTutorialController;)V
+    invoke-direct {v2, p0, v0}, Lcom/android/quickstep/interaction/BackGestureTutorialFragment$4;-><init>(Lcom/android/quickstep/interaction/BackGestureTutorialFragment;Lcom/android/quickstep/interaction/BackGestureTutorialController;)V
 
     .line 104
     .line 105
     .line 106
-    invoke-virtual {v0, v2}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+    invoke-virtual {v1, v2}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
     .line 107
     .line 108
     .line 109
-    invoke-virtual {v0, v4}, Landroid/animation/AnimatorSet;->playSequentially(Ljava/util/List;)V
+    invoke-virtual {v1, v4}, Landroid/animation/AnimatorSet;->playSequentially(Ljava/util/List;)V
 
     .line 110
     .line 111
     .line 112
-    return-object v0
+    return-object v1
 .end method
 
-.method getControllerClass()Ljava/lang/Class;
+.method public getControllerClass()Ljava/lang/Class;
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -285,7 +285,7 @@
     return-object p0
 .end method
 
-.method getDefaultTutorialType()Lcom/android/quickstep/interaction/TutorialController$TutorialType;
+.method public getDefaultTutorialType()Lcom/android/quickstep/interaction/TutorialController$TutorialType;
     .locals 0
 
     .line 1
@@ -296,11 +296,11 @@
     return-object p0
 .end method
 
-.method getEdgeAnimationResId()Ljava/lang/Integer;
+.method public getEdgeAnimationResId()Ljava/lang/Integer;
     .locals 0
 
     .line 1
-    const p0, 0x7f080c31
+    const p0, 0x7f080c6c
 
     .line 2
     .line 3
@@ -346,11 +346,11 @@
     return p0
 .end method
 
-.method logTutorialStepCompleted(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public logTutorialStepCompleted(Lcom/android/launcher3/logging/StatsLogManager;)V
     .locals 0
 
     .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 2
     .line 3
@@ -358,11 +358,11 @@
     move-result-object p0
 
     .line 5
-    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$e;->o2:Lcom/android/launcher3/logging/StatsLogManager$e;
+    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_GESTURE_TUTORIAL_BACK_STEP_COMPLETED:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 6
     .line 7
-    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 8
     .line 9
@@ -370,11 +370,11 @@
     return-void
 .end method
 
-.method logTutorialStepShown(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public logTutorialStepShown(Lcom/android/launcher3/logging/StatsLogManager;)V
     .locals 0
 
     .line 1
-    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    invoke-virtual {p1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 2
     .line 3
@@ -382,11 +382,11 @@
     move-result-object p0
 
     .line 5
-    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$e;->l2:Lcom/android/launcher3/logging/StatsLogManager$e;
+    sget-object p1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_GESTURE_TUTORIAL_BACK_STEP_SHOWN:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 6
     .line 7
-    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {p0, p1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 8
     .line 9

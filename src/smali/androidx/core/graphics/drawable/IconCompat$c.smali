@@ -1,4 +1,4 @@
-.class Landroidx/core/graphics/drawable/IconCompat$c;
+.class public Landroidx/core/graphics/drawable/IconCompat$c;
 .super Ljava/lang/Object;
 .source "IconCompat.java"
 
@@ -9,13 +9,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "c"
 .end annotation
 
 
 # direct methods
-.method static a(Ljava/lang/Object;)I
+.method public static a(Ljava/lang/Object;)I
     .locals 0
 
     .line 1
@@ -34,7 +34,7 @@
     return p0
 .end method
 
-.method static b(Ljava/lang/Object;)Ljava/lang/String;
+.method public static b(Ljava/lang/Object;)Ljava/lang/String;
     .locals 0
 
     .line 1
@@ -53,7 +53,7 @@
     return-object p0
 .end method
 
-.method static c(Ljava/lang/Object;)I
+.method public static c(Ljava/lang/Object;)I
     .locals 0
 
     .line 1
@@ -72,7 +72,7 @@
     return p0
 .end method
 
-.method static d(Ljava/lang/Object;)Landroid/net/Uri;
+.method public static d(Ljava/lang/Object;)Landroid/net/Uri;
     .locals 0
 
     .line 1

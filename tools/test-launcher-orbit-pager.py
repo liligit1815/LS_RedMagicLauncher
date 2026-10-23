@@ -184,7 +184,7 @@ public final class RecentsView extends View {
         if(event.getActionMasked()!=MotionEvent.ACTION_CANCEL)throw new AssertionError("missing native CANCEL");
         cancels++;
     }
-    public void loadVisibleTaskData(int flags){
+    public void loadVisibleTaskData(){int flags=7;
         if(flags!=7)throw new AssertionError("incomplete thumbnail request");
         loads++;loadedPhase=LsOrbitPager.position(this,-99f,getTaskViewCount());
     }

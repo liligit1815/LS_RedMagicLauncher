@@ -112,7 +112,7 @@
     return-void
 .end method
 
-.method static synthetic access$1300(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;Ljava/lang/Runnable;)V
+.method public static synthetic access$1300(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;Ljava/lang/Runnable;)V
     .locals 0
 
     .line 1
@@ -124,7 +124,7 @@
     return-void
 .end method
 
-.method static synthetic access$1400(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;)Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$ProxyDigitalHumanClientCallback;
+.method public static synthetic access$1400(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;)Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$ProxyDigitalHumanClientCallback;
     .locals 0
 
     .line 1
@@ -135,7 +135,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$200(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;)Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;
+.method public static synthetic access$200(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;)Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService$SavedState;
     .locals 0
 
     .line 1
@@ -146,7 +146,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$500(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;)Lcn/nubia/redmagickyi/digitalhuman/proxy/player/IPlayer;
+.method public static synthetic access$500(Lcn/nubia/redmagickyi/digitalhuman/proxy/ProxyDigitalHumanService;)Lcn/nubia/redmagickyi/digitalhuman/proxy/player/IPlayer;
     .locals 0
 
     .line 1
@@ -254,7 +254,7 @@
     return-void
 .end method
 
-.method protected getAvatarHeight()I
+.method public getAvatarHeight()I
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -290,7 +290,7 @@
     return p0
 .end method
 
-.method protected getAvatarLayoutParams(FF)[F
+.method public getAvatarLayoutParams(FF)[F
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -326,7 +326,7 @@
     return-object p0
 .end method
 
-.method protected getAvatarWidth()I
+.method public getAvatarWidth()I
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -398,7 +398,7 @@
     return-object p0
 .end method
 
-.method protected getScene()Ljava/lang/Integer;
+.method public getScene()Ljava/lang/Integer;
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -562,7 +562,7 @@
     return-void
 .end method
 
-.method protected isHumanInited()Z
+.method public isHumanInited()Z
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -598,7 +598,7 @@
     return p0
 .end method
 
-.method protected isHumanRendered()Z
+.method public isHumanRendered()Z
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -634,7 +634,7 @@
     return p0
 .end method
 
-.method protected onSurfaceChanged(Landroid/view/Surface;Lcn/nubia/redmagickyi/digitalhuman/utils/SurfaceType;II)V
+.method public onSurfaceChanged(Landroid/view/Surface;Lcn/nubia/redmagickyi/digitalhuman/utils/SurfaceType;II)V
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -661,7 +661,7 @@
     return-void
 .end method
 
-.method protected onSurfaceCreated(Landroid/view/Surface;Lcn/nubia/redmagickyi/digitalhuman/utils/SurfaceType;)V
+.method public onSurfaceCreated(Landroid/view/Surface;Lcn/nubia/redmagickyi/digitalhuman/utils/SurfaceType;)V
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -697,7 +697,7 @@
     return-void
 .end method
 
-.method protected onSurfaceDestroyed(Landroid/view/Surface;Lcn/nubia/redmagickyi/digitalhuman/utils/SurfaceType;)V
+.method public onSurfaceDestroyed(Landroid/view/Surface;Lcn/nubia/redmagickyi/digitalhuman/utils/SurfaceType;)V
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -724,7 +724,7 @@
     return-void
 .end method
 
-.method protected onTouchEvent(Landroid/view/MotionEvent;)V
+.method public onTouchEvent(Landroid/view/MotionEvent;)V
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -968,7 +968,7 @@
     return-void
 .end method
 
-.method protected setHumanRendered()V
+.method public setHumanRendered()V
     .locals 0
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -1255,7 +1255,7 @@
     return-void
 .end method
 
-.method protected switchScene(I)V
+.method public switchScene(I)V
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
     .end annotation

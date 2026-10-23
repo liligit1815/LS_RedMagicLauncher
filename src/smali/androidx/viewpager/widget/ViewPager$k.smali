@@ -1,4 +1,4 @@
-.class Landroidx/viewpager/widget/ViewPager$k;
+.class public Landroidx/viewpager/widget/ViewPager$k;
 .super Landroid/database/DataSetObserver;
 .source "ViewPager.java"
 
@@ -9,17 +9,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0x1
     name = "k"
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/viewpager/widget/ViewPager;
+.field public final synthetic a:Landroidx/viewpager/widget/ViewPager;
 
 
 # direct methods
-.method constructor <init>(Landroidx/viewpager/widget/ViewPager;)V
+.method public constructor <init>(Landroidx/viewpager/widget/ViewPager;)V
     .locals 0
 
     .line 1
@@ -45,7 +45,7 @@
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/viewpager/widget/ViewPager;->h()V
+    invoke-virtual {p0}, Landroidx/viewpager/widget/ViewPager;->dataSetChanged()V
 
     .line 4
     .line 5
@@ -61,7 +61,7 @@
 
     .line 2
     .line 3
-    invoke-virtual {p0}, Landroidx/viewpager/widget/ViewPager;->h()V
+    invoke-virtual {p0}, Landroidx/viewpager/widget/ViewPager;->dataSetChanged()V
 
     .line 4
     .line 5

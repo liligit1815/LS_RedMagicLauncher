@@ -1,10 +1,10 @@
 .class public final Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2$1;
-.super Lkotlin/coroutines/jvm/internal/d;
+.super Lkotlin/coroutines/jvm/internal/ContinuationImpl;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2;->emit(Ljava/lang/Object;Ll4/d;)Ljava/lang/Object;
+    value = Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2;->emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -12,18 +12,59 @@
     name = null
 .end annotation
 
-.annotation runtime Lkotlin/coroutines/jvm/internal/f;
+.annotation runtime Lkotlin/Metadata;
+    k = 0x3
+    mv = {
+        0x2,
+        0x2,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+.annotation runtime Lkotlin/coroutines/jvm/internal/DebugMetadata;
     c = "com.android.quickstep.recents.data.TasksRepository$getAllTaskData$$inlined$map$1$2"
     f = "TasksRepository.kt"
+    i = {
+        0x0,
+        0x0,
+        0x0,
+        0x0,
+        0x0
+    }
     l = {
-        0x32
+        0xd9
     }
     m = "emit"
+    n = {
+        "value",
+        "$completion",
+        "value",
+        "$this$map_u24lambda_u240",
+        "$i$a$-unsafeTransform-FlowKt__TransformKt$map$1"
+    }
+    s = {
+        "L$0",
+        "L$1",
+        "L$2",
+        "L$3",
+        "I$0"
+    }
 .end annotation
 
 
 # instance fields
+.field I$0:I
+
 .field L$0:Ljava/lang/Object;
+
+.field L$1:Ljava/lang/Object;
+
+.field L$2:Ljava/lang/Object;
+
+.field L$3:Ljava/lang/Object;
+
+.field L$4:Ljava/lang/Object;
 
 .field label:I
 
@@ -33,7 +74,7 @@
 
 
 # direct methods
-.method public constructor <init>(Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2;Ll4/d;)V
+.method public constructor <init>(Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2;Lkotlin/coroutines/Continuation;)V
     .locals 0
 
     .line 1
@@ -41,7 +82,7 @@
 
     .line 2
     .line 3
-    invoke-direct {p0, p2}, Lkotlin/coroutines/jvm/internal/d;-><init>(Ll4/d;)V
+    invoke-direct {p0, p2}, Lkotlin/coroutines/jvm/internal/ContinuationImpl;-><init>(Lkotlin/coroutines/Continuation;)V
 
     .line 4
     .line 5
@@ -81,7 +122,7 @@
     const/4 v0, 0x0
 
     .line 13
-    invoke-virtual {p1, v0, p0}, Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2;->emit(Ljava/lang/Object;Ll4/d;)Ljava/lang/Object;
+    invoke-virtual {p1, v0, p0}, Lcom/android/quickstep/recents/data/TasksRepository$getAllTaskData$$inlined$map$1$2;->emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 
     .line 14
     .line 15

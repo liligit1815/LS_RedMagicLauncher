@@ -1,4 +1,4 @@
-.class Landroidx/preference/PreferenceGroup$d;
+.class public Landroidx/preference/PreferenceGroup$d;
 .super Landroidx/preference/Preference$b;
 .source "PreferenceGroup.java"
 
@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x8
+    accessFlags = 0x9
     name = "d"
 .end annotation
 
@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field g:I
+.field public c:I
 
 
 # direct methods
@@ -51,7 +51,7 @@
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcel;)V
+.method public constructor <init>(Landroid/os/Parcel;)V
     .locals 0
 
     .line 1
@@ -62,19 +62,19 @@
 
     move-result p1
 
-    iput p1, p0, Landroidx/preference/PreferenceGroup$d;->g:I
+    iput p1, p0, Landroidx/preference/PreferenceGroup$d;->c:I
 
     return-void
 .end method
 
-.method constructor <init>(Landroid/os/Parcelable;I)V
+.method public constructor <init>(Landroid/os/Parcelable;I)V
     .locals 0
 
     .line 3
     invoke-direct {p0, p1}, Landroidx/preference/Preference$b;-><init>(Landroid/os/Parcelable;)V
 
     .line 4
-    iput p2, p0, Landroidx/preference/PreferenceGroup$d;->g:I
+    iput p2, p0, Landroidx/preference/PreferenceGroup$d;->c:I
 
     return-void
 .end method
@@ -90,7 +90,7 @@
     .line 2
     .line 3
     .line 4
-    iget p0, p0, Landroidx/preference/PreferenceGroup$d;->g:I
+    iget p0, p0, Landroidx/preference/PreferenceGroup$d;->c:I
 
     .line 5
     .line 6

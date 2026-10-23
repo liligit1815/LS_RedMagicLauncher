@@ -212,7 +212,7 @@
     return-object p0
 .end method
 
-.method hasJumpTarget()Z
+.method public hasJumpTarget()Z
     .locals 0
 
     .line 1
@@ -248,7 +248,7 @@
     return-void
 .end method
 
-.method runIfNecessary(Landroidx/recyclerview/widget/RecyclerView;)V
+.method public runIfNecessary(Landroidx/recyclerview/widget/RecyclerView;)V
     .locals 5
 
     .line 1

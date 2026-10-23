@@ -1,5 +1,5 @@
 .class public Landroidx/recyclerview/widget/q;
-.super LJ/a;
+.super Lz5/a;
 .source "RecyclerViewAccessibilityDelegate.java"
 
 
@@ -12,9 +12,9 @@
 
 
 # instance fields
-.field final j:Landroidx/recyclerview/widget/RecyclerView;
+.field public final c:Landroidx/recyclerview/widget/RecyclerView;
 
-.field private final k:Landroidx/recyclerview/widget/q$a;
+.field public final m:Landroidx/recyclerview/widget/q$a;
 
 
 # direct methods
@@ -22,16 +22,16 @@
     .locals 1
 
     .line 1
-    invoke-direct {p0}, LJ/a;-><init>()V
+    invoke-direct {p0}, Lz5/a;-><init>()V
 
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/recyclerview/widget/q;->j:Landroidx/recyclerview/widget/RecyclerView;
+    iput-object p1, p0, Landroidx/recyclerview/widget/q;->c:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 5
     .line 6
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->n()LJ/a;
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->a()Lz5/a;
 
     .line 7
     .line 8
@@ -55,7 +55,7 @@
 
     .line 17
     .line 18
-    iput-object p1, p0, Landroidx/recyclerview/widget/q;->k:Landroidx/recyclerview/widget/q$a;
+    iput-object p1, p0, Landroidx/recyclerview/widget/q;->m:Landroidx/recyclerview/widget/q$a;
 
     .line 19
     .line 20
@@ -72,7 +72,7 @@
     .line 24
     .line 25
     .line 26
-    iput-object p1, p0, Landroidx/recyclerview/widget/q;->k:Landroidx/recyclerview/widget/q$a;
+    iput-object p1, p0, Landroidx/recyclerview/widget/q;->m:Landroidx/recyclerview/widget/q$a;
 
     .line 27
     .line 28
@@ -81,7 +81,37 @@
 
 
 # virtual methods
-.method public f(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
+.method public a()Lz5/a;
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/recyclerview/widget/q;->m:Landroidx/recyclerview/widget/q$a;
+
+    .line 2
+    .line 3
+    return-object p0
+.end method
+
+.method public b()Z
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Landroidx/recyclerview/widget/q;->c:Landroidx/recyclerview/widget/RecyclerView;
+
+    .line 2
+    .line 3
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/RecyclerView;->hasPendingAdapterUpdates()Z
+
+    .line 4
+    .line 5
+    .line 6
+    move-result p0
+
+    .line 7
+    return p0
+.end method
+
+.method public onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
     .locals 1
     .param p1    # Landroid/view/View;
         .annotation build Landroid/annotation/SuppressLint;
@@ -99,7 +129,7 @@
     .end param
 
     .line 1
-    invoke-super {p0, p1, p2}, LJ/a;->f(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
+    invoke-super {p0, p1, p2}, Lz5/a;->onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
 
     .line 2
     .line 3
@@ -112,7 +142,7 @@
 
     .line 7
     .line 8
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->o()Z
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->b()Z
 
     .line 9
     .line 10
@@ -157,7 +187,7 @@
     return-void
 .end method
 
-.method public g(Landroid/view/View;LK/d;)V
+.method public onInitializeAccessibilityNodeInfo(Landroid/view/View;La6/d;)V
     .locals 0
     .param p1    # Landroid/view/View;
         .annotation build Landroid/annotation/SuppressLint;
@@ -166,7 +196,7 @@
             }
         .end annotation
     .end param
-    .param p2    # LK/d;
+    .param p2    # La6/d;
         .annotation build Landroid/annotation/SuppressLint;
             value = {
                 "InvalidNullabilityOverride"
@@ -175,12 +205,12 @@
     .end param
 
     .line 1
-    invoke-super {p0, p1, p2}, LJ/a;->g(Landroid/view/View;LK/d;)V
+    invoke-super {p0, p1, p2}, Lz5/a;->onInitializeAccessibilityNodeInfo(Landroid/view/View;La6/d;)V
 
     .line 2
     .line 3
     .line 4
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->o()Z
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->b()Z
 
     .line 5
     .line 6
@@ -192,7 +222,7 @@
 
     .line 9
     .line 10
-    iget-object p1, p0, Landroidx/recyclerview/widget/q;->j:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p1, p0, Landroidx/recyclerview/widget/q;->c:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 11
     .line 12
@@ -208,7 +238,7 @@
 
     .line 17
     .line 18
-    iget-object p0, p0, Landroidx/recyclerview/widget/q;->j:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p0, p0, Landroidx/recyclerview/widget/q;->c:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 19
     .line 20
@@ -220,7 +250,7 @@
     move-result-object p0
 
     .line 24
-    invoke-virtual {p0, p2}, Landroidx/recyclerview/widget/RecyclerView$LayoutManager;->onInitializeAccessibilityNodeInfo(LK/d;)V
+    invoke-virtual {p0, p2}, Landroidx/recyclerview/widget/RecyclerView$LayoutManager;->onInitializeAccessibilityNodeInfo(La6/d;)V
 
     .line 25
     .line 26
@@ -229,7 +259,7 @@
     return-void
 .end method
 
-.method public j(Landroid/view/View;ILandroid/os/Bundle;)Z
+.method public performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
     .locals 0
     .param p1    # Landroid/view/View;
         .annotation build Landroid/annotation/SuppressLint;
@@ -247,7 +277,7 @@
     .end param
 
     .line 1
-    invoke-super {p0, p1, p2, p3}, LJ/a;->j(Landroid/view/View;ILandroid/os/Bundle;)Z
+    invoke-super {p0, p1, p2, p3}, Lz5/a;->performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
 
     .line 2
     .line 3
@@ -266,7 +296,7 @@
 
     .line 9
     :cond_0
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->o()Z
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/q;->b()Z
 
     .line 10
     .line 11
@@ -278,7 +308,7 @@
 
     .line 14
     .line 15
-    iget-object p1, p0, Landroidx/recyclerview/widget/q;->j:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p1, p0, Landroidx/recyclerview/widget/q;->c:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 16
     .line 17
@@ -294,7 +324,7 @@
 
     .line 22
     .line 23
-    iget-object p0, p0, Landroidx/recyclerview/widget/q;->j:Landroidx/recyclerview/widget/RecyclerView;
+    iget-object p0, p0, Landroidx/recyclerview/widget/q;->c:Landroidx/recyclerview/widget/RecyclerView;
 
     .line 24
     .line 25
@@ -321,35 +351,5 @@
     const/4 p0, 0x0
 
     .line 35
-    return p0
-.end method
-
-.method public n()LJ/a;
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/recyclerview/widget/q;->k:Landroidx/recyclerview/widget/q$a;
-
-    .line 2
-    .line 3
-    return-object p0
-.end method
-
-.method o()Z
-    .locals 0
-
-    .line 1
-    iget-object p0, p0, Landroidx/recyclerview/widget/q;->j:Landroidx/recyclerview/widget/RecyclerView;
-
-    .line 2
-    .line 3
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/RecyclerView;->hasPendingAdapterUpdates()Z
-
-    .line 4
-    .line 5
-    .line 6
-    move-result p0
-
-    .line 7
     return p0
 .end method

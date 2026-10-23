@@ -1,19 +1,17 @@
-.class public final synthetic Lcom/android/quickstep/interaction/B;
+.class public final synthetic Lcom/android/quickstep/interaction/b;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+.implements Lcom/android/launcher3/InvariantDeviceProfile$OnIDPChangeListener;
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;
-
-.field public final synthetic h:F
+.field public final synthetic c:Lcom/android/quickstep/interaction/AllSetActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;F)V
+.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/AllSetActivity;)V
     .locals 0
 
     .line 1
@@ -22,35 +20,27 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/B;->g:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/b;->c:Lcom/android/quickstep/interaction/AllSetActivity;
 
     .line 5
     .line 6
-    iput p2, p0, Lcom/android/quickstep/interaction/B;->h:F
-
-    .line 7
-    .line 8
     return-void
 .end method
 
 
 # virtual methods
-.method public final onAnimationUpdate(Landroid/animation/ValueAnimator;)V
-    .locals 1
+.method public final onIdpChanged(ZZZZZZ)V
+    .locals 0
 
     .line 1
-    iget-object v0, p0, Lcom/android/quickstep/interaction/B;->g:Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/b;->c:Lcom/android/quickstep/interaction/AllSetActivity;
 
     .line 2
     .line 3
-    iget p0, p0, Lcom/android/quickstep/interaction/B;->h:F
+    invoke-static/range {p0 .. p6}, Lcom/android/quickstep/interaction/AllSetActivity;->a(Lcom/android/quickstep/interaction/AllSetActivity;ZZZZZZ)V
 
     .line 4
     .line 5
-    invoke-static {v0, p0, p1}, Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;->k(Lcom/android/quickstep/interaction/SwipeUpGestureTutorialController;FLandroid/animation/ValueAnimator;)V
-
     .line 6
-    .line 7
-    .line 8
     return-void
 .end method

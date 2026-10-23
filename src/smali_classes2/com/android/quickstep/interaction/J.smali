@@ -1,4 +1,4 @@
-.class public final synthetic Lcom/android/quickstep/interaction/J;
+.class public final synthetic Lcom/android/quickstep/interaction/j;
 .super Ljava/lang/Object;
 .source "R8$$SyntheticClass"
 
@@ -7,11 +7,11 @@
 
 
 # instance fields
-.field public final synthetic g:Lcom/android/quickstep/interaction/TutorialController;
+.field public final synthetic c:Landroid/view/View;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/android/quickstep/interaction/TutorialController;)V
+.method public synthetic constructor <init>(Landroid/view/View;)V
     .locals 0
 
     .line 1
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/android/quickstep/interaction/J;->g:Lcom/android/quickstep/interaction/TutorialController;
+    iput-object p1, p0, Lcom/android/quickstep/interaction/j;->c:Landroid/view/View;
 
     .line 5
     .line 6
@@ -33,11 +33,11 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Lcom/android/quickstep/interaction/J;->g:Lcom/android/quickstep/interaction/TutorialController;
+    iget-object p0, p0, Lcom/android/quickstep/interaction/j;->c:Landroid/view/View;
 
     .line 2
     .line 3
-    invoke-static {p0}, Lcom/android/quickstep/interaction/TutorialController;->c(Lcom/android/quickstep/interaction/TutorialController;)V
+    invoke-static {p0}, Lcom/android/quickstep/interaction/AllSetActivity;->c(Landroid/view/View;)V
 
     .line 4
     .line 5

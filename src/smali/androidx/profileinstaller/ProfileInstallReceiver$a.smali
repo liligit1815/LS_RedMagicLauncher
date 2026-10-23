@@ -1,9 +1,9 @@
-.class Landroidx/profileinstaller/ProfileInstallReceiver$a;
+.class public Landroidx/profileinstaller/ProfileInstallReceiver$a;
 .super Ljava/lang/Object;
 .source "ProfileInstallReceiver.java"
 
 # interfaces
-.implements Landroidx/profileinstaller/f$c;
+.implements Landroidx/profileinstaller/c$c;
 
 
 # annotations
@@ -12,17 +12,17 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = "a"
 .end annotation
 
 
 # instance fields
-.field final synthetic a:Landroidx/profileinstaller/ProfileInstallReceiver;
+.field public final synthetic a:Landroidx/profileinstaller/ProfileInstallReceiver;
 
 
 # direct methods
-.method constructor <init>(Landroidx/profileinstaller/ProfileInstallReceiver;)V
+.method public constructor <init>(Landroidx/profileinstaller/ProfileInstallReceiver;)V
     .locals 0
 
     .line 1
@@ -44,11 +44,11 @@
     .locals 1
 
     .line 1
-    sget-object v0, Landroidx/profileinstaller/f;->b:Landroidx/profileinstaller/f$c;
+    sget-object v0, Landroidx/profileinstaller/c;->b:Landroidx/profileinstaller/c$c;
 
     .line 2
     .line 3
-    invoke-interface {v0, p1, p2}, Landroidx/profileinstaller/f$c;->a(ILjava/lang/Object;)V
+    invoke-interface {v0, p1, p2}, Landroidx/profileinstaller/c$c;->a(ILjava/lang/Object;)V
 
     .line 4
     .line 5
@@ -69,11 +69,11 @@
     .locals 0
 
     .line 1
-    sget-object p0, Landroidx/profileinstaller/f;->b:Landroidx/profileinstaller/f$c;
+    sget-object p0, Landroidx/profileinstaller/c;->b:Landroidx/profileinstaller/c$c;
 
     .line 2
     .line 3
-    invoke-interface {p0, p1, p2}, Landroidx/profileinstaller/f$c;->b(ILjava/lang/Object;)V
+    invoke-interface {p0, p1, p2}, Landroidx/profileinstaller/c$c;->b(ILjava/lang/Object;)V
 
     .line 4
     .line 5

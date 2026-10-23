@@ -4,25 +4,25 @@
 
 
 # instance fields
-.field a:D
+.field public a:D
 
-.field b:D
+.field public b:D
 
-.field private c:Z
+.field public c:Z
 
-.field private d:D
+.field public d:D
 
-.field private e:D
+.field public e:D
 
-.field private f:D
+.field public f:D
 
-.field private g:D
+.field public g:D
 
-.field private h:D
+.field public h:D
 
-.field private i:D
+.field public i:D
 
-.field private final j:Landroidx/dynamicanimation/animation/e$p;
+.field public final j:Landroidx/dynamicanimation/animation/e$p;
 
 
 # direct methods
@@ -111,7 +111,54 @@
     return-void
 .end method
 
-.method private d()V
+
+# virtual methods
+.method public a()F
+    .locals 2
+
+    .line 1
+    iget-wide v0, p0, Landroidx/dynamicanimation/animation/k;->b:D
+
+    .line 2
+    .line 3
+    double-to-float p0, v0
+
+    .line 4
+    return p0
+.end method
+
+.method public b()F
+    .locals 2
+
+    .line 1
+    iget-wide v0, p0, Landroidx/dynamicanimation/animation/k;->i:D
+
+    .line 2
+    .line 3
+    double-to-float p0, v0
+
+    .line 4
+    return p0
+.end method
+
+.method public c()F
+    .locals 2
+
+    .line 1
+    iget-wide v0, p0, Landroidx/dynamicanimation/animation/k;->a:D
+
+    .line 2
+    .line 3
+    mul-double/2addr v0, v0
+
+    .line 4
+    double-to-float p0, v0
+
+    .line 5
+    return p0
+.end method
+
+.method public final d()V
     .locals 8
 
     .line 1
@@ -312,53 +359,6 @@
     throw p0
 .end method
 
-
-# virtual methods
-.method public a()F
-    .locals 2
-
-    .line 1
-    iget-wide v0, p0, Landroidx/dynamicanimation/animation/k;->b:D
-
-    .line 2
-    .line 3
-    double-to-float p0, v0
-
-    .line 4
-    return p0
-.end method
-
-.method public b()F
-    .locals 2
-
-    .line 1
-    iget-wide v0, p0, Landroidx/dynamicanimation/animation/k;->i:D
-
-    .line 2
-    .line 3
-    double-to-float p0, v0
-
-    .line 4
-    return p0
-.end method
-
-.method public c()F
-    .locals 2
-
-    .line 1
-    iget-wide v0, p0, Landroidx/dynamicanimation/animation/k;->a:D
-
-    .line 2
-    .line 3
-    mul-double/2addr v0, v0
-
-    .line 4
-    double-to-float p0, v0
-
-    .line 5
-    return p0
-.end method
-
 .method public e(FF)Z
     .locals 4
 
@@ -553,7 +553,7 @@
     throw p0
 .end method
 
-.method i(D)V
+.method public i(D)V
     .locals 2
 
     .line 1
@@ -586,7 +586,7 @@
     return-void
 .end method
 
-.method j(DDJ)Landroidx/dynamicanimation/animation/e$p;
+.method public j(DDJ)Landroidx/dynamicanimation/animation/e$p;
     .locals 16
 
     .line 1
@@ -594,7 +594,7 @@
 
     .line 2
     .line 3
-    invoke-direct {v0}, Landroidx/dynamicanimation/animation/k;->d()V
+    invoke-virtual {v0}, Landroidx/dynamicanimation/animation/k;->d()V
 
     .line 4
     .line 5

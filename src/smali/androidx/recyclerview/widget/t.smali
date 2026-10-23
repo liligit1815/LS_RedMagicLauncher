@@ -4,11 +4,11 @@
 
 
 # instance fields
-.field a:Landroidx/recyclerview/widget/RecyclerView;
+.field public a:Landroidx/recyclerview/widget/RecyclerView;
 
-.field private b:Landroid/widget/Scroller;
+.field public b:Landroid/widget/Scroller;
 
-.field private final c:Landroidx/recyclerview/widget/RecyclerView$OnScrollListener;
+.field public final c:Landroidx/recyclerview/widget/RecyclerView$OnScrollListener;
 
 
 # direct methods
@@ -37,7 +37,100 @@
     return-void
 .end method
 
-.method private d()V
+
+# virtual methods
+.method public a(Landroidx/recyclerview/widget/RecyclerView;)V
+    .locals 2
+    .annotation system Ldalvik/annotation/Throws;
+    .end annotation
+
+    .line 1
+    iget-object v0, p0, Landroidx/recyclerview/widget/t;->a:Landroidx/recyclerview/widget/RecyclerView;
+
+    .line 2
+    .line 3
+    if-ne v0, p1, :cond_0
+
+    .line 4
+    .line 5
+    goto :goto_0
+
+    .line 6
+    :cond_0
+    if-eqz v0, :cond_1
+
+    .line 7
+    .line 8
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/t;->d()V
+
+    .line 9
+    .line 10
+    .line 11
+    :cond_1
+    iput-object p1, p0, Landroidx/recyclerview/widget/t;->a:Landroidx/recyclerview/widget/RecyclerView;
+
+    .line 12
+    .line 13
+    if-eqz p1, :cond_2
+
+    .line 14
+    .line 15
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/t;->g()V
+
+    .line 16
+    .line 17
+    .line 18
+    new-instance p1, Landroid/widget/Scroller;
+
+    .line 19
+    .line 20
+    iget-object v0, p0, Landroidx/recyclerview/widget/t;->a:Landroidx/recyclerview/widget/RecyclerView;
+
+    .line 21
+    .line 22
+    invoke-virtual {v0}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
+
+    .line 23
+    .line 24
+    .line 25
+    move-result-object v0
+
+    .line 26
+    new-instance v1, Landroid/view/animation/DecelerateInterpolator;
+
+    .line 27
+    .line 28
+    invoke-direct {v1}, Landroid/view/animation/DecelerateInterpolator;-><init>()V
+
+    .line 29
+    .line 30
+    .line 31
+    invoke-direct {p1, v0, v1}, Landroid/widget/Scroller;-><init>(Landroid/content/Context;Landroid/view/animation/Interpolator;)V
+
+    .line 32
+    .line 33
+    .line 34
+    iput-object p1, p0, Landroidx/recyclerview/widget/t;->b:Landroid/widget/Scroller;
+
+    .line 35
+    .line 36
+    invoke-virtual {p0}, Landroidx/recyclerview/widget/t;->i()V
+
+    .line 37
+    .line 38
+    .line 39
+    :cond_2
+    :goto_0
+    return-void
+.end method
+
+.method public abstract b(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Landroid/view/View;)[I
+.end method
+
+.method public abstract c(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)Landroidx/recyclerview/widget/RecyclerView$SmoothScroller;
+.end method
+
+.method public final d()V
     .locals 2
 
     .line 1
@@ -69,7 +162,23 @@
     return-void
 .end method
 
-.method private g()V
+.method public abstract e(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)Landroid/view/View;
+    .annotation build Landroid/annotation/SuppressLint;
+        value = {
+            "UnknownNullness"
+        }
+    .end annotation
+.end method
+
+.method public abstract f(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;II)I
+    .annotation build Landroid/annotation/SuppressLint;
+        value = {
+            "UnknownNullness"
+        }
+    .end annotation
+.end method
+
+.method public final g()V
     .locals 2
     .annotation system Ldalvik/annotation/Throws;
     .end annotation
@@ -133,7 +242,7 @@
     throw p0
 .end method
 
-.method private h(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;II)Z
+.method public final h(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;II)Z
     .locals 2
 
     .line 1
@@ -203,116 +312,7 @@
     return p0
 .end method
 
-
-# virtual methods
-.method public a(Landroidx/recyclerview/widget/RecyclerView;)V
-    .locals 2
-    .annotation system Ldalvik/annotation/Throws;
-    .end annotation
-
-    .line 1
-    iget-object v0, p0, Landroidx/recyclerview/widget/t;->a:Landroidx/recyclerview/widget/RecyclerView;
-
-    .line 2
-    .line 3
-    if-ne v0, p1, :cond_0
-
-    .line 4
-    .line 5
-    goto :goto_0
-
-    .line 6
-    :cond_0
-    if-eqz v0, :cond_1
-
-    .line 7
-    .line 8
-    invoke-direct {p0}, Landroidx/recyclerview/widget/t;->d()V
-
-    .line 9
-    .line 10
-    .line 11
-    :cond_1
-    iput-object p1, p0, Landroidx/recyclerview/widget/t;->a:Landroidx/recyclerview/widget/RecyclerView;
-
-    .line 12
-    .line 13
-    if-eqz p1, :cond_2
-
-    .line 14
-    .line 15
-    invoke-direct {p0}, Landroidx/recyclerview/widget/t;->g()V
-
-    .line 16
-    .line 17
-    .line 18
-    new-instance p1, Landroid/widget/Scroller;
-
-    .line 19
-    .line 20
-    iget-object v0, p0, Landroidx/recyclerview/widget/t;->a:Landroidx/recyclerview/widget/RecyclerView;
-
-    .line 21
-    .line 22
-    invoke-virtual {v0}, Landroid/view/ViewGroup;->getContext()Landroid/content/Context;
-
-    .line 23
-    .line 24
-    .line 25
-    move-result-object v0
-
-    .line 26
-    new-instance v1, Landroid/view/animation/DecelerateInterpolator;
-
-    .line 27
-    .line 28
-    invoke-direct {v1}, Landroid/view/animation/DecelerateInterpolator;-><init>()V
-
-    .line 29
-    .line 30
-    .line 31
-    invoke-direct {p1, v0, v1}, Landroid/widget/Scroller;-><init>(Landroid/content/Context;Landroid/view/animation/Interpolator;)V
-
-    .line 32
-    .line 33
-    .line 34
-    iput-object p1, p0, Landroidx/recyclerview/widget/t;->b:Landroid/widget/Scroller;
-
-    .line 35
-    .line 36
-    invoke-virtual {p0}, Landroidx/recyclerview/widget/t;->i()V
-
-    .line 37
-    .line 38
-    .line 39
-    :cond_2
-    :goto_0
-    return-void
-.end method
-
-.method public abstract b(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;Landroid/view/View;)[I
-.end method
-
-.method protected abstract c(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)Landroidx/recyclerview/widget/RecyclerView$SmoothScroller;
-.end method
-
-.method public abstract e(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)Landroid/view/View;
-    .annotation build Landroid/annotation/SuppressLint;
-        value = {
-            "UnknownNullness"
-        }
-    .end annotation
-.end method
-
-.method public abstract f(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;II)I
-    .annotation build Landroid/annotation/SuppressLint;
-        value = {
-            "UnknownNullness"
-        }
-    .end annotation
-.end method
-
-.method i()V
+.method public i()V
     .locals 4
 
     .line 1
@@ -500,7 +500,7 @@
     .line 37
     .line 38
     :cond_2
-    invoke-direct {p0, v0, p1, p2}, Landroidx/recyclerview/widget/t;->h(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;II)Z
+    invoke-virtual {p0, v0, p1, p2}, Landroidx/recyclerview/widget/t;->h(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;II)Z
 
     .line 39
     .line 40

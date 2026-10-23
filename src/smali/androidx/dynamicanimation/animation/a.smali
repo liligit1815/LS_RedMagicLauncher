@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic g:Landroidx/dynamicanimation/animation/b;
+.field public final synthetic c:Landroidx/dynamicanimation/animation/b;
 
 
 # direct methods
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Landroidx/dynamicanimation/animation/a;->g:Landroidx/dynamicanimation/animation/b;
+    iput-object p1, p0, Landroidx/dynamicanimation/animation/a;->c:Landroidx/dynamicanimation/animation/b;
 
     .line 5
     .line 6
@@ -33,7 +33,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/dynamicanimation/animation/a;->g:Landroidx/dynamicanimation/animation/b;
+    iget-object p0, p0, Landroidx/dynamicanimation/animation/a;->c:Landroidx/dynamicanimation/animation/b;
 
     .line 2
     .line 3

@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract a(Landroidx/dynamicanimation/animation/e;FF)V
+.method public abstract onAnimationUpdate(Landroidx/dynamicanimation/animation/e;FF)V
 .end method

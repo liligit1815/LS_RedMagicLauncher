@@ -12,11 +12,11 @@
 
 
 # instance fields
-.field private g:I
+.field public c:I
 
-.field private h:I
+.field public m:I
 
-.field private i:Ljava/lang/ref/WeakReference;
+.field public n:Ljava/lang/ref/WeakReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/ref/WeakReference<",
@@ -26,7 +26,7 @@
     .end annotation
 .end field
 
-.field private j:Landroid/view/LayoutInflater;
+.field public o:Landroid/view/LayoutInflater;
 
 
 # direct methods
@@ -50,17 +50,17 @@
     const/4 v0, 0x0
 
     .line 3
-    iput v0, p0, Landroidx/appcompat/widget/ViewStubCompat;->g:I
+    iput v0, p0, Landroidx/appcompat/widget/ViewStubCompat;->c:I
 
     .line 4
-    sget-object v1, Lf/j;->O3:[I
+    sget-object v1, Lk/j;->O3:[I
 
     invoke-virtual {p1, p2, v1, p3, v0}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
 
     move-result-object p1
 
     .line 5
-    sget p2, Lf/j;->R3:I
+    sget p2, Lk/j;->R3:I
 
     const/4 p3, -0x1
 
@@ -68,19 +68,19 @@
 
     move-result p2
 
-    iput p2, p0, Landroidx/appcompat/widget/ViewStubCompat;->h:I
+    iput p2, p0, Landroidx/appcompat/widget/ViewStubCompat;->m:I
 
     .line 6
-    sget p2, Lf/j;->Q3:I
+    sget p2, Lk/j;->Q3:I
 
     invoke-virtual {p1, p2, v0}, Landroid/content/res/TypedArray;->getResourceId(II)I
 
     move-result p2
 
-    iput p2, p0, Landroidx/appcompat/widget/ViewStubCompat;->g:I
+    iput p2, p0, Landroidx/appcompat/widget/ViewStubCompat;->c:I
 
     .line 7
-    sget p2, Lf/j;->P3:I
+    sget p2, Lk/j;->P3:I
 
     invoke-virtual {p1, p2, p3}, Landroid/content/res/TypedArray;->getResourceId(II)I
 
@@ -126,7 +126,7 @@
 
     .line 8
     .line 9
-    iget v1, p0, Landroidx/appcompat/widget/ViewStubCompat;->g:I
+    iget v1, p0, Landroidx/appcompat/widget/ViewStubCompat;->c:I
 
     .line 10
     .line 11
@@ -138,7 +138,7 @@
 
     .line 14
     .line 15
-    iget-object v1, p0, Landroidx/appcompat/widget/ViewStubCompat;->j:Landroid/view/LayoutInflater;
+    iget-object v1, p0, Landroidx/appcompat/widget/ViewStubCompat;->o:Landroid/view/LayoutInflater;
 
     .line 16
     .line 17
@@ -167,7 +167,7 @@
 
     .line 28
     :goto_0
-    iget v2, p0, Landroidx/appcompat/widget/ViewStubCompat;->g:I
+    iget v2, p0, Landroidx/appcompat/widget/ViewStubCompat;->c:I
 
     .line 29
     .line 30
@@ -182,7 +182,7 @@
     move-result-object v1
 
     .line 35
-    iget v2, p0, Landroidx/appcompat/widget/ViewStubCompat;->h:I
+    iget v2, p0, Landroidx/appcompat/widget/ViewStubCompat;->m:I
 
     .line 36
     .line 37
@@ -248,7 +248,7 @@
     .line 66
     .line 67
     .line 68
-    iput-object v0, p0, Landroidx/appcompat/widget/ViewStubCompat;->i:Ljava/lang/ref/WeakReference;
+    iput-object v0, p0, Landroidx/appcompat/widget/ViewStubCompat;->n:Ljava/lang/ref/WeakReference;
 
     .line 69
     .line 70
@@ -289,7 +289,7 @@
     throw p0
 .end method
 
-.method protected dispatchDraw(Landroid/graphics/Canvas;)V
+.method public dispatchDraw(Landroid/graphics/Canvas;)V
     .locals 0
 
     .line 1
@@ -312,7 +312,7 @@
     .locals 0
 
     .line 1
-    iget p0, p0, Landroidx/appcompat/widget/ViewStubCompat;->h:I
+    iget p0, p0, Landroidx/appcompat/widget/ViewStubCompat;->m:I
 
     .line 2
     .line 3
@@ -323,7 +323,7 @@
     .locals 0
 
     .line 1
-    iget-object p0, p0, Landroidx/appcompat/widget/ViewStubCompat;->j:Landroid/view/LayoutInflater;
+    iget-object p0, p0, Landroidx/appcompat/widget/ViewStubCompat;->o:Landroid/view/LayoutInflater;
 
     .line 2
     .line 3
@@ -334,14 +334,14 @@
     .locals 0
 
     .line 1
-    iget p0, p0, Landroidx/appcompat/widget/ViewStubCompat;->g:I
+    iget p0, p0, Landroidx/appcompat/widget/ViewStubCompat;->c:I
 
     .line 2
     .line 3
     return p0
 .end method
 
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 0
 
     .line 1
@@ -360,7 +360,7 @@
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/appcompat/widget/ViewStubCompat;->h:I
+    iput p1, p0, Landroidx/appcompat/widget/ViewStubCompat;->m:I
 
     .line 2
     .line 3
@@ -371,7 +371,7 @@
     .locals 0
 
     .line 1
-    iput-object p1, p0, Landroidx/appcompat/widget/ViewStubCompat;->j:Landroid/view/LayoutInflater;
+    iput-object p1, p0, Landroidx/appcompat/widget/ViewStubCompat;->o:Landroid/view/LayoutInflater;
 
     .line 2
     .line 3
@@ -382,7 +382,7 @@
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/appcompat/widget/ViewStubCompat;->g:I
+    iput p1, p0, Landroidx/appcompat/widget/ViewStubCompat;->c:I
 
     .line 2
     .line 3
@@ -400,7 +400,7 @@
     .locals 1
 
     .line 1
-    iget-object v0, p0, Landroidx/appcompat/widget/ViewStubCompat;->i:Ljava/lang/ref/WeakReference;
+    iget-object v0, p0, Landroidx/appcompat/widget/ViewStubCompat;->n:Ljava/lang/ref/WeakReference;
 
     .line 2
     .line 3

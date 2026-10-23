@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x0
+    accessFlags = 0x1
     name = null
 .end annotation
 
@@ -19,7 +19,7 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/quickstep/interaction/TutorialController;)V
+.method public constructor <init>(Lcom/android/quickstep/interaction/TutorialController;)V
     .locals 0
 
     .line 1
@@ -45,7 +45,7 @@
 
     .line 2
     .line 3
-    invoke-static {p1}, Lcom/android/quickstep/interaction/TutorialController;->j(Lcom/android/quickstep/interaction/TutorialController;)Landroid/graphics/Rect;
+    invoke-static {p1}, Lcom/android/quickstep/interaction/TutorialController;->h(Lcom/android/quickstep/interaction/TutorialController;)Landroid/graphics/Rect;
 
     .line 4
     .line 5

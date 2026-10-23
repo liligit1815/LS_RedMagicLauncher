@@ -34,7 +34,8 @@
 | [LsOrbitStyleSettings.java](../helper-src/main/com/android/quickstep/views/LsOrbitStyleSettings.java) | 设置项、选中状态及透明底预览 |
 | [LsNativeStack.java](../helper-src/main/com/android/quickstep/views/LsNativeStack.java) | 可见卡面命中、实际布局、独立缩放及横屏留白 |
 | [LsStackTransition.java](../helper-src/main/com/android/quickstep/views/LsStackTransition.java) | 打开时截图与实时窗口矩阵同步、取消和恢复 |
-| [TaskView.smali](../src/smali_classes2/com/android/quickstep/views/TaskView.smali) | 子视图接收按下事件前的卡面命中接入 |
-| [RecentsView.smali](../src/smali_classes2/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务、手势路由与删除回调 |
+| [TaskView.smali](../src/smali_classes3/com/android/quickstep/views/TaskView.smali) | 子视图接收按下事件前的卡面命中接入 |
+| [RecentsView.smali](../src/smali_classes3/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务、手势路由与删除回调 |
+| [LsPlatform12.java](../helper-src/main/com/android/quickstep/views/LsPlatform12.java) | 红魔12原生弹簧进度和新可见任务接口 |
 
-环绕复用已有任务视图，不复制任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [开发状态](DEVELOPMENT_STATUS.md)。
+环绕复用已有任务视图，不复制任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [270001说明](RELEASE_270001.md)。

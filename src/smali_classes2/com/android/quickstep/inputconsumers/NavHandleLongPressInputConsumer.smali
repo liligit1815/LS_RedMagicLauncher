@@ -4,6 +4,16 @@
 
 
 # static fields
+.field static final CANCEL_REASON_INPUT_CONSUMER_SWITCHED:Ljava/lang/String; = "input consumer switched"
+
+.field static final CANCEL_REASON_INTERCEPT_DISALLOWED:Ljava/lang/String; = "intercept disallowed by child input consumer"
+
+.field static final CANCEL_REASON_TOUCH_CANCEL:Ljava/lang/String; = "touch action cancel"
+
+.field static final CANCEL_REASON_TOUCH_SLOP_PASSED:Ljava/lang/String; = "touch slop passed"
+
+.field static final CANCEL_REASON_TOUCH_UP:Ljava/lang/String; = "touch action up"
+
 .field private static final DEBUG_NAV_HANDLE:Z
 
 .field static final MIN_TIME_TO_LOG_ABANDON_MS:J = 0xc8L
@@ -24,7 +34,7 @@
 
 .field private final mLongPressTimeout:I
 
-.field private final mNavHandle:Lcom/android/quickstep/NavHandle;
+.field private mNavHandle:Lcom/android/quickstep/NavHandle;
 
 .field private mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
 
@@ -56,7 +66,7 @@
 
     .line 2
     .line 3
-    invoke-static {v0}, Lcom/android/launcher3/N5;->C(Ljava/lang/String;)Z
+    invoke-static {v0}, Lcom/android/launcher3/Utilities;->isPropertyEnabled(Ljava/lang/String;)Z
 
     .line 4
     .line 5
@@ -88,11 +98,11 @@
     .line 6
     .line 7
     .line 8
-    new-instance p2, Lcom/android/quickstep/inputconsumers/i;
+    new-instance p2, Lcom/android/quickstep/inputconsumers/m;
 
     .line 9
     .line 10
-    invoke-direct {p2, p0}, Lcom/android/quickstep/inputconsumers/i;-><init>(Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;)V
+    invoke-direct {p2, p0}, Lcom/android/quickstep/inputconsumers/m;-><init>(Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;)V
 
     .line 11
     .line 12
@@ -101,11 +111,11 @@
 
     .line 14
     .line 15
-    sget-object p2, Lcom/android/launcher3/util/Z;->r:Lcom/android/launcher3/util/I;
+    sget-object p2, Lcom/android/launcher3/display/DisplayController;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 16
     .line 17
-    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 18
     .line 19
@@ -113,11 +123,11 @@
     move-result-object p2
 
     .line 21
-    check-cast p2, Lcom/android/launcher3/util/Z;
+    check-cast p2, Lcom/android/launcher3/display/DisplayController;
 
     .line 22
     .line 23
-    invoke-virtual {p2}, Lcom/android/launcher3/util/Z;->w()Lcom/android/launcher3/util/Z$c;
+    invoke-interface {p2}, Lcom/android/launcher3/display/DisplayController;->getInfo()Lcom/android/launcher3/display/LauncherDisplayInfo;
 
     .line 24
     .line 25
@@ -125,7 +135,7 @@
     move-result-object p2
 
     .line 27
-    iget-object p2, p2, Lcom/android/launcher3/util/Z$c;->c:Landroid/graphics/Point;
+    iget-object p2, p2, Lcom/android/launcher3/display/LauncherDisplayInfo;->currentSize:Landroid/graphics/Point;
 
     .line 28
     .line 29
@@ -160,11 +170,11 @@
 
     .line 43
     .line 44
-    sget-object p2, Lcom/android/quickstep/util/ContextualSearchStateManager;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object p2, Lcom/android/quickstep/util/ContextualSearchStateManager;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 45
     .line 46
-    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 47
     .line 48
@@ -597,11 +607,11 @@
 
     .line 261
     .line 262
-    sget-object p2, Lcom/android/quickstep/TopTaskTracker;->INSTANCE:Lcom/android/launcher3/util/I;
+    sget-object p2, Lcom/android/quickstep/TopTaskTracker;->INSTANCE:Lcom/android/launcher3/util/DaggerSingletonObject;
 
     .line 263
     .line 264
-    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/I;->a(Landroid/content/Context;)Ljava/lang/Object;
+    invoke-virtual {p2, p1}, Lcom/android/launcher3/util/DaggerSingletonObject;->get(Landroid/content/Context;)Ljava/lang/Object;
 
     .line 265
     .line 266
@@ -735,11 +745,11 @@
 
     .line 50
     .line 51
-    sget-object v2, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    sget-object v2, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
     .line 52
     .line 53
-    invoke-virtual {v2}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    invoke-virtual {v2}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
 
     .line 54
     .line 55
@@ -779,7 +789,7 @@
 
     .line 72
     .line 73
-    invoke-virtual {v2}, Lcom/android/launcher3/logging/StatsLogManager;->latencyLogger()Lcom/android/launcher3/logging/StatsLogManager$h;
+    invoke-virtual {v2}, Lcom/android/launcher3/logging/StatsLogManager;->latencyLogger()Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
 
     .line 74
     .line 75
@@ -787,16 +797,16 @@
     move-result-object v2
 
     .line 77
-    new-instance v3, Lcom/android/launcher3/logging/f;
+    new-instance v3, Lcom/android/launcher3/logging/InstanceIdSequence;
 
     .line 78
     .line 79
-    invoke-direct {v3}, Lcom/android/launcher3/logging/f;-><init>()V
+    invoke-direct {v3}, Lcom/android/launcher3/logging/InstanceIdSequence;-><init>()V
 
     .line 80
     .line 81
     .line 82
-    invoke-virtual {v3}, Lcom/android/launcher3/logging/f;->a()Lcom/android/launcher3/logging/d;
+    invoke-virtual {v3}, Lcom/android/launcher3/logging/InstanceIdSequence;->newInstanceId()Lcom/android/launcher3/logging/InstanceId;
 
     .line 83
     .line 84
@@ -804,7 +814,7 @@
     move-result-object v3
 
     .line 86
-    invoke-interface {v2, v3}, Lcom/android/launcher3/logging/StatsLogManager$h;->withInstanceId(Lcom/android/launcher3/logging/d;)Lcom/android/launcher3/logging/StatsLogManager$h;
+    invoke-interface {v2, v3}, Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;->withInstanceId(Lcom/android/launcher3/logging/InstanceId;)Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
 
     .line 87
     .line 88
@@ -812,7 +822,7 @@
     move-result-object v2
 
     .line 90
-    invoke-interface {v2, v0, v1}, Lcom/android/launcher3/logging/StatsLogManager$h;->withLatency(J)Lcom/android/launcher3/logging/StatsLogManager$h;
+    invoke-interface {v2, v0, v1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;->withLatency(J)Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;
 
     .line 91
     .line 92
@@ -820,11 +830,11 @@
     move-result-object v0
 
     .line 94
-    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$f;->m:Lcom/android/launcher3/logging/StatsLogManager$f;
+    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$LauncherLatencyEvent;->LAUNCHER_LATENCY_CONTEXTUAL_SEARCH_LPNH_ABANDON:Lcom/android/launcher3/logging/StatsLogManager$LauncherLatencyEvent;
 
     .line 95
     .line 96
-    invoke-interface {v0, v1}, Lcom/android/launcher3/logging/StatsLogManager$h;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    invoke-interface {v0, v1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLatencyLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 97
     .line 98
@@ -842,11 +852,11 @@
     .line 103
     .line 104
     .line 105
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
     .line 106
     .line 107
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
 
     .line 108
     .line 109
@@ -863,19 +873,24 @@
     .line 114
     .line 115
     .line 116
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
 
     .line 117
     .line 118
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
+    if-eqz v0, :cond_2
 
     .line 119
     .line 120
-    invoke-virtual {v0, p0, p1}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;->onTouchFinished(Lcom/android/quickstep/NavHandle;Ljava/lang/String;)V
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
 
     .line 121
     .line 122
+    invoke-virtual {p0, v0, p1}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;->onTouchFinished(Lcom/android/quickstep/NavHandle;Ljava/lang/String;)V
+
     .line 123
+    .line 124
+    .line 125
+    :cond_2
     return-void
 .end method
 
@@ -925,680 +940,680 @@
     .line 19
     .line 20
     :cond_0
-    const-string v0, "touch action cancel"
+    const-string/jumbo v0, "touch action cancel"
 
     .line 21
     .line 22
+    .line 23
     invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->cancelLongPress(Ljava/lang/String;)V
 
-    .line 23
     .line 24
     .line 25
+    .line 26
     goto/16 :goto_0
 
-    .line 26
     .line 27
-    :cond_1
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
-
     .line 28
-    .line 29
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    :cond_1
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
+    .line 29
     .line 30
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
+
     .line 31
     .line 32
+    .line 33
     move-result-object v4
 
-    .line 33
+    .line 34
     iget-object v5, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
 
-    .line 34
     .line 35
+    .line 36
     invoke-virtual {v4, v5}, Landroid/os/Handler;->hasCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 36
     .line 37
     .line 38
+    .line 39
     move-result v4
 
-    .line 39
+    .line 40
     if-nez v4, :cond_2
 
-    .line 40
     .line 41
+    .line 42
     goto/16 :goto_0
 
-    .line 42
     .line 43
+    .line 44
     :cond_2
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
 
-    .line 44
     .line 45
     .line 46
+    .line 47
     move-result v4
 
-    .line 47
+    .line 48
     iget-object v5, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
 
-    .line 48
     .line 49
+    .line 50
     invoke-virtual {v5}, Landroid/view/MotionEvent;->getX()F
 
-    .line 50
     .line 51
     .line 52
-    move-result v5
-
     .line 53
-    sub-float/2addr v4, v5
+    move-result v5
 
     .line 54
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
+    sub-float/2addr v4, v5
 
     .line 55
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
+
     .line 56
     .line 57
+    .line 58
     move-result v5
 
-    .line 58
+    .line 59
     iget-object v6, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
 
-    .line 59
     .line 60
+    .line 61
     invoke-virtual {v6}, Landroid/view/MotionEvent;->getY()F
 
-    .line 61
     .line 62
     .line 63
+    .line 64
     move-result v6
 
-    .line 64
+    .line 65
     sub-float/2addr v5, v6
 
-    .line 65
+    .line 66
     mul-float/2addr v4, v4
 
-    .line 66
+    .line 67
     mul-float/2addr v5, v5
 
-    .line 67
+    .line 68
     add-float/2addr v4, v5
 
-    .line 68
+    .line 69
     float-to-double v4, v4
 
-    .line 69
+    .line 70
     sget-boolean v6, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->DEBUG_NAV_HANDLE:Z
 
-    .line 70
     .line 71
+    .line 72
     if-eqz v6, :cond_3
 
-    .line 72
     .line 73
+    .line 74
     new-instance v7, Ljava/lang/StringBuilder;
 
-    .line 74
     .line 75
+    .line 76
     invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 76
     .line 77
     .line 78
+    .line 79
     const-string v8, "ACTION_MOVE distanceSquared="
 
-    .line 79
     .line 80
+    .line 81
     invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 81
     .line 82
     .line 83
+    .line 84
     invoke-virtual {v7, v4, v5}, Ljava/lang/StringBuilder;->append(D)Ljava/lang/StringBuilder;
 
-    .line 84
     .line 85
     .line 86
+    .line 87
     invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    .line 87
     .line 88
     .line 89
+    .line 90
     move-result-object v7
 
-    .line 90
+    .line 91
     invoke-static {v2, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 91
     .line 92
     .line 93
+    .line 94
     :cond_3
     invoke-static {}, Lcom/android/quickstep/DeviceConfigWrapper;->get()Lcom/android/quickstep/DeviceConfigWrapper;
 
-    .line 94
     .line 95
     .line 96
-    move-result-object v7
-
     .line 97
-    invoke-virtual {v7}, Lcom/android/quickstep/DeviceConfigWrapper;->getEnableLpnhTwoStages()Z
+    move-result-object v7
 
     .line 98
+    invoke-virtual {v7}, Lcom/android/quickstep/DeviceConfigWrapper;->getEnableLpnhTwoStages()Z
+
     .line 99
     .line 100
+    .line 101
     move-result v7
 
-    .line 101
+    .line 102
     if-eqz v7, :cond_4
 
-    .line 102
     .line 103
+    .line 104
     iget v7, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquared:F
 
-    .line 104
     .line 105
-    float-to-double v7, v7
-
     .line 106
-    cmpg-double v7, v7, v4
+    float-to-double v7, v7
 
     .line 107
+    cmpg-double v7, v7, v4
+
     .line 108
+    .line 109
     if-gez v7, :cond_4
 
-    .line 109
     .line 110
+    .line 111
     iget v7, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mOuterTouchSlopSquared:F
 
-    .line 111
     .line 112
+    .line 113
     float-to-double v7, v7
 
-    .line 113
+    .line 114
     cmpg-double v7, v4, v7
 
-    .line 114
     .line 115
+    .line 116
     if-gtz v7, :cond_4
 
-    .line 116
     .line 117
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
-
     .line 118
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
+
     .line 119
     .line 120
+    .line 121
     move-result-object v7
 
-    .line 121
+    .line 122
     iget-object v8, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
 
-    .line 122
     .line 123
+    .line 124
     invoke-virtual {v7, v8}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 124
     .line 125
     .line 126
+    .line 127
     iget v7, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mOuterLongPressTimeout:I
 
-    .line 127
     .line 128
+    .line 129
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getEventTime()J
 
-    .line 129
     .line 130
     .line 131
+    .line 132
     move-result-wide v8
 
-    .line 132
+    .line 133
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getDownTime()J
 
-    .line 133
     .line 134
     .line 135
+    .line 136
     move-result-wide v10
 
-    .line 136
+    .line 137
     sub-long/2addr v8, v10
 
-    .line 137
+    .line 138
     long-to-int v8, v8
 
-    .line 138
+    .line 139
     sub-int/2addr v7, v8
 
-    .line 139
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
-
     .line 140
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
+
     .line 141
     .line 142
+    .line 143
     move-result-object v0
 
-    .line 143
+    .line 144
     iget-object v8, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
 
-    .line 144
     .line 145
+    .line 146
     int-to-long v9, v7
 
-    .line 146
+    .line 147
     invoke-virtual {v0, v8, v9, v10}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 147
     .line 148
     .line 149
+    .line 150
     iget v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mOuterTouchSlopSquared:F
 
-    .line 150
     .line 151
+    .line 152
     iput v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquared:F
 
-    .line 152
     .line 153
+    .line 154
     iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mGestureState:Lcom/android/quickstep/GestureState;
 
-    .line 154
     .line 155
+    .line 156
     invoke-virtual {v0, v3}, Lcom/android/quickstep/GestureState;->setIsInExtendedSlopRegion(Z)V
 
-    .line 156
     .line 157
     .line 158
+    .line 159
     if-eqz v6, :cond_4
 
-    .line 159
     .line 160
+    .line 161
     const-string v0, "Touch in middle region!"
 
-    .line 161
     .line 162
+    .line 163
     invoke-static {v2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 163
     .line 164
     .line 165
+    .line 166
     :cond_4
     iget v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquared:F
 
-    .line 166
     .line 167
+    .line 168
     float-to-double v7, v0
 
-    .line 168
+    .line 169
     cmpl-double v0, v4, v7
 
-    .line 169
     .line 170
-    if-lez v0, :cond_a
-
     .line 171
+    if-lez v0, :cond_b
+
     .line 172
+    .line 173
     if-eqz v6, :cond_5
 
-    .line 173
     .line 174
+    .line 175
     new-instance v0, Ljava/lang/StringBuilder;
 
-    .line 175
     .line 176
+    .line 177
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 177
     .line 178
     .line 179
+    .line 180
     const-string v4, "Touch slop out. mTouchSlopSquared="
 
-    .line 180
     .line 181
+    .line 182
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 182
     .line 183
     .line 184
+    .line 185
     iget v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquared:F
 
-    .line 185
     .line 186
+    .line 187
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
 
-    .line 187
     .line 188
     .line 189
+    .line 190
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    .line 190
     .line 191
     .line 192
+    .line 193
     move-result-object v0
 
-    .line 193
+    .line 194
     invoke-static {v2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 194
     .line 195
     .line 196
-    :cond_5
-    const-string v0, "touch slop passed"
-
     .line 197
-    .line 198
-    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->cancelLongPress(Ljava/lang/String;)V
+    :cond_5
+    const-string/jumbo v0, "touch slop passed"
 
+    .line 198
     .line 199
     .line 200
+    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->cancelLongPress(Ljava/lang/String;)V
+
     .line 201
+    .line 202
+    .line 203
     goto :goto_0
 
-    .line 202
-    :cond_6
-    const-string v0, "touch action up"
-
-    .line 203
     .line 204
-    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->cancelLongPress(Ljava/lang/String;)V
+    :cond_6
+    const-string/jumbo v0, "touch action up"
 
     .line 205
     .line 206
     .line 207
-    goto :goto_0
+    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->cancelLongPress(Ljava/lang/String;)V
 
     .line 208
+    .line 209
+    .line 210
+    goto :goto_0
+
+    .line 211
     :cond_7
     iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
 
-    .line 209
-    .line 210
+    .line 212
+    .line 213
     if-eqz v0, :cond_8
 
-    .line 211
-    .line 212
-    invoke-virtual {v0}, Landroid/view/MotionEvent;->recycle()V
-
-    .line 213
     .line 214
     .line 215
-    :cond_8
-    invoke-static {p1}, Landroid/view/MotionEvent;->obtain(Landroid/view/MotionEvent;)Landroid/view/MotionEvent;
+    invoke-virtual {v0}, Landroid/view/MotionEvent;->recycle()V
 
     .line 216
     .line 217
     .line 218
-    move-result-object v0
+    :cond_8
+    invoke-static {p1}, Landroid/view/MotionEvent;->obtain(Landroid/view/MotionEvent;)Landroid/view/MotionEvent;
 
     .line 219
-    iput-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
-
     .line 220
     .line 221
-    iget v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquaredOriginal:F
+    move-result-object v0
 
     .line 222
+    iput-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
+
     .line 223
+    .line 224
+    iget v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquaredOriginal:F
+
+    .line 225
+    .line 226
     iput v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTouchSlopSquared:F
 
-    .line 224
-    .line 225
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mGestureState:Lcom/android/quickstep/GestureState;
-
-    .line 226
     .line 227
-    const/4 v4, 0x0
-
     .line 228
-    invoke-virtual {v0, v4}, Lcom/android/quickstep/GestureState;->setIsInExtendedSlopRegion(Z)V
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mGestureState:Lcom/android/quickstep/GestureState;
 
     .line 229
     .line 230
+    const/4 v4, 0x0
+
     .line 231
-    iput-boolean v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressLogged:Z
+    invoke-virtual {v0, v4}, Lcom/android/quickstep/GestureState;->setIsInExtendedSlopRegion(Z)V
 
     .line 232
     .line 233
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getRawX()F
-
     .line 234
+    iput-boolean v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressLogged:Z
+
     .line 235
     .line 236
-    move-result v0
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getRawX()F
 
     .line 237
-    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->isInNavBarHorizontalArea(F)Z
-
     .line 238
     .line 239
-    .line 240
     move-result v0
 
-    .line 241
-    if-eqz v0, :cond_9
+    .line 240
+    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->isInNavBarHorizontalArea(F)Z
 
+    .line 241
     .line 242
     .line 243
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
+    move-result v0
 
     .line 244
+    if-eqz v0, :cond_a
+
     .line 245
-    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
-
     .line 246
-    .line 247
-    invoke-virtual {v0, v4}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;->onTouchStarted(Lcom/android/quickstep/NavHandle;)V
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
 
+    .line 247
     .line 248
+    if-eqz v0, :cond_9
+
     .line 249
     .line 250
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
 
     .line 251
     .line 252
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    invoke-virtual {v4, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;->onTouchStarted(Lcom/android/quickstep/NavHandle;)V
 
     .line 253
     .line 254
     .line 255
-    move-result-object v0
+    :cond_9
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
     .line 256
-    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
-
     .line 257
-    .line 258
-    iget v5, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mLongPressTimeout:I
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
 
+    .line 258
     .line 259
     .line 260
-    int-to-long v5, v5
+    move-result-object v0
 
     .line 261
-    invoke-virtual {v0, v4, v5, v6}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
 
     .line 262
     .line 263
-    .line 264
-    :cond_9
-    sget-boolean v0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->DEBUG_NAV_HANDLE:Z
+    iget v5, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mLongPressTimeout:I
 
+    .line 264
     .line 265
+    int-to-long v5, v5
+
     .line 266
-    if-eqz v0, :cond_a
+    invoke-virtual {v0, v4, v5, v6}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
     .line 267
     .line 268
-    const-string v0, "ACTION_DOWN"
-
     .line 269
-    .line 270
-    invoke-static {v2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :cond_a
+    sget-boolean v0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->DEBUG_NAV_HANDLE:Z
 
+    .line 270
     .line 271
+    if-eqz v0, :cond_b
+
     .line 272
     .line 273
-    :cond_a
-    :goto_0
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    const-string v0, "ACTION_DOWN"
 
     .line 274
     .line 275
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    invoke-static {v2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 276
     .line 277
     .line 278
-    move-result-object v2
+    :cond_b
+    :goto_0
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
     .line 279
-    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
-
     .line 280
-    .line 281
-    invoke-virtual {v2, v4}, Landroid/os/Handler;->hasCallbacks(Ljava/lang/Runnable;)Z
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
 
+    .line 281
     .line 282
     .line 283
+    move-result-object v2
+
     .line 284
-    move-result v2
+    iget-object v4, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
 
     .line 285
-    if-eqz v2, :cond_c
-
     .line 286
-    .line 287
-    invoke-virtual {p1}, Landroid/view/MotionEvent;->getClassification()I
+    invoke-virtual {v2, v4}, Landroid/os/Handler;->hasCallbacks(Ljava/lang/Runnable;)Z
 
+    .line 287
     .line 288
     .line 289
+    move-result v2
+
     .line 290
-    move-result p1
+    if-eqz v2, :cond_e
 
     .line 291
-    if-ne p1, v1, :cond_c
-
     .line 292
-    .line 293
-    iget-boolean p1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressLogged:Z
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getClassification()I
 
+    .line 293
     .line 294
     .line 295
-    if-nez p1, :cond_c
+    move-result p1
 
     .line 296
+    if-ne p1, v1, :cond_e
+
     .line 297
-    iget-object p1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTopTaskTracker:Lcom/android/quickstep/TopTaskTracker;
-
     .line 298
-    .line 299
-    invoke-virtual {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getDisplayId()I
+    iget-boolean p1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressLogged:Z
 
+    .line 299
     .line 300
+    if-nez p1, :cond_e
+
     .line 301
     .line 302
-    move-result v1
+    iget-object p1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTopTaskTracker:Lcom/android/quickstep/TopTaskTracker;
 
     .line 303
-    invoke-virtual {p1, v3, v1}, Lcom/android/quickstep/TopTaskTracker;->getCachedTopTask(ZI)Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;
-
     .line 304
+    invoke-virtual {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getDisplayId()I
+
     .line 305
     .line 306
-    move-result-object p1
-
     .line 307
-    invoke-virtual {p1}, Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;->getPackageName()Ljava/lang/String;
-
-    .line 308
-    .line 309
-    .line 310
-    move-result-object p1
-
-    .line 311
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mStatsLogManager:Lcom/android/launcher3/logging/StatsLogManager;
-
-    .line 312
-    .line 313
-    invoke-virtual {v1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
-
-    .line 314
-    .line 315
-    .line 316
-    move-result-object v1
-
-    .line 317
-    invoke-interface {v1, p1}, Lcom/android/launcher3/logging/StatsLogManager$i;->withPackageName(Ljava/lang/String;)Lcom/android/launcher3/logging/StatsLogManager$i;
-
-    .line 318
-    .line 319
-    .line 320
-    move-result-object p1
-
-    .line 321
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
-
-    .line 322
-    .line 323
-    invoke-interface {v1}, Lcom/android/quickstep/NavHandle;->isNavHandleStashedTaskbar()Z
-
-    .line 324
-    .line 325
-    .line 326
     move-result v1
 
-    .line 327
-    if-eqz v1, :cond_b
+    .line 308
+    invoke-virtual {p1, v3, v1}, Lcom/android/quickstep/TopTaskTracker;->getCachedTopTask(ZI)Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;
 
+    .line 309
+    .line 310
+    .line 311
+    move-result-object p1
+
+    .line 312
+    invoke-virtual {p1}, Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;->getPackageName()Ljava/lang/String;
+
+    .line 313
+    .line 314
+    .line 315
+    move-result-object p1
+
+    .line 316
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
+
+    .line 317
+    .line 318
+    if-eqz v1, :cond_d
+
+    .line 319
+    .line 320
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mStatsLogManager:Lcom/android/launcher3/logging/StatsLogManager;
+
+    .line 321
+    .line 322
+    invoke-virtual {v1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
+
+    .line 323
+    .line 324
+    .line 325
+    move-result-object v1
+
+    .line 326
+    invoke-interface {v1, p1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->withPackageName(Ljava/lang/String;)Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
+
+    .line 327
     .line 328
     .line 329
-    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$e;->u0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    move-result-object p1
 
     .line 330
-    .line 331
-    goto :goto_1
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
 
+    .line 331
     .line 332
-    :cond_b
-    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$e;->s0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    invoke-interface {v1}, Lcom/android/quickstep/NavHandle;->isNavHandleStashedTaskbar()Z
 
     .line 333
     .line 334
-    :goto_1
-    invoke-interface {p1, v1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
-
     .line 335
+    move-result v1
+
     .line 336
+    if-eqz v1, :cond_c
+
     .line 337
-    iput-boolean v3, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressLogged:Z
-
     .line 338
-    .line 339
-    iget-boolean p1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressEnabled:Z
+    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_DEEP_PRESS_STASHED_TASKBAR:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
+    .line 339
     .line 340
+    goto :goto_1
+
     .line 341
-    if-eqz p1, :cond_c
+    :cond_c
+    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_DEEP_PRESS_NAVBAR:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
 
     .line 342
     .line 343
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    :goto_1
+    invoke-interface {p1, v1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
     .line 344
     .line 345
     .line 346
-    move-result-object p1
+    :cond_d
+    iput-boolean v3, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressLogged:Z
 
     .line 347
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
-
     .line 348
-    .line 349
-    invoke-virtual {p1, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
+    iget-boolean p1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mDeepPressEnabled:Z
 
+    .line 349
     .line 350
+    if-eqz p1, :cond_e
+
     .line 351
     .line 352
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
 
     .line 353
     .line 354
@@ -1606,16 +1621,33 @@
     move-result-object p1
 
     .line 356
-    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
 
     .line 357
     .line 358
-    invoke-virtual {p1, p0}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+    invoke-virtual {p1, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
     .line 359
     .line 360
     .line 361
-    :cond_c
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
+
+    .line 362
+    .line 363
+    .line 364
+    move-result-object p1
+
+    .line 365
+    iget-object p0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
+
+    .line 366
+    .line 367
+    invoke-virtual {p1, p0}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    .line 368
+    .line 369
+    .line 370
+    :cond_e
     return-void
 .end method
 
@@ -1673,7 +1705,7 @@
     int-to-float v2, v2
 
     .line 25
-    invoke-static {v2}, Lcom/android/launcher3/N5;->i(F)I
+    invoke-static {v2}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
     .line 26
     .line 27
@@ -1692,7 +1724,7 @@
 
     .line 32
     .line 33
-    invoke-static {v2}, Lcom/android/launcher3/N5;->i(F)I
+    invoke-static {v2}, Lcom/android/launcher3/Utilities;->dpToPx(F)I
 
     .line 34
     .line 35
@@ -1783,207 +1815,221 @@
 
     .line 6
     .line 7
-    const-string v1, "triggerLongPress"
+    const-string/jumbo v1, "triggerLongPress"
 
     .line 8
     .line 9
+    .line 10
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 10
     .line 11
     .line 12
-    :cond_0
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTopTaskTracker:Lcom/android/quickstep/TopTaskTracker;
-
     .line 13
-    .line 14
-    const/4 v1, 0x1
+    :cond_0
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
 
+    .line 14
     .line 15
-    invoke-virtual {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getDisplayId()I
+    if-nez v0, :cond_1
 
     .line 16
     .line 17
+    goto :goto_1
+
     .line 18
-    move-result v2
+    :cond_1
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTopTaskTracker:Lcom/android/quickstep/TopTaskTracker;
 
     .line 19
+    .line 20
+    const/4 v1, 0x1
+
+    .line 21
+    invoke-virtual {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getDisplayId()I
+
+    .line 22
+    .line 23
+    .line 24
+    move-result v2
+
+    .line 25
     invoke-virtual {v0, v1, v2}, Lcom/android/quickstep/TopTaskTracker;->getCachedTopTask(ZI)Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;
 
-    .line 20
-    .line 21
-    .line 22
-    move-result-object v0
-
-    .line 23
-    invoke-virtual {v0}, Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;->getPackageName()Ljava/lang/String;
-
-    .line 24
-    .line 25
     .line 26
+    .line 27
+    .line 28
     move-result-object v0
 
-    .line 27
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mStatsLogManager:Lcom/android/launcher3/logging/StatsLogManager;
-
-    .line 28
     .line 29
-    invoke-virtual {v1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$i;
+    invoke-virtual {v0}, Lcom/android/quickstep/TopTaskTracker$CachedTaskInfo;->getPackageName()Ljava/lang/String;
 
     .line 30
     .line 31
     .line 32
-    move-result-object v1
+    move-result-object v0
 
     .line 33
-    invoke-interface {v1, v0}, Lcom/android/launcher3/logging/StatsLogManager$i;->withPackageName(Ljava/lang/String;)Lcom/android/launcher3/logging/StatsLogManager$i;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mStatsLogManager:Lcom/android/launcher3/logging/StatsLogManager;
 
     .line 34
     .line 35
+    invoke-virtual {v1}, Lcom/android/launcher3/logging/StatsLogManager;->logger()Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
+
     .line 36
-    move-result-object v0
-
     .line 37
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
-
     .line 38
+    move-result-object v1
+
     .line 39
-    invoke-interface {v1}, Lcom/android/quickstep/NavHandle;->isNavHandleStashedTaskbar()Z
+    invoke-interface {v1, v0}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->withPackageName(Ljava/lang/String;)Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;
 
     .line 40
     .line 41
     .line 42
-    move-result v1
+    move-result-object v0
 
     .line 43
-    if-eqz v1, :cond_1
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
 
     .line 44
     .line 45
-    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$e;->v0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    invoke-interface {v1}, Lcom/android/quickstep/NavHandle;->isNavHandleStashedTaskbar()Z
 
     .line 46
     .line 47
-    goto :goto_0
-
     .line 48
-    :cond_1
-    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$e;->t0:Lcom/android/launcher3/logging/StatsLogManager$e;
+    move-result v1
 
     .line 49
-    .line 50
-    :goto_0
-    invoke-interface {v0, v1}, Lcom/android/launcher3/logging/StatsLogManager$i;->log(Lcom/android/launcher3/logging/StatsLogManager$d;)V
+    if-eqz v1, :cond_2
 
+    .line 50
     .line 51
+    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_LONG_PRESS_STASHED_TASKBAR:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
+
     .line 52
     .line 53
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
+    goto :goto_0
 
     .line 54
+    :cond_2
+    sget-object v1, Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;->LAUNCHER_LONG_PRESS_NAVBAR:Lcom/android/launcher3/logging/StatsLogManager$LauncherEvent;
+
     .line 55
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
-
     .line 56
-    .line 57
-    invoke-virtual {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getDisplayId()I
+    :goto_0
+    invoke-interface {v0, v1}, Lcom/android/launcher3/logging/StatsLogManager$StatsLogger;->log(Lcom/android/launcher3/logging/StatsLogManager$EventEnum;)V
 
+    .line 57
     .line 58
     .line 59
-    .line 60
-    move-result v2
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandleLongPressHandler:Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;
 
+    .line 60
     .line 61
-    invoke-virtual {v0, v1, v2}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;->getLongPressRunnable(Lcom/android/quickstep/NavHandle;I)Ljava/lang/Runnable;
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
 
     .line 62
     .line 63
+    invoke-virtual {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getDisplayId()I
+
     .line 64
-    move-result-object v0
-
     .line 65
-    if-nez v0, :cond_2
-
     .line 66
+    move-result v2
+
     .line 67
-    return-void
+    invoke-virtual {v0, v1, v2}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;->getLongPressRunnable(Lcom/android/quickstep/NavHandle;I)Ljava/lang/Runnable;
 
     .line 68
-    :cond_2
-    const-class v1, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
-
     .line 69
     .line 70
-    invoke-virtual {p0, v1}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getInputConsumerOfClass(Ljava/lang/Class;)Lcom/android/quickstep/InputConsumer;
+    move-result-object v0
 
     .line 71
+    if-nez v0, :cond_3
+
     .line 72
     .line 73
-    move-result-object v1
+    :goto_1
+    return-void
 
     .line 74
-    check-cast v1, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
+    :cond_3
+    const-class v1, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
 
     .line 75
     .line 76
-    if-eqz v1, :cond_3
+    invoke-virtual {p0, v1}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->getInputConsumerOfClass(Ljava/lang/Class;)Lcom/android/quickstep/InputConsumer;
 
     .line 77
     .line 78
-    invoke-virtual {v1}, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;->hasStartedTouchTracking()Z
-
     .line 79
-    .line 80
-    .line 81
-    move-result v2
+    move-result-object v1
 
+    .line 80
+    check-cast v1, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;
+
+    .line 81
     .line 82
-    if-eqz v2, :cond_3
+    if-eqz v1, :cond_4
 
     .line 83
     .line 84
-    invoke-virtual {v1, v0}, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;->setForceFinishRecentsTransitionCallback(Ljava/lang/Runnable;)V
+    invoke-virtual {v1}, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;->hasStartedTouchTracking()Z
 
     .line 85
     .line 86
     .line 87
-    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
+    move-result v2
 
     .line 88
-    .line 89
-    invoke-virtual {p0, v0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->setActive(Landroid/view/MotionEvent;)V
+    if-eqz v2, :cond_4
 
+    .line 89
     .line 90
+    invoke-virtual {v1, v0}, Lcom/android/quickstep/inputconsumers/OtherActivityInputConsumer;->setForceFinishRecentsTransitionCallback(Ljava/lang/Runnable;)V
+
     .line 91
     .line 92
-    return-void
-
     .line 93
-    :cond_3
-    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
+    iget-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
 
     .line 94
     .line 95
-    invoke-virtual {p0, v1}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->setActive(Landroid/view/MotionEvent;)V
+    invoke-virtual {p0, v0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->setActive(Landroid/view/MotionEvent;)V
 
     .line 96
     .line 97
     .line 98
-    sget-object p0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    return-void
 
     .line 99
-    .line 100
-    invoke-virtual {p0, v0}, Lcom/android/launcher3/util/p1;->n(Ljava/lang/Runnable;)V
+    :cond_4
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mCurrentDownEvent:Landroid/view/MotionEvent;
 
+    .line 100
     .line 101
+    invoke-virtual {p0, v1}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->setActive(Landroid/view/MotionEvent;)V
+
     .line 102
     .line 103
+    .line 104
+    sget-object p0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
+
+    .line 105
+    .line 106
+    invoke-virtual {p0, v0}, Lcom/android/launcher3/util/LooperExecutor;->post(Ljava/lang/Runnable;)V
+
+    .line 107
+    .line 108
+    .line 109
     return-void
 .end method
 
 
 # virtual methods
-.method protected getDelegatorName()Ljava/lang/String;
+.method public getDelegatorName()Ljava/lang/String;
     .locals 0
 
     .line 1
@@ -2019,6 +2065,63 @@
 
     .line 11
     return p0
+.end method
+
+.method public onConsumerAboutToBeSwitched()V
+    .locals 2
+
+    .line 1
+    invoke-super {p0}, Lcom/android/quickstep/inputconsumers/DelegateInputConsumer;->onConsumerAboutToBeSwitched()V
+
+    .line 2
+    .line 3
+    .line 4
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
+
+    .line 5
+    .line 6
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
+
+    .line 7
+    .line 8
+    .line 9
+    move-result-object v0
+
+    .line 10
+    iget-object v1, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mTriggerLongPress:Ljava/lang/Runnable;
+
+    .line 11
+    .line 12
+    invoke-virtual {v0, v1}, Landroid/os/Handler;->hasCallbacks(Ljava/lang/Runnable;)Z
+
+    .line 13
+    .line 14
+    .line 15
+    move-result v0
+
+    .line 16
+    if-eqz v0, :cond_0
+
+    .line 17
+    .line 18
+    const-string v0, "input consumer switched"
+
+    .line 19
+    .line 20
+    invoke-direct {p0, v0}, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->cancelLongPress(Ljava/lang/String;)V
+
+    .line 21
+    .line 22
+    .line 23
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 24
+    iput-object v0, p0, Lcom/android/quickstep/inputconsumers/NavHandleLongPressInputConsumer;->mNavHandle:Lcom/android/quickstep/NavHandle;
+
+    .line 25
+    .line 26
+    return-void
 .end method
 
 .method public onHoverEvent(Landroid/view/MotionEvent;)V
@@ -2092,11 +2195,11 @@
 
     .line 26
     :cond_1
-    sget-object v0, Lcom/android/launcher3/util/m0;->e:Lcom/android/launcher3/util/p1;
+    sget-object v0, Lcom/android/launcher3/util/Executors;->MAIN_EXECUTOR:Lcom/android/launcher3/util/LooperExecutor;
 
     .line 27
     .line 28
-    invoke-virtual {v0}, Lcom/android/launcher3/util/p1;->e()Landroid/os/Handler;
+    invoke-virtual {v0}, Lcom/android/launcher3/util/LooperExecutor;->getHandler()Landroid/os/Handler;
 
     .line 29
     .line 30
@@ -2155,7 +2258,7 @@
     return-void
 .end method
 
-.method setNavHandleLongPressHandler(Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;)V
+.method public setNavHandleLongPressHandler(Lcom/android/quickstep/inputconsumers/NavHandleLongPressHandler;)V
     .locals 0
 
     .line 1
@@ -2166,7 +2269,7 @@
     return-void
 .end method
 
-.method setStatsLogManager(Lcom/android/launcher3/logging/StatsLogManager;)V
+.method public setStatsLogManager(Lcom/android/launcher3/logging/StatsLogManager;)V
     .locals 0
 
     .line 1

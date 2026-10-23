@@ -15,11 +15,11 @@
 
 
 # instance fields
-.field private final g:Landroid/graphics/drawable/Drawable;
+.field public final c:Landroid/graphics/drawable/Drawable;
 
-.field h:Landroidx/slice/widget/RemoteInputView;
+.field public m:Landroidx/slice/widget/RemoteInputView;
 
-.field i:Z
+.field public n:Z
 
 
 # direct methods
@@ -40,18 +40,20 @@
     move-result-object p1
 
     .line 8
-    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->g:Landroid/graphics/drawable/Drawable;
+    iput-object p1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->c:Landroid/graphics/drawable/Drawable;
 
     .line 9
     .line 10
     return-void
 .end method
 
-.method private a()V
+
+# virtual methods
+.method public final a()V
     .locals 2
 
     .line 1
-    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->h:Landroidx/slice/widget/RemoteInputView;
+    iget-object v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->m:Landroidx/slice/widget/RemoteInputView;
 
     .line 2
     .line 3
@@ -59,7 +61,7 @@
 
     .line 4
     .line 5
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->b()Z
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->b()Z
 
     .line 6
     .line 7
@@ -107,7 +109,7 @@
     .line 26
     .line 27
     .line 28
-    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->h:Landroidx/slice/widget/RemoteInputView;
+    iget-object v1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->m:Landroidx/slice/widget/RemoteInputView;
 
     .line 29
     .line 30
@@ -121,7 +123,7 @@
     .line 34
     .line 35
     :cond_1
-    iput-boolean v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->i:Z
+    iput-boolean v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->n:Z
 
     .line 36
     .line 37
@@ -131,7 +133,7 @@
     .line 38
     :cond_3
     :goto_0
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->b()Z
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->b()Z
 
     .line 39
     .line 40
@@ -139,7 +141,7 @@
     return-void
 .end method
 
-.method private b()Z
+.method public final b()Z
     .locals 0
 
     .line 1
@@ -154,8 +156,6 @@
     return p0
 .end method
 
-
-# virtual methods
 .method public getFocusedRect(Landroid/graphics/Rect;)V
     .locals 2
 
@@ -272,7 +272,7 @@
     move-result-object p1
 
     .line 5
-    iget-boolean v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->i:Z
+    iget-boolean v0, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->n:Z
 
     .line 6
     .line 7
@@ -296,7 +296,7 @@
 
     .line 16
     .line 17
-    invoke-static {v0, v1}, Lz/a;->i(Landroid/content/Context;Ljava/lang/Class;)Ljava/lang/Object;
+    invoke-static {v0, v1}, Lp5/a;->i(Landroid/content/Context;Ljava/lang/Class;)Ljava/lang/Object;
 
     .line 18
     .line 19
@@ -330,7 +330,7 @@
     return-object p1
 .end method
 
-.method protected onFocusChanged(ZILandroid/graphics/Rect;)V
+.method public onFocusChanged(ZILandroid/graphics/Rect;)V
     .locals 0
 
     .line 1
@@ -343,7 +343,7 @@
 
     .line 5
     .line 6
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->a()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->a()V
 
     .line 7
     .line 8
@@ -392,7 +392,7 @@
 
     .line 3
     .line 4
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->a()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->a()V
 
     .line 5
     .line 6
@@ -415,7 +415,7 @@
     return p0
 .end method
 
-.method protected onVisibilityChanged(Landroid/view/View;I)V
+.method public onVisibilityChanged(Landroid/view/View;I)V
     .locals 0
 
     .line 1
@@ -436,7 +436,7 @@
 
     .line 9
     .line 10
-    invoke-direct {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->a()V
+    invoke-virtual {p0}, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->a()V
 
     .line 11
     .line 12
@@ -449,7 +449,7 @@
     .locals 0
 
     .line 1
-    invoke-static {p0, p1}, Landroidx/core/widget/i;->r(Landroid/widget/TextView;Landroid/view/ActionMode$Callback;)Landroid/view/ActionMode$Callback;
+    invoke-static {p0, p1}, Le6/i;->r(Landroid/widget/TextView;Landroid/view/ActionMode$Callback;)Landroid/view/ActionMode$Callback;
 
     .line 2
     .line 3
@@ -465,7 +465,7 @@
     return-void
 .end method
 
-.method setInnerFocusable(Z)V
+.method public setInnerFocusable(Z)V
     .locals 0
 
     .line 1
@@ -493,7 +493,7 @@
     .line 13
     .line 14
     .line 15
-    iget-object p1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->g:Landroid/graphics/drawable/Drawable;
+    iget-object p1, p0, Landroidx/slice/widget/RemoteInputView$RemoteEditText;->c:Landroid/graphics/drawable/Drawable;
 
     .line 16
     .line 17

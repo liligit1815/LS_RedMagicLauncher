@@ -74,7 +74,7 @@
     return-void
 .end method
 
-.method static findFirstKeyLessThan(Landroid/util/SparseIntArray;I)I
+.method public static findFirstKeyLessThan(Landroid/util/SparseIntArray;I)I
     .locals 4
 
     .line 1
@@ -180,7 +180,7 @@
 
 
 # virtual methods
-.method getCachedSpanGroupIndex(II)I
+.method public getCachedSpanGroupIndex(II)I
     .locals 2
 
     .line 1
@@ -247,7 +247,7 @@
     return p2
 .end method
 
-.method getCachedSpanIndex(II)I
+.method public getCachedSpanIndex(II)I
     .locals 2
 
     .line 1

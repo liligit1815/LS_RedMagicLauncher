@@ -12,9 +12,9 @@
 
 
 # instance fields
-.field private g:I
+.field public c:I
 
-.field private h:I
+.field public m:I
 
 
 # direct methods
@@ -38,13 +38,13 @@
     const v0, 0x7fffffff
 
     .line 3
-    iput v0, p0, Landroidx/preference/internal/PreferenceImageView;->g:I
+    iput v0, p0, Landroidx/preference/internal/PreferenceImageView;->c:I
 
     .line 4
-    iput v0, p0, Landroidx/preference/internal/PreferenceImageView;->h:I
+    iput v0, p0, Landroidx/preference/internal/PreferenceImageView;->m:I
 
     .line 5
-    sget-object v1, Landroidx/preference/q;->H0:[I
+    sget-object v1, Le7/o;->H0:[I
 
     const/4 v2, 0x0
 
@@ -53,7 +53,7 @@
     move-result-object p1
 
     .line 6
-    sget p2, Landroidx/preference/q;->J0:I
+    sget p2, Le7/o;->J0:I
 
     invoke-virtual {p1, p2, v0}, Landroid/content/res/TypedArray;->getDimensionPixelSize(II)I
 
@@ -62,7 +62,7 @@
     invoke-virtual {p0, p2}, Landroidx/preference/internal/PreferenceImageView;->setMaxWidth(I)V
 
     .line 7
-    sget p2, Landroidx/preference/q;->I0:I
+    sget p2, Le7/o;->I0:I
 
     invoke-virtual {p1, p2, v0}, Landroid/content/res/TypedArray;->getDimensionPixelSize(II)I
 
@@ -82,7 +82,7 @@
     .locals 0
 
     .line 1
-    iget p0, p0, Landroidx/preference/internal/PreferenceImageView;->h:I
+    iget p0, p0, Landroidx/preference/internal/PreferenceImageView;->m:I
 
     .line 2
     .line 3
@@ -93,14 +93,14 @@
     .locals 0
 
     .line 1
-    iget p0, p0, Landroidx/preference/internal/PreferenceImageView;->g:I
+    iget p0, p0, Landroidx/preference/internal/PreferenceImageView;->c:I
 
     .line 2
     .line 3
     return p0
 .end method
 
-.method protected onMeasure(II)V
+.method public onMeasure(II)V
     .locals 5
 
     .line 1
@@ -235,7 +235,7 @@
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/preference/internal/PreferenceImageView;->h:I
+    iput p1, p0, Landroidx/preference/internal/PreferenceImageView;->m:I
 
     .line 2
     .line 3
@@ -251,7 +251,7 @@
     .locals 0
 
     .line 1
-    iput p1, p0, Landroidx/preference/internal/PreferenceImageView;->g:I
+    iput p1, p0, Landroidx/preference/internal/PreferenceImageView;->c:I
 
     .line 2
     .line 3

@@ -15,9 +15,9 @@
 
 
 # instance fields
-.field private final a:Landroid/net/Uri;
+.field public final a:Landroid/net/Uri;
 
-.field private b:Ljava/util/ArrayList;
+.field public b:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/ArrayList<",
@@ -27,7 +27,7 @@
     .end annotation
 .end field
 
-.field private c:Ljava/util/ArrayList;
+.field public c:Ljava/util/ArrayList;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/ArrayList<",
@@ -37,7 +37,7 @@
     .end annotation
 .end field
 
-.field private d:Landroidx/slice/SliceSpec;
+.field public d:Landroidx/slice/SliceSpec;
 
 
 # direct methods

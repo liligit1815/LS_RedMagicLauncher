@@ -18,7 +18,7 @@
 
 
 # virtual methods
-.method protected j(Landroidx/constraintlayout/widget/ConstraintLayout;)V
+.method public j(Landroidx/constraintlayout/widget/ConstraintLayout;)V
     .locals 0
 
     .line 1
@@ -30,7 +30,7 @@
     return-void
 .end method
 
-.method protected n(Landroid/util/AttributeSet;)V
+.method public n(Landroid/util/AttributeSet;)V
     .locals 0
 
     .line 1
@@ -42,7 +42,7 @@
     const/4 p1, 0x0
 
     .line 5
-    iput-boolean p1, p0, Landroidx/constraintlayout/widget/b;->k:Z
+    iput-boolean p1, p0, Landroidx/constraintlayout/widget/b;->p:Z
 
     .line 6
     .line 7
@@ -82,23 +82,23 @@
 
     .line 6
     .line 7
-    iget-object p1, p0, Landroidx/constraintlayout/widget/ConstraintLayout$b;->v0:Lt/e;
+    iget-object p1, p0, Landroidx/constraintlayout/widget/ConstraintLayout$b;->v0:Lg5/e;
 
     .line 8
     .line 9
     const/4 v0, 0x0
 
     .line 10
-    invoke-virtual {p1, v0}, Lt/e;->l1(I)V
+    invoke-virtual {p1, v0}, Lg5/e;->l1(I)V
 
     .line 11
     .line 12
     .line 13
-    iget-object p0, p0, Landroidx/constraintlayout/widget/ConstraintLayout$b;->v0:Lt/e;
+    iget-object p0, p0, Landroidx/constraintlayout/widget/ConstraintLayout$b;->v0:Lg5/e;
 
     .line 14
     .line 15
-    invoke-virtual {p0, v0}, Lt/e;->M0(I)V
+    invoke-virtual {p0, v0}, Lg5/e;->M0(I)V
 
     .line 16
     .line 17
