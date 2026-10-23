@@ -18,8 +18,8 @@ GitHub会过滤附件文件名的中文部分；两个附件使用完整中文�
 
 | 分支 | 用途 | 原厂输入 | 更新标识 |
 | --- | --- | --- | --- |
-| `codex/redmagic-11` | 保留 11 系列 260029 | Android 16 桌面 | `stacked-desktop` |
-| `codex/redmagic-10` | 本分支：10 系列 250001 | Android 15 桌面 | `stacked-desktop-redmagic10` |
+| `redmagic-11` | 保留 11 系列 260029 | Android 16 桌面 | `stacked-desktop` |
+| `redmagic-10` | 本分支：10 系列 250001 | Android 15 桌面 | `stacked-desktop-redmagic10` |
 
 `main` 保留原有红魔 11 历史。本轮只修改 10 分支，使用独立工作目录、原厂输入、源码、构建输出和本地签名配置。后续共同功能应分别适配、验证后提交，不能直接合并整个底包。两个系列的资源和在线更新清单不能互相覆盖。
 
@@ -36,7 +36,7 @@ GitHub会过滤附件文件名的中文部分；两个附件使用完整中文�
 独立入口 `tools/build-launcher.py`；打包版本只取 `src/apktool.yml`。需要 Python 3.10+、JDK 21、Android SDK Platform 36 与 Build Tools 36.0.0；修改版最低 API 31，目标 API 保持 35。
 
 ```powershell
-git clone --branch codex/redmagic-10 https://github.com/liligit1815/LS_RedMagicLauncher.git
+git clone --branch redmagic-10 https://github.com/liligit1815/LS_RedMagicLauncher.git
 cd LS_RedMagicLauncher
 python tools/build-launcher-helper.py --sdk "<Android SDK目录>"
 python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
