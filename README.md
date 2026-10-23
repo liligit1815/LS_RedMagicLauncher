@@ -1,6 +1,6 @@
 # LS_RedMagicLauncher · 红魔11系列
 
-本分支 `codex/redmagic-11` 维护红魔11原厂桌面及修改版。红魔10由 [codex/redmagic-10](https://github.com/liligit1815/LS_RedMagicLauncher/tree/codex/redmagic-10) 独立维护；两个系列使用自己的源码、原厂输入、框架和构建输出。
+本分支 `redmagic-11` 维护红魔11原厂桌面及修改版。红魔10由 [redmagic-10](https://github.com/liligit1815/LS_RedMagicLauncher/tree/redmagic-10) 独立维护；两个系列使用自己的源码、原厂输入、框架和构建输出。
 
 当前内部版本 **260029**，显示版本 `26.9.260.908.2609081608`；下一轮独立功能版本为260030。本轮整理源码和发行流程，APK内容及版本未改动。
 
@@ -29,7 +29,7 @@ GitHub会过滤附件文件名的中文部分；两个附件使用完整中文�
 需要Python3.10+、JDK21、Android SDK Platform36和Build Tools36.0.0。设置JAVA_HOME并将JDK的bin加入PATH。
 
 ```powershell
-git clone --branch codex/redmagic-11 https://github.com/liligit1815/LS_RedMagicLauncher.git
+git clone --branch redmagic-11 https://github.com/liligit1815/LS_RedMagicLauncher.git
 cd LS_RedMagicLauncher
 python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 ```
