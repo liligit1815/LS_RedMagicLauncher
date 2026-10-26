@@ -2,7 +2,7 @@
 
 红魔12桌面使用独立更新通道 `stacked-desktop-redmagic12`，当前版本为 `270007 / 27.0.000.000.2609231706`。
 
-[公开更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json) · [发行页面](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic12-v270007)
+[公开更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json) · [发行页面](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)
 
 ## 使用入口
 

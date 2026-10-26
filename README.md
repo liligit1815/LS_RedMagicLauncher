@@ -2,7 +2,7 @@
 
 修复红魔12桌面点击最近任务卡片的偏移与突跳动画、长按偶发只震动或松手后才显示菜单的问题，新增堆叠样式首尾卡片阻尼回弹，请下载12-270007版本。
 
-[下载 12-270007.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270007/12-270007.apk) · [发行说明](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic12-v270007)
+[下载 12-270007.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/12-270007.apk) · [发行说明](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)
 
 本分支为 `redmagic-12`，基于红魔12原厂桌面 `17.0.000.000.2609231706`。修改版显示版本为 **27.0.000.000.2609231706**，内部版本为 **270007**。
 
