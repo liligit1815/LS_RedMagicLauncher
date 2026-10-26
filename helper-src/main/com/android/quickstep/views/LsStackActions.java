@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.android.launcher3.AbstractFloatingView;
 import com.android.launcher3.popup.SystemShortcut;
 import com.android.launcher3.views.BaseDragLayer;
-import com.android.quickstep.TaskOverlayFactory;
 import com.android.quickstep.TaskShortcutFactory;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
         super.setAccessibilityPaneTitle("任务操作");
         super.setElevation(32.0f * super.getResources().getDisplayMetrics().density);
         for (TaskContainer container : task.getTaskContainers()) {
-            List<SystemShortcut> enabled = TaskOverlayFactory.getEnabledShortcuts(task, container);
+            List<SystemShortcut> enabled = recents.getTaskOverlayFactory().getEnabledShortcuts(task, container);
             boolean hasMiniWindow = false;
             if (enabled != null) for (SystemShortcut shortcut : enabled) {
                 addAction(shortcut);
@@ -492,9 +491,9 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
         return true;
     }
 
-    @Override protected boolean isOfType(int type) { return (type & 0x800) != 0; }
+    @Override public boolean isOfType(int type) { return (type & 0x800) != 0; }
 
-    @Override protected void handleClose(boolean animate) {
+    @Override public void handleClose(boolean animate) {
         if (closing && animate) return;
         closing = true;
         if (!animate) remove(false);

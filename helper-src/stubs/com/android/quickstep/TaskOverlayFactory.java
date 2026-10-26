@@ -6,5 +6,5 @@ import com.android.quickstep.views.TaskView;
 import java.util.List;
 
 public class TaskOverlayFactory {
-    public static List<SystemShortcut> getEnabledShortcuts(TaskView task, TaskContainer container) { return null; }
+    public List<SystemShortcut> getEnabledShortcuts(TaskView task, TaskContainer container) { return null; }
 }

@@ -36,4 +36,4 @@
 | [RecentsView.smali](../src/smali_classes3/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务及手势路由 |
 | [LsPlatform12.java](../helper-src/main/com/android/quickstep/views/LsPlatform12.java) | 红魔12原生弹簧删除、新截图容器与可见任务接口 |
 
-窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [270003说明](RELEASE_270003.md)。
+窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [270004说明](RELEASE_270004.md)。

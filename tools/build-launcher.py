@@ -27,6 +27,7 @@ OEM_CERTIFICATE = "85fe217eaf539fc32bdf12d74d432c348b0bd0fddffd0ba79e89889b195bb
 FRAMEWORK_SHA256 = "5dd984016ed5a5eb0eef866e2c6e8cd352e1427828ec23adb18005cf5648f3d7"
 SOURCE_TESTS = (
     "test-launcher-startup-registers.py",
+    "test-launcher-oem-call-kinds.py",
     "test-launcher-style-preferences.py",
     "test-launcher-online-updates.py",
     "test-launcher-fan-settings.py",

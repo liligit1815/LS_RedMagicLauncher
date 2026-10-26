@@ -1,18 +1,18 @@
-# 堆叠桌面12 · 270003
+# 堆叠桌面12 · 270004
 
-修复红魔12桌面选择堆叠、环绕和扇形样式后不生效的问题，请下载12-270003版本。
+修复红魔12桌面长按最近任务卡片闪退的问题，请下载12-270004版本。
 
-[下载 12-270003.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270003/12-270003.apk)
+[下载 12-270004.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270004/12-270004.apk)
 
 | 项目 | 内容 |
 | --- | --- |
 | 系列 | 红魔12 Pro+ |
 | 源码分支 | redmagic-12 |
 | 显示版本 | 27.0.000.000.2609231706 |
-| 内部版本 | 270003 |
+| 内部版本 | 270004 |
 | 包名 | com.zte.mifavor.launcher |
 | APK大小 | 50,056,827 字节 |
-| SHA-256 | be8986d15203fbcec194b75820010bde43c10e6afd337340b597f448b0267227 |
+| SHA-256 | 302cbe1995f5ead22f82037bc1a4952f17f61f1b49193158b5a762fa2acc8770 |
 
 提供标准、宫格、堆叠、环绕和扇形样式，支持三种自定义样式独立比例、任务操作、进出动画、明暗主题和在线更新。
 

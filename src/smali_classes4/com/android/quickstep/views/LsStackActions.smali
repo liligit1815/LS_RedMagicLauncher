@@ -93,7 +93,7 @@
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 35
+    .line 34
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     const/4 v1, 0x0
@@ -108,7 +108,7 @@
 .method private constructor <init>(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z)V
     .locals 3
 
-    .line 52
+    .line 51
     invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -117,145 +117,149 @@
 
     invoke-direct {p0, v0, v1}, Lcom/android/launcher3/AbstractFloatingView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
-    .line 40
+    .line 39
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
-    .line 41
+    .line 40
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->shortcuts:Ljava/util/ArrayList;
 
-    .line 53
+    .line 52
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
 
+    .line 53
+    new-instance v0, Ljava/lang/ref/WeakReference;
+
+    invoke-direct {v0, p2}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->taskRef:Ljava/lang/ref/WeakReference;
+
     .line 54
-    new-instance p1, Ljava/lang/ref/WeakReference;
-
-    invoke-direct {p1, p2}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
-
-    iput-object p1, p0, Lcom/android/quickstep/views/LsStackActions;->taskRef:Ljava/lang/ref/WeakReference;
-
-    .line 55
     invoke-static {p2}, Lcom/android/quickstep/views/LsStackActions;->primaryTaskId(Lcom/android/quickstep/views/TaskView;)I
 
-    move-result p1
+    move-result v0
 
-    iput p1, p0, Lcom/android/quickstep/views/LsStackActions;->taskId:I
+    iput v0, p0, Lcom/android/quickstep/views/LsStackActions;->taskId:I
 
-    .line 56
+    .line 55
     iput-boolean p3, p0, Lcom/android/quickstep/views/LsStackActions;->right:Z
 
-    .line 57
-    const/4 p1, 0x0
+    .line 56
+    const/4 p3, 0x0
 
-    invoke-super {p0, p1}, Lcom/android/launcher3/AbstractFloatingView;->setClipChildren(Z)V
+    invoke-super {p0, p3}, Lcom/android/launcher3/AbstractFloatingView;->setClipChildren(Z)V
+
+    .line 57
+    invoke-super {p0, p3}, Lcom/android/launcher3/AbstractFloatingView;->setClipToPadding(Z)V
 
     .line 58
-    invoke-super {p0, p1}, Lcom/android/launcher3/AbstractFloatingView;->setClipToPadding(Z)V
+    const/4 v0, 0x1
+
+    invoke-super {p0, v0}, Lcom/android/launcher3/AbstractFloatingView;->setFocusableInTouchMode(Z)V
 
     .line 59
-    const/4 p3, 0x1
-
-    invoke-super {p0, p3}, Lcom/android/launcher3/AbstractFloatingView;->setFocusableInTouchMode(Z)V
+    invoke-super {p0, v0}, Lcom/android/launcher3/AbstractFloatingView;->setImportantForAccessibility(I)V
 
     .line 60
-    invoke-super {p0, p3}, Lcom/android/launcher3/AbstractFloatingView;->setImportantForAccessibility(I)V
+    const-string v1, "\u4efb\u52a1\u64cd\u4f5c"
+
+    invoke-super {p0, v1}, Lcom/android/launcher3/AbstractFloatingView;->setAccessibilityPaneTitle(Ljava/lang/CharSequence;)V
 
     .line 61
-    const-string v0, "\u4efb\u52a1\u64cd\u4f5c"
-
-    invoke-super {p0, v0}, Lcom/android/launcher3/AbstractFloatingView;->setAccessibilityPaneTitle(Ljava/lang/CharSequence;)V
-
-    .line 62
     invoke-super {p0}, Lcom/android/launcher3/AbstractFloatingView;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
-
-    move-result-object v0
-
-    iget v0, v0, Landroid/util/DisplayMetrics;->density:F
-
-    const/high16 v1, 0x42000000    # 32.0f
-
-    mul-float/2addr v0, v1
-
-    invoke-super {p0, v0}, Lcom/android/launcher3/AbstractFloatingView;->setElevation(F)V
-
-    .line 63
-    invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
-
-    move-result-object v0
-
-    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v0
-
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_1
-
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/quickstep/views/TaskContainer;
-
-    .line 64
-    invoke-static {p2, v0}, Lcom/android/quickstep/TaskOverlayFactory;->getEnabledShortcuts(Lcom/android/quickstep/views/TaskView;Lcom/android/quickstep/views/TaskContainer;)Ljava/util/List;
 
     move-result-object v1
 
-    .line 65
-    nop
+    invoke-virtual {v1}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
 
-    .line 66
-    if-eqz v1, :cond_0
+    move-result-object v1
+
+    iget v1, v1, Landroid/util/DisplayMetrics;->density:F
+
+    const/high16 v2, 0x42000000    # 32.0f
+
+    mul-float/2addr v1, v2
+
+    invoke-super {p0, v1}, Lcom/android/launcher3/AbstractFloatingView;->setElevation(F)V
+
+    .line 62
+    invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
+
+    move-result-object v1
 
     invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    :goto_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/android/quickstep/views/TaskContainer;
+
+    .line 63
+    invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->getTaskOverlayFactory()Lcom/android/quickstep/TaskOverlayFactory;
+
+    move-result-object p1
+
+    invoke-virtual {p1, p2, v1}, Lcom/android/quickstep/TaskOverlayFactory;->getEnabledShortcuts(Lcom/android/quickstep/views/TaskView;Lcom/android/quickstep/views/TaskContainer;)Ljava/util/List;
+
+    move-result-object p1
+
+    .line 64
+    nop
+
+    .line 65
+    if-eqz p1, :cond_0
+
+    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p1
+
+    :goto_0
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
     if-eqz v2, :cond_0
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
 
     check-cast v2, Lcom/android/launcher3/popup/SystemShortcut;
 
-    .line 67
+    .line 66
     invoke-direct {p0, v2}, Lcom/android/quickstep/views/LsStackActions;->addAction(Lcom/android/launcher3/popup/SystemShortcut;)V
 
-    .line 68
+    .line 67
     instance-of v2, v2, Lcom/android/quickstep/TaskShortcutFactory$MiniWindowSystemShortcut;
 
-    or-int/2addr p1, v2
+    or-int/2addr p3, v2
 
-    .line 69
+    .line 68
     goto :goto_0
 
-    .line 72
+    .line 71
     :cond_0
-    if-nez p1, :cond_1
+    if-nez p3, :cond_1
 
     invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
 
@@ -265,33 +269,33 @@
 
     move-result p1
 
-    if-ne p1, p3, :cond_1
+    if-ne p1, v0, :cond_1
 
-    .line 73
+    .line 72
     invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->isNativeStackMiniWindowAvailable()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 74
+    .line 73
     new-instance p1, Lcom/android/quickstep/TaskShortcutFactory$MiniWindowSystemShortcut;
 
-    .line 75
+    .line 74
     invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->getContainer()Lcom/android/quickstep/views/RecentsViewContainer;
 
     move-result-object p2
 
-    invoke-direct {p1, p2, v0}, Lcom/android/quickstep/TaskShortcutFactory$MiniWindowSystemShortcut;-><init>(Lcom/android/quickstep/views/RecentsViewContainer;Lcom/android/quickstep/views/TaskContainer;)V
+    invoke-direct {p1, p2, v1}, Lcom/android/quickstep/TaskShortcutFactory$MiniWindowSystemShortcut;-><init>(Lcom/android/quickstep/views/RecentsViewContainer;Lcom/android/quickstep/views/TaskContainer;)V
 
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackActions;->directMiniWindowShortcut:Lcom/android/launcher3/popup/SystemShortcut;
 
-    .line 76
+    .line 75
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackActions;->directMiniWindowShortcut:Lcom/android/launcher3/popup/SystemShortcut;
 
     invoke-direct {p0, p1}, Lcom/android/quickstep/views/LsStackActions;->addAction(Lcom/android/launcher3/popup/SystemShortcut;)V
 
-    .line 82
+    .line 81
     :cond_1
     return-void
 .end method
@@ -299,7 +303,7 @@
 .method public static abort(Lcom/android/quickstep/views/RecentsView;)V
     .locals 2
 
-    .line 524
+    .line 523
     sget-object v0, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -308,7 +312,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 525
+    .line 524
     if-eqz v0, :cond_0
 
     iget-object v1, v0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
@@ -323,7 +327,7 @@
 
     invoke-direct {v0, p0}, Lcom/android/quickstep/views/LsStackActions;->remove(Z)V
 
-    .line 526
+    .line 525
     :cond_0
     return-void
 .end method
@@ -331,7 +335,7 @@
 .method private actionIcon(Lcom/android/launcher3/popup/SystemShortcut;)I
     .locals 2
 
-    .line 117
+    .line 116
     instance-of v0, p1, Lcom/android/launcher3/popup/SystemShortcut$AppInfo;
 
     if-eqz v0, :cond_0
@@ -340,7 +344,7 @@
 
     return p1
 
-    .line 118
+    .line 117
     :cond_0
     instance-of v0, p1, Lcom/android/quickstep/TaskShortcutFactory$SplitSelectSystemShortcut;
 
@@ -350,13 +354,13 @@
 
     return p1
 
-    .line 119
+    .line 118
     :cond_1
     instance-of v0, p1, Lcom/android/quickstep/TaskShortcutFactory$LockAppSystemShortcut;
 
     if-eqz v0, :cond_3
 
-    .line 120
+    .line 119
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->taskRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -365,12 +369,12 @@
 
     check-cast v0, Lcom/android/quickstep/views/TaskView;
 
-    .line 121
+    .line 120
     if-eqz v0, :cond_2
 
     check-cast p1, Lcom/android/quickstep/TaskShortcutFactory$LockAppSystemShortcut;
 
-    .line 122
+    .line 121
     invoke-static {}, Lcom/android/launcher3/mfvUtil/MFVUtils;->getZteSceneDecisionFeature()Z
 
     move-result v1
@@ -388,11 +392,11 @@
     :cond_2
     const/4 p1, 0x3
 
-    .line 121
+    .line 120
     :goto_0
     return p1
 
-    .line 124
+    .line 123
     :cond_3
     instance-of v0, p1, Lcom/android/quickstep/TaskShortcutFactory$PinSystemShortcut;
 
@@ -402,7 +406,7 @@
 
     return p1
 
-    .line 125
+    .line 124
     :cond_4
     instance-of p1, p1, Lcom/android/quickstep/TaskShortcutFactory$MiniWindowSystemShortcut;
 
@@ -412,7 +416,7 @@
 
     return p1
 
-    .line 126
+    .line 125
     :cond_5
     const/4 p1, 0x0
 
@@ -422,7 +426,7 @@
 .method private addAction(Lcom/android/launcher3/popup/SystemShortcut;)V
     .locals 7
 
-    .line 86
+    .line 85
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
@@ -441,7 +445,7 @@
 
     return-void
 
-    .line 87
+    .line 86
     :cond_0
     new-instance v0, Landroid/widget/FrameLayout;
 
@@ -451,7 +455,7 @@
 
     invoke-direct {v0, v1}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
 
-    .line 88
+    .line 87
     new-instance v1, Landroid/widget/ImageView;
 
     invoke-super {p0}, Lcom/android/launcher3/AbstractFloatingView;->getContext()Landroid/content/Context;
@@ -460,17 +464,17 @@
 
     invoke-direct {v1, v2}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
 
-    .line 89
+    .line 88
     const v2, 0x7f0b0319
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setId(I)V
 
-    .line 90
+    .line 89
     sget-object v2, Landroid/widget/ImageView$ScaleType;->FIT_CENTER:Landroid/widget/ImageView$ScaleType;
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
 
-    .line 91
+    .line 90
     new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
     const/4 v3, -0x1
@@ -479,7 +483,7 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 92
+    .line 91
     new-instance v2, Landroid/widget/TextView;
 
     invoke-super {p0}, Lcom/android/launcher3/AbstractFloatingView;->getContext()Landroid/content/Context;
@@ -488,17 +492,17 @@
 
     invoke-direct {v2, v3}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
-    .line 93
+    .line 92
     const v3, 0x7f0b062b
 
     invoke-virtual {v2, v3}, Landroid/widget/TextView;->setId(I)V
 
-    .line 94
+    .line 93
     const/16 v3, 0x8
 
     invoke-virtual {v2, v3}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 95
+    .line 94
     new-instance v3, Landroid/widget/FrameLayout$LayoutParams;
 
     const/4 v4, 0x0
@@ -507,28 +511,28 @@
 
     invoke-virtual {v0, v2, v3}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 96
+    .line 95
     instance-of v2, p1, Lcom/android/quickstep/TaskShortcutFactory$LockAppSystemShortcut;
 
     if-eqz v2, :cond_1
 
-    .line 97
+    .line 96
     move-object v2, p1
 
     check-cast v2, Lcom/android/quickstep/TaskShortcutFactory$LockAppSystemShortcut;
 
     invoke-virtual {v2, v0}, Lcom/android/quickstep/TaskShortcutFactory$LockAppSystemShortcut;->init(Landroid/view/ViewGroup;)V
 
-    .line 99
+    .line 98
     :cond_1
     invoke-virtual {p1, v1}, Lcom/android/launcher3/popup/SystemShortcut;->setIconAndContentDescriptionFor(Landroid/widget/ImageView;)V
 
-    .line 100
+    .line 99
     invoke-direct {p0, p1}, Lcom/android/quickstep/views/LsStackActions;->actionIcon(Lcom/android/launcher3/popup/SystemShortcut;)I
 
     move-result v2
 
-    .line 101
+    .line 100
     if-eqz v2, :cond_2
 
     new-instance v3, Lcom/android/quickstep/views/LsStackActions$ActionIcon;
@@ -537,7 +541,7 @@
 
     invoke-virtual {v1, v3}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 102
+    .line 101
     :cond_2
     invoke-virtual {v1}, Landroid/widget/ImageView;->getContentDescription()Ljava/lang/CharSequence;
 
@@ -545,7 +549,7 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setTooltipText(Ljava/lang/CharSequence;)V
 
-    .line 103
+    .line 102
     const v2, -0xcfcbc6
 
     invoke-static {v2}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
@@ -554,22 +558,22 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setImageTintList(Landroid/content/res/ColorStateList;)V
 
-    .line 104
+    .line 103
     new-instance v2, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {v2}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
 
-    .line 105
+    .line 104
     const/4 v3, 0x1
 
     invoke-virtual {v2, v3}, Landroid/graphics/drawable/GradientDrawable;->setShape(I)V
 
-    .line 106
+    .line 105
     const v4, -0x50506
 
     invoke-virtual {v2, v4}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
 
-    .line 107
+    .line 106
     new-instance v4, Landroid/graphics/drawable/RippleDrawable;
 
     const v5, 0x22303840
@@ -584,42 +588,42 @@
 
     invoke-virtual {v1, v4}, Landroid/widget/ImageView;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 108
+    .line 107
     invoke-virtual {v1, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 109
+    .line 108
     const/4 v2, 0x0
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setAlpha(F)V
 
-    .line 110
+    .line 109
     invoke-virtual {v0, v2}, Landroid/widget/FrameLayout;->setAlpha(F)V
 
-    .line 111
+    .line 110
     new-instance v2, Landroid/view/ViewGroup$LayoutParams;
 
     invoke-direct {v2, v3, v3}, Landroid/view/ViewGroup$LayoutParams;-><init>(II)V
 
     invoke-super {p0, v0, v2}, Lcom/android/launcher3/AbstractFloatingView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 112
+    .line 111
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 113
+    .line 112
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->shortcuts:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 114
+    .line 113
     return-void
 .end method
 
 .method static arcOffset(IIF)F
     .locals 2
 
-    .line 347
+    .line 346
     const/4 v0, 0x1
 
     if-gt p1, v0, :cond_0
@@ -649,7 +653,7 @@
 
     move-result p0
 
-    .line 348
+    .line 347
     :goto_0
     const p1, 0x3f19999a    # 0.6f
 
@@ -665,7 +669,7 @@
 .method private buttonDiameter(II)F
     .locals 5
 
-    .line 378
+    .line 377
     invoke-super {p0}, Lcom/android/launcher3/AbstractFloatingView;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -676,7 +680,7 @@
 
     iget v0, v0, Landroid/util/DisplayMetrics;->density:F
 
-    .line 379
+    .line 378
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -689,12 +693,12 @@
 
     move-result v1
 
-    .line 380
+    .line 379
     invoke-static {p0, v1}, Lcom/android/quickstep/views/LsStackActions;->visualInsets(Landroid/view/View;I)Landroid/graphics/Insets;
 
     move-result-object v2
 
-    .line 381
+    .line 380
     and-int/lit8 v1, v1, 0x1
 
     if-nez v1, :cond_0
@@ -717,7 +721,7 @@
 
     int-to-float v3, v3
 
-    .line 382
+    .line 381
     if-nez v1, :cond_1
 
     move p1, p2
@@ -733,7 +737,7 @@
 
     int-to-float p1, p1
 
-    .line 385
+    .line 384
     iget-object p2, p0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {p2}, Ljava/util/ArrayList;->size()I
@@ -758,12 +762,12 @@
 
     add-float/2addr p2, v1
 
-    .line 386
+    .line 385
     cmpl-float v2, v3, p1
 
     if-lez v2, :cond_2
 
-    .line 387
+    .line 386
     const/high16 v2, 0x42380000    # 46.0f
 
     mul-float/2addr v2, v0
@@ -778,7 +782,7 @@
 
     goto :goto_1
 
-    .line 388
+    .line 387
     :cond_2
     const/high16 v2, 0x42800000    # 64.0f
 
@@ -792,7 +796,7 @@
 
     move-result v2
 
-    .line 389
+    .line 388
     :goto_1
     const/high16 v3, 0x41c00000    # 24.0f
 
@@ -816,7 +820,7 @@
 .method static buttonProgress(FII)F
     .locals 3
 
-    .line 342
+    .line 341
     const/4 v0, 0x0
 
     const/4 v1, 0x1
@@ -840,7 +844,7 @@
 
     div-float/2addr p1, p2
 
-    .line 343
+    .line 342
     :goto_0
     sub-float/2addr p0, p1
 
@@ -864,12 +868,12 @@
 .method private cardBounds(Lcom/android/quickstep/views/TaskView;)Landroid/graphics/RectF;
     .locals 4
 
-    .line 450
+    .line 449
     new-instance v0, Landroid/graphics/RectF;
 
     invoke-direct {v0}, Landroid/graphics/RectF;-><init>()V
 
-    .line 451
+    .line 450
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
 
     move-result-object v1
@@ -893,7 +897,7 @@
 
     check-cast v2, Lcom/android/quickstep/views/TaskContainer;
 
-    .line 452
+    .line 451
     if-nez v2, :cond_0
 
     move-object v2, v3
@@ -905,19 +909,19 @@
 
     move-result-object v2
 
-    .line 453
+    .line 452
     :goto_1
     if-nez v2, :cond_1
 
     goto :goto_0
 
-    .line 454
+    .line 453
     :cond_1
     invoke-static {v2, v3}, Lcom/android/quickstep/views/LsStackActions;->globalBounds(Landroid/view/View;Landroid/graphics/Rect;)Landroid/graphics/RectF;
 
     move-result-object v2
 
-    .line 455
+    .line 454
     invoke-static {v2}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
     move-result v3
@@ -926,11 +930,11 @@
 
     invoke-virtual {v0, v2}, Landroid/graphics/RectF;->union(Landroid/graphics/RectF;)V
 
-    .line 456
+    .line 455
     :cond_2
     goto :goto_0
 
-    .line 457
+    .line 456
     :cond_3
     invoke-static {v0}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
@@ -942,26 +946,26 @@
 
     move-result-object v0
 
-    .line 458
+    .line 457
     :cond_4
     new-instance p1, Landroid/graphics/Matrix;
 
     invoke-direct {p1}, Landroid/graphics/Matrix;-><init>()V
 
-    .line 459
+    .line 458
     invoke-super {p0, p1}, Lcom/android/launcher3/AbstractFloatingView;->transformMatrixToLocal(Landroid/graphics/Matrix;)V
 
-    .line 460
+    .line 459
     invoke-virtual {p1, v0}, Landroid/graphics/Matrix;->mapRect(Landroid/graphics/RectF;)Z
 
-    .line 461
+    .line 460
     return-object v0
 .end method
 
 .method public static cardOffset(Lcom/android/quickstep/views/RecentsView;)F
     .locals 5
 
-    .line 304
+    .line 303
     sget-object v0, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -970,7 +974,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 305
+    .line 304
     if-eqz v0, :cond_1
 
     iget-object v1, v0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
@@ -996,18 +1000,18 @@
     :goto_0
     const/4 v0, 0x1
 
-    .line 306
+    .line 305
     :goto_1
     invoke-static {p0}, Lcom/android/quickstep/views/LsStackActions;->rotation(Lcom/android/quickstep/views/RecentsView;)I
 
     move-result v1
 
-    .line 307
+    .line 306
     invoke-static {p0, v1}, Lcom/android/quickstep/views/LsStackActions;->visualInsets(Landroid/view/View;I)Landroid/graphics/Insets;
 
     move-result-object v2
 
-    .line 308
+    .line 307
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
     move-result-object v3
@@ -1032,7 +1036,7 @@
 
     move-result v3
 
-    .line 310
+    .line 309
     iget v4, v2, Landroid/graphics/Insets;->left:I
 
     iget v2, v2, Landroid/graphics/Insets;->right:I
@@ -1045,12 +1049,12 @@
 
     mul-float/2addr v2, v4
 
-    .line 311
+    .line 310
     if-eqz v0, :cond_2
 
     const/high16 v4, -0x41000000    # -0.5f
 
-    .line 312
+    .line 311
     :cond_2
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getResources()Landroid/content/res/Resources;
 
@@ -1062,7 +1066,7 @@
 
     iget p0, p0, Landroid/util/DisplayMetrics;->density:F
 
-    .line 311
+    .line 310
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsStackActions;->reservedWidth(FF)F
 
     move-result p0
@@ -1071,7 +1075,7 @@
 
     add-float/2addr v2, v4
 
-    .line 313
+    .line 312
     const/4 p0, 0x2
 
     if-eq v1, p0, :cond_3
@@ -1090,7 +1094,7 @@
 .method public static cardScale(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;F)F
     .locals 4
 
-    .line 317
+    .line 316
     invoke-static {p0}, Lcom/android/quickstep/views/LsStackActions;->rotation(Lcom/android/quickstep/views/RecentsView;)I
 
     move-result v0
@@ -1099,7 +1103,7 @@
 
     move-result-object v0
 
-    .line 318
+    .line 317
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
     move-result-object v1
@@ -1124,7 +1128,7 @@
 
     move-result v0
 
-    .line 320
+    .line 319
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getResources()Landroid/content/res/Resources;
 
     move-result-object v2
@@ -1135,7 +1139,7 @@
 
     iget v2, v2, Landroid/util/DisplayMetrics;->density:F
 
-    .line 321
+    .line 320
     invoke-static {v0, v2}, Lcom/android/quickstep/views/LsStackActions;->reservedWidth(FF)F
 
     move-result v3
@@ -1152,7 +1156,7 @@
 
     move-result v0
 
-    .line 323
+    .line 322
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
     move-result-object p0
@@ -1161,7 +1165,7 @@
 
     move-result p0
 
-    .line 322
+    .line 321
     const/4 p1, 0x1
 
     invoke-static {p1, p0}, Ljava/lang/Math;->max(II)I
@@ -1172,7 +1176,7 @@
 
     div-float/2addr v0, p0
 
-    .line 321
+    .line 320
     invoke-static {p2, v0}, Ljava/lang/Math;->min(FF)F
 
     move-result p0
@@ -1183,7 +1187,7 @@
 .method public static dispatch(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 473
+    .line 472
     sget-object v0, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -1192,7 +1196,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 474
+    .line 473
     if-eqz v0, :cond_1
 
     iget-object v1, v0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
@@ -1205,38 +1209,38 @@
 
     goto :goto_0
 
-    .line 475
+    .line 474
     :cond_0
     invoke-static {p1}, Landroid/view/MotionEvent;->obtain(Landroid/view/MotionEvent;)Landroid/view/MotionEvent;
 
     move-result-object p1
 
-    .line 476
+    .line 475
     new-instance v1, Landroid/graphics/Matrix;
 
     invoke-direct {v1}, Landroid/graphics/Matrix;-><init>()V
 
-    .line 477
+    .line 476
     invoke-virtual {p0, v1}, Lcom/android/quickstep/views/RecentsView;->transformMatrixToGlobal(Landroid/graphics/Matrix;)V
 
-    .line 478
+    .line 477
     invoke-virtual {v0, v1}, Landroid/view/View;->transformMatrixToLocal(Landroid/graphics/Matrix;)V
 
-    .line 479
+    .line 478
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->transform(Landroid/graphics/Matrix;)V
 
-    .line 480
+    .line 479
     invoke-virtual {v0, p1}, Landroid/view/View;->dispatchTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 481
+    .line 480
     invoke-virtual {p1}, Landroid/view/MotionEvent;->recycle()V
 
-    .line 482
+    .line 481
     const/4 p0, 0x1
 
     return p0
 
-    .line 474
+    .line 473
     :cond_1
     :goto_0
     const/4 p0, 0x0
@@ -1247,7 +1251,7 @@
 .method public static finish(Lcom/android/quickstep/views/RecentsView;)Ljava/lang/Runnable;
     .locals 3
 
-    .line 517
+    .line 516
     sget-object v0, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -1256,7 +1260,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 518
+    .line 517
     const/4 v1, 0x0
 
     if-eqz v0, :cond_2
@@ -1271,13 +1275,13 @@
 
     goto :goto_0
 
-    .line 519
+    .line 518
     :cond_0
     const/4 p0, 0x1
 
     invoke-direct {v0, p0}, Lcom/android/quickstep/views/LsStackActions;->remove(Z)V
 
-    .line 520
+    .line 519
     iget-object p0, v0, Lcom/android/quickstep/views/LsStackActions;->pending:Lcom/android/launcher3/popup/SystemShortcut;
 
     if-nez p0, :cond_1
@@ -1287,7 +1291,7 @@
     :cond_1
     return-object v0
 
-    .line 518
+    .line 517
     :cond_2
     :goto_0
     return-object v1
@@ -1296,7 +1300,7 @@
 .method private static globalBounds(Landroid/view/View;Landroid/graphics/Rect;)Landroid/graphics/RectF;
     .locals 3
 
-    .line 293
+    .line 292
     if-nez p1, :cond_0
 
     new-instance p1, Landroid/graphics/RectF;
@@ -1319,7 +1323,7 @@
 
     goto :goto_0
 
-    .line 294
+    .line 293
     :cond_0
     new-instance v0, Landroid/graphics/RectF;
 
@@ -1327,7 +1331,7 @@
 
     move-object p1, v0
 
-    .line 295
+    .line 294
     :goto_0
     invoke-virtual {p1}, Landroid/graphics/RectF;->isEmpty()Z
 
@@ -1337,26 +1341,26 @@
 
     return-object p1
 
-    .line 296
+    .line 295
     :cond_1
     new-instance v0, Landroid/graphics/Matrix;
 
     invoke-direct {v0}, Landroid/graphics/Matrix;-><init>()V
 
-    .line 297
+    .line 296
     invoke-virtual {p0, v0}, Landroid/view/View;->transformMatrixToGlobal(Landroid/graphics/Matrix;)V
 
-    .line 298
+    .line 297
     invoke-virtual {v0, p1}, Landroid/graphics/Matrix;->mapRect(Landroid/graphics/RectF;)Z
 
-    .line 299
+    .line 298
     return-object p1
 .end method
 
 .method private static hasFiniteBounds(Landroid/graphics/RectF;)Z
     .locals 1
 
-    .line 288
+    .line 287
     invoke-virtual {p0}, Landroid/graphics/RectF;->isEmpty()Z
 
     move-result v0
@@ -1381,7 +1385,7 @@
 
     iget v0, p0, Landroid/graphics/RectF;->right:F
 
-    .line 289
+    .line 288
     invoke-static {v0}, Ljava/lang/Float;->isFinite(F)Z
 
     move-result v0
@@ -1403,7 +1407,7 @@
     :cond_0
     const/4 p0, 0x0
 
-    .line 288
+    .line 287
     :goto_0
     return p0
 .end method
@@ -1411,7 +1415,7 @@
 .method private isActionAvailable(Lcom/android/launcher3/popup/SystemShortcut;)Z
     .locals 3
 
-    .line 465
+    .line 464
     const/4 v0, 0x0
 
     if-eqz p1, :cond_3
@@ -1424,7 +1428,7 @@
 
     goto :goto_1
 
-    .line 466
+    .line 465
     :cond_0
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->directMiniWindowShortcut:Lcom/android/launcher3/popup/SystemShortcut;
 
@@ -1434,7 +1438,7 @@
 
     return v2
 
-    .line 467
+    .line 466
     :cond_1
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackActions;->taskRef:Ljava/lang/ref/WeakReference;
 
@@ -1444,7 +1448,7 @@
 
     check-cast p1, Lcom/android/quickstep/views/TaskView;
 
-    .line 468
+    .line 467
     if-eqz p1, :cond_2
 
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
@@ -1457,7 +1461,7 @@
 
     if-ne v1, v2, :cond_2
 
-    .line 469
+    .line 468
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->isNativeStackMiniWindowAvailable()Z
 
     move-result p1
@@ -1471,11 +1475,11 @@
     :cond_2
     nop
 
-    .line 468
+    .line 467
     :goto_0
     return v0
 
-    .line 465
+    .line 464
     :cond_3
     :goto_1
     return v0
@@ -1484,7 +1488,7 @@
 .method private positionButtons()V
     .locals 20
 
-    .line 394
+    .line 393
     move-object/from16 v0, p0
 
     iget-object v1, v0, Lcom/android/quickstep/views/LsStackActions;->taskRef:Ljava/lang/ref/WeakReference;
@@ -1495,7 +1499,7 @@
 
     check-cast v1, Lcom/android/quickstep/views/TaskView;
 
-    .line 395
+    .line 394
     if-eqz v1, :cond_12
 
     invoke-super {v0}, Lcom/android/launcher3/AbstractFloatingView;->getWidth()I
@@ -1510,7 +1514,7 @@
 
     goto/16 :goto_b
 
-    .line 396
+    .line 395
     :cond_0
     iget-object v2, v0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
 
@@ -1524,7 +1528,7 @@
 
     move-result v2
 
-    .line 397
+    .line 396
     invoke-super {v0}, Lcom/android/launcher3/AbstractFloatingView;->getWidth()I
 
     move-result v3
@@ -1547,24 +1551,24 @@
 
     move-result v3
 
-    .line 398
+    .line 397
     iget v5, v0, Lcom/android/quickstep/views/LsStackActions;->measuredButtonDiameter:I
 
     if-eq v3, v5, :cond_1
 
-    .line 399
+    .line 398
     iput v3, v0, Lcom/android/quickstep/views/LsStackActions;->measuredButtonDiameter:I
 
-    .line 400
+    .line 399
     invoke-super {v0}, Lcom/android/launcher3/AbstractFloatingView;->requestLayout()V
 
-    .line 402
+    .line 401
     :cond_1
     iget v3, v0, Lcom/android/quickstep/views/LsStackActions;->measuredButtonDiameter:I
 
     int-to-float v3, v3
 
-    .line 403
+    .line 402
     invoke-super {v0}, Lcom/android/launcher3/AbstractFloatingView;->getResources()Landroid/content/res/Resources;
 
     move-result-object v5
@@ -1575,12 +1579,12 @@
 
     iget v5, v5, Landroid/util/DisplayMetrics;->density:F
 
-    .line 404
+    .line 403
     invoke-static {v0, v2}, Lcom/android/quickstep/views/LsStackActions;->visualInsets(Landroid/view/View;I)Landroid/graphics/Insets;
 
     move-result-object v6
 
-    .line 405
+    .line 404
     and-int/lit8 v7, v2, 0x1
 
     if-nez v7, :cond_2
@@ -1599,7 +1603,7 @@
     :goto_0
     int-to-float v8, v8
 
-    .line 406
+    .line 405
     if-nez v7, :cond_3
 
     invoke-super {v0}, Lcom/android/launcher3/AbstractFloatingView;->getHeight()I
@@ -1616,12 +1620,12 @@
     :goto_1
     int-to-float v7, v7
 
-    .line 407
+    .line 406
     invoke-direct {v0, v1}, Lcom/android/quickstep/views/LsStackActions;->cardBounds(Lcom/android/quickstep/views/TaskView;)Landroid/graphics/RectF;
 
     move-result-object v1
 
-    .line 408
+    .line 407
     new-instance v9, Landroid/graphics/RectF;
 
     invoke-super {v0}, Lcom/android/launcher3/AbstractFloatingView;->getWidth()I
@@ -1642,7 +1646,7 @@
 
     invoke-static {v1, v9, v2}, Lcom/android/quickstep/views/LsStackActions;->toVisual(Landroid/graphics/RectF;Landroid/graphics/RectF;I)V
 
-    .line 409
+    .line 408
     invoke-static {v1}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
     move-result v9
@@ -1660,7 +1664,7 @@
     :cond_4
     mul-float v9, v7, v10
 
-    .line 410
+    .line 409
     :goto_2
     iget-object v11, v0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
@@ -1678,7 +1682,7 @@
 
     mul-float/2addr v11, v12
 
-    .line 411
+    .line 410
     iget v13, v6, Landroid/graphics/Insets;->top:I
 
     int-to-float v13, v13
@@ -1701,17 +1705,17 @@
 
     sub-float/2addr v7, v11
 
-    .line 412
+    .line 411
     invoke-static {v7, v9}, Ljava/lang/Math;->min(FF)F
 
     move-result v7
 
-    .line 411
+    .line 410
     invoke-static {v13, v7}, Ljava/lang/Math;->max(FF)F
 
     move-result v7
 
-    .line 413
+    .line 412
     iget-object v9, v0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {v9}, Ljava/util/ArrayList;->size()I
@@ -1724,7 +1728,7 @@
 
     move-result v9
 
-    .line 414
+    .line 413
     iget-object v13, v0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {v13}, Ljava/util/ArrayList;->size()I
@@ -1749,15 +1753,15 @@
 
     sub-float v10, v9, v10
 
-    .line 415
+    .line 414
     add-float v13, v3, v10
 
-    .line 416
+    .line 415
     const/high16 v17, 0x41400000    # 12.0f
 
     mul-float v17, v17, v5
 
-    .line 417
+    .line 416
     move/from16 v18, v12
 
     iget-boolean v12, v0, Lcom/android/quickstep/views/LsStackActions;->right:Z
@@ -1776,7 +1780,7 @@
 
     goto :goto_3
 
-    .line 418
+    .line 417
     :cond_5
     iget v12, v6, Landroid/graphics/Insets;->left:I
 
@@ -1784,7 +1788,7 @@
 
     add-float v12, v12, v17
 
-    .line 419
+    .line 418
     :goto_3
     invoke-static {v1}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
@@ -1808,7 +1812,7 @@
 
     goto :goto_4
 
-    .line 420
+    .line 419
     :cond_6
     iget v1, v1, Landroid/graphics/RectF;->left:F
 
@@ -1823,7 +1827,7 @@
     :goto_4
     nop
 
-    .line 421
+    .line 420
     :cond_7
     iget v1, v6, Landroid/graphics/Insets;->left:I
 
@@ -1841,17 +1845,17 @@
 
     sub-float/2addr v8, v13
 
-    .line 422
+    .line 421
     invoke-static {v8, v12}, Ljava/lang/Math;->min(FF)F
 
     move-result v5
 
-    .line 421
+    .line 420
     invoke-static {v1, v5}, Ljava/lang/Math;->max(FF)F
 
     move-result v1
 
-    .line 423
+    .line 422
     const/4 v5, 0x0
 
     :goto_5
@@ -1863,7 +1867,7 @@
 
     if-ge v5, v6, :cond_11
 
-    .line 424
+    .line 423
     iget-object v6, v0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {v6, v5}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -1872,12 +1876,12 @@
 
     check-cast v6, Landroid/widget/ImageView;
 
-    .line 425
+    .line 424
     invoke-super {v0, v5}, Lcom/android/launcher3/AbstractFloatingView;->getChildAt(I)Landroid/view/View;
 
     move-result-object v8
 
-    .line 426
+    .line 425
     iget v12, v0, Lcom/android/quickstep/views/LsStackActions;->progress:F
 
     iget-object v13, v0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
@@ -1890,7 +1894,7 @@
 
     move-result v12
 
-    .line 427
+    .line 426
     iget-object v13, v0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {v13}, Ljava/util/ArrayList;->size()I
@@ -1903,7 +1907,7 @@
 
     sub-float v13, v9, v13
 
-    .line 428
+    .line 427
     add-float v16, v1, v14
 
     iget-boolean v15, v0, Lcom/android/quickstep/views/LsStackActions;->right:Z
@@ -1918,7 +1922,7 @@
     :goto_6
     add-float v16, v16, v13
 
-    .line 429
+    .line 428
     iget-boolean v13, v0, Lcom/android/quickstep/views/LsStackActions;->right:Z
 
     const/high16 v15, 0x3f800000    # 1.0f
@@ -1945,7 +1949,7 @@
 
     add-float v16, v16, v13
 
-    .line 430
+    .line 429
     sub-float v13, v7, v11
 
     int-to-float v15, v5
@@ -1956,7 +1960,7 @@
 
     add-float/2addr v13, v15
 
-    .line 431
+    .line 430
     const/4 v15, 0x3
 
     if-ne v2, v4, :cond_a
@@ -1978,7 +1982,7 @@
 
     goto :goto_8
 
-    .line 432
+    .line 431
     :cond_b
     const/4 v4, 0x2
 
@@ -1997,7 +2001,7 @@
     :cond_c
     move/from16 v4, v16
 
-    .line 433
+    .line 432
     :goto_8
     const/4 v15, 0x1
 
@@ -2020,7 +2024,7 @@
 
     goto :goto_9
 
-    .line 434
+    .line 433
     :cond_e
     const/4 v15, 0x2
 
@@ -2039,14 +2043,14 @@
     :cond_f
     move/from16 v16, v13
 
-    .line 435
+    .line 434
     :goto_9
     invoke-virtual {v8, v14}, Landroid/view/View;->setPivotX(F)V
 
-    .line 436
+    .line 435
     invoke-virtual {v8, v14}, Landroid/view/View;->setPivotY(F)V
 
-    .line 437
+    .line 436
     int-to-float v13, v2
 
     const/high16 v15, 0x42b40000    # 90.0f
@@ -2055,20 +2059,20 @@
 
     invoke-virtual {v8, v13}, Landroid/view/View;->setRotation(F)V
 
-    .line 438
+    .line 437
     sub-float/2addr v4, v14
 
     invoke-virtual {v8, v4}, Landroid/view/View;->setTranslationX(F)V
 
-    .line 439
+    .line 438
     sub-float v4, v16, v14
 
     invoke-virtual {v8, v4}, Landroid/view/View;->setTranslationY(F)V
 
-    .line 440
+    .line 439
     invoke-virtual {v8, v12}, Landroid/view/View;->setAlpha(F)V
 
-    .line 441
+    .line 440
     const v4, 0x3e6147ae    # 0.22f
 
     mul-float/2addr v12, v4
@@ -2079,10 +2083,10 @@
 
     invoke-virtual {v8, v12}, Landroid/view/View;->setScaleX(F)V
 
-    .line 442
+    .line 441
     invoke-virtual {v8, v12}, Landroid/view/View;->setScaleY(F)V
 
-    .line 443
+    .line 442
     invoke-virtual {v6}, Landroid/widget/ImageView;->isEnabled()Z
 
     move-result v4
@@ -2099,7 +2103,7 @@
     :goto_a
     invoke-virtual {v6, v15}, Landroid/widget/ImageView;->setAlpha(F)V
 
-    .line 444
+    .line 443
     const v4, 0x3e6b851f    # 0.23f
 
     mul-float/2addr v4, v3
@@ -2108,10 +2112,10 @@
 
     move-result v4
 
-    .line 445
+    .line 444
     invoke-virtual {v6, v4, v4, v4, v4}, Landroid/widget/ImageView;->setPadding(IIII)V
 
-    .line 423
+    .line 422
     add-int/lit8 v5, v5, 0x1
 
     const/4 v4, 0x1
@@ -2120,11 +2124,11 @@
 
     goto/16 :goto_5
 
-    .line 447
+    .line 446
     :cond_11
     return-void
 
-    .line 395
+    .line 394
     :cond_12
     :goto_b
     return-void
@@ -2133,7 +2137,7 @@
 .method private static primaryTaskId(Lcom/android/quickstep/views/TaskView;)I
     .locals 1
 
-    .line 327
+    .line 326
     if-nez p0, :cond_0
 
     const/4 p0, 0x0
@@ -2145,7 +2149,7 @@
 
     move-result-object p0
 
-    .line 328
+    .line 327
     :goto_0
     if-eqz p0, :cond_2
 
@@ -2173,19 +2177,19 @@
 .method private remove(Z)V
     .locals 3
 
-    .line 529
+    .line 528
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/quickstep/views/LsStackActions;->mIsOpen:Z
 
-    .line 530
+    .line 529
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_1
 
-    .line 531
+    .line 530
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
     invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
@@ -2196,18 +2200,18 @@
 
     if-ne v0, v2, :cond_0
 
-    .line 532
+    .line 531
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
     iget v2, p0, Lcom/android/quickstep/views/LsStackActions;->clearButtonVisibility:I
 
     invoke-virtual {v0, v2}, Landroid/view/View;->setVisibility(I)V
 
-    .line 533
+    .line 532
     :cond_0
     iput-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
-    .line 535
+    .line 534
     :cond_1
     sget-object v0, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
@@ -2221,7 +2225,7 @@
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->clear()V
 
-    .line 536
+    .line 535
     :cond_2
     if-nez p1, :cond_3
 
@@ -2229,13 +2233,13 @@
 
     iput-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->pendingView:Landroid/view/View;
 
-    .line 537
+    .line 536
     :cond_3
     invoke-super {p0}, Lcom/android/launcher3/AbstractFloatingView;->getParent()Landroid/view/ViewParent;
 
     move-result-object p1
 
-    .line 538
+    .line 537
     instance-of v0, p1, Landroid/view/ViewGroup;
 
     if-eqz v0, :cond_4
@@ -2244,7 +2248,7 @@
 
     invoke-virtual {p1, p0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
 
-    .line 539
+    .line 538
     :cond_4
     return-void
 .end method
@@ -2252,7 +2256,7 @@
 .method static reservedWidth(FF)F
     .locals 1
 
-    .line 338
+    .line 337
     const v0, 0x3ea3d70a    # 0.32f
 
     mul-float/2addr p0, v0
@@ -2271,7 +2275,7 @@
 .method static rotation(Lcom/android/quickstep/views/RecentsView;)I
     .locals 0
 
-    .line 265
+    .line 264
     if-nez p0, :cond_0
 
     const/4 p0, 0x0
@@ -2294,19 +2298,19 @@
 .method private static safeInsets(Landroid/view/View;)Landroid/graphics/Insets;
     .locals 2
 
-    .line 332
+    .line 331
     invoke-virtual {p0}, Landroid/view/View;->getRootWindowInsets()Landroid/view/WindowInsets;
 
     move-result-object p0
 
-    .line 333
+    .line 332
     if-nez p0, :cond_0
 
     sget-object p0, Landroid/graphics/Insets;->NONE:Landroid/graphics/Insets;
 
     goto :goto_0
 
-    .line 334
+    .line 333
     :cond_0
     invoke-static {}, Landroid/view/WindowInsets$Type;->systemBars()I
 
@@ -2318,7 +2322,7 @@
 
     or-int/2addr v0, v1
 
-    .line 333
+    .line 332
     invoke-virtual {p0, v0}, Landroid/view/WindowInsets;->getInsets(I)Landroid/graphics/Insets;
 
     move-result-object p0
@@ -2330,7 +2334,7 @@
 .method public static shouldShowActionsOnRight(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;)Z
     .locals 7
 
-    .line 235
+    .line 234
     const/4 v0, 0x0
 
     if-eqz p0, :cond_c
@@ -2343,7 +2347,7 @@
 
     if-eqz v1, :cond_c
 
-    .line 236
+    .line 235
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
 
     move-result-object v1
@@ -2358,7 +2362,7 @@
 
     goto/16 :goto_4
 
-    .line 237
+    .line 236
     :cond_0
     sget-object v1, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
@@ -2368,7 +2372,7 @@
 
     check-cast v1, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 238
+    .line 237
     if-eqz v1, :cond_1
 
     iget-object v2, v1, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
@@ -2389,7 +2393,7 @@
 
     iget v2, v1, Lcom/android/quickstep/views/LsStackActions;->taskId:I
 
-    .line 239
+    .line 238
     invoke-static {p1}, Lcom/android/quickstep/views/LsStackActions;->primaryTaskId(Lcom/android/quickstep/views/TaskView;)I
 
     move-result v3
@@ -2402,12 +2406,12 @@
 
     if-eqz v2, :cond_1
 
-    .line 242
+    .line 241
     iget-boolean p0, v1, Lcom/android/quickstep/views/LsStackActions;->right:Z
 
     return p0
 
-    .line 244
+    .line 243
     :cond_1
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getRootView()Landroid/view/View;
 
@@ -2419,7 +2423,7 @@
 
     move-result-object v1
 
-    .line 245
+    .line 244
     invoke-static {v1}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
     move-result v3
@@ -2430,13 +2434,13 @@
 
     move-result-object v1
 
-    .line 246
+    .line 245
     :cond_2
     new-instance v3, Landroid/graphics/RectF;
 
     invoke-direct {v3}, Landroid/graphics/RectF;-><init>()V
 
-    .line 247
+    .line 246
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
 
     move-result-object v4
@@ -2458,7 +2462,7 @@
 
     check-cast v5, Lcom/android/quickstep/views/TaskContainer;
 
-    .line 248
+    .line 247
     if-nez v5, :cond_3
 
     move-object v5, v2
@@ -2470,19 +2474,19 @@
 
     move-result-object v5
 
-    .line 249
+    .line 248
     :goto_1
     if-nez v5, :cond_4
 
     goto :goto_0
 
-    .line 250
+    .line 249
     :cond_4
     invoke-static {v5, v2}, Lcom/android/quickstep/views/LsStackActions;->globalBounds(Landroid/view/View;Landroid/graphics/Rect;)Landroid/graphics/RectF;
 
     move-result-object v5
 
-    .line 251
+    .line 250
     invoke-static {v5}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
     move-result v6
@@ -2491,11 +2495,11 @@
 
     invoke-virtual {v3, v5}, Landroid/graphics/RectF;->union(Landroid/graphics/RectF;)V
 
-    .line 252
+    .line 251
     :cond_5
     goto :goto_0
 
-    .line 253
+    .line 252
     :cond_6
     invoke-static {v3}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
@@ -2507,7 +2511,7 @@
 
     move-result-object v3
 
-    .line 257
+    .line 256
     :cond_7
     invoke-static {v1}, Lcom/android/quickstep/views/LsStackActions;->hasFiniteBounds(Landroid/graphics/RectF;)Z
 
@@ -2525,16 +2529,16 @@
 
     goto :goto_3
 
-    .line 258
+    .line 257
     :cond_8
     invoke-static {p0}, Lcom/android/quickstep/views/LsStackActions;->rotation(Lcom/android/quickstep/views/RecentsView;)I
 
     move-result p0
 
-    .line 259
+    .line 258
     invoke-static {v3, v1, p0}, Lcom/android/quickstep/views/LsStackActions;->toVisual(Landroid/graphics/RectF;Landroid/graphics/RectF;I)V
 
-    .line 260
+    .line 259
     and-int/2addr p0, v2
 
     if-nez p0, :cond_9
@@ -2550,7 +2554,7 @@
 
     move-result p0
 
-    .line 261
+    .line 260
     :goto_2
     invoke-virtual {v3}, Landroid/graphics/RectF;->centerX()F
 
@@ -2569,12 +2573,12 @@
     :cond_a
     return v0
 
-    .line 257
+    .line 256
     :cond_b
     :goto_3
     return v2
 
-    .line 236
+    .line 235
     :cond_c
     :goto_4
     return v0
@@ -2583,7 +2587,7 @@
 .method public static show(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z)Z
     .locals 5
 
-    .line 199
+    .line 198
     const/4 v0, 0x0
 
     if-eqz p0, :cond_7
@@ -2596,7 +2600,7 @@
 
     if-eqz v1, :cond_7
 
-    .line 200
+    .line 199
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
 
     move-result-object v1
@@ -2611,7 +2615,7 @@
 
     goto/16 :goto_1
 
-    .line 201
+    .line 200
     :cond_0
     sget-object v1, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
@@ -2621,7 +2625,7 @@
 
     check-cast v1, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 202
+    .line 201
     const/4 v2, 0x1
 
     if-eqz v1, :cond_1
@@ -2644,7 +2648,7 @@
 
     iget v3, v1, Lcom/android/quickstep/views/LsStackActions;->taskId:I
 
-    .line 203
+    .line 202
     invoke-static {p1}, Lcom/android/quickstep/views/LsStackActions;->primaryTaskId(Lcom/android/quickstep/views/TaskView;)I
 
     move-result v4
@@ -2655,43 +2659,43 @@
 
     if-ne v3, p2, :cond_1
 
-    .line 204
+    .line 203
     invoke-virtual {v1}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
 
     move-result-object v3
 
     if-eqz v3, :cond_1
 
-    .line 205
+    .line 204
     iput-boolean v0, v1, Lcom/android/quickstep/views/LsStackActions;->closing:Z
 
-    .line 206
+    .line 205
     iput-boolean v2, v1, Lcom/android/quickstep/views/LsStackActions;->mIsOpen:Z
 
-    .line 207
+    .line 206
     const/4 p0, 0x0
 
     iput-object p0, v1, Lcom/android/quickstep/views/LsStackActions;->pending:Lcom/android/launcher3/popup/SystemShortcut;
 
-    .line 208
+    .line 207
     iput-object p0, v1, Lcom/android/quickstep/views/LsStackActions;->pendingView:Landroid/view/View;
 
-    .line 209
+    .line 208
     return v2
 
-    .line 211
+    .line 210
     :cond_1
     if-eqz v1, :cond_2
 
     invoke-direct {v1, v0}, Lcom/android/quickstep/views/LsStackActions;->remove(Z)V
 
-    .line 212
+    .line 211
     :cond_2
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getParent()Landroid/view/ViewParent;
 
     move-result-object v1
 
-    .line 213
+    .line 212
     :goto_0
     if-eqz v1, :cond_3
 
@@ -2705,7 +2709,7 @@
 
     goto :goto_0
 
-    .line 214
+    .line 213
     :cond_3
     instance-of v3, v1, Lcom/android/launcher3/views/BaseDragLayer;
 
@@ -2713,13 +2717,13 @@
 
     return v0
 
-    .line 215
+    .line 214
     :cond_4
     new-instance v3, Lcom/android/quickstep/views/LsStackActions;
 
     invoke-direct {v3, p0, p1, p2}, Lcom/android/quickstep/views/LsStackActions;-><init>(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;Z)V
 
-    .line 216
+    .line 215
     iget-object p1, v3, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
     invoke-virtual {p1}, Ljava/util/ArrayList;->isEmpty()Z
@@ -2730,7 +2734,7 @@
 
     return v0
 
-    .line 217
+    .line 216
     :cond_5
     new-instance p1, Ljava/lang/ref/WeakReference;
 
@@ -2738,37 +2742,37 @@
 
     sput-object p1, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
-    .line 218
+    .line 217
     iput-boolean v2, v3, Lcom/android/quickstep/views/LsStackActions;->mIsOpen:Z
 
-    .line 219
+    .line 218
     new-instance p1, Lcom/android/launcher3/views/BaseDragLayer$LayoutParams;
 
     const/4 p2, -0x1
 
     invoke-direct {p1, p2, p2}, Lcom/android/launcher3/views/BaseDragLayer$LayoutParams;-><init>(II)V
 
-    .line 222
+    .line 221
     invoke-virtual {p1, v2}, Lcom/android/launcher3/views/BaseDragLayer$LayoutParams;->setIgnoreInsets(Z)V
 
-    .line 223
+    .line 222
     check-cast v1, Landroid/view/ViewGroup;
 
     invoke-virtual {v1, v3, p1}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 224
+    .line 223
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getNativeStackClearButton()Landroid/view/View;
 
     move-result-object p0
 
     iput-object p0, v3, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
-    .line 225
+    .line 224
     iget-object p0, v3, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
     if-eqz p0, :cond_6
 
-    .line 226
+    .line 225
     iget-object p0, v3, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
     invoke-virtual {p0}, Landroid/view/View;->getVisibility()I
@@ -2777,21 +2781,21 @@
 
     iput p0, v3, Lcom/android/quickstep/views/LsStackActions;->clearButtonVisibility:I
 
-    .line 227
+    .line 226
     iget-object p0, v3, Lcom/android/quickstep/views/LsStackActions;->hiddenClearButton:Landroid/view/View;
 
     const/4 p1, 0x4
 
     invoke-virtual {p0, p1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 229
+    .line 228
     :cond_6
     invoke-virtual {v3}, Landroid/view/View;->requestFocus()Z
 
-    .line 230
+    .line 229
     return v2
 
-    .line 200
+    .line 199
     :cond_7
     :goto_1
     return v0
@@ -2800,7 +2804,7 @@
 .method static toVisual(Landroid/graphics/RectF;Landroid/graphics/RectF;I)V
     .locals 5
 
-    .line 270
+    .line 269
     iget v0, p0, Landroid/graphics/RectF;->left:F
 
     iget v1, p1, Landroid/graphics/RectF;->left:F
@@ -2813,7 +2817,7 @@
 
     sub-float/2addr v1, v2
 
-    .line 271
+    .line 270
     iget v2, p0, Landroid/graphics/RectF;->right:F
 
     iget v3, p1, Landroid/graphics/RectF;->left:F
@@ -2826,7 +2830,7 @@
 
     sub-float/2addr v3, v4
 
-    .line 272
+    .line 271
     const/4 v4, 0x1
 
     if-ne p2, v4, :cond_0
@@ -2847,7 +2851,7 @@
 
     goto :goto_0
 
-    .line 273
+    .line 272
     :cond_0
     const/4 v4, 0x3
 
@@ -2869,7 +2873,7 @@
 
     goto :goto_0
 
-    .line 274
+    .line 273
     :cond_1
     const/4 v4, 0x2
 
@@ -2887,7 +2891,7 @@
 
     sub-float/2addr v2, v3
 
-    .line 275
+    .line 274
     invoke-virtual {p1}, Landroid/graphics/RectF;->width()F
 
     move-result v3
@@ -2900,16 +2904,16 @@
 
     sub-float/2addr p1, v1
 
-    .line 274
+    .line 273
     invoke-virtual {p0, p2, v2, v3, p1}, Landroid/graphics/RectF;->set(FFFF)V
 
     goto :goto_0
 
-    .line 276
+    .line 275
     :cond_2
     invoke-virtual {p0, v0, v1, v2, v3}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 277
+    .line 276
     :goto_0
     return-void
 .end method
@@ -2917,7 +2921,7 @@
 .method public static update(Lcom/android/quickstep/views/RecentsView;F)V
     .locals 2
 
-    .line 352
+    .line 351
     sget-object v0, Lcom/android/quickstep/views/LsStackActions;->active:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -2926,7 +2930,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsStackActions;
 
-    .line 353
+    .line 352
     if-eqz v0, :cond_1
 
     iget-object v1, v0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
@@ -2939,17 +2943,17 @@
 
     goto :goto_0
 
-    .line 354
+    .line 353
     :cond_0
     iput p1, v0, Lcom/android/quickstep/views/LsStackActions;->progress:F
 
-    .line 355
+    .line 354
     invoke-direct {v0}, Lcom/android/quickstep/views/LsStackActions;->positionButtons()V
 
-    .line 356
+    .line 355
     return-void
 
-    .line 353
+    .line 352
     :cond_1
     :goto_0
     return-void
@@ -2958,12 +2962,12 @@
 .method private static visualInsets(Landroid/view/View;I)Landroid/graphics/Insets;
     .locals 2
 
-    .line 280
+    .line 279
     invoke-static {p0}, Lcom/android/quickstep/views/LsStackActions;->safeInsets(Landroid/view/View;)Landroid/graphics/Insets;
 
     move-result-object p0
 
-    .line 281
+    .line 280
     const/4 v0, 0x1
 
     if-ne p1, v0, :cond_0
@@ -2982,7 +2986,7 @@
 
     return-object p0
 
-    .line 282
+    .line 281
     :cond_0
     const/4 v0, 0x3
 
@@ -3002,7 +3006,7 @@
 
     return-object p0
 
-    .line 283
+    .line 282
     :cond_1
     const/4 v0, 0x2
 
@@ -3022,17 +3026,17 @@
 
     return-object p0
 
-    .line 284
+    .line 283
     :cond_2
     return-object p0
 .end method
 
 
 # virtual methods
-.method protected handleClose(Z)V
+.method public handleClose(Z)V
     .locals 1
 
-    .line 498
+    .line 497
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsStackActions;->closing:Z
 
     if-eqz v0, :cond_0
@@ -3041,20 +3045,20 @@
 
     return-void
 
-    .line 499
+    .line 498
     :cond_0
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/quickstep/views/LsStackActions;->closing:Z
 
-    .line 500
+    .line 499
     const/4 v0, 0x0
 
     if-nez p1, :cond_1
 
     invoke-direct {p0, v0}, Lcom/android/quickstep/views/LsStackActions;->remove(Z)V
 
-    .line 501
+    .line 500
     :cond_1
     iget-object p1, p0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
 
@@ -3064,26 +3068,26 @@
 
     check-cast p1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 502
+    .line 501
     if-eqz p1, :cond_2
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->onTaskMenuClosed(Lcom/android/quickstep/views/RecentsView;)V
 
     goto :goto_0
 
-    .line 503
+    .line 502
     :cond_2
     invoke-direct {p0, v0}, Lcom/android/quickstep/views/LsStackActions;->remove(Z)V
 
-    .line 504
+    .line 503
     :goto_0
     return-void
 .end method
 
-.method protected isOfType(I)Z
+.method public isOfType(I)Z
     .locals 0
 
-    .line 495
+    .line 494
     and-int/lit16 p1, p1, 0x800
 
     if-eqz p1, :cond_0
@@ -3102,7 +3106,7 @@
 .method public onClick(Landroid/view/View;)V
     .locals 2
 
-    .line 507
+    .line 506
     iget-boolean v0, p0, Lcom/android/quickstep/views/LsStackActions;->closing:Z
 
     if-nez v0, :cond_3
@@ -3117,7 +3121,7 @@
 
     goto :goto_1
 
-    .line 508
+    .line 507
     :cond_0
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->buttons:Ljava/util/ArrayList;
 
@@ -3125,7 +3129,7 @@
 
     move-result v0
 
-    .line 509
+    .line 508
     if-ltz v0, :cond_2
 
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->shortcuts:Ljava/util/ArrayList;
@@ -3144,7 +3148,7 @@
 
     goto :goto_0
 
-    .line 510
+    .line 509
     :cond_1
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->shortcuts:Ljava/util/ArrayList;
 
@@ -3156,23 +3160,23 @@
 
     iput-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->pending:Lcom/android/launcher3/popup/SystemShortcut;
 
-    .line 511
+    .line 510
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackActions;->pendingView:Landroid/view/View;
 
-    .line 512
+    .line 511
     const/4 p1, 0x1
 
     invoke-virtual {p0, p1}, Lcom/android/quickstep/views/LsStackActions;->handleClose(Z)V
 
-    .line 513
+    .line 512
     return-void
 
-    .line 509
+    .line 508
     :cond_2
     :goto_0
     return-void
 
-    .line 507
+    .line 506
     :cond_3
     :goto_1
     return-void
@@ -3181,7 +3185,7 @@
 .method public onControllerInterceptTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 0
 
-    .line 487
+    .line 486
     const/4 p1, 0x0
 
     return p1
@@ -3190,7 +3194,7 @@
 .method protected onLayout(ZIIII)V
     .locals 0
 
-    .line 370
+    .line 369
     const/4 p1, 0x0
 
     move p2, p1
@@ -3202,12 +3206,12 @@
 
     if-ge p2, p3, :cond_0
 
-    .line 371
+    .line 370
     invoke-super {p0, p2}, Lcom/android/launcher3/AbstractFloatingView;->getChildAt(I)Landroid/view/View;
 
     move-result-object p3
 
-    .line 372
+    .line 371
     invoke-virtual {p3}, Landroid/view/View;->getMeasuredWidth()I
 
     move-result p4
@@ -3218,36 +3222,36 @@
 
     invoke-virtual {p3, p1, p1, p4, p5}, Landroid/view/View;->layout(IIII)V
 
-    .line 370
+    .line 369
     add-int/lit8 p2, p2, 0x1
 
     goto :goto_0
 
-    .line 374
+    .line 373
     :cond_0
     invoke-direct {p0}, Lcom/android/quickstep/views/LsStackActions;->positionButtons()V
 
-    .line 375
+    .line 374
     return-void
 .end method
 
 .method protected onMeasure(II)V
     .locals 1
 
-    .line 359
+    .line 358
     invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result p1
 
-    .line 360
+    .line 359
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result p2
 
-    .line 361
+    .line 360
     invoke-super {p0, p1, p2}, Lcom/android/launcher3/AbstractFloatingView;->setMeasuredDimension(II)V
 
-    .line 364
+    .line 363
     invoke-direct {p0, p1, p2}, Lcom/android/quickstep/views/LsStackActions;->buttonDiameter(II)F
 
     move-result p1
@@ -3264,7 +3268,7 @@
 
     iput p1, p0, Lcom/android/quickstep/views/LsStackActions;->measuredButtonDiameter:I
 
-    .line 365
+    .line 364
     iget p1, p0, Lcom/android/quickstep/views/LsStackActions;->measuredButtonDiameter:I
 
     const/high16 p2, 0x40000000    # 2.0f
@@ -3273,7 +3277,7 @@
 
     move-result p1
 
-    .line 366
+    .line 365
     const/4 p2, 0x0
 
     :goto_0
@@ -3293,7 +3297,7 @@
 
     goto :goto_0
 
-    .line 367
+    .line 366
     :cond_0
     return-void
 .end method
@@ -3301,7 +3305,7 @@
 .method public onTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 1
 
-    .line 491
+    .line 490
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
 
     move-result p1
@@ -3312,7 +3316,7 @@
 
     invoke-virtual {p0, v0}, Lcom/android/quickstep/views/LsStackActions;->handleClose(Z)V
 
-    .line 492
+    .line 491
     :cond_0
     return v0
 .end method
@@ -3320,7 +3324,7 @@
 .method public run()V
     .locals 6
 
-    .line 542
+    .line 541
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackActions;->taskRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -3329,7 +3333,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/TaskView;
 
-    .line 543
+    .line 542
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackActions;->owner:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -3338,21 +3342,21 @@
 
     check-cast v1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 544
+    .line 543
     iget-object v2, p0, Lcom/android/quickstep/views/LsStackActions;->pending:Lcom/android/launcher3/popup/SystemShortcut;
 
-    .line 545
+    .line 544
     iget-object v3, p0, Lcom/android/quickstep/views/LsStackActions;->pendingView:Landroid/view/View;
 
-    .line 546
+    .line 545
     const/4 v4, 0x0
 
     iput-object v4, p0, Lcom/android/quickstep/views/LsStackActions;->pending:Lcom/android/launcher3/popup/SystemShortcut;
 
-    .line 547
+    .line 546
     iput-object v4, p0, Lcom/android/quickstep/views/LsStackActions;->pendingView:Landroid/view/View;
 
-    .line 548
+    .line 547
     if-eqz v2, :cond_0
 
     if-eqz v0, :cond_0
@@ -3365,7 +3369,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 549
+    .line 548
     invoke-virtual {v1}, Lcom/android/quickstep/views/RecentsView;->isShown()Z
 
     move-result v4
@@ -3382,14 +3386,14 @@
 
     if-lez v4, :cond_0
 
-    .line 550
+    .line 549
     invoke-virtual {v1}, Lcom/android/quickstep/views/RecentsView;->canLaunchFullscreenTask()Z
 
     move-result v4
 
     if-eqz v4, :cond_0
 
-    .line 551
+    .line 550
     invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->isAttachedToWindow()Z
 
     move-result v4
@@ -3402,7 +3406,7 @@
 
     if-ne v4, v1, :cond_0
 
-    .line 552
+    .line 551
     invoke-static {v0}, Lcom/android/quickstep/views/LsStackActions;->primaryTaskId(Lcom/android/quickstep/views/TaskView;)I
 
     move-result v0
@@ -3419,7 +3423,7 @@
 
     invoke-virtual {v2, v3}, Lcom/android/launcher3/popup/SystemShortcut;->onClick(Landroid/view/View;)V
 
-    .line 553
+    .line 552
     :cond_0
     return-void
 .end method

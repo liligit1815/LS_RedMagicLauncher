@@ -261,7 +261,7 @@ class ImageView extends View {Drawable drawable;enum ScaleType {FIT_CENTER}Image
 class TextView extends View {TextView(Context c){super(c);}}
 abstract class a extends ViewGroup {
     protected boolean mIsOpen;a(Context c,Object attrs){super(c);}
-    protected abstract boolean isOfType(int t);protected abstract void handleClose(boolean animate);
+    public abstract boolean isOfType(int t);public abstract void handleClose(boolean animate);
     public abstract boolean onControllerInterceptTouchEvent(MotionEvent e);
 }
 class BaseDragLayer extends FrameLayout {
@@ -301,7 +301,14 @@ class TaskShortcutFactory {
         @Override void setIconAndContentDescriptionFor(ImageView v){if(!initialized)throw new AssertionError("lock rendered before state initialized");super.setIconAndContentDescriptionFor(v);v.setContentDescription(labelOverride!=null?labelOverride:locked?"unlock":"lock");}
     }
 }
-class TaskOverlayFactory {static List<P> actions;static List<P> getEnabledShortcuts(TaskView t,TaskContainer c){return actions;}}
+class TaskOverlayFactory {
+    static List<P> actions;final RecentsView owner;int queries;
+    TaskOverlayFactory(RecentsView owner){this.owner=owner;}
+    List<P> getEnabledShortcuts(TaskView task,TaskContainer container){
+        if(task.getRecentsView()!=owner)throw new AssertionError("shortcut factory belongs to a different Overview");
+        queries++;return actions;
+    }
+}
 interface RecentsViewContainer {}
 class TaskContainer {final View snapshot;TaskView task;TaskContainer(View v){snapshot=v;}View getSnapshotView(){return snapshot;}}
 class TaskView extends View {
@@ -317,6 +324,8 @@ class RecentsPagedOrientationHandler {
     int getPrimarySize(View v){return (r&1)==0?v.w:v.h;}
 }
 class RecentsView extends View {
+    final TaskOverlayFactory overlayFactory=new TaskOverlayFactory(this);
+    TaskOverlayFactory getTaskOverlayFactory(){return overlayFactory;}
     int handlerRotation;View clearButton;
     View getNativeStackClearButton(){return clearButton;}
     RecentsPagedOrientationHandler getPagedOrientationHandler(){return new RecentsPagedOrientationHandler(handlerRotation);}

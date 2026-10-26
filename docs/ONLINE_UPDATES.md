@@ -1,8 +1,8 @@
 # 红魔12在线更新
 
-红魔12桌面使用独立更新通道 `stacked-desktop-redmagic12`，当前版本为 `270003 / 27.0.000.000.2609231706`。
+红魔12桌面使用独立更新通道 `stacked-desktop-redmagic12`，当前版本为 `270004 / 27.0.000.000.2609231706`。
 
-[公开更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json) · [发行页面](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic12-v270003)
+[公开更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json) · [发行页面](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic12-v270004)
 
 ## 使用入口
 
@@ -39,7 +39,7 @@
 公开下载可用以下命令核对，报告留在忽略的out目录：
 
 ```powershell
-python tools/check-launcher-online-release.py --sdk "<Android SDK目录>" --java-home "<JDK目录>" --out-dir "out/online-release-270003" --expected-version-code 270003 --expected-apk "<最终签名APK>"
+python tools/check-launcher-online-release.py --sdk "<Android SDK目录>" --java-home "<JDK目录>" --out-dir "out/online-release-270004" --expected-version-code 270004 --expected-apk "<最终签名APK>"
 ```
 
 客户端入口由 `LsOnlineUpdates` 接入，协议由 `LsUpdateProtocol` 处理，下载交接由 `LsUpdateFileProvider` 提供。清单与安装包版本一致时不会再次提示升级。

@@ -14,6 +14,7 @@ public abstract class RecentsView extends ViewGroup {
     }
 
     public abstract int getScrollForPage(int page);
+    public abstract com.android.quickstep.TaskOverlayFactory getTaskOverlayFactory();
     public abstract boolean canLaunchFullscreenTask();
     public abstract boolean canRemoveTaskView(TaskView task);
     public abstract android.view.View getNativeStackClearButton();
