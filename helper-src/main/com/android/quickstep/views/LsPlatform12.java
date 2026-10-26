@@ -25,8 +25,18 @@ public final class LsPlatform12 {
     private static final class Dismiss {
         final WeakReference<TaskView> task;
         final int[] ids;
+        final float startPosition;
+        final WeakHashMap<TaskView, int[]> survivors = new WeakHashMap<>();
         float progress;
-        Dismiss(TaskView value) { task = new WeakReference<>(value); ids = value.getTaskIds().clone(); }
+        Dismiss(RecentsView recents, TaskView value) {
+            task = new WeakReference<>(value);
+            ids = value.getTaskIds().clone();
+            startPosition = dismissProperty(value).get(value);
+            for (int i = 0; i < recents.getTaskViewCount(); i++) {
+                TaskView other = recents.getTaskViewAt(i);
+                if (other != null && other != value) survivors.put(other, other.getTaskIds().clone());
+            }
+        }
         boolean matches(TaskView value) { return task.get() == value && Arrays.equals(ids, value.getTaskIds()); }
     }
 
@@ -37,7 +47,7 @@ public final class LsPlatform12 {
         if (current != null) endDismiss(recents);
         LsNativeStack.recordDismissedTask(recents, task);
         LsNativeStack.prepareDismissedTask(recents, task);
-        dismissals.put(recents, new Dismiss(task));
+        dismissals.put(recents, new Dismiss(recents, task));
     }
 
     public static void springFrame(RecentsView recents, TaskView task,
@@ -45,7 +55,9 @@ public final class LsPlatform12 {
         Dismiss current = dismissals.get(recents);
         if (!removing || current == null || !current.matches(task) || !finite(position)
                 || !finite(target) || Math.abs(target) < .001f) return;
-        current.progress = Math.max(0f, Math.min(1f, Math.abs(position / target)));
+        float distance = target - current.startPosition;
+        current.progress = Math.abs(distance) < .001f ? 1f
+                : Math.max(0f, Math.min(1f, (position - current.startPosition) / distance));
         LsOrbitReflow.springFrame(recents, task, current.progress);
         LsFanReflow.springFrame(recents, task, current.progress);
         recents.postInvalidateOnAnimation();
@@ -54,12 +66,17 @@ public final class LsPlatform12 {
     public static void beforeDraw(RecentsView recents) {
         Dismiss current = dismissals.get(recents);
         TaskView leaving = current == null ? null : current.task.get();
-        if (leaving == null || !current.matches(leaving) || !recents.isNativeStackStyle()) return;
+        if (current == null) return;
+        if (leaving == null || !current.matches(leaving) || !recents.isNativeStackStyle()) {
+            endDismiss(recents);
+            return;
+        }
         if (recents.indexOfChild(leaving) < 0) { endDismiss(recents); return; }
         if (recents.isOrbitStyle() || recents.isFanStyle()) return;
         for (int i = 0; i < recents.getTaskViewCount(); i++) {
             TaskView task = recents.getTaskViewAt(i);
-            if (task == null || task == leaving) continue;
+            if (task == null || task == leaving
+                    || !Arrays.equals(current.survivors.get(task), task.getTaskIds())) continue;
             float offset = LsNativeStack.adjustDismissOffset(recents, task, leaving, 0);
             task.getPrimaryDismissTranslationProperty().setValue(task, offset * current.progress);
             float scale = LsNativeStack.getDismissReflowScale(recents, task);
@@ -71,11 +88,32 @@ public final class LsPlatform12 {
         return recents.isNativeStackStyle() ? new Pair<>(0f, 0f) : null;
     }
 
+    /** The leaving spring already drives the complete custom deck. OEM's
+     * non-grid reflow bypasses reflowTarget and adds a second sideways spring
+     * plus delayed neighbor settling. Keep only the native leaving lifecycle. */
+    public static Pair<Object, java.util.List<TaskView>> customDismissReflow(
+            RecentsView recents, TaskView task) {
+        Dismiss current = dismissals.get(recents);
+        return recents.isNativeStackStyle() && task != null && current != null
+                && current.matches(task)
+                ? new Pair<>(null, java.util.Collections.<TaskView>emptyList()) : null;
+    }
+
     public static void endDismiss(RecentsView recents) {
         Dismiss current = dismissals.remove(recents);
         if (current == null) return;
         TaskView leaving = current.task.get();
         boolean removed = leaving != null && current.matches(leaving) && recents.indexOfChild(leaving) < 0;
+        // Remove our additive reflow before the final N-1 layout is composed.
+        // OEM reset can precede our last draw or be skipped on cancellation.
+        for (java.util.Map.Entry<TaskView, int[]> entry : current.survivors.entrySet()) {
+            TaskView task = entry.getKey();
+            if (task == null || recents.indexOfChild(task) < 0
+                    || !Arrays.equals(entry.getValue(), task.getTaskIds())) continue;
+            task.getPrimaryDismissTranslationProperty().setValue(task, 0f);
+            task.getSecondaryDismissTranslationProperty().setValue(task, 0f);
+            TaskView.DISMISS_SCALE.setValue(task, 1f);
+        }
         LsNativeStack.onDismissAnimationEnd(recents, removed);
     }
 

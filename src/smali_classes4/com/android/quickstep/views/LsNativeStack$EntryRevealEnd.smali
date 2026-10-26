@@ -24,20 +24,20 @@
 .method constructor <init>(Lcom/android/quickstep/views/RecentsView;)V
     .locals 1
 
-    .line 1341
+    .line 1343
     invoke-direct {p0}, Landroid/animation/AnimatorListenerAdapter;-><init>()V
 
-    .line 1339
+    .line 1341
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1800()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealEnd;->generation:I
 
-    .line 1342
+    .line 1344
     iput-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealEnd;->recents:Lcom/android/quickstep/views/RecentsView;
 
-    .line 1343
+    .line 1345
     return-void
 .end method
 
@@ -46,7 +46,7 @@
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 2
 
-    .line 1347
+    .line 1349
     iget v0, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealEnd;->generation:I
 
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1800()I
@@ -67,24 +67,24 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 1348
+    .line 1350
     const/high16 v0, 0x3f800000    # 1.0f
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$2002(F)F
 
-    .line 1349
+    .line 1351
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$1900()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->clear()V
 
-    .line 1350
+    .line 1352
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$EntryRevealEnd;->recents:Lcom/android/quickstep/views/RecentsView;
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->update(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 1352
+    .line 1354
     :cond_0
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$2100()Landroid/animation/ValueAnimator;
 
@@ -92,12 +92,12 @@
 
     if-ne v0, p1, :cond_1
 
-    .line 1353
+    .line 1355
     const/4 p1, 0x0
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->access$2102(Landroid/animation/ValueAnimator;)Landroid/animation/ValueAnimator;
 
-    .line 1355
+    .line 1357
     :cond_1
     return-void
 .end method

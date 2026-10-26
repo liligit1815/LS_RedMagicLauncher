@@ -4150,6 +4150,14 @@
         }
     .end annotation
 
+    iget-object v0, p0, Lcom/android/quickstep/views/RecentsDismissUtils;->recentsView:Lcom/android/quickstep/views/RecentsView;
+    invoke-static {v0, p1}, Lcom/android/quickstep/views/LsPlatform12;->customDismissReflow(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;)Lkotlin/Pair;
+    move-result-object v0
+    if-eqz v0, :ls_oem_dismiss_reflow
+    return-object v0
+    :ls_oem_dismiss_reflow
+
+
     .line 1
     iget-object v1, p0, Lcom/android/quickstep/views/RecentsDismissUtils;->recentsView:Lcom/android/quickstep/views/RecentsView;
 

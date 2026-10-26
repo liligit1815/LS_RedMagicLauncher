@@ -578,6 +578,8 @@ public final class LsNativeStack {
             return false;
         }
         animateTaskActions(recents, 1.0f);
+        // Default flags respect both the View and system touch-feedback setting.
+        task.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
         return true;
     }
 

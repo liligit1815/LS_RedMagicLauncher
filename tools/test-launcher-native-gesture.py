@@ -101,7 +101,7 @@ public class NativeGestureTest {
     static float resourceDensity=1,stackSpacingScale=1;
     static boolean productionGeometry;
     static class Geometry { GEOMETRY }
-    static class android { static class os { static class SystemClock {
+    static class android { static class view {static class HapticFeedbackConstants {static final int LONG_PRESS=0;}} static class os { static class SystemClock {
         static long uptimeMillis(){return 10000;}
     } } }
     static class Matrix {boolean invert(Matrix other){return true;}}
@@ -152,7 +152,8 @@ public class NativeGestureTest {
         }
         // Keep old-source red runs behavioral rather than compilation failures.
         static boolean isFrontVisibleCard(RecentsView r,TaskView t){return shouldShowActionsOnRight(r,t);}
-        static boolean show(RecentsView r,TaskView t,boolean side){sideBoundary("show");owner=r;task=t;right=side;pressed=false;return true;}
+        static boolean failShow;
+        static boolean show(RecentsView r,TaskView t,boolean side){if(failShow)return false;sideBoundary("show");owner=r;task=t;right=side;pressed=false;return true;}
         static void abort(RecentsView r){sideBoundary("clear");if(owner==r){owner=null;task=null;pressed=false;}}
         static Runnable finish(RecentsView r){abort(r);return null;}
         static void update(RecentsView r,float p){if(owner==r)progress=p;}
@@ -237,6 +238,8 @@ public class NativeGestureTest {
         float rotation;float getRotation(){return rotation;}void setRotation(float v){rotation=v;}
         float x,y,scale=1,alpha=1,z,title=1,actions=1,nativeX=37,actionOccluder,dismissY;
         float clip=-1;int writes; final int index; boolean directWrite;
+        boolean hapticsEnabled=true;int hapticRequests,hapticPulses;
+        boolean performHapticFeedback(int kind){check(kind==android.view.HapticFeedbackConstants.LONG_PRESS,"wrong haptic kind");hapticRequests++;if(hapticsEnabled)hapticPulses++;return hapticsEnabled;}
         boolean headerHidden,iconHidden,attached=true; int nativeCancels; long postedDelay; Runnable timer;
         Context getContext(){return new Context();}boolean isAttachedToWindow(){return attached;}
         void cancelLongPress(){}void cancelNativeStackTouch(MotionEvent e){nativeCancels++;}
@@ -557,6 +560,20 @@ public class NativeGestureTest {
         onAppGestureStart(slow);check(current.cancelled&&entryRevealRecents.get()==null,"native gesture retained Home animator");
         onOverviewStateChanged(slow,false);autoFinishReveal=true;focusScale=.9f;
     }
+    static void longPressHaptics(){
+        for(boolean enabled:new boolean[]{false,true}){
+            RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+            TaskView task=r.tasks[1];task.hapticsEnabled=enabled;
+            check(onTaskActionsLongPress(task),"menu did not open");
+            check(task.hapticRequests==1&&task.hapticPulses==(enabled?1:0),"system haptic policy was bypassed or feedback missing");
+            onTaskActionsLongPress(task);check(task.hapticRequests==1,"duplicate callback repeated feedback");
+            clearActionMenu(r);LsStackActions.failShow=true;
+            check(!onTaskActionsLongPress(task)&&task.hapticRequests==1,"failed menu vibrated");
+            LsStackActions.failShow=false;r.stack=false;
+            check(!onTaskActionsLongPress(task)&&task.hapticRequests==1,"other style vibrated");
+            onOverviewStateChanged(r,false);
+        }
+    }
     static void fastLongPress(){
         RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();TaskView task=r.tasks[2];
         MotionEvent down=new MotionEvent(MotionEvent.ACTION_DOWN,false);
@@ -570,8 +587,9 @@ public class NativeGestureTest {
             onCardTouch(task,event);timer.run();check(actionMenuTask.get()==null,"moving/cancelled gesture triggered long press");
         }
         onCardTouch(task,down);timer=task.timer;task.attached=false;timer.run();
-        check(actionMenuTask.get()==null,"detached card triggered long press");task.attached=true;
+        check(actionMenuTask.get()==null&&task.hapticRequests==0,"cancelled/detached card triggered feedback");task.attached=true;
         onCardTouch(task,down);timer=task.timer;timer.run();
+        check(task.hapticRequests==1,"timer path omitted long-press feedback");
         check(actionMenuTask.get()==task&&task.nativeCancels==1,"fast long press did not cancel native app-launch stream");
         check(r.tasks[0].headerHidden&&r.tasks[1].headerHidden&&!task.headerHidden,"upper headers not hidden");
         check(onCardTouch(task,new MotionEvent(MotionEvent.ACTION_UP,false)),"long-press release would launch app");
@@ -1039,6 +1057,7 @@ public class NativeGestureTest {
         focusScale=savedScale;
     }
     public static void main(String[] args){
+        longPressHaptics();
         ORBIT_COMPOSITION
         preciseClipBoundaries();
         actionNeighborCompleteness();
