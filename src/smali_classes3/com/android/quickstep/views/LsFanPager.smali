@@ -89,10 +89,10 @@
 .method public static clear(Lcom/android/quickstep/views/RecentsView;)V
     .locals 1
 
-    .line 402
+    .line 418
     if-nez p0, :cond_1
 
-    .line 403
+    .line 419
     sget-object p0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
     invoke-virtual {p0}, Ljava/util/WeakHashMap;->values()Ljava/util/Collection;
@@ -116,25 +116,25 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsFanPager$State;
 
-    .line 404
+    .line 420
     invoke-virtual {v0}, Lcom/android/quickstep/views/LsFanPager$State;->cancelAnimation()V
 
-    .line 405
+    .line 421
     invoke-virtual {v0}, Lcom/android/quickstep/views/LsFanPager$State;->releaseTouch()V
 
-    .line 406
+    .line 422
     goto :goto_0
 
-    .line 407
+    .line 423
     :cond_0
     sget-object p0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
     invoke-virtual {p0}, Ljava/util/WeakHashMap;->clear()V
 
-    .line 408
+    .line 424
     return-void
 
-    .line 410
+    .line 426
     :cond_1
     sget-object v0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
@@ -144,16 +144,16 @@
 
     check-cast p0, Lcom/android/quickstep/views/LsFanPager$State;
 
-    .line 411
+    .line 427
     if-eqz p0, :cond_2
 
-    .line 412
+    .line 428
     invoke-virtual {p0}, Lcom/android/quickstep/views/LsFanPager$State;->cancelAnimation()V
 
-    .line 413
+    .line 429
     invoke-virtual {p0}, Lcom/android/quickstep/views/LsFanPager$State;->releaseTouch()V
 
-    .line 415
+    .line 431
     :cond_2
     return-void
 .end method
@@ -161,12 +161,12 @@
 .method public static commit(Lcom/android/quickstep/views/RecentsView;F)V
     .locals 2
 
-    .line 379
+    .line 383
     if-nez p0, :cond_0
 
     return-void
 
-    .line 380
+    .line 384
     :cond_0
     sget-object v0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
@@ -176,31 +176,31 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsFanPager$State;
 
-    .line 381
+    .line 385
     if-nez v0, :cond_1
 
-    .line 382
+    .line 386
     new-instance v0, Lcom/android/quickstep/views/LsFanPager$State;
 
     invoke-direct {v0, p0, p1}, Lcom/android/quickstep/views/LsFanPager$State;-><init>(Lcom/android/quickstep/views/RecentsView;F)V
 
-    .line 383
+    .line 387
     sget-object v1, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
     invoke-virtual {v1, p0, v0}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 385
+    .line 389
     :cond_1
     invoke-static {p0}, Lcom/android/quickstep/views/LsFanPager;->stop(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 386
+    .line 390
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getTaskViewCount()I
 
     move-result v1
 
     invoke-static {v0, p0, v1}, Lcom/android/quickstep/views/LsFanPager;->reconcile(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;I)V
 
-    .line 387
+    .line 391
     iget-object v1, v0, Lcom/android/quickstep/views/LsFanPager$State;->order:[Lcom/android/quickstep/views/LsFanPager$Identity;
 
     array-length v1, v1
@@ -211,20 +211,20 @@
 
     iput p1, v0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
 
-    .line 388
+    .line 392
     invoke-static {v0, p0}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 389
+    .line 393
     invoke-static {v0, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 390
+    .line 394
     return-void
 .end method
 
 .method public static dragOffset(Lcom/android/quickstep/views/RecentsView;Lcom/android/quickstep/views/TaskView;)F
     .locals 2
 
-    .line 394
+    .line 410
     sget-object v0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
     invoke-virtual {v0, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -233,7 +233,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/LsFanPager$State;
 
-    .line 395
+    .line 411
     if-eqz v0, :cond_2
 
     iget-boolean v1, v0, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
@@ -250,7 +250,7 @@
 
     iget-object v1, v0, Lcom/android/quickstep/views/LsFanPager$State;->touchedIds:[I
 
-    .line 396
+    .line 412
     invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
     move-result-object p1
@@ -263,7 +263,7 @@
 
     goto :goto_1
 
-    .line 397
+    .line 413
     :cond_0
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
@@ -277,7 +277,7 @@
 
     if-lt p0, p1, :cond_1
 
-    .line 398
+    .line 414
     iget p0, v0, Lcom/android/quickstep/views/LsFanPager$State;->crossOffset:F
 
     neg-float p0, p0
@@ -287,16 +287,141 @@
     :cond_1
     iget p0, v0, Lcom/android/quickstep/views/LsFanPager$State;->crossOffset:F
 
-    .line 397
+    .line 413
     :goto_0
     return p0
 
-    .line 396
+    .line 412
     :cond_2
     :goto_1
     const/4 p0, 0x0
 
     return p0
+.end method
+
+.method public static edgeOffset(Lcom/android/quickstep/views/RecentsView;)F
+    .locals 4
+
+    .line 398
+    sget-object v0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
+
+    invoke-virtual {v0, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/quickstep/views/LsFanPager$State;
+
+    .line 399
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_2
+
+    iget-boolean v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
+
+    if-nez v2, :cond_2
+
+    iget-object v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->order:[Lcom/android/quickstep/views/LsFanPager$Identity;
+
+    array-length v2, v2
+
+    if-eqz v2, :cond_2
+
+    iget v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->step:F
+
+    cmpg-float v2, v2, v1
+
+    if-lez v2, :cond_2
+
+    iget v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->rotation:I
+
+    .line 400
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
+
+    move-result-object v3
+
+    invoke-interface {v3}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getRotation()I
+
+    move-result v3
+
+    if-eq v2, v3, :cond_0
+
+    goto :goto_1
+
+    .line 401
+    :cond_0
+    iget v1, v0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    iget-object v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->order:[Lcom/android/quickstep/views/LsFanPager$Identity;
+
+    array-length v2, v2
+
+    invoke-static {v1, v2}, Lcom/android/quickstep/views/LsFanGeometry;->normalizePage(FI)F
+
+    move-result v1
+
+    iget v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    sub-float/2addr v1, v2
+
+    iget v2, v0, Lcom/android/quickstep/views/LsFanPager$State;->step:F
+
+    mul-float/2addr v1, v2
+
+    .line 402
+    iget v0, v0, Lcom/android/quickstep/views/LsFanPager$State;->step:F
+
+    const v2, 0x3e0f5c29    # 0.14f
+
+    div-float/2addr v0, v2
+
+    const v2, 0x3da3d70a    # 0.08f
+
+    mul-float/2addr v0, v2
+
+    .line 403
+    const v2, 0x3f0ccccd    # 0.55f
+
+    mul-float v3, v1, v2
+
+    invoke-static {v1}, Ljava/lang/Math;->abs(F)F
+
+    move-result v1
+
+    mul-float/2addr v1, v2
+
+    div-float/2addr v1, v0
+
+    const/high16 v0, 0x3f800000    # 1.0f
+
+    add-float/2addr v1, v0
+
+    div-float/2addr v3, v1
+
+    .line 404
+    invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getSecondaryTranslationDirectionFactor()I
+
+    move-result p0
+
+    if-gez p0, :cond_1
+
+    .line 405
+    goto :goto_0
+
+    :cond_1
+    neg-float v3, v3
+
+    .line 404
+    :goto_0
+    return v3
+
+    .line 400
+    :cond_2
+    :goto_1
+    return v1
 .end method
 
 .method private static nearest(FI)I
@@ -849,61 +974,59 @@
 .end method
 
 .method private static settle(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;F)V
-    .locals 8
+    .locals 6
 
-    .line 322
+    .line 325
     invoke-virtual {p0}, Lcom/android/quickstep/views/LsFanPager$State;->cancelAnimation()V
 
-    .line 323
+    .line 326
     iget v2, p0, Lcom/android/quickstep/views/LsFanPager$State;->generation:I
 
-    .line 324
+    .line 327
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$State;->order:[Lcom/android/quickstep/views/LsFanPager$Identity;
 
     array-length v5, v0
 
-    .line 325
+    .line 328
     const/4 v0, 0x0
 
-    const/4 v1, 0x1
-
-    if-gt v5, v1, :cond_0
-
-    .line 326
-    iput v0, p0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
-
-    .line 327
-    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
-
-    .line 328
-    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
+    if-nez v5, :cond_0
 
     .line 329
-    return-void
+    iput v0, p0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    .line 330
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
     .line 331
+    invoke-static {p0, p1}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
+
+    .line 332
+    return-void
+
+    .line 334
     :cond_0
     const p1, 0x3e23d70a    # 0.16f
 
     mul-float/2addr p1, p2
 
-    const/high16 v3, 0x40800000    # 4.0f
+    const/high16 v1, 0x40800000    # 4.0f
 
-    invoke-static {v3, p1}, Ljava/lang/Math;->min(FF)F
-
-    move-result p1
-
-    const/high16 v3, -0x3f800000    # -4.0f
-
-    invoke-static {v3, p1}, Ljava/lang/Math;->max(FF)F
+    invoke-static {v1, p1}, Ljava/lang/Math;->min(FF)F
 
     move-result p1
 
-    .line 332
-    iget v3, p0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+    const/high16 v1, -0x3f800000    # -4.0f
 
-    .line 333
-    add-float/2addr p1, v3
+    invoke-static {v1, p1}, Ljava/lang/Math;->max(FF)F
+
+    move-result p1
+
+    .line 335
+    iget v1, p0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    .line 336
+    add-float/2addr p1, v1
 
     invoke-static {p1}, Ljava/lang/Math;->round(F)I
 
@@ -911,152 +1034,152 @@
 
     int-to-float p1, p1
 
-    .line 334
+    .line 337
     invoke-static {p2}, Ljava/lang/Math;->abs(F)F
 
-    move-result v4
+    move-result v3
 
-    const/high16 v6, 0x3f000000    # 0.5f
+    const/high16 v4, 0x3f000000    # 0.5f
 
-    cmpl-float v4, v4, v6
+    cmpl-float v3, v3, v4
 
-    if-lez v4, :cond_2
+    if-lez v3, :cond_2
 
-    invoke-static {v3}, Ljava/lang/Math;->round(F)I
+    invoke-static {v1}, Ljava/lang/Math;->round(F)I
 
-    move-result v4
+    move-result v3
 
-    int-to-float v4, v4
+    int-to-float v3, v3
 
-    cmpl-float v4, p1, v4
+    cmpl-float v3, p1, v3
 
-    if-nez v4, :cond_2
+    if-nez v3, :cond_2
 
-    .line 335
+    .line 338
     cmpl-float p1, p2, v0
 
     const/high16 p2, 0x3f800000    # 1.0f
 
     if-lez p1, :cond_1
 
-    float-to-double v6, v3
+    float-to-double v3, v1
 
-    invoke-static {v6, v7}, Ljava/lang/Math;->floor(D)D
+    invoke-static {v3, v4}, Ljava/lang/Math;->floor(D)D
 
-    move-result-wide v6
+    move-result-wide v3
 
-    double-to-float p1, v6
+    double-to-float p1, v3
 
     add-float/2addr p1, p2
 
     goto :goto_0
 
-    .line 336
+    .line 339
     :cond_1
-    float-to-double v6, v3
+    float-to-double v3, v1
 
-    invoke-static {v6, v7}, Ljava/lang/Math;->ceil(D)D
+    invoke-static {v3, v4}, Ljava/lang/Math;->ceil(D)D
 
-    move-result-wide v6
+    move-result-wide v3
 
-    double-to-float p1, v6
+    double-to-float p1, v3
 
     sub-float/2addr p1, p2
 
     :goto_0
     nop
 
-    .line 337
+    .line 340
     :cond_2
     invoke-static {p1, v5}, Lcom/android/quickstep/views/LsFanGeometry;->normalizePage(FI)F
 
     move-result v4
 
-    .line 338
+    .line 341
     const/4 p1, 0x2
 
     new-array p1, p1, [F
 
     const/4 p2, 0x0
 
-    aput v3, p1, p2
+    aput v1, p1, p2
 
-    aput v4, p1, v1
+    const/4 p2, 0x1
+
+    aput v4, p1, p2
 
     invoke-static {p1}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
 
-    move-result-object p1
-
-    .line 339
-    iput-object p1, p0, Lcom/android/quickstep/views/LsFanPager$State;->animation:Landroid/animation/ValueAnimator;
-
-    .line 340
-    sub-float p2, v4, v3
-
-    invoke-static {p2}, Ljava/lang/Math;->abs(F)F
-
-    move-result p2
-
-    const/high16 v0, 0x428c0000    # 70.0f
-
-    mul-float/2addr p2, v0
-
-    invoke-static {p2}, Ljava/lang/Math;->round(F)I
-
-    move-result p2
-
-    int-to-long v0, p2
-
-    const-wide/16 v6, 0xb4
-
-    add-long/2addr v0, v6
-
-    const-wide/16 v6, 0x258
-
-    invoke-static {v6, v7, v0, v1}, Ljava/lang/Math;->min(JJ)J
-
-    move-result-wide v0
-
-    invoke-virtual {p1, v0, v1}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
-
-    .line 341
-    new-instance p2, Landroid/view/animation/DecelerateInterpolator;
-
-    const v0, 0x3fe66666    # 1.8f
-
-    invoke-direct {p2, v0}, Landroid/view/animation/DecelerateInterpolator;-><init>(F)V
-
-    invoke-virtual {p1, p2}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+    move-result-object v3
 
     .line 342
-    new-instance p2, Lcom/android/quickstep/views/LsFanPager$1;
+    iput-object v3, p0, Lcom/android/quickstep/views/LsFanPager$State;->animation:Landroid/animation/ValueAnimator;
 
-    invoke-direct {p2, p0, v2, p1, v5}, Lcom/android/quickstep/views/LsFanPager$1;-><init>(Lcom/android/quickstep/views/LsFanPager$State;ILandroid/animation/ValueAnimator;I)V
+    .line 343
+    sub-float p1, v4, v1
 
-    invoke-virtual {p1, p2}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+    invoke-static {p1}, Ljava/lang/Math;->abs(F)F
 
-    .line 353
+    move-result p1
+
+    const/high16 p2, 0x428c0000    # 70.0f
+
+    mul-float/2addr p1, p2
+
+    invoke-static {p1}, Ljava/lang/Math;->round(F)I
+
+    move-result p1
+
+    int-to-long p1, p1
+
+    const-wide/16 v0, 0xb4
+
+    add-long/2addr p1, v0
+
+    const-wide/16 v0, 0x258
+
+    invoke-static {v0, v1, p1, p2}, Ljava/lang/Math;->min(JJ)J
+
+    move-result-wide p1
+
+    invoke-virtual {v3, p1, p2}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
+
+    .line 344
+    new-instance p1, Landroid/view/animation/DecelerateInterpolator;
+
+    const p2, 0x3fe66666    # 1.8f
+
+    invoke-direct {p1, p2}, Landroid/view/animation/DecelerateInterpolator;-><init>(F)V
+
+    invoke-virtual {v3, p1}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 345
+    new-instance p1, Lcom/android/quickstep/views/LsFanPager$1;
+
+    invoke-direct {p1, p0, v2, v3}, Lcom/android/quickstep/views/LsFanPager$1;-><init>(Lcom/android/quickstep/views/LsFanPager$State;ILandroid/animation/ValueAnimator;)V
+
+    invoke-virtual {v3, p1}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+
+    .line 356
     new-instance v0, Lcom/android/quickstep/views/LsFanPager$2;
 
     move-object v1, p0
-
-    move-object v3, p1
 
     invoke-direct/range {v0 .. v5}, Lcom/android/quickstep/views/LsFanPager$2;-><init>(Lcom/android/quickstep/views/LsFanPager$State;ILandroid/animation/ValueAnimator;FI)V
 
     invoke-virtual {v3, v0}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 366
+    .line 369
     invoke-virtual {v3}, Landroid/animation/ValueAnimator;->start()V
 
-    .line 367
+    .line 370
     return-void
 .end method
 
 .method public static stop(Lcom/android/quickstep/views/RecentsView;)V
-    .locals 1
+    .locals 2
 
-    .line 371
+    .line 374
     sget-object v0, Lcom/android/quickstep/views/LsFanPager;->states:Ljava/util/WeakHashMap;
 
     invoke-virtual {v0, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1065,19 +1188,32 @@
 
     check-cast p0, Lcom/android/quickstep/views/LsFanPager$State;
 
-    .line 372
+    .line 375
     if-nez p0, :cond_0
 
     return-void
 
-    .line 373
+    .line 376
     :cond_0
     invoke-virtual {p0}, Lcom/android/quickstep/views/LsFanPager$State;->cancelAnimation()V
 
-    .line 374
+    .line 377
     invoke-virtual {p0}, Lcom/android/quickstep/views/LsFanPager$State;->releaseTouch()V
 
-    .line 375
+    .line 378
+    iget v0, p0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    iget-object v1, p0, Lcom/android/quickstep/views/LsFanPager$State;->order:[Lcom/android/quickstep/views/LsFanPager$Identity;
+
+    array-length v1, v1
+
+    invoke-static {v0, v1}, Lcom/android/quickstep/views/LsFanGeometry;->normalizePage(FI)F
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    .line 379
     return-void
 .end method
 
@@ -1233,11 +1369,11 @@
     .line 200
     const/4 v0, 0x0
 
-    if-eqz p0, :cond_22
+    if-eqz p0, :cond_24
 
     if-nez p1, :cond_0
 
-    goto/16 :goto_f
+    goto/16 :goto_10
 
     .line 201
     :cond_0
@@ -1264,14 +1400,14 @@
 
     const/4 v5, 0x1
 
-    if-nez v1, :cond_9
+    if-nez v1, :cond_a
 
     .line 205
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getPointerCount()I
 
     move-result v1
 
-    if-ne v1, v5, :cond_8
+    if-ne v1, v5, :cond_9
 
     if-gtz v2, :cond_1
 
@@ -1325,46 +1461,65 @@
     move-result-object p2
 
     .line 218
+    iget v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->rotation:I
+
+    invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getRotation()I
+
+    move-result v6
+
+    if-eq v1, v6, :cond_4
+
+    .line 219
+    iget v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    invoke-static {v1, v2}, Lcom/android/quickstep/views/LsFanGeometry;->normalizePage(FI)F
+
+    move-result v1
+
+    iput v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    .line 220
+    :cond_4
     invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getRotation()I
 
     move-result v1
 
     iput v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->rotation:I
 
-    .line 219
+    .line 221
     invoke-virtual {p1, v0}, Landroid/view/MotionEvent;->getPointerId(I)I
 
     move-result v1
 
     iput v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->pointer:I
 
-    .line 220
+    .line 222
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getDownTime()J
 
     move-result-wide v1
 
     iput-wide v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->downTime:J
 
-    .line 221
+    .line 223
     invoke-static {p2, p1, v0}, Lcom/android/quickstep/views/LsFanPager;->primary(Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;Landroid/view/MotionEvent;I)F
 
     move-result v1
 
     iput v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->downPrimary:F
 
-    .line 222
+    .line 224
     invoke-static {p2, p1, v0}, Lcom/android/quickstep/views/LsFanPager;->secondary(Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;Landroid/view/MotionEvent;I)F
 
     move-result v1
 
     iput v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->downSecondary:F
 
-    .line 223
+    .line 225
     iget v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
 
     iput v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->downPhase:F
 
-    .line 224
+    .line 226
     const/high16 v1, 0x3f800000    # 1.0f
 
     invoke-interface {p2, v1, v4}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimaryValue(FF)F
@@ -1379,18 +1534,18 @@
 
     cmpl-float p2, p2, v2
 
-    if-lez p2, :cond_4
+    if-lez p2, :cond_5
 
     move p2, v5
 
     goto :goto_0
 
-    :cond_4
+    :cond_5
     move p2, v0
 
-    .line 225
+    .line 227
     :goto_0
-    if-eqz p2, :cond_5
+    if-eqz p2, :cond_6
 
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getHeight()I
 
@@ -1398,7 +1553,7 @@
 
     goto :goto_1
 
-    :cond_5
+    :cond_6
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getWidth()I
 
     move-result p2
@@ -1416,26 +1571,26 @@
 
     iput p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->step:F
 
-    .line 226
+    .line 228
     invoke-static {p0, p1}, Lcom/android/quickstep/views/LsNativeStack;->findFanTask(Lcom/android/quickstep/views/RecentsView;Landroid/view/MotionEvent;)Lcom/android/quickstep/views/TaskView;
 
     move-result-object p2
 
-    .line 227
+    .line 229
     new-instance v1, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v1, p2}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->touched:Ljava/lang/ref/WeakReference;
 
-    .line 228
-    if-nez p2, :cond_6
+    .line 230
+    if-nez p2, :cond_7
 
     const/4 p2, 0x0
 
     goto :goto_2
 
-    :cond_6
+    :cond_7
     invoke-virtual {p2}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
     move-result-object p2
@@ -1449,12 +1604,12 @@
     :goto_2
     iput-object p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->touchedIds:[I
 
-    .line 229
+    .line 231
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getParent()Landroid/view/ViewParent;
 
     move-result-object p2
 
-    if-eqz p2, :cond_7
+    if-eqz p2, :cond_8
 
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getParent()Landroid/view/ViewParent;
 
@@ -1462,247 +1617,247 @@
 
     invoke-interface {p2, v5}, Landroid/view/ViewParent;->requestDisallowInterceptTouchEvent(Z)V
 
-    .line 230
-    :cond_7
+    .line 232
+    :cond_8
     iput-boolean v5, v3, Lcom/android/quickstep/views/LsFanPager$State;->tracking:Z
 
-    .line 231
+    .line 233
     invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
 
     move-result-object p2
 
     iput-object p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
-    .line 232
+    .line 234
     iget-object p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
     invoke-virtual {p2, p1}, Landroid/view/VelocityTracker;->addMovement(Landroid/view/MotionEvent;)V
 
-    .line 233
+    .line 235
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 234
+    .line 236
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 235
+    .line 237
     return v0
 
     .line 206
-    :cond_8
+    :cond_9
     :goto_3
     invoke-static {p0}, Lcom/android/quickstep/views/LsFanPager;->stop(Lcom/android/quickstep/views/RecentsView;)V
 
     .line 207
     return v0
 
-    .line 237
-    :cond_9
-    if-eqz v3, :cond_21
+    .line 239
+    :cond_a
+    if-eqz v3, :cond_23
 
     iget-boolean p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->tracking:Z
 
-    if-nez p2, :cond_a
+    if-nez p2, :cond_b
 
-    goto/16 :goto_e
+    goto/16 :goto_f
 
-    .line 238
-    :cond_a
+    .line 240
+    :cond_b
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getPagedOrientationHandler()Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;
 
     move-result-object p2
 
-    .line 239
+    .line 241
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getPointerCount()I
 
     move-result v6
 
-    if-ne v6, v5, :cond_20
+    if-ne v6, v5, :cond_22
 
     const/4 v6, 0x5
 
-    if-eq v1, v6, :cond_20
+    if-eq v1, v6, :cond_22
 
     const/4 v6, 0x6
 
-    if-eq v1, v6, :cond_20
+    if-eq v1, v6, :cond_22
 
-    .line 240
+    .line 242
     invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getRotation()I
 
     move-result v6
 
     iget v7, v3, Lcom/android/quickstep/views/LsFanPager$State;->rotation:I
 
-    if-ne v6, v7, :cond_20
+    if-ne v6, v7, :cond_22
 
     iget-object v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->order:[Lcom/android/quickstep/views/LsFanPager$Identity;
 
     array-length v6, v6
 
-    if-eq v2, v6, :cond_b
+    if-eq v2, v6, :cond_c
 
-    goto/16 :goto_d
+    goto/16 :goto_e
 
-    .line 248
-    :cond_b
+    .line 250
+    :cond_c
     iget v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->pointer:I
 
     invoke-virtual {p1, v6}, Landroid/view/MotionEvent;->findPointerIndex(I)I
 
     move-result v6
 
-    .line 249
-    if-ltz v6, :cond_1f
+    .line 251
+    if-ltz v6, :cond_21
 
     const/4 v7, 0x3
 
-    if-ne v1, v7, :cond_c
+    if-ne v1, v7, :cond_d
 
-    goto/16 :goto_c
+    goto/16 :goto_d
 
-    .line 256
-    :cond_c
+    .line 258
+    :cond_d
     iget-object v8, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
-    if-eqz v8, :cond_d
+    if-eqz v8, :cond_e
 
     iget-object v8, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
     invoke-virtual {v8, p1}, Landroid/view/VelocityTracker;->addMovement(Landroid/view/MotionEvent;)V
 
-    .line 257
-    :cond_d
+    .line 259
+    :cond_e
     const/4 v8, 0x2
 
-    if-ne v1, v8, :cond_13
+    if-ne v1, v8, :cond_14
 
-    .line 258
+    .line 260
     invoke-static {p2, p1, v6}, Lcom/android/quickstep/views/LsFanPager;->primary(Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;Landroid/view/MotionEvent;I)F
 
     move-result v1
 
-    iget v8, v3, Lcom/android/quickstep/views/LsFanPager$State;->downPrimary:F
+    iget v2, v3, Lcom/android/quickstep/views/LsFanPager$State;->downPrimary:F
 
-    sub-float/2addr v1, v8
+    sub-float/2addr v1, v2
 
-    .line 259
+    .line 261
     invoke-static {p2, p1, v6}, Lcom/android/quickstep/views/LsFanPager;->secondary(Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;Landroid/view/MotionEvent;I)F
 
     move-result p2
 
-    iget v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->downSecondary:F
+    iget v2, v3, Lcom/android/quickstep/views/LsFanPager$State;->downSecondary:F
 
-    sub-float/2addr p2, v6
+    sub-float/2addr p2, v2
 
-    .line 260
-    iget-boolean v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
+    .line 262
+    iget-boolean v2, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
 
-    if-nez v6, :cond_11
+    if-nez v2, :cond_12
 
-    .line 261
+    .line 263
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getContext()Landroid/content/Context;
 
-    move-result-object v6
+    move-result-object v2
 
-    invoke-static {v6}, Landroid/view/ViewConfiguration;->get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
+    invoke-static {v2}, Landroid/view/ViewConfiguration;->get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
 
-    move-result-object v6
+    move-result-object v2
 
-    invoke-virtual {v6}, Landroid/view/ViewConfiguration;->getScaledTouchSlop()I
+    invoke-virtual {v2}, Landroid/view/ViewConfiguration;->getScaledTouchSlop()I
+
+    move-result v2
+
+    .line 264
+    invoke-static {v1}, Ljava/lang/Math;->abs(F)F
 
     move-result v6
 
-    .line 262
-    invoke-static {v1}, Ljava/lang/Math;->abs(F)F
-
-    move-result v8
-
     invoke-static {p2}, Ljava/lang/Math;->abs(F)F
 
-    move-result v9
-
-    invoke-static {v8, v9}, Ljava/lang/Math;->max(FF)F
-
     move-result v8
 
-    int-to-float v6, v6
+    invoke-static {v6, v8}, Ljava/lang/Math;->max(FF)F
 
-    cmpg-float v6, v8, v6
+    move-result v6
 
-    if-gtz v6, :cond_e
+    int-to-float v2, v2
+
+    cmpg-float v2, v6, v2
+
+    if-gtz v2, :cond_f
 
     return v0
 
-    .line 263
-    :cond_e
+    .line 265
+    :cond_f
     invoke-static {p2}, Ljava/lang/Math;->abs(F)F
 
-    move-result v6
+    move-result v2
 
     invoke-static {v1}, Ljava/lang/Math;->abs(F)F
 
-    move-result v8
+    move-result v6
 
-    cmpl-float v6, v6, v8
+    cmpl-float v2, v2, v6
 
-    if-lez v6, :cond_f
+    if-lez v2, :cond_10
 
     move v0, v5
 
-    :cond_f
+    :cond_10
     iput-boolean v0, v3, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
 
-    .line 264
+    .line 266
     invoke-static {p1}, Landroid/view/MotionEvent;->obtain(Landroid/view/MotionEvent;)Landroid/view/MotionEvent;
 
     move-result-object p1
 
-    .line 265
+    .line 267
     invoke-virtual {p1, v7}, Landroid/view/MotionEvent;->setAction(I)V
 
-    .line 267
+    .line 269
     :try_start_0
     invoke-virtual {p0, p1}, Lcom/android/quickstep/views/RecentsView;->cancelNativeStackTouch(Landroid/view/MotionEvent;)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 269
+    .line 271
     invoke-virtual {p1}, Landroid/view/MotionEvent;->recycle()V
 
-    .line 270
+    .line 272
     nop
 
-    .line 271
+    .line 273
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getScroller()Landroid/widget/OverScroller;
 
     move-result-object p1
 
-    .line 272
-    if-eqz p1, :cond_10
+    .line 274
+    if-eqz p1, :cond_11
 
     invoke-virtual {p1}, Landroid/widget/OverScroller;->abortAnimation()V
 
-    .line 273
-    :cond_10
+    .line 275
+    :cond_11
     iput-boolean v5, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
 
     goto :goto_4
 
-    .line 269
+    .line 271
     :catchall_0
     move-exception p0
 
     invoke-virtual {p1}, Landroid/view/MotionEvent;->recycle()V
 
-    .line 270
+    .line 272
     throw p0
 
-    .line 275
-    :cond_11
+    .line 277
+    :cond_12
     :goto_4
     iget-boolean p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
 
-    if-eqz p1, :cond_12
+    if-eqz p1, :cond_13
 
     invoke-static {v4, p2}, Ljava/lang/Math;->min(FF)F
 
@@ -1712,8 +1867,8 @@
 
     goto :goto_5
 
-    .line 276
-    :cond_12
+    .line 278
+    :cond_13
     iget p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->downPhase:F
 
     iget p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->step:F
@@ -1722,37 +1877,33 @@
 
     sub-float/2addr p1, v1
 
-    invoke-static {p1, v2}, Lcom/android/quickstep/views/LsFanGeometry;->normalizePage(FI)F
-
-    move-result p1
-
     iput p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
 
-    .line 277
+    .line 279
     :goto_5
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 278
+    .line 280
     return v5
 
-    .line 280
-    :cond_13
-    if-ne v1, v5, :cond_1e
-
-    .line 281
-    iget-boolean p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
-
     .line 282
-    nop
+    :cond_14
+    if-ne v1, v5, :cond_20
 
     .line 283
-    if-eqz p1, :cond_16
+    iget-boolean p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
+
+    .line 284
+    nop
+
+    .line 285
+    if-eqz p1, :cond_17
 
     iget-object v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
-    if-eqz v1, :cond_16
+    if-eqz v1, :cond_17
 
-    .line 284
+    .line 286
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -1761,56 +1912,56 @@
 
     move-result-object v1
 
-    .line 285
-    iget-object v2, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
+    .line 287
+    iget-object v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
     invoke-virtual {v1}, Landroid/view/ViewConfiguration;->getScaledMaximumFlingVelocity()I
 
-    move-result v6
+    move-result v7
 
-    int-to-float v6, v6
+    int-to-float v7, v7
 
-    const/16 v7, 0x3e8
+    const/16 v9, 0x3e8
 
-    invoke-virtual {v2, v7, v6}, Landroid/view/VelocityTracker;->computeCurrentVelocity(IF)V
+    invoke-virtual {v6, v9, v7}, Landroid/view/VelocityTracker;->computeCurrentVelocity(IF)V
 
-    .line 286
-    iget-object v2, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
-
-    iget v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->pointer:I
-
-    invoke-virtual {v2, v6}, Landroid/view/VelocityTracker;->getXVelocity(I)F
-
-    move-result v2
-
+    .line 288
     iget-object v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
     iget v7, v3, Lcom/android/quickstep/views/LsFanPager$State;->pointer:I
 
-    .line 287
-    invoke-virtual {v6, v7}, Landroid/view/VelocityTracker;->getYVelocity(I)F
+    invoke-virtual {v6, v7}, Landroid/view/VelocityTracker;->getXVelocity(I)F
 
     move-result v6
 
-    .line 286
-    invoke-interface {p2, v2, v6}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getSecondaryValue(FF)F
+    iget-object v7, v3, Lcom/android/quickstep/views/LsFanPager$State;->velocity:Landroid/view/VelocityTracker;
 
-    move-result v2
-
-    .line 288
-    invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getSecondaryTranslationDirectionFactor()I
-
-    move-result v6
-
-    if-gez v6, :cond_14
-
-    neg-float v2, v2
+    iget v9, v3, Lcom/android/quickstep/views/LsFanPager$State;->pointer:I
 
     .line 289
-    :cond_14
-    invoke-static {v2}, Ljava/lang/Math;->abs(F)F
+    invoke-virtual {v7, v9}, Landroid/view/VelocityTracker;->getYVelocity(I)F
+
+    move-result v7
+
+    .line 288
+    invoke-interface {p2, v6, v7}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getSecondaryValue(FF)F
 
     move-result v6
+
+    .line 290
+    invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getSecondaryTranslationDirectionFactor()I
+
+    move-result v7
+
+    if-gez v7, :cond_15
+
+    neg-float v6, v6
+
+    .line 291
+    :cond_15
+    invoke-static {v6}, Ljava/lang/Math;->abs(F)F
+
+    move-result v7
 
     invoke-virtual {v1}, Landroid/view/ViewConfiguration;->getScaledMinimumFlingVelocity()I
 
@@ -1818,66 +1969,66 @@
 
     int-to-float v1, v1
 
-    cmpg-float v1, v6, v1
+    cmpg-float v1, v7, v1
 
-    if-gez v1, :cond_15
+    if-gez v1, :cond_16
 
     goto :goto_6
 
-    :cond_15
-    move v4, v2
-
-    .line 291
     :cond_16
+    move v4, v6
+
+    .line 293
+    :cond_17
     :goto_6
     iget-boolean v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_18
 
     iget v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->crossOffset:F
 
     invoke-interface {p2, p0}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getPrimarySize(Landroid/view/View;)I
 
-    move-result v2
+    move-result v6
 
-    neg-int v2, v2
+    neg-int v6, v6
 
-    int-to-float v2, v2
+    int-to-float v6, v6
 
-    const v6, 0x3dcccccd    # 0.1f
+    const v7, 0x3dcccccd    # 0.1f
 
-    mul-float/2addr v2, v6
+    mul-float/2addr v6, v7
 
-    cmpg-float v1, v1, v2
+    cmpg-float v1, v1, v6
 
-    if-gez v1, :cond_17
+    if-gez v1, :cond_18
 
     move v1, v5
 
     goto :goto_7
 
-    :cond_17
+    :cond_18
     move v1, v0
 
-    .line 292
-    :goto_7
-    iget-object v2, v3, Lcom/android/quickstep/views/LsFanPager$State;->touched:Ljava/lang/ref/WeakReference;
-
-    invoke-virtual {v2}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Lcom/android/quickstep/views/TaskView;
-
-    .line 293
-    iget-boolean v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
-
     .line 294
+    :goto_7
+    iget-object v6, v3, Lcom/android/quickstep/views/LsFanPager$State;->touched:Ljava/lang/ref/WeakReference;
+
+    invoke-virtual {v6}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
+
+    move-result-object v6
+
+    check-cast v6, Lcom/android/quickstep/views/TaskView;
+
+    .line 295
+    iget-boolean v7, v3, Lcom/android/quickstep/views/LsFanPager$State;->dismissing:Z
+
+    .line 296
     invoke-interface {p2}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->getRotation()I
 
     move-result p2
 
-    if-lt p2, v8, :cond_18
+    if-lt p2, v8, :cond_19
 
     iget p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->crossOffset:F
 
@@ -1885,48 +2036,48 @@
 
     goto :goto_8
 
-    :cond_18
+    :cond_19
     iget p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->crossOffset:F
 
-    .line 295
+    .line 297
     :goto_8
     invoke-virtual {v3}, Lcom/android/quickstep/views/LsFanPager$State;->releaseTouch()V
 
-    .line 296
-    if-eqz v6, :cond_1c
+    .line 298
+    if-eqz v7, :cond_1d
 
-    .line 297
+    .line 299
     nop
 
-    .line 298
-    if-eqz v1, :cond_1b
+    .line 300
+    if-eqz v1, :cond_1c
 
-    if-eqz v2, :cond_1b
+    if-eqz v6, :cond_1c
 
-    invoke-virtual {p0, v2}, Lcom/android/quickstep/views/RecentsView;->indexOfChild(Landroid/view/View;)I
+    invoke-virtual {p0, v6}, Lcom/android/quickstep/views/RecentsView;->indexOfChild(Landroid/view/View;)I
 
     move-result v1
 
-    if-ltz v1, :cond_1b
+    if-ltz v1, :cond_1c
 
     iget-object v1, v3, Lcom/android/quickstep/views/LsFanPager$State;->touchedIds:[I
 
-    .line 299
-    invoke-virtual {v2}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
+    .line 301
+    invoke-virtual {v6}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
-    move-result-object v4
+    move-result-object v2
 
-    invoke-static {v1, v4}, Ljava/util/Arrays;->equals([I[I)Z
+    invoke-static {v1, v2}, Ljava/util/Arrays;->equals([I[I)Z
 
     move-result v1
 
-    if-eqz v1, :cond_1b
+    if-eqz v1, :cond_1c
 
-    .line 300
+    .line 302
     nop
 
-    .line 301
-    invoke-virtual {v2}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
+    .line 303
+    invoke-virtual {v6}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
 
     move-result-object v1
 
@@ -1934,135 +2085,150 @@
 
     move-result-object v1
 
-    move v4, v0
+    move v2, v0
 
     :goto_9
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v6
+    move-result v4
 
-    if-eqz v6, :cond_1a
+    if-eqz v4, :cond_1b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v6
+    move-result-object v4
 
-    check-cast v6, Lcom/android/quickstep/views/TaskView$TaskContainer;
-
-    .line 302
-    sget-object v7, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
-
-    invoke-virtual {v6}, Lcom/android/quickstep/views/TaskView$TaskContainer;->isLocked()Ljava/lang/Boolean;
-
-    move-result-object v6
-
-    invoke-virtual {v7, v6}, Ljava/lang/Boolean;->equals(Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_19
-
-    move v4, v5
-
-    .line 303
-    :cond_19
-    goto :goto_9
+    check-cast v4, Lcom/android/quickstep/views/TaskView$TaskContainer;
 
     .line 304
-    :cond_1a
-    if-nez v4, :cond_1b
+    sget-object v7, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
 
-    .line 308
-    invoke-virtual {v2}, Lcom/android/quickstep/views/TaskView;->getPrimaryDismissTranslationProperty()Landroid/util/FloatProperty;
+    invoke-virtual {v4}, Lcom/android/quickstep/views/TaskView$TaskContainer;->isLocked()Ljava/lang/Boolean;
+
+    move-result-object v4
+
+    invoke-virtual {v7, v4}, Ljava/lang/Boolean;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_1a
+
+    move v2, v5
+
+    .line 305
+    :cond_1a
+    goto :goto_9
+
+    .line 306
+    :cond_1b
+    if-nez v2, :cond_1c
+
+    .line 310
+    invoke-virtual {v6}, Lcom/android/quickstep/views/TaskView;->getPrimaryDismissTranslationProperty()Landroid/util/FloatProperty;
 
     move-result-object v0
 
-    invoke-virtual {v0, v2, p2}, Landroid/util/FloatProperty;->setValue(Ljava/lang/Object;F)V
-
-    .line 309
-    invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
-
-    .line 310
-    invoke-virtual {p0, v2, v5, v5}, Lcom/android/quickstep/views/RecentsView;->dismissTaskView(Lcom/android/quickstep/views/TaskView;ZZ)V
+    invoke-virtual {v0, v6, p2}, Landroid/util/FloatProperty;->setValue(Ljava/lang/Object;F)V
 
     .line 311
+    invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
+
+    .line 312
+    invoke-virtual {p0, v6, v5, v5}, Lcom/android/quickstep/views/RecentsView;->dismissTaskView(Lcom/android/quickstep/views/TaskView;ZZ)V
+
+    .line 313
     move v0, v5
 
-    .line 314
-    :cond_1b
-    if-nez v0, :cond_1d
+    .line 316
+    :cond_1c
+    if-nez v0, :cond_1e
 
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
     goto :goto_a
 
-    .line 315
-    :cond_1c
-    if-eqz p1, :cond_1d
+    .line 317
+    :cond_1d
+    if-nez p1, :cond_1f
 
+    iget p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    iget v0, v3, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
+
+    invoke-static {v0, v2}, Lcom/android/quickstep/views/LsFanGeometry;->normalizePage(FI)F
+
+    move-result v0
+
+    cmpl-float p2, p2, v0
+
+    if-eqz p2, :cond_1e
+
+    goto :goto_b
+
+    :cond_1e
+    :goto_a
+    goto :goto_c
+
+    .line 318
+    :cond_1f
+    :goto_b
     iget p2, v3, Lcom/android/quickstep/views/LsFanPager$State;->step:F
 
     div-float/2addr v4, p2
 
     invoke-static {v3, p0, v4}, Lcom/android/quickstep/views/LsFanPager;->settle(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;F)V
 
-    goto :goto_b
-
-    :cond_1d
-    :goto_a
-    nop
-
-    .line 316
-    :goto_b
+    .line 319
+    :goto_c
     return p1
 
-    .line 318
-    :cond_1e
+    .line 321
+    :cond_20
     iget-boolean p0, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
 
     return p0
 
-    .line 250
-    :cond_1f
-    :goto_c
-    iget-boolean p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
-
-    .line 251
-    invoke-static {p0}, Lcom/android/quickstep/views/LsFanPager;->stop(Lcom/android/quickstep/views/RecentsView;)V
-
     .line 252
-    invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
-
-    .line 253
-    invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
-
-    .line 254
-    return p1
-
-    .line 242
-    :cond_20
+    :cond_21
     :goto_d
     iget-boolean p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
 
-    .line 243
+    .line 253
     invoke-static {p0}, Lcom/android/quickstep/views/LsFanPager;->stop(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 244
+    .line 254
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 245
+    .line 255
     invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 246
+    .line 256
     return p1
 
-    .line 237
-    :cond_21
+    .line 244
+    :cond_22
     :goto_e
+    iget-boolean p1, v3, Lcom/android/quickstep/views/LsFanPager$State;->dragging:Z
+
+    .line 245
+    invoke-static {p0}, Lcom/android/quickstep/views/LsFanPager;->stop(Lcom/android/quickstep/views/RecentsView;)V
+
+    .line 246
+    invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->syncNative(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
+
+    .line 247
+    invoke-static {v3, p0}, Lcom/android/quickstep/views/LsFanPager;->render(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
+
+    .line 248
+    return p1
+
+    .line 239
+    :cond_23
+    :goto_f
     return v0
 
     .line 200
-    :cond_22
-    :goto_f
+    :cond_24
+    :goto_10
     return v0
 .end method

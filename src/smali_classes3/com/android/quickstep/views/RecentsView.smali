@@ -14743,7 +14743,16 @@
 .end method
 
 .method protected computeMaxScroll()I
-    .locals 1
+    .locals 2
+
+    const/4 v1, 0x1
+    invoke-static {p0, v1}, Lcom/android/quickstep/views/LsNativeStack;->stackScrollBoundary(Lcom/android/quickstep/views/RecentsView;Z)Ljava/lang/Integer;
+    move-result-object v0
+    if-eqz v0, :ls_native_boundary
+    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
+    move-result v0
+    return v0
+    :ls_native_boundary
 
     .line 6295
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getTaskViewCount()I
@@ -14785,7 +14794,16 @@
 .end method
 
 .method protected computeMinScroll()I
-    .locals 1
+    .locals 2
+
+    const/4 v1, 0x0
+    invoke-static {p0, v1}, Lcom/android/quickstep/views/LsNativeStack;->stackScrollBoundary(Lcom/android/quickstep/views/RecentsView;Z)Ljava/lang/Integer;
+    move-result-object v0
+    if-eqz v0, :ls_native_boundary
+    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
+    move-result v0
+    return v0
+    :ls_native_boundary
 
     .line 6286
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getTaskViewCount()I
@@ -29073,3 +29091,10 @@
     return-void
 .end method
 
+
+.method public getNativeStackEdgePull()F
+    .locals 1
+    invoke-direct {p0}, Lcom/android/quickstep/views/RecentsView;->getUndampedOverScrollShift()F
+    move-result v0
+    return v0
+.end method

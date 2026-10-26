@@ -1,6 +1,6 @@
 # 扇形卡片
 
-> 本分支为红魔 10；本文描述移植后的共同几何逻辑；10的OEM接口与资源映射另见移植说明。10 的实际接口、固定输入及当前验收状态以 [移植说明](REDMAGIC10_PORT.md) 和 [开发状态](DEVELOPMENT_STATUS.md) 为准。
+> 本分支为红魔 10；本文描述移植后的共同几何逻辑；10的OEM接口与资源映射另见移植说明。10 的实际接口、固定输入及当前验收状态以 [移植说明](REDMAGIC10_PORT.md) 和 [版本说明](RELEASE_250002.md) 为准。
 
 在“最近应用界面样式”中选择“扇形卡片”，样式值为 `5`。卡片沿屏幕右侧浅弧排列，名称显示在卡片左侧。
 
@@ -37,4 +37,4 @@
 | [LsStackTransition.java](../helper-src/main/com/android/quickstep/views/LsStackTransition.java) | 截图与实时窗口的打开、退出和取消交接 |
 | [RecentsView.smali](../src/smali_classes3/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务及手势路由 |
 
-窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [开发状态](DEVELOPMENT_STATUS.md)。
+窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [版本说明](RELEASE_250002.md)。

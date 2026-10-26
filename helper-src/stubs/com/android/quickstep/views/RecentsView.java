@@ -8,6 +8,8 @@ import android.widget.OverScroller;
 import com.android.quickstep.orientation.RecentsPagedOrientationHandler;
 
 public abstract class RecentsView extends ViewGroup {
+    public float getNativeStackEdgePull() { return 0f; }
+
     public static boolean sGestureActive;
     protected RecentsView(Context context, AttributeSet attrs) {
         super(context, attrs);

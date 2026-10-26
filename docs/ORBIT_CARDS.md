@@ -1,6 +1,6 @@
 # 环绕卡片
 
-> 本分支为红魔 10；本文描述移植后的共同几何逻辑；10的OEM接口与资源映射另见移植说明。10 的实际接口、固定输入及当前验收状态以 [移植说明](REDMAGIC10_PORT.md) 和 [开发状态](DEVELOPMENT_STATUS.md) 为准。
+> 本分支为红魔 10；本文描述移植后的共同几何逻辑；10的OEM接口与资源映射另见移植说明。10 的实际接口、固定输入及当前验收状态以 [移植说明](REDMAGIC10_PORT.md) 和 [版本说明](RELEASE_250002.md) 为准。
 
 在“最近应用界面样式”中选择“环绕卡片”，样式值为 `4`。卡片保持竖立，沿竖向椭圆轨道运动，前景较大、远景较小。
 
@@ -39,4 +39,4 @@
 | [TaskView.smali](../src/smali_classes3/com/android/quickstep/views/TaskView.smali) | 子视图接收按下事件前的卡面命中接入 |
 | [RecentsView.smali](../src/smali_classes3/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务、手势路由与删除回调 |
 
-环绕复用已有任务视图，不复制任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [开发状态](DEVELOPMENT_STATUS.md)。
+环绕复用已有任务视图，不复制任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [版本说明](RELEASE_250002.md)。

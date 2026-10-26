@@ -18,7 +18,7 @@ APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后�
 
 版本必须高于本机；最低API与APK一致且不高于本机系统。当前候选最低API31、目标API35。修改版证书继续为 `4e5c23c41de3d7d56f120309e9fe8dab7d53483c50ef18a176e00558abf7b8cb`。原厂OEM证书不同，不作为修改版更新的许可。
 
-红魔10现按用户确认从 `250001 / 25.5.000.000.2505121541` 开始独立编号，下一轮功能版本为250002。此前25001低于固定原厂150000，已收到重启回退反馈，不能作为当前发布候选。历史本地移植候选260030也不再用于10发布序列；250001低于260030，客户端不会将其提示为260030的在线升级。编号纠正不放宽系列、签名或版本比较校验。
+红魔10从 `250001` 开始独立编号，当前版本为 `250002 / 25.5.000.000.2505121541`，下一轮功能版本为250003。客户端保持系列、签名和版本比较校验。
 
 仅接受指定仓库HTTPS Release附件，跳转限GitHub/githubusercontent官方域，最多五次。清单限64KiB、APK限256MiB；连接15秒、读取30秒、下载总时长15分钟。客户端不使用账户令牌，不改变系统TLS检查。
 
@@ -26,7 +26,7 @@ APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后�
 
 ## 发布与实际状态
 
-当前已发布 [两个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260029-10-250001)。手动10附件显示标签为 `堆叠桌面10-250001.apk`，实际文件名为 `10-250001.apk`，在线清单指向 [兼容附件](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260029-10-250001/stacked-desktop-redmagic10-250001.apk)；两者大小、SHA-256和签名相同。11清单单独指向显示标签为中文的11附件，10不会读11清单。
+当前已发布 [三个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)。手动10附件显示标签为 `堆叠桌面10-250002.apk`，实际文件名为 `10-250002.apk`，在线清单指向 [兼容附件](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk)；两者大小、SHA-256和签名相同。11清单单独指向显示标签为中文的11附件，10不会读11清单。
 
 发行仓库登记独立10 appId；批次发布工具先核验两个系列实际APK及全部附件，再用同一Git提交更新两清单。运行中的客户端读取远程正式清单，源码不保留旧发行快照。
 
@@ -35,7 +35,7 @@ APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后�
 ```powershell
 python tools/check-launcher-online-release.py --sdk "<Android SDK目录>" `
   --java-home "<JDK目录>" --out-dir "out/online-redmagic10-<唯一时间戳>" `
-  --expected-version-code 250001 --expected-apk "<最终签名红魔10 APK>"
+  --expected-version-code 250002 --expected-apk "<最终签名红魔10 APK>"
 ```
 
 工具匿名下载并检查通道、实际版本、最低API、哈希、固定证书与APK系列metadata。公开下载检查不安装设备，不代替10系列手机上的实际联网覆盖升级、设置与桌面数据保留验证。

@@ -65,6 +65,7 @@ STUBS = r'''
         static int targetPage(float page,int removed,int count){throw new AssertionError("fan target reached old style");}
     }
     static class LsFanPager {
+        public static float edgeOffset(RecentsView r){return 0f;}
         static float position(RecentsView r,float fallback,int count){throw new AssertionError("fan pager reached old style");}
         static void stop(RecentsView r){throw new AssertionError("fan stop reached old style");}
         static void commit(RecentsView r,int target){throw new AssertionError("fan commit reached old style");}
