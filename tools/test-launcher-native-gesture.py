@@ -32,6 +32,7 @@ names = ('getMiuiStackCenter', 'getEntrySlideOffset', 'getInitialTaskOrdinal', '
          'onTaskActionsLongPress', 'onTaskMenuClosed', 'clearActionMenu', 'isActionMenuTask',
          'dispatchInlineActionTouch', 'armEntryReveal', 'startEntryRevealIfArmed', 'finishEntryReveal', 'getActionMenuOrdinal', 'onCardTouch', 'cancelCardLongPress', 'animateTaskActions', 'onTaskMenuOpenResult', 'onTaskMenuDetached')
 members = '\n'.join(extract(name) for name in names)
+members += '\n' + extract('usesNativeStackStyle')
 for name in ('orbitPrimary', 'orbitSecondary', 'fanPrimary', 'fanSecondary'):
     if re.search(r'private static [^\n]+ ' + name + r'\(', source):
         members += '\n' + extract(name)
@@ -59,6 +60,14 @@ import java.util.WeakHashMap;
 import com.android.quickstep.views.LsOrbitGeometry;
 import com.android.quickstep.views.LsFanGeometry;
 public class NativeGestureTest {
+    static final int RES_RECENT_STYLE_KEY=0x7f140482;
+    static final int NATIVE_STACK_STYLE=3,ORBIT_STYLE=4,FAN_STYLE=5;
+    interface SharedPreferences {int getInt(String key,int fallback);}
+    static class LauncherPrefs {
+        static SharedPreferences getPrefs(Context context){
+            return (key,fallback)->context.stack?3:1;
+        }
+    }
     static final float[] ORBIT_POSE=new float[5];
     static final float[] FAN_POSE=new float[6];
     static class LsFanPager {
@@ -172,7 +181,9 @@ public class NativeGestureTest {
     static class Metrics {float density=resourceDensity;}
     static class Resources {Metrics getDisplayMetrics(){return new Metrics();}}
     static class ViewConfiguration {static ViewConfiguration get(Context c){return new ViewConfiguration();}int getScaledTouchSlop(){return 8;}static int getLongPressTimeout(){return 500;}}
-    static class Context {boolean stack=true;Resources getResources(){return new Resources();}}
+    static class Context {boolean stack=true;Resources getResources(){return new Resources();}
+        String getString(int id){if(id!=RES_RECENT_STYLE_KEY)throw new AssertionError("wrong preference resource");
+            return "settings_preference_key_recent_style";}}
     static class Animator {}
     static class AnimatorListenerAdapter {public void onAnimationEnd(Animator animator){}}
     static class PathInterpolator {
@@ -314,7 +325,6 @@ public class NativeGestureTest {
         pendingDismissPagePosition=Float.NaN,entryRevealProgress=1;
     static long lastErrorLogMs; static final String TAG="test";
     static RecentsView ordered;
-    static boolean usesNativeStackStyle(Context c){return c!=null&&c.stack;}
     static void clearEntryTaskOrder(RecentsView r){if(ordered==r){ordered=null;entryAnchorPage=-1;}}
     static void clearPendingDismissState(RecentsView r){pendingDismissRecents.clear();pendingDismissPagePosition=Float.NaN;}
     static int entryRevealGeneration;

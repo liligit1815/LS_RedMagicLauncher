@@ -31,6 +31,7 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 
+import com.android.launcher3.LauncherPrefs;
 import com.android.launcher3.views.BaseDragLayer;
 import com.android.quickstep.orientation.RecentsPagedOrientationHandler;
 
@@ -748,7 +749,7 @@ public final class LsNativeStack {
     /**
      * TaskViewSimulator is created before RecentsView becomes visible, so it
      * cannot ask that view whether the Xiaomi stack is active.  Read the same
-     * launcher preference that populates DeviceProfile.taskViewLayoutStyle;
+     * OEM12 LauncherPrefs preference that populates MFVInvariantDeviceProfile.recentStyle;
      * once Overview exists, prefer its already-resolved value.
      */
     private static boolean usesNativeStackStyle(Context context) {
@@ -760,15 +761,9 @@ public final class LsNativeStack {
             return false;
         }
         try {
-            Class<?> launcherPrefs = Class.forName("com.android.launcher3.J3");
-            java.lang.reflect.Method getter = launcherPrefs.getDeclaredMethod(
-                    "m", Context.class);
-            Object value = getter.invoke(null, context);
-            if (!(value instanceof SharedPreferences)) {
-                return false;
-            }
+            SharedPreferences preferences = LauncherPrefs.getPrefs(context);
             String key = context.getString(RES_RECENT_STYLE_KEY);
-            int style = ((SharedPreferences) value).getInt(key, 0);
+            int style = preferences.getInt(key, 0);
             return style == NATIVE_STACK_STYLE || style == ORBIT_STYLE || style == FAN_STYLE;
         } catch (Throwable ignored) {
             return false;
@@ -782,9 +777,7 @@ public final class LsNativeStack {
         if (active != null) return active.isOrbitStyle();
         if (context == null) return false;
         try {
-            Class<?> prefs = Class.forName("com.android.launcher3.J3");
-            Object value = prefs.getDeclaredMethod("m", Context.class).invoke(null, context);
-            return value instanceof SharedPreferences && ((SharedPreferences) value).getInt(
+            return LauncherPrefs.getPrefs(context).getInt(
                     context.getString(RES_RECENT_STYLE_KEY), 0) == ORBIT_STYLE;
         } catch (Throwable ignored) {
             return false;
@@ -797,9 +790,7 @@ public final class LsNativeStack {
         if (active != null) return active.isFanStyle();
         if (context == null) return false;
         try {
-            Class<?> prefs = Class.forName("com.android.launcher3.J3");
-            Object value = prefs.getDeclaredMethod("m", Context.class).invoke(null, context);
-            return value instanceof SharedPreferences && ((SharedPreferences) value).getInt(
+            return LauncherPrefs.getPrefs(context).getInt(
                     context.getString(RES_RECENT_STYLE_KEY), 0) == FAN_STYLE;
         } catch (Throwable ignored) { return false; }
     }
