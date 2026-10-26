@@ -23,7 +23,10 @@ def extract(name):
 
 members = '\n'.join(extract(name) for name in (
     'rootBounds', 'snapshotRootMatrix', 'beginLaunch', 'bindLaunchSimulator',
-    'normalizeLaunchMatrix', 'restoreLaunchSnapshot'))
+    'normalizeLaunchMatrix', 'restoreLaunchSnapshot', 'removeSurfaces', 'isLaunchSimulator'))
+# The pre-fix replay must reach the geometry failure, not fail compilation.
+members += '\n' + (extract('normalizeLaunchScroll') if 'float normalizeLaunchScroll(' in source
+                    else 'static float normalizeLaunchScroll(Object simulator,float value){return value;}')
 members += '\n' + re.search(r'^    private static final class SnapshotFrame .*?^    }', source, re.M | re.S)[0]
 harness = r'''
 import java.awt.geom.*;
@@ -103,7 +106,7 @@ public class LaunchSnapshotTest {
     static Map<RecentsView,Transition> transitions=new WeakHashMap<>();
     static Map<Object,LaunchSurface> surfaces=new WeakHashMap<>();
     static class LsNativeStack {static void onTaskLaunchStarted(RecentsView r){r.launches++;}}
-    static void clear(RecentsView r){Transition t=transitions.remove(r);if(t!=null)restoreLaunchSnapshot(t);}
+    static void clear(RecentsView r){Transition t=transitions.remove(r);if(t!=null){removeSurfaces(t);restoreLaunchSnapshot(t);}}
     static void captureFanBitmap(Transition t,View v){throw new AssertionError("stack captured fan-only pixels");}
     static void applyLaunchCards(RecentsView r,Transition t){}
     static boolean normalizeFanLaunch(Transition t,LaunchSurface s,Object simulator,Matrix m,Rect r,float f){return false;}
@@ -124,8 +127,9 @@ public class LaunchSnapshotTest {
         s.animation=new Matrix();s.animation.postTranslate(5,-9);s.alpha=.85f;
         t.containers.add(new Container(s));return t;
     }
-    static void replay(boolean orbit,boolean rotated){
+    static void replay(boolean orbit,boolean rotated,float pageOffset,float clipFraction){
         TaskView task=fixture();RecentsView r=task.recents;r.orbit=orbit;
+        task.x+=pageOffset<0?-400:0;task.clip=clipFraction<1?task.w*clipFraction:-1;
         View snapshot=task.containers.get(0).snapshot;
         Matrix original=new Matrix(snapshot.animation),clicked=snapshotRootMatrix(snapshot,true);
         beginLaunch(task);Transition t=transitions.get(r);
@@ -142,22 +146,29 @@ public class LaunchSnapshotTest {
             task.property=new Matrix();task.property.postTranslate(-progress*270,progress*90);
             snapshot.property=new Matrix();snapshot.property.postScale(1-progress*.1f,1-progress*.1f,70,120);
             snapshot.animation=null;
-            Matrix surface=new Matrix();surface.postScale(.6f+.4f*progress,.6f+.4f*progress,0,0);
-            surface.postTranslate(40*(1-progress),110*(1-progress));surface.postConcat(homeToWindow);
-            normalizeLaunchMatrix(simulator,surface,new Rect(600,1200),homeToWindow,progress);
+            // OEM order: preview, physical page offset, then recents scale around
+            // the native task pivot. That pivot's actual Smali is tested separately.
+            Matrix surface=new Matrix();surface.postScale(.6f,.6f,0,0);surface.postTranslate(120,240);
+            surface.postTranslate(normalizeLaunchScroll(simulator,pageOffset),0);
+            float nativeScale=(.6f+.4f*progress)/.6f;surface.postScale(nativeScale,nativeScale,300,600);
+            surface.postConcat(homeToWindow);Rect crop=new Rect(600,1200);
+            normalizeLaunchMatrix(simulator,surface,crop,homeToWindow,progress);
             check(t.snapshotToBuffer!=null&&t.launchSurfaceMatrix!=null,"stack surface did not bind screenshot");
             Matrix expected=new Matrix(t.snapshotToBuffer),homeSurface=new Matrix(surface);homeSurface.postConcat(windowToHome);
             expected.postConcat(homeSurface);frame.run();
             same(snapshotRootMatrix(snapshot,true),expected,"screenshot/live surface diverged at "+progress);
             if(i==0)same(snapshotRootMatrix(snapshot,true),clicked,"first frame jumped");
-            if(i==60){Matrix endpoint=new Matrix();same(homeSurface,endpoint,"OEM fullscreen endpoint changed");}
+            if(i==60){Matrix endpoint=new Matrix();same(homeSurface,endpoint,"side-card fullscreen endpoint stayed offscreen");check(crop.left==0&&crop.top==0&&crop.right==600&&crop.bottom==1200,"fullscreen retained partial-card crop");}
         }
         clear(r);same(snapshot.animation,original,"finish/cancel did not restore animation");
         near(snapshot.alpha,.85f,"finish changed native alpha");
+        near(normalizeLaunchScroll(simulator,pageOffset),pageOffset,"released simulator kept custom scroll");
         int writes=snapshot.writes;frame.run();check(snapshot.writes==writes,"stale launch callback changed snapshot");
     }
     public static void main(String[] args){
-        for(boolean orbit:new boolean[]{false,true})for(boolean rotation:new boolean[]{false,true})replay(orbit,rotation);
+        for(boolean orbit:new boolean[]{false,true})for(boolean rotation:new boolean[]{false,true})
+        for(float page:new float[]{-1400,-700,0,700,1400})for(float clip:new float[]{.2f,1})replay(orbit,rotation,page,clip);
+        Object unbound=new Object();near(normalizeLaunchScroll(unbound,900),900,"native gesture scroll changed");
         TaskView task=fixture();beginLaunch(task);Transition t=transitions.get(task.recents);
         t.snapshotToBuffer=new Matrix();t.launchSurfaceMatrix=new Matrix();SnapshotFrame frame=new SnapshotFrame(task);
         View original=task.containers.get(0).snapshot;task.ids=new int[]{91};int writes=original.writes;frame.run();restoreLaunchSnapshot(t);

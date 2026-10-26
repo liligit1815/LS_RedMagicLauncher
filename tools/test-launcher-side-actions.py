@@ -188,7 +188,7 @@ class RectF {
 }
 interface ViewParent {ViewParent getParent();}
 class MotionEvent {
-    static final int ACTION_DOWN=0;int action;float x,y,rawX,rawY;boolean recycled;
+    static final int ACTION_DOWN=0,ACTION_CANCEL=3;int action;float x,y,rawX,rawY;boolean recycled;
     int getActionMasked(){return action;}float getRawX(){return rawX;}float getRawY(){return rawY;}
     float getX(){return x;}float getY(){return y;}
     static MotionEvent obtain(MotionEvent e){MotionEvent a=new MotionEvent();a.x=e.x;a.y=e.y;a.rawX=e.rawX;a.rawY=e.rawY;a.action=e.action;return a;}
@@ -478,6 +478,9 @@ public class SideActionsTest {
             MotionEvent event=new MotionEvent();event.action=action;event.x=100;event.y=200;
             int closed=LsNativeStack.closed;
             check(panel.onControllerInterceptTouchEvent(event),"floating menu leaked MOVE/UP to OEM card drag");
+            check(!LsStackActions.consumeControllerHandoff(new RecentsView(recents.getContext())),"unrelated owner consumed handoff");
+            check(LsStackActions.consumeControllerHandoff(recents),"controller did not mark old target cancellation");
+            check(!LsStackActions.consumeControllerHandoff(recents),"handoff cancellation exemption repeated");
             check(panel.onControllerTouchEvent(event),"floating menu did not consume controller stream");
             check(panel.delivered!=event&&panel.delivered.recycled,"controller must dispatch/recycle a local event copy");
             near(panel.delivered.x,75,"controller x mapped from drag layer incorrectly");
@@ -487,6 +490,10 @@ public class SideActionsTest {
         MotionEvent down=new MotionEvent();down.action=MotionEvent.ACTION_DOWN;int closed=LsNativeStack.closed;
         panel.onControllerTouchEvent(down);check(LsNativeStack.closed==closed+1,"outside DOWN failed to close menu");
         LsStackActions.abort(recents);down.action=1;check(panel.onControllerTouchEvent(down),"detached closing panel leaked UP");
+        panel=setup(1216,2688,3,5,Insets.NONE,true);down.action=MotionEvent.ACTION_CANCEL;closed=LsNativeStack.closed;
+        panel.onControllerInterceptTouchEvent(down);
+        check(!LsStackActions.consumeControllerHandoff(recents),"real CANCEL was labeled as touch takeover");
+        panel.onControllerTouchEvent(down);check(LsNativeStack.closed==closed+1,"controller CANCEL failed to close menu");
     }
     static void lifecycle(){
         LsStackActions p=setup(1216,2688,3,3,Insets.NONE,true);P action=TaskOverlayFactory.actions.get(0);

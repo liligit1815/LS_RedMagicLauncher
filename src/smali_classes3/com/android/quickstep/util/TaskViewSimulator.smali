@@ -2092,6 +2092,8 @@
     iget v8, v8, Lcom/android/launcher3/anim/AnimatedFloat;->value:F
     invoke-static {v8}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveEntryScroll(F)F
     move-result v8
+    invoke-static {p0, v8}, Lcom/android/quickstep/views/LsStackTransition;->normalizeLaunchScroll(Ljava/lang/Object;F)F
+    move-result v8
     invoke-interface {v5, v6, v7, v8}, Lcom/android/quickstep/orientation/RecentsPagedOrientationHandler;->setPrimary(Ljava/lang/Object;Lcom/android/launcher3/touch/PagedOrientationHandler$Float2DAction;F)V
     :cond_6
     iget-object v5, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mTempRectF:Landroid/graphics/RectF;
@@ -3719,6 +3721,13 @@
     move-result v0
 
     .line 25
+    # A custom launch maps the native rectangle to the clicked card separately.
+    # Keep the pivot calculated for that native rectangle, including when the
+    # OEM launch-start listener supplies a pivot from a displaced stack card.
+    invoke-static {p0}, Lcom/android/quickstep/views/LsStackTransition;->isLaunchSimulator(Ljava/lang/Object;)Z
+    move-result v1
+    if-nez v1, :cond_2
+
     iget-object v1, p0, Lcom/android/quickstep/util/TaskViewSimulator;->mPivotOverride:Landroid/graphics/PointF;
 
     .line 26

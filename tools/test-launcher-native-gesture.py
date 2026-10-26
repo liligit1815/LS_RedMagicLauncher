@@ -152,8 +152,9 @@ public class NativeGestureTest {
         }
         // Keep old-source red runs behavioral rather than compilation failures.
         static boolean isFrontVisibleCard(RecentsView r,TaskView t){return shouldShowActionsOnRight(r,t);}
-        static boolean failShow;
-        static boolean show(RecentsView r,TaskView t,boolean side){if(failShow)return false;sideBoundary("show");owner=r;task=t;right=side;pressed=false;return true;}
+        static boolean failShow,handoffPending;
+        static boolean consumeControllerHandoff(RecentsView r){if(owner!=r||!handoffPending)return false;handoffPending=false;return true;}
+        static boolean show(RecentsView r,TaskView t,boolean side){if(failShow)return false;sideBoundary("show");owner=r;task=t;right=side;pressed=false;handoffPending=false;return true;}
         static void abort(RecentsView r){sideBoundary("clear");if(owner==r){owner=null;task=null;pressed=false;}}
         static Runnable finish(RecentsView r){abort(r);return null;}
         static void update(RecentsView r,float p){if(owner==r)progress=p;}
@@ -559,6 +560,31 @@ public class NativeGestureTest {
         onOverviewStateChanged(slow,true);slow.drain();current=entryRevealAnimator;
         onAppGestureStart(slow);check(current.cancelled&&entryRevealRecents.get()==null,"native gesture retained Home animator");
         onOverviewStateChanged(slow,false);autoFinishReveal=true;focusScale=.9f;
+    }
+    static void menuTouchHandoff(){
+        autoFinishReveal=false;
+        for(int selected=0;selected<3;selected++)for(int action:new int[]{MotionEvent.ACTION_MOVE,MotionEvent.ACTION_UP}){
+            RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+            TaskView task=r.tasks[selected];check(onTaskActionsLongPress(task),"long press failed before handoff");
+            ValueAnimator opening=actionRevealAnimator;opening.step(.2f);
+            // Android sends CANCEL to the old RecentsView target after its
+            // parent selects the newly attached floating panel as controller.
+            LsStackActions.handoffPending=true;
+            check(dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_CANCEL,false)),"handoff cancel escaped");
+            check(!actionMenuClosing&&actionRevealAnimator==opening&&!opening.cancelled,
+                    "touch takeover immediately reversed menu after haptic");
+            check(!LsStackActions.handoffPending,"handoff exemption was not consumed once");
+            opening.step(.7f);
+            check(Math.abs(LsStackActions.progress-.7f)<.0001f,"held press menu visibility waits for Recents draw or UP");
+            check(dispatchInlineActionTouch(r,new MotionEvent(action,false)),"held/released long press leaked");
+            check(!actionMenuClosing,"original MOVE/UP closed the new menu");
+            opening.end();check(LsStackActions.progress==1&&task.hapticRequests==1,"menu did not open exactly once");
+            dispatchInlineActionTouch(r,new MotionEvent(MotionEvent.ACTION_CANCEL,false));
+            check(actionMenuClosing,"real cancellation was swallowed after handoff");
+            actionRevealAnimator.end();check(LsStackActions.owner==null,"real cancellation kept floating panel");
+            onOverviewStateChanged(r,false);
+        }
+        autoFinishReveal=true;
     }
     static void boundaryRebound(){
         for(int direction:new int[]{-1,1}){
@@ -1099,7 +1125,7 @@ public class NativeGestureTest {
         focusScale=savedScale;
     }
     public static void main(String[] args){
-        boundaryRebound();longPressHaptics();
+        menuTouchHandoff();boundaryRebound();longPressHaptics();
         ORBIT_COMPOSITION
         preciseClipBoundaries();
         actionNeighborCompleteness();

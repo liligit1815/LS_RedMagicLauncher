@@ -1,10 +1,10 @@
 # LS_RedMagicLauncher · 红魔12 Pro+
 
-修复红魔12桌面打开最近任务应用时的动画错位及长按菜单拖动冲突，新增堆叠样式首尾卡片阻尼回弹，保留上滑删除动画修复和跟随系统设置的长按振动反馈，请下载12-270006版本。
+修复红魔12桌面点击最近任务卡片的偏移与突跳动画、长按偶发只震动或松手后才显示菜单的问题，新增堆叠样式首尾卡片阻尼回弹，请下载12-270007版本。
 
-[下载 12-270006.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270006/12-270006.apk) · [发行说明](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic12-v270006)
+[下载 12-270007.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270007/12-270007.apk) · [发行说明](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic12-v270007)
 
-本分支为 `redmagic-12`，基于红魔12原厂桌面 `17.0.000.000.2609231706`。修改版显示版本为 **27.0.000.000.2609231706**，内部版本为 **270006**。
+本分支为 `redmagic-12`，基于红魔12原厂桌面 `17.0.000.000.2609231706`。修改版显示版本为 **27.0.000.000.2609231706**，内部版本为 **270007**。
 
 ## 功能
 
@@ -34,6 +34,6 @@ python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 
 构建入口为 `tools/build-launcher.py`，版本从 `src/apktool.yml` 读取。签名构建使用本工程恢复后的既有升级身份。仓库保留当前源码和独立构建所需固定输入；编译产物、过程报告、缓存和私有签名不进入源码仓库。
 
-[构建说明](docs/BUILDING.md) · [安装说明](docs/INSTALL_COMPATIBILITY.md) · [在线更新](docs/ONLINE_UPDATES.md) · [源码边界](docs/GITHUB_AND_STORAGE.md) · [270006说明](docs/RELEASE_270006.md) · [环绕设计](docs/ORBIT_CARDS.md) · [扇形设计](docs/FAN_CARDS.md)
+[构建说明](docs/BUILDING.md) · [安装说明](docs/INSTALL_COMPATIBILITY.md) · [在线更新](docs/ONLINE_UPDATES.md) · [源码边界](docs/GITHUB_AND_STORAGE.md) · [270007说明](docs/RELEASE_270007.md) · [环绕设计](docs/ORBIT_CARDS.md) · [扇形设计](docs/FAN_CARDS.md)
 
 本工程基于OEM APK反编译输入维护，原厂代码、资源和第三方组件保留各自权利归属。

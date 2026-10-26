@@ -491,6 +491,13 @@ public final class LsStackTransition {
         return surfaces.containsKey(simulator);
     }
 
+    /** Custom launch geometry already places the clicked card in root axes.
+     * A second OEM page offset would survive fullscreen and move the app away
+     * from its final window. Unbound entry/quick-switch simulators keep it. */
+    public static float normalizeLaunchScroll(Object simulator, float nativeScroll) {
+        return isLaunchSimulator(simulator) ? 0f : nativeScroll;
+    }
+
     /** Different source rotations can contain separately reflowed app UIs.
      * Keep the moving screenshot until the OEM target fade reaches its end,
      * then exchange it for an opaque live target in one synchronized frame.

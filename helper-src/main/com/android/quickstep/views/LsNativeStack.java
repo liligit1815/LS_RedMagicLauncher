@@ -236,6 +236,10 @@ public final class LsNativeStack {
             if (generation != actionRevealGeneration || actionMenuRecents.get() != recents
                     || recents == null) return;
             actionRevealProgress = start + (end - start) * animation.getAnimatedFraction();
+            // The floating panel is a sibling of RecentsView. Its visibility
+            // must advance while the finger is held even if that subtree skips
+            // drawing; the next deck draw still refines its card-relative pose.
+            LsStackActions.update(recents, actionRevealProgress);
             // Compose once, after OEM fields settle, in beforeDispatchDraw.
             recents.invalidate();
         }
@@ -604,7 +608,11 @@ public final class LsNativeStack {
         int action = event.getActionMasked();
         if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
             cancelCardLongPress(recents);
-            if (action == MotionEvent.ACTION_CANCEL) onTaskMenuClosed(recents);
+            if (action == MotionEvent.ACTION_CANCEL) {
+                if (!LsStackActions.consumeControllerHandoff(recents)) onTaskMenuClosed(recents);
+                // Never forward the old target's CANCEL into the new panel.
+                return true;
+            }
         }
         if (actionMenuClosing) return true;
         // Even the UP that originally triggered long press must be consumed;

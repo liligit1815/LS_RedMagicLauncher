@@ -42,6 +42,7 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
     private int measuredButtonDiameter;
     private float progress;
     private boolean closing;
+    private boolean controllerHandoffPending;
     private SystemShortcut pending;
     private View pendingView;
     private View hiddenClearButton;
@@ -205,6 +206,7 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
             old.mIsOpen = true;
             old.pending = null;
             old.pendingView = null;
+            old.controllerHandoffPending = false;
             return true;
         }
         if (old != null) old.remove(false);
@@ -484,10 +486,22 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
     @Override public boolean onControllerInterceptTouchEvent(MotionEvent event) {
         // BaseDragLayer otherwise keeps offering MOVE to the OEM dismiss and
         // launch controllers even while this full-screen panel owns the cards.
+        controllerHandoffPending = event.getActionMasked() != MotionEvent.ACTION_CANCEL;
+        return true;
+    }
+
+    /** ViewGroup cancels the old RecentsView target when this panel intercepts.
+     * Consume that one cancellation without treating it as a user dismissal. */
+    public static boolean consumeControllerHandoff(RecentsView recents) {
+        LsStackActions panel = active.get();
+        if (panel == null || panel.owner.get() != recents
+                || !panel.controllerHandoffPending || ((View) panel).getParent() == null) return false;
+        panel.controllerHandoffPending = false;
         return true;
     }
 
     @Override public boolean onControllerTouchEvent(MotionEvent event) {
+        controllerHandoffPending = false;
         ViewParent parent = super.getParent();
         if (!(parent instanceof View)) return true;
         MotionEvent local = MotionEvent.obtain(event);
@@ -500,6 +514,7 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
         } finally {
             local.recycle();
         }
+        if (event.getActionMasked() == MotionEvent.ACTION_CANCEL) handleClose(true);
         return true;
     }
 
@@ -543,6 +558,7 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
 
     private void remove(boolean keepAction) {
         mIsOpen = false;
+        controllerHandoffPending = false;
         if (hiddenClearButton != null) {
             if (hiddenClearButton.getVisibility() == View.INVISIBLE)
                 hiddenClearButton.setVisibility(clearButtonVisibility);

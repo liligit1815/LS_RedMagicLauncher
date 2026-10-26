@@ -75,7 +75,7 @@
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 3
 
-    .line 244
+    .line 248
     iget-object p1, p0, Lcom/android/quickstep/views/LsNativeStack$ActionReveal;->recentsRef:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {p1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -84,7 +84,7 @@
 
     check-cast p1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 245
+    .line 249
     iget v0, p0, Lcom/android/quickstep/views/LsNativeStack$ActionReveal;->generation:I
 
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$000()I
@@ -95,7 +95,7 @@
 
     if-eqz p1, :cond_4
 
-    .line 246
+    .line 250
     invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$200()Ljava/lang/ref/WeakReference;
 
     move-result-object v0
@@ -108,18 +108,18 @@
 
     goto :goto_0
 
-    .line 247
+    .line 251
     :cond_0
     const/4 v0, 0x0
 
     invoke-static {v0}, Lcom/android/quickstep/views/LsNativeStack;->access$302(Landroid/animation/ValueAnimator;)Landroid/animation/ValueAnimator;
 
-    .line 248
+    .line 252
     iget v1, p0, Lcom/android/quickstep/views/LsNativeStack$ActionReveal;->end:F
 
     invoke-static {v1}, Lcom/android/quickstep/views/LsNativeStack;->access$102(F)F
 
-    .line 249
+    .line 253
     iget v1, p0, Lcom/android/quickstep/views/LsNativeStack$ActionReveal;->end:F
 
     const/4 v2, 0x0
@@ -132,7 +132,7 @@
 
     move-result-object v0
 
-    .line 250
+    .line 254
     :cond_1
     iget v1, p0, Lcom/android/quickstep/views/LsNativeStack$ActionReveal;->end:F
 
@@ -142,23 +142,23 @@
 
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->access$400(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 251
+    .line 255
     :cond_2
     invoke-static {p1}, Lcom/android/quickstep/views/LsNativeStack;->update(Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 252
+    .line 256
     invoke-virtual {p1}, Lcom/android/quickstep/views/RecentsView;->invalidate()V
 
-    .line 253
+    .line 257
     if-eqz v0, :cond_3
 
     invoke-interface {v0}, Ljava/lang/Runnable;->run()V
 
-    .line 254
+    .line 258
     :cond_3
     return-void
 
-    .line 246
+    .line 250
     :cond_4
     :goto_0
     return-void
@@ -219,10 +219,17 @@
 
     invoke-static {v1}, Lcom/android/quickstep/views/LsNativeStack;->access$102(F)F
 
-    .line 240
+    .line 242
+    invoke-static {}, Lcom/android/quickstep/views/LsNativeStack;->access$100()F
+
+    move-result p1
+
+    invoke-static {v0, p1}, Lcom/android/quickstep/views/LsStackActions;->update(Lcom/android/quickstep/views/RecentsView;F)V
+
+    .line 244
     invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->invalidate()V
 
-    .line 241
+    .line 245
     return-void
 
     .line 237
