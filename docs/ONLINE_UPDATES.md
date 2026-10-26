@@ -10,7 +10,7 @@
 
 红魔11继续使用自己的 `stacked-desktop` 与 `updates/stacked-desktop.json`。本分支不会读取、写入或发布11清单。10更新缓存为 `cache/online-updates-redmagic10/update.apk`，偏好名为 `ls_online_updates_redmagic10`，不会恢复旧11下载状态。
 
-APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后同时验证待安装包与当前安装包标识；同包名、同签名、更高版本仍不足以通过跨系列校验。已有客户端要求Release标签与在线附件名以 `stacked-desktop-redmagic10-` 开头。本批次沿用此前缀，以ASCII附件供在线下载；用户手动下载的带中文显示标签的10附件内容相同。11附件链接仍在下载前被拒绝。
+APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后同时验证待安装包与当前安装包标识；同包名、同签名、更高版本仍不足以通过跨系列校验。已有客户端要求Release标签与在线附件名以 `stacked-desktop-redmagic10-` 开头。本批次沿用此前缀，带中文显示标签的同一附件同时用于手动下载与在线更新。11附件链接仍在下载前被拒绝。
 
 ## 清单与校验
 
@@ -26,7 +26,7 @@ APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后�
 
 ## 发布与实际状态
 
-当前已发布 [三个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)。手动10附件显示标签为 `堆叠桌面10-250002.apk`，实际文件名为 `10-250002.apk`，在线清单指向 [兼容附件](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk)；两者大小、SHA-256和签名相同。11清单单独指向显示标签为中文的11附件，10不会读11清单。
+当前已发布 [三个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)。10系列只保留一份附件，显示名称为 [堆叠桌面10-250002](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk)，实际文件名为 `stacked-desktop-redmagic10-250002.apk`。手动下载与10在线清单使用同一地址；版本、大小、SHA-256和签名保持不变。11、12清单分别指向各自附件，10不会读取其他系列的清单。
 
 发行仓库登记独立10 appId；批次发布工具先核验两个系列实际APK及全部附件，再用同一Git提交更新两清单。运行中的客户端读取远程正式清单，源码不保留旧发行快照。
 

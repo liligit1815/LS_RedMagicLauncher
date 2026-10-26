@@ -19,7 +19,7 @@
 - 上述模块兼容性检查属于两个产品的版本协作，不是桌面构建依赖；需要修改模块时，先确认任务范围，不在桌面任务中顺带修改父工程。
 - `audit/`、`archive/` 和旧 `out/` 中的脚本、日志及绝对路径是历史证据。后续构建以当前 `README.md` 和 `tools/` 为准，不执行历史构建入口。
 - 当前源码、固定回归输入与构建工具均随独立源码仓库保存；10分支默认OEM对照是固定哈希的 `original.apk`，11固定验收基线仍保留 `baselines/launcher-260005.apk`，不得用于10载荷对照，不得改回被忽略的历史 `out/`。固定框架输入 `framework/cache/1.apk` 不能当普通缓存删除。
-- 10在线更新必须使用 `stacked-desktop-redmagic10` 独立appId、清单及缓存，APK标识必须为 `com.lizhou.launcher.series=redmagic10`；同包名同签名不能作为跨系列安装的授权。用户已授权在lispacerelease与11同批次发布；保留各自更新清单，并提供与中文10附件相同的ASCII兼容附件。
+- 10在线更新必须使用 `stacked-desktop-redmagic10` 独立appId、清单及缓存，APK标识必须为 `com.lizhou.launcher.series=redmagic10`；同包名同签名不能作为跨系列安装的授权。用户已授权三个系列在lispacerelease同批次发布；保留各自更新清单。10系列只发布一份带中文显示名称的ASCII兼容命名附件，同时用于手动下载和在线更新，不再提供重复安装包。
 - 10源码 `sdkInfo.minSdkVersion` 保持31。helper同步验证后，仅构建副本暂设原厂最低API29进行资源链接，避免折叠原厂v31配置；再用 `restore-launcher-runtime-sdk.py` 严格恢复binary Manifest唯一minSdk整数29→31，其他字节和ZIP载荷不变。不能关闭旧资源配置/值门禁容纳折叠差异。
 
 # 公开源码与私有签名
