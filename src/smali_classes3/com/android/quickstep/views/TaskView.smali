@@ -9555,11 +9555,6 @@
 
 .method private static final showTaskMenuWithContainer$lambda$77(Lcom/android/quickstep/views/RecentsView;)Lkotlin/Unit;
     .locals 1
-    invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskActionsLongPress(Lcom/android/quickstep/views/TaskView;)Z
-    move-result v0
-    if-eqz v0, :ls_native_task_menu
-    return v0
-    :ls_native_task_menu
     const/4 v0, 0x1
     invoke-virtual {p0, v0}, Lcom/android/quickstep/views/RecentsView;->setTaskBorderEnabled(Z)V
     sget-object p0, Lkotlin/Unit;->INSTANCE:Lkotlin/Unit;
@@ -9568,11 +9563,6 @@
 
 .method private static final showTaskMenuWithContainer$lambda$78(Lkotlin/jvm/functions/Function0;)V
     .locals 0
-    invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->onTaskActionsLongPress(Lcom/android/quickstep/views/TaskView;)Z
-    move-result v0
-    if-eqz v0, :ls_native_task_menu
-    return v0
-    :ls_native_task_menu
     invoke-interface {p0}, Lkotlin/jvm/functions/Function0;->invoke()Ljava/lang/Object;
     return-void
 .end method

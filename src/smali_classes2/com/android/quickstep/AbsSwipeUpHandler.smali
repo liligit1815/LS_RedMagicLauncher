@@ -2275,15 +2275,15 @@
     move-object/from16 v4, p5
     move-object/from16 v9, p7
     move-object/from16 v5, p6
-    sget-object v4, Lcom/android/quickstep/GestureState$GestureEndTarget;->RECENTS:Lcom/android/quickstep/GestureState$GestureEndTarget;
-    if-ne v5, v4, :ls_native_stack_not_recents_target
-    const/4 v4, 0x1
+    sget-object v6, Lcom/android/quickstep/GestureState$GestureEndTarget;->RECENTS:Lcom/android/quickstep/GestureState$GestureEndTarget;
+    if-ne v5, v6, :ls_native_stack_not_recents_target
+    const/4 v6, 0x1
     goto :ls_native_stack_target_ready
     :ls_native_stack_not_recents_target
-    const/4 v4, 0x0
+    const/4 v6, 0x0
     :ls_native_stack_target_ready
     iget-object v5, v0, Lcom/android/quickstep/SwipeUpAnimationLogic;->mContext:Landroid/content/Context;
-    invoke-static {v5, v4}, Lcom/android/quickstep/views/LsNativeStack;->setLiveOverviewTarget(Landroid/content/Context;Z)V
+    invoke-static {v5, v6}, Lcom/android/quickstep/views/LsNativeStack;->setLiveOverviewTarget(Landroid/content/Context;Z)V
     iget-object v5, v0, Lcom/android/quickstep/AbsSwipeUpHandler;->mRecentsView:Lcom/android/quickstep/views/RecentsView;
     invoke-static {v5, v2, v3}, Lcom/android/quickstep/views/LsNativeStack;->normalizeLiveOverviewDuration(Lcom/android/quickstep/views/RecentsView;J)J
     move-result-wide v2

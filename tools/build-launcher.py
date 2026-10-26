@@ -26,6 +26,7 @@ DEFAULT_BASELINE_SHA256 = "729db6038d223f127e6305672fed454756488931f824aa36d3f62
 OEM_CERTIFICATE = "85fe217eaf539fc32bdf12d74d432c348b0bd0fddffd0ba79e89889b195bb19b"
 FRAMEWORK_SHA256 = "5dd984016ed5a5eb0eef866e2c6e8cd352e1427828ec23adb18005cf5648f3d7"
 SOURCE_TESTS = (
+    "test-launcher-startup-registers.py",
     "test-launcher-online-updates.py",
     "test-launcher-fan-settings.py",
     "test-launcher-fan-chrome.py",

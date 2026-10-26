@@ -27370,14 +27370,14 @@
 .end method
 
 .method public onPageEndTransition()V
-    .locals 0
+    .locals 1
     invoke-super {p0}, Lcom/android/launcher3/PagedView;->onPageEndTransition()V
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->getNextPage()I
-    move-result p0
-    invoke-static {p0}, Lcom/android/quickstep/util/ActiveGestureProtoLogProxy;->logOnPageEndTransition(I)V
+    move-result v0
+    invoke-static {v0}, Lcom/android/quickstep/util/ActiveGestureProtoLogProxy;->logOnPageEndTransition(I)V
     invoke-static {p0}, Lcom/android/quickstep/views/LsNativeStack;->update(Lcom/android/quickstep/views/RecentsView;)V
-    const/16 p0, 0x41
-    invoke-static {p0}, Lcom/android/systemui/shared/system/InteractionJankMonitorWrapper;->end(I)V
+    const/16 v0, 0x41
+    invoke-static {v0}, Lcom/android/systemui/shared/system/InteractionJankMonitorWrapper;->end(I)V
     return-void
 .end method
 

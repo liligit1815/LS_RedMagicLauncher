@@ -1,6 +1,6 @@
 # 红魔12独立构建
 
-从本工程根目录运行 `tools/build-launcher.py`。当前内部版本为270001，下一轮独立功能修改使用270002；整理文档和发布流程不另起功能版本。显示版本由用户决定，唯一打包来源为 `src/apktool.yml`。
+从本工程根目录运行 `tools/build-launcher.py`。当前内部版本为270002，下一轮独立功能修改使用270003；整理文档和发布流程不另起功能版本。显示版本由用户决定，唯一打包来源为 `src/apktool.yml`。
 
 ## 固定输入
 
@@ -33,7 +33,7 @@ python tools/build-launcher-helper.py --sdk "<Android SDK目录>"
 python tools/build-launcher.py --sdk "<Android SDK目录>"
 ```
 
-入口统一执行源码与辅助类同步检查、Apktool `b -f`、OEM资源保真、DEX成员解析、版本与代码边界、16KB ZIP对齐、签名及载荷一致性校验。每次输出至独立的 `out/build-270001-时间戳/`；签名成品要求 `build-report.json` 的状态为 `signed_verified`。
+入口统一执行源码检查（包括启动接入点的寄存器类型和回调返回类型）、辅助类同步检查、Apktool `b -f`、OEM资源保真、DEX成员解析、版本与代码边界、16KB ZIP对齐、签名及载荷一致性校验。每次输出至独立的 `out/build-270002-时间戳/`；签名成品要求 `build-report.json` 的状态为 `signed_verified`。
 
 资源打包保留原厂资源表及原文件，仅合入白名单中的25项新增资源和样式页布局；以原厂14157个资源ID及88757个配置作为对照。原生库和assets保留原厂字节。
 
