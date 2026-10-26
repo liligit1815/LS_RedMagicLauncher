@@ -2,7 +2,7 @@
 
 本分支 `redmagic-10` 维护红魔10桌面，内部版本 **250002**，显示版本 **25.5.000.000.2505121541**。红魔10、11、12分别使用 `redmagic-10`、`redmagic-11`、`redmagic-12`，每个分支保留自身源码、原厂输入和框架；main保留原有历史。
 
-[下载堆叠桌面10-250002.APK](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk) · [三系列同批次发行](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007) · [本系列在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic10.json)
+[下载堆叠桌面10-250002.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk) · [三系列同批次发行](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007) · [本系列在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic10.json)
 
 ## 下载与更新内容
 

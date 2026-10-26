@@ -10,7 +10,7 @@
 2. 新增边界动画回弹效果
 3. 优化动画效果和流畅性
 
-[下载堆叠桌面10-250002.APK](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk) · [三系列同批次发行](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)
+[下载堆叠桌面10-250002.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk) · [三系列同批次发行](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)
 
 | 项目 | 内容 |
 | --- | --- |

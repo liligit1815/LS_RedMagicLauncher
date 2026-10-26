@@ -26,7 +26,7 @@ APK含精确Manifest标识 `com.lizhou.launcher.series=redmagic10`。下载后�
 
 ## 发布与实际状态
 
-当前已发布 [三个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)。10系列只保留一份附件，显示名称为 [堆叠桌面10-250002.APK](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk)，实际文件名为 `stacked-desktop-redmagic10-250002.apk`。手动下载与10在线清单使用同一地址；版本、大小、SHA-256和签名保持不变。11、12清单分别指向各自附件，10不会读取其他系列的清单。
+当前已发布 [三个系列同批次Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)。10系列只保留一份附件，显示名称为 [堆叠桌面10-250002.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/stacked-desktop-redmagic10-250002.apk)，实际文件名为 `stacked-desktop-redmagic10-250002.apk`。手动下载与10在线清单使用同一地址；版本、大小、SHA-256和签名保持不变。11、12清单分别指向各自附件，10不会读取其他系列的清单。
 
 发行仓库登记独立10 appId；批次发布工具先核验两个系列实际APK及全部附件，再用同一Git提交更新两清单。运行中的客户端读取远程正式清单，源码不保留旧发行快照。
 
