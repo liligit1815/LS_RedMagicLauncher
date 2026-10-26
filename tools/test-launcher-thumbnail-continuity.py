@@ -36,6 +36,7 @@ public class ThumbnailContinuityTest {
         static boolean keepsTaskData(RecentsView r,TaskView t){throw new AssertionError("fan residency reached old style");}
     }
     static class LsFanPager {
+        public static float edgeOffset(RecentsView r){return 0f;}
         static float position(RecentsView r,float fallback,int count){throw new AssertionError("fan pager reached old style");}
     }
     static boolean retainDismissHistoryLayout;

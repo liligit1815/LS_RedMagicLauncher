@@ -1,6 +1,6 @@
 # 堆叠桌面在线更新
 
-当前维护版本为 `260029`，显示版本为 `26.9.260.908.2609081608`。桌面使用统一发行仓库 `lispacerelease` 中自己的更新清单；其他软件的发布不改变桌面版本。发行身份与当前状态见 [开发状态](DEVELOPMENT_STATUS.md)。
+当前维护版本为 `260030`，显示版本为 `26.9.260.908.2609081608`。桌面使用统一发行仓库 `lispacerelease` 中自己的更新清单；其他软件的发布不改变桌面版本。发行身份与当前状态见 [版本说明](RELEASE_260030.md)。
 
 ## 使用入口
 
@@ -13,7 +13,7 @@
 
 客户端唯一更新地址为 [堆叠桌面公开清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)。清单由最终签名APK及实际Release附件生成，不在源码仓库保存过期发行快照。
 
-[两个系列同批次发布工具](https://github.com/liligit1815/lispacerelease/blob/main/tools/publish-launcher-batch.py) 从最终签名 APK 生成身份、大小、哈希和附件地址，并读取更新说明。发布时不能复制旧包的字段；操作入口见 [README 发布流程](../README.md#后续版本如何发布并提供在线更新)。
+[三个系列同批次发布工具](https://github.com/liligit1815/lispacerelease/blob/main/tools/publish-launcher-batch.py) 从最终签名 APK 生成身份、大小、哈希和附件地址，并读取更新说明。发布时不能复制旧包的字段；操作入口见 [README 发布流程](../README.md#后续版本如何发布并提供在线更新)。
 
 | 字段 | 来源与要求 |
 | --- | --- |
@@ -52,7 +52,7 @@
 `validate.py` 只检查本地清单，`--dry-run` 不证明公开下载可用。在桌面工程根目录运行：
 
 ```powershell
-$versionCode = 260029
+$versionCode = 260030
 $checkDir = "out\online-release-check-$versionCode-$(Get-Date -Format 'yyyyMMdd-HHmmss-fff')"
 python tools/check-launcher-online-release.py --sdk $env:ANDROID_HOME `
     --java-home $env:JAVA_HOME --out-dir $checkDir --expected-version-code $versionCode
@@ -69,7 +69,7 @@ if ($LASTEXITCODE -ne 0) { throw '公开在线核验失败，请查看报告' }
 2. 核对新版提示、说明和大小，检查下载进度与取消行为；下载后检查未知来源授权往返和系统安装器确认。
 3. 覆盖安装后回读实际版本与 APK 身份，检查桌面启动、布局和比例；同时检查无新版、离线失败及自动静默行为。
 
-已安装版本与清单相同或更高时，不应提示升级；不修改清单版本或替换同版本附件来制造升级场景。公开下载通过与设备可联网是不同检查，设备的实际结果按 [开发状态](DEVELOPMENT_STATUS.md) 记录，设备数据仅保存到本地忽略目录。
+已安装版本与清单相同或更高时，不应提示升级；不修改清单版本或替换同版本附件来制造升级场景。公开下载通过与设备可联网是不同检查，设备的实际结果按 [版本说明](RELEASE_260030.md) 记录，设备数据仅保存到本地忽略目录。
 
 ## 维护接入点
 
@@ -79,4 +79,4 @@ Manifest 允许差异限定为版本、`INTERNET` 与精确配置的私有更新
 
 ## 当前批次
 
-[本批Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260029-10-250001) 的11安装包为 `堆叠桌面11-260029.apk`。11清单保持 `stacked-desktop`，10清单使用自己的 `stacked-desktop-redmagic10`；两个清单在同一Git提交更新，其他软件不受影响。
+[本批Release](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007) 的11安装包为 `堆叠桌面11-260030.apk`。11清单保持 `stacked-desktop`，10清单使用自己的 `stacked-desktop-redmagic10`；两个清单在同一Git提交更新，其他软件不受影响。

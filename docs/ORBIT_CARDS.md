@@ -37,4 +37,4 @@
 | [TaskView.smali](../src/smali_classes2/com/android/quickstep/views/TaskView.smali) | 子视图接收按下事件前的卡面命中接入 |
 | [RecentsView.smali](../src/smali_classes2/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务、手势路由与删除回调 |
 
-环绕复用已有任务视图，不复制任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [开发状态](DEVELOPMENT_STATUS.md)。
+环绕复用已有任务视图，不复制任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [版本说明](RELEASE_260030.md)。

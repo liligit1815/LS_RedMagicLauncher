@@ -35,4 +35,4 @@
 | [LsStackTransition.java](../helper-src/main/com/android/quickstep/views/LsStackTransition.java) | 截图与实时窗口的打开、退出和取消交接 |
 | [RecentsView.smali](../src/smali_classes2/com/android/quickstep/views/RecentsView.smali) | 样式识别、可见任务及手势路由 |
 
-窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [开发状态](DEVELOPMENT_STATUS.md)。
+窗口复用已有 `TaskView`，不创建重复任务。源码维护与构建入口见 [构建说明](BUILDING.md)，当前版本见 [版本说明](RELEASE_260030.md)。

@@ -35,31 +35,31 @@
 .method constructor <init>(Landroid/content/Context;I)V
     .locals 16
 
-    .line 3571
+    .line 3605
     move-object/from16 v0, p0
 
     move-object/from16 v1, p1
 
     invoke-direct/range {p0 .. p1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
-    .line 3565
+    .line 3599
     const/4 v2, 0x2
 
     new-array v3, v2, [Landroid/widget/TextView;
 
     iput-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->limitLabels:[Landroid/widget/TextView;
 
-    .line 3572
+    .line 3606
     move/from16 v3, p2
 
     iput v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->style:I
 
-    .line 3573
+    .line 3607
     const/4 v3, 0x1
 
     invoke-super {v0, v3}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 3574
+    .line 3608
     invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3
@@ -78,12 +78,12 @@
 
     move-result v3
 
-    .line 3577
+    .line 3611
     const/4 v4, 0x0
 
     invoke-super {v0, v3, v4, v3, v3}, Landroid/widget/LinearLayout;->setPadding(IIII)V
 
-    .line 3578
+    .line 3612
     invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3
@@ -110,7 +110,7 @@
 
     move-result v3
 
-    .line 3579
+    .line 3613
     if-eqz v3, :cond_0
 
     const-string v3, "\u5361\u7247\u7f29\u653e"
@@ -123,36 +123,36 @@
     :goto_0
     iput-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->label:Ljava/lang/String;
 
-    .line 3580
+    .line 3614
     new-instance v3, Landroid/widget/LinearLayout;
 
     invoke-direct {v3, v1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
-    .line 3581
+    .line 3615
     invoke-virtual {v3, v4}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 3582
+    .line 3616
     new-instance v5, Landroid/widget/TextView;
 
     invoke-direct {v5, v1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
     iput-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->captionLabel:Landroid/widget/TextView;
 
-    .line 3583
+    .line 3617
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->captionLabel:Landroid/widget/TextView;
 
     iget-object v6, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->label:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 3584
+    .line 3618
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->captionLabel:Landroid/widget/TextView;
 
     const/high16 v6, 0x41600000    # 14.0f
 
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 3585
+    .line 3619
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->captionLabel:Landroid/widget/TextView;
 
     new-instance v7, Landroid/widget/LinearLayout$LayoutParams;
@@ -165,26 +165,26 @@
 
     invoke-virtual {v3, v5, v7}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 3586
+    .line 3620
     new-instance v5, Landroid/widget/TextView;
 
     invoke-direct {v5, v1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
     iput-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->valueLabel:Landroid/widget/TextView;
 
-    .line 3587
+    .line 3621
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->valueLabel:Landroid/widget/TextView;
 
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 3588
+    .line 3622
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->valueLabel:Landroid/widget/TextView;
 
     const v6, 0x800005
 
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 3589
+    .line 3623
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->valueLabel:Landroid/widget/TextView;
 
     new-instance v7, Landroid/widget/LinearLayout$LayoutParams;
@@ -193,7 +193,7 @@
 
     invoke-virtual {v3, v5, v7}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 3590
+    .line 3624
     new-instance v5, Landroid/widget/LinearLayout$LayoutParams;
 
     const/4 v7, -0x1
@@ -202,60 +202,60 @@
 
     invoke-super {v0, v3, v5}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 3591
+    .line 3625
     new-instance v3, Landroid/widget/SeekBar;
 
     invoke-direct {v3, v1}, Landroid/widget/SeekBar;-><init>(Landroid/content/Context;)V
 
     iput-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
-    .line 3592
+    .line 3626
     iget-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     invoke-static {v3, v1}, Lcom/android/quickstep/views/LsNativeStack;->access$2700(Landroid/widget/SeekBar;Landroid/content/Context;)V
 
-    .line 3593
+    .line 3627
     iget-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     const/16 v5, 0x32
 
     invoke-virtual {v3, v5}, Landroid/widget/SeekBar;->setMax(I)V
 
-    .line 3594
+    .line 3628
     iget v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->style:I
 
     invoke-static {v1, v3}, Lcom/android/quickstep/views/LsNativeStack;->access$2800(Landroid/content/Context;I)I
 
     move-result v3
 
-    .line 3595
+    .line 3629
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     add-int/lit8 v10, v3, -0x46
 
     invoke-virtual {v5, v10}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 3596
+    .line 3630
     iget-object v5, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     iget-object v10, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->label:Ljava/lang/String;
 
     invoke-virtual {v5, v10}, Landroid/widget/SeekBar;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 3597
+    .line 3631
     invoke-direct {v0, v3}, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->showValue(I)V
 
-    .line 3598
+    .line 3632
     iget-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     invoke-virtual {v3, v0}, Landroid/widget/SeekBar;->setOnSeekBarChangeListener(Landroid/widget/SeekBar$OnSeekBarChangeListener;)V
 
-    .line 3599
+    .line 3633
     iget-object v3, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     new-instance v5, Landroid/widget/LinearLayout$LayoutParams;
 
-    .line 3600
+    .line 3634
     invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v10
@@ -276,21 +276,21 @@
 
     invoke-direct {v5, v7, v10}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    .line 3599
+    .line 3633
     invoke-super {v0, v3, v5}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 3601
+    .line 3635
     new-instance v3, Landroid/widget/LinearLayout;
 
     invoke-direct {v3, v1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
-    .line 3602
+    .line 3636
     invoke-virtual {v3, v4}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 3603
+    .line 3637
     nop
 
-    .line 3604
+    .line 3638
     const/16 v5, 0x78
 
     const/16 v10, 0x46
@@ -308,12 +308,12 @@
 
     aget v13, v5, v11
 
-    .line 3605
+    .line 3639
     new-instance v14, Landroid/widget/TextView;
 
     invoke-direct {v14, v1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
-    .line 3606
+    .line 3640
     new-instance v15, Ljava/lang/StringBuilder;
 
     invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
@@ -334,12 +334,12 @@
 
     invoke-virtual {v14, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 3607
+    .line 3641
     const/high16 v2, 0x41400000    # 12.0f
 
     invoke-virtual {v14, v2}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 3608
+    .line 3642
     if-ne v13, v10, :cond_1
 
     const v2, 0x800003
@@ -352,21 +352,21 @@
     :goto_2
     invoke-virtual {v14, v2}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 3609
+    .line 3643
     new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
 
     invoke-direct {v2, v4, v8, v9}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
 
     invoke-virtual {v3, v14, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 3610
+    .line 3644
     iget-object v2, v0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->limitLabels:[Landroid/widget/TextView;
 
     add-int/lit8 v13, v12, 0x1
 
     aput-object v14, v2, v12
 
-    .line 3604
+    .line 3638
     add-int/lit8 v11, v11, 0x1
 
     move v12, v13
@@ -375,7 +375,7 @@
 
     goto :goto_1
 
-    .line 3612
+    .line 3646
     :cond_2
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
 
@@ -383,17 +383,17 @@
 
     invoke-super {v0, v3, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 3613
+    .line 3647
     invoke-direct {v0}, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->refreshTheme()V
 
-    .line 3614
+    .line 3648
     return-void
 .end method
 
 .method static synthetic access$2500(Lcom/android/quickstep/views/LsNativeStack$ScaleControl;)V
     .locals 0
 
-    .line 3561
+    .line 3595
     invoke-direct {p0}, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->refreshTheme()V
 
     return-void
@@ -402,7 +402,7 @@
 .method static synthetic access$2600(Lcom/android/quickstep/views/LsNativeStack$ScaleControl;)V
     .locals 0
 
-    .line 3561
+    .line 3595
     invoke-direct {p0}, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->refreshValue()V
 
     return-void
@@ -411,7 +411,7 @@
 .method private refreshTheme()V
     .locals 5
 
-    .line 3617
+    .line 3651
     invoke-super {p0}, Landroid/widget/LinearLayout;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -422,17 +422,17 @@
 
     move-result v0
 
-    .line 3618
+    .line 3652
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->captionLabel:Landroid/widget/TextView;
 
     invoke-virtual {v1, v0}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 3619
+    .line 3653
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->valueLabel:Landroid/widget/TextView;
 
     invoke-virtual {v1, v0}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 3620
+    .line 3654
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->limitLabels:[Landroid/widget/TextView;
 
     array-length v2, v1
@@ -450,7 +450,7 @@
 
     goto :goto_0
 
-    .line 3621
+    .line 3655
     :cond_0
     return-void
 .end method
@@ -458,7 +458,7 @@
 .method private refreshValue()V
     .locals 3
 
-    .line 3628
+    .line 3662
     invoke-super {p0}, Landroid/widget/LinearLayout;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -469,24 +469,24 @@
 
     move-result v0
 
-    .line 3629
+    .line 3663
     iget-object v1, p0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->slider:Landroid/widget/SeekBar;
 
     add-int/lit8 v2, v0, -0x46
 
     invoke-virtual {v1, v2}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 3630
+    .line 3664
     invoke-direct {p0, v0}, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->showValue(I)V
 
-    .line 3631
+    .line 3665
     return-void
 .end method
 
 .method private showValue(I)V
     .locals 2
 
-    .line 3624
+    .line 3658
     iget-object v0, p0, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->valueLabel:Landroid/widget/TextView;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -509,7 +509,7 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 3625
+    .line 3659
     return-void
 .end method
 
@@ -518,20 +518,20 @@
 .method public onProgressChanged(Landroid/widget/SeekBar;IZ)V
     .locals 0
 
-    .line 3634
+    .line 3668
     add-int/lit8 p2, p2, 0x46
 
     invoke-static {p2}, Lcom/android/quickstep/views/LsNativeStack;->access$2900(I)I
 
     move-result p1
 
-    .line 3635
+    .line 3669
     invoke-direct {p0, p1}, Lcom/android/quickstep/views/LsNativeStack$ScaleControl;->showValue(I)V
 
-    .line 3636
+    .line 3670
     if-eqz p3, :cond_0
 
-    .line 3637
+    .line 3671
     invoke-super {p0}, Landroid/widget/LinearLayout;->getContext()Landroid/content/Context;
 
     move-result-object p2
@@ -556,7 +556,7 @@
 
     invoke-interface {p1}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 3639
+    .line 3673
     :cond_0
     return-void
 .end method
@@ -564,13 +564,13 @@
 .method public onStartTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 3641
+    .line 3675
     return-void
 .end method
 
 .method public onStopTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 3642
+    .line 3676
     return-void
 .end method

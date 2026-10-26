@@ -215,6 +215,8 @@ public final class LsFanPager {
             state.cancelAnimation();
             state.releaseTouch();
             RecentsPagedOrientationHandler handler = recents.getPagedOrientationHandler();
+            if (state.rotation != handler.getRotation())
+                state.phase = LsFanGeometry.normalizePage(state.phase, count);
             state.rotation = handler.getRotation();
             state.pointer = event.getPointerId(0);
             state.downTime = event.getDownTime();
@@ -273,7 +275,7 @@ public final class LsFanPager {
                 state.dragging = true;
             }
             if (state.dismissing) state.crossOffset = Math.min(0f, cross);
-            else state.phase = LsFanGeometry.normalizePage(state.downPhase - delta / state.step, count);
+            else state.phase = state.downPhase - delta / state.step;
             render(state, recents);
             return true;
         }
@@ -312,7 +314,8 @@ public final class LsFanPager {
                     }
                 }
                 if (!handedOff) render(state, recents);
-            } else if (consumed) settle(state, recents, speed / state.step);
+            } else if (consumed || state.phase != LsFanGeometry.normalizePage(state.phase, count))
+                settle(state, recents, speed / state.step);
             return consumed;
         }
         return state.dragging;
@@ -322,7 +325,7 @@ public final class LsFanPager {
         state.cancelAnimation();
         final int generation = state.generation;
         final int count = state.order.length;
-        if (count <= 1) {
+        if (count == 0) {
             state.phase = 0f;
             syncNative(state, recents);
             render(state, recents);
@@ -346,7 +349,7 @@ public final class LsFanPager {
                         || state.animation != animator) return;
                 reconcile(state, view, view.getTaskViewCount());
                 if (state.generation != generation) return;
-                state.phase = LsFanGeometry.normalizePage((Float) value.getAnimatedValue(), count);
+                state.phase = (Float) value.getAnimatedValue();
                 render(state, view);
             }
         });
@@ -372,6 +375,7 @@ public final class LsFanPager {
         if (state == null) return;
         state.cancelAnimation();
         state.releaseTouch();
+        state.phase = LsFanGeometry.normalizePage(state.phase, state.order.length);
     }
 
     /** Commit the exact destination chosen by the shared dismissal transaction. */
@@ -387,6 +391,18 @@ public final class LsFanPager {
         state.phase = LsFanGeometry.normalizePage(page, state.order.length);
         syncNative(state, recents);
         render(state, recents);
+    }
+
+    /** Visual-only resistance; task selection and screenshot loading stay bounded. */
+    public static float edgeOffset(RecentsView recents) {
+        State state = states.get(recents);
+        if (state == null || state.dismissing || state.order.length == 0 || state.step <= 0f
+                || state.rotation != recents.getPagedOrientationHandler().getRotation()) return 0f;
+        float excess = (LsFanGeometry.normalizePage(state.phase, state.order.length) - state.phase) * state.step;
+        float limit = state.step / PAGE_HEIGHT * .08f;
+        float offset = excess * .55f / (1f + Math.abs(excess) * .55f / limit);
+        return recents.getPagedOrientationHandler().getSecondaryTranslationDirectionFactor() < 0
+                ? offset : -offset;
     }
 
     /** Physical primary-axis translation of the selected sideways drag. */

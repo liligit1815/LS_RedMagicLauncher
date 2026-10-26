@@ -287,10 +287,10 @@ public final class FanPagerTest {
                 near(phase(r),Math.min(i,Math.max(0,count-5)),"upward drag lost/clipped window");
                 check(r.cancels==1,"native cancelled repeatedly");
             }
-            // Count one settles synchronously, with no animator.
+            // A single card also animates its boundary displacement back to rest.
             send(r,MotionEvent.ACTION_MOVE,-(count+5)*step(r),0,300);
             check(send(r,MotionEvent.ACTION_UP,-(count+5)*step(r),0,10),"vertical release escaped");
-            if(count>1)ValueAnimator.latest().finish();
+            ValueAnimator.latest().finish();
             int end=Math.max(0,count-5);near(phase(r),end,"end window wrapped");nativeTask(r,end);
             check(!r.parent.disallowed,"release blocked next parent gesture");
             begin(r,0);check(send(r,MotionEvent.ACTION_MOVE,100*step(r),0,30),"downward drag escaped");
@@ -384,7 +384,44 @@ public final class FanPagerTest {
         check(r.childReads<=r.getTaskViewCount()*3+10,"quadratic task identity scan");LsFanPager.clear(r);
         check(VelocityTracker.live==0,"touch paths leaked velocity trackers");
     }
+    static float signedEdge(RecentsView r){
+        return LsFanPager.edgeOffset(r)*(r.handler.getSecondaryTranslationDirectionFactor()<0?1:-1);
+    }
+    static void boundaryRebound(){
+        for(int count:new int[]{1,5,8,20})for(int rotation=0;rotation<4;rotation++)for(int side:new int[]{-1,1}){
+            RecentsView r=scene(count,rotation);float endpoint=side>0?0:Math.max(0,count-5);begin(r,endpoint);
+            float previous=0,limit=step(r)/.14f*.08f;
+            for(int i=1;i<=25;i++){
+                send(r,MotionEvent.ACTION_MOVE,side*i*step(r)/10f,0,30);
+                near(phase(r),endpoint,"edge pull changed selected task");
+                float value=signedEdge(r)*side;
+                check(value>previous&&value<limit,"edge resistance missing/reversed/unbounded");previous=value;
+            }
+            float held=signedEdge(r);send(r,MotionEvent.ACTION_MOVE,side*2.5f*step(r),0,300);
+            send(r,MotionEvent.ACTION_UP,side*2.5f*step(r),0,10);
+            near(signedEdge(r),held,"release snapped the edge before animation");
+            ValueAnimator spring=ValueAnimator.latest();
+            for(int frame=1;frame<=100;frame++){
+                spring.pulse(frame/100f);float value=signedEdge(r)*side;
+                check(value>=0&&value<=previous,"edge return overshot or reversed");previous=value;
+            }
+            spring.finish();near(signedEdge(r),0,"edge return left displacement");near(phase(r),endpoint,"edge return changed page");
+            begin(r,endpoint);send(r,MotionEvent.ACTION_MOVE,side*step(r),0,30);
+            send(r,MotionEvent.ACTION_UP,side*step(r),0,10);spring=ValueAnimator.latest();spring.pulse(.2f);
+            float interrupted=signedEdge(r);begin(r,endpoint);near(signedEdge(r),interrupted,"new DOWN snapped rebound");
+            spring.finish();near(signedEdge(r),interrupted,"old rebound wrote into new touch");
+            send(r,MotionEvent.ACTION_CANCEL,0,0,20);near(signedEdge(r),0,"cancel retained bounce");
+            begin(r,endpoint);send(r,MotionEvent.ACTION_MOVE,side*step(r),0,30);
+            r.children.remove(task(r,count-1));phase(r);near(signedEdge(r),0,"task removal retained overscroll");
+            LsFanPager.clear(r);near(signedEdge(r),0,"clear retained edge state");
+        }
+        for(int rotation=0;rotation<4;rotation++){
+            RecentsView r=scene(12,rotation);begin(r,2);send(r,MotionEvent.ACTION_MOVE,-step(r)/2,0,30);
+            near(signedEdge(r),0,"interior scroll gained rebound");LsFanPager.stop(r);near(signedEdge(r),0,"stop retained edge");LsFanPager.clear(r);
+        }
+    }
     public static void main(String[] args){
+        boundaryRebound();
         boundedVertical();clicksAndLongPress();sidewaysOwnership();cancellationAndMutation();
         flingAndStaleCallbacks();identityAndFinalWindow();
         System.out.println("Fan pager: "+checks+" checks passed");

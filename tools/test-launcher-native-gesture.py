@@ -32,6 +32,8 @@ names = ('getMiuiStackCenter', 'getEntrySlideOffset', 'getInitialTaskOrdinal', '
          'onTaskActionsLongPress', 'onTaskMenuClosed', 'clearActionMenu', 'isActionMenuTask',
          'dispatchInlineActionTouch', 'armEntryReveal', 'startEntryRevealIfArmed', 'finishEntryReveal', 'getActionMenuOrdinal', 'onCardTouch', 'cancelCardLongPress', 'animateTaskActions', 'onTaskMenuOpenResult', 'onTaskMenuDetached')
 members = '\n'.join(extract(name) for name in names)
+for name, fallback in (('stackScrollBoundary', 'static Integer stackScrollBoundary(RecentsView r,boolean maximum){return null;}'), ('getStackEdgeOffset', 'static float getStackEdgeOffset(RecentsView r,float scroll,float size){return 0f;}')):
+    members += '\n' + (extract(name) if name + '(' in source else fallback)
 for name in ('orbitPrimary', 'orbitSecondary', 'fanPrimary', 'fanSecondary'):
     if re.search(r'private static [^\n]+ ' + name + r'\(', source):
         members += '\n' + extract(name)
@@ -62,12 +64,13 @@ public class NativeGestureTest {
     static final float[] ORBIT_POSE=new float[5];
     static final float[] FAN_POSE=new float[6];
     static class LsFanPager {
+        static float edge;public static float edgeOffset(RecentsView r){return edge;}
         static void clear(RecentsView r){}
-        static float position(RecentsView r,float fallback,int count){throw new AssertionError("fan pager reached old style");}
-        static float dragOffset(RecentsView r,TaskView t){throw new AssertionError("fan drag reached old style");}
+        static float position(RecentsView r,float fallback,int count){if(!r.fan)throw new AssertionError("fan pager reached old style");return fallback;}
+        static float dragOffset(RecentsView r,TaskView t){if(!r.fan)throw new AssertionError("fan drag reached old style");return 0f;}
     }
     static class LsFanReflow {
-        static boolean sample(RecentsView r,TaskView t,float w,float h,float[] out){throw new AssertionError("fan reflow reached old style");}
+        static boolean sample(RecentsView r,TaskView t,float w,float h,float[] out){if(!r.fan)throw new AssertionError("fan reflow reached old style");return false;}
     }
     // The gesture controller has its own production test. This configurable
     // port proves that production composition consumes its independent phase.
@@ -92,7 +95,7 @@ public class NativeGestureTest {
     static float resourceDensity=1,stackSpacingScale=1;
     static boolean productionGeometry;
     static class Geometry { GEOMETRY }
-    static class android { static class os { static class SystemClock {
+    static class android { static class view {static class HapticFeedbackConstants {static final int LONG_PRESS=0;}} static class os { static class SystemClock {
         static long uptimeMillis(){return 10000;}
     } } }
     static class Matrix {boolean invert(Matrix other){return true;}}
@@ -132,7 +135,7 @@ public class NativeGestureTest {
         static boolean beforeUpdate(RecentsView r){return false;}
     }
     static class LsStackActions {
-        static RecentsView owner;static TaskView task;static boolean right,pressed;
+        static RecentsView owner;static TaskView task;static boolean right,pressed,failShow;
         static float progress,lastSampleCenter;static int samples;
         // Full snapshot matrices and split-container union are exercised by
         // test-launcher-side-actions.py. This port observes the live position
@@ -143,7 +146,7 @@ public class NativeGestureTest {
         }
         // Keep old-source red runs behavioral rather than compilation failures.
         static boolean isFrontVisibleCard(RecentsView r,TaskView t){return shouldShowActionsOnRight(r,t);}
-        static boolean show(RecentsView r,TaskView t,boolean side){sideBoundary("show");owner=r;task=t;right=side;pressed=false;return true;}
+        static boolean show(RecentsView r,TaskView t,boolean side){sideBoundary("show");if(failShow)return false;owner=r;task=t;right=side;pressed=false;return true;}
         static void abort(RecentsView r){sideBoundary("clear");if(owner==r){owner=null;task=null;pressed=false;}}
         static Runnable finish(RecentsView r){abort(r);return null;}
         static void update(RecentsView r,float p){if(owner==r)progress=p;}
@@ -223,6 +226,8 @@ public class NativeGestureTest {
         void offsetLocation(float x,float y){} void transform(Matrix m){} void recycle(){}
     }
     static class TaskView extends View {
+        boolean hapticsEnabled=true;int hapticRequests,hapticPulses;
+        boolean performHapticFeedback(int kind){check(kind==android.view.HapticFeedbackConstants.LONG_PRESS,"wrong haptic kind");hapticRequests++;if(hapticsEnabled)hapticPulses++;return hapticsEnabled;}
         float rotation;float getRotation(){return rotation;}void setRotation(float v){rotation=v;}
         float x,y,scale=1,alpha=1,z,title=1,actions=1,nativeX=37,actionOccluder,dismissY;
         float clip=-1;int writes; final int index; boolean directWrite;
@@ -269,7 +274,7 @@ public class NativeGestureTest {
         int getRunningTaskIndex(){return 0;}
         TaskView getTaskViewAt(int index){return tasks[index];}
         TaskView[] tasks={new TaskView(0),new TaskView(1),new TaskView(2)};
-        boolean stack=true,orbit,pending,applied,running,touching,ready=true;
+        boolean stack=true,orbit,fan,pending,applied,running,touching,ready=true;
         float contentAlpha=1;
         float orbitPhase=Float.NaN;int pagerSamples;
         float getContentAlpha(){return contentAlpha;}
@@ -284,7 +289,7 @@ public class NativeGestureTest {
         void invalidate(){invalidations++;}
         boolean isNativeStackStyle(){return stack;} boolean isNativeStackEntryPending(){return pending;}
         boolean isOrbitStyle(){return orbit;}
-        boolean isFanStyle(){return false;}
+        boolean isFanStyle(){return fan;}
         void setNativeStackEntryPending(boolean v){pending=v;}
         boolean isNativeStackApplied(){return applied;} void setNativeStackApplied(boolean v){applied=v;}
         boolean isRecentsAnimationRunning(){return running;} boolean isHandlingTouch(){return touching;}
@@ -547,6 +552,75 @@ public class NativeGestureTest {
         onAppGestureStart(slow);check(current.cancelled&&entryRevealRecents.get()==null,"native gesture retained Home animator");
         onOverviewStateChanged(slow,false);autoFinishReveal=true;focusScale=.9f;
     }
+    static void fanReboundComposition(){
+        for(int rotation=0;rotation<4;rotation++){
+            RecentsView r=new RecentsView();r.fan=true;r.handler.rotation=rotation;r.handler.vertical=(rotation&1)!=0;
+            onOverviewStateChanged(r,true);r.drain();obtainPagerEvent(r,new MotionEvent());
+            ordered=null;r.pending=false;overviewEntryPending=false;LsFanPager.edge=0;beforeDispatchDraw(r);
+            float[] resting=new float[r.tasks.length];for(int i=0;i<resting.length;i++)resting[i]=r.handler.vertical?r.tasks[i].x:r.tasks[i].y;
+            for(float shift:new float[]{-48f,24f,0f}){
+                LsFanPager.edge=shift;beforeDispatchDraw(r);
+                for(int i=0;i<resting.length;i++)check(Math.abs((r.handler.vertical?r.tasks[i].x:r.tasks[i].y)-resting[i]-shift)<.001f,"fan draw lost secondary-axis rebound");
+            }
+            onOverviewStateChanged(r,false);LsFanPager.edge=0;
+        }
+    }
+    static void boundaryRebound(){
+        for(int direction:new int[]{-1,1}){
+            RecentsView bounds=new RecentsView(){
+                // A non-task page lies beyond both ends; RTL reverses all scrolls.
+                @Override int getChildCount(){return tasks.length+2;}
+                @Override View getChildAt(int i){return i==0||i==tasks.length+1?new View():tasks[i-1];}
+                @Override int getScrollForPage(int i){return direction*(i-1)*700;}
+            };
+            check(stackScrollBoundary(bounds,false)==Math.min(0,direction*1400),"non-task page changed minimum");
+            check(stackScrollBoundary(bounds,true)==Math.max(0,direction*1400),"non-task page changed maximum");
+            bounds.orbit=true;check(stackScrollBoundary(bounds,true)==null,"orbit endpoint overridden");
+            bounds.orbit=false;bounds.stack=false;check(stackScrollBoundary(bounds,false)==null,"native endpoint overridden");
+            bounds.stack=true;bounds.tasks=new TaskView[0];check(stackScrollBoundary(bounds,true)==null,"empty list endpoint overridden");
+        }
+        RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+        obtainPagerEvent(r,new MotionEvent());
+        ordered=null;r.pending=false;overviewEntryPending=false;
+        for(boolean vertical:new boolean[]{false,true}){
+            r.handler.vertical=vertical;float size=r.handler.getPrimarySize(r);
+            for(int side:new int[]{-1,1}){
+                float previous=0;
+                for(int drag=0;drag<=1000;drag+=10){
+                    float physical=side<0?-drag:1400+drag;
+                    float offset=getStackEdgeOffset(r,physical,size);
+                    check(offset*side<=0&&Math.abs(offset)<size*.08f,"edge drag escapes bounded physical direction");
+                    check(Math.abs(offset)>=previous,"edge resistance reverses");previous=Math.abs(offset);
+                }
+                for(int drag=1000;drag>=0;drag-=10){
+                    float physical=side<0?-drag:1400+drag;
+                    float offset=getStackEdgeOffset(r,physical,size);
+                    check(Math.abs(offset)<=previous,"return moves away from edge");previous=Math.abs(offset);
+                }
+                check(previous==0,"edge return left a permanent offset");
+            }
+        }
+        r.handler.vertical=false;r.scroll=-160;beforeDispatchDraw(r);
+        float displaced=r.tasks[0].x;r.scroll=0;beforeDispatchDraw(r);
+        // Convert back to the rendered pivot; physical scroll is not logical page position.
+        check(displaced-r.tasks[0].x+160>0,"draw composition erased the rebound");
+        for(int scroll=0;scroll<=1400;scroll+=10)check(getStackEdgeOffset(r,scroll,1000)==0,"normal paging acquired bounce");
+        onOverviewStateChanged(r,false);
+    }
+    static void longPressHaptics(){
+        for(boolean enabled:new boolean[]{false,true}){
+            RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+            TaskView task=r.tasks[1];task.hapticsEnabled=enabled;
+            check(onTaskActionsLongPress(task),"menu did not open");
+            check(task.hapticRequests==1&&task.hapticPulses==(enabled?1:0),"system haptic policy was bypassed or feedback missing");
+            onTaskActionsLongPress(task);check(task.hapticRequests==1,"duplicate callback repeated feedback");
+            clearActionMenu(r);LsStackActions.failShow=true;
+            check(!onTaskActionsLongPress(task)&&task.hapticRequests==1,"failed menu vibrated");
+            LsStackActions.failShow=false;r.stack=false;
+            check(!onTaskActionsLongPress(task)&&task.hapticRequests==1,"other style vibrated");
+            onOverviewStateChanged(r,false);
+        }
+    }
     static void fastLongPress(){
         RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();TaskView task=r.tasks[2];
         MotionEvent down=new MotionEvent(MotionEvent.ACTION_DOWN,false);
@@ -560,7 +634,7 @@ public class NativeGestureTest {
             onCardTouch(task,event);timer.run();check(actionMenuTask.get()==null,"moving/cancelled gesture triggered long press");
         }
         onCardTouch(task,down);timer=task.timer;task.attached=false;timer.run();
-        check(actionMenuTask.get()==null,"detached card triggered long press");task.attached=true;
+        check(actionMenuTask.get()==null&&task.hapticRequests==0,"detached/cancelled card triggered feedback");task.attached=true;
         onCardTouch(task,down);timer=task.timer;timer.run();
         check(actionMenuTask.get()==task&&task.nativeCancels==1,"fast long press did not cancel native app-launch stream");
         check(r.tasks[0].headerHidden&&r.tasks[1].headerHidden&&!task.headerHidden,"upper headers not hidden");
@@ -1029,6 +1103,7 @@ public class NativeGestureTest {
         focusScale=savedScale;
     }
     public static void main(String[] args){
+        longPressHaptics();boundaryRebound();fanReboundComposition();
         ORBIT_COMPOSITION
         preciseClipBoundaries();
         actionNeighborCompleteness();
@@ -1147,6 +1222,11 @@ public class NativeGestureTest {
 
 # Verify the production binding runs before OEM setup can sample cached cards.
 recents = (ROOT / 'src/smali_classes2/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+for name, maximum in (('computeMinScroll', '0'), ('computeMaxScroll', '1')):
+    body = re.search(r'\.method (?:public|protected) ' + name + r'\(\)I(.*?)\.end method', recents, re.S).group(1)
+    prefix = body.split('->getTaskViewCount()', 1)[0]
+    assert re.search(r'const/4 v1, 0x' + maximum + r'\s+invoke-static \{p0, v1\}, .*->stackScrollBoundary\(', prefix)
+    assert re.search(r'move-result-object v0\s+if-eqz v0, (:\w+)\s+invoke-virtual \{v0\}, Ljava/lang/Integer;->intValue\(\)I\s+move-result v0\s+return v0\s+\1', prefix)
 start = recents.split('.method public onGestureAnimationStart(', 1)[1].split('.end method', 1)[0]
 assert start.index('->onAppGestureStart(') < start.index('sput-boolean'), 'gesture hook must precede OEM setup'
 

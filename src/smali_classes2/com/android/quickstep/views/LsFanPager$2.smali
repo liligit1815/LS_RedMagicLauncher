@@ -30,7 +30,7 @@
 .method constructor <init>(Lcom/android/quickstep/views/LsFanPager$State;ILandroid/animation/ValueAnimator;FI)V
     .locals 0
 
-    .line 353
+    .line 356
     iput-object p1, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
     iput p2, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$generation:I
@@ -51,7 +51,7 @@
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 3
 
-    .line 355
+    .line 358
     iget-object p1, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
     iget-object p1, p1, Lcom/android/quickstep/views/LsFanPager$State;->owner:Ljava/lang/ref/WeakReference;
@@ -62,7 +62,7 @@
 
     check-cast p1, Lcom/android/quickstep/views/RecentsView;
 
-    .line 356
+    .line 359
     if-eqz p1, :cond_2
 
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
@@ -91,7 +91,7 @@
 
     goto :goto_0
 
-    .line 358
+    .line 361
     :cond_0
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
@@ -101,7 +101,7 @@
 
     invoke-static {v0, p1, v1}, Lcom/android/quickstep/views/LsFanPager;->access$100(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;I)V
 
-    .line 359
+    .line 362
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
     iget v0, v0, Lcom/android/quickstep/views/LsFanPager$State;->generation:I
@@ -112,7 +112,7 @@
 
     return-void
 
-    .line 360
+    .line 363
     :cond_1
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
@@ -120,7 +120,7 @@
 
     iput-object v1, v0, Lcom/android/quickstep/views/LsFanPager$State;->animation:Landroid/animation/ValueAnimator;
 
-    .line 361
+    .line 364
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
     iget v1, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$end:F
@@ -133,20 +133,20 @@
 
     iput v1, v0, Lcom/android/quickstep/views/LsFanPager$State;->phase:F
 
-    .line 362
+    .line 365
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
     invoke-static {v0, p1}, Lcom/android/quickstep/views/LsFanPager;->access$300(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 363
+    .line 366
     iget-object v0, p0, Lcom/android/quickstep/views/LsFanPager$2;->val$state:Lcom/android/quickstep/views/LsFanPager$State;
 
     invoke-static {v0, p1}, Lcom/android/quickstep/views/LsFanPager;->access$200(Lcom/android/quickstep/views/LsFanPager$State;Lcom/android/quickstep/views/RecentsView;)V
 
-    .line 364
+    .line 367
     return-void
 
-    .line 357
+    .line 360
     :cond_2
     :goto_0
     return-void
