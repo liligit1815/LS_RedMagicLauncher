@@ -482,8 +482,25 @@ public final class LsStackActions extends AbstractFloatingView implements View.O
     }
 
     @Override public boolean onControllerInterceptTouchEvent(MotionEvent event) {
-        // The full-screen floating view handles its children and outside taps.
-        return false;
+        // BaseDragLayer otherwise keeps offering MOVE to the OEM dismiss and
+        // launch controllers even while this full-screen panel owns the cards.
+        return true;
+    }
+
+    @Override public boolean onControllerTouchEvent(MotionEvent event) {
+        ViewParent parent = super.getParent();
+        if (!(parent instanceof View)) return true;
+        MotionEvent local = MotionEvent.obtain(event);
+        try {
+            Matrix transform = new Matrix();
+            ((View) parent).transformMatrixToGlobal(transform);
+            super.transformMatrixToLocal(transform);
+            local.transform(transform);
+            super.dispatchTouchEvent(local);
+        } finally {
+            local.recycle();
+        }
+        return true;
     }
 
     @Override public boolean onTouchEvent(MotionEvent event) {

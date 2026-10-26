@@ -229,7 +229,7 @@ def main() -> int:
     require(initial_java, "entryFromApp && activeOverviewRecents.get() == recents && taskCount > 1",
             "second-task focus is not restricted to this live app entry with multiple tasks")
     require(initial_java, "return 1;", "live app entry does not center the second task")
-    require(helper_java, "float desiredCenter = finalCenter + revealPrimary;",
+    require(helper_java, "float desiredCenter = finalCenter + revealPrimary + edgeOffset;",
             "Home cards do not slide from the left using reveal progress")
     require(helper_java, "pagePosition = stableEntryOrder ? getEntryPagePosition(recents, entryTaskOrderSize)",
             "visual entry does not share the live animator progress")

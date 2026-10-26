@@ -434,8 +434,7 @@ public final class LsStackTransition {
         View snapshot = task.getTaskContainers().get(0).getSnapshotView();
         if (snapshot == null || snapshot.getWidth() <= 0 || snapshot.getHeight() <= 0) return;
         boolean fan = recents.isFanStyle();
-        Matrix snapshotStart = recents.isOrbitStyle() || fan
-                ? snapshotRootMatrix(snapshot, true) : null;
+        Matrix snapshotStart = snapshotRootMatrix(snapshot, true);
         Matrix snapshotBase = fan ? snapshotRootMatrix(snapshot, true, task) : null;
         RectF bounds;
         if (snapshotStart == null) {
@@ -450,7 +449,7 @@ public final class LsStackTransition {
         transition.launchedTask = new WeakReference<>(task);
         transition.launchedTaskIds = task.getTaskIds().clone();
         transition.launchBounds = bounds;
-        if (recents.isOrbitStyle() || fan) {
+        if (snapshotStart != null) {
             transition.launchSnapshot = new WeakReference<>(snapshot);
             transition.snapshotStartMatrix = snapshotStart;
             transition.snapshotBaseMatrix = snapshotBase;

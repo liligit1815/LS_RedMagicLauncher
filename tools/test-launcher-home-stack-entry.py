@@ -18,7 +18,7 @@ def method(name):
                      source, re.M | re.S).group()
 
 
-assert 'float desiredCenter = finalCenter + revealPrimary;' in source, 'slide not wired into real card centers'
+assert re.search(r'float desiredCenter = finalCenter \+ revealPrimary(?: \+ edgeOffset)?;', source), 'slide not wired into real card centers'
 assert 'float stackScale = finalStackScale;' in source, 'entry must preserve final card size'
 
 members = '\n'.join(method(n) for n in (

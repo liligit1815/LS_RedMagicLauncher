@@ -231,7 +231,7 @@ class View implements ViewParent {
     void getWindowVisibleDisplayFrame(Rect r){View root=getRootView();Rect q=root.window;
         r.left=q==null?0:q.left;r.top=q==null?0:q.top;r.right=q==null?root.w:q.right;r.bottom=q==null?root.h:q.bottom;}
     void getLocationOnScreen(int[] p){p[0]=(int)globalX;p[1]=(int)globalY;}
-    boolean dispatchTouchEvent(MotionEvent e){return onTouchEvent(e);}public boolean onTouchEvent(MotionEvent e){return false;}
+    MotionEvent delivered;boolean dispatchTouchEvent(MotionEvent e){delivered=e;return onTouchEvent(e);}public boolean onTouchEvent(MotionEvent e){return false;}
     View findViewById(int i){return id==i?this:null;}boolean isAttachedToWindow(){return attached;}
 }
 class ViewGroup extends View {
@@ -263,6 +263,7 @@ abstract class a extends ViewGroup {
     protected boolean mIsOpen;a(Context c,Object attrs){super(c);}
     public abstract boolean isOfType(int t);public abstract void handleClose(boolean animate);
     public abstract boolean onControllerInterceptTouchEvent(MotionEvent e);
+    public boolean onControllerTouchEvent(MotionEvent e){return false;}
 }
 class BaseDragLayer extends FrameLayout {
     static class LayoutParams extends FrameLayout.LayoutParams {
@@ -469,6 +470,23 @@ public class SideActionsTest {
             LsStackActions.update(recents,frame/100f);
             for(int i=0;i<5;i++){float value=p.getChildAt(i).alpha;check(value<=previous[i],"closing stagger flashes");previous[i]=value;}
         }
+    }
+    static void controllerOwnership(){
+        LsStackActions panel=setup(1216,2688,3,5,Insets.NONE,true);
+        panel.x=25;panel.y=40;
+        for(int action:new int[]{2,1}){
+            MotionEvent event=new MotionEvent();event.action=action;event.x=100;event.y=200;
+            int closed=LsNativeStack.closed;
+            check(panel.onControllerInterceptTouchEvent(event),"floating menu leaked MOVE/UP to OEM card drag");
+            check(panel.onControllerTouchEvent(event),"floating menu did not consume controller stream");
+            check(panel.delivered!=event&&panel.delivered.recycled,"controller must dispatch/recycle a local event copy");
+            near(panel.delivered.x,75,"controller x mapped from drag layer incorrectly");
+            near(panel.delivered.y,160,"controller y mapped from drag layer incorrectly");
+            check(event.x==100&&event.y==200&&LsNativeStack.closed==closed,"continuing original long press closed menu or mutated OEM event");
+        }
+        MotionEvent down=new MotionEvent();down.action=MotionEvent.ACTION_DOWN;int closed=LsNativeStack.closed;
+        panel.onControllerTouchEvent(down);check(LsNativeStack.closed==closed+1,"outside DOWN failed to close menu");
+        LsStackActions.abort(recents);down.action=1;check(panel.onControllerTouchEvent(down),"detached closing panel leaked UP");
     }
     static void lifecycle(){
         LsStackActions p=setup(1216,2688,3,3,Insets.NONE,true);P action=TaskOverlayFactory.actions.get(0);
@@ -773,7 +791,7 @@ public class SideActionsTest {
         g.setFont(new java.awt.Font("Segoe UI",java.awt.Font.PLAIN,21));g.drawString("5 actions / native behavior",1180,1100);g.drawString("Stroke 1.3 / 24 viewport",1180,1140);g.drawString("Unknown OEM icons preserved",1180,1180);
         g.dispose();javax.imageio.ImageIO.write(image,"png",new java.io.File(file));System.out.println("PREVIEW "+file);
     }
-    public static void main(String[] args)throws Exception{virtualLandscape();styles();miniWindow();measuredButtonSizing();geometry();lifecycle();positionSide();sideLock();System.out.println("PASS "+checks+" production side-action outline, native mini-window, sizing, geometry, physical-position, inset, lock initialization and lifecycle assertions");if(args.length>0)preview(args[0]);}
+    public static void main(String[] args)throws Exception{controllerOwnership();virtualLandscape();styles();miniWindow();measuredButtonSizing();geometry();lifecycle();positionSide();sideLock();System.out.println("PASS "+checks+" production side-action outline, native mini-window, sizing, geometry, physical-position, inset, lock initialization and lifecycle assertions");if(args.length>0)preview(args[0]);}
 }
 '''
 with tempfile.TemporaryDirectory(prefix='launcher-side-actions-') as directory:

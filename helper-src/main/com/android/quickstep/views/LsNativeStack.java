@@ -2715,6 +2715,35 @@ public final class LsNativeStack {
         return Math.max(0.0f, Math.min(ordinal - 1.0f, bestPosition));
     }
 
+    /** The stack ends at a task, not the OEM carousel's trailing clear-all page.
+     * Null preserves the OEM bounds for other styles and empty task lists. */
+    public static Integer stackScrollBoundary(RecentsView recents, boolean maximum) {
+        if (!recents.isNativeStackStyle() || recents.isOrbitStyle() || recents.isFanStyle()) return null;
+        Integer boundary = null;
+        for (int i = 0; i < recents.getChildCount(); i++) {
+            if (!(recents.getChildAt(i) instanceof TaskView)) continue;
+            int page = recents.getScrollForPage(i);
+            if (boundary == null || (maximum ? page > boundary : page < boundary)) boundary = page;
+        }
+        return boundary;
+    }
+
+    /** Preserve the OEM pager's overscroll/return clock as a small physical
+     * deck translation. Logical task ordinals stay clamped at the endpoints. */
+    private static float getStackEdgeOffset(RecentsView recents, float scroll, float size) {
+        float first = Float.POSITIVE_INFINITY, last = Float.NEGATIVE_INFINITY;
+        for (int i = 0; i < recents.getChildCount(); i++) {
+            if (!(recents.getChildAt(i) instanceof TaskView)) continue;
+            float page = recents.getScrollForPage(i);
+            first = Math.min(first, page);
+            last = Math.max(last, page);
+        }
+        if (first > last || size <= 0f) return 0f;
+        float excess = Math.max(first, Math.min(last, scroll)) - scroll;
+        float limit = size * .08f;
+        return excess * .55f / (1f + Math.abs(excess) * .55f / limit);
+    }
+
     private static float getMiuiInteriorCorrection(float pagePosition, int taskCount) {
         if (taskCount <= 1) {
             return 0.0f;
@@ -3027,6 +3056,9 @@ public final class LsNativeStack {
                     ? clamp(entryRevealProgress) : 1.0f;
             final float revealPrimary = getEntrySlideOffset(revealProgress,
                     primarySize, handler.getRotation());
+            final float edgeOffset = !freeLayout && !stableEntryOrder && !entryLoading
+                    && actionMenuRecents.get() != recents && !isDismissTransitionActive(recents)
+                    ? getStackEdgeOffset(recents, nativeScroll, primarySize) : 0f;
             /* Recompute occlusion from this same frame's centers while paging.
              * Clearing every clip during motion exposes complete overlapping
              * surfaces for one frame whenever Z/order changes, which is the
@@ -3075,7 +3107,7 @@ public final class LsNativeStack {
                 */
                 float finalCenter = getMiuiStackCenter(primarySize, handler.getPrimarySize(task),
                         taskOrdinal, pagePosition, visualTaskCount);
-                float desiredCenter = finalCenter + revealPrimary;
+                float desiredCenter = finalCenter + revealPrimary + edgeOffset;
                 float finalStackScale = focusScale * getMiuiScaleRatio(depth);
                 float stackScale = finalStackScale;
                 float stackAlpha = getMiuiAlpha(depth);

@@ -1,18 +1,18 @@
-# 堆叠桌面12 · 270005
+# 堆叠桌面12 · 270006
 
-修复红魔12桌面上滑删除最近任务时卡片左右错位及回位异常，新增跟随系统设置的长按振动反馈，请下载12-270005版本。
+修复红魔12桌面打开最近任务应用时的动画错位及长按菜单拖动冲突，新增堆叠样式首尾卡片阻尼回弹，保留上滑删除动画修复和跟随系统设置的长按振动反馈，请下载12-270006版本。
 
-[下载 12-270005.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270005/12-270005.apk)
+[下载 12-270006.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic12-v270006/12-270006.apk)
 
 | 项目 | 内容 |
 | --- | --- |
 | 系列 | 红魔12 Pro+ |
 | 源码分支 | redmagic-12 |
 | 显示版本 | 27.0.000.000.2609231706 |
-| 内部版本 | 270005 |
+| 内部版本 | 270006 |
 | 包名 | com.zte.mifavor.launcher |
 | APK大小 | 50,056,827 字节 |
-| SHA-256 | 1cabdbb655574ae8743ccb6a8b99da91d096b3f9a66c969098dcb07ce705c888 |
+| SHA-256 | 3f1d90f9507375f27fdc77cad90d98883febe6519bf2005547dc048fd06fcdec |
 
 提供标准、宫格、堆叠、环绕和扇形样式，支持三种自定义样式独立比例、任务操作、进出动画、明暗主题和在线更新。
 

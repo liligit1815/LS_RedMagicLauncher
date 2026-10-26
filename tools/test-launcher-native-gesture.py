@@ -24,7 +24,7 @@ def extract(name):
     return source[match.start():match.start() + end.end()]
 
 
-names = ('getMiuiStackCenter', 'getEntrySlideOffset', 'getInitialTaskOrdinal', 'getEntryPagePosition', 'setLiveOverviewTarget', 'onOverviewStateChanged', 'commitInitialPage',
+names = ('stackScrollBoundary', 'getStackEdgeOffset', 'getMiuiStackCenter', 'getEntrySlideOffset', 'getInitialTaskOrdinal', 'getEntryPagePosition', 'setLiveOverviewTarget', 'onOverviewStateChanged', 'commitInitialPage',
          'onRecentsAnimationComplete', 'update', 'resetIfNeeded',
          'scheduleInitialFrameCommit', 'beforeDispatchDraw', 'obtainPagerEvent',
          'getLiveRecentsScale', 'onLiveOverviewFrame', 'setEntryPageAligned',
@@ -560,6 +560,48 @@ public class NativeGestureTest {
         onAppGestureStart(slow);check(current.cancelled&&entryRevealRecents.get()==null,"native gesture retained Home animator");
         onOverviewStateChanged(slow,false);autoFinishReveal=true;focusScale=.9f;
     }
+    static void boundaryRebound(){
+        for(int direction:new int[]{-1,1}){
+            RecentsView bounds=new RecentsView(){
+                // A non-task page lies beyond both ends; RTL reverses all scrolls.
+                @Override int getChildCount(){return tasks.length+2;}
+                @Override View getChildAt(int i){return i==0||i==tasks.length+1?new View():tasks[i-1];}
+                @Override int getScrollForPage(int i){return direction*(i-1)*700;}
+            };
+            check(stackScrollBoundary(bounds,false)==Math.min(0,direction*1400),"non-task page changed minimum");
+            check(stackScrollBoundary(bounds,true)==Math.max(0,direction*1400),"non-task page changed maximum");
+            bounds.orbit=true;check(stackScrollBoundary(bounds,true)==null,"orbit endpoint overridden");
+            bounds.orbit=false;bounds.stack=false;check(stackScrollBoundary(bounds,false)==null,"native endpoint overridden");
+            bounds.stack=true;bounds.tasks=new TaskView[0];check(stackScrollBoundary(bounds,true)==null,"empty list endpoint overridden");
+        }
+        RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
+        obtainPagerEvent(r,new MotionEvent());
+        ordered=null;r.pending=false;overviewEntryPending=false;
+        for(boolean vertical:new boolean[]{false,true}){
+            r.handler.vertical=vertical;float size=r.handler.getPrimarySize(r);
+            for(int side:new int[]{-1,1}){
+                float previous=0;
+                for(int drag=0;drag<=1000;drag+=10){
+                    float physical=side<0?-drag:1400+drag;
+                    float offset=getStackEdgeOffset(r,physical,size);
+                    check(offset*side<=0&&Math.abs(offset)<size*.08f,"edge drag escapes bounded physical direction");
+                    check(Math.abs(offset)>=previous,"edge resistance reverses");previous=Math.abs(offset);
+                }
+                for(int drag=1000;drag>=0;drag-=10){
+                    float physical=side<0?-drag:1400+drag;
+                    float offset=getStackEdgeOffset(r,physical,size);
+                    check(Math.abs(offset)<=previous,"return moves away from edge");previous=Math.abs(offset);
+                }
+                check(previous==0,"edge return left a permanent offset");
+            }
+        }
+        r.handler.vertical=false;r.scroll=-160;beforeDispatchDraw(r);
+        float displaced=r.tasks[0].x;r.scroll=0;beforeDispatchDraw(r);
+        // Convert back to the rendered pivot; physical scroll is not logical page position.
+        check(displaced-r.tasks[0].x+160>0,"draw composition erased the rebound");
+        for(int scroll=0;scroll<=1400;scroll+=10)check(getStackEdgeOffset(r,scroll,1000)==0,"normal paging acquired bounce");
+        onOverviewStateChanged(r,false);
+    }
     static void longPressHaptics(){
         for(boolean enabled:new boolean[]{false,true}){
             RecentsView r=new RecentsView();onOverviewStateChanged(r,true);r.drain();
@@ -1057,7 +1099,7 @@ public class NativeGestureTest {
         focusScale=savedScale;
     }
     public static void main(String[] args){
-        longPressHaptics();
+        boundaryRebound();longPressHaptics();
         ORBIT_COMPOSITION
         preciseClipBoundaries();
         actionNeighborCompleteness();
@@ -1176,6 +1218,15 @@ public class NativeGestureTest {
 
 # Verify the production binding runs before OEM setup can sample cached cards.
 recents = (ROOT / 'src/smali_classes3/com/android/quickstep/views/RecentsView.smali').read_text(encoding='utf-8')
+for name, maximum in (('computeMinScroll', '0'), ('computeMaxScroll', '1')):
+    body = recents.split('.method public ' + name + '()I', 1)[1].split('.end method', 1)[0]
+    prefix = body.split('->hasTaskViews()', 1)[0]
+    assert re.search(r'const/4 v1, 0x' + maximum + r'\s+invoke-static \{p0, v1\}, .*->stackScrollBoundary\(', prefix)
+    # Test the boxed result for null before unboxing, so scroll zero remains a
+    # valid custom bound and native/empty-list fallbacks retain the OEM body.
+    assert re.search(r'move-result-object v0\s+if-eqz v0, (:\w+)\s+'
+                     r'invoke-virtual \{v0\}, Ljava/lang/Integer;->intValue\(\)I\s+'
+                     r'move-result v0\s+return v0\s+\1', prefix)
 start = recents.split('.method public onGestureAnimationStart(', 1)[1].split('.end method', 1)[0]
 assert start.index('->onAppGestureStart(') < start.index('sput-boolean'), 'gesture hook must precede OEM setup'
 

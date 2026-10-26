@@ -25,10 +25,10 @@
 .method constructor <init>(Lcom/android/quickstep/views/TaskView;)V
     .locals 1
 
-    .line 560
+    .line 559
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 561
+    .line 560
     invoke-static {}, Lcom/android/quickstep/views/LsStackTransition;->access$000()Ljava/util/WeakHashMap;
 
     move-result-object v0
@@ -45,7 +45,7 @@
 
     iput-object p1, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
-    .line 562
+    .line 561
     return-void
 .end method
 
@@ -54,7 +54,7 @@
 .method public run()V
     .locals 14
 
-    .line 564
+    .line 563
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
     if-eqz v0, :cond_c
@@ -73,7 +73,7 @@
 
     goto/16 :goto_7
 
-    .line 566
+    .line 565
     :cond_0
     iget-object v0, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
@@ -85,7 +85,7 @@
 
     check-cast v0, Lcom/android/quickstep/views/RecentsView;
 
-    .line 567
+    .line 566
     iget-object v1, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
     iget-object v1, v1, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchedTask:Ljava/lang/ref/WeakReference;
@@ -96,7 +96,7 @@
 
     check-cast v1, Lcom/android/quickstep/views/TaskView;
 
-    .line 568
+    .line 567
     iget-object v2, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
     iget-object v2, v2, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchSnapshot:Ljava/lang/ref/WeakReference;
@@ -107,7 +107,7 @@
 
     check-cast v2, Landroid/view/View;
 
-    .line 569
+    .line 568
     if-eqz v0, :cond_b
 
     invoke-static {}, Lcom/android/quickstep/views/LsStackTransition;->access$000()Ljava/util/WeakHashMap;
@@ -136,7 +136,7 @@
 
     iget-object v0, v0, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchedTaskIds:[I
 
-    .line 571
+    .line 570
     invoke-virtual {v1}, Lcom/android/quickstep/views/TaskView;->getTaskIds()[I
 
     move-result-object v3
@@ -147,7 +147,7 @@
 
     if-eqz v0, :cond_b
 
-    .line 572
+    .line 571
     invoke-virtual {v1}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
 
     move-result-object v0
@@ -160,7 +160,7 @@
 
     if-ne v0, v3, :cond_b
 
-    .line 573
+    .line 572
     invoke-virtual {v1}, Lcom/android/quickstep/views/TaskView;->getTaskContainers()Ljava/util/List;
 
     move-result-object v0
@@ -181,18 +181,18 @@
 
     goto/16 :goto_6
 
-    .line 574
+    .line 573
     :cond_1
     invoke-static {v2, v1}, Lcom/android/quickstep/views/LsStackTransition;->access$100(Landroid/view/View;Z)Landroid/graphics/Matrix;
 
     move-result-object v0
 
-    .line 575
+    .line 574
     new-instance v4, Landroid/graphics/Matrix;
 
     invoke-direct {v4}, Landroid/graphics/Matrix;-><init>()V
 
-    .line 576
+    .line 575
     new-instance v5, Landroid/graphics/Matrix;
 
     invoke-virtual {v2}, Landroid/view/View;->getMatrix()Landroid/graphics/Matrix;
@@ -201,12 +201,12 @@
 
     invoke-direct {v5, v6}, Landroid/graphics/Matrix;-><init>(Landroid/graphics/Matrix;)V
 
-    .line 577
+    .line 576
     new-instance v6, Landroid/graphics/Matrix;
 
     invoke-direct {v6}, Landroid/graphics/Matrix;-><init>()V
 
-    .line 578
+    .line 577
     if-eqz v0, :cond_a
 
     invoke-virtual {v0, v4}, Landroid/graphics/Matrix;->invert(Landroid/graphics/Matrix;)Z
@@ -223,7 +223,7 @@
 
     goto/16 :goto_5
 
-    .line 582
+    .line 581
     :cond_2
     new-instance v7, Landroid/graphics/Matrix;
 
@@ -233,14 +233,14 @@
 
     invoke-direct {v7, v8}, Landroid/graphics/Matrix;-><init>(Landroid/graphics/Matrix;)V
 
-    .line 583
+    .line 582
     instance-of v8, v2, Lcom/android/quickstep/task/thumbnail/TaskThumbnailView;
 
     const/4 v9, 0x0
 
     if-eqz v8, :cond_3
 
-    .line 584
+    .line 583
     move-object v8, v2
 
     check-cast v8, Lcom/android/quickstep/task/thumbnail/TaskThumbnailView;
@@ -250,7 +250,7 @@
     :cond_3
     move-object v8, v9
 
-    .line 585
+    .line 584
     :goto_0
     if-nez v8, :cond_4
 
@@ -263,7 +263,7 @@
 
     move-result-object v10
 
-    .line 586
+    .line 585
     :goto_1
     if-eqz v8, :cond_5
 
@@ -273,7 +273,7 @@
 
     if-eqz v11, :cond_5
 
-    .line 587
+    .line 586
     invoke-virtual {v8}, Lcom/android/quickstep/task/thumbnail/TaskThumbnailView;->getThumbnail()Landroid/graphics/Bitmap;
 
     move-result-object v11
@@ -295,7 +295,7 @@
     :cond_5
     move v11, v1
 
-    .line 588
+    .line 587
     :goto_2
     iget-object v12, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
@@ -305,12 +305,12 @@
 
     if-eqz v8, :cond_6
 
-    .line 589
+    .line 588
     new-instance v12, Landroid/graphics/Matrix;
 
     invoke-direct {v12}, Landroid/graphics/Matrix;-><init>()V
 
-    .line 590
+    .line 589
     if-eqz v11, :cond_6
 
     if-eqz v10, :cond_6
@@ -321,17 +321,17 @@
 
     if-eqz v13, :cond_6
 
-    .line 593
+    .line 592
     invoke-virtual {v7, v12}, Landroid/graphics/Matrix;->set(Landroid/graphics/Matrix;)V
 
-    .line 594
+    .line 593
     iget-object v12, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
     iget-object v12, v12, Lcom/android/quickstep/views/LsStackTransition$Transition;->snapshotBitmapToBuffer:Landroid/graphics/Matrix;
 
     invoke-virtual {v7, v12}, Landroid/graphics/Matrix;->postConcat(Landroid/graphics/Matrix;)Z
 
-    .line 597
+    .line 596
     :cond_6
     iget-object v12, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
@@ -339,24 +339,24 @@
 
     invoke-virtual {v7, v12}, Landroid/graphics/Matrix;->postConcat(Landroid/graphics/Matrix;)Z
 
-    .line 598
+    .line 597
     new-instance v12, Landroid/graphics/Matrix;
 
     invoke-direct {v12, v6}, Landroid/graphics/Matrix;-><init>(Landroid/graphics/Matrix;)V
 
-    .line 599
+    .line 598
     invoke-virtual {v12, v7}, Landroid/graphics/Matrix;->postConcat(Landroid/graphics/Matrix;)Z
 
-    .line 600
+    .line 599
     invoke-virtual {v12, v4}, Landroid/graphics/Matrix;->postConcat(Landroid/graphics/Matrix;)Z
 
-    .line 601
+    .line 600
     invoke-virtual {v12, v5}, Landroid/graphics/Matrix;->postConcat(Landroid/graphics/Matrix;)Z
 
-    .line 602
+    .line 601
     invoke-virtual {v2, v12}, Landroid/view/View;->setAnimationMatrix(Landroid/graphics/Matrix;)V
 
-    .line 603
+    .line 602
     iget-object v2, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
     iget v4, v2, Lcom/android/quickstep/views/LsStackTransition$Transition;->snapshotDiagnosticFrames:I
@@ -369,7 +369,7 @@
 
     if-ge v4, v2, :cond_9
 
-    .line 604
+    .line 603
     iget-object v2, p0, Lcom/android/quickstep/views/LsStackTransition$SnapshotFrame;->transition:Lcom/android/quickstep/views/LsStackTransition$Transition;
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -428,7 +428,7 @@
 
     move-result-object v1
 
-    .line 607
+    .line 606
     invoke-static {v10}, Lcom/android/quickstep/views/LsStackTransition;->access$200(Landroid/graphics/Matrix;)Ljava/lang/String;
 
     move-result-object v3
@@ -443,7 +443,7 @@
 
     move-result-object v1
 
-    .line 608
+    .line 607
     if-nez v8, :cond_8
 
     goto :goto_4
@@ -468,7 +468,7 @@
 
     move-result-object v1
 
-    .line 609
+    .line 608
     invoke-static {v0}, Lcom/android/quickstep/views/LsStackTransition;->access$200(Landroid/graphics/Matrix;)Ljava/lang/String;
 
     move-result-object v0
@@ -487,7 +487,7 @@
 
     iget-object v1, v1, Lcom/android/quickstep/views/LsStackTransition$Transition;->launchSurfaceMatrix:Landroid/graphics/Matrix;
 
-    .line 610
+    .line 609
     invoke-static {v1}, Lcom/android/quickstep/views/LsStackTransition;->access$200(Landroid/graphics/Matrix;)Ljava/lang/String;
 
     move-result-object v1
@@ -502,7 +502,7 @@
 
     move-result-object v0
 
-    .line 611
+    .line 610
     invoke-static {v12}, Lcom/android/quickstep/views/LsStackTransition;->access$200(Landroid/graphics/Matrix;)Ljava/lang/String;
 
     move-result-object v1
@@ -515,24 +515,24 @@
 
     move-result-object v0
 
-    .line 604
+    .line 603
     invoke-static {v2, v0}, Lcom/android/quickstep/views/LsStackTransition;->access$300(Lcom/android/quickstep/views/LsStackTransition$Transition;Ljava/lang/String;)V
 
-    .line 613
+    .line 612
     :cond_9
     return-void
 
-    .line 578
+    .line 577
     :cond_a
     :goto_5
     return-void
 
-    .line 573
+    .line 572
     :cond_b
     :goto_6
     return-void
 
-    .line 565
+    .line 564
     :cond_c
     :goto_7
     return-void

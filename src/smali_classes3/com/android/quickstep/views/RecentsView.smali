@@ -15681,7 +15681,16 @@
 .end method
 
 .method public computeMaxScroll()I
-    .locals 1
+    .locals 2
+
+    const/4 v1, 0x1
+    invoke-static {p0, v1}, Lcom/android/quickstep/views/LsNativeStack;->stackScrollBoundary(Lcom/android/quickstep/views/RecentsView;Z)Ljava/lang/Integer;
+    move-result-object v0
+    if-eqz v0, :ls_native_max_scroll
+    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
+    move-result v0
+    return v0
+    :ls_native_max_scroll
 
     .line 1
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->hasTaskViews()Z
@@ -15749,7 +15758,16 @@
 .end method
 
 .method public computeMinScroll()I
-    .locals 1
+    .locals 2
+
+    const/4 v1, 0x0
+    invoke-static {p0, v1}, Lcom/android/quickstep/views/LsNativeStack;->stackScrollBoundary(Lcom/android/quickstep/views/RecentsView;Z)Ljava/lang/Integer;
+    move-result-object v0
+    if-eqz v0, :ls_native_min_scroll
+    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
+    move-result v0
+    return v0
+    :ls_native_min_scroll
 
     .line 1
     invoke-virtual {p0}, Lcom/android/quickstep/views/RecentsView;->hasTaskViews()Z

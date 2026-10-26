@@ -53,6 +53,7 @@ SOURCE_TESTS = (
     "test-launcher-overview-rotation.py",
     "test-launcher-card-long-press.py",
     "test-launcher-stack-transition.py",
+    "test-launcher-launch-snapshot.py",
     "test-launcher-release-boundary.py",
     "test-launcher-thumbnail-continuity.py",
     "test-launcher-thumbnail-edge.py",
