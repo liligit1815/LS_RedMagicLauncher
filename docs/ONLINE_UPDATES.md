@@ -1,6 +1,6 @@
 # 红魔12在线更新
 
-红魔12桌面使用独立更新通道 `stacked-desktop-redmagic12`，当前版本为 `270007 / 27.0.000.000.2609231706`。
+红魔12桌面使用独立更新通道 `stacked-desktop-redmagic12`，当前版本为 `270008 / 27.0.000.000.2609231706`。
 
 [公开更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop-redmagic12.json) · [发行页面](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007)
 
@@ -34,12 +34,12 @@
 
 在 `lispacerelease` 中登记appId后，使用该仓库的 `tools/publish.py --app stacked-desktop-redmagic12`。该配置要求target SDK37，并使用 `12-<内部版本>.apk` 作为附件名。
 
-发布工具从最终签名APK读取身份，先上传并核对附件，再公开Release，最后更新独立清单。清单写入是客户端发现版本的生效点；中断后使用同一APK、说明和参数重试。不得以同一内部版本号替换不同APK，不得将10或11系列附件写入12清单。
+发布工具从最终签名APK读取身份，先上传并核对附件，再公开Release，最后更新独立清单。本次270008沿用现有三系列Release标签与页面：先上传并核对 `12-270008.apk`，更新12系列独立清单和下载说明，再删除 `12-270007.apk`；保留10、11系列附件与更新清单。清单写入是客户端发现版本的生效点；中断后使用同一APK、说明和参数重试。不得以同一内部版本号替换不同APK，不得将10或11系列附件写入12清单。
 
 公开下载可用以下命令核对，报告留在忽略的out目录：
 
 ```powershell
-python tools/check-launcher-online-release.py --sdk "<Android SDK目录>" --java-home "<JDK目录>" --out-dir "out/online-release-270007" --expected-version-code 270007 --expected-apk "<最终签名APK>"
+python tools/check-launcher-online-release.py --sdk "<Android SDK目录>" --java-home "<JDK目录>" --out-dir "out/online-release-270008" --expected-version-code 270008 --expected-apk "<最终签名APK>"
 ```
 
 客户端入口由 `LsOnlineUpdates` 接入，协议由 `LsUpdateProtocol` 处理，下载交接由 `LsUpdateFileProvider` 提供。清单与安装包版本一致时不会再次提示升级。

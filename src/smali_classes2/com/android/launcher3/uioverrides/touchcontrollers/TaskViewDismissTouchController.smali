@@ -3613,6 +3613,15 @@
 
     .line 67
     .line 68
+    # The deck already drew this exact task at its gesture layer on DOWN.
+    invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
+    move-result-object v0
+    if-eqz v0, :stock_drag_layer
+    invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
+    move-result v0
+    if-nez v0, :drag_layer_ready
+
+    :stock_drag_layer
     const p0, 0x3dcccccd    # 0.1f
 
     .line 69
@@ -3623,6 +3632,7 @@
     .line 72
     .line 73
     .line 74
+    :drag_layer_ready
     return-void
 .end method
 

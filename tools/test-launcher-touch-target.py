@@ -133,3 +133,10 @@ call = body.split('LsNativeStack;->findTouchedTask(', 1)[1]
 assert call.index('move-result-object v3') < call.index('->taskBeingDragged:'), 'topmost hit result must own the native drag'
 assert body.index('->isNativeStackStyle()Z') < body.index('->findTouchedTask('), 'standard/grid must retain the native hit test'
 print('PASS OEM12 task-drag hit test uses the visual owner')
+
+# Both swipe directions share this entry. The stock Z assignment would put the
+# hit foreground task behind its neighbor after the pointer had already bound.
+drag = controller.split('.method public onDragStart(ZF)V', 1)[1].split('.end method', 1)[0]
+assert drag.index('->taskBeingDragged:') < drag.index('->getRecentsView()') < drag.index('->isNativeStackStyle()Z')
+assert re.search(r'if-nez v0, :drag_layer_ready.*?:stock_drag_layer.*?->setTranslationZ\(F\)V.*?:drag_layer_ready\s+.*?return-void', drag, re.S)
+print('PASS stacked swipe preserves hit card Z, standard and detached cards keep native Z')
