@@ -1,20 +1,20 @@
 # LS_RedMagicLauncher · 红魔11系列
 
-本分支 `redmagic-11` 维护红魔11桌面，内部版本 **260030**，显示版本 **26.9.260.908.2609081608**。红魔10、11、12分别使用 `redmagic-10`、`redmagic-11`、`redmagic-12`，每个分支保留自身源码、原厂输入和框架；main保留原有历史。
+本分支 `redmagic-11` 维护红魔11桌面，内部版本 **260031**，显示版本 **26.9.260.908.2609081608**。红魔10、11、12分别使用 `redmagic-10`、`redmagic-11`、`redmagic-12`，每个分支保留自身源码、原厂输入和框架；main保留原有历史。
 
-[下载堆叠桌面11-260030.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/11-260030.apk) · [三系列同批次发行](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007) · [本系列在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)
+[下载堆叠桌面11-260031.apk](https://github.com/liligit1815/lispacerelease/releases/download/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007/11-260031.apk) · [三系列同批次发行](https://github.com/liligit1815/lispacerelease/releases/tag/stacked-desktop-redmagic10-batch-11-260030-10-250002-12-270007) · [本系列在线更新清单](https://raw.githubusercontent.com/liligit1815/lispacerelease/main/updates/stacked-desktop.json)
 
 ## 下载与更新内容
 
 下载描述：
 10.x.x系统请安装堆叠桌面10-250002
-11.x.x系统请安装堆叠桌面11-260030
-12.x.x系统请安装堆叠桌面12-270007
+11.x.x系统请安装堆叠桌面11-260031
+12.x.x系统请安装堆叠桌面12-270008
 
 更新内容：
-1. 新增长按动作震动反馈
-2. 新增边界动画回弹效果
-3. 优化动画效果和流畅性
+1. 修复新版任务手势路径中，拖动开始、取消或结束时自定义卡片层级突变的问题。
+2. 保留堆叠、环绕和扇形卡片的前后层级，标准和宫格样式继续使用原厂逻辑。
+3. 保持原有手势模式选择不变。
 
 ## 当前功能
 
@@ -35,7 +35,7 @@ python tools/build-launcher.py --sdk "<Android SDK目录>" --unsigned
 
 正式签名使用本工程 `.signing/` 恢复后的既有升级身份。仓库保存当前源码、构建工具和固定输入；编译输出、过程报告、设备资料和私有签名保存在本地忽略目录。
 
-[版本说明](docs/RELEASE_260030.md) · [构建说明](docs/BUILDING.md) · [安装说明](docs/INSTALL_COMPATIBILITY.md) · [在线更新](docs/ONLINE_UPDATES.md) · [源码边界](docs/GITHUB_AND_STORAGE.md) · [环绕设计](docs/ORBIT_CARDS.md) · [扇形设计](docs/FAN_CARDS.md)
+[版本说明](docs/RELEASE_260031.md) · [构建说明](docs/BUILDING.md) · [安装说明](docs/INSTALL_COMPATIBILITY.md) · [在线更新](docs/ONLINE_UPDATES.md) · [源码边界](docs/GITHUB_AND_STORAGE.md) · [环绕设计](docs/ORBIT_CARDS.md) · [扇形设计](docs/FAN_CARDS.md)
 
 ## 后续版本如何发布并提供在线更新
 

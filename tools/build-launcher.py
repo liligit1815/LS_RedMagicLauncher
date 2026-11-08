@@ -41,6 +41,7 @@ SOURCE_TESTS = (
     "test-launcher-dismiss-integration.py", "test-launcher-style-isolation.py",
     "test-launcher-focus-draw.py", "test-launcher-entry-rotation.py",
     "test-launcher-touch-target.py",
+    "test-launcher-drag-layer.py",
     "test-launcher-native-gesture.py",
     "test-launcher-home-stack-entry.py",
     "test-launcher-action-visibility.py",

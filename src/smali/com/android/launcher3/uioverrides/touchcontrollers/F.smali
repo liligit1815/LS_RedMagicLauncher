@@ -474,6 +474,15 @@
 
     .line 15
     .line 16
+    # Cancellation/settling must not flatten a custom card behind its neighbors.
+    invoke-virtual {v0}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
+    move-result-object v2
+    if-eqz v2, :ls_stock_reset_layer
+    invoke-virtual {v2}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
+    move-result v2
+    if-nez v2, :cond_0
+
+    :ls_stock_reset_layer
     const/4 v2, 0x0
 
     .line 17
@@ -2028,6 +2037,15 @@
 
     .line 33
     .line 34
+    # Preserve the custom deck's current visual layer when a drag starts.
+    invoke-virtual {p1}, Lcom/android/quickstep/views/TaskView;->getRecentsView()Lcom/android/quickstep/views/RecentsView;
+    move-result-object v0
+    if-eqz v0, :ls_stock_drag_layer
+    invoke-virtual {v0}, Lcom/android/quickstep/views/RecentsView;->isNativeStackStyle()Z
+    move-result v0
+    if-nez v0, :ls_drag_layer_ready
+
+    :ls_stock_drag_layer
     const p0, 0x3dcccccd    # 0.1f
 
     .line 35
@@ -2038,5 +2056,6 @@
     .line 38
     .line 39
     .line 40
+    :ls_drag_layer_ready
     return-void
 .end method
